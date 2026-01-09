@@ -19,16 +19,8 @@ This project creates a professional, context-driven usage guide for three critic
 - A tactics textbook (tactical notes are brief and contextual only)
 - Official Falcon BMS documentation (community effort, non-affiliated)
 
-## Current Status (v0.2.2.0 — January 8, 2026)
-
-| Aspect | Details |
-|--------|---------|
-| **Latest Version** | `v0.2.2.0+20260108` |
-| **Master Guide File** | `guide-v0.2.2.0-20260108.tex` |
-| **Chapters Complete** | 2 / 7 (Introduction, CMS Concept intro) |
-| **Tables Populated** | 0% (architecture reserved, content pending) |
-| **Development Phase** | Pre-publication (v0.x.x.x) |
-| **Layout Standard** | Geometry Option D: A4, 2.0 cm side margins, 17.0 cm text width |
+## Current Status
+echo "**Current Version:** guide-v0.2.2.0-20260109.tex" >> README.md
 
 ### Latest Updates
 
