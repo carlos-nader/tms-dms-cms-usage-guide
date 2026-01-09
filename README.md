@@ -50,9 +50,9 @@ This project creates a professional, context-driven usage guide for three critic
 projet-bms/
 ├── docs/
 │   ├── BRIEFING-v0-1-4-1.docx           # Project specification & style guide
-│   ├── VERSION-SYSTEM-V4.1.docx          # Semantic versioning rules
+│   ├── VERSION-SYSTEM-V4.2.docx          # Semantic versioning rules
 │   ├── WIP-NAMING-CONVENTION-v1.3.docx   # File naming standards
-│   ├── PROJECT-TRACKING-v4.1.1.docx      # Timeline & status tracking
+│   ├── PROJECT-TRACKING-v5.0.0.docx      # Timeline & status tracking
 │   └── [Markdown versions coming]
 │
 ├── WIP/                                  # Work-in-progress sections & tables
@@ -94,7 +94,7 @@ Used after first public release (`1.0.0`):
 - **MINOR** = significant compatible revisions
 - **PATCH** = corrections and polish
 
-**Detailed rules:** See `VERSION-SYSTEM-V4.1.docx` in `docs/`
+**Detailed rules:** See `VERSION-SYSTEM-V4.2.docx` in `docs/`
 
 ## Governance Documents
 
@@ -103,13 +103,13 @@ The project is governed by four key documents housed in `docs/`:
 ### 1. **BRIEFING** (v0.1.4.1)
 Project specification: scope, style rules, layout parameters, content guidelines, and AI collaboration standards. Required reading for understanding what goes into the guide.
 
-### 2. **VERSION-SYSTEM** (v4.1)
+### 2. **VERSION-SYSTEM** (v4.2)
 Authoritative rules for semantic versioning, file naming patterns, version increment triggers, and synchronization protocols across LaTeX macros, file names, and tracking documents.
 
 ### 3. **WIP NAMING CONVENTION** (v1.3)
 Standardized naming for all work-in-progress files (chapters, sections, tables, notes, visuals) with status codes, organization rules, and automation hints.
 
-### 4. **PROJECT TRACKING** (v4.1.1)
+### 4. **PROJECT TRACKING** (v5.0.0)
 Session-by-session timeline, milestones, WIP file status, integration priority, and completion history. Updated at the end of each development session.
 
 **Status:** Currently in `.docx` format. Markdown equivalents are planned to be published to `docs/` as the project progresses.

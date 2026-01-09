@@ -16,14 +16,14 @@ These documents define the rules; PROJECT-TRACKING records how they are applied.
 
 | Document                      | Version | Purpose                               | Scope / Notes |
 |-------------------------------|:-------:|---------------------------------------|---------------|
-| VERSION-SYSTEM-v4.1           |  v4.1   | Versioning rules for `guide-v*`       | Defines 0.x.x.x vs x.y.z regimes; MAJOR/MINOR/PATCH/SUBPATCH semantics; build date rules. |
+| VERSION-SYSTEM-v4.2           |  v4.2   | Versioning rules for `guide-v*`       | Defines 0.x.x.x vs x.y.z regimes; MAJOR/MINOR/PATCH/SUBPATCH semantics; build date rules. |
 | WIP-FILE-NAMING-v1.3          |  v1.3   | Naming and status for WIP files       | Prefixes `section-*`, `table-*`, `visual-*`, `notes-*`, `chapter-*` with dev/review/final/approved/deprecated. |
 | BRIEFING-v0.1.4.1             | v0.1.4.1| Content and layout brief               | Scope, style, layout standard (Geometry Option D, `hotastable` 15.6 cm, `\arraystretch=1.25`), high-level roadmap. |
 | PROJECT-TRACKING-v5.0.0 (this)|  v5.0.0 | Project tracking and integration log   | Records how WIP + VERSION-SYSTEM + layout decisions become concrete guide versions; now integrated with Git/GitHub repo. |
 
 **Integration rules**
 
-- **VERSION-SYSTEM-v4.1** governs only `guide-v*.tex` version numbers.  
+- **VERSION-SYSTEM-v4.2** governs only `guide-v*.tex` version numbers.  
 - **WIP-FILE-NAMING-v1.3** governs only files in the WIP/ARCHIVE layer.  
 - **BRIEFING-v0.1.4.1** defines *what* the guide contains and *how* it looks.  
 - **PROJECT-TRACKING-v5.0.0** records *when and why* those rules are applied and how they map to concrete guide versions.
@@ -84,7 +84,7 @@ High-level view of the project **as of 2026-01-09**.
 
 Post-Phase-0:
 
-- `v1.0.0` and above will follow VERSION-SYSTEM-v4.1 rules for post-publication regimes (Phase 1 — table population; Phase 2 — review & community release).
+- `v1.0.0` and above will follow VERSION-SYSTEM-v4.2 rules for post-publication regimes (Phase 1 — table population; Phase 2 — review & community release).
 
 ---
 
@@ -212,11 +212,11 @@ Phase boundaries and dates are guidelines; actual transitions must be explicitly
 | File                                      | Version  | Type        | Status   | Short Purpose |
 |-------------------------------------------|:--------:|------------|---------|---------------|
 | `docs/BRIEFING-v0.1.4.1.md`               | 0.1.4.1  | Reference   | ✅ Active | Project brief (scope, style, layout, current status). Source for DOCX export. |
-| `docs/VERSION-SYSTEM-v4.1.md`             | 4.1      | Reference   | ✅ Active | Guide versioning rules and phases (0.x.x.x vs x.y.z). |
+| `docs/VERSION-SYSTEM-v4.2.md`             | 4.2      | Reference   | ✅ Active | Guide versioning rules and phases (0.x.x.x vs x.y.z). |
 | `docs/wip-naming-convention-v1.3.md`      | 1.3      | Reference   | ✅ Active | WIP naming and status code rules. |
 | `docs/PROJECT-TRACKING-v5.0.0.md`         | 5.0.0    | Tracking    | ✅ Active | This document — unified tracking with Git/GitHub integration. |
 | `docs/BRIEFING-v0.1.4.1.docx`             | 0.1.4.1  | Export      | ✅ Derived | DOCX export from Markdown for convenient reading/sharing. |
-| `docs/VERSION-SYSTEM-v4.1.docx`           | 4.1      | Export      | ✅ Derived | DOCX export from Markdown. |
+| `docs/VERSION-SYSTEM-v4.2.docx`           | 4.2      | Export      | ✅ Derived | DOCX export from Markdown. |
 | `docs/wip-naming-convention-v1.3.docx`    | 1.3      | Export      | ✅ Derived | DOCX export from Markdown. |
 | `docs/PROJECT-TRACKING-v5.0.0.docx`       | 5.0.0    | Export      | ⏳ Planned | To be generated from this Markdown via `md-to-docx` script. |
 
