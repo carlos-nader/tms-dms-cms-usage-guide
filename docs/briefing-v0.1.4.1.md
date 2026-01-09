@@ -471,9 +471,9 @@ When collaborating on this project, the following communication standards apply:
 
 ---
 
-## 10. Version Control System (VERSION_SYSTEM_v4.1 — Overview)
+## 10. Version Control System (VERSION_SYSTEM_v4.2 — Overview)
 
-This section provides a **high‑level overview** of the versioning model used for the TMS/DMS/CMS guide. The **authoritative rules** are defined in the standalone document **"Falcon BMS TMS/DMS/CMS Guide Version System v4.1"**. In case of any discrepancy between this brief and that document, **Version System v4.1 is the single source of truth**.
+This section provides a **high‑level overview** of the versioning model used for the TMS/DMS/CMS guide. The **authoritative rules** are defined in the standalone document **"Falcon BMS TMS/DMS/CMS Guide Version System v4.2"**. In case of any discrepancy between this brief and that document, **Version System v4.2 is the single source of truth**.
 
 ### 10.1 Purpose and Scope
 
@@ -501,7 +501,7 @@ guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex
 
 ### 10.3 Two Regimes: Pre‑Publication (0.x.x.x) and Post‑Publication (≥ 1.0)
 
-Version System v4.1 defines two distinct regimes:
+Version System v4.2 defines two distinct regimes:
 
 **Pre‑publication regime (0.x.x.x):**
 
@@ -518,11 +518,11 @@ Version System v4.1 defines two distinct regimes:
 - `MINOR` = significant but compatible revisions within the same edition.
 - `PATCH` = local corrections and polish (errata, clarity, minor table fixes).
 
-The exact decision tables for when to increment each digit are defined in **Version System v4.1** and should not be reimplemented here.
+The exact decision tables for when to increment each digit are defined in **Version System v4.2** and should not be reimplemented here.
 
 ### 10.4 Quick Operational Rules
 
-The following rules are intended as a **working checklist**; always refer to Version System v4.1 for the full logic and examples.
+The following rules are intended as a **working checklist**; always refer to Version System v4.2 for the full logic and examples.
 
 - **Only content integrated into the main guide file (`guide-v*.tex`) can change its version.**
   - Work done in WIP files (`section-`, `table-`, `visual-`, `notes-`) does not affect the guide version until it is integrated.
@@ -536,7 +536,7 @@ The following rules are intended as a **working checklist**; always refer to Ver
   - Local corrections, improved clarity, small table fixes → **PATCH** increment.
 - **Build date (`\docbuild` and `YYYYMMDD` in the file name) is updated every time a new version number is established.**
 
-For precise thresholds and edge cases, consult **Version System v4.1**.
+For precise thresholds and edge cases, consult **Version System v4.2**.
 
 ### 10.5 Single Source of Truth and Synchronisation
 
@@ -549,7 +549,7 @@ To avoid divergence between different artefacts, the following three elements mu
 3. **PROJECT‑TRACKING entry**:
    - Must record the same version number, date, affected chapters/sections, and a concise description of the changes.
 
-If there is ever a conflict between this brief and the detailed rules, **Version System v4.1** takes precedence and must be used as the deciding reference.
+If there is ever a conflict between this brief and the detailed rules, **Version System v4.2** takes precedence and must be used as the deciding reference.
 
 ---
 
@@ -562,7 +562,7 @@ If there is ever a conflict between this brief and the detailed rules, **Version
 | **Active Version**     | `v0.2.2.0+20260108`             | Master guide updated to Geometry Option D (2.0 cm left/right margins) and `hotastable` row height `\arraystretch = 1.25`. |
 | **Chapters Complete**  | `2 / 7`                         | Chapter 1 (Introduction) and Chapter 5.1 (CMS Concept and interaction with CMDS/ECM) have complete narrative scaffolding; remaining chapters are in skeleton form. |
 | **Tables Filled**      | `0 %`                           | All TMS/DMS/CMS `hotastable` structures reserved but not yet populated with full behaviour data. |
-| **Phase**              | `0 (Pre‑publication)`           | Guide remains in scaffolding regime `0.x.x.x` as defined by Version System v4.1 (no public edition ≥ 1.0 yet). |
+| **Phase**              | `0 (Pre‑publication)`           | Guide remains in scaffolding regime `0.x.x.x` as defined by Version System v4.2 (no public edition ≥ 1.0 yet). |
 | **Layout Standard**    | `Geometry Option D applied`     | Global layout aligned: A4, 2.0 cm side margins, 2.5 cm top/bottom, 17.0 cm text width, and HOTAS tables fixed at 15.6 cm width with `\small` and `\arraystretch = 1.25`. |
 | **Next Milestone**     | `v0.3.0.0 (planned)`            | Integration of the next fully scaffolded chapter into the main guide (third chapter brought to narrative completion under the pre‑publication regime). |
 
@@ -601,4 +601,4 @@ These historical versions provide traceability for structural decisions, early c
 
 ---
 
-**Last Updated (Brief):** 08 January 2026 — Layout parameters section added, Version System v4.1 overview integrated, and project status updated to `v0.2.2.0`.
+**Last Updated (Brief):** 08 January 2026 — Layout parameters section added, Version System v4.2 overview integrated, and project status updated to `v0.2.2.0`.
