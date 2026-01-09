@@ -5,7 +5,7 @@
 **Effective Date:** 07 January 2026  
 **Applies to:** All isolated chapter, section, table, note, and visual files under development  
 **Supersedes:** v1.2  
-**Relationship to VERSION-SYSTEM-v4.1:** Complementary; does NOT affect main document versioning
+**Relationship to VERSION-SYSTEM-v4.2:** Complementary; does NOT affect main document versioning
 
 ---
 
@@ -37,7 +37,7 @@ This convention applies to:
 - Visual assets (diagrams, flowcharts, schematics) (`visual-*.*`)
 
 This convention does **NOT** apply to:
-- The main guide file (`guide-v*.tex`) — covered by VERSION-SYSTEM-v4.1
+- The main guide file (`guide-v*.tex`) — covered by VERSION-SYSTEM-v4.2
 - Compiled PDFs or other binary outputs
 - Git commit messages or version control metadata
 - External reference materials or archived publications
@@ -48,9 +48,9 @@ All WIP files are organized in two top-level folders:
 
 ```
 project-root/
-├── guide-v0.1.4.0-2026-01-06.tex           (MAIN — subject to VERSION-SYSTEM-v4.1)
+├── guide-v0.1.4.0-2026-01-06.tex           (MAIN — subject to VERSION-SYSTEM-v4.2)
 ├── PROJECT-TRACKING.md
-├── VERSION-SYSTEM-v4.1.md
+├── VERSION-SYSTEM-v4.2.md
 ├── WIP-FILE-NAMING-v1.3.md                 (This document)
 │
 ├── WIP/                                     (Active work-in-progress)
@@ -371,7 +371,7 @@ visual-C6-tms-dms-cms-quick-reference-final-2026-01-25.pdf
 3. Type must be one of the five defined types.
 4. Status must be `dev`, `review`, `final`, or `approved` (unified with text files).
 5. File extension must match the file format (`.svg` for Scalable Vector Graphics, `.pdf` for PDF, `.png` for raster, `.tex` for TikZ diagrams).
-   - **Clarification:** `.tex` files in this context are **TikZ diagrams only**, not main document files (those follow VERSION-SYSTEM-v4.1).
+   - **Clarification:** `.tex` files in this context are **TikZ diagrams only**, not main document files (those follow VERSION-SYSTEM-v4.2).
 6. For `.svg` and `.tex` files, maintain source files in WIP folder (preferred for editability).
 7. Multiple versions of same visual may exist at different stages; distinguish by date and status.
 
@@ -882,7 +882,7 @@ When a WIP file marked `final` is ready to integrate:
    - Formatting consistency
    - Package dependencies
 4. **AI verifies compilation** — Ensures no new LaTeX errors or warnings
-5. **AI updates main document version** — Increment MAJOR, MINOR, or PATCH per VERSION-SYSTEM-v4.1
+5. **AI updates main document version** — Increment MAJOR, MINOR, or PATCH per VERSION-SYSTEM-v4.2
 6. **AI updates PROJECT-TRACKING** — Log integration event, date, affected chapter(s)
 7. **You verify integration** — Check main document; confirm content looks correct
 8. **You move file to ARCHIVE:**
@@ -903,7 +903,7 @@ When a WIP file marked `final` is ready to integrate:
    - Example: alternative approaches not selected
    - Kept for historical reference; clearly marked as not for use
 
-3. **Previous main document versions** — Older `guide-v*.tex` files (per VERSION-SYSTEM-v4.1)
+3. **Previous main document versions** — Older `guide-v*.tex` files (per VERSION-SYSTEM-v4.2)
    - Frozen snapshots of main document at each version
 
 ---
@@ -1028,7 +1028,7 @@ Only move a file to `approved` (and ARCHIVE/) when:
 - AI has integrated content into main document
 - LaTeX compiles without errors
 - Cross-references updated in main document
-- Main document version bumped per VERSION-SYSTEM-v4.1
+- Main document version bumped per VERSION-SYSTEM-v4.2
 - PROJECT-TRACKING updated with integration event
 - You have verified integration looks correct
 - Original file moved from `WIP/` to `ARCHIVE/`
@@ -1036,19 +1036,19 @@ Only move a file to `approved` (and ARCHIVE/) when:
 
 ---
 
-## 8. Relationship to VERSION-SYSTEM-v4.1
+## 8. Relationship to VERSION-SYSTEM-v4.2
 
-This WIP File Naming Convention is **complementary** to VERSION-SYSTEM-v4.1, not a replacement.
+This WIP File Naming Convention is **complementary** to VERSION-SYSTEM-v4.2, not a replacement.
 
 | Document | Responsibility |
 |----------|----------------|
-| `VERSION-SYSTEM-v4.1` | Defines version numbering for main document `guide-v*.tex` |
+| `VERSION-SYSTEM-v4.2` | Defines version numbering for main document `guide-v*.tex` |
 | `WIP File Naming v1.x` | Defines organization and status tracking for isolated WIP files |
 
 **Key integration points:**
 
 1. **No version bumps from WIP files** — Only content merged into main document triggers version increments.
-2. **Integration workflow** — When WIP file marked `final` is integrated by AI, main document version increments per VERSION-SYSTEM-v4.1 rules.
+2. **Integration workflow** — When WIP file marked `final` is integrated by AI, main document version increments per VERSION-SYSTEM-v4.2 rules.
 3. **PROJECT-TRACKING** — Both systems feed into `PROJECT-TRACKING.md` for unified project history.
 4. **AI Responsibility** — AI handles LaTeX integration and version bumping; human verifies.
 
@@ -1086,7 +1086,7 @@ This WIP File Naming Convention is **complementary** to VERSION-SYSTEM-v4.1, not
 | **v1.0** | 07 Jan 2026, 00:00 | Initial release | Defines five file categories, four status codes, integration workflow. |
 | **v1.1** | 07 Jan 2026, 01:30 | MAJOR UPDATE | Added Section 2.6 Automation Rules; clarified status transitions (`dev`→`review`→`final`→`approved`/`deprecated`); added decision trees for title slugification; clarified hierarchy preference; added automation responsibility matrix; unified status codes across all file types. |
 | **v1.2** | 07 Jan 2026, 01:50 | MINOR UPDATE | Expanded status transitions; added three independent deprecated paths (`review`→`deprecated`, `final`→`deprecated`, `dev`→`deprecated`); updated Section 2.6.4 Status Transitions by Actor with 7 explicit transitions; updated Section 3.2 Lifecycle Transitions with expanded ASCII diagram and four complete scenario timelines (Success, Discard During Iteration, Last-Minute Regret, Early Abandonment); clarified human decision points and automation boundaries for deprecation at all file lifecycle stages. |
-| **v1.3** | 07 Jan 2026, 03:04 | PATCH UPDATE | Fixed separator rule typo in Section 1.2 (removed `.tex` from "visual file extensions" exception); clarified in Section 2.5 that `.tex` files in visuals are TikZ diagrams only (main guide files still follow VERSION-SYSTEM-v4.1); corrected Section 2.6.5 Automation Responsibility Matrix so that AI renames `dev→review` only when explicitly instructed by the human; reformatted Rule Set 3 (Status Transitions by Actor) table for improved clarity and legibility; reformatted Section 2.6.5 (Automation Responsibility Matrix) table with better column alignment and readability. |
+| **v1.3** | 07 Jan 2026, 03:04 | PATCH UPDATE | Fixed separator rule typo in Section 1.2 (removed `.tex` from "visual file extensions" exception); clarified in Section 2.5 that `.tex` files in visuals are TikZ diagrams only (main guide files still follow VERSION-SYSTEM-v4.2); corrected Section 2.6.5 Automation Responsibility Matrix so that AI renames `dev→review` only when explicitly instructed by the human; reformatted Rule Set 3 (Status Transitions by Actor) table for improved clarity and legibility; reformatted Section 2.6.5 (Automation Responsibility Matrix) table with better column alignment and readability. |
 
 ---
 
