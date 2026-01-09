@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIP + Guide Version Name Generator v2.0 — Unified Workflow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px 20px;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: #38bdf8;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 12px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .tab-button {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            bottom: -1px;
+        }
+
+        .tab-button:hover {
+            color: #cbd5e1;
+        }
+
+        .tab-button.active {
+            color: #38bdf8;
+            border-bottom-color: #38bdf8;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-section {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            border-radius: 8px;
+            color: #e2e8f0;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 4px;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        button {
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-generate {
+            background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+            color: #0f172a;
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(56, 189, 248, 0.3);
+        }
+
+        .btn-reset {
+            background: rgba(100, 116, 139, 0.2);
+            color: #94a3b8;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+        }
+
+        .btn-reset:hover {
+            background: rgba(100, 116, 139, 0.3);
+        }
+
+        .result-section {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .result-section.active {
+            display: block;
+            border-color: rgba(56, 189, 248, 0.5);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.1);
+        }
+
+        .result-box {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            word-break: break-all;
+            color: #38bdf8;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .result-filename {
+            flex: 1;
+        }
+
+        .btn-copy {
+            background: rgba(56, 189, 248, 0.2);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.5);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            white-space: nowrap;
+            margin-left: 12px;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-copy:hover {
+            background: rgba(56, 189, 248, 0.3);
+        }
+
+        .breakdown {
+            background: rgba(100, 116, 139, 0.1);
+            border-left: 3px solid #38bdf8;
+            padding: 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .breakdown-item {
+            display: flex;
+            margin-bottom: 8px;
+        }
+
+        .breakdown-label {
+            color: #38bdf8;
+            font-weight: 600;
+            min-width: 120px;
+        }
+
+        .breakdown-value {
+            color: #cbd5e1;
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-left: 3px solid #ef4444;
+            padding: 12px;
+            border-radius: 6px;
+            color: #fca5a5;
+            font-size: 13px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .info-box {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-left: 3px solid #38bdf8;
+            padding: 16px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+
+        .info-box strong {
+            color: #38bdf8;
+        }
+
+        code {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #fbbf24;
+            font-size: 12px;
+        }
+
+        .algorithm-box {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            font-size: 12px;
+            line-height: 1.7;
+            font-family: 'Courier New', monospace;
+            color: #cbd5e1;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .flowchart-step {
+            background: rgba(100, 116, 139, 0.1);
+            border-left: 4px solid #38bdf8;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .flowchart-step strong {
+            color: #38bdf8;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 40px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: rgba(56, 189, 248, 0.2);
+            color: #38bdf8;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 WIP + Guide Version Name Generator</h1>
+            <p class="subtitle">Unified Workflow — WIP Naming + Version System v4-2</p>
+            <p class="subtitle" style="margin-top: 8px;"><span class="status-badge">v2.0</span> — Production Ready</p>
+        </header>
+
+        <!-- Tabs Navigation -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('wip')">📁 TAB 1: WIP Naming</button>
+            <button class="tab-button" onclick="switchTab('version')">📦 TAB 2: Guide Version</button>
+            <button class="tab-button" onclick="switchTab('rules')">📋 TAB 3: Rules & Flowchart</button>
+        </div>
+
+        <!-- TAB 1: WIP NAMING -->
+        <div id="wip" class="tab-content active">
+            <form class="form-section" id="wipForm">
+                <h2 style="color: #38bdf8; margin-bottom: 20px;">🔷 WIP File Naming Generator</h2>
+                <p style="color: #94a3b8; margin-bottom: 20px; font-size: 13px;">
+                    Generate standardized names for your WIP files (sections, tables, notes, visuals, chapters)
+                </p>
+
+                <div class="error-message" id="wipError"></div>
+
+                <div class="form-group">
+                    <label for="wipType">File Type *</label>
+                    <select id="wipType" required onchange="updateWipFields()">
+                        <option value="">— Select a type —</option>
+                        <option value="section">📄 Section / Subsection (.tex)</option>
+                        <option value="table">📊 Table (.tex)</option>
+                        <option value="notes">📝 Notes (.md)</option>
+                        <option value="visual">🖼️ Visual (.svg/.pdf/.png/.tex)</option>
+                        <option value="chapter">📚 Chapter (.tex)</option>
+                    </select>
+                    <p class="hint">Choose what you're creating</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="wipChapter">Chapter (C1–C7) *</label>
+                    <select id="wipChapter" required>
+                        <option value="">— Select chapter —</option>
+                        <option value="C1">C1 — Introduction</option>
+                        <option value="C2">C2 — HOTAS Fundamentals</option>
+                        <option value="C3">C3 — TMS (Tactical Mode Switch)</option>
+                        <option value="C4">C4 — DMS (Defensive Management System)</option>
+                        <option value="C5">C5 — CMS (Countermeasures Management System)</option>
+                        <option value="C6">C6 — Integration & Advanced Topics</option>
+                        <option value="C7">C7 — Visual Reference</option>
+                        <option value="GEN">GEN — General / Multi-chapter (notes only)</option>
+                    </select>
+                    <p class="hint">Target chapter</p>
+                </div>
+
+                <div id="wipSectionFields" style="display: none;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="wipSection">Section Level (S1, S2, ...) *</label>
+                            <input type="text" id="wipSection" placeholder="S1" pattern="^S\d+$">
+                            <p class="hint">e.g., S1, S2, S3</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="wipSubsection">Subsection (optional)</label>
+                            <input type="text" id="wipSubsection" placeholder="Leave empty if none">
+                            <p class="hint">e.g., S1 (only if subsection)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="wipTableFields" style="display: none;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="wipContext">Operational Context *</label>
+                            <select id="wipContext">
+                                <option value="">— Select context —</option>
+                                <option value="AA">AA (Air-to-Air)</option>
+                                <option value="AG">AG (Air-to-Ground)</option>
+                                <option value="DGFT">DGFT (Defensive Terrain Following)</option>
+                                <option value="NAV">NAV (Navigation)</option>
+                                <option value="MFDS">MFDS (Multifunction Display Select)</option>
+                                <option value="ALLM">ALLM (All Modes)</option>
+                            </select>
+                            <p class="hint">e.g., AA, AG, DGFT</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="wipSwitch">HOTAS Switch *</label>
+                            <select id="wipSwitch">
+                                <option value="">— Select switch —</option>
+                                <option value="TMS">TMS (Tactical Mode Switch)</option>
+                                <option value="DMS">DMS (Defensive Management System)</option>
+                                <option value="CMS">CMS (Countermeasures Management System)</option>
+                            </select>
+                            <p class="hint">What you're documenting</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="wipNotesTypeField" style="display: none;">
+                    <div class="form-group">
+                        <label for="wipNotesType">Notes Type *</label>
+                        <select id="wipNotesType">
+                            <option value="">— Select type —</option>
+                            <option value="research">🔍 Research (citations, references)</option>
+                            <option value="snippet">✂️ Snippet (draft paragraphs)</option>
+                            <option value="outline">📋 Outline (structure planning)</option>
+                            <option value="questions">❓ Questions (gaps, open items)</option>
+                            <option value="reference">📚 Reference (bibliography)</option>
+                            <option value="example">💡 Example (practical examples)</option>
+                        </select>
+                        <p class="hint">What kind of note is this?</p>
+                    </div>
+                </div>
+
+                <div id="wipVisualFields" style="display: none;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="wipVisualType">Visual Type *</label>
+                            <select id="wipVisualType">
+                                <option value="">— Select type —</option>
+                                <option value="diagram">📐 Diagram (HOTAS layout, blocks)</option>
+                                <option value="flowchart">🔄 Flowchart (decision trees, flows)</option>
+                                <option value="schematic">⚙️ Schematic (detailed architecture)</option>
+                                <option value="reference">📄 Reference (quick-ref cards)</option>
+                                <option value="illustration">🖼️ Illustration (annotated screenshots)</option>
+                            </select>
+                            <p class="hint">What kind of visual?</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="wipVisualExt">File Format *</label>
+                            <select id="wipVisualExt">
+                                <option value="">— Select format —</option>
+                                <option value=".svg">.svg (Scalable Vector)</option>
+                                <option value=".pdf">.pdf (PDF)</option>
+                                <option value=".png">.png (Raster Image)</option>
+                                <option value=".tex">.tex (TikZ Diagram)</option>
+                            </select>
+                            <p class="hint">File format</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="wipTitle">Title (raw text) *</label>
+                    <input type="text" id="wipTitle" placeholder="e.g., 'CMS Actuation Logic in HOTAS'" required>
+                    <p class="hint">Will be auto-slugified to 2–4 concepts</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="wipStatus">Status *</label>
+                    <select id="wipStatus" required>
+                        <option value="dev">dev (Development — new, never reviewed)</option>
+                        <option value="review">review (In review — human feedback)</option>
+                        <option value="final">final (Final — approved, ready to integrate)</option>
+                        <option value="approved">approved (Approved — integrated, archived)</option>
+                        <option value="deprecated">deprecated (Deprecated — discarded)</option>
+                    </select>
+                    <p class="hint">Default: dev for new files</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="wipDate">Date (YYYY-MM-DD) *</label>
+                    <input type="date" id="wipDate" required>
+                    <p class="hint">ISO format (YYYY-MM-DD)</p>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-generate">🎯 Generate WIP Name</button>
+                    <button type="reset" class="btn-reset">🔄 Reset</button>
+                </div>
+            </form>
+
+            <div class="result-section" id="wipResult">
+                <h3 style="color: #38bdf8; margin-bottom: 16px;">✨ Generated WIP Filename</h3>
+                <div class="result-box">
+                    <span class="result-filename" id="wipFilename"></span>
+                    <button type="button" class="btn-copy" onclick="copyToClipboard('wip')">📋 Copy</button>
+                </div>
+                <div class="breakdown" id="wipBreakdown"></div>
+                <div class="info-box">
+                    <strong>📌 Next Steps:</strong><br>
+                    1. Copy filename above<br>
+                    2. Create file in WIP/ with this name<br>
+                    3. Start editing!
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: GUIDE VERSION NAMING -->
+        <div id="version" class="tab-content">
+            <form class="form-section" id="versionForm">
+                <h2 style="color: #38bdf8; margin-bottom: 20px;">📦 Guide Version Naming Generator</h2>
+                <p style="color: #94a3b8; margin-bottom: 20px; font-size: 13px;">
+                    Generate guide version names following VERSION-SYSTEM v4-2.md
+                </p>
+
+                <div class="error-message" id="versionError"></div>
+
+                <div class="form-group">
+                    <label for="versionCurrent">Current Version (auto-read) *</label>
+                    <input type="text" id="versionCurrent" placeholder="e.g., 0.2.2.0" readonly style="background: rgba(30, 41, 59, 0.5); color: #94a3b8;">
+                    <p class="hint">Auto-reads from docs/version-system-v4-2.md. Edit manually if needed.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="versionType">Release Type *</label>
+                    <select id="versionType" required>
+                        <option value="">— Select type —</option>
+                        <option value="major">MAJOR: New chapter (X.0.0.0)</option>
+                        <option value="minor">MINOR: New section/table (0.X.0.0)</option>
+                        <option value="patch">PATCH: Bug fixes, improvements (0.0.X.0)</option>
+                        <option value="hotfix">HOTFIX: Urgent fixes only (0.0.0.X)</option>
+                    </select>
+                    <p class="hint">What changed?</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="versionDate">Date (YYYY-MM-DD) *</label>
+                    <input type="date" id="versionDate" required>
+                    <p class="hint">Release date (ISO format)</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="versionDescription">What changed? (optional)</label>
+                    <input type="text" id="versionDescription" placeholder="e.g., 'Added C5 S2 CMS Actuation section'">
+                    <p class="hint">For your reference/notes</p>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-generate">🎯 Generate Version Name</button>
+                    <button type="reset" class="btn-reset">🔄 Reset</button>
+                </div>
+            </form>
+
+            <div class="result-section" id="versionResult">
+                <h3 style="color: #38bdf8; margin-bottom: 16px;">✨ Generated Guide Version Name</h3>
+                <div class="result-box">
+                    <span class="result-filename" id="versionFilename"></span>
+                    <button type="button" class="btn-copy" onclick="copyToClipboard('version')">📋 Copy</button>
+                </div>
+                <div class="breakdown" id="versionBreakdown"></div>
+                <div class="info-box">
+                    <strong>📌 Next Steps:</strong><br>
+                    1. Copy filename above<br>
+                    2. Rename your guide file: guide-v{version}-{date}.tex<br>
+                    3. Update VERSION-SYSTEM-v4-2.md with new version<br>
+                    4. Commit to version control
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: RULES & FLOWCHART -->
+        <div id="rules" class="tab-content">
+            <div class="form-section">
+                <h2 style="color: #38bdf8; margin-bottom: 24px;">📋 Decision Flowchart & Algorithms</h2>
+
+                <h3 style="color: #cbd5e1; margin: 24px 0 16px 0; font-size: 16px;">🔄 When to Use WIP Naming vs Guide Version Naming</h3>
+
+                <div class="flowchart-step">
+                    <strong>Scenario 1: You're creating a new individual file</strong><br>
+                    ↓ Pergunta: Isto é para brainstorm/draft/research?<br>
+                    ├─ SIM → Use WIP-NAME-GENERATOR<br>
+                    │  Exemplo: notes-C5-cms-research-outline-dev-2026-01-09.md<br>
+                    └─ NÃO → Continue...
+                </div>
+
+                <div class="flowchart-step">
+                    <strong>Scenario 2: Is it a section/table/visual of the guide?</strong><br>
+                    ├─ SIM → Use WIP-NAME-GENERATOR<br>
+                    │  Exemplo: section-C5-S2-cms-actuation-logic-dev-2026-01-09.tex<br>
+                    └─ NÃO → Continue...
+                </div>
+
+                <div class="flowchart-step">
+                    <strong>Scenario 3: Are you integrating into the FINAL GUIDE?</strong><br>
+                    └─ SIM → Use GUIDE-VERSION-GENERATOR<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Resultado: guide-v0.2.2.1-20260109.tex
+                </div>
+
+                <div class="flowchart-step">
+                    <strong>Scenario 4: You finished several sections and will release new guide version</strong><br>
+                    ├─ How many changes?<br>
+                    │  ├─ Only corrections → PATCH (0.2.2.1)<br>
+                    │  ├─ New section/table → MINOR (0.2.3.0)<br>
+                    │  └─ New chapter → MAJOR (0.3.0.0)<br>
+                    └─ Use GUIDE-VERSION-GENERATOR
+                </div>
+
+                <h3 style="color: #cbd5e1; margin: 32px 0 16px 0; font-size: 16px;">🔤 WIP Naming Algorithm (Deterministic)</h3>
+
+                <div class="algorithm-box">INPUT: type, chapter, title, status, date, [section], [subsection]
+OUTPUT: filename
+
+STEP 1: Validate Inputs
+├─ type ∈ {section, table, notes, visual, chapter} → ASSERT
+├─ chapter ∈ {C1-C7, GEN} → ASSERT
+├─ date matches YYYY-MM-DD → ASSERT
+└─ status ∈ {dev, review, final, approved, deprecated} → ASSERT
+
+STEP 2: Generate Slug from Title
+├─ lowercase(title)
+├─ remove_accents()
+├─ remove_special_chars()
+├─ split_into_words()
+├─ select_2_to_4_concepts()
+├─ keep_known_acronyms(TMS, DMS, CMS, FCR, etc)
+└─ join_with_hyphens() → slug (e.g., "cms-actuation-logic")
+
+STEP 3: Build Filename by Type
+IF type = "section":
+  IF subsection exists:
+    filename = section-{chapter}-{section}-{subsection}-{slug}-{status}-{date}.tex
+  ELSE:
+    filename = section-{chapter}-{section}-{slug}-{status}-{date}.tex
+
+ELSE IF type = "table":
+  filename = table-{chapter}-{context}-{switch}-{status}-{date}.tex
+
+ELSE IF type = "notes":
+  filename = notes-{chapter}-{slug}-{notes_type}-{date}.md
+  (Note: No status for notes)
+
+ELSE IF type = "visual":
+  filename = visual-{chapter}-{slug}-{visual_type}-{status}-{date}{ext}
+
+ELSE IF type = "chapter":
+  filename = chapter-{chapter}-{slug}-{status}-{date}.tex
+
+STEP 4: Validate Length
+├─ IF length(filename) > 100 → WARN to shorten slug
+└─ RETURN filename
+                </div>
+
+                <h3 style="color: #cbd5e1; margin: 32px 0 16px 0; font-size: 16px;">📦 Guide Version Algorithm (Semantic Versioning)</h3>
+
+                <div class="algorithm-box">INPUT: current_version, release_type, date
+OUTPUT: next_version, filename
+
+STEP 1: Parse Current Version
+├─ current_version = "0.2.2.0"
+├─ major, minor, patch, increment = extract()
+└─ Result: {0, 2, 2, 0}
+
+STEP 2: Calculate Next Version by Release Type
+IF release_type = "major":
+  ├─ major = major + 1
+  ├─ minor = 0
+  ├─ patch = 0
+  └─ increment = 0
+     // Example: 0.2.2.0 → 1.0.0.0
+
+ELSE IF release_type = "minor":
+  ├─ minor = minor + 1
+  ├─ patch = 0
+  └─ increment = 0
+     // Example: 0.2.2.0 → 0.3.0.0
+
+ELSE IF release_type = "patch":
+  ├─ patch = patch + 1
+  └─ increment = 0
+     // Example: 0.2.2.0 → 0.2.3.0
+
+ELSE IF release_type = "hotfix":
+  └─ increment = increment + 1
+     // Example: 0.2.2.0 → 0.2.2.1
+
+STEP 3: Format Output
+├─ next_version = "{major}.{minor}.{patch}.{increment}"
+├─ date_formatted = remove("-" from date) // 2026-01-09 → 20260109
+├─ filename = "guide-v" + next_version + "-" + date_formatted + ".tex"
+└─ RETURN {next_version, filename}
+
+STEP 4: Update VERSION-SYSTEM-v4-2.md
+├─ Replace current version
+└─ COMMIT to version control
+                </div>
+
+                <h3 style="color: #cbd5e1; margin: 32px 0 16px 0; font-size: 16px;">✅ Decision Summary Table</h3>
+
+                <table style="width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 12px;">
+                    <tr style="background: rgba(56, 189, 248, 0.1);">
+                        <th style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); text-align: left; color: #38bdf8;">Scenario</th>
+                        <th style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); text-align: left; color: #38bdf8;">Generator</th>
+                        <th style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); text-align: left; color: #38bdf8;">Example</th>
+                    </tr>
+                    <tr style="background: rgba(30, 41, 59, 0.5);">
+                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #cbd5e1;">New section to write</td>
+                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #38bdf8;">TAB 1: WIP</td>
+                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #cbd5e1;">section-C5-S2-cms-actuation-logic-dev-2026-01-09.tex</td>
+                    </tr>
+                    <tr style="background: rgba(30, 41, 59, 0.5);">
+                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #cbd5e1;">Research notes</td>
+                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #38bdf8;">TAB 1: WIP</td>
+                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #cbd5e1;">notes-C5-cms-research-outline-2026-01-09.md</td>
+                    </tr>
+                    <tr style="background: rgba(30, 41, 59, 0.5);">
+                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #cbd5e1;">Ready to release new guide</td>
+                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #38bdf8;">TAB 2: Version</td>
+                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #cbd5e1;">guide-v0.2.2.1-20260109.tex</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p><strong>WIP + Guide Version Name Generator v2.0</strong></p>
+        <p>Unified workflow for WIP-FILE-NAMING v1.3 + VERSION-SYSTEM v4-2.md</p>
+        <p style="margin-top: 12px; color: #475569;">Updated: 09 January 2026 | Status: Production Ready</p>
+    </footer>
+
+    <script>
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('wipDate').value = today;
+            document.getElementById('versionDate').value = today;
+            
+            // Try to read version from URL param or default
+            document.getElementById('versionCurrent').value = '0.2.2.0';
+        });
+
+        // Tab switching
+        function switchTab(tab) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-button');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            buttons.forEach(b => b.classList.remove('active'));
+            
+            document.getElementById(tab).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // WIP Form
+        function updateWipFields() {
+            const type = document.getElementById('wipType').value;
+            document.getElementById('wipSectionFields').style.display = type === 'section' ? 'block' : 'none';
+            document.getElementById('wipTableFields').style.display = type === 'table' ? 'block' : 'none';
+            document.getElementById('wipNotesTypeField').style.display = type === 'notes' ? 'block' : 'none';
+            document.getElementById('wipVisualFields').style.display = type === 'visual' ? 'block' : 'none';
+        }
+
+        function slugify(text) {
+            if (!text) return '';
+            let slug = text.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9\s-]/g, '')
+                .trim();
+            
+            let words = slug.split(/\s+/).filter(w => w.length > 0);
+            if (words.length > 4) words = words.slice(0, 4);
+            
+            slug = words.join('-');
+            if (slug.length > 40) slug = slug.substring(0, 40).replace(/-+$/, '');
+            
+            return slug;
+        }
+
+        document.getElementById('wipForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorEl = document.getElementById('wipError');
+            errorEl.textContent = '';
+            errorEl.classList.remove('show');
+            
+            const type = document.getElementById('wipType').value;
+            const chapter = document.getElementById('wipChapter').value;
+            const title = document.getElementById('wipTitle').value.trim();
+            const status = document.getElementById('wipStatus').value;
+            const date = document.getElementById('wipDate').value;
+            
+            if (!type || !chapter || !title || !status || !date) {
+                errorEl.textContent = '❌ Error: All required fields must be filled.';
+                errorEl.classList.add('show');
+                return;
+            }
+            
+            let filename = '';
+            let breakdown = {};
+            
+            try {
+                if (type === 'section') {
+                    const section = document.getElementById('wipSection').value.trim();
+                    const subsection = document.getElementById('wipSubsection').value.trim();
+                    
+                    if (!section || !section.match(/^S\d+$/)) {
+                        throw new Error('Section level must be like S1, S2, etc.');
+                    }
+                    
+                    const slug = slugify(title);
+                    const ext = section + (subsection ? '-' + subsection : '');
+                    
+                    filename = `section-${chapter}-${ext}-${slug}-${status}-${date}.tex`;
+                    breakdown = {
+                        'Type': 'section',
+                        'Chapter': chapter,
+                        'Section': section,
+                        'Subsection': subsection || '(none)',
+                        'Slug': slug,
+                        'Status': status,
+                        'Date': date
+                    };
+                }
+                else if (type === 'table') {
+                    const context = document.getElementById('wipContext').value;
+                    const switchType = document.getElementById('wipSwitch').value;
+                    
+                    if (!context || !switchType) {
+                        throw new Error('Table context and switch must be selected.');
+                    }
+                    
+                    filename = `table-${chapter}-${context}-${switchType}-${status}-${date}.tex`;
+                    breakdown = {
+                        'Type': 'table',
+                        'Chapter': chapter,
+                        'Context': context,
+                        'Switch': switchType,
+                        'Status': status,
+                        'Date': date
+                    };
+                }
+                else if (type === 'notes') {
+                    const notesType = document.getElementById('wipNotesType').value;
+                    const slug = slugify(title);
+                    
+                    if (!notesType) {
+                        throw new Error('Notes type must be selected.');
+                    }
+                    
+                    filename = `notes-${chapter}-${slug}-${notesType}-${date}.md`;
+                    breakdown = {
+                        'Type': 'notes',
+                        'Chapter': chapter,
+                        'Slug': slug,
+                        'Notes Type': notesType,
+                        'Date': date,
+                        'Note': 'No status for notes'
+                    };
+                }
+                else if (type === 'visual') {
+                    const visualType = document.getElementById('wipVisualType').value;
+                    const ext = document.getElementById('wipVisualExt').value;
+                    const slug = slugify(title);
+                    
+                    if (!visualType || !ext) {
+                        throw new Error('Visual type and format must be selected.');
+                    }
+                    
+                    filename = `visual-${chapter}-${slug}-${visualType}-${status}-${date}${ext}`;
+                    breakdown = {
+                        'Type': 'visual',
+                        'Chapter': chapter,
+                        'Slug': slug,
+                        'Visual Type': visualType,
+                        'Status': status,
+                        'Date': date,
+                        'Extension': ext
+                    };
+                }
+                else if (type === 'chapter') {
+                    const slug = slugify(title);
+                    filename = `chapter-${chapter}-${slug}-${status}-${date}.tex`;
+                    breakdown = {
+                        'Type': 'chapter',
+                        'Chapter': chapter,
+                        'Slug': slug,
+                        'Status': status,
+                        'Date': date
+                    };
+                }
+                
+                if (filename) {
+                    document.getElementById('wipFilename').textContent = filename;
+                    
+                    let breakdownHTML = '';
+                    for (const [key, value] of Object.entries(breakdown)) {
+                        breakdownHTML += `<div class="breakdown-item"><span class="breakdown-label">${key}:</span> <span class="breakdown-value">${value}</span></div>`;
+                    }
+                    document.getElementById('wipBreakdown').innerHTML = breakdownHTML;
+                    document.getElementById('wipResult').classList.add('active');
+                }
+            } catch (err) {
+                errorEl.textContent = '❌ Error: ' + err.message;
+                errorEl.classList.add('show');
+            }
+        });
+
+        // Version Form
+        document.getElementById('versionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorEl = document.getElementById('versionError');
+            errorEl.textContent = '';
+            errorEl.classList.remove('show');
+            
+            const current = document.getElementById('versionCurrent').value;
+            const type = document.getElementById('versionType').value;
+            const date = document.getElementById('versionDate').value;
+            const description = document.getElementById('versionDescription').value;
+            
+            if (!current || !type || !date) {
+                errorEl.textContent = '❌ Error: All required fields must be filled.';
+                errorEl.classList.add('show');
+                return;
+            }
+            
+            try {
+                // Parse current version
+                const parts = current.split('.');
+                let major = parseInt(parts[0]) || 0;
+                let minor = parseInt(parts[1]) || 0;
+                let patch = parseInt(parts[2]) || 0;
+                let increment = parseInt(parts[3]) || 0;
+                
+                // Calculate next version
+                if (type === 'major') {
+                    major++;
+                    minor = 0;
+                    patch = 0;
+                    increment = 0;
+                } else if (type === 'minor') {
+                    minor++;
+                    patch = 0;
+                    increment = 0;
+                } else if (type === 'patch') {
+                    patch++;
+                    increment = 0;
+                } else if (type === 'hotfix') {
+                    increment++;
+                }
+                
+                const nextVersion = `${major}.${minor}.${patch}.${increment}`;
+                const dateFormatted = date.replace(/-/g, '');
+                const filename = `guide-v${nextVersion}-${dateFormatted}.tex`;
+                
+                document.getElementById('versionFilename').textContent = filename;
+                
+                const breakdown = `
+                    <div class="breakdown-item"><span class="breakdown-label">Current Version:</span> <span class="breakdown-value">v${current}</span></div>
+                    <div class="breakdown-item"><span class="breakdown-label">Release Type:</span> <span class="breakdown-value">${type}</span></div>
+                    <div class="breakdown-item"><span class="breakdown-label">Next Version:</span> <span class="breakdown-value">v${nextVersion}</span></div>
+                    <div class="breakdown-item"><span class="breakdown-label">Date:</span> <span class="breakdown-value">${date}</span></div>
+                    ${description ? `<div class="breakdown-item"><span class="breakdown-label">Changes:</span> <span class="breakdown-value">${description}</span></div>` : ''}
+                `;
+                
+                document.getElementById('versionBreakdown').innerHTML = breakdown;
+                document.getElementById('versionResult').classList.add('active');
+            } catch (err) {
+                errorEl.textContent = '❌ Error: ' + err.message;
+                errorEl.classList.add('show');
+            }
+        });
+
+        // Copy to clipboard
+        function copyToClipboard(tab) {
+            let text = '';
+            if (tab === 'wip') {
+                text = document.getElementById('wipFilename').textContent;
+            } else {
+                text = document.getElementById('versionFilename').textContent;
+            }
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.target;
+                const original = btn.textContent;
+                btn.textContent = '✅ Copied!';
+                setTimeout(() => {
+                    btn.textContent = original;
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
