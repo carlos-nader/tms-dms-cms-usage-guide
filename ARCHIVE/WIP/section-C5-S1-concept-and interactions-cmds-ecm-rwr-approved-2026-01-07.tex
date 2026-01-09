@@ -1,0 +1,125 @@
+\documentclass[12pt,a4paper,oneside]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage[margin=2cm]{geometry}
+\usepackage{hyperref}
+% NOVO (para múltiplas seções):
+\newcommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{soul} %
+
+% Configuracao de hiperlinks
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue,
+    pdftitle={F-16 HOTAS Analysis: CMS System - Under Revision},
+    pdfauthor={Carlos "Metal" Nader},
+    pdfkeywords={CMS, CMDS, ECM, F-16, HOTAS, IDIAS}
+}
+
+% Espacamento
+\setstretch{1.15}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{12pt}
+
+% Cabecalho e rodape
+\pagestyle{fancy}
+\fancyhead[L]{F-16 Countermeasures Management Switch (CMS)}
+\fancyhead[R]{Section 5.1 - Under Revision}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{TMS, DMS and CMS Usage Guide}
+\fancyfoot[R]{\today}
+
+% Formatacao de secoes
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{darkblue}}
+  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{darkblue}}
+  {\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries\color{darkblue}}
+  {\thesubsubsection}{1em}{}
+\titleformat{\paragraph}
+  {\normalfont\normalsize\itshape\color{darkblue}}
+  {}{0em}{}
+
+\definecolor{darkblue}{RGB}{0,51,102}
+
+\title{
+  \textbf{Section 5.1: Concept and Interaction with CMDS/ECM/RWR}\\
+}
+
+\date{\today}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+\setcounter{section}{4}
+
+\begin{document}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{CMS --- Countermeasures Management Switch}
+
+\subsection{Concept and Interaction with CMDS / ECM / RWR}
+
+\subsubsection{Concept}
+
+The Countermeasures Management Switch (CMS) is a four-direction hat switch mounted on the control stick that serves as the pilot's primary control interface to the F-16's integrated electronic warfare (EW) defensive systems: the ALE-47 CMDS (automatic chaff/flare dispenser), ECM systems (external pods or internal avionics), and avionics-based threat defeat systems. The CMS supervises the aircraft's defensive response by controlling defensive program selection, managing ECM operational modes, and granting or withholding consent authority to all defensive subsystems.
+
+Its role is to grant the pilot rapid tactical control over the aircraft's defensive posture. This control is operationally critical because defensive decisions frequently occur during high-G maneuvering when hand position cannot be redirected to distant cockpit panels. A pilot executing a 6-G defensive turn cannot simultaneously reach the CMDS MODE knob on the left console or the ECM control panel without abandoning aircraft control. By placing the CMS within thumb reach during full-stick maneuver, the design ensures that no tactical scenario---regardless of G-load or workload---forces the pilot to choose between aircraft control and defensive system authority. This design philosophy prioritizes pilot sovereignty: direct access to defensive control is never sacrificed for maneuvering demand.
+
+RWR, although not directly linked to CMS, is more than a display device: it is the \textit{decision engine} for both CMDS and ECM. The RWR continuously evaluates detected threat radars, classifies them (SEARCH, TRACK, LAUNCH), assigns threat priority, and communicates this information to both the ALE-47 CMDS (in AUTO or SEMI mode) and the ECM system (for band selection or jamming initiation).
+
+For in-depth explanations about CMDS, ECM and RWR operation, see 
+\dashrefs{2.7.1, 2.7.2, and 2.7.3}, respectively. This section focuses exclusively on CMS usage and control interface.
+
+\subsubsection{Interaction with CMDS / ECM}
+
+Operationally, the CMS manages two distinct defensive layers: CMDS and ECM (in its both configurations: internal avionics or external pod). All CMS button pressings will be detailed in the next section.
+
+Differences in F-16 Blocks or variants, especially regarding ECM, will be discussed in \hyperlink{section 5.3}{Section 5.3}.
+
+\begin{enumerate}
+
+\item \textbf{ECM (External Pod):} Controls the external ECM pod's 
+operational state through pilot-directed transmission modes 
+and consent authority.
+
+\item \textbf{ECM (Integrated IDIAS):} Controls the integrated ECM 
+system through automatic threat-reactive modes.
+
+\item \textbf{CMDS in Manual Mode:} Allows the pilot to execute 
+pre-selected dispenser programs on demand, independent of 
+automatic systems.
+
+\item \textbf{CMDS in Automatic/Semi-Automatic Modes:} Authorizes 
+the ALE-47 CMDS to respond autonomously to RWR-detected threats 
+when operating in AUTO or SEMI mode.
+
+\end{enumerate}
+
+\newpage
+
+\subsection{CMS switch Actuation (all modes)}
+
+\newpage
+
+\hypertarget{section 5.3} {\subsection{CMS Block and Variant Notes}}
+
+\end{document}

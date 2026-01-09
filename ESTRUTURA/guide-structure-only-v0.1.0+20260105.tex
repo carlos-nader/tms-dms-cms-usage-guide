@@ -1,0 +1,451 @@
+\documentclass[11pt,a4paper]{report}
+
+% --------------------------------------------------------------------------
+% BASIC ENCODING AND LANGUAGE
+% --------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% --------------------------------------------------------------------------
+% FONTS AND MICROTYPOGRAPHY
+% --------------------------------------------------------------------------
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --------------------------------------------------------------------------
+% PAGE GEOMETRY AND LAYOUT
+% --------------------------------------------------------------------------
+\usepackage{geometry}
+\geometry{
+a4paper,
+left=2.5cm,
+right=2.5cm,
+top=2.5cm,
+bottom=2.5cm
+}
+
+\usepackage{setspace}
+\onehalfspacing
+
+% --------------------------------------------------------------------------
+% COLORS AND LINKS
+% --------------------------------------------------------------------------
+\usepackage{xcolor}
+\definecolor{linkblue}{HTML}{004488}
+\definecolor{linkred}{HTML}{882222}
+
+\usepackage[
+pdfencoding=auto,
+psdextra,
+colorlinks=true,
+linkcolor=linkblue,
+citecolor=linkred,
+urlcolor=linkblue,
+breaklinks=true
+]{hyperref}
+\usepackage{bookmark}
+
+% --------------------------------------------------------------------------
+% HEADERS AND FOOTERS
+% --------------------------------------------------------------------------
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --------------------------------------------------------------------------
+% TABLES
+% --------------------------------------------------------------------------
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+\newenvironment{hotastable}[1][]{
+\begin{longtable}{L{2.8cm} L{1.6cm} L{2.0cm} L{3.0cm} L{4.0cm} L{2.0cm} L{2.4cm}}
+\caption{#1}\\
+\toprule
+\textbf{Context} &
+\textbf{Direction} &
+\textbf{Action} &
+\textbf{Function} &
+\textbf{Effect / notes} &
+\textbf{Dash-34 ref.} &
+\textbf{Training ref.} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Context} &
+\textbf{Direction} &
+\textbf{Action} &
+\textbf{Function} &
+\textbf{Effect / notes} &
+\textbf{Dash-34 ref.} &
+\textbf{Training ref.} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+}{
+\end{longtable}
+}
+
+% --------------------------------------------------------------------------
+% SIMPLE REFERENCE MACROS FOR BMS DOCS
+% --------------------------------------------------------------------------
+\newcommand{\dashref}[1]{Dash-34, section~#1}
+\newcommand{\dashone}[1]{Dash-1, section~#1}
+\newcommand{\trnref}[1]{BMS Training Mission~#1}
+\newcommand{\trnman}{BMS Training Manual 4.38.1}
+\newcommand{\bmsver}{Falcon BMS~4.38.1}
+
+% --------------------------------------------------------------------------
+% VERSION CONTROL MACROS
+% --------------------------------------------------------------------------
+\newcommand{\docversion}{0.1.0}
+\newcommand{\docbuild}{20260105}
+\newcommand{\docstartdate}{05 January 2026}
+\newcommand{\docenddate}{DD MMM 2026}
+\newcommand{\chapterscompletedof}{1/7}
+\newcommand{\tablesfilledpct}{0\%}
+\newcommand{\fulldocversion}{\docversion+\docbuild}
+
+% --------------------------------------------------------------------------
+% GRAPHICS
+% --------------------------------------------------------------------------
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+
+% --------------------------------------------------------------------------
+% TITLE
+% --------------------------------------------------------------------------
+\title{TMS, DMS and CMS Usage Guide for \bmsver}
+\author{Carlos "Metal" Nader}
+\date{Version \fulldocversion \\
+      Progress: Chapters \chapterscompletedof{} | Tables \tablesfilledpct \\
+      January 2026}
+
+% --------------------------------------------------------------------------
+% DOCUMENT
+% --------------------------------------------------------------------------
+\begin{document}
+
+\maketitle
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+% --------------------------------------------------------------------------
+% CHAPTER 1: INTRODUCTION
+% --------------------------------------------------------------------------
+\chapter{Introduction}
+
+% Content to be filled...
+
+\section{Development timeline and status}
+
+% Content to be filled...
+
+\section{Scope and purpose}
+
+% Content to be filled...
+
+\section{Version, authorship and AI assistance}
+
+% Content to be filled...
+
+\section{Sources and references}
+
+% Content to be filled...
+
+\section{Document structure and how to read it}
+
+% Content to be filled...
+
+\subsection{Part A: Foundational Chapters (2--3)}
+
+% Content to be filled...
+
+\subsection{Part B: Switch-Specific Chapters (3--5)}
+
+% Content to be filled...
+
+\subsubsection{Table structure}
+
+% Content to be filled...
+
+\subsubsection{How to find information}
+
+% Content to be filled...
+
+\subsection{Part C: Training and Visual Reference (Chapters 6--7)}
+
+% Content to be filled...
+
+\subsection{Part D: Appendices}
+
+% Content to be filled...
+
+% --------------------------------------------------------------------------
+% CHAPTER 2: HOTAS FUNDAMENTALS
+% --------------------------------------------------------------------------
+\chapter{HOTAS fundamentals}
+
+\section{Sensor of Interest (SOI) and display logic}
+
+% Content to be filled...
+
+\section{Short vs long presses and timing}
+
+% Content to be filled...
+
+\section{Master modes and context-sensitive behaviour}
+
+% Content to be filled...
+
+\section{Overview of TMS, DMS and CMS}
+
+% Content to be filled...
+
+% --------------------------------------------------------------------------
+% CHAPTER 3: CMS
+% --------------------------------------------------------------------------
+\chapter{CMS -- Countermeasures Management Switch}
+
+\section{Concept and interaction with CMDS / ECM}
+
+% Content to be filled...
+
+\section{CMS switch actions (all modes)}
+
+% Content to be filled...
+
+\section{CMS -- Block / variant notes}
+
+% Content to be filled...
+
+% --------------------------------------------------------------------------
+% CHAPTER 4: TMS
+% --------------------------------------------------------------------------
+\chapter{TMS -- Target Management Switch}
+
+\section{Concept and general behaviour}
+
+% Content to be filled...
+
+\section{TMS in Air-to-Air}
+
+% Content to be filled...
+
+\subsection{FCR CRM (RWS / ULS / VSR)}
+
+% Content to be filled...
+
+\subsection{SAM / DT-SAM}
+
+% Content to be filled...
+
+\subsection{TWS}
+
+% Content to be filled...
+
+\subsection{STT}
+
+% Content to be filled...
+
+\subsection{ACM (30x20, 10x60, BORE, SLEW)}
+
+% Content to be filled...
+
+\subsection{IFF interrogations (SCAN / LOS)}
+
+% Content to be filled...
+
+\section{TMS in Air-to-Ground -- sensors and SPI}
+
+% Content to be filled...
+
+\subsection{FCR A-G (GM / GMT / SEA / AGR)}
+
+% Content to be filled...
+
+\subsection{TGP A-G}
+
+% Content to be filled...
+
+\subsection{HUD / HMCS (SPI, Snowplow, CZ, VIP/VRP cues)}
+
+% Content to be filled...
+
+\subsection{Markpoints and steerpoint management}
+
+% Content to be filled...
+
+\section{TMS in A-G weapon employment}
+
+% Content to be filled...
+
+\subsection{Unguided bombs and rockets (CCIP / CCRP / DTOS)}
+
+% Content to be filled...
+
+\subsection{EO weapons -- Maverick (VIS / PRE / BORE)}
+
+% Content to be filled...
+
+\subsection{IAMs (JDAM / JSOW / WCMD / SPICE / others)}
+
+% Content to be filled...
+
+\subsection{LGBs and laser employment}
+
+% Content to be filled...
+
+\subsection{Anti-radiation (HARM POS / HAS / HAD)}
+
+% Content to be filled...
+
+\subsection{Naval weapons (Harpoon, others)}
+
+% Content to be filled...
+
+\section{TMS -- Block / variant notes}
+
+% Content to be filled...
+
+% --------------------------------------------------------------------------
+% CHAPTER 5: DMS
+% --------------------------------------------------------------------------
+\chapter{DMS -- Display Management Switch}
+
+\section{Concept and SOI control}
+
+% Content to be filled...
+
+\section{DMS in Air-to-Air}
+
+% Content to be filled...
+
+\subsection{MFD format cycling and SWAP}
+
+% Content to be filled...
+
+\subsection{HUD / HMCS SOI behaviour}
+
+% Content to be filled...
+
+\section{DMS in Air-to-Ground}
+
+% Content to be filled...
+
+\subsection{Sensor handoff and SOI choreography}
+
+% Content to be filled...
+
+\subsection{Special cases (IAM, HARM, Harpoon)}
+
+% Content to be filled...
+
+\section{DMS -- Block / variant notes}
+
+% Content to be filled...
+
+% --------------------------------------------------------------------------
+% CHAPTER 6: TRAINING REFERENCES AND FLOWS
+% --------------------------------------------------------------------------
+\chapter{Training references and practical flows}
+
+\section{How to use this guide with BMS training missions}
+
+% Content to be filled...
+
+\section{Recommended progression}
+
+% Content to be filled...
+
+\section{Example flows for typical missions}
+
+% Content to be filled...
+
+\section{Checklist: what to practice next}
+
+% Content to be filled...
+
+% --------------------------------------------------------------------------
+% CHAPTER 7: HOTAS VISUAL REFERENCE
+% --------------------------------------------------------------------------
+\chapter{HOTAS visual reference}
+
+\section{F-16 HOTAS overview}
+
+% Content to be filled...
+
+\section{TMS diagrams}
+
+% Content to be filled...
+
+\section{DMS diagrams}
+
+% Content to be filled...
+
+\section{CMS diagrams}
+
+% Content to be filled...
+
+% --------------------------------------------------------------------------
+% APPENDICES
+% --------------------------------------------------------------------------
+\appendix
+
+\chapter{Block / variant overview}
+
+\section{F-16CM Block 50/52}
+
+% Content to be filled...
+
+\section{F-16C/D Block 40/42}
+
+% Content to be filled...
+
+\section{F-16AM/BM MLU}
+
+% Content to be filled...
+
+\section{F-16I Sufa and Israeli variants}
+
+% Content to be filled...
+
+\section{Other export variants}
+
+% Content to be filled...
+
+\chapter{Tables index}
+
+\section{TMS tables}
+
+% Content to be filled...
+
+\section{DMS tables}
+
+% Content to be filled...
+
+\section{CMS tables}
+
+% Content to be filled...
+
+\end{document}

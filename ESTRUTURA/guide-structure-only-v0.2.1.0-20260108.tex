@@ -1,0 +1,289 @@
+\documentclass[11pt,a4paper]{report}
+
+% --------------------------------------------------------------------------
+% BASIC ENCODING AND LANGUAGE
+% --------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% --------------------------------------------------------------------------
+% FONTS AND MICROTYPOGRAPHY
+% --------------------------------------------------------------------------
+
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --------------------------------------------------------------------------
+% PAGE GEOMETRY AND LAYOUT
+% --------------------------------------------------------------------------
+
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  left=2.5cm,
+  right=2.5cm,
+  top=2.5cm,
+  bottom=2.5cm
+}
+
+\usepackage{setspace}
+\onehalfspacing
+
+% --------------------------------------------------------------------------
+% COLORS AND LINKS
+% --------------------------------------------------------------------------
+
+\usepackage[table]{xcolor}
+
+\definecolor{linkblue}{HTML}{004488}
+\definecolor{linkred}{HTML}{882222}
+
+\usepackage[
+  pdfencoding=auto,
+  psdextra,
+  colorlinks=true,
+  linkcolor=linkblue,
+  citecolor=linkred,
+  urlcolor=linkblue,
+  breaklinks=true
+]{hyperref}
+
+\usepackage{bookmark}
+
+% --------------------------------------------------------------------------
+% HEADERS AND FOOTERS
+% --------------------------------------------------------------------------
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --------------------------------------------------------------------------
+% VERSION CONTROL MACROS
+% --------------------------------------------------------------------------
+
+\newcommand{\docversion}{0.1.4.0}
+\newcommand{\docbuild}{20260106}
+\newcommand{\chapterscompletedof}{1/7}
+\newcommand{\tablesfilledpct}{0\%}
+\newcommand{\fulldocversion}{\docversion+\docbuild}
+
+% --------------------------------------------------------------------------
+% TITLE
+% --------------------------------------------------------------------------
+
+\title{TMS, DMS and CMS Usage Guide for Falcon BMS~4.38.1}
+\author{Carlos ``Metal'' Nader}
+\date{Version \fulldocversion \\
+  Progress: Chapters \chapterscompletedof{} | Tables \tablesfilledpct \\
+  January 2026}
+
+% --------------------------------------------------------------------------
+% DOCUMENT
+% --------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+
+\tableofcontents
+
+\clearpage
+
+\pagenumbering{arabic}
+
+% --------------------------------------------------------------------------
+% CHAPTER 1: INTRODUCTION
+% --------------------------------------------------------------------------
+
+\chapter{Introduction}
+
+% Placeholder: Full introduction content in main guide-v0.1.4.0-20260106.tex
+
+% --------------------------------------------------------------------------
+% CHAPTER 2: HOTAS FUNDAMENTALS
+% --------------------------------------------------------------------------
+
+\chapter{HOTAS fundamentals}
+
+\section{Sensor of Interest (SOI) and display logic}
+
+\section{Short vs long presses and timing}
+
+\section{Master modes and context-sensitive behaviour}
+
+\section{Overview of TMS, DMS and CMS}
+
+% --------------------------------------------------------------------------
+% CHAPTER 3: TMS
+% --------------------------------------------------------------------------
+
+\chapter{TMS -- Target Management Switch}
+
+\section{Concept and general behaviour}
+
+\section{TMS and Situational Awareness displays}
+
+\subsection{HSD: Cursor control and waypoint management}
+
+\subsection{Integration with NAV master mode}
+
+\subsection{Cross-mode SA display interaction}
+
+\section{TMS in Air-to-Air}
+
+\subsection{FCR CRM (RWS / ULS / VSR)}
+
+\subsection{SAM / DT-SAM}
+
+\subsection{TWS}
+
+\subsection{STT}
+
+\subsection{ACM (30x20, 10x60, BORE, SLEW)}
+
+\subsection{IFF interrogations (SCAN / LOS)}
+
+\section{TMS in Air-to-Ground -- sensors and SPI}
+
+\subsection{FCR A-G (GM / GMT / SEA / AGR)}
+
+\subsection{TGP A-G}
+
+\subsection{HUD / HMCS (SPI, Snowplow, CZ, VIP/VRP cues)}
+
+\subsection{Markpoints and steerpoint management}
+
+\section{TMS in A-G weapon employment}
+
+\subsection{Unguided bombs and rockets (CCIP / CCRP / DTOS)}
+
+\subsection{EO weapons -- Maverick (VIS / PRE / BORE)}
+
+\subsection{IAMs (JDAM / JSOW / WCMD / SPICE / others)}
+
+\subsection{LGBs and laser employment}
+
+\subsection{Anti-radiation (HARM POS / HAS / HAD)}
+
+\subsection{Naval weapons (Harpoon, others)}
+
+\section{TMS -- Block / variant notes}
+
+% --------------------------------------------------------------------------
+% CHAPTER 4: DMS -- RESTRUCTURED (v0.1.4.0)
+% --------------------------------------------------------------------------
+
+\chapter{DMS -- Display Management Switch}
+
+\section{Concept and Sensor of Interest (SOI)}
+
+\subsection{SOI definition and scope across displays}
+
+\subsection{Role of the DMS in SOI selection}
+
+\subsection{Example SOI flow (overview)}
+
+\section{DMS in MFDS format selection and SWAP}
+
+\subsection{MFDS format selection and cycling}
+
+\subsection{SWAP and display management}
+
+\subsection{HSD control via SOI and MFDS functions}
+
+\section{DMS in sensor and weapon context}
+
+\subsection{SOI changes between FCR, TGP, HSD and HUD in Air-to-Air}
+
+\subsection{SOI changes between FCR, TGP, HSD, HAD and WPN in Air-to-Ground}
+
+\subsection{DMS with HARM -- HAD page as SOI}
+
+\subsection{DMS with IAMs and other weapon-driven MFDS pages (SMS/WPN)}
+
+\section{DMS -- Block / variant notes}
+
+% --------------------------------------------------------------------------
+% CHAPTER 5: CMS under current work to populate
+% --------------------------------------------------------------------------
+
+\chapter{CMS -- Countermeasures Management Switch}
+
+\section{Concept and interaction with CMDS / ECM / RWR}
+\subsection{Concept}
+\subsection{Interaction with CMDS / ECM}
+
+\section{CMS Switch Actuation}
+\subsection{CMS Actuation with CMDS}
+\subsection{CMS Actuation with ECM}
+\subsection{CMS Consent \& Constraints}
+\subsection{Important Operational Notes}
+
+\section{CMS -- Block and variant notes}
+
+% --------------------------------------------------------------------------
+% CHAPTER 6: TRAINING REFERENCES AND FLOWS
+% --------------------------------------------------------------------------
+
+\chapter{Training references and practical flows}
+
+\section{How to use this guide with BMS training missions}
+
+\section{Recommended progression}
+
+\section{Example flows for typical missions}
+
+\section{Checklist: what to practice next}
+
+% --------------------------------------------------------------------------
+% CHAPTER 7: HOTAS VISUAL REFERENCE
+% --------------------------------------------------------------------------
+
+\chapter{HOTAS visual reference}
+
+\section{F-16 HOTAS overview}
+
+\section{TMS diagrams}
+
+\section{DMS diagrams}
+
+\section{CMS diagrams}
+
+% --------------------------------------------------------------------------
+% APPENDICES
+% --------------------------------------------------------------------------
+
+\appendix
+
+\chapter{Block / variant overview}
+
+\section{F-16CM Block 50/52}
+
+\section{F-16C/D Block 40/42}
+
+\section{F-16AM/BM MLU}
+
+\section{F-16I Sufa and Israeli variants}
+
+\section{Other export variants}
+
+\chapter{Tables index}
+
+\section{TMS tables}
+
+\section{DMS tables}
+
+\section{CMS tables}
+
+\end{document}

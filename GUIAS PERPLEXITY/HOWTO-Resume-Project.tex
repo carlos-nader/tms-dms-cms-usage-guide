@@ -1,0 +1,96 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+\title{How to Resume the TMS/DMS/CMS Guide Project}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{How to Resume This Project Later}
+
+This section describes a simple, repeatable workflow for resuming work on the TMS/DMS/CMS usage guide after a pause. It assumes that the main LaTeX document, support markdown files, and this how-to file are stored together in a single project directory.
+
+\subsection{Open the correct project context}
+\label{sec:howto-context}
+
+\begin{enumerate}
+  \item Open Perplexity and navigate to your conversation history (Threads) in the Library.
+  \item Locate the thread associated with this project by title, date, or a distinctive keyword (for example, \emph{TMS/DMS/CMS Guide}).
+  \item Re-open that thread instead of starting a brand-new chat, so that the previous context and decisions remain available.
+\end{enumerate}
+
+If the original thread is not available for any reason, use the fallback procedure in Section~\ref{sec:howto-fallback-thread}.
+
+\subsection{Check the current project state}
+\label{sec:howto-state}
+
+In your local project directory, identify and open the following key files:
+
+\begin{itemize}
+  \item The main LaTeX document (for example, \texttt{guide-v0.1.0+20260105.tex} or a later version).
+  \item \texttt{PROJECT-TRACKING.md} (session log and roadmap).
+  \item \texttt{version-system-v2.md} (versioning rules and naming convention).
+\end{itemize}
+
+Start by reading \texttt{PROJECT-TRACKING.md} to see the last completed session, the tasks that were finished, and the \emph{Next Steps} that were planned. Then review \texttt{version-system-v2.md} to recall the versioning scheme and current phase (scaffolding, table population, or review).
+
+\subsection{Resume writing in a controlled way}
+\label{sec:howto-writing}
+
+To continue the guide itself:
+
+\begin{enumerate}
+  \item Open the main LaTeX file (for example, \texttt{guide-v0.1.0+20260105.tex}) in your LaTeX editor.
+  \item Navigate to the chapter and section indicated as \enquote{Next Steps} in \texttt{PROJECT-TRACKING.md}.
+  \item Optionally, open any supporting markdown files such as \texttt{SECTION-TEMPLATE.md} or specific section drafts (for example, a SOI draft for Section~2.1).
+  \item Read a small portion of the previous section to regain context and tone.
+  \item Begin writing the next section using the agreed structure (intro paragraph, background, table if applicable, explanation, and cross-references).
+\end{enumerate}
+
+\subsection{Working from a new thread (fallback)}
+\label{sec:howto-fallback-thread}
+
+If you need to resume the project in a new Perplexity thread:
+
+\begin{enumerate}
+  \item Start a new chat.
+  \item Upload the key project files:
+    \begin{itemize}
+      \item The main LaTeX file (latest version).
+      \item \texttt{PROJECT-TRACKING.md}.
+      \item \texttt{version-system-v2.md}.
+    \end{itemize}
+  \item Clearly state that these files represent the current state of the TMS/DMS/CMS guide project and that you want to continue from the indicated chapter and section.
+\end{enumerate}
+
+This allows the assistant to reconstruct the project context from the sources themselves, even if the original thread is unavailable.
+
+\subsection{End-of-session routine}
+\label{sec:howto-eos}
+
+At the end of each working session, follow this checklist:
+
+\begin{enumerate}
+  \item Update \texttt{PROJECT-TRACKING.md} with:
+    \begin{itemize}
+      \item Date and time of the session.
+      \item Tasks completed.
+      \item Any issues or open questions.
+      \item Clear \emph{Next Steps} for the following session.
+    \end{itemize}
+  \item If you advanced the document meaningfully (for example, completing a chapter or major section), update the version macros in the LaTeX preamble (version number, build date, and progress indicators).
+  \item Compile the main LaTeX file to generate an updated PDF snapshot for that version.
+  \item If you use markdown helper files, run your conversion script (for example, \texttt{convert-to-word.bat}) to refresh any \texttt{.docx} views used in Word.
+\end{enumerate}
+
+By following this routine, you ensure that the project remains easy to resume even after long breaks, with a clear history, consistent versioning, and up-to-date artifacts.
+
+\end{document}
