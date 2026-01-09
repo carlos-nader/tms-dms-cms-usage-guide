@@ -1,262 +1,225 @@
-# Falcon BMS TMS/DMS/CMS HOTAS Usage Guide
+# Falcon BMS HOTAS TMS/DMS/CMS Usage Guide
 
-A structured LaTeX-based reference guide for mastering the Target Management Switch (TMS), Display Management Switch (DMS), and Countermeasures Management Switch (CMS) in Falcon BMS 4.38.1.
-
-## Project Overview
-
-This project creates a professional, context-driven usage guide for three critical HOTAS switches in the F-16C/D aircraft modelled in Falcon BMS 4.38.1. The guide bridges the gap between official technical documentation (Dash-1, Dash-34, Training Manual) and practical, day-to-day virtual flying operations.
-
-### What It Is
-
-- A comprehensive reference organized by **master mode** and **sensor context**
-- A collection of **context-sensitive tables** documenting each switch's behavior
-- **Cross-referenced** to official BMS documentation and training missions
-- Built with professional governance: version control, file naming standards, and project tracking
-
-### What It Is Not
-
-- A full HOTAS manual (focuses exclusively on TMS, DMS, CMS)
-- A tactics textbook (tactical notes are brief and contextual only)
-- Official Falcon BMS documentation (community effort, non-affiliated)
-
-## Current Status
-echo "**Current Version:** guide-v0.2.2.0-20260109.tex" >> README.md
-
-### Latest Updates
-
-**v0.2.2.0 — Layout Optimization**
-- Standardized page geometry to 2.0 cm left/right margins (2.5 cm top/bottom)
-- Applied `hotastable` row height standard (`\arraystretch = 1.25`)
-- Confirmed layout parameters for all future WIP sections
-
-**v0.2.1.0 — CMS Chapter Structure**
-- Refined Section 5 (CMS) with subsection layout
-- Prepared scaffolding for CMS Actuation tables (5.2.1–5.2.4)
-
-**v0.2.0.0 — CMS Introduction**
-- Integrated Section 5.1 (CMS Concept and CMDS/ECM interaction)
-
-## Repository Structure
-
-```
-projet-bms/
-├── docs/
-│   ├── BRIEFING-v0-1-4-1.docx           # Project specification & style guide
-│   ├── VERSION-SYSTEM-V4.2.docx          # Semantic versioning rules
-│   ├── WIP-NAMING-CONVENTION-v1.3.docx   # File naming standards
-│   ├── PROJECT-TRACKING-v5.0.0.docx      # Timeline & status tracking
-│   └── [Markdown versions coming]
-│
-├── WIP/                                  # Work-in-progress sections & tables
-│   ├── section-C*.tex                    # Chapter sections under development
-│   ├── table-*.tex                       # Standalone table WIP files
-│   ├── visual-*.tex                      # Diagram and illustration WIP files
-│   └── notes-*.tex                       # Development notes & research
-│
-├── ARCHIVE/                              # Approved WIP & historical versions
-│   ├── guide-v0.1.0+20260105.pdf
-│   ├── guide-v0.1.1+20260105.pdf
-│   └── [... archived versions]
-│
-├── guide-v0.2.2.0-20260108.tex           # Current master guide source
-├── README.md                             # This file
-└── [Build outputs & auxiliary files]
-```
-
-## Versioning Scheme
-
-The project uses a **4-part semantic versioning system** with two distinct regimes:
-
-### Pre-Publication (0.x.x.x)
-
-Used during scaffolding and content development:
-
-- **MAJOR** = 0 (always)
-- **MINOR** = chapter integration order
-- **PATCH** = structural changes within chapters
-- **SUBPATCH** = typos, wording, minor table refinements
-
-**Current track:** `0.2.x.x` — CMS chapter structure underway
-
-### Post-Publication (x.y.z, ≥ 1.0)
-
-Used after first public release (`1.0.0`):
-
-- **MAJOR** = edition number (1st, 2nd, 3rd...)
-- **MINOR** = significant compatible revisions
-- **PATCH** = corrections and polish
-
-**Detailed rules:** See `VERSION-SYSTEM-V4.2.docx` in `docs/`
-
-## Governance Documents
-
-The project is governed by four key documents housed in `docs/`:
-
-### 1. **BRIEFING** (v0.1.4.1)
-Project specification: scope, style rules, layout parameters, content guidelines, and AI collaboration standards. Required reading for understanding what goes into the guide.
-
-### 2. **VERSION-SYSTEM** (v4.2)
-Authoritative rules for semantic versioning, file naming patterns, version increment triggers, and synchronization protocols across LaTeX macros, file names, and tracking documents.
-
-### 3. **WIP NAMING CONVENTION** (v1.3)
-Standardized naming for all work-in-progress files (chapters, sections, tables, notes, visuals) with status codes, organization rules, and automation hints.
-
-### 4. **PROJECT TRACKING** (v5.0.0)
-Session-by-session timeline, milestones, WIP file status, integration priority, and completion history. Updated at the end of each development session.
-
-**Status:** Currently in `.docx` format. Markdown equivalents are planned to be published to `docs/` as the project progresses.
-
-## File Naming Standards
-
-The project enforces strict file naming conventions:
-
-### Master Guide File
-```
-guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex
-Example: guide-v0.2.2.0-20260108.tex
-```
-
-### Work-in-Progress (WIP) Files
-```
-[TYPE]-[CHAPTER]-[SECTION]-[COMPONENT]-[STATUS]-[DATE].tex
-Example: section-C5-S2-cms-actuation-hotas-tables-review-2026-01-08.tex
-```
-
-**Types:** `section`, `table`, `visual`, `notes`  
-**Status codes:** `wip` (active), `review` (under review), `approved` (ready for integration), `archive` (historical)
-
-## Key Documents in the Guide
-
-### Chapters (Planned Structure)
-
-1. **Introduction** — Scope, authorship, sources, how to read
-2. **HOTAS Fundamentals** — SOI, timing, master modes, overview table
-3. **TMS — Target Management Switch** — Concept + all master modes and sensors
-4. **DMS — Display Management Switch** — SOI architecture and MFDS format control
-5. **CMS — Countermeasures Management Switch** — CMDS/ECM interaction and tables
-6. **Training References and Practical Flows** — Mission progression, checklists
-7. **HOTAS Visual Reference** — Stick/throttle diagrams with quick-reference labels
-
-### Appendices
-
-- Block / variant notes (differences across F-16CM variants)
-- Tables index (cross-reference of all TMS/DMS/CMS tables)
-
-## Content Structure: hotastable Format
-
-All TMS/DMS/CMS behavior tables follow a standardized 7-column format:
-
-| Column | Width | Purpose |
-|--------|-------|---------|
-| **State** | 1.6 cm | Master mode + sensor/weapon context |
-| **Direction** | 1.0 cm | Hat direction: Up, Down, Left, Right |
-| **Action** | 1.0 cm | Press type: Short, Long, Short repeated, Long hold |
-| **Function** | 3.4 cm | What the switch does (informal title) |
-| **Effect / Nuance** | 5.8 cm | Technical explanation + interactions |
-| **Dash34** | 1.4 cm | Reference to BMS Dash-34 sections |
-| **Train** | 1.4 cm | Recommended BMS training missions |
-
-This format ensures consistent, dense, professional documentation while maintaining easy navigation.
-
-## Technical Specifications
-
-### LaTeX Configuration
-
-- **Engine:** pdfTeX / XeLaTeX
-- **Page Size:** A4 (210 × 297 mm)
-- **Margins:** 2.0 cm (left/right), 2.5 cm (top/bottom)
-- **Text Width:** 17.0 cm
-- **HOTAS Table Width:** 15.6 cm (locked architecture)
-- **Font:** Standard pdfTeX fonts + custom styling via `fancyhdr`, `longtable`, `array`
-
-### Table Formatting (hotastable)
-
-- **Font Size:** `\small` (10 pt)
-- **Row Height:** `\arraystretch = 1.25`
-- **Table Type:** `longtable` (allows multi-page tables with automatic breaks)
-
-### Helper Macros
-
-```latex
-\dashref{section}      % Reference Dash-34 section, e.g., \dashref{2.1.5}
-\dashone{section}      % Reference Dash-1 section
-\trnref{mission}       % Reference training mission, e.g., \trnref{18 (BARCAP)}
-\trnman                % Label for Falcon BMS Training Manual
-\bmsver                % Current BMS version (4.38.1)
-\dashrefs{s1, s2, ...} % Multiple Dash-34 references
-```
-
-## Sources and References
-
-The guide is conceptually aligned with (but never reproduces) official Falcon BMS documentation:
-
-- **TO BMS 1F-16CMAM-34-1-1** (Dash-34) — Avionics & Weapons Manual
-- **TO BMS 1F-16CMAM-1** (Dash-1) — Flight Manual / Systems
-- **Falcon BMS Training Manual 4.38.1** — 33 missions with learning objectives
-- **Falcon BMS User Manual 4.38** — General systems reference
-
-All content is paraphrased in original words. No copyrighted text is reproduced.
-
-## Collaboration Model
-
-**This is a personal documentation effort**, maintained transparently for the benefit of the Falcon BMS flight simulation community.
-
-### Current Stage
-
-- **Open for:** Review, structural feedback, and source validation
-- **Not open for:** External contributions (until v1.0.0 public release)
-
-After the first public release (`1.0.0`), external contributions will be considered under a to-be-determined contribution policy.
-
-## How to Use This Repository
-
-### For Developers / Contributors
-
-1. Review the **BRIEFING** (`docs/BRIEFING-v0-1-4-1.docx`) for scope and style rules
-2. Check the **VERSION-SYSTEM** for versioning decisions
-3. Follow the **WIP NAMING CONVENTION** when creating new files
-4. Update **PROJECT TRACKING** at the end of each session
-5. Commit changes with clear messages referencing version and component
-
-### For Readers
-
-The final compiled guide (PDF) will be released with version `1.0.0`. Until then, the source `.tex` files and supporting documents in `docs/` provide insight into the project structure and technical approach.
-
-## Build Instructions (Planned)
-
-Build scripts and compilation instructions will be documented as the project stabilizes. For now, the project uses standard LaTeX tooling:
-
-```bash
-pdflatex guide-v0.2.2.0-20260108.tex
-```
-
-(Full build process with auxiliary files, index generation, and PDF optimization will be documented separately.)
-
-## Timeline
-
-| Version | Date | Milestone |
-|---------|------|-----------|
-| v0.1.0  | Jan 5, 2026 | Initial scaffolding |
-| v0.1.4.0 | Jan 7, 2026 | Layout finalized |
-| v0.2.2.0 | Jan 8, 2026 | CMS chapter structure, geometry standardized |
-| v0.3.0.0 | *Planned* | Next chapter integration |
-| **v1.0.0** | *TBD* | First public release |
-
-## License & Disclaimer
-
-This project is **non-affiliated with BMS Development Group** and is created for educational and reference purposes within the Falcon BMS community.
-
-- The guide does not reproduce copyrighted Falcon BMS documentation
-- All content is original and paraphrased
-- Falcon BMS is © BMS Development Group; refer to official BMS documentation for authoritative information
-
-## Contact & Feedback
-
-This is a personal project. Feedback on structure, clarity, or technical accuracy is welcome through the repository's issue tracker (when available).
+A comprehensive **LaTeX-based technical guide** documenting F-16 HOTAS switch systems (Throttle Management Switch, Data Management Switch, and Countermeasures Management Switch) for Falcon BMS 4.38.1.
 
 ---
 
-**Last Updated:** January 9, 2026 — README restructured with complete project overview, governance model, and technical specifications.
+## 📖 About This Project
 
-**Current Maintainer:** Project author (Brasília, Federal District, Brazil)  
-**Project Status:** Pre-publication scaffolding (Phase 0) — v0.2.2.0
+This project develops a structured, production-quality guide explaining HOTAS functionality across multiple F-16 blocks and international variants. The guide serves both novice and experienced pilots, covering conceptual frameworks, switch actuation, system interactions, and operational nuances grounded in official technical manuals (Dash-34, Dash-1) and training materials.
+
+**Current Status:** Pre-publication phase (v0.2.2.0) — Chapter scaffolding and narrative consolidation underway.
+
+---
+
+## 📁 Project Structure
+
+```
+falcon-bms-hotas-tms-dms-cms-guide/
+│
+├── guide/                          # Active guide files (.tex)
+│   ├── guide-v0.2.2.0-*.tex       # Current production version
+│   └── [archived snapshots]        # Historical versions for reference
+│
+├── TEMPLATES/                      # Structural templates & blueprints
+│   ├── template-wip-V1.0.tex      # Canonical WIP file template
+│   └── [guide structure scaffold]  # Chapter outline baseline
+│
+├── docs/                           # Governance & tracking (Markdown)
+│   ├── Briefing document           # Project scope, style, layout rules
+│   ├── Naming conventions          # Rules for WIP file naming & status
+│   ├── Versioning system           # Guide version numbering & phases
+│   ├── Project tracking            # Session log, WIP status, milestones
+│   └── [DOCX exports]              # Markdown converted for sharing
+│
+├── WIP/                            # Active work-in-progress files
+│   ├── section-*.tex               # Chapter sections under development
+│   ├── table-*.tex                 # HOTAS table scaffolds & content
+│   ├── notes-*.md                  # Research notes & reference material
+│   └── visual-*.*                  # Diagrams, schematics (dev status)
+│
+├── ARCHIVE/                        # Historical & approved files
+│   ├── [completed WIP files]       # Sections integrated into guide
+│   ├── [deprecated content]        # Intentionally retired material
+│   └── [guide snapshots]           # Older guide versions for rollback
+│
+├── MISC/                           # General-purpose materials
+│   ├── Reference documents         # External sources, notes
+│   ├── Research materials          # Background & supporting info
+│   └── Utilities & notes           # Miscellaneous project aids
+│
+├── WIP-version-name-generator.html # Interactive tool for WIP naming
+├── md-to-docx-v3-1-0.bat          # Batch converter (Markdown → DOCX)
+│
+└── README.md                       # This file
+
+```
+
+---
+
+## 📋 Key Documentation
+
+### Governance Layer
+
+The project uses **three integrated governance documents** (in `/docs/`) that define rules, structure, and workflows:
+
+1. **Briefing Document**
+   - Project scope, content outline, and style guidelines
+   - Layout standards and table formatting rules
+   - Current status & roadmap
+
+2. **Naming Conventions Guide**
+   - Rules for organizing WIP files (sections, tables, visuals, notes)
+   - Status lifecycle: dev → review → final → approved → deprecated
+   - How to create and track new WIP files
+
+3. **Versioning System**
+   - Guide version numbering (0.x.x.x pre-publication, x.y.z post-publication)
+   - MAJOR/MINOR/PATCH/SUBPATCH semantics
+   - Integration workflow from WIP to guide snapshots
+
+4. **Project Tracking** (living document)
+   - Session-by-session progress log
+   - WIP status snapshot
+   - Integration timeline & milestones
+   - Current priorities & phases
+
+All governance documents are available in **Markdown** (for editing) and **DOCX** (for sharing).
+
+---
+
+## 🔄 Workflow
+
+### For Contributors & Developers:
+
+1. **Create**: Copy template from `TEMPLATES/` to `WIP/` folder
+2. **Name**: Follow naming conventions (use interactive HTML tool in root if needed)
+3. **Develop**: Edit file with status (`dev` → `review` → `final` → `approved`)
+4. **Review**: Human review of narrative, accuracy, and style alignment
+5. **Archive**: Integrate approved files into guide, move to `ARCHIVE/`
+6. **Track**: Update project tracking document with new version & session log
+
+### File Status Codes:
+- **dev** — Draft stage; not ready for review
+- **review** — Under human review; open for feedback
+- **final** — Approved and ready for integration
+- **approved** — Integrated into guide and archived
+- **deprecated** — Intentionally retired or superseded
+
+---
+
+## 📊 Current Project State
+
+| Metric | Value |
+|--------|-------|
+| **Guide Version** | v0.2.2.0 (layout-optimized) |
+| **Total Chapters Planned** | 7 |
+| **Chapters with Narrative** | 2/7 |
+| **Chapters Scaffolded** | 4/7 |
+| **Tables Populated** | 0% |
+| **Phase** | 0 (Chapter scaffolding) |
+
+---
+
+## 🛠️ Tools & Utilities
+
+### WIP Naming Generator
+Interactive HTML tool in project root for generating compliant WIP file names based on chapter, section, status, and date.
+
+### Markdown-to-DOCX Converter
+Batch script (using Pandoc) to export governance documents from Markdown to DOCX format for convenient sharing and reading.
+
+---
+
+## 📚 Sources & References
+
+This guide is grounded in:
+
+- **TO 1F-16CMAM-34-1-1** — F-16 Avionics & Weapons Manual (Dash-34)
+- **TO 1F-16CMAM-1** — F-16C/D Flight Manual (Dash-1)
+- **Falcon BMS 4.38.1 Training Manual** — Official training missions & procedures
+- **F-16 Combat Aircraft Fundamentals Handbook** — USAF Multi-Command guidelines
+
+All technical claims are cross-referenced to these sources.
+
+---
+
+## 📜 License
+
+This project is released under the **Creative Commons Attribution 4.0 International (CC BY 4.0)** license.
+
+You are free to:
+- **Share** — copy and redistribute the material in any medium or format
+- **Adapt** — remix, transform, and build upon the material for any purpose
+
+**Under the following terms:**
+- **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made
+
+For full license details, see: [Creative Commons BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+---
+
+## 👥 Credits & Acknowledgments
+
+**Project Development:**
+- Carlos "Metal" Nader — Project lead, content author
+- AI Assistant (Claude) — Structural guidance, governance framework, documentation
+
+**Technical References:**
+- Falcon BMS development team (official manuals & training materials)
+- F-16 community knowledge & subject-matter experts
+
+**Tools & Utilities:**
+- Pandoc (Markdown conversion)
+- LaTeX (document typesetting)
+- Git/GitHub (version control)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! If you have:
+
+- **Content corrections** — Inaccuracies or outdated information
+- **Structural improvements** — Layout, organization, or clarity suggestions
+- **New sections** — Expanded coverage of HOTAS systems or variants
+- **Testing feedback** — LaTeX compilation or PDF rendering issues
+
+Please open an issue or contact the project maintainers. Follow the **Naming Conventions Guide** (in `/docs/`) when creating new WIP files.
+
+---
+
+## 📞 Contact & Feedback
+
+For questions, suggestions, or feedback about this guide, please:
+
+- Open an issue in the repository
+- Review the **Project Tracking** document (in `/docs/`) for current status
+- Check the **Governance Documents** for workflow details
+
+---
+
+## 📅 Project Timeline & Phases
+
+| Phase | Duration | Target | Milestone |
+|:-----:|----------|--------|-----------|
+| **0** | Jan 2026 | v0.1.0 → v0.7.0 | All chapters scaffolded; layout locked |
+| **1** | TBD | v1.0.0 → v1.0.x | HOTAS tables populated & validated |
+| **2** | TBD | v2.0.0-RC → Stable | Final review & public release |
+
+---
+
+## 🔍 Quick Links
+
+- **Active Guide** — `/guide/` (current production version)
+- **Work in Progress** — `/WIP/` (sections, tables, visuals under development)
+- **Governance Docs** — `/docs/` (briefing, naming, versioning, tracking)
+- **Templates** — `/TEMPLATES/` (WIP template, guide scaffold)
+- **Archived Content** — `/ARCHIVE/` (completed & deprecated files)
+- **Utilities** — Root directory (naming generator, format converter)
+
+---
+
+**Last Updated:** 2026-01-09  
+**Status:** Pre-publication v0.2.2.0  
+**License:** CC BY 4.0

@@ -1,0 +1,244 @@
+% ============================================================================
+% FALCON BMS TMS/DMS/CMS HOTAS GUIDE
+% WIP FILE TEMPLATE V1.0
+% ============================================================================
+%
+% IMPORTANTE: Este é um TEMPLATE padronizado para arquivos WIP (Work-In-Progress)
+% que serão integrados ao guide.tex v0.2.2.0.
+%
+% Nomenclatura: Siga WIP-FILE-NAMING-v1.3
+%   Padrão: section-C{N}-S{M}[-S{K}]-{titulo}-{status}-{data}.tex
+%   Exemplo: section-C5-S2-cms-actuation-hotas-tables-review-2026-01-18.tex
+%
+% Status: dev | review | final | approved | deprecated
+% Locação: WIP/ (ativo) | ARCHIVE/ (aprovado/descartado)
+%
+% Instruções:
+%   1. Copie este arquivo: cp template-wip-V1.0.tex section-C{N}-S{M}-{slug}-{status}-{data}.tex
+%   2. Descomente linhas 33-34 (abaixo) se compilar isoladamente
+%   3. Atualize bloco METADATA (linhas 52-65)
+%   4. Escreva seu conteúdo entre linhas 161 e 500 (dentro do \section)
+%   5. Compile: pdflatex section-C{N}-S{M}-{slug}-{status}-{data}.tex
+%   6. Para integração em guide.tex: delete TODO PREAMBLE COMMENTED abaixo, mantenha conteúdo
+%
+% ============================================================================
+
+% ============================================================================
+% TODO PREAMBLE COMMENTED
+% ============================================================================
+% Descomente as 2 linhas abaixo para compilar este arquivo isoladamente:
+% Para ativar: Remova os símbolos % dos próximos 2 linhas
+%
+% % BEGIN-STANDALONE-COMPILATION
+% % END-STANDALONE-COMPILATION
+%
+% Se descomentadas, este bloco ATIVA o preamble completo abaixo.
+% Para integração em guide.tex, DELETE TODAS as linhas de % até \begin{document}
+% inclusive, mantendo apenas o conteúdo de \section até \end{document}.
+%
+
+\documentclass[11pt,a4paper]{report}
+
+% --------------------------------------------------------------------------
+% BASIC ENCODING AND LANGUAGE
+% --------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% --------------------------------------------------------------------------
+% FONTS AND MICROTYPOGRAPHY
+% --------------------------------------------------------------------------
+
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --------------------------------------------------------------------------
+% PAGE GEOMETRY AND LAYOUT
+% --------------------------------------------------------------------------
+
+\usepackage{geometry}
+\geometry{a4paper, left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
+\usepackage{setspace}
+\onehalfspacing
+
+% --------------------------------------------------------------------------
+% COLORS AND LINKS
+% --------------------------------------------------------------------------
+
+\usepackage[table]{xcolor}
+\definecolor{linkblue}{HTML}{004488}
+\definecolor{linkred}{HTML}{882222}
+\definecolor{headerblue}{HTML}{003366}
+\definecolor{rowgray}{HTML}{F5F5F5}
+\definecolor{subheadgray}{HTML}{E0E0E0}
+
+\usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\usepackage{bookmark}
+
+% --------------------------------------------------------------------------
+% HEADERS AND FOOTERS
+% --------------------------------------------------------------------------
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --------------------------------------------------------------------------
+% TABLES AND MACROS
+% --------------------------------------------------------------------------
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+% Custom Columns
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% HOTAS table environment (per BRIEFING v0.1.4.1)
+\newenvironment{hotastable}[1][]{%
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
+\caption{#1}\\
+\rowcolor{headerblue}
+\textbf{\color{white}State} &
+\textbf{\color{white}Dir} &
+\textbf{\color{white}Act} &
+\textbf{\color{white}Function} &
+\textbf{\color{white}Effect / Nuance} &
+\textbf{\color{white}Dash34} &
+\textbf{\color{white}Train} \\
+\endhead
+\rowcolor{headerblue}
+\textbf{\color{white}State} &
+\textbf{\color{white}Dir} &
+\textbf{\color{white}Act} &
+\textbf{\color{white}Function} &
+\textbf{\color{white}Effect / Nuance} &
+\textbf{\color{white}Dash34} &
+\textbf{\color{white}Train} \\
+\endfirsthead
+\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+\endfoot
+\endlastfoot
+}{%
+\end{longtable}
+}
+
+% --------------------------------------------------------------------------
+% SIMPLE REFERENCE MACROS FOR BMS DOCS
+% --------------------------------------------------------------------------
+
+\newcommand{\dashref}[1]{Dash-34, section~#1}
+\newcommand{\dashone}[1]{Dash-1, section~#1}
+\newcommand{\trnref}[1]{BMS Training Mission~#1}
+\newcommand{\trnman}{BMS Training Manual 4.38.1}
+\newcommand{\bmsver}{Falcon BMS~4.38.1}
+\newcommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+
+% --------------------------------------------------------------------------
+% VERSION CONTROL MACROS (WIP metadata, overridden by guide.tex)
+% --------------------------------------------------------------------------
+
+\newcommand{\docversion}{WIP Template v1.0}
+\newcommand{\docbuild}{20260109}
+\newcommand{\fulldocversion}{\docversion+\docbuild}
+
+% --------------------------------------------------------------------------
+% GRAPHICS
+% --------------------------------------------------------------------------
+
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+
+% --------------------------------------------------------------------------
+% TITLE (For Standalone Compilation Only)
+% --------------------------------------------------------------------------
+
+\title{TMS, DMS and CMS Usage Guide for \bmsver}
+
+\author{Carlos ``Metal'' Nader}
+
+\date{Version \fulldocversion{} | January 2026}
+
+% --------------------------------------------------------------------------
+% DOCUMENT BEGIN
+% --------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\clearpage
+
+% ============================================================================
+% WIP FILE METADATA (NOT RENDERED IN PDF)
+% ============================================================================
+%
+% File Name: template-wip-V1.0.tex
+% WIP Naming Convention: v1.3
+% Target Chapter: C{N} (Chapter Title)
+% Target Section: {S{M}} (Section Title)
+% [Target Subsection: {S{K}} (Subsection Title) --- OPTIONAL]
+%
+% WIP Status: dev | review | final | approved | deprecated
+% Created: YYYY-MM-DD
+% Last Modified: YYYY-MM-DD
+% Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.{MINOR}.{PATCH}
+%
+% Narrative Completion: 0-100%
+% Table Fill Status: 0-100%
+%
+% Notes:
+%   - [Describe what's done, what's pending, open questions]
+%   - [Cross-references to other WIP files or guide.tex sections]
+%   - [Any divergences from briefing or validation issues]
+%
+% ============================================================================
+
+% ============================================================================
+% TEMPLATE STRUCTURE --- Replace section/subsection headers with your content
+% ============================================================================
+
+\section{Section Title}
+\label{sec:C{N}-{slug}}
+
+% Status: {0-100%} complete
+% TODO: [List of pending items]
+
+% [Write your introductory paragraph(s) here]
+
+\subsection{Subsection Title}
+\label{sec:C{N}-{slug}-{subslug}}
+
+% Status: [Narrative | Tables | Both] {0-100%}
+
+% [Write content here. Example hotastable structure below:]
+
+\begin{hotastable}[Table Caption]
+State & Dir & Act & Function & Effect / Nuance & Dash34 & Train \\
+\end{hotastable}
+
+\subsection{Subsection Title}
+\label{sec:C{N}-{slug}-{subslug}}
+
+% [Additional subsections as needed]
+
+% ============================================================================
+% END OF SECTION
+% ============================================================================
+
+\end{document}

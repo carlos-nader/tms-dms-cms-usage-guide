@@ -1,6 +1,6 @@
 # Falcon BMS 4.38.1 — TMS, DMS and CMS Usage Guide: Project Brief
 
-**Brief Version:** v0.1.4.1 (Layout Parameters Update — 08 January 2026)
+**Brief Version:** v0.2.0.0 (WIP File Template Specification — 09 January 2026)
 
 ---
 
@@ -21,7 +21,7 @@ This brief describes how the TMS/DMS/CMS Usage Guide is being built, including:
 - Scope, goals and structure of the document.
 - Source material and style rules.
 - Layout parameters and table standards.
-- High-level overview of the Version System v4.2 and how it interacts with GitHub.
+- High-level overview of the Version System v4.2.1 and how it interacts with GitHub.
 
 All instructions to the assistant are given in **Portuguese**. All content that goes into the **LaTeX document** (text, tables, captions, macros) is in **English**.
 
@@ -480,9 +480,9 @@ When in doubt, ask concise clarification and wait for the answer before making l
 
 ---
 
-## 10. Version Control System (VERSION_SYSTEM_v4.2 — Overview)
+## 10. Version Control System (VERSION_SYSTEM_v4.2.1 — Overview)
 
-This section provides a high-level overview of the versioning model used for the TMS/DMS/CMS guide. The authoritative rules are defined in the standalone document "Falcon BMS TMS/DMS/CMS Guide Version System v4.2". In case of any discrepancy between this brief and that document, Version System v4.2 is the single source of truth.
+This section provides a high-level overview of the versioning model used for the TMS/DMS/CMS guide. The authoritative rules are defined in the standalone document "Falcon BMS TMS/DMS/CMS Guide Version System v4.2.1". In case of any discrepancy between this brief and that document, Version System v4.2.1 is the single source of truth.
 
 ### 10.1 Purpose and Scope
 
@@ -524,7 +524,7 @@ These fields must always match:
 
 ### 10.4 Two Regimes: Pre-publication (0.x.x.x) and Post-publication (≥ 1.0)
 
-Version System v4.2 defines two distinct regimes:
+Version System v4.2.1 defines two distinct regimes:
 
 - **Pre-publication regime (0.x.x.x):**
   - Used while the guide is still being built and no public edition has been declared.
@@ -539,11 +539,11 @@ Version System v4.2 defines two distinct regimes:
   - `MINOR` = significant but compatible revisions within the same edition.
   - `PATCH` = local corrections and polish (errata, clarity, minor table fixes).
 
-The exact decision tables for when to increment each digit are defined in Version System v4.2 and should not be reimplemented here.
+The exact decision tables for when to increment each digit are defined in Version System v4.2.1 and should not be reimplemented here.
 
 ### 10.5 Quick Operational Rules
 
-The following rules are intended as a working checklist; always refer to Version System v4.2 for the full logic and examples.
+The following rules are intended as a working checklist; always refer to Version System v4.2.1 for the full logic and examples.
 
 - Only content integrated into the guide snapshot in `WIP/GUIDE/` and propagated to `guide.tex` can change its version.
   - Work done only in WIP files (`section-`, `table-`, `visual-`, `notes-`) does not affect the guide version until it is integrated into the snapshot and copied over `guide.tex`.
@@ -572,40 +572,349 @@ Git and GitHub always see `guide.tex` as the canonical file. The snapshot in `WI
 
 ---
 
-## 11. Current Project Status (v0.2.2.0)
+## 11. WIP File Template (Canonical)
 
-### 11.1 Version Summary
+### 11.1 Purpose and Location
+
+All work-in-progress files (chapters, sections, tables, visuals) **MUST** be created by copying and adapting the canonical template:
+
+```text
+TEMPLATES/template-wip-V1.0.tex
+```
+
+This requirement ensures that:
+
+- All WIP files inherit a **standardised, validated preamble** identical to the main guide structure.
+- **Metadata blocks** follow a consistent, machine-readable format.
+- **Content structures** (sections, subsections, tables) align with the brief's expectations.
+- **Integration into guide.tex** can be automated or semi-automated without structural surprises.
+
+Template use is **mandatory** for AI-assisted WIP file creation and **strongly recommended** for human-authored WIP files.
+
+### 11.2 What the Template Provides
+
+The template is a complete, compilable LaTeX document containing:
+
+1. **Standard preamble** (packages, geometry, macros):
+   - Identical to `guide.tex` preamble to ensure WIP files and guide are always synchronised.
+   - Includes all necessary packages: `geometry`, `fancyhdr`, `hyperref`, `array`, `longtable`, `xcolor`, `graphicx`, `microtype`.
+   - Geometry locked: A4, 2.0 cm left/right margins, 2.5 cm top/bottom.
+   - Custom helpers: `\dashref{}`, `\dashone{}`, `\trnref{}`, `\trnman`, `\bmsver`.
+
+2. **Metadata block** (non-rendered, for tracking):
+   - Structured comments at lines 52–75 (approximately) containing:
+     - Target chapter, section, subsection numbers.
+     - WIP file status (dev, review, final, approved).
+     - Creation date (ISO 8601 format: YYYY-MM-DD).
+     - Author/AI indication.
+     - Development notes (TBD items, known issues, cross-references).
+   - Metadata is **never rendered** in compiled output; used only for human/automation reference.
+
+3. **Section/subsection skeleton**:
+   - Empty sections and subsections with proper hierarchy (`\section{}`, `\subsection{}`).
+   - Ready to be filled with narrative content, tables, or both.
+   - Structured to match the chapter breakdown defined in this brief (Section 3.1).
+
+4. **Configured hotastable environment**:
+   - Pre-configured 7-column layout with locked dimensions.
+   - Column widths: 1.6 cm, 1.0 cm, 1.0 cm, 3.4 cm, 5.8 cm, 1.4 cm, 1.4 cm (State, Direction, Action, Function, Effect/Nuance, Dash34, Train).
+   - Font size: `\small` (10 pt).
+   - Row height: `\arraystretch = 1.25`.
+   - Template includes one **empty example row** (commented out) for quick reference during table population.
+
+### 11.3 Preamble Configuration (Locked Architecture)
+
+The preamble is considered **architecture-locked** and should not be modified except in extraordinary circumstances (requires explicit approval in this brief or by human override).
+
+**Locked packages (never remove):**
+
+```latex
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2.0cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{array, longtable, multirow}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{microtype}
+```
+
+**Locked geometry parameters (per Section 4.1):**
+
+```latex
+\usepackage[
+  left=2.0cm, right=2.0cm,
+  top=2.5cm, bottom=2.5cm,
+  a4paper
+]{geometry}
+```
+
+**Helper macros (using `\providecommand` to allow guide.tex override):**
+
+```latex
+\providecommand{\dashref}[1]{Dash-34~\S~#1}
+\providecommand{\dashone}[1]{Dash-1~\S~#1}
+\providecommand{\trnref}[1]{TRN~#1}
+\providecommand{\trnman}{BMS Training Manual}
+\providecommand{\bmsver}{4.38.1}
+\providecommand{\dashrefs}[1]{\dashref{#1}}
+```
+
+**Rationale for `\providecommand`:** When a WIP file is integrated into `guide.tex`, the guide's preamble will **redefine** these macros with guide-specific formatting or additional functionality. The `\providecommand` approach ensures:
+- WIP files compile standalone correctly.
+- Integration is seamless; no renaming or redefinition required.
+- Macros can be enhanced in guide.tex without breaking WIP files.
+
+**Adjustable within documented ranges:**
+
+- `\arraystretch`: may be tweaked between 1.2 and 1.3 if legibility studies warrant (default: 1.25).
+- `\small` font size: may shift to `\footnotesize` or `\normalsize` if table density requires (default: `\small`).
+- Margins: governed by Section 4.1; document-wide, not per-WIP-file.
+
+### 11.4 Metadata Block Format (Lines 52–75)
+
+The metadata block is a **commented-out section** at the top of the document body (after `\begin{document}`), structured as follows:
+
+```latex
+\begin{document}
+
+% ============================================================================
+% METADATA BLOCK (non-rendered, for tracking and automation)
+% ============================================================================
+% Target: Chapter C, Section S, Subsection S
+% Status: dev
+% Date: YYYY-MM-DD
+% Author: AI / Human Name
+% Notes: TBD: Table population. Known issues: None.
+% Cross-ref: Guide v0.2.2.0, guides-section-C-S-*.tex
+% ============================================================================
+
+\section{Section Title}
+
+Content starts here...
+```
+
+**Mandatory fields:**
+
+| Field | Format | Example | Notes |
+|-------|--------|---------|-------|
+| Target | `Chapter C[, Section S[, Subsection S]]` | `Chapter 5, Section 2, Subsection 1` | Identifies where in guide structure this WIP belongs. |
+| Status | `dev \| review \| final \| approved` | `dev` | Status per WIP-NAMING-v1.4. Approved files should be in ARCHIVE/. |
+| Date | `YYYY-MM-DD` | `2026-01-09` | Creation or last-edit date. Updated whenever status changes. |
+| Author | `AI` or `Human Name` | `AI (Session 9)` | Indicates authorship for traceability. |
+
+**Optional fields (but recommended):**
+
+| Field | Purpose | Example |
+|-------|---------|---------|
+| Notes | Development notes, TBD items, known issues | `TBD: Populate rows 5–12. Known issue: CMS ECM column needs Dash-34 validation.` |
+| Cross-ref | Links to related WIP files, guide versions, or source sections | `See also: section-C5-S2-*.tex. Reference: Dash-34 §2.1.7.` |
+
+**Rationale:**
+- Metadata stays in the file, making it self-documenting.
+- Non-rendered comments prevent cluttering compiled output.
+- Format is simple enough for regex/automation to parse, but human-readable for manual inspection.
+
+### 11.5 hotastable Environment (Frozen Specification)
+
+The `hotastable` environment is **architecture-locked**: column widths, font size, and row height are fixed and must not be modified without explicit brief revision.
+
+**Column configuration (EXACT, locked):**
+
+```latex
+\newenvironment{hotastable}[1]{
+  \begin{longtable}{|L{1.6cm}|L{1.0cm}|L{1.0cm}|L{3.4cm}|L{5.8cm}|L{1.4cm}|L{1.4cm}|}
+  \hline
+  \textbf{State} & \textbf{Dir} & \textbf{Act} & \textbf{Function} & \textbf{Effect / Nuance} & \textbf{Dash34} & \textbf{Train} \\
+  \hline
+  \endhead
+  \hline
+  \multicolumn{7}{r}{\footnotesize (continued on next page)} \\
+  \endfoot
+  \hline
+  \endlastfoot
+  \caption{#1}
+}{
+  \end{longtable}
+}
+```
+
+**Column semantics (locked, per Section 6):**
+
+| Column | Width | Content | Example |
+|--------|-------|---------|---------|
+| State | 1.6 cm | Master mode + sensor/weapon context | `A-A CRM — FCR RWS` |
+| Dir (Direction) | 1.0 cm | Hat direction (Up, Down, Left, Right) | `Up` |
+| Act (Action) | 1.0 cm | Press type (Short, Long, Short repeated) | `Short` |
+| Function | 3.4 cm | What the switch does (informal title) | `Bug target / designate` |
+| Effect / Nuance | 5.8 cm | Technical explanation + interactions | `Sets radar bug on selected track; subsequent short up selects next track.` |
+| Dash34 | 1.4 cm | Reference to Dash-34 sections | `\dashref{2.1.5}` |
+| Train | 1.4 cm | Training mission references | `\trnref{18 (BARCAP)}` |
+
+**Font and spacing (locked):**
+
+```latex
+{\small
+\arraystretch=1.25
+... table content ...
+}
+```
+
+- `\small` (10 pt) is the baseline for all HOTAS tables; deviation requires brief amendment.
+- `\arraystretch = 1.25` is locked; changes require brief amendment and validation against page economy.
+
+**Why this is frozen:**
+- Column widths are designed to fit exactly 15.6 cm within the 17.0 cm text width (see Section 4.1).
+- Deviations would either break page layout or sacrifice content legibility.
+- `\small` + `\arraystretch = 1.25` is optimised for dense technical tables; empirically validated.
+
+**Template includes empty example row (commented):**
+
+```latex
+% Example row (commented out — replace or remove when adding actual content):
+% A-A CRM — FCR RWS & Up & Short & Bug target & Sets radar bug on selected track. & \dashref{2.1.5} & \trnref{18 (BARCAP)} \\
+```
+
+This serves as a quick reference for WIP developers creating their first row.
+
+### 11.6 Section/Subsection Skeleton
+
+The template includes a generic skeleton matching the chapter structure from Section 3.1. For example, for a **Chapter 5 (CMS) WIP file**, the skeleton would be:
+
+```latex
+\section{CMS — Countermeasures Management Switch}
+
+\subsection{Concept and Interaction with CMDS / ECM}
+
+% Content for 5.1 goes here
+
+\subsection{CMS Switch Actuation}
+
+% Content for 5.2 goes here
+
+\subsubsection{CMS Actuation with CMDS}
+
+\begin{hotastable}[CMS Actuation with CMDS]
+  % Table rows go here
+\end{hotastable}
+
+\subsubsection{CMS Actuation with ECM}
+
+\begin{hotastable}[CMS Actuation with ECM]
+  % Table rows go here
+\end{hotastable}
+```
+
+**Skeleton principles:**
+- Hierarchies match the brief's chapter breakdown (Section 3.1).
+- Subsection/subsubsection levels are pre-defined but **empty**, ready for narrative or tables.
+- Developers may **add, remove, or restructure** subsections as needed *during development* (status: `dev`, `review`).
+- Once status is `final`, structural changes require explicit approval (tracked in metadata notes).
+
+### 11.7 Integration Workflow: What Happens When Integrated into guide.tex
+
+When a WIP file (e.g., `section-C5-S2-cms-actuation-final-2026-01-09.tex`) is promoted to `final` status and ready for integration into `guide.tex`, the following **extraction and integration procedure** is applied:
+
+**Step 1: Extract Content from WIP**
+- Delete preamble (`\documentclass` through `\begin{document}`).
+- Delete metadata block (commented-out lines 52–75).
+- Preserve: all `\section`, `\subsection`, narrative, tables, and `\end{document}` (then remove `\end{document}`).
+
+**Step 2: Merge into guide.tex**
+- Identify target location in `guide.tex` (e.g., after Section 5.1, before Section 5.3).
+- Insert extracted content (sections through tables).
+- Merge any helper macros (`\dashref{}`, etc.) into guide.tex's definition set; WIP's `\providecommand` placeholders are **overridden** by guide.tex's `\newcommand` definitions.
+
+**Step 3: Archive and Record**
+- Move WIP file from `WIP/` to `ARCHIVE/section-C5-S2-cms-actuation-approved-2026-01-XX.tex`.
+- Update metadata block status to `approved`.
+- Record integration in PROJECT-TRACKING.
+- Update `guide-v*.tex` version and build date.
+
+**Why this workflow works:**
+- Standalone compilation: WIP files are always compilable (thanks to preamble).
+- Integration hygiene: preamble is never carried over; only content is merged.
+- Macro safety: `\providecommand` in WIP allows override by guide.tex without conflicts.
+
+### 11.8 Template Versioning and Maintenance
+
+The template itself is **versioned independently** of the guide version, allowing template improvements without forcing a new guide version.
+
+**Template version identifier:**
+- Current: `V1.0`.
+- Format: `V{MAJOR}` (simplified, no MINOR/PATCH for template; only major breaking changes trigger new versions).
+
+**When to bump template version:**
+
+- **V1.0 → V1.1** (future): Minor refinements (e.g., adjusted `\arraystretch` range, or added optional helper macro).
+  - Existing WIP files can still use V1.0 template (backward compatible).
+  
+- **V1.X → V2.0** (future): Breaking change (e.g., new hotastable layout, preamble restructure, or geometry change).
+  - Existing WIP files created with V1.X must be manually updated or regenerated from V2.0.
+
+**Template validation (mandatory before release):**
+- Template must compile without LaTeX errors when processed in isolation.
+- Preamble must be byte-identical to latest `guide.tex` preamble (validated via script or manual diff).
+- All helper macros must produce expected output (tested against Section 11.4).
+- Metadata block must follow documented format (validated via regex or manual review).
+
+**How to update template:**
+1. Update `TEMPLATES/template-wip-V1.0.tex` (or create new version file).
+2. Update this briefing section (Section 11) to document changes.
+3. Notify WIP developers via PROJECT-TRACKING of any breaking changes (status: `template-v1.X-update`).
+4. For backward-compatibility changes (V1.0 → V1.1), document in a "Changelog" subsection.
+
+**Relationship to brief:**
+- If template preamble is updated (e.g., new packages, new macros), this Section 11 **must be updated in lockstep**.
+- If Section 11 of the brief is updated (e.g., layout parameters in Section 4 change), the template **must be regenerated** and validated.
+- These two documents (template file + brief Section 11) are considered **synchronized artifacts**; desynchronisation is a critical bug.
+
+---
+
+## 12. Current Project Status (v0.2.2.0)
+
+### 12.1 Version Summary
 
 | Component              | Status                          | Details |
 |------------------------|---------------------------------|---------|
 | Active Version         | `v0.2.2.0+20260108`             | Guide updated to Geometry Option D (2.0 cm left/right margins) and `hotastable` row height `\arraystretch = 1.25`. |
 | Chapters Complete      | `2 / 7`                         | Chapter 1 (Introduction) and Chapter 5.1 (CMS Concept and interaction with CMDS/ECM) have complete narrative scaffolding; remaining chapters are in skeleton form. |
 | Tables Filled          | `0 %`                           | All TMS/DMS/CMS `hotastable` structures reserved but not yet populated with full behaviour data. |
-| Phase                  | `0 (Pre-publication)`           | Guide remains in scaffolding regime `0.x.x.x` as defined by Version System v4.2 (no public edition ≥ 1.0 yet). |
+| Phase                  | `0 (Pre-publication)`           | Guide remains in scaffolding regime `0.x.x.x` as defined by Version System v4.2.1 (no public edition ≥ 1.0 yet). |
 | Layout Standard        | `Geometry Option D applied`     | Global layout aligned: A4, 2.0 cm side margins, 2.5 cm top/bottom, 17.0 cm text width, and HOTAS tables fixed at 15.6 cm width with `\small` and `\arraystretch = 1.25`. |
+| WIP Template           | `V1.0 (established)`            | Canonical template `template-wip-V1.0.tex` now available; all future WIP files must derive from this template. |
 | Next Milestone         | `v0.3.0.0 (planned)`            | Integration of the next fully scaffolded chapter into the guide (third chapter brought to narrative completion under the pre-publication regime). |
 
-### 11.2 Key Changes from v0.1.4.0 to v0.2.2.0
+### 12.2 Key Changes from v0.1.4.0 to v0.2.2.0
 
 The path from `v0.1.4.0` to the current `v0.2.2.0` can be summarised in three main steps:
 
 1. **v0.2.0.0 — CMS Chapter Integration (Section 5.1)**
 
-- Introduced Section 5.1 (CMS Concept and interaction with CMDS / ECM) into the guide.
-- Established the conceptual and architectural foundation for the CMS chapter.
+   - Introduced Section 5.1 (CMS Concept and interaction with CMDS / ECM) into the guide.
+   - Established the conceptual and architectural foundation for the CMS chapter.
 
 2. **v0.2.1.0 — CMS Chapter Structure Update**
 
-- Refined the internal structure of Chapter 5 (CMS), including subsection layout around CMS Actuation, Consent & Constraints and Operational Notes.
-- Prepared the chapter for detailed `hotastable` tables in Section 5.2.
+   - Refined the internal structure of Chapter 5 (CMS), including subsection layout around CMS Actuation, Consent & Constraints and Operational Notes.
+   - Prepared the chapter for detailed `hotastable` tables in Section 5.2.
 
 3. **v0.2.2.0 — Layout Optimisation (Geometry Option D)**
 
-- Updated the guide's page geometry to A4 with 2.0 cm left/right margins (2.5 cm top/bottom) and 17.0 cm usable text width.
-- Standardised `hotastable` row height to `\arraystretch = 1.25` across the guide.
-- Confirmed that all future WIP sections for TMS/DMS/CMS tables must inherit these layout parameters.
+   - Updated the guide's page geometry to A4 with 2.0 cm left/right margins (2.5 cm top/bottom) and 17.0 cm usable text width.
+   - Standardised `hotastable` row height to `\arraystretch = 1.25` across the guide.
+   - Confirmed that all future WIP sections for TMS/DMS/CMS tables must inherit these layout parameters.
 
-### 11.3 Archival and Traceability (Guide Versions)
+**New in Brief v0.2.0.0:**
+
+4. **Section 11 Added — WIP File Template (Canonical)**
+
+   - Documented the canonical `template-wip-V1.0.tex` as a mandatory requirement for all WIP file creation.
+   - Specified preamble configuration, metadata block format, hotastable locked specifications, and integration workflow.
+   - Established template versioning and maintenance rules independent of guide versioning.
+
+### 12.3 Archival and Traceability (Guide Versions)
 
 The following guide versions have been archived to preserve the evolution of the document. Each entry corresponds to a versioned LaTeX snapshot stored under `WIP/GUIDE/` and, where applicable, a matching PDF snapshot stored in the archive structure.
 
@@ -620,4 +929,4 @@ These historical versions provide traceability for structural decisions, early c
 
 ---
 
-**Last Updated (Brief):** 08 January 2026 — Layout parameters section added, Version System v4.2 overview integrated, repository structure updated to use `guide.tex` as canonical file with `WIP/GUIDE/` snapshots, and project status updated to `v0.2.2.0`.
+**Last Updated (Brief):** 09 January 2026 — **Section 11 (WIP File Template) added with complete specification of preamble, metadata block, hotastable configuration, integration workflow, and template versioning. Brief version bumped from v0.1.4.1 to v0.2.0.0.**
