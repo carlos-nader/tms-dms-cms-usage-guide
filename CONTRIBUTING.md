@@ -1,4 +1,4 @@
-# Contributing to the Falcon BMS HOTAS Guide
+# Contributing to Falcon BMS HOTAS TMS/DMS/CMS Usage Guide
 
 Thank you for your interest in contributing to this project! This document provides guidelines and instructions for making meaningful contributions.
 
@@ -21,7 +21,7 @@ Thank you for your interest in contributing to this project! This document provi
 ### Testing & Validation
 - Test LaTeX compilation and PDF rendering
 - Report rendering issues on different PDF readers
-- Verify that procedures match current Falcon BMS 4.38.1 behavior
+- Verify that procedures match current Falcon BMS F-16 Flight Simulator behavior
 - Test links to external references and documentation
 
 ### Documentation & Governance
@@ -35,7 +35,7 @@ Thank you for your interest in contributing to this project! This document provi
 ## 📋 Before You Contribute
 
 ### Read These First:
-1. **Naming Conventions Guide** (in `/docs/`) — Understand how WIP files are organized and named
+1. **Naming and Versioning Guides** (in `/docs/`) — Understand how WIP files are organized and named
 2. **Briefing Document** (in `/docs/`) — Review project scope, style rules, and content guidelines
 3. **Project Tracking** (in `/docs/`) — Check current priorities, phase, and status
 4. **This Guide** — You're reading it now!
@@ -43,7 +43,7 @@ Thank you for your interest in contributing to this project! This document provi
 ### Get Familiar With:
 - The **WIP/** folder structure (where active work lives)
 - The **TEMPLATES/** folder (canonical template for new WIP files)
-- Current guide version in **guide/** folder
+- Current guide version in **root directory**
 - The **ARCHIVE/** folder (to see examples of completed work)
 
 ---
@@ -80,8 +80,8 @@ Thank you for your interest in contributing to this project! This document provi
    (Chapter 5, Section 4, status "dev", date 2026-01-15)
 
 3. **Set status appropriately:**
-   - `dev` if the content is still being written
-   - `review` when ready for human feedback
+   - `dev` if the content is in its first and initial draft (inteded for when AI firt generates material for human review)
+   - `review` when under human revision
 
 4. **Email to: carlos.snm@gmail.com**
    - Subject: `[BMS Guide] [WIP Submission] Your File Name`
@@ -214,35 +214,6 @@ Contributors will be recognized in:
 - **README.md** — Credits & acknowledgments section (for substantial contributions)
 
 We value all contributions, from small corrections to major new sections!
-
----
-
-## ❓ Frequently Asked Questions
-
-### Q: Do I need to fork the repository?
-**A:** Not required for initial submissions. You can email files directly. If you prefer using Git/GitHub, you're welcome to fork and submit pull requests (though email is simpler for now).
-
-### Q: How long until my contribution is reviewed?
-**A:** Typically 3–7 days, depending on complexity and maintainer availability. Simple corrections are reviewed faster than new sections.
-
-### Q: Can I contribute sections in languages other than English?
-**A:** The primary guide is in English. We recommend submitting in English for now, but feel free to ask first via email.
-
-### Q: What if my contribution gets rejected?
-**A:** Feedback will be provided explaining why. Most rejections are due to accuracy concerns or scope mismatch—revisions are always welcome!
-
-### Q: Can I use AI to write content?
-**A:** AI can help with first drafts, outlining, and brainstorming. However, **all content must be human-reviewed and edited** for accuracy before submission. Machine-generated text without human curation will not be accepted.
-
-### Q: Do I own my contributions?
-**A:** Your contributions are released under CC BY 4.0 (the same license as the project). You retain copyright, but allow others to use, share, and adapt your work with attribution.
-
-### Q: Can I contribute if I'm not an F-16 pilot?
-**A:** Absolutely! Subject-matter expertise is valuable, but so are:
-- Writing and clarity improvements
-- Structural and organizational suggestions
-- Testing and validation
-- Governance and tooling ideas
 
 ---
 
