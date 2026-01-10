@@ -9,7 +9,7 @@
 % ├─ C5: target chapter 5 (CMS)
 % ├─ S2: target section 2 (CMS Switch Actuation)
 % ├─ cms-actuation: descriptive title (slugified)
-% ├─ final: status (dev | review | final | approved | deprecated)
+% ├─ FINAL: status (dev | review | final | approved | deprecated)
 % └─ 2026-01-10: creation/last-edit date (YYYY-MM-DD)
 
 \documentclass[11pt,a4paper]{article}
@@ -175,7 +175,7 @@
 % Last Modified: 2026-01-10
 %
 % Narrative Completion: 100%
-% Table Fill Status: 90% (training mission references use TBD standards)
+% Table Fill Status: 100%
 %
 % Integration notes:
 % - Ready for integration into guide.tex
@@ -233,11 +233,11 @@ The CMDS Manual (MAN) mode grants the pilot direct, program-by-program control o
 
 CMDS MAN & Up & Short & Execute Program 1--4 &
 Runs the program selected via the CMDS panel PRGM knob once per press. No threat sensing; purely pilot-commanded. Overrides any AUTO dispensing, if running.
-& \dashref{2.7.2.2} & TBD \\
+& \dashref{2.7.2.2} & \trnref{18 (BARCAP)}, \trnref{28 (SEAD-EW)} \\
 
 CMDS MAN & Left & Short & Execute Program 6 &
 Flare-only program. Often pre-configured for close-range air-to-air engagements or MANPAD defense. No dependency on PRGM knob.
-& \dashref{2.7.2.2} & TBD \\
+& \dashref{2.7.2.2} & \trnref{19 (GUN AIM)} \\
 
 \end{hotastable}
 
@@ -254,19 +254,19 @@ The CMDS Automatic (AUTO) mode enables the ALE-47 CMDS to dispense chaff/flare p
 
 CMDS AUTO & Up & Short & Execute Program 1--4 &
 Manual override: runs the selected program once, interrupting any ongoing AUTO dispensing. After the manual program completes, AUTO resumes if threat persists. Useful for pilot override in high-threat scenarios.
-& \dashref{2.7.2.2} & TBD \\
+& \dashref{2.7.2.2} & \trnref{18 (BARCAP)}, \trnref{28 (SEAD-EW)} \\
 
 CMDS AUTO & Left & Short & Execute Program 6 &
 Manual flare-only program, overrides AUTO. After execution, AUTO resumes.
-& \dashref{2.7.2.2} & TBD \\
+& \dashref{2.7.2.2} & \trnref{19 (GUN AIM)} \\
 
 CMDS AUTO & Aft & Short & Give Consent; Enable AUTO Dispensing &
 CMS Aft grants consent for AUTO CMDS. RWR-detected threats trigger automatic program dispensing (selected via PRGM knob). Dispensing continues until threat clears or CMS Right is pressed. Consent state persists even if pilot switches to MAN mode; re-engaging AUTO will resume auto-dispense.
-& \dashref{2.7.2.1} & TBD \\
+& \dashref{2.7.2.1} & \trnref{18 (BARCAP)}, \trnref{28 (SEAD-EW)} \\
 
 CMDS AUTO & Right & Short & Cancel Consent; Disable AUTO &
 CMS Right removes CMDS consent and places the ALE-47 in Standby. Automatic dispensing halts immediately. Pilot must re-issue CMS Aft to resume AUTO operation or use the system manually.
-& \dashref{2.7.2.1} & TBD \\
+& \dashref{2.7.2.1} & \trnref{18 (BARCAP)}, \trnref{28 (SEAD-EW)} \\
 
 \end{hotastable}
 
@@ -283,19 +283,19 @@ Semi-Automatic (SEMI) mode allows the ALE-47 to prompt the pilot for consent on 
 
 CMDS SEMI & Up & Short & Execute Program 1--4 &
 Manual override: runs the selected program once, independent of RWR threat state. After execution, CMDS returns to monitoring for threats and issuing ``COUNTER'' prompts.
-& \dashref{2.7.2.2} & TBD \\
+& \dashref{2.7.2.2} & \trnref{18 (BARCAP)}, \trnref{28 (SEAD-EW)} \\
 
 CMDS SEMI & Left & Short & Execute Program 6 &
 Manual flare-only program, independent of SEMI threat detection. After execution, CMDS resumes SEMI monitoring.
-& \dashref{2.7.2.2} & TBD \\
+& \dashref{2.7.2.2} & \trnref{19 (GUN AIM)} \\
 
 CMDS SEMI & Aft & Short & Give Consent; Dispense One Program &
 When CMDS issues ``COUNTER'' (threat detected), pilot presses CMS Aft to execute one instance of the selected program. If threat persists or a new threat appears, CMDS will issue ``COUNTER'' again. Consent state is tracked; switching to AUTO while consent active will trigger immediate AUTO dispensing on next threat.
-& \dashref{2.7.2.1} & TBD \\
+& \dashref{2.7.2.1} & \trnref{18 (BARCAP)}, \trnref{28 (SEAD-EW)} \\
 
 CMDS SEMI & Right & Short & Cancel Consent; Return to Standby &
 CMS Right removes SEMI consent. CMDS halts monitoring and returns to Standby. ``COUNTER'' messages cease.
-& \dashref{2.7.2.1} & TBD \\
+& \dashref{2.7.2.1} & \trnref{18 (BARCAP)}, \trnref{28 (SEAD-EW)} \\
 
 \end{hotastable}
 
@@ -321,11 +321,11 @@ External ECM pods provide pilot-controlled jamming across five frequency-band pr
 
 ECM Pod & Aft & Short & Enable ECM Transmit; Grant Consent &
 CMS Aft illuminates the ECM Enable light and permits the external ECM pod to transmit in the mode set by the XMIT switch on the ECM control panel (XMIT 1: AUTO Avionics Priority; XMIT 2: AUTO ECM Priority; XMIT 3: Continuous Jam). Pod continues transmitting as long as ECM is not cancelled by the pilot or RF switch is moved away from NORM.
-& \dashref{2.7.4.2.5} & TBD \\
+& \dashref{2.7.4.2.5} & \trnref{28 (SEAD-EW)} \\
 
 ECM Pod & Right & Short & Disable ECM Transmit; Remove Consent &
 CMS Right extinguishes the ECM Enable light and places the ECM pod in Standby, halting transmission immediately. Pod will not transmit until CMS Aft is re-issued.
-& \dashref{2.7.4.2.5} & TBD \\
+& \dashref{2.7.4.2.5} & \trnref{28 (SEAD-EW)} \\
 
 \end{hotastable}
 
@@ -342,11 +342,11 @@ Internal avionics ECM (IDIAS: Improved Defensive Internal Avionic System) automa
 
 IDIAS ECM & Left & Short & Cycle ECM Operational Mode &
 Each short press of CMS Left advances the ECM mode: STBY $\rightarrow$ AVNC (Avionics Priority) $\rightarrow$ ECM (ECM Priority) $\rightarrow$ AVNC $\rightarrow$ ECM (cycles).
-& \dashref{2.7.4.1.2} & TBD \\
+& \dashref{2.7.4.1.2} & \trnref{28 (SEAD-EW)} \\
 
 IDIAS ECM & Right & Short & Set ECM to Standby &
 CMS Right forces IDIAS ECM into STBY mode, halting all jamming operations. Requires CMS Left cycling to return to AVNC or ECM mode.
-& \dashref{2.7.4.1.2} & TBD \\
+& \dashref{2.7.4.1.2} & \trnref{28 (SEAD-EW)} \\
 
 \end{hotastable}
 
@@ -363,7 +363,7 @@ This subsection clarifies the relationship between CMDS consent (CMS Aft) and EC
 
 CMDS AUTO/SEMI + ECM Pod & Aft & Short & Joint Consent (CMDS + ECM) &
 Single CMS Aft command grants consent to \textit{both} the ALE-47 CMDS (AUTO/SEMI) and the external ECM pod. There's no distinction between the two; both systems respond to the same CMS Aft press. This unified control maximizes pilot situational awareness and frees workload during combat maneuvering.
-& \dashref{2.7.2.1}, \dashref{2.7.4.2.5} & TBD \\
+& \dashref{2.7.2.1}, \dashref{2.7.4.2.5} & \trnref{18 (BARCAP)}, \trnref{28 (SEAD-EW)} \\
 
 \end{hotastable}
 

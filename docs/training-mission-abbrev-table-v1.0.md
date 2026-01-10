@@ -82,20 +82,20 @@ Where:
 | 11 | MISSION 11: LASER GUIDED BOMBS | `\trnref{11 (LGB)}` | Industry standard acronym: Laser Guided Bomb → LGB. |
 | 12 | MISSION 12: AGM-88 HARMS | `\trnref{12 (HARM)}` | AGM-88 is the missile; HARM is the mode. Single word. |
 | 13 | MISSION 13: AGM-65 MAVERICKS - Basic | `\trnref{13 (Maverick)}` | Single word; AGM-65 Maverick system. "Basic" is understood from variant. |
-| 14 | MISSION 14: AGM-65 MAVERICKS – Advanced | `\trnref{14 (Maverick Advanced)}` | Two words: clarify advanced techniques beyond Mission 13. |
+| 14 | MISSION 14: AGM-65 MAVERICKS – Advanced | `\trnref{14 (Maverick Adv.)}` | Two words: clarify advanced techniques beyond Mission 13. |
 | 15 | MISSION 15: INERTIALLY AIDED MUNITIONS | `\trnref{15 (IAM)}` | Industry standard acronym: Inertially Aided Munition → IAM. Single. |
 | 16 | MISSION 16: SPICE | `\trnref{16 (SPICE)}` | Single acronym; weapon type identifier. |
-| 17A | MISSION 17A: IR MISSILES - Intercept | `\trnref{17A (IR Intercept)}` | IR (infrared) missiles; intercept scenario. Two words. |
+| 17A | MISSION 17A: IR MISSILES - Intercept | `\trnref{17A (AIM)}` | IR (infrared) missiles; intercept scenario. Two words. |
 | 17B | MISSION 17B: IFF - Intercept | `\trnref{17B (IFF)}` | Identification Friend/Foe; single acronym. Intercept understood. |
 | 17C | MISSION 17C: IDM – LINK 16 | `\trnref{17C (IDM/L16)}` | Two systems: Intra-flight Data Link (IDM) + LINK 16. Slashed for compactness. |
 | 18 | MISSION 18: RADAR MISSILES – BARCAP | `\trnref{18 (BARCAP)}` | Combat air patrol mission type. Single word acronym. |
-| 19 | MISSION 19: GUN & HMCS/AIM-9X | `\trnref{19 (Gun/HMCS)}` | Two primary topics: gun employment + Helmet Mounted Cueing System. Slashed. |
+| 19 | MISSION 19: GUN & HMCS/AIM-9X | `\trnref{19 (GUN AIM)}` | Two primary topics: gun employment + Helmet Mounted Cueing System. Slashed. |
 | 20 | MISSION 20: AGM-84A HARPOON | `\trnref{20 (Harpoon)}` | Single word; AGM-84A Harpoon missile system. |
-| 21 | MISSION 21: NAVIGATION FLIGHT OSAN-DAEGU: Part 1 | `\trnref{21 (Nav Osan-Daegu)}` | Two words: navigation type + route identifier. |
-| 22 | MISSION 22: NAVIGATION FLIGHT OSAN-DAEGU: Part 2 | `\trnref{22 (Nav Osan-Daegu)}` | Continuation of TRN 21; same abbreviation. |
+| 21 | MISSION 21: NAVIGATION FLIGHT OSAN-DAEGU: Part 1 | `\trnref{21 (Nav1)}` | Two words: navigation type + route identifier. |
+| 22 | MISSION 22: NAVIGATION FLIGHT OSAN-DAEGU: Part 2 | `\trnref{22 (Nav2)}` | Continuation of TRN 21; same abbreviation. |
 | 23 | MISSION 23: CARRIER OPS - Launch (F/A-18D) | `\trnref{23 (Carrier Launch)}` | Two words: carrier operations + launch phase. F/A-18D implicit. |
-| 24 | MISSION 24: CARRIER OPS - CASE 1 RECOVERY (F/A-18C) | `\trnref{24 (Case 1 Recovery)}` | Two words: CASE 1 recovery type. Carrier ops understood. |
-| 25 | MISSION 25: CARRIER OPS - CASE 3 RECOVERY (F/A-18C) | `\trnref{25 (Case 3 Recovery)}` | Two words: CASE 3 recovery type (adverse weather variant of CASE 1). |
+| 24 | MISSION 24: CARRIER OPS - CASE 1 RECOVERY (F/A-18C) | `\trnref{24 (Recovery 1)}` | Two words: CASE 1 recovery type. Carrier ops understood. |
+| 25 | MISSION 25: CARRIER OPS - CASE 3 RECOVERY (F/A-18C) | `\trnref{25 (Recovery 2)}` | Two words: CASE 3 recovery type (adverse weather variant of CASE 1). |
 | 26 | MISSION 26: CARRIER OPS – VERTICAL OPS (AV-8B) | `\trnref{26 (Vertical Ops)}` | Two words: vertical takeoff/landing operations (AV-8B Harrier). |
 | 27 | MISSION 27: JTAC | `\trnref{27 (JTAC)}` | Single acronym: Joint Tactical Air Controller. Industry standard. |
 | 28 | MISSION 28: SEAD-EW | `\trnref{28 (SEAD-EW)}` | Two linked mission types: SEAD (Suppression Enemy Air Defense) + EW (Electronic Warfare). Keep hyphenated. |
