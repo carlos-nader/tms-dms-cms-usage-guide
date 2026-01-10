@@ -1,6 +1,6 @@
 # Falcon BMS 4.38.1 — TMS, DMS and CMS Usage Guide: Project Brief
 
-**Brief Version:** v0.2.0.0 (WIP File Template Specification — 09 January 2026)
+**Brief Version:** v0.2.0.1 (WIP File Template Specification + Training Mission Reference Integration — 10 January 2026)
 
 ---
 
@@ -349,16 +349,44 @@ For every TMS/DMS/CMS table, use the following conventions.
 
 ### 6.7 Column 7: Train (1.4 cm)
 
-- Link behaviour to one or more BMS training missions:
-  - `\trnref{28 (SEAD-EW)}`.
-  - `\trnref{12 (HARM)}`.
-  - `\trnref{18 (BARCAP)}`.
-  - `\trnref{11 (LGB)}`.
-- If several missions cover the behaviour, list 2–3:
-  - `\trnref{18 (BARCAP)}, \trnref{17B (IFF Intercept)}`.
-- If there is no direct mission, either:
-  - leave the column blank, or
-  - reference the closest one and mention that in Effect / Nuance.
+Link behaviour to one or more BMS training missions. **All training mission references in this column must conform to the standardized abbreviations defined in Section 6.7.1 below.**
+
+**Example references:**
+- `\trnref{28 (SEAD-EW)}`.
+- `\trnref{12 (HARM)}`.
+- `\trnref{18 (BARCAP)}`.
+- `\trnref{11 (LGB)}`.
+
+If several missions cover the behaviour, list 2–3:
+- `\trnref{18 (BARCAP)}, \trnref{17B (IFF Intercept)}`.
+
+If there is no direct mission, either:
+- leave the column blank, or
+- reference the closest one and mention that in Effect / Nuance.
+
+#### 6.7.1 Training Mission Abbreviations Standard
+
+All training mission references in the Train column **must conform** to the standardized abbreviations defined in:
+
+**Training Mission Reference Table v1.0** (`training-mission-abbrev-table-v1.0.md`)  
+*Effective Date: 10 January 2026*
+
+This document establishes the authoritative list of abbreviations for all 33 BMS 4.38.1 training missions, ensuring consistency and compliance with column width constraints (1.4 cm, `\small` font, `\arraystretch = 1.25`).
+
+**Required Reference Format:**
+
+```latex
+\trnref{XX (ABBREVIATION)}
+```
+
+Where `XX` is the mission number (including variants A/B/C/D) and `ABBREVIATION` is taken directly from the Training Mission Reference Table v1.0.
+
+**Examples:**
+- `\trnref{1 (Ground Ops)}`
+- `\trnref{4D (AAR)}`
+- `\trnref{18 (BARCAP)}, \trnref{28 (SEAD-EW)}`
+
+For detailed abbreviation rules, variant conventions, and multi-mission guidelines, refer directly to the Training Mission Reference Table v1.0.
 
 ---
 
@@ -707,7 +735,7 @@ Content starts here...
 **Optional fields (but recommended):**
 
 | Field | Purpose | Example |
-|-------|---------|---------|
+|-------|---------|---------| 
 | Notes | Development notes, TBD items, known issues | `TBD: Populate rows 5–12. Known issue: CMS ECM column needs Dash-34 validation.` |
 | Cross-ref | Links to related WIP files, guide versions, or source sections | `See also: section-C5-S2-*.tex. Reference: Dash-34 §2.1.7.` |
 
@@ -743,7 +771,7 @@ The `hotastable` environment is **architecture-locked**: column widths, font siz
 **Column semantics (locked, per Section 6):**
 
 | Column | Width | Content | Example |
-|--------|-------|---------|---------|
+|--------|-------|---------|---------| 
 | State | 1.6 cm | Master mode + sensor/weapon context | `A-A CRM — FCR RWS` |
 | Dir (Direction) | 1.0 cm | Hat direction (Up, Down, Left, Right) | `Up` |
 | Act (Action) | 1.0 cm | Press type (Short, Long, Short repeated) | `Short` |
@@ -884,16 +912,17 @@ The template itself is **versioned independently** of the guide version, allowin
 | Phase                  | `0 (Pre-publication)`           | Guide remains in scaffolding regime `0.x.x.x` as defined by Version System v4.2.1 (no public edition ≥ 1.0 yet). |
 | Layout Standard        | `Geometry Option D applied`     | Global layout aligned: A4, 2.0 cm side margins, 2.5 cm top/bottom, 17.0 cm text width, and HOTAS tables fixed at 15.6 cm width with `\small` and `\arraystretch = 1.25`. |
 | WIP Template           | `V1.0 (established)`            | Canonical template `template-wip-V1.0.tex` now available; all future WIP files must derive from this template. |
+| Training Mission Refs  | `v1.0 (established)`            | Authoritative Training Mission Reference Table v1.0 (`training-mission-abbrev-table-v1.0.md`) adopted as normative standard for all Train column entries. Integrated into Section 6.7.1 of this brief. |
 | Next Milestone         | `v0.3.0.0 (planned)`            | Integration of the next fully scaffolded chapter into the guide (third chapter brought to narrative completion under the pre-publication regime). |
 
-### 12.2 Key Changes from v0.1.4.0 to v0.2.2.0
+### 12.2 Key Changes from v0.1.4.0 to v0.2.0.1
 
-The path from `v0.1.4.0` to the current `v0.2.2.0` can be summarised in three main steps:
+The path from `v0.1.4.0` to the current `v0.2.0.1` includes:
 
-1. **v0.2.0.0 — CMS Chapter Integration (Section 5.1)**
+1. **v0.2.0.0 — CMS Chapter Integration (Section 5.1) + WIP Template Canonical (Section 11)**
 
    - Introduced Section 5.1 (CMS Concept and interaction with CMDS / ECM) into the guide.
-   - Established the conceptual and architectural foundation for the CMS chapter.
+   - Added Section 11 (WIP File Template Canonical) with complete specification of template architecture, metadata block format, hotastable frozen configuration, integration workflow, and template versioning.
 
 2. **v0.2.1.0 — CMS Chapter Structure Update**
 
@@ -906,13 +935,10 @@ The path from `v0.1.4.0` to the current `v0.2.2.0` can be summarised in three ma
    - Standardised `hotastable` row height to `\arraystretch = 1.25` across the guide.
    - Confirmed that all future WIP sections for TMS/DMS/CMS tables must inherit these layout parameters.
 
-**New in Brief v0.2.0.0:**
+4. **v0.2.0.1 — Training Mission Reference Integration (Section 6.7.1)**
 
-4. **Section 11 Added — WIP File Template (Canonical)**
-
-   - Documented the canonical `template-wip-V1.0.tex` as a mandatory requirement for all WIP file creation.
-   - Specified preamble configuration, metadata block format, hotastable locked specifications, and integration workflow.
-   - Established template versioning and maintenance rules independent of guide versioning.
+   - Added Section 6.7.1 (Training Mission Abbreviations Standard) with formal integration of `training-mission-abbrev-table-v1.0.md` as a normative reference standard.
+   - Established bidirectional documentation: the brief now explicitly requires conformance to the Training Mission Reference Table v1.0, closing the governance gap identified in Section 10 of the project audit.
 
 ### 12.3 Archival and Traceability (Guide Versions)
 
@@ -929,4 +955,4 @@ These historical versions provide traceability for structural decisions, early c
 
 ---
 
-**Last Updated (Brief):** 09 January 2026 — **Section 11 (WIP File Template) added with complete specification of preamble, metadata block, hotastable configuration, integration workflow, and template versioning. Brief version bumped from v0.1.4.1 to v0.2.0.0.**
+**Last Updated (Brief):** 10 January 2026 — **Section 6.7.1 (Training Mission Abbreviations Standard) added with formal integration of Training Mission Reference Table v1.0 as a normative reference. Brief version bumped from v0.2.0.0 to v0.2.0.1. No version bump to guide.tex as per user instruction.**
