@@ -6,8 +6,8 @@
 
 ## Repository Identification
 
-- GitHub repository name: `carlos-nader/falcon-bms-hotas-tms-dms-cms-guide`
-- Primary URL: https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide
+- GitHub repository name: `carlos-nader/tms-dms-cms-usage-guide`
+- Primary URL: https://github.com/carlos-nader/tms-dms-cms-usage-guide/tree/main/docs
 - Default branch: `main`
 - Canonical guide file: `guide.tex` (repository root)
 - Versioned snapshots: `WIP/GUIDE/guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex`
