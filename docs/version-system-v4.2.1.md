@@ -2,7 +2,7 @@
 
 **Latest Update:** 09 January 2026, 18:00 -03  
 **Effective Date:** 09 January 2026  
-**Replaces:** v4.2 (updates references to WIP-FILE-NAMING-v1.4 and clarifies relationship with BRIEFING-v0.2.0.0)
+**Replaces:** v4.2 (updates references to WIP-FILE-NAMING-v1.4 and clarifies relationship with BRIEFING-v0.2.0.1)
 
 ---
 
@@ -213,7 +213,7 @@ Only MAJOR is fixed (0); the other digits vary according to change type.
 
 | Situation | Increment | Note |
 |----------|-----------|------| 
-| Start working on a new chapter in the main file | **MINOR** | Example: `0.1.x.x → 0.2.0.0`. |
+| Start working on a new chapter in the main file | **MINOR** | Example: `0.1.x.x → 0.2.0.1`. |
 | Add a new relevant section in an already active chapter | **PATCH** | Example: `0.1.1.0 → 0.1.2.0`. |
 | Restructure chapter sections/subsections | **PATCH** | Keeps MINOR; changes internal architecture. |
 | Fill/modify tables in a way that changes how the chapter is used | **PATCH** | Example: new HOTAS table that reorganises reading. |
@@ -259,7 +259,7 @@ Only MAJOR is fixed (0); the other digits vary according to change type.
 - `v0.1.0.0` — Introduction structured and included in guide (1st chapter in development).  
 - `v0.1.3.0` — TMS chapter structured, with main sections defined.  
 - `v0.1.4.0` — DMS chapter restructured; geometry fixes; new table layout adopted.  
-- `v0.2.0.0` — 2nd chapter in development enters guide (for example, HOTAS fundamentals).  
+- `v0.2.0.1` — 2nd chapter in development enters guide (for example, HOTAS fundamentals).  
 - `v0.3.0.0` — 3rd chapter in development enters guide (for example, CMS), and so on, until:  
 - `v0.7.0.0` — All 7 planned chapters have entered the guide (scaffolding complete).  
 
@@ -268,7 +268,7 @@ Only MAJOR is fixed (0); the other digits vary according to change type.
 - **Case A — New chapter (Ch. 2) enters the guide:**
   - Situation: until now, only Introduction was included as a developed chapter.
   - Action: integrate Ch. 2 structure into the main file snapshot and propagate to `guide.tex`.
-  - Version: `0.1.4.0 → 0.2.0.0`.  
+  - Version: `0.1.4.0 → 0.2.0.1`.  
 
 - **Case B — DMS restructuring in Ch. 4:**
   - Situation: sections reordered, subsections regrouped, narrative adjusted.
@@ -553,7 +553,7 @@ Single workflow for 0.x.x.x and x.x.x:
 
 - This document (Version System v4.2.1) governs the versioning and naming of the **guide snapshots** (`WIP/GUIDE/guide-v*.tex`) and their relationship with the canonical `guide.tex` in the repository root.  
 - Individual preparation files (`section-`, `table-`, `visual-`, `notes-`) follow their own rules defined in the separate `WIP-FILE-NAMING-v1.4` document.  
-- The structural specification and template governance for WIP files is defined in `BRIEFING-v0.2.0.0` (Section 11).
+- The structural specification and template governance for WIP files is defined in `BRIEFING-v0.2.0.1` (Section 11).
 - These WIP files only impact the guide version when their content is integrated into the current snapshot and propagated to `guide.tex`.
 
 ---
@@ -569,7 +569,7 @@ Single workflow for 0.x.x.x and x.x.x:
 
 | Key Situation | Pre Version (ex.) | Post Version (ex.) |
 |---------------|-------------------|--------------------| 
-| New chapter enters guide | `0.1.4.0 → 0.2.0.0` | — |
+| New chapter enters guide | `0.1.4.0 → 0.2.0.1` | — |
 | Restructure chapter sections | `0.2.1.0 → 0.2.2.0` | — |
 | Important table changes chapter usage | `0.2.2.0 → 0.2.3.0` | — |
 | Typos and micro wording fixes | `0.2.3.0 → 0.2.3.1` | — |
@@ -601,7 +601,7 @@ Single workflow for 0.x.x.x and x.x.x:
 | **v4.0** | 07 Jan 2026, 00:00 | Initial release | Defines 0.x.x.x and x.x.x regimes; explains snapshot workflow; establishes repository structure. |
 | **v4.1** | 08 Jan 2026, 14:30 | MINOR UPDATE | Added explicit reference to `WIP-FILE-NAMING v*` in scope (Section 1.3); clarified that individual WIP files do not trigger version bumps until integrated into guide snapshot; updated Section 6.4 to mention WIP-FILE-NAMING document; emphasized that `guide.tex` is canonical and must not be edited directly. |
 | **v4.2** | 09 Jan 2026, 09:34 | MINOR UPDATE | Enhanced Section 0.3 Scenario-Based Examples; clarified date format (YYYYMMDD vs YYYY-MM-DD context); expanded Section 4.2 Transition Procedure with detailed checklist; reorganized Section 5 Post-Publication with clearer structure and decision examples; added Section 7 Consolidated Quick Reference for rapid lookup; updated archival strategy in Section 6.3 with examples of folder organization. |
-| **v4.2.1** | 09 Jan 2026, 18:00 | PATCH UPDATE | Updated reference in Section 1.3 from `WIP-FILE-NAMING v*` to `WIP-FILE-NAMING-v1.4`; Updated reference in Section 6.4 from `WIP-FILE-NAMING v*` to `WIP-FILE-NAMING-v1.4`; Added explicit mention of `BRIEFING-v0.2.0.0` in Section 6.4 to establish three-way integration between VERSION-SYSTEM, WIP-NAMING, and BRIEFING; PATCH bump (not MINOR) as these are clarifications and reference updates, not structural changes. |
+| **v4.2.1** | 09 Jan 2026, 18:00 | PATCH UPDATE | Updated reference in Section 1.3 from `WIP-FILE-NAMING v*` to `WIP-FILE-NAMING-v1.4`; Updated reference in Section 6.4 from `WIP-FILE-NAMING v*` to `WIP-FILE-NAMING-v1.4`; Added explicit mention of `BRIEFING-v0.2.0.1` in Section 6.4 to establish three-way integration between VERSION-SYSTEM, WIP-NAMING, and BRIEFING; PATCH bump (not MINOR) as these are clarifications and reference updates, not structural changes. |
 
 ---
 

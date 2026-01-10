@@ -144,7 +144,7 @@ TMS Up & Short & ... & Designate target & Applicable in air-to-air contexts; see
 
 The Train column in all `hotastable` environments shall use this table exclusively.
 
-**Column Specifications (from briefing-v0.2.0.0.md, Section 4.2):**
+**Column Specifications (from briefing-v0.2.0.1.md, Section 4.2):**
 
 | Parameter | Value |
 |---|---|

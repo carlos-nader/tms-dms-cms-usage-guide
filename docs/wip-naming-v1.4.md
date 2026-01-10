@@ -7,7 +7,7 @@
 **Applies to:** All isolated chapter, section, table, note, and visual files under development  
 **Supersedes:** v1.3  
 **Relationship to VERSION-SYSTEM-v4.2.1:** Complementary; does NOT affect main document versioning  
-**Relationship to BRIEFING-v0.2.0.0:** Operational rules for files described structurally in BRIEFING Section 11
+**Relationship to BRIEFING-v0.2.0.1:** Operational rules for files described structurally in BRIEFING Section 11
 
 ---
 
@@ -35,7 +35,7 @@ Only content integrated into the main file triggers a version bump. WIP filename
 TEMPLATES/template-wip-V1.0.tex
 ```
 
-This ensures preamble consistency, metadata structure, and integration hygiene. The template is versioned independently (currently V1.0) and governed by BRIEFING-v0.2.0.0 Section 11. Never modify the template directly; always copy, rename following Section 2 patterns, and then edit the copy.
+This ensures preamble consistency, metadata structure, and integration hygiene. The template is versioned independently (currently V1.0) and governed by BRIEFING-v0.2.0.1 Section 11. Never modify the template directly; always copy, rename following Section 2 patterns, and then edit the copy.
 
 ### 0.3 Scope
 
@@ -1153,14 +1153,14 @@ Only move a file to `approved` (and ARCHIVE/) when:
 
 ---
 
-## 8. Relationship to VERSION-SYSTEM-v4.2.1 and BRIEFING-v0.2.0.0
+## 8. Relationship to VERSION-SYSTEM-v4.2.1 and BRIEFING-v0.2.0.1
 
-This WIP File Naming Convention is **complementary** to both VERSION-SYSTEM-v4.2 and BRIEFING-v0.2.0.0, not a replacement.
+This WIP File Naming Convention is **complementary** to both VERSION-SYSTEM-v4.2 and BRIEFING-v0.2.0.1, not a replacement.
 
 | Document | Responsibility |
 |----------|----------------| 
 | `VERSION-SYSTEM-v4.2.1` | Defines version numbering for main document `guide-v*.tex` |
-| `BRIEFING-v0.2.0.0` (Section 11) | Specifies structure, preamble, and configuration of `TEMPLATES/template-wip-V1.0.tex` |
+| `BRIEFING-v0.2.0.1` (Section 11) | Specifies structure, preamble, and configuration of `TEMPLATES/template-wip-V1.0.tex` |
 | `WIP File Naming v1.4` | Defines **operational** organization and **status tracking** for isolated WIP files; explains how to **use** the template |
 
 **Key integration points:**
@@ -1208,7 +1208,7 @@ This WIP File Naming Convention is **complementary** to both VERSION-SYSTEM-v4.2
 | **v1.1** | 07 Jan 2026, 01:30 | MAJOR UPDATE | Added Section 2.6 Automation Rules; clarified status transitions (`dev`→`review`→`final`→`approved`/`deprecated`); added decision trees for title slugification; clarified hierarchy preference; added automation responsibility matrix; unified status codes across all file types. |
 | **v1.2** | 07 Jan 2026, 01:50 | MINOR UPDATE | Expanded status transitions; added three independent deprecated paths (`review`→`deprecated`, `final`→`deprecated`, `dev`→`deprecated`); updated Section 2.6.4 Status Transitions by Actor with 7 explicit transitions; updated Section 3.2 Lifecycle Transitions with expanded ASCII diagram and four complete scenario timelines (Success, Discard During Iteration, Last-Minute Regret, Early Abandonment); clarified human decision points and automation boundaries for deprecation at all file lifecycle stages. |
 | **v1.3** | 07 Jan 2026, 03:04 | PATCH UPDATE | Fixed separator rule typo in Section 1.2; clarified in Section 2.5 that `.tex` files in visuals are TikZ diagrams only; corrected Section 2.6.5 Automation Responsibility Matrix so that AI renames `dev→review` only when explicitly instructed by human; reformatted tables for improved clarity and legibility. |
-| **v1.4** | 09 Jan 2026, 05:52 | MINOR UPDATE | **NEW Section 0.5: "How to Create a New WIP File (Step-by-Step)"** — Mandatory workflow explaining template use (copy, rename, fill content); **UPDATED Section 0.2** — Added key principle about canonical template requirement; **UPDATED Section 0.3** — Clarified template is not a WIP file (it's the foundation); **UPDATED Section 0.4** — Added `TEMPLATES/` folder with template location; **UPDATED all references** BRIEFING-v0.1.4.1 → BRIEFING-v0.2.0.0; **UPDATED Section 2.6.5** — Added mandatory template requirement to automation checklist; **UPDATED Relationship section** — Added explicit link to BRIEFING-v0.2.0.0 Section 11; **ADDED to all file categories** — Template requirement in rules; **Version bump rationale:** Template establishment is a governance expansion (MINOR, not PATCH). |
+| **v1.4** | 09 Jan 2026, 05:52 | MINOR UPDATE | **NEW Section 0.5: "How to Create a New WIP File (Step-by-Step)"** — Mandatory workflow explaining template use (copy, rename, fill content); **UPDATED Section 0.2** — Added key principle about canonical template requirement; **UPDATED Section 0.3** — Clarified template is not a WIP file (it's the foundation); **UPDATED Section 0.4** — Added `TEMPLATES/` folder with template location; **UPDATED all references** BRIEFING-v0.1.4.1 → BRIEFING-v0.2.0.1; **UPDATED Section 2.6.5** — Added mandatory template requirement to automation checklist; **UPDATED Relationship section** — Added explicit link to BRIEFING-v0.2.0.1 Section 11; **ADDED to all file categories** — Template requirement in rules; **Version bump rationale:** Template establishment is a governance expansion (MINOR, not PATCH). |
 
 ---
 
