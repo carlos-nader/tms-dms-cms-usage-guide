@@ -169,8 +169,8 @@ Section 5.2: CMS Switch Actuation\\\vspace{0.2cm}
 % Target Section: S2 (CMS Switch Actuation)
 % WIP Status: review
 % Created: 2026-01-08
-% Last Modified: 2026-01-10
-% Narrative Completion: 95%
+% Last Modified: 2026-01-09
+% Narrative Completion: 100%
 % Table Fill Status: 90%
 
 % ============================================================================
@@ -292,18 +292,12 @@ External ECM pods (ALQ-131, ALQ-184) and internal IDIAS (Improved Defensive Inte
 External ECM pods provide pilot-controlled jamming across five frequency-band programs. The CMS Aft position grants ``ECM consent,'' enabling the pod to transmit at the XMIT switch setting (modes 1, 2, or 3). The ECM Enable light on the miscellaneous panel indicates consent state.
 
 \begin{hotastable}[CMS Actuation with External ECM Pod]
-A-A/A-G --- ECM Pod any mode & Aft & Short or Long Hold & Enable ECM Transmit; Grant Consent &
-CMS Aft illuminates the ECM Enable light and permits the external ECM pod to transmit in the mode set by the XMIT switch on the ECM control panel (XMIT 1: AUTO Avionics Priority; XMIT 2: AUTO ECM Priority; XMIT 3: Continuous Jam). Pod continues transmitting as long as CMS Aft is held or until RF switch is moved away from NORM.
+ECM Pod & Aft & Short & Enable ECM Transmit; Grant Consent &
+CMS Aft illuminates the ECM Enable light and permits the external ECM pod to transmit in the mode set by the XMIT switch on the ECM control panel (XMIT 1: AUTO Avionics Priority; XMIT 2: AUTO ECM Priority; XMIT 3: Continuous Jam). Pod continues transmitting as long as ECM is not cancelled by the pilot or RF switch is moved away from NORM.
 & \dashref{2.7.4.2.5} & TBD \\
-A-A/A-G --- ECM Pod any mode & Right & Short & Disable ECM Transmit; Remove Consent &
+ECM Pod & Right & Short & Disable ECM Transmit; Remove Consent &
 CMS Right extinguishes the ECM Enable light and places the ECM pod in Standby, halting transmission immediately. Pod will not transmit until CMS Aft is re-issued.
 & \dashref{2.7.4.2.5} & TBD \\
-A-A/A-G --- ECM Pod + RF Switch & Aft & Short or Hold & ECM Consent (RF Interaction) &
-CMS Aft grants consent regardless of RF switch position. However, if RF switch is moved to QUIET or SILENT after CMS Aft is issued, ECM automatically enters Standby. Upon returning RF switch to NORM, ECM remains in Standby until CMS Aft is re-issued. CMS Aft is the primary control; RF switch position can override it.
-& \dashrefs{2.7.1.1, 2.7.4.2.5} & TBD \\
-A-A/A-G --- ECM Pod + Landing Gear & Aft & Short or Hold & Consent (Gear-Dependent Behavior) &
-ECM consent (CMS Aft) can be issued at any flight phase. However, if landing gear is extended (down), the pod remains in Standby even with CMS Aft held. Upon gear up and CMS Aft reissued, pod enters transmit mode.
-& \dashref{2.7.1.1} & TBD \\
 \end{hotastable}
 
 % ============================================================================
@@ -316,17 +310,10 @@ ECM consent (CMS Aft) can be issued at any flight phase. However, if landing gea
 Internal avionics ECM (IDIAS: Improved Defensive Internal Avionic System) automatically selects frequency bands to jam based on RWR threat priority. CMS Left cycles through operational modes (Standby, Avionics Priority, ECM Priority). CMS Aft is not used for IDIAS; mode control is via CMS Left and the XMTR button on the ECM panel.
 
 \begin{hotastable}[CMS Actuation with Internal ECM (IDIAS)]
-A-A/A-G --- IDIAS ECM & Left & Short (repeated) & Cycle ECM Operational Mode &
-Each short press of CMS Left advances the ECM mode: STBY $\rightarrow$ AVNC (Avionics Priority) $\rightarrow$ ECM (ECM Priority) $\rightarrow$ AVNC $\rightarrow$ ECM (cycles). In AVNC, FCR/TFR/HARM remain protected; only AFT antenna transmits. In ECM, both FWD and AFT antennas transmit; onboard emitters/receivers may be degraded.
-& \dashref{2.7.4.1.2} & TBD \\
-A-A/A-G --- IDIAS ECM + XMTR OFF & Left & Short (repeated) & No Effect until XMTR ON &
-CMS Left cycling has no effect if the XMTR button on the ECM panel is in STBY. Press XMTR to OPER first; then CMS Left activates mode cycling.
-& \dashref{2.7.4.1.2} & TBD \\
-A-A/A-G --- IDIAS ECM & Right & Short & Set ECM to Standby &
+IDIAS ECM & Left & Short & Cycle ECM Operational Mode &
+Each short press of CMS Left advances the ECM mode: STBY $\rightarrow$ AVNC (Avionics Priority) $\rightarrow$ ECM (ECM Priority) $\rightarrow$ AVNC $\rightarrow$ ECM (cycles). & \dashref{2.7.4.1.2} & TBD \\
+IDIAS ECM & Right & Short & Set ECM to Standby &
 CMS Right forces IDIAS ECM into STBY mode, halting all jamming operations. Requires CMS Left cycling to return to AVNC or ECM mode.
-& \dashref{2.7.4.1.2} & TBD \\
-A-A/A-G --- IDIAS ECM + Warm-up & Left & Short (repeated) & Mode cycling during warm-up &
-During ECM warm-up (5--6 minutes after power-on), STBY lamp flashes. CMS Left cycling is available but modes will not activate until warm-up completes and XMTR is set to OPER.
 & \dashref{2.7.4.1.2} & TBD \\
 \end{hotastable}
 
@@ -337,24 +324,11 @@ During ECM warm-up (5--6 minutes after power-on), STBY lamp flashes. CMS Left cy
 \subsection{CMS Consent and Constraints}
 \label{sec:C5-S2-S3-cms-constraints}
 
-This subsection clarifies the relationship between CMDS consent (CMS Aft), ECM transmit authority (CMS Aft for external pod), and system constraints (RF switch, landing gear, MMC power). Understanding these interactions is critical for effective defensive posture management during high-workload combat operations.
+This subsection clarifies the relationship between CMDS consent (CMS Aft) and ECM transmit authority (CMS Aft for external pod). Understanding these interactions is critical for effective defensive posture management during high-workload combat operations.
 
 \begin{hotastable}[CMS Interaction with CMDS and ECM (Consent and Constraints)]
-A-A/A-G --- CMDS AUTO/SEMI + ECM Pod & Aft & Short or Hold & Joint Consent (CMDS + ECM) &
-Single CMS Aft command grants consent to \textit{both} the ALE-47 CMDS (AUTO/SEMI) and the external ECM pod. Pilot does not distinguish between the two; both systems respond to the same CMS Aft press. This unified control maximizes pilot situational awareness and frees workload during combat maneuvering.
-& \dashrefs{2.7.1.1, 2.7.2.1} & TBD \\
-A-A/A-G --- CMDS AUTO/SEMI & Up & Short & Manual Override (Both Systems) &
-CMS Up (manual program) executes chaff/flare but does \textit{not} affect ECM pod transmit state. ECM remains transmitting if CMS Aft is active, or in Standby if CMS Aft is not active.
-& \dashref{2.7.2.2} & TBD \\
-A-A/A-G --- CMDS AUTO + RF Switch Change & Aft (after RF change) & Short or Hold & Consent State Reset &
-If RF switch is moved to QUIET or SILENT while CMS Aft is active, CMDS AUTO dispensing is halted (CMDS enters Standby). Returning RF to NORM does \textit{not} automatically resume AUTO; pilot must re-issue CMS Aft.
-& \dashrefs{2.7.1.1, 2.7.2.1} & TBD \\
-A-A/A-G --- CMDS AUTO + MMC Power Cycle & Aft (after power cycle) & Short or Hold & Consent State Cleared &
-After MMC power is cycled (power switch off then on), CMDS consent is lost. AUTO dispensing is disabled until CMS Aft is re-issued. Pilot must remember to reestablish consent after power recovery.
-& \dashref{2.7.2.1} & TBD \\
-A-A/A-G --- CMDS AUTO + Landing Gear & Aft (with gear down) & Short or Hold & AUTO Disabled (Gear Constraint) &
-AUTO dispensing is inhibited when landing gear is down. CMS Aft has no effect until gear is retracted. This safety feature prevents inadvertent chaff/flare dispense during taxi or landing.
-& \dashref{2.7.2.1} & TBD \\
+CMDS AUTO/SEMI + ECM Pod & Aft & Short & Joint Consent (CMDS + ECM) &
+Single CMS Aft command grants consent to \textit{both} the ALE-47 CMDS (AUTO/SEMI) and the external ECM pod. There's no distinction between the two; both systems respond to the same CMS Aft press. This unified control maximizes pilot situational awareness and frees workload during combat maneuvering.
 \end{hotastable}
 
 % ============================================================================
@@ -380,7 +354,7 @@ The RF switch on the throttle is a master control for ECM transmission. Moving t
 
 \subsubsection*{ECM Consent vs. CMDS Consent}
 
-A single CMS Aft press grants consent to both the ALE-47 CMDS and the external ECM pod (if installed). The pilot does not issue separate commands; the CMS Aft action is unified. However, internal IDIAS uses CMS Left for mode cycling, not CMS Aft. This distinction is critical for aircraft configured with IDIAS.
+A single CMS Aft press grants consent to both the ALE-47 CMDS and the external ECM pod. The pilot does not issue separate commands; the CMS Aft action is unified. However, internal IDIAS uses CMS Left for mode cycling, not CMS Aft. This distinction is critical for aircraft configured with IDIAS.
 
 \subsubsection*{Ground Operations Safety}
 

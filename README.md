@@ -1,8 +1,8 @@
-# HOTAS TMS/DMS/CMS Usage Guide focused on Falcon BMS F-16 Flight Simulator
+# TMS/DMS/CMS Usage Guide focused on Falcon BMS F-16 Flight Simulator
 
 A comprehensive **LaTeX-based technical guide** documenting F-16 HOTAS switch systems (Throttle Management Switch, Data Management Switch, and Countermeasures Management Switch) for Falcon BMS F-16 Fligth Simulator.
 
-The author is bt no means affiliated to or endorsed by Falcon BMS or its developers. This guide is not an official Falcon BMS guide or manual. It's intended to help Falcon BMS Community.
+The author is by no means affiliated to or endorsed by Falcon BMS or its developers. This guide is not an official Falcon BMS guide or manual. It's intended to help Falcon BMS Community.
 
 ---
 
