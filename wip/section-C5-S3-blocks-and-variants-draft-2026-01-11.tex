@@ -1,0 +1,344 @@
+% ==============================================================================
+% WIP FILE - METADATA BLOCK
+% ==============================================================================
+% Target:       Chapter 5, Section 3 (CMS Block and Variant Notes)
+% Status:       draft
+% Date:         2026-01-11
+% Author:       AI Session (based on structure proposal v1.0)
+% Notes:        Complete rewrite following guideline and Dash-34 deep dive.
+%               Key changes from previous WIP:
+%               - Deleted repetitive "Operational Characteristics" subsections
+%               - Condensed operator lists from 30+ lines to ~6-8 lines total
+%               - Simplified summary table from 7 rows to 2 rows (groups)
+%               - Deleted "Mission Planning Integration" (out of scope)
+%               - Focus on CMS gesture differences (Aft vs Left, XMIT vs XMTR)
+%               - No repetition of Section 5.2 content
+% Known Issues: None. Ready for human review and final approval.
+% Cross-ref:    guide-v0.2.3.1-20260110.tex (Section 5.2 already integrated)
+%               Dash-34 Sections 2.7.1.1, 2.7.4 (ECM systems)
+%               c5-s3-guideline.docx (structure recommendations)
+%               dash34_cms_variants_extraction.md (technical authority)
+% ==============================================================================
+
+\documentclass[11pt,a4paper]{article}
+
+% ==============================================================================
+% PREAMBLE (identical to guide.tex for standalone compilation)
+% ==============================================================================
+
+\usepackage[left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{soul}
+\usepackage{colortbl}
+\usepackage{graphicx}
+\usepackage{microtype}
+
+\graphicspath{{fig/}}
+
+% Colors (matching guide.tex)
+\definecolor{headerblue}{RGB}{0,51,102}
+\definecolor{rowgray}{RGB}{240,240,240}
+\definecolor{subheadgray}{RGB}{217,217,217}
+
+% Helper macros (using \providecommand to allow guide.tex override)
+\providecommand{\dashref}[1]{#1}
+\providecommand{\dashone}[1]{\dashref{Dash-1~#1}}
+\providecommand{\dashthirtyfour}[1]{\dashref{Dash-34~#1}}
+\providecommand{\trainingref}[2]{\dashref{BMS Training Manual 4.38.1~#1~#2}}
+
+% hotastable environment (7-column HOTAS table)
+% Column widths: State 1.6cm | Dir 1.0cm | Act 1.0cm | Function 3.4cm | Effect/Nuance 5.8cm | Dash34 1.4cm | Train 1.4cm
+% Total width: 15.6 cm (fits within 17.0 cm text width with 1.4 cm safety margin)
+\newenvironment{hotastable}[1]{%
+  \renewcommand{\arraystretch}{1.25}
+  \small
+  \begin{longtable}{|>{\raggedright\arraybackslash}p{1.6cm}|>{\raggedright\arraybackslash}p{1.0cm}|>{\raggedright\arraybackslash}p{1.0cm}|>{\raggedright\arraybackslash}p{3.4cm}|>{\raggedright\arraybackslash}p{5.8cm}|>{\centering\arraybackslash}p{1.4cm}|>{\centering\arraybackslash}p{1.4cm}|}
+    \caption{#1}\\
+    \hline
+    \rowcolor{headerblue}
+    \textcolor{white}{\textbf{State}} & \textcolor{white}{\textbf{Dir}} & \textcolor{white}{\textbf{Act}} & \textcolor{white}{\textbf{Function}} & \textcolor{white}{\textbf{Effect / Nuance}} & \textcolor{white}{\textbf{Dash34}} & \textcolor{white}{\textbf{Train}} \\
+    \endfirsthead
+    \rowcolor{headerblue}
+    \textcolor{white}{\textbf{State}} & \textcolor{white}{\textbf{Dir}} & \textcolor{white}{\textbf{Act}} & \textcolor{white}{\textbf{Function}} & \textcolor{white}{\textbf{Effect / Nuance}} & \textcolor{white}{\textbf{Dash34}} & \textcolor{white}{\textbf{Train}} \\
+    \endhead
+    \hline
+    \multicolumn{7}{r}{\textit{Continued on next page}}\\
+    \endfoot
+    \hline
+    \endlastfoot
+}{%
+  \end{longtable}
+}
+
+% Hyperref setup
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue,
+  pdfborder={0 0 0}
+}
+
+% Header/footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small CMS Block and Variant Notes}
+\fancyhead[R]{\small WIP DRAFT}
+\fancyfoot[C]{\thepage}
+
+\begin{document}
+
+% ==============================================================================
+% SECTION 5.3: CMS BLOCK AND VARIANT NOTES
+% ==============================================================================
+
+\subsection{CMS Block and Variant Notes}\label{sec:C5-S3}
+
+Section~\ref{sec:C5-S2} defines CMS actuation procedures for CMDS and ECM systems. 
+CMS interaction with \textbf{CMDS is uniform across all F-16 blocks and variants} 
+(see Section~\ref{sec:C5-S2-S1}). However, \textbf{ECM configuration varies significantly 
+by block and operator}, resulting in different CMS procedures: external ECM pods (ALQ-131/ALQ-184) 
+use CMS Aft as the transmit control, while internal IDIAS systems use CMS Left for mode cycling. These operational differences extend to panel controls (XMIT knob on external pods vs XMTR switch on IDIAS) and fundamentally change the pilot's CMS 
+gesture sequence.
+
+This section (5.3) identifies which F-16 variants use which ECM configuration 
+and maps them to the correct procedure section in Section~\ref{sec:C5-S2-S2}. Before flight, 
+pilots must verify their aircraft's ECM configuration to ensure they apply the correct CMS procedures and avoid dangerous 
+habit transfer between external ECM and IDIAS variants.
+
+% ==============================================================================
+% 5.3.1 ECM CONFIGURATIONS IN BMS
+% ==============================================================================
+
+\subsubsection{ECM Configurations in BMS}\label{sec:C5-S3-config}
+
+Falcon BMS 4.38.1 implements two distinct ECM system architectures, each with different CMS actuation methods. The following paragraphs describe how the CMS interacts with each configuration; detailed actuation procedures are provided in Section~\ref{sec:C5-S2}.
+
+\paragraph{External ECM Pods (ALQ-131 / ALQ-184):}
+These variants use an ECM Pod Control Panel with manual band selection and CMS actuation employs \textbf{CMS Aft} to provide ECM transmit consent.
+
+The XMIT knob (3-position rotary switch: 1, 2, 3) selects the jamming mode: XMIT 1 (Avionics Priority, AFT antenna only), XMIT 2 (ECM Priority, both FWD+AFT antennas), or XMIT 3 (Active Jam, continuous transmission independent of RWR threats). For detailed procedures, see \ref{sec:C5-S2-S2} and Dash-34 \dashref{2.7.4.1.1} and \dashref{2.7.4.2.5}.
+
+\begin{table}[h]
+\centering
+\caption{External ECM Pod Blocks/Variants}
+\label{tab:C5-S3-external-ecm-pods}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3.0cm}|>{\raggedright\arraybackslash}p{5.8cm}|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Operator}} & \textcolor{white}{\textbf{Block/Variant}} \\
+\hline
+USAF & Blocks 40/42/50/52 (CM designation) \\
+\hline
+NATO & Block 15 operators (Belgium, Denmark, Netherlands, Norway) \\
+\hline
+International & Egypt, Korea KF-16C Block 32 \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{Internal ECM (IDIAS):}
+These variants use the IDIAS ECM Control Panel. CMS actuation employs \textbf{CMS Left} (left on throttle) to cycle operational modes.
+The XMTR switch (2-position toggle: STBY, OPER) enables the ECM system; when in OPER, the mode (AVNC or ECM) selected via CMS Left determines ECM behavior. \hl{For detailed procedures, see Section 5.2.2.2. Dash-34 reference: Sections 2.7.4.1.2 (IDIAS) and 2.7.4.2.6 (Operating Procedures).
+
+Internal ECM (IDIAS) variants are used by Israeli operators (F-16I Sufa Block 52, Barak I Block 30, Barak II Block 40), Greek HAF (Blocks 50 PXII, 52 PXIII, 52+ PXIV Advanced), Korean KF-16C Block 52, and Singapore F-16D Block 52 (RSAF)}.
+
+\paragraph{Integration with RWR and CMDS}
+
+Both external ECM and IDIAS configurations integrate with the Radar Warning Receiver (RWR) and Countermeasures Dispensing System (CMDS), but differ fundamentally in CMS gesture and mode selection logic. The following subsections highlight these critical operational differences.
+
+% ==============================================================================
+% 5.3.2 VARIANTS AND APPLICABLE PROCEDURES
+% ==============================================================================
+
+\subsubsection{Variants and Applicable Procedures}\label{sec:C5-S3-variants}
+
+This section maps F-16 blocks and operators to the applicable CMS procedure set in Section 5.2. Pilots should verify their aircraft's ECM configuration using the DTC loadout, MFD ECM page, or cockpit panel labeling (C-9492 vs IDIAS panel) before flight.
+
+\paragraph{External ECM Pod Variants}
+
+The following F-16 variants use external ECM pods (ALQ-131 or ALQ-184) and follow the procedures in Section 5.2.2.1 (CMS Actuation with External ECM Pod):
+\begin{itemize}
+  \item \textbf{USAF:} Blocks 40/42/50/52 (CM designation).
+  \item \textbf{NATO MLU:} Block 15 (Belgium BAF, Denmark RDAF, Netherlands RNLAF, Norway RNoAF).
+  \item \textbf{International:} Egypt Blocks 32/40/52 (EAF), Korea KF-16C Block 32 (ROKAF).
+\end{itemize}
+These variants use the C-9492 ECM Pod Control Panel (Dash-34 Section 2.7.4.1.1).
+
+\paragraph{IDIAS Variants}
+
+The following F-16 variants use internal IDIAS and follow the procedures in Section 5.2.2.2 (CMS Actuation with IDIAS):
+\begin{itemize}
+  \item \textbf{Israel:} F-16I Sufa Block 52, Barak I Block 30, Barak II Block 40 (IDFAF).
+  \item \textbf{Greece:} Blocks 50 (PXII), 52 (PXIII), 52+ Advanced (PXIV) (HAF).
+  \item \textbf{Korea:} KF-16C Block 52 (ROKAF).
+  \item \textbf{Singapore:} F-16D Block 52 (RSAF).
+\end{itemize}
+These variants use the IDIAS ECM Control Panel (Dash-34 Section 2.7.4.1.2).
+
+\paragraph{Scope Clarification}
+
+The variants listed above represent those available in Falcon BMS 4.38.1 and may not reflect complete real-world inventories. Operational capabilities and configurations are subject to mission planning and DTC initialization.
+
+% ==============================================================================
+% 5.3.3 CRITICAL OPERATIONAL DIFFERENCES
+% ==============================================================================
+
+\subsubsection{Critical Operational Differences}\label{sec:C5-S3-critical}
+
+The following subsections highlight critical CMS operational differences between external ECM and IDIAS configurations. Pilots transitioning between these systems must relearn CMS gestures to avoid operational errors.
+
+% ------------------------------------------------------------------------------
+% 5.3.3.1 CMS Aft vs CMS Left
+% ------------------------------------------------------------------------------
+
+\paragraph{CMS Aft vs CMS Left}\label{sec:C5-S3-cms-aft-left}
+
+External ECM and IDIAS variants use \textbf{opposite CMS directions} for ECM transmit consent, creating a significant cross-training hazard.
+
+\textbf{External ECM:} CMS Aft (down on throttle) provides ECM transmit consent. Once CMS Aft is pressed, the ECM pod enters the mode selected by the XMIT knob (1, 2, or 3) and begins jamming if a valid threat is detected. CMS Left has no ECM function in external ECM configurations.
+
+\textbf{IDIAS:} CMS Left (left on throttle) cycles operational modes: STBY $\rightarrow$ AVNC (Avionics Priority) $\rightarrow$ ECM (ECM Priority). Both AVNC and ECM modes act as ECM consent. When the XMTR switch is in OPER and the mode is AVNC or ECM, the system is ready to jam. CMS Aft has no ECM function in IDIAS configurations.
+
+\textbf{Habit Transfer Warning:} Pilots accustomed to external ECM who transition to IDIAS aircraft must retrain muscle memory: pressing CMS Aft in an IDIAS aircraft will \textbf{not} activate ECM. Conversely, pilots transitioning from IDIAS to external ECM must remember that CMS Left does \textbf{not} cycle ECM modes. This inverted control logic is the single most critical difference between the two configurations and demands explicit chair flying practice before flight in an unfamiliar variant.
+
+Table~\ref{tab:C5-S3-cms-directions} summarizes CMS direction functions by configuration.
+
+\begin{table}[h]
+\centering
+\caption{CMS Direction Functions by ECM Configuration}
+\label{tab:C5-S3-cms-directions}
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Configuration}} & \textcolor{white}{\textbf{CMS Aft Function}} & \textcolor{white}{\textbf{CMS Left Function}} \\
+\hline
+External ECM & ECM transmit consent & (No ECM function) \\
+\hline
+\rowcolor{rowgray}
+IDIAS & (No ECM function) & Cycle mode (STBY/AVNC/ECM) \\
+\hline
+\end{tabular}
+\end{table}
+
+% ------------------------------------------------------------------------------
+% 5.3.3.2 XMIT Knob vs XMTR Switch
+% ------------------------------------------------------------------------------
+
+\paragraph{XMIT Knob vs XMTR Switch}\label{sec:C5-S3-xmit-xmtr}
+
+External ECM and IDIAS variants use different panel controls for mode selection, with significant functional differences.
+
+\textbf{External ECM (XMIT Knob):} The XMIT knob is a 3-position rotary switch (1, 2, 3) on the C-9492 ECM Pod Control Panel. The three positions are:
+\begin{itemize}
+  \item \textbf{XMIT 1 (Avionics Priority):} AFT antenna only; FWD antenna inhibited to avoid interference with FCR, TFR, and HTS.
+  \item \textbf{XMIT 2 (ECM Priority):} Both FWD and AFT antennas active; avionics performance degraded (FCR detection range reduced by $\sim$30\% when jamming I-band, TFR unusable when jamming K-band).
+  \item \textbf{XMIT 3 (Active Jam):} Continuous transmission on both antennas, independent of RWR threat detection. This mode forces the jammer to radiate continuously as long as consent is given.
+\end{itemize}
+
+\textbf{IDIAS (XMTR Switch):} The XMTR switch is a 2-position toggle (STBY, OPER) on the IDIAS ECM Control Panel. The two positions are:
+\begin{itemize}
+  \item \textbf{STBY:} System powered but not transmitting. The jammer remains on standby, ready to activate when consent is given via CMS Left.
+  \item \textbf{OPER:} System ready to transmit. When XMTR is in OPER and the mode (AVNC or ECM) is selected via CMS Left, the system is armed and will jam when the RWR detects a valid threat.
+\end{itemize}
+
+\textbf{Key Difference:} External ECM has a \textbf{Continuous Jam} mode (XMIT 3), which forces continuous transmission independent of RWR input. IDIAS does not have an equivalent mode in the BMS 4.38.1 context; all IDIAS jamming is RWR-driven when XMTR is in OPER and mode is AVNC or ECM. Pilots transitioning from external ECM to IDIAS must understand that there is no "always-on" jammer mode in IDIAS; the system relies on automatic threat classification and response.
+
+For detailed mode selection procedures, see Sections 5.2.2.1 (External ECM) and 5.2.2.2 (IDIAS).
+
+% ==============================================================================
+% 5.3.4 VARIANT SUMMARY CROSS-REFERENCE
+% ==============================================================================
+
+\subsubsection{Variant Summary Cross-Reference}\label{sec:C5-S3-summary}
+
+Table~\ref{tab:C5-S3-variant-summary} consolidates ECM configuration data for rapid reference. Pilots can use this table to identify their aircraft's ECM type and the corresponding procedure section in Section 5.2. The "Section Ref" column indicates which subsection of 5.2.2 applies to the aircraft's ECM configuration.
+
+\begin{table}[h]
+\centering
+\caption{Variant ECM Configuration Summary}
+\label{tab:C5-S3-variant-summary}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3.8cm}|>{\raggedright\arraybackslash}p{2.2cm}|>{\centering\arraybackslash}p{1.8cm}|>{\centering\arraybackslash}p{1.8cm}|>{\centering\arraybackslash}p{2.6cm}|>{\centering\arraybackslash}p{1.5cm}|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Variant Group}} & \textcolor{white}{\textbf{ECM Type}} & \textcolor{white}{\textbf{CMS Transmit}} & \textcolor{white}{\textbf{CMS Mode Select}} & \textcolor{white}{\textbf{Mode Selector}} & \textcolor{white}{\textbf{Section Ref}} \\
+\hline
+\textbf{Blocks 15--52} (USAF, NATO MLU, International) & External Pod (ALQ-131/184) & CMS Aft & XMIT knob & 3-pos (1, 2, 3) & 5.2.2.1 \\
+\hline
+\rowcolor{rowgray}
+\textbf{F-16I, HAF, ROKAF, RSAF} (IDIAS) & Internal (IDIAS) & CMS Left & CMS Left & Cycle STBY/AVNC/ECM & 5.2.2.2 \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Table Notes:}
+\begin{itemize}
+  \item \textbf{Variant Group:} Includes representative operators; see Section 5.3.2 for complete listing by air force and block.
+  \item \textbf{CMS Transmit:} Direction to press CMS switch for ECM consent.
+  \item \textbf{CMS Mode Select:} Control used to select operational mode (external ECM: XMIT knob; IDIAS: CMS Left cycling).
+  \item \textbf{Mode Selector:} Panel control for ECM mode.
+  \item \textbf{Section Ref:} Applicable subsection of Section 5.2.2 for detailed actuation procedures.
+\end{itemize}
+
+% ==============================================================================
+% 5.3.5 OPERATIONAL NOTES AND SAFETY REMINDERS
+% ==============================================================================
+
+\subsubsection{Operational Notes and Safety Reminders}\label{sec:C5-S3-safety}
+
+This section provides CMS-specific operational cautions and safety notes. Pilots must observe these guidelines to ensure safe and effective ECM operations.
+
+% ------------------------------------------------------------------------------
+% 5.3.5.1 Procedure Compatibility
+% ------------------------------------------------------------------------------
+
+\paragraph{Procedure Compatibility}\label{sec:C5-S3-compat}
+
+Before applying CMS procedures from Section 5.2, pilots must verify their aircraft's ECM configuration (External ECM Pod vs IDIAS). Applying external ECM procedures (Section 5.2.2.1) to an IDIAS aircraft, or vice versa, will result in non-functional ECM and potential operational errors during high-threat scenarios. Confirmation methods include:
+\begin{itemize}
+  \item Check DTC loadout during mission planning (ECM type listed in aircraft configuration).
+  \item Verify MFD ECM page labeling and available controls during pre-flight.
+  \item Inspect cockpit panel labeling: C-9492 panel indicates external ECM; IDIAS panel indicates internal ECM.
+\end{itemize}
+If ECM type cannot be confirmed, assume the most common configuration for the block/operator and verify during taxi or before entering threat environment.
+
+% ------------------------------------------------------------------------------
+% 5.3.5.2 Cross-Training Hazards
+% ------------------------------------------------------------------------------
+
+\paragraph{Cross-Training Hazards}\label{sec:C5-S3-xtraining}
+
+Pilots who fly both external ECM and IDIAS variants face significant cross-training hazards due to \textbf{inverted CMS gestures}. The muscle memory required for one configuration is actively counterproductive in the other:
+\begin{itemize}
+  \item \textbf{External ECM $\rightarrow$ IDIAS:} Muscle memory of pressing CMS Aft for ECM consent will not work in IDIAS aircraft. Pilots must retrain to use CMS Left for mode cycling (STBY $\rightarrow$ AVNC $\rightarrow$ ECM).
+  \item \textbf{IDIAS $\rightarrow$ External ECM:} Muscle memory of pressing CMS Left for mode cycling will not work in external ECM aircraft. Pilots must retrain to use CMS Aft for ECM consent.
+\end{itemize}
+\textbf{Recommendation:} Practice chair flying with correct CMS gestures before flight in an unfamiliar variant. Use checklist-based procedures during the first 3--5 flights in a new ECM configuration to establish correct muscle memory. Brief flight leads and wingmen on ECM configuration differences before multi-ship missions to avoid confusion during high-workload defensive scenarios.
+
+% ------------------------------------------------------------------------------
+% 5.3.5.3 Ground Safety
+% ------------------------------------------------------------------------------
+
+\paragraph{Ground Safety}\label{sec:C5-S3-ground}
+
+\textbf{WARNING:} If the CMS is held in the consent position (Aft for external ECM, Left for IDIAS) while the aircraft is on the ground, the ECM pod may radiate. Ensure ground personnel are clear of the radiation area before testing or operating ECM systems on the ramp or during ground checks. ECM state on the ground should normally remain in standby; consent is typically given only after takeoff and when entering threat environments. During ground operations:
+\begin{itemize}
+  \item External ECM: Ensure XMIT knob is in position 1 (or OFF if available) and CMS Aft is not pressed.
+  \item IDIAS: Ensure XMTR switch is in STBY and CMS Left is not held.
+\end{itemize}
+For additional ground safety procedures, see Dash-34 Section 2.7.1.1 (ECM Subsystem Operation). Coordinate with ground crew before performing any ECM system checks to establish a safe perimeter (minimum 10 meters recommended for personnel safety during high-power transmission tests).
+
+% ==============================================================================
+% END OF SECTION 5.3
+% ==============================================================================
+
+\end{document}
