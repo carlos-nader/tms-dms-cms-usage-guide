@@ -856,7 +856,6 @@ The **correct sequence** is:
 
 All WIP files created from `template-wip-V1.0.tex` must inherit this exact order. Integration of WIP content into `guide.tex` must verify that this order is preserved. Deviations require explicit justification and amendment to this brief.
 
-
 **Template includes empty example row (commented):**
 
 ```latex
@@ -902,7 +901,7 @@ The template includes a generic skeleton matching the chapter structure from Sec
 
 ### 11.7 Integration Workflow: What Happens When Integrated into guide.tex
 
-When a WIP file (e.g., `section-C5-S2-cms-actuation-final-2026-01-09.tex`) is promoted to `final` status and ready for integration into `guide.tex`, the following **extraction and integration procedure** is applied:
+When a WIP file (for example, `section-C5-S2-cms-actuation-final-2026-01-09.tex`) is promoted to `final` status and ready for integration into `guide.tex`, the following **extraction and integration procedure** is applied:
 
 **Step 1: Extract Content from WIP**
 - Delete preamble (`\documentclass` through `\begin{document}`).
@@ -910,7 +909,7 @@ When a WIP file (e.g., `section-C5-S2-cms-actuation-final-2026-01-09.tex`) is pr
 - Preserve: all `\section`, `\subsection`, narrative, tables, and `\end{document}` (then remove `\end{document}`).
 
 **Step 2: Merge into guide.tex**
-- Identify target location in `guide.tex` (e.g., after Section 5.1, before Section 5.3).
+- Identify target location in `guide.tex` (for example, after Section 5.1, before Section 5.3).
 - Insert extracted content (sections through tables).
 - Merge any helper macros (`\dashref{}`, etc.) into guide.tex's definition set; WIP's `\providecommand` placeholders are **overridden** by guide.tex's `\newcommand` definitions.
 
@@ -935,10 +934,10 @@ The template itself is **versioned independently** of the guide version, allowin
 
 **When to bump template version:**
 
-- **V1.0 → V1.1** (future): Minor refinements (e.g., adjusted `\arraystretch` range, or added optional helper macro).
+- **V1.0 → V1.1** (future): Minor refinements (for example, adjusted `\arraystretch` range, or added optional helper macro).
   - Existing WIP files can still use V1.0 template (backward compatible).
   
-- **V1.X → V2.0** (future): Breaking change (e.g., new hotastable layout, preamble restructure, or geometry change).
+- **V1.X → V2.0** (future): Breaking change (for example, new hotastable layout, preamble restructure, or geometry change).
   - Existing WIP files created with V1.X must be manually updated or regenerated from V2.0.
 
 **Template validation (mandatory before release):**
@@ -954,30 +953,30 @@ The template itself is **versioned independently** of the guide version, allowin
 4. For backward-compatibility changes (V1.0 → V1.1), document in a "Changelog" subsection.
 
 **Relationship to brief:**
-- If template preamble is updated (e.g., new packages, new macros), this Section 11 **must be updated in lockstep**.
-- If Section 11 of the brief is updated (e.g., layout parameters in Section 4 change), the template **must be regenerated** and validated.
-- These two documents (template file + brief Section 11) are considered **synchronized artifacts**; desynchronisation is a critical bug.
+- If template preamble is updated (for example, new packages, new macros), this Section 11 **must be updated in lockstep**.
+- If Section 11 of the brief is updated (for example, layout parameters in Section 4 change), the template **must be regenerated** and validated.
+- These two documents (template file + brief Section 11) are considered **synchronised artefacts**; desynchronisation is a critical bug.
 
 ---
 
-## 12. Current Project Status (v0.2.2.0)
+## 12. Current Project Status — v0.2.2.0 → v0.2.3.1
 
 ### 12.1 Version Summary
 
 | Component              | Status                          | Details |
 |------------------------|---------------------------------|---------|
-| Active Version         | `v0.2.2.0+20260108`             | Guide updated to Geometry Option D (2.0 cm left/right margins) and `hotastable` row height `\arraystretch = 1.25`. |
-| Chapters Complete      | `2 / 7`                         | Chapter 1 (Introduction) and Chapter 5.1 (CMS Concept and interaction with CMDS/ECM) have complete narrative scaffolding; remaining chapters are in skeleton form. |
-| Tables Filled          | `0 %`                           | All TMS/DMS/CMS `hotastable` structures reserved but not yet populated with full behaviour data. |
+| Active Version         | `v0.2.3.1+20260110`             | Guide updated to Geometry Option D (2.0 cm left/right margins), `hotastable` row height `\arraystretch = 1.25`, and CMS Section 5.2 "CMS Switch Actuation" integrated with its main HOTAS table. |
+| Chapters Complete      | `2 / 7`                         | Chapter 1 (Introduction) and CMS Sections 5.1–5.2 (Concept, interaction with CMDS/ECM, and CMS Switch Actuation) have complete narrative scaffolding; remaining chapters are in skeleton form. |
+| Tables Filled          | `>= 1 major CMS table`          | CMS 5.2 `hotastable` populated with primary AUTO/SEMI/MAN, ECM, consent/constraints and operational nuance entries; other TMS/DMS/CMS tables remain unfilled or structure-only. |
 | Phase                  | `0 (Pre-publication)`           | Guide remains in scaffolding regime `0.x.x.x` as defined by Version System v4.2.1 (no public edition ≥ 1.0 yet). |
 | Layout Standard        | `Geometry Option D applied`     | Global layout aligned: A4, 2.0 cm side margins, 2.5 cm top/bottom, 17.0 cm text width, and HOTAS tables fixed at 15.6 cm width with `\small` and `\arraystretch = 1.25`. |
-| WIP Template           | `V1.0 (established)`            | Canonical template `template-wip-V1.0.tex` now available; all future WIP files must derive from this template. |
+| WIP Template           | `V1.0 (established)`            | Canonical template `template-wip-V1.0.tex` available; all future WIP files must derive from this template. |
 | Training Mission Refs  | `v1.0 (established)`            | Authoritative Training Mission Reference Table v1.0 (`training-mission-abbrev-table-v1.0.md`) adopted as normative standard for all Train column entries. Integrated into Section 6.7.1 of this brief. |
-| Next Milestone         | `v0.3.0.0 (planned)`            | Integration of the next fully scaffolded chapter into the guide (third chapter brought to narrative completion under the pre-publication regime). |
+| Next Milestone         | `v0.2.4.0 (planned)`            | Integration of CMS Section 5.3 (Block and variant notes) into the guide, succeeding the partial CMS consolidation in v0.2.3.1. |
 
-### 12.2 Key Changes from v0.1.4.0 to v0.2.0.1
+### 12.2 Key Changes from v0.1.4.0 to v0.2.3.1
 
-The path from `v0.1.4.0` to the current `v0.2.0.1` includes:
+The path from `v0.1.4.0` to the current `v0.2.3.1` includes:
 
 1. **v0.2.0.0 — CMS Chapter Integration (Section 5.1) + WIP Template Canonical (Section 11)**
 
@@ -1000,6 +999,13 @@ The path from `v0.1.4.0` to the current `v0.2.0.1` includes:
    - Added Section 6.7.1 (Training Mission Abbreviations Standard) with formal integration of `training-mission-abbrev-table-v1.0.md` as a normative reference standard.
    - Established bidirectional documentation: the brief now explicitly requires conformance to the Training Mission Reference Table v1.0, closing the governance gap identified in Section 10 of the project audit.
 
+5. **v0.2.3.1 — CMS 5.2 Integration (CMS Switch Actuation)**
+
+   - Integrated CMS Section 5.2 "CMS Switch Actuation" into Chapter 5, following the structure defined in Section 3.1 of this brief.
+   - Populated the main CMS `hotastable` for 5.2 with AUTO/SEMI/MAN, ECM interactions, consent & constraints, and key operational notes.
+   - Ensured alignment with the column semantics in Section 6 and with Dash-34 / Training Manual references via `\dashref{}` and `\trnref{}` macros.
+   - Left CMS Section 5.3 "Block and variant notes" as a WIP item (status `review`), with its integration planned for `v0.2.4.0`.
+
 ### 12.3 Archival and Traceability (Guide Versions)
 
 The following guide versions have been archived to preserve the evolution of the document. Each entry corresponds to a versioned LaTeX snapshot stored under `WIP/GUIDE/` and, where applicable, a matching PDF snapshot stored in the archive structure.
@@ -1009,10 +1015,13 @@ The following guide versions have been archived to preserve the evolution of the
 - `WIP/GUIDE/guide-v0.1.2+20260105`.
 - `WIP/GUIDE/guide-v0.1.3+20260105`.
 - `WIP/GUIDE/guide-v0.1.4.0+20260107`.
+- `WIP/GUIDE/guide-v0.2.0.0-20260108`.
 - `WIP/GUIDE/guide-v0.2.1.0-20260108`.
+- `WIP/GUIDE/guide-v0.2.2.0-20260108`.
+- `WIP/GUIDE/guide-v0.2.3.1-20260110`.
 
-These historical versions provide traceability for structural decisions, early chapter scaffolding and geometry fixes made before the current 0.2.x.x series. All of them were, at their time, byte-identical to the corresponding `guide.tex` in the repository root.
+These historical versions provide traceability for structural decisions, early chapter scaffolding, geometry fixes and CMS content integrations made before and within the current 0.2.x.x series. All of them were, at their time, byte-identical to the corresponding `guide.tex` in the repository root.
 
 ---
 
-**Last Updated (Brief):** 10 January 2026 — **Section 6.7.1 (Training Mission Abbreviations Standard) added with formal integration of Training Mission Reference Table v1.0 as a normative reference. Brief version bumped from v0.2.0.0 to v0.2.0.1. No version bump to guide.tex as per user instruction.**
+**Last Updated (Brief):** 10 January 2026 — Section 6.7.1 (Training Mission Abbreviations Standard) added with formal integration of Training Mission Reference Table v1.0 as a normative reference; Section 12 updated to reflect `v0.2.3.1` as the active guide version (CMS 5.2 integrated). Brief version remains `v0.2.0.1` because no structural or layout rules were changed.

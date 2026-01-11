@@ -1,7 +1,7 @@
 # Falcon BMS TMS/DMS/CMS Guide Version System v4.2.1
 
-**Latest Update:** 09 January 2026, 18:00 -03  
-**Effective Date:** 09 January 2026  
+**Latest Update:** 10 January 2026, 18:00 -03  
+**Effective Date:** 10 January 2026  
 **Replaces:** v4.2 (updates references to WIP-FILE-NAMING-v1.4 and clarifies relationship with BRIEFING-v0.2.0.1)
 
 ---
@@ -57,6 +57,13 @@ Before any version change, answer:
 - **"I only fixed typos in two chapters, without changing structure or table logic."**
   - Regime: 0.x.x.x or x.x.x, depending on current state.  
   - Trend: **SUBPATCH** (in 0.x.x.x) or **PATCH** (in x.x.x).  
+
+- **"I integrated a fully reviewed section inside an existing chapter (for example CMS 5.2), without adding a new chapter or changing global structure."**  
+  - Regime: 0.x.x.x.  
+  - Trend: **PATCH/SUBPATCH** depending on scope:  
+    - If the change significantly modifies how that chapter is used (for example, first major HOTAS table for that chapter), increment **PATCH** (for example, `0.2.2.0 → 0.2.3.0`).  
+    - If the change is a local refinement on top of an already planned structure, or if you want to keep the change clearly marked as internal polish, increment **SUBPATCH** (for example, `0.2.2.0 → 0.2.3.1` for the first integration of CMS 5.2 into Chapter 5).  
+  - Concrete example: integration of CMS 5.2 "CMS Switch Actuation" narrative and its main HOTAS table in `v0.2.3.1`.
 
 ---
 
@@ -505,7 +512,7 @@ MAJOR.MINOR.PATCH
 Single workflow for 0.x.x.x and x.x.x:
 
 1. **Determine change type.**  
-   - Use the appropriate "When to Increment" tables (pre- or post-publication).
+   - Use the appropriate "When to Increment" tables (pre- or post-publication).  
 
 2. **Update version/date macros in LaTeX.**  
    - Set `\docversion` to the new number.
