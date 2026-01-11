@@ -61,20 +61,23 @@ All WIP files are organized in a dedicated project root structure with a canonic
 
 ```text
 project-root/
-├── guide-v0.2.2.0-20260108.tex              (MAIN — subject to VERSION-SYSTEM-v4.2.1)
-├── PROJECT-TRACKING.md
-├── VERSION-SYSTEM-v4.2.1.md
-├── WIP-FILE-NAMING-v1.4.md                  (This document)
-│
+├── guide.tex                                (MAIN — subject to VERSION-SYSTEM-v4.2.1)
+├
+├── DOCS/                                    (Project Governing Docs)             
+│   └── PROJECT-TRACKING.md                  (Actual State of the Project)  
+│   └── VERSION-SYSTEM-v4.2.1.md             (Main file and snapshot versioning rule)
+│   └── WIP-FILE-NAMING.md                   (This document)  
+│   └── TRAINING MISSIONS ABBRE. TABLE.md    (Table thata abbreviates Training Mission for use in guide.tex Tables)
 ├── TEMPLATES/                               (Canonical templates)
-│   └── template-wip-V1.0.tex               (Mandatory starting point for all WIP files)
+│   └── template-wip-V1.0.tex                (Mandatory starting point for all WIP files)
 │
 ├── WIP/                                     (Active work-in-progress)
 │   ├── chapter-*.tex
 │   ├── section-*.tex
 │   ├── table-*.tex
 │   ├── notes-*.md
-│   └── visual-*.*
+│   ├── visual-*.*
+│   └── guide-v*.tex                         (Snapshot of the guide.tex — subject to VERSION-SYSTEM-v4.2.1)
 │
 └── ARCHIVE/                                 (Completed, deprecated, or integrated)
     ├── section-*-approved-*.tex             (Successfully integrated)
