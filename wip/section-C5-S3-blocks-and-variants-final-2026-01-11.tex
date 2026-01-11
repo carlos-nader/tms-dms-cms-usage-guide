@@ -1,0 +1,169 @@
+% ==============================================================================
+% WIP FILE - METADATA BLOCK
+% ==============================================================================
+% Target:       Chapter 5, Section 3 (CMS Block and Variant Notes)
+% Status:       FINAL
+% Date:         2026-01-11
+% Author:       Humman Reviewed (based on structure proposal from AI)
+% Notes:        Complete rewrite from AI structure and content proposal.
+% Known Issues: None. Next step: integration to guide-v0.2.3.1-20260110.tex.
+% Cross-ref:    guide-v0.2.3.1-20260110.tex (Section 5.2 already integrated)
+%               Dash-34 Sections 2.7.1.1, 2.7.4 (ECM systems)
+% ==============================================================================
+
+\documentclass[11pt,a4paper]{article}
+
+% ==============================================================================
+% PREAMBLE (identical to guide.tex for standalone compilation)
+% ==============================================================================
+
+\usepackage[left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{graphicx}
+\usepackage{microtype}
+
+\graphicspath{{fig/}}
+
+% Colors (matching guide.tex)
+\definecolor{headerblue}{RGB}{0,51,102}
+\definecolor{rowgray}{RGB}{240,240,240}
+\definecolor{subheadgray}{RGB}{217,217,217}
+
+% Helper macros (using \providecommand to allow guide.tex override)
+% --------------------------------------------------------------------------
+% SIMPLE REFERENCE MACROS FOR BMS DOCS
+% --------------------------------------------------------------------------
+\providecommand{\dashref}[1]{Dash-34~\S~#1}
+\providecommand{\dashone}[1]{Dash-1~\S~#1}
+\providecommand{\trnref}[1]{TRN~#1}
+\providecommand{\trnman}{BMS Training Manual 4.38.1}
+\providecommand{\bmsver}{Falcon BMS~4.38.1}
+\providecommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+
+% hotastable environment (7-column HOTAS table)
+% Column widths: State 1.6cm | Dir 1.0cm | Act 1.0cm | Function 3.4cm | Effect/Nuance 5.8cm | Dash34 1.4cm | Train 1.4cm
+% Total width: 15.6 cm (fits within 17.0 cm text width with 1.4 cm safety margin)
+\newenvironment{hotastable}[1]{%
+  \renewcommand{\arraystretch}{1.25}
+  \small
+  \begin{longtable}{|>{\raggedright\arraybackslash}p{1.6cm}|>{\raggedright\arraybackslash}p{1.0cm}|>{\raggedright\arraybackslash}p{1.0cm}|>{\raggedright\arraybackslash}p{3.4cm}|>{\raggedright\arraybackslash}p{5.8cm}|>{\centering\arraybackslash}p{1.4cm}|>{\centering\arraybackslash}p{1.4cm}|}
+    \caption{#1}\\
+    \hline
+    \rowcolor{headerblue}
+    \textcolor{white}{\textbf{State}} & \textcolor{white}{\textbf{Dir}} & \textcolor{white}{\textbf{Act}} & \textcolor{white}{\textbf{Function}} & \textcolor{white}{\textbf{Effect / Nuance}} & \textcolor{white}{\textbf{Dash34}} & \textcolor{white}{\textbf{Train}} \\
+    \endfirsthead
+    \rowcolor{headerblue}
+    \textcolor{white}{\textbf{State}} & \textcolor{white}{\textbf{Dir}} & \textcolor{white}{\textbf{Act}} & \textcolor{white}{\textbf{Function}} & \textcolor{white}{\textbf{Effect / Nuance}} & \textcolor{white}{\textbf{Dash34}} & \textcolor{white}{\textbf{Train}} \\
+    \endhead
+    \hline
+    \multicolumn{7}{r}{\textit{Continued on next page}}\\
+    \endfoot
+    \hline
+    \endlastfoot
+}{%
+  \end{longtable}
+}
+
+% Hyperref setup
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue,
+  pdfborder={0 0 0}
+}
+
+% Header/footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small CMS Block and Variant Notes}
+\fancyhead[R]{\small WIP DRAFT}
+\fancyfoot[C]{\thepage}
+
+\begin{document}
+
+% ==============================================================================
+% SECTION 5.3: CMS BLOCK AND VARIANT NOTES
+% ==============================================================================
+
+\subsection{CMS Block and Variant Notes}\label{sec:C5-S3}
+
+Section~\ref{sec:C5-S2} defines CMS actuation procedures for CMDS and ECM systems. 
+CMS interaction with \textbf{CMDS is uniform across all F-16 blocks and variants} (see Section~\ref{sec:C5-S2-S1}). However, \textbf{ECM configuration varies significantly by block and operator}, resulting in different CMS procedures: external ECM pods (ALQ-131/ALQ-184) use CMS Aft as the transmit control, while internal IDIAS systems use CMS Left for mode cycling. These operational differences extend to panel controls (XMIT knob on external pods vs XMTR switch on IDIAS) and fundamentally change the pilot's CMS gesture sequence.
+
+This section (5.3) identifies which F-16 variants use which ECM configuration and maps them to the correct procedure section in Section~\ref{sec:C5-S2-S2}. Before flight, pilots must verify their aircraft's ECM configuration to ensure they apply the correct CMS procedures and avoid dangerous habit transfer between external ECM and IDIAS variants.
+
+% ==============================================================================
+% 5.3.1 ECM DIFFERENT SYSTEMS
+% ==============================================================================
+
+\subsubsection{ECM Configurations present in BMS}\label{sec:C5-S3-s1}
+
+Falcon BMS 4.38.1 implements two distinct ECM system architectures, each with different CMS actuation methods. The following paragraphs describe how the CMS interacts with each configuration and bring table depicting the blocks/variants equipped with each system architecture; detailed actuation procedures are provided in Section~\ref{sec:C5-S2}.
+
+\paragraph{External ECM Pods (ALQ-131 / ALQ-184):}
+These variants are equipped with an ECM Panel that employs manual jamming band selection. \textbf{CMS Aft} provides ECM transmit consent.\\\\
+The XMIT knob (3-position switch: 1, 2, 3) selects the jamming mode: XMIT 1 (Avionics Priority, AFT antenna only), XMIT 2 (ECM Priority, both FWD+AFT antennas), or XMIT 3 (Active Jam, continuous transmission independent of RWR threats). For detailed procedures, see Section~\ref{sec:C5-S2-S2} and \dashrefs{2.7.4.1.1 and 2.7.4.2.5}.
+
+\begin{table}[h]
+\centering
+\caption{External ECM Pod Blocks/Variants}
+\label{tab:C5-S3-external-ecm-pods}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3.0cm}|>{\raggedright\arraybackslash}p{5.8cm}|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Operator}} & \textcolor{white}{\textbf{Block/Variant}} \\
+\hline
+USAF & Blocks 40/42/50/52 (CM designation) \\
+\hline
+NATO & Block 15 operators (Belgium, Denmark, Netherlands, Norway) \\
+\hline
+International & Egypt, Korea KF-16C Block 32 \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{Internal ECM (IDIAS):}
+These variants use the IDIAS ECM Panel. \textbf{CMS Left} to cycles all operational modes.\\\\
+The XMTR switch (2-position toggle: STBY, OPER) enables the ECM system; when in OPER, the mode (AVNC, ECM or STBY) is selected via CMS Left and determines ECM behavior. For detailed procedures, see Section~\ref{sec:C5-S2-S2} and \dashrefs{2.7.4.1.2 and 2.7.4.2.6}.
+\begin{table}[h]
+\centering
+\caption{Internal ECM Blocks/Variants}
+\label{tab:C5-S3-internal-ecm}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3.0cm}|>{\raggedright\arraybackslash}p{5.8cm}|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Operator}} & \textcolor{white}{\textbf{Block/Variant}} \\
+\hline
+Israel & F-16I Sufa Block 52, Barak I Block 30, Barak II Block 40 \\
+\hline
+International & Greek HAF (Blocks 50 PXII, 52 PXIII, 52+ PXIV Advanced), Korea KF-16C Block 52, Singapore F-16D Block 52 \\
+\hline
+\end{tabular}
+\end{table}
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\paragraph{Scope Clarification:}
+
+The variants listed above represent variants available in Falcon BMS 4.38.1 and may not reflect complete real-world inventories.
+
+% ==============================================================================
+% END OF SECTION 5.3
+% ==============================================================================
+
+\end{document}
