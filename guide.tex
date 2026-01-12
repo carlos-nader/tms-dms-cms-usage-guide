@@ -106,7 +106,7 @@
 % --------------------------------------------------------------------------
 % VERSION CONTROL MACROS
 % --------------------------------------------------------------------------
-\newcommand{\docversion}{0.2.3.2} %adjustments to INTERNAL LINKS%
+\newcommand{\docversion}{0.2.4.0} %5.3 integrado%
 \newcommand{\docbuild}{20260111}
 \newcommand{\docstartdate}{05 January 2026}
 \newcommand{\docenddate}{11 jan 2026}
@@ -517,8 +517,75 @@ On the ground, ECM pods are held in Standby for safety reasons. Pilots must not 
 % --------------------------------------------------------------------------
 % SECTION 5.3: CMS BLOCK / VARIANT NOTES (PLACEHOLDER)
 % --------------------------------------------------------------------------
-\subsection{CMS -- Block and variant notes}
-[Content to be developed in next phase]
+\subsection{CMS Block and Variant Notes}\label{sec:C5-S3}
+
+Section~\ref{sec:C5-S2} defines CMS actuation procedures for CMDS and ECM systems. 
+CMS interaction with \textbf{CMDS is uniform across all F-16 blocks and variants} (see Section~\ref{sec:C5-S2-S1}). However, \textbf{ECM configuration varies significantly by block and operator}, resulting in different CMS procedures: external ECM pods (ALQ-131/ALQ-184) use CMS Aft as the transmit control, while internal IDIAS systems use CMS Left for mode cycling. These operational differences extend to panel controls (XMIT knob on external pods vs XMTR switch on IDIAS) and fundamentally change the pilot's CMS gesture sequence.
+
+The present Section identifies which F-16 variants use which ECM configuration and maps them to the correct procedure section in Section~\ref{sec:C5-S2-S2}. Before flight, pilots must verify their aircraft's ECM configuration to ensure they apply the correct CMS procedures and avoid dangerous habit transfer between external ECM and IDIAS variants.
+
+% ==============================================================================
+% 5.3.1 ECM DIFFERENT SYSTEMS
+% ==============================================================================
+
+\subsubsection{ECM Configurations present in BMS}\label{sec:C5-S3-S1}
+
+Falcon BMS 4.38.1 implements two distinct ECM system architectures, each with different CMS actuation methods. The following paragraphs describe how the CMS interacts with each configuration and bring table depicting the blocks/variants equipped with each system architecture; detailed actuation procedures are provided in Section~\ref{sec:C5-S2}.
+
+\paragraph{External ECM Pods (ALQ-131 / ALQ-184):}
+These variants are equipped with an ECM Panel that employs manual jamming band selection. \textbf{CMS Aft} provides ECM transmit consent.\\\\
+The XMIT knob (3-position switch: 1, 2, 3) selects the jamming mode: XMIT 1 (Avionics Priority, AFT antenna only), XMIT 2 (ECM Priority, both FWD+AFT antennas), or XMIT 3 (Active Jam, continuous transmission independent of RWR threats). For detailed procedures, see Section~\ref{sec:C5-S2-S2} and \dashrefs{2.7.4.1.1 and 2.7.4.2.5}.
+
+\begin{table}[h]
+\centering
+\caption{External ECM Pod Blocks/Variants}
+\label{tab:C5-S3-external-ecm-pods}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3.0cm}|>{\raggedright\arraybackslash}p{5.8cm}|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Operator}} & \textcolor{white}{\textbf{Block/Variant}} \\
+\hline
+USAF & Blocks 40/42/50/52 (CM designation) \\
+\hline
+NATO & Block 15 operators (Belgium, Denmark, Netherlands, Norway) \\
+\hline
+International & Egypt, Korea KF-16C Block 32 \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{Internal ECM (IDIAS):}
+These variants use the IDIAS ECM Panel. \textbf{CMS Left} to cycles all operational modes.\\\\
+The XMTR switch (2-position toggle: STBY, OPER) enables the ECM system; when in OPER, the mode (AVNC, ECM or STBY) is selected via CMS Left and determines ECM behavior. For detailed procedures, see Section~\ref{sec:C5-S2-S2} and \dashrefs{2.7.4.1.2 and 2.7.4.2.6}.
+\begin{table}[h]
+\centering
+\caption{Internal ECM Blocks/Variants}
+\label{tab:C5-S3-internal-ecm}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3.0cm}|>{\raggedright\arraybackslash}p{5.8cm}|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Operator}} & \textcolor{white}{\textbf{Block/Variant}} \\
+\hline
+Israel & F-16I Sufa Block 52, Barak I Block 30, Barak II Block 40 \\
+\hline
+International & Greek HAF (Blocks 50 PXII, 52 PXIII, 52+ PXIV Advanced), Korea KF-16C Block 52, Singapore F-16D Block 52 \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{Scope Clarification:}
+
+The variants listed above represent variants available in Falcon BMS 4.38.1 and may not reflect complete real-world inventories.
+
+% ==============================================================================
+% END OF SECTION 5.3
+% ==============================================================================
+
+\end{document}
 
 % --------------------------------------------------------------------------
 % CHAPTER 6: TRAINING REFERENCES (PLACEHOLDER)
