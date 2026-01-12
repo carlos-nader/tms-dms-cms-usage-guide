@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WIP + Guide Version Name Generator v2.0 — Unified Workflow</title>
+    <title>Falcon BMS Guide - Name Generator & Rules (Completo)</title>
     <style>
         * {
             margin: 0;
@@ -13,70 +13,73 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            color: #e2e8f0;
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            color: #e0e0e0;
             min-height: 100vh;
             padding: 20px;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 30px 20px;
-            background: rgba(30, 41, 59, 0.5);
+            background: rgba(30, 35, 45, 0.95);
             border-radius: 12px;
-            border: 1px solid rgba(148, 163, 184, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
         }
 
-        h1 {
+        .header {
+            background: linear-gradient(135deg, #208a9e 0%, #32b8c6 100%);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
             font-size: 28px;
-            margin-bottom: 8px;
-            color: #38bdf8;
+            margin-bottom: 5px;
+            color: #fff;
         }
 
-        .subtitle {
+        .header p {
             font-size: 14px;
-            color: #94a3b8;
-            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.8);
         }
 
-        .tabs {
+        .tabs-container {
             display: flex;
-            gap: 8px;
-            margin-bottom: 30px;
-            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            border-bottom: 2px solid #2a3142;
+            background: rgba(10, 15, 25, 0.5);
+            overflow-x: auto;
         }
 
         .tab-button {
-            padding: 12px 24px;
-            background: transparent;
+            flex: 1;
+            padding: 16px 20px;
+            background: none;
             border: none;
-            color: #94a3b8;
+            color: #9ca3af;
             cursor: pointer;
             font-size: 14px;
-            font-weight: 600;
-            border-bottom: 3px solid transparent;
+            font-weight: 500;
             transition: all 0.3s ease;
-            position: relative;
-            bottom: -1px;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
         }
 
         .tab-button:hover {
-            color: #cbd5e1;
+            background: rgba(32, 138, 158, 0.1);
+            color: #208a9e;
         }
 
         .tab-button.active {
-            color: #38bdf8;
-            border-bottom-color: #38bdf8;
+            color: #32b8c6;
+            border-bottom-color: #32b8c6;
+            background: rgba(50, 184, 198, 0.05);
         }
 
         .tab-content {
             display: none;
+            padding: 40px;
             animation: fadeIn 0.3s ease;
         }
 
@@ -85,942 +88,1612 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .form-section {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 20px;
-            backdrop-filter: blur(10px);
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .form-group {
             margin-bottom: 24px;
         }
 
-        label {
+        .form-group label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 600;
+            font-weight: 500;
+            font-size: 14px;
             color: #cbd5e1;
-            font-size: 14px;
         }
 
-        select, input {
+        .form-group label .info-link {
+            float: right;
+            background: #208a9e;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .form-group label .info-link:hover {
+            background: #32b8c6;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select {
             width: 100%;
-            padding: 12px;
-            background: rgba(30, 41, 59, 0.7);
-            border: 1px solid rgba(148, 163, 184, 0.3);
-            border-radius: 8px;
-            color: #e2e8f0;
+            padding: 12px 16px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid #374151;
+            border-radius: 6px;
+            color: #e0e0e0;
             font-size: 14px;
-            transition: all 0.3s ease;
+            transition: border-color 0.2s;
         }
 
-        select:focus, input:focus {
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        select:focus {
             outline: none;
-            border-color: #38bdf8;
-            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+            border-color: #208a9e;
+            background: rgba(15, 23, 42, 0.95);
         }
 
         .form-row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
 
-        .hint {
-            font-size: 12px;
-            color: #64748b;
-            margin-top: 4px;
-        }
-
         .button-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
             gap: 12px;
-            margin-top: 24px;
+            margin-top: 30px;
         }
 
-        button {
-            padding: 14px;
+        button.generate {
+            background: linear-gradient(135deg, #208a9e 0%, #32b8c6 100%);
+            color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 14px;
+            padding: 14px 32px;
+            border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-generate {
-            background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
-            color: #0f172a;
-        }
-
-        .btn-generate:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(56, 189, 248, 0.3);
-        }
-
-        .btn-reset {
-            background: rgba(100, 116, 139, 0.2);
-            color: #94a3b8;
-            border: 1px solid rgba(148, 163, 184, 0.3);
-        }
-
-        .btn-reset:hover {
-            background: rgba(100, 116, 139, 0.3);
-        }
-
-        .result-section {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .result-section.active {
-            display: block;
-            border-color: rgba(56, 189, 248, 0.5);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.1);
-        }
-
-        .result-box {
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            border-radius: 8px;
-            padding: 16px;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            word-break: break-all;
-            color: #38bdf8;
-            margin-bottom: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .result-filename {
+            transition: all 0.3s;
             flex: 1;
         }
 
-        .btn-copy {
-            background: rgba(56, 189, 248, 0.2);
-            color: #38bdf8;
-            border: 1px solid rgba(56, 189, 248, 0.5);
-            padding: 8px 16px;
+        button.generate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(32, 138, 158, 0.3);
+        }
+
+        button.generate:active {
+            transform: translateY(0);
+        }
+
+        button.reset {
+            background: rgba(107, 114, 128, 0.3);
+            color: #9ca3af;
+            border: 1px solid #4b5563;
+            padding: 14px 32px;
             border-radius: 6px;
-            cursor: pointer;
-            white-space: nowrap;
-            margin-left: 12px;
-            font-size: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-copy:hover {
-            background: rgba(56, 189, 248, 0.3);
-        }
-
-        .breakdown {
-            background: rgba(100, 116, 139, 0.1);
-            border-left: 3px solid #38bdf8;
-            padding: 16px;
-            border-radius: 6px;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-
-        .breakdown-item {
-            display: flex;
-            margin-bottom: 8px;
-        }
-
-        .breakdown-label {
-            color: #38bdf8;
             font-weight: 600;
-            min-width: 120px;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        .breakdown-value {
-            color: #cbd5e1;
+        button.reset:hover {
+            background: rgba(107, 114, 128, 0.5);
+            color: #d1d5db;
         }
 
-        .error-message {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            border-left: 3px solid #ef4444;
-            padding: 12px;
-            border-radius: 6px;
-            color: #fca5a5;
-            font-size: 13px;
-            margin-bottom: 20px;
+        .result-box {
+            background: rgba(15, 50, 60, 0.5);
+            border: 2px solid #208a9e;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
             display: none;
         }
 
-        .error-message.show {
+        .result-box.show {
             display: block;
+            animation: slideUp 0.3s ease;
         }
 
-        .info-box {
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            border-left: 3px solid #38bdf8;
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-box h3 {
+            color: #32b8c6;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .result-display {
+            background: rgba(10, 15, 25, 0.8);
             padding: 16px;
             border-radius: 6px;
-            margin-top: 20px;
+            border-left: 4px solid #32b8c6;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            color: #4ade80;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .validation-box {
+            background: rgba(15, 50, 60, 0.3);
+            border: 1px solid #208a9e;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
             font-size: 13px;
-            line-height: 1.6;
+        }
+
+        .validation-item {
+            display: flex;
+            align-items: center;
+            margin: 6px 0;
+        }
+
+        .validation-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .validation-icon.pass {
+            background: #10b981;
+            color: white;
+        }
+
+        .validation-icon.fail {
+            background: #ef4444;
+            color: white;
+        }
+
+        .validation-text {
+            flex: 1;
+        }
+
+        .copy-button {
+            background: #374151;
+            color: #9ca3af;
+            border: 1px solid #4b5563;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 12px;
+        }
+
+        .copy-button:hover {
+            background: #4b5563;
+            color: #d1d5db;
+        }
+
+        .copy-button.copied {
+            background: #10b981;
+            color: white;
+        }
+
+        /* Rules Tabs */
+        .rules-content {
+            line-height: 1.8;
+        }
+
+        .rules-content h2 {
+            color: #32b8c6;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 20px;
+            border-bottom: 2px solid #208a9e;
+            padding-bottom: 10px;
+        }
+
+        .rules-content h3 {
             color: #cbd5e1;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-size: 16px;
         }
 
-        .info-box strong {
-            color: #38bdf8;
+        .rules-content h4 {
+            color: #a0aec0;
+            margin-top: 16px;
+            margin-bottom: 10px;
+            font-size: 14px;
         }
 
-        code {
-            background: rgba(30, 41, 59, 0.8);
+        .rules-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .rules-content th,
+        .rules-content td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #374151;
+        }
+
+        .rules-content th {
+            background: rgba(32, 138, 158, 0.2);
+            color: #32b8c6;
+            font-weight: 600;
+        }
+
+        .rules-content tr:hover {
+            background: rgba(32, 138, 158, 0.05);
+        }
+
+        .rules-content ul,
+        .rules-content ol {
+            margin-left: 24px;
+            margin-bottom: 15px;
+        }
+
+        .rules-content li {
+            margin-bottom: 8px;
+        }
+
+        .rules-content code {
+            background: rgba(15, 23, 42, 0.8);
             padding: 2px 6px;
             border-radius: 4px;
+            color: #4ade80;
             font-family: 'Courier New', monospace;
-            color: #fbbf24;
-            font-size: 12px;
-        }
-
-        .algorithm-box {
-            background: rgba(30, 41, 59, 0.6);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            border-radius: 8px;
-            padding: 16px;
-            margin: 16px 0;
-            font-size: 12px;
-            line-height: 1.7;
-            font-family: 'Courier New', monospace;
-            color: #cbd5e1;
-            overflow-x: auto;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-
-        .flowchart-step {
-            background: rgba(100, 116, 139, 0.1);
-            border-left: 4px solid #38bdf8;
-            padding: 12px;
-            margin: 12px 0;
-            border-radius: 4px;
             font-size: 13px;
         }
 
-        .flowchart-step strong {
-            color: #38bdf8;
+        .example-box {
+            background: rgba(15, 23, 42, 0.6);
+            border-left: 4px solid #32b8c6;
+            padding: 16px;
+            border-radius: 6px;
+            margin: 15px 0;
         }
 
-        @media (max-width: 600px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            .button-group {
-                grid-template-columns: 1fr;
-            }
+        .example-box strong {
+            color: #32b8c6;
         }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #64748b;
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+            color: #208a9e;
+            text-decoration: underline dotted;
+        }
+
+        .tooltip-content {
+            visibility: hidden;
+            background-color: rgba(15, 23, 42, 0.95);
+            color: #e0e0e0;
+            text-align: left;
+            border-radius: 6px;
+            padding: 10px 12px;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            width: 200px;
+            border: 1px solid #208a9e;
             font-size: 12px;
-            margin-top: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            line-height: 1.4;
+        }
+
+        .tooltip:hover .tooltip-content {
+            visibility: visible;
         }
 
         .status-badge {
             display: inline-block;
-            padding: 2px 8px;
-            background: rgba(56, 189, 248, 0.2);
-            color: #38bdf8;
-            border-radius: 4px;
-            font-size: 11px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
             font-weight: 600;
+            background: rgba(32, 184, 198, 0.2);
+            color: #4ade80;
+        }
+
+        .alert-warning {
+            background: rgba(239, 68, 68, 0.15);
+            border-left: 4px solid #ef4444;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin: 15px 0;
+            color: #fca5a5;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.15);
+            border-left: 4px solid #10b981;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin: 15px 0;
+            color: #a7f3d0;
+        }
+
+        @media (max-width: 768px) {
+            .tab-content {
+                padding: 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .tab-button {
+                font-size: 12px;
+                padding: 12px 10px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>🎯 WIP + Guide Version Name Generator</h1>
-            <p class="subtitle">Unified Workflow — WIP Naming + Version System v4-2</p>
-            <p class="subtitle" style="margin-top: 8px;"><span class="status-badge">v2.0</span> — Production Ready</p>
-        </header>
-
-        <!-- Tabs Navigation -->
-        <div class="tabs">
-            <button class="tab-button active" onclick="switchTab('wip')">📁 TAB 1: WIP Naming</button>
-            <button class="tab-button" onclick="switchTab('version')">📦 TAB 2: Guide Version</button>
-            <button class="tab-button" onclick="switchTab('rules')">📋 TAB 3: Rules & Flowchart</button>
+        <div class="header">
+            <h1>🚀 Falcon BMS Guide — Completo com Validações</h1>
+            <p>Gerador de nomes + Regras + Validações críticas</p>
         </div>
 
-        <!-- TAB 1: WIP NAMING -->
-        <div id="wip" class="tab-content active">
-            <form class="form-section" id="wipForm">
-                <h2 style="color: #38bdf8; margin-bottom: 20px;">🔷 WIP File Naming Generator</h2>
-                <p style="color: #94a3b8; margin-bottom: 20px; font-size: 13px;">
-                    Generate standardized names for your WIP files (sections, tables, notes, visuals, chapters)
-                </p>
+        <div class="tabs-container">
+            <button class="tab-button active" onclick="switchTab(event, 'wip-gen')">Gerar Nome WIP</button>
+            <button class="tab-button" onclick="switchTab(event, 'version-gen')">Gerar Nome Version</button>
+            <button class="tab-button" onclick="switchTab(event, 'wip-rules')">Regras WIP</button>
+            <button class="tab-button" onclick="switchTab(event, 'version-rules')">Regras Version</button>
+        </div>
 
-                <div class="error-message" id="wipError"></div>
+        <!-- TAB 1: Gerar Nome WIP -->
+        <div id="wip-gen" class="tab-content active">
+            <h2>Gerador de Nome WIP 📝</h2>
+            <p style="color: #9ca3af; margin-bottom: 24px;">Crie nomes para arquivos de trabalho em progresso</p>
 
+            <div class="form-row">
                 <div class="form-group">
-                    <label for="wipType">File Type *</label>
-                    <select id="wipType" required onchange="updateWipFields()">
-                        <option value="">— Select a type —</option>
-                        <option value="section">📄 Section / Subsection (.tex)</option>
-                        <option value="table">📊 Table (.tex)</option>
-                        <option value="notes">📝 Notes (.md)</option>
-                        <option value="visual">🖼️ Visual (.svg/.pdf/.png/.tex)</option>
-                        <option value="chapter">📚 Chapter (.tex)</option>
+                    <label>
+                        Tipo de Arquivo
+                        <span class="info-link" title="Ver detalhes" onclick="switchTab(event, 'wip-rules'); scrollToSection('categorias')">?</span>
+                    </label>
+                    <select id="wipType" onchange="updateWipTemplate()">
+                        <option value="">Selecione um tipo...</option>
+                        <option value="chapter">chapter (Capítulo completo)</option>
+                        <option value="section">section (Seção/Subseção)</option>
+                        <option value="table">table (Tabela HOTAS)</option>
+                        <option value="notes">notes (Notas e pesquisa)</option>
+                        <option value="visual">visual (Diagramas e visuais)</option>
                     </select>
-                    <p class="hint">Choose what you're creating</p>
                 </div>
+            </div>
 
+            <!-- Campos dinâmicos -->
+            <div id="wipFields"></div>
+
+            <div class="form-row">
                 <div class="form-group">
-                    <label for="wipChapter">Chapter (C1–C7) *</label>
-                    <select id="wipChapter" required>
-                        <option value="">— Select chapter —</option>
-                        <option value="C1">C1 — Introduction</option>
-                        <option value="C2">C2 — HOTAS Fundamentals</option>
-                        <option value="C3">C3 — TMS (Tactical Mode Switch)</option>
-                        <option value="C4">C4 — DMS (Defensive Management System)</option>
-                        <option value="C5">C5 — CMS (Countermeasures Management System)</option>
-                        <option value="C6">C6 — Integration & Advanced Topics</option>
-                        <option value="C7">C7 — Visual Reference</option>
-                        <option value="GEN">GEN — General / Multi-chapter (notes only)</option>
-                    </select>
-                    <p class="hint">Target chapter</p>
+                    <label>
+                        Título/Descrição
+                        <span class="info-link" title="Máx 30 chars">?</span>
+                    </label>
+                    <input type="text" id="wipTitle" placeholder="Ex: fcr-crm-modes" maxlength="50">
                 </div>
+            </div>
 
-                <div id="wipSectionFields" style="display: none;">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="wipSection">Section Level (S1, S2, ...) *</label>
-                            <input type="text" id="wipSection" placeholder="S1" pattern="^S\d+$">
-                            <p class="hint">e.g., S1, S2, S3</p>
-                        </div>
-                        <div class="form-group">
-                            <label for="wipSubsection">Subsection (optional)</label>
-                            <input type="text" id="wipSubsection" placeholder="Leave empty if none">
-                            <p class="hint">e.g., S1 (only if subsection)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="wipTableFields" style="display: none;">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="wipContext">Operational Context *</label>
-                            <select id="wipContext">
-                                <option value="">— Select context —</option>
-                                <option value="AA">AA (Air-to-Air)</option>
-                                <option value="AG">AG (Air-to-Ground)</option>
-                                <option value="DGFT">DGFT (Defensive Terrain Following)</option>
-                                <option value="NAV">NAV (Navigation)</option>
-                                <option value="MFDS">MFDS (Multifunction Display Select)</option>
-                                <option value="ALLM">ALLM (All Modes)</option>
-                            </select>
-                            <p class="hint">e.g., AA, AG, DGFT</p>
-                        </div>
-                        <div class="form-group">
-                            <label for="wipSwitch">HOTAS Switch *</label>
-                            <select id="wipSwitch">
-                                <option value="">— Select switch —</option>
-                                <option value="TMS">TMS (Tactical Mode Switch)</option>
-                                <option value="DMS">DMS (Defensive Management System)</option>
-                                <option value="CMS">CMS (Countermeasures Management System)</option>
-                            </select>
-                            <p class="hint">What you're documenting</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="wipNotesTypeField" style="display: none;">
-                    <div class="form-group">
-                        <label for="wipNotesType">Notes Type *</label>
-                        <select id="wipNotesType">
-                            <option value="">— Select type —</option>
-                            <option value="research">🔍 Research (citations, references)</option>
-                            <option value="snippet">✂️ Snippet (draft paragraphs)</option>
-                            <option value="outline">📋 Outline (structure planning)</option>
-                            <option value="questions">❓ Questions (gaps, open items)</option>
-                            <option value="reference">📚 Reference (bibliography)</option>
-                            <option value="example">💡 Example (practical examples)</option>
-                        </select>
-                        <p class="hint">What kind of note is this?</p>
-                    </div>
-                </div>
-
-                <div id="wipVisualFields" style="display: none;">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="wipVisualType">Visual Type *</label>
-                            <select id="wipVisualType">
-                                <option value="">— Select type —</option>
-                                <option value="diagram">📐 Diagram (HOTAS layout, blocks)</option>
-                                <option value="flowchart">🔄 Flowchart (decision trees, flows)</option>
-                                <option value="schematic">⚙️ Schematic (detailed architecture)</option>
-                                <option value="reference">📄 Reference (quick-ref cards)</option>
-                                <option value="illustration">🖼️ Illustration (annotated screenshots)</option>
-                            </select>
-                            <p class="hint">What kind of visual?</p>
-                        </div>
-                        <div class="form-group">
-                            <label for="wipVisualExt">File Format *</label>
-                            <select id="wipVisualExt">
-                                <option value="">— Select format —</option>
-                                <option value=".svg">.svg (Scalable Vector)</option>
-                                <option value=".pdf">.pdf (PDF)</option>
-                                <option value=".png">.png (Raster Image)</option>
-                                <option value=".tex">.tex (TikZ Diagram)</option>
-                            </select>
-                            <p class="hint">File format</p>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="form-row">
                 <div class="form-group">
-                    <label for="wipTitle">Title (raw text) *</label>
-                    <input type="text" id="wipTitle" placeholder="e.g., 'CMS Actuation Logic in HOTAS'" required>
-                    <p class="hint">Will be auto-slugified to 2–4 concepts</p>
+                    <label>Data (YYYY-MM-DD)</label>
+                    <input type="date" id="wipDate">
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="wipStatus">Status *</label>
-                    <select id="wipStatus" required>
-                        <option value="dev">dev (Development — new, never reviewed)</option>
-                        <option value="review">review (In review — human feedback)</option>
-                        <option value="final">final (Final — approved, ready to integrate)</option>
-                        <option value="approved">approved (Approved — integrated, archived)</option>
-                        <option value="deprecated">deprecated (Deprecated — discarded)</option>
-                    </select>
-                    <p class="hint">Default: dev for new files</p>
-                </div>
+            <div class="button-group">
+                <button class="generate" onclick="generateWipName()">Gerar Nome WIP</button>
+                <button class="reset" onclick="resetWipForm()">Limpar</button>
+            </div>
 
-                <div class="form-group">
-                    <label for="wipDate">Date (YYYY-MM-DD) *</label>
-                    <input type="date" id="wipDate" required>
-                    <p class="hint">ISO format (YYYY-MM-DD)</p>
-                </div>
-
-                <div class="button-group">
-                    <button type="submit" class="btn-generate">🎯 Generate WIP Name</button>
-                    <button type="reset" class="btn-reset">🔄 Reset</button>
-                </div>
-            </form>
-
-            <div class="result-section" id="wipResult">
-                <h3 style="color: #38bdf8; margin-bottom: 16px;">✨ Generated WIP Filename</h3>
-                <div class="result-box">
-                    <span class="result-filename" id="wipFilename"></span>
-                    <button type="button" class="btn-copy" onclick="copyToClipboard('wip')">📋 Copy</button>
-                </div>
-                <div class="breakdown" id="wipBreakdown"></div>
-                <div class="info-box">
-                    <strong>📌 Next Steps:</strong><br>
-                    1. Copy filename above<br>
-                    2. Create file in WIP/ with this name<br>
-                    3. Start editing!
-                </div>
+            <div id="wipResult" class="result-box">
+                <h3>Nome Gerado:</h3>
+                <div class="result-display" id="wipNameDisplay"></div>
+                <div class="validation-box" id="wipValidation"></div>
+                <button class="copy-button" onclick="copyToClipboard('wipNameDisplay')">📋 Copiar para Clipboard</button>
             </div>
         </div>
 
-        <!-- TAB 2: GUIDE VERSION NAMING -->
-        <div id="version" class="tab-content">
-            <form class="form-section" id="versionForm">
-                <h2 style="color: #38bdf8; margin-bottom: 20px;">📦 Guide Version Naming Generator</h2>
-                <p style="color: #94a3b8; margin-bottom: 20px; font-size: 13px;">
-                    Generate guide version names following VERSION-SYSTEM v4-2.md
-                </p>
+        <!-- TAB 2: Gerar Nome Version System -->
+        <div id="version-gen" class="tab-content">
+            <h2>Gerador de Nome Version System 🔢</h2>
+            <p style="color: #9ca3af; margin-bottom: 24px;">Crie nomes para snapshots com validação semântica</p>
 
-                <div class="error-message" id="versionError"></div>
+            <div class="form-group">
+                <label>
+                    Versão Atual do guide.tex
+                    <span class="info-link" title="Ex: 0.1.4.0 ou 1.0.0">?</span>
+                </label>
+                <input type="text" id="currentVersion" placeholder="Ex: 0.1.4.0 ou 1.0.0" onchange="detectRegime()">
+            </div>
 
+            <div id="regimeInfo" style="background: rgba(32, 138, 158, 0.15); border-left: 4px solid #208a9e; padding: 12px 16px; border-radius: 4px; margin-bottom: 24px; display: none;">
+                <strong style="color: #32b8c6;">Regime Detectado:</strong>
+                <span id="regimeType" style="margin-left: 8px;"></span>
+            </div>
+
+            <div class="form-row">
                 <div class="form-group">
-                    <label for="versionCurrent">Current Version (auto-read) *</label>
-                    <input type="text" id="versionCurrent" placeholder="e.g., 0.2.2.0" readonly style="background: rgba(30, 41, 59, 0.5); color: #94a3b8;">
-                    <p class="hint">Auto-reads from docs/version-system-v4-2.md. Edit manually if needed.</p>
-                </div>
-
-                <div class="form-group">
-                    <label for="versionType">Release Type *</label>
-                    <select id="versionType" required>
-                        <option value="">— Select type —</option>
-                        <option value="major">MAJOR: New chapter (X.0.0.0)</option>
-                        <option value="minor">MINOR: New section/table (0.X.0.0)</option>
-                        <option value="patch">PATCH: Bug fixes, improvements (0.0.X.0)</option>
-                        <option value="hotfix">HOTFIX: Urgent fixes only (0.0.0.X)</option>
+                    <label>Tipo de Mudança</label>
+                    <select id="changeType">
+                        <option value="">Selecione o tipo de mudança...</option>
+                        <optgroup id="preGroup" label="Pré-Publicação (0.x.x.x)">
+                            <option value="new-chapter">Novo capítulo entra no guide</option>
+                            <option value="restructure-chapter">Reestruturação de seções</option>
+                            <option value="table-major">Tabelas mudam uso do capítulo</option>
+                            <option value="latex-bugfix">Correção de erros LaTeX</option>
+                            <option value="typo-fix">Typos e micro-ajustes</option>
+                            <option value="table-minor">Ajustes pequenos em tabelas</option>
+                        </optgroup>
+                        <optgroup id="postGroup" label="Pós-Publicação (≥1.0)" style="display:none;">
+                            <option value="major-reorg">Reorganizar estrutura (MAJOR)</option>
+                            <option value="scope-change">Mudar escopo global (MAJOR)</option>
+                            <option value="add-chapter">Adicionar novo capítulo (MINOR)</option>
+                            <option value="expand-chapters">Expandir capítulos (MINOR)</option>
+                            <option value="errata">Correções localizadas (PATCH)</option>
+                            <option value="typo">Typos e gramática (PATCH)</option>
+                        </optgroup>
                     </select>
-                    <p class="hint">What changed?</p>
                 </div>
+            </div>
 
+            <div class="form-row">
                 <div class="form-group">
-                    <label for="versionDate">Date (YYYY-MM-DD) *</label>
-                    <input type="date" id="versionDate" required>
-                    <p class="hint">Release date (ISO format)</p>
+                    <label>Data do Snapshot (YYYYMMDD)</label>
+                    <input type="date" id="snapshotDate">
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="versionDescription">What changed? (optional)</label>
-                    <input type="text" id="versionDescription" placeholder="e.g., 'Added C5 S2 CMS Actuation section'">
-                    <p class="hint">For your reference/notes</p>
-                </div>
+            <div class="button-group">
+                <button class="generate" onclick="generateVersionName()">Gerar Nome de Snapshot</button>
+                <button class="reset" onclick="resetVersionForm()">Limpar</button>
+            </div>
 
-                <div class="button-group">
-                    <button type="submit" class="btn-generate">🎯 Generate Version Name</button>
-                    <button type="reset" class="btn-reset">🔄 Reset</button>
+            <div id="versionResult" class="result-box">
+                <h3>Snapshot Gerado:</h3>
+                <div style="margin-bottom: 16px;">
+                    <div style="color: #9ca3af; font-size: 12px; margin-bottom: 6px;">Nome do arquivo:</div>
+                    <div class="result-display" id="versionNameDisplay"></div>
                 </div>
-            </form>
-
-            <div class="result-section" id="versionResult">
-                <h3 style="color: #38bdf8; margin-bottom: 16px;">✨ Generated Guide Version Name</h3>
-                <div class="result-box">
-                    <span class="result-filename" id="versionFilename"></span>
-                    <button type="button" class="btn-copy" onclick="copyToClipboard('version')">📋 Copy</button>
+                <div style="margin-bottom: 16px;">
+                    <div style="color: #9ca3af; font-size: 12px; margin-bottom: 6px;">Macros LaTeX:</div>
+                    <div class="result-display" id="versionMacrosDisplay"></div>
                 </div>
-                <div class="breakdown" id="versionBreakdown"></div>
-                <div class="info-box">
-                    <strong>📌 Next Steps:</strong><br>
-                    1. Copy filename above<br>
-                    2. Rename your guide file: guide-v{version}-{date}.tex<br>
-                    3. Update VERSION-SYSTEM-v4-2.md with new version<br>
-                    4. Commit to version control
-                </div>
+                <div class="validation-box" id="versionValidation"></div>
+                <button class="copy-button" onclick="copyToClipboard('versionNameDisplay')">📋 Copiar Nome</button>
+                <button class="copy-button" onclick="copyToClipboard('versionMacrosDisplay')" style="margin-left: 8px;">📋 Copiar Macros</button>
             </div>
         </div>
 
-        <!-- TAB 3: RULES & FLOWCHART -->
-        <div id="rules" class="tab-content">
-            <div class="form-section">
-                <h2 style="color: #38bdf8; margin-bottom: 24px;">📋 Decision Flowchart & Algorithms</h2>
+        <!-- TAB 3: Regras WIP -->
+        <div id="wip-rules" class="tab-content">
+            <div class="rules-content">
+                <h2>📋 Regras WIP - Convenção de Nomes</h2>
 
-                <h3 style="color: #cbd5e1; margin: 24px 0 16px 0; font-size: 16px;">🔄 When to Use WIP Naming vs Guide Version Naming</h3>
-
-                <div class="flowchart-step">
-                    <strong>Scenario 1: You're creating a new individual file</strong><br>
-                    ↓ Pergunta: Isto é para brainstorm/draft/research?<br>
-                    ├─ SIM → Use WIP-NAME-GENERATOR<br>
-                    │  Exemplo: notes-C5-cms-research-outline-dev-2026-01-09.md<br>
-                    └─ NÃO → Continue...
-                </div>
-
-                <div class="flowchart-step">
-                    <strong>Scenario 2: Is it a section/table/visual of the guide?</strong><br>
-                    ├─ SIM → Use WIP-NAME-GENERATOR<br>
-                    │  Exemplo: section-C5-S2-cms-actuation-logic-dev-2026-01-09.tex<br>
-                    └─ NÃO → Continue...
-                </div>
-
-                <div class="flowchart-step">
-                    <strong>Scenario 3: Are you integrating into the FINAL GUIDE?</strong><br>
-                    └─ SIM → Use GUIDE-VERSION-GENERATOR<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;Resultado: guide-v0.2.2.1-20260109.tex
-                </div>
-
-                <div class="flowchart-step">
-                    <strong>Scenario 4: You finished several sections and will release new guide version</strong><br>
-                    ├─ How many changes?<br>
-                    │  ├─ Only corrections → PATCH (0.2.2.1)<br>
-                    │  ├─ New section/table → MINOR (0.2.3.0)<br>
-                    │  └─ New chapter → MAJOR (0.3.0.0)<br>
-                    └─ Use GUIDE-VERSION-GENERATOR
-                </div>
-
-                <h3 style="color: #cbd5e1; margin: 32px 0 16px 0; font-size: 16px;">🔤 WIP Naming Algorithm (Deterministic)</h3>
-
-                <div class="algorithm-box">INPUT: type, chapter, title, status, date, [section], [subsection]
-OUTPUT: filename
-
-STEP 1: Validate Inputs
-├─ type ∈ {section, table, notes, visual, chapter} → ASSERT
-├─ chapter ∈ {C1-C7, GEN} → ASSERT
-├─ date matches YYYY-MM-DD → ASSERT
-└─ status ∈ {dev, review, final, approved, deprecated} → ASSERT
-
-STEP 2: Generate Slug from Title
-├─ lowercase(title)
-├─ remove_accents()
-├─ remove_special_chars()
-├─ split_into_words()
-├─ select_2_to_4_concepts()
-├─ keep_known_acronyms(TMS, DMS, CMS, FCR, etc)
-└─ join_with_hyphens() → slug (e.g., "cms-actuation-logic")
-
-STEP 3: Build Filename by Type
-IF type = "section":
-  IF subsection exists:
-    filename = section-{chapter}-{section}-{subsection}-{slug}-{status}-{date}.tex
-  ELSE:
-    filename = section-{chapter}-{section}-{slug}-{status}-{date}.tex
-
-ELSE IF type = "table":
-  filename = table-{chapter}-{context}-{switch}-{status}-{date}.tex
-
-ELSE IF type = "notes":
-  filename = notes-{chapter}-{slug}-{notes_type}-{date}.md
-  (Note: No status for notes)
-
-ELSE IF type = "visual":
-  filename = visual-{chapter}-{slug}-{visual_type}-{status}-{date}{ext}
-
-ELSE IF type = "chapter":
-  filename = chapter-{chapter}-{slug}-{status}-{date}.tex
-
-STEP 4: Validate Length
-├─ IF length(filename) > 100 → WARN to shorten slug
-└─ RETURN filename
-                </div>
-
-                <h3 style="color: #cbd5e1; margin: 32px 0 16px 0; font-size: 16px;">📦 Guide Version Algorithm (Semantic Versioning)</h3>
-
-                <div class="algorithm-box">INPUT: current_version, release_type, date
-OUTPUT: next_version, filename
-
-STEP 1: Parse Current Version
-├─ current_version = "0.2.2.0"
-├─ major, minor, patch, increment = extract()
-└─ Result: {0, 2, 2, 0}
-
-STEP 2: Calculate Next Version by Release Type
-IF release_type = "major":
-  ├─ major = major + 1
-  ├─ minor = 0
-  ├─ patch = 0
-  └─ increment = 0
-     // Example: 0.2.2.0 → 1.0.0.0
-
-ELSE IF release_type = "minor":
-  ├─ minor = minor + 1
-  ├─ patch = 0
-  └─ increment = 0
-     // Example: 0.2.2.0 → 0.3.0.0
-
-ELSE IF release_type = "patch":
-  ├─ patch = patch + 1
-  └─ increment = 0
-     // Example: 0.2.2.0 → 0.2.3.0
-
-ELSE IF release_type = "hotfix":
-  └─ increment = increment + 1
-     // Example: 0.2.2.0 → 0.2.2.1
-
-STEP 3: Format Output
-├─ next_version = "{major}.{minor}.{patch}.{increment}"
-├─ date_formatted = remove("-" from date) // 2026-01-09 → 20260109
-├─ filename = "guide-v" + next_version + "-" + date_formatted + ".tex"
-└─ RETURN {next_version, filename}
-
-STEP 4: Update VERSION-SYSTEM-v4-2.md
-├─ Replace current version
-└─ COMMIT to version control
-                </div>
-
-                <h3 style="color: #cbd5e1; margin: 32px 0 16px 0; font-size: 16px;">✅ Decision Summary Table</h3>
-
-                <table style="width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 12px;">
-                    <tr style="background: rgba(56, 189, 248, 0.1);">
-                        <th style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); text-align: left; color: #38bdf8;">Scenario</th>
-                        <th style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); text-align: left; color: #38bdf8;">Generator</th>
-                        <th style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); text-align: left; color: #38bdf8;">Example</th>
+                <h3 id="categorias">Categorias de Arquivos</h3>
+                <table>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Padrão</th>
+                        <th>Exemplo</th>
                     </tr>
-                    <tr style="background: rgba(30, 41, 59, 0.5);">
-                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #cbd5e1;">New section to write</td>
-                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #38bdf8;">TAB 1: WIP</td>
-                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #cbd5e1;">section-C5-S2-cms-actuation-logic-dev-2026-01-09.tex</td>
+                    <tr>
+                        <td><strong>Chapter</strong></td>
+                        <td><code>chapter-C{N}-{TITLE}-{STATUS}-{DATE}.tex</code></td>
+                        <td><code>chapter-C3-tms-target-management-dev-2026-01-09.tex</code></td>
                     </tr>
-                    <tr style="background: rgba(30, 41, 59, 0.5);">
-                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #cbd5e1;">Research notes</td>
-                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #38bdf8;">TAB 1: WIP</td>
-                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #cbd5e1;">notes-C5-cms-research-outline-2026-01-09.md</td>
+                    <tr>
+                        <td><strong>Section</strong></td>
+                        <td><code>section-C{N}-S{M}[-S{K}]-{TITLE}-{STATUS}-{DATE}.tex</code></td>
+                        <td><code>section-C3-S2-fcr-crm-modes-review-2026-01-18.tex</code></td>
                     </tr>
-                    <tr style="background: rgba(30, 41, 59, 0.5);">
-                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #cbd5e1;">Ready to release new guide</td>
-                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #38bdf8;">TAB 2: Version</td>
-                        <td style="padding: 8px; border: 1px solid rgba(148, 163, 184, 0.2); color: #cbd5e1;">guide-v0.2.2.1-20260109.tex</td>
+                    <tr>
+                        <td><strong>Table</strong></td>
+                        <td><code>table-C{N}-{CONTEXT}-{SWITCH}-{STATUS}-{DATE}.tex</code></td>
+                        <td><code>table-C3-AA-TMS-dev-2026-01-15.tex</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Notes</strong></td>
+                        <td><code>notes-C{N}-{TOPIC}-{TYPE}-{DATE}.md</code></td>
+                        <td><code>notes-C5-cms-structure-outline-2026-01-15.md</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Visual</strong></td>
+                        <td><code>visual-C{N}-{DESC}-{TYPE}-{STATUS}-{DATE}.{ext}</code></td>
+                        <td><code>visual-C7-tms-hat-layout-diagram-dev-2026-01-28.svg</code></td>
                     </tr>
                 </table>
 
+                <h3>Status Codes</h3>
+                <table>
+                    <tr>
+                        <th>Status</th>
+                        <th>Significado</th>
+                        <th>Arquivo em WIP?</th>
+                        <th>Próximo Status</th>
+                    </tr>
+                    <tr>
+                        <td><code>dev</code></td>
+                        <td>Bruto, nunca revisado</td>
+                        <td>✓ Sim</td>
+                        <td>review, deprecated</td>
+                    </tr>
+                    <tr>
+                        <td><code>review</code></td>
+                        <td>Em iteração ativa</td>
+                        <td>✓ Sim</td>
+                        <td>review, final, deprecated</td>
+                    </tr>
+                    <tr>
+                        <td><code>final</code></td>
+                        <td>Aprovado, pronto para integrar</td>
+                        <td>✓ Sim</td>
+                        <td>approved, deprecated</td>
+                    </tr>
+                    <tr>
+                        <td><code>approved</code></td>
+                        <td>Integrado e arquivado</td>
+                        <td>✗ ARCHIVE/</td>
+                        <td>(final)</td>
+                    </tr>
+                    <tr>
+                        <td><code>deprecated</code></td>
+                        <td>Abandonado</td>
+                        <td>✗ ARCHIVE/</td>
+                        <td>(final)</td>
+                    </tr>
+                </table>
+
+                <h3 id="transicoes">Transições de Status Permitidas</h3>
+                <table>
+                    <tr>
+                        <th>De</th>
+                        <th>Para</th>
+                        <th>Permitido?</th>
+                        <th>Ação</th>
+                    </tr>
+                    <tr>
+                        <td><code>dev</code></td>
+                        <td><code>review</code></td>
+                        <td>✅</td>
+                        <td>Renomear, mover em WIP/</td>
+                    </tr>
+                    <tr>
+                        <td><code>review</code></td>
+                        <td><code>review</code></td>
+                        <td>✅</td>
+                        <td>Iteração contínua (sem rename)</td>
+                    </tr>
+                    <tr>
+                        <td><code>review</code></td>
+                        <td><code>final</code></td>
+                        <td>✅</td>
+                        <td>Renomear, mover em WIP/</td>
+                    </tr>
+                    <tr>
+                        <td><code>final</code></td>
+                        <td><code>approved</code></td>
+                        <td>✅</td>
+                        <td>Integrar em guide, mover para ARCHIVE/</td>
+                    </tr>
+                    <tr>
+                        <td><code>review</code></td>
+                        <td><code>deprecated</code></td>
+                        <td>✅</td>
+                        <td>Abandonar, mover para ARCHIVE/</td>
+                    </tr>
+                    <tr>
+                        <td><code>final</code></td>
+                        <td><code>deprecated</code></td>
+                        <td>✅</td>
+                        <td>Abandonar, mover para ARCHIVE/</td>
+                    </tr>
+                    <tr>
+                        <td><code>dev</code></td>
+                        <td><code>deprecated</code></td>
+                        <td>✅</td>
+                        <td>Abandonar, mover para ARCHIVE/</td>
+                    </tr>
+                    <tr>
+                        <td><code>dev</code></td>
+                        <td><code>dev</code></td>
+                        <td>✅</td>
+                        <td>Salvar (sem rename)</td>
+                    </tr>
+                </table>
+
+                <div class="alert-warning">
+                    <strong>⚠️ Transições Proibidas:</strong><br>
+                    ❌ review → dev (nunca voltar para desenvolvimento bruto)<br>
+                    ❌ final → review (nunca regredir após aprovação)<br>
+                    ❌ final → dev (nunca regredir)<br>
+                    ❌ approved → qualquer (imutável após integração)<br>
+                    ❌ deprecated → qualquer (final e immutável)
+                </div>
+
+                <h3 id="integracao">Integração WIP → Guide (Workflow Completo)</h3>
+                <p><strong>Quando um arquivo WIP passa para approved:</strong></p>
+                <ol>
+                    <li><strong>Arquivo em status final:</strong> <code>section-C3-S2-...-final-2026-01-18.tex</code> (em WIP/)</li>
+                    <li><strong>Integração manual:</strong> Copia conteúdo em <code>guide.tex</code> (raiz)</li>
+                    <li><strong>Compila e testa:</strong> <code>pdflatex guide.tex</code> sem erros</li>
+                    <li><strong>Incrementa versão:</strong> Conforme regras de semântica (próxima aba)</li>
+                    <li><strong>Cria snapshot:</strong> <code>guide-vNEW.VERSION-YYYYMMDD.tex</code> em WIP/GUIDE/</li>
+                    <li><strong>Renomeia WIP file:</strong> <code>section-C3-S2-...-approved-2026-01-18.tex</code></li>
+                    <li><strong>Move para ARCHIVE/:</strong> Arquivo agora em <code>ARCHIVE/section-C3-S2-...-approved-2026-01-18.tex</code></li>
+                    <li><strong>Atualiza PROJECT-TRACKING:</strong> Registra integração com versão nova</li>
+                </ol>
+
+                <h3 id="estrutura">Estrutura de Pastas</h3>
+                <div class="example-box">
+                    <strong>WIP/</strong> (work-in-progress - Apenas arquivos com status dev, review, final)<br>
+                    ├── chapter-*.tex<br>
+                    ├── section-*.tex<br>
+                    ├── table-*.tex<br>
+                    ├── notes-*.md<br>
+                    ├── visual-*.*<br>
+                    └── <strong>GUIDE/</strong><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;├── guide-v0.1.4.0-20260106.tex (snapshots)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;└── prepub/ (histórico pré-publicação)<br><br>
+                    <strong>ARCHIVE/</strong> (completed/deprecated - status approved ou deprecated)<br>
+                    ├── chapter-*-approved-*.tex<br>
+                    ├── section-*-approved-*.tex<br>
+                    ├── *-deprecated-*.tex<br>
+                    └── <strong>GUIDE/</strong><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;├── published/ (snapshots ≥ v1.0.0)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;└── prepub/ (snapshots 0.x.x.x)
+                </div>
+
+                <h3>Regras Globais de Nomes</h3>
+                <ul>
+                    <li><strong>Caracteres:</strong> apenas <code>a-z</code>, <code>0-9</code>, hífens <code>-</code></li>
+                    <li><strong>Sem espaços:</strong> use hífens para separar palavras</li>
+                    <li><strong>Case:</strong> apenas minúsculas</li>
+                    <li><strong>Sem pontos no slug:</strong> exceto extensão (.tex, .md, .svg, etc.)</li>
+                    <li><strong>Data:</strong> <code>YYYY-MM-DD</code> (ISO 8601)</li>
+                    <li><strong>Comprimento:</strong> máximo 100 caracteres</li>
+                </ul>
+
+                <h3>🎯 Regras de Ouro</h3>
+                <ol>
+                    <li>✅ Template obrigatório: sempre copiar <code>TEMPLATES/template-wip-V1.0.tex</code></li>
+                    <li>✅ WIP não afeta versão: apenas integração incrementa versão</li>
+                    <li>✅ Status algorítmico: transições seguem matriz permitida</li>
+                    <li>✅ Humano controla aprovação: IA não declara final/approved</li>
+                    <li>✅ Data em nome: permite rastrear histórico</li>
+                    <li>✅ Sem pontos no slug: clareza de estrutura</li>
+                </ol>
             </div>
         </div>
 
-    </div>
+        <!-- TAB 4: Regras Version System -->
+        <div id="version-rules" class="tab-content">
+            <div class="rules-content">
+                <h2>🔢 Regras Version System - Semântica Completa</h2>
 
-    <footer>
-        <p><strong>WIP + Guide Version Name Generator v2.0</strong></p>
-        <p>Unified workflow for WIP-FILE-NAMING v1.3 + VERSION-SYSTEM v4-2.md</p>
-        <p style="margin-top: 12px; color: #475569;">Updated: 09 January 2026 | Status: Production Ready</p>
-    </footer>
+                <h3 id="semantica">Semântica de Versões (0.x.x.x vs x.x.x)</h3>
+
+                <h4>Pré-Publicação (0.x.x.x) - Desenvolvimento</h4>
+                <table>
+                    <tr>
+                        <th>Posição</th>
+                        <th>Nome</th>
+                        <th>Range</th>
+                        <th>Significado</th>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td><strong>MAJOR</strong></td>
+                        <td>0 (fixo)</td>
+                        <td>Indicador: documento em desenvolvimento, não publicado</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td><strong>MINOR</strong></td>
+                        <td>1-7</td>
+                        <td>Qual capítulo está em desenvolvimento (ordem de entrada)</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><strong>PATCH</strong></td>
+                        <td>0+</td>
+                        <td>Mudanças estruturais dentro do capítulo ativo</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><strong>SUBPATCH</strong></td>
+                        <td>0+</td>
+                        <td>Refinamentos menores (typos, ajustes, não estruturais)</td>
+                    </tr>
+                </table>
+
+                <div class="alert-success">
+                    <strong>Exemplos Pré-Publicação:</strong><br>
+                    • <code>0.1.0.0</code> = 1º capítulo, estrutura inicial, nenhum refinamento<br>
+                    • <code>0.2.3.0</code> = 2º capítulo, 3ª mudança estrutural, nenhum refinamento<br>
+                    • <code>0.2.3.2</code> = ... + 2º refinamento (typo fix)<br>
+                    • <code>0.7.5.8</code> = 7º capítulo (último), 5 mudanças, 8 refinamentos
+                </div>
+
+                <h4>Pós-Publicação (≥1.0, x.x.x) - Edições Publicadas</h4>
+                <table>
+                    <tr>
+                        <th>Posição</th>
+                        <th>Nome</th>
+                        <th>Significado</th>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td><strong>MAJOR</strong></td>
+                        <td>Edição do guia (1ª edição = v1, 2ª edição = v2, etc.)</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td><strong>MINOR</strong></td>
+                        <td>Mudanças substanciais mas compatíveis com edição</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><strong>PATCH</strong></td>
+                        <td>Correções menores e errata (sem mudança estrutural)</td>
+                    </tr>
+                </table>
+
+                <div class="alert-success">
+                    <strong>Exemplos Pós-Publicação:</strong><br>
+                    • <code>1.0.0</code> = 1ª edição publicada (mudança de 0.7.x.x)<br>
+                    • <code>1.1.0</code> = 1ª edição + expansão significativa (novo capítulo ou major reorg)<br>
+                    • <code>1.1.3</code> = ... + 3ª série de correções (errata)<br>
+                    • <code>2.0.0</code> = 2ª edição (revisão ampla)
+                </div>
+
+                <h3 id="incremento">Quando Incrementar (Regras Detalhadas)</h3>
+
+                <h4>Incrementos em Pré-Publicação (0.x.x.x)</h4>
+                <table>
+                    <tr>
+                        <th>Situação</th>
+                        <th>Incrementa</th>
+                        <th>Zera</th>
+                        <th>Exemplo</th>
+                    </tr>
+                    <tr>
+                        <td>Novo capítulo entra no guide</td>
+                        <td><strong>MINOR</strong></td>
+                        <td>PATCH, SUBPATCH</td>
+                        <td>0.1.4.2 → 0.2.0.0</td>
+                    </tr>
+                    <tr>
+                        <td>Nova seção relevante em capítulo ativo</td>
+                        <td><strong>PATCH</strong></td>
+                        <td>SUBPATCH</td>
+                        <td>0.1.1.3 → 0.1.2.0</td>
+                    </tr>
+                    <tr>
+                        <td>Reestruturação de seções/subseções</td>
+                        <td><strong>PATCH</strong></td>
+                        <td>SUBPATCH</td>
+                        <td>mudança estrutural no capítulo ativo</td>
+                    </tr>
+                    <tr>
+                        <td>Tabelas HOTAS mudam fundamentalmente</td>
+                        <td><strong>PATCH</strong></td>
+                        <td>SUBPATCH</td>
+                        <td>nova tabela central = mudança estrutural</td>
+                    </tr>
+                    <tr>
+                        <td>Corrigir erros LaTeX graves</td>
+                        <td><strong>PATCH</strong></td>
+                        <td>SUBPATCH</td>
+                        <td>erros que impediam compilação</td>
+                    </tr>
+                    <tr>
+                        <td>Typos, pontuação, ajustes menores</td>
+                        <td><strong>SUBPATCH</strong></td>
+                        <td>nada</td>
+                        <td>0.1.4.0 → 0.1.4.1</td>
+                    </tr>
+                    <tr>
+                        <td>Ajustes pequenos em células de tabela</td>
+                        <td><strong>SUBPATCH</strong></td>
+                        <td>nada</td>
+                        <td>refinamento local</td>
+                    </tr>
+                </table>
+
+                <h4>Incrementos em Pós-Publicação (≥1.0)</h4>
+                <table>
+                    <tr>
+                        <th>Situação</th>
+                        <th>Incrementa</th>
+                        <th>Zera</th>
+                        <th>Exemplo</th>
+                    </tr>
+                    <tr>
+                        <td>Reorganizar estrutura de capítulos</td>
+                        <td><strong>MAJOR</strong></td>
+                        <td>MINOR, PATCH</td>
+                        <td>merges/splits de capítulos</td>
+                    </tr>
+                    <tr>
+                        <td>Mudar escopo global do guia</td>
+                        <td><strong>MAJOR</strong></td>
+                        <td>MINOR, PATCH</td>
+                        <td>novo "bloco" grande ou foco</td>
+                    </tr>
+                    <tr>
+                        <td>Adaptar para nova versão do BMS</td>
+                        <td><strong>MAJOR</strong></td>
+                        <td>MINOR, PATCH</td>
+                        <td>compatibilidade de plataforma</td>
+                    </tr>
+                    <tr>
+                        <td>Adicionar novo capítulo importante</td>
+                        <td><strong>MINOR</strong></td>
+                        <td>PATCH</td>
+                        <td>1.0.0 → 1.1.0</td>
+                    </tr>
+                    <tr>
+                        <td>Expandir capítulos com seções chave</td>
+                        <td><strong>MINOR</strong></td>
+                        <td>PATCH</td>
+                        <td>adição de conteúdo significativo</td>
+                    </tr>
+                    <tr>
+                        <td>Reorganizar subset de capítulos</td>
+                        <td><strong>MINOR</strong></td>
+                        <td>PATCH</td>
+                        <td>reorganização interna limitada</td>
+                    </tr>
+                    <tr>
+                        <td>Corrigir erros localizados</td>
+                        <td><strong>PATCH</strong></td>
+                        <td>nada</td>
+                        <td>1.1.0 → 1.1.1</td>
+                    </tr>
+                    <tr>
+                        <td>Typos, gramática, clareza, refs</td>
+                        <td><strong>PATCH</strong></td>
+                        <td>nada</td>
+                        <td>errata</td>
+                    </tr>
+                </table>
+
+                <h3 id="macros">Macros LaTeX Obrigatórias (Preâmbulo)</h3>
+                <p>Todo snapshot e <code>guide.tex</code> deve conter no preâmbulo:</p>
+                <div class="example-box" style="background: rgba(15, 23, 42, 0.8); font-family: 'Courier New', monospace; font-size: 12px;">
+                    \newcommand{\docversion}{0.2.3.1}<br>
+                    \newcommand{\docbuild}{20260118}<br>
+                    \newcommand{\docstartdate}{05 January 2026}<br>
+                    \newcommand{\docenddate}{DD MMM 2026}<br>
+                    \newcommand{\chapterscompletedof}{2/7}<br>
+                    \newcommand{\tablesfilledpct}{35\%}<br>
+                    \newcommand{\fulldocversion}{\docversion-\docbuild}
+                </div>
+
+                <h4 style="color: #cbd5e1; margin-top: 16px;">Quando Atualizar Cada Macro</h4>
+                <ul>
+                    <li><code>\docversion</code> = Sempre que versão muda (MAJOR/MINOR/PATCH)</li>
+                    <li><code>\docbuild</code> = Sempre que faz snapshot (YYYYMMDD do snapshot)</li>
+                    <li><code>\docstartdate</code> = Quando inicia ciclo de publicação (muda com MAJOR)</li>
+                    <li><code>\docenddate</code> = Data estimada de conclusão</li>
+                    <li><code>\chapterscompletedof</code> = Contador de capítulos finalizados</li>
+                    <li><code>\tablesfilledpct</code> = Percentual de tabelas preenchidas</li>
+                </ul>
+
+                <h3 id="transicao">Transição 0.x.x.x → 1.0.0 (Release)</h3>
+                <p><strong>Critérios para declarar 1.0:</strong></p>
+                <div class="alert-success">
+                    <strong>✅ O guia está pronto para v1.0 quando:</strong><br>
+                    • Estrutura de capítulos estável (C1-C7 definidos)<br>
+                    • Guia utilizável na prática (ao menos 50% de conteúdo)<br>
+                    • Revisão mínima de consistência concluída<br>
+                    • Compilação LaTeX sem warnings críticos<br>
+                    • Testes e validação manual completados
+                </div>
+
+                <p><strong>Procedimento de Release:</strong></p>
+                <ol>
+                    <li>Escolher versão base <code>0.a.b.c</code> que representa "estado 1.0"</li>
+                    <li>Atualizar macros no <code>guide.tex</code>: <code>\docversion{1.0.0}</code></li>
+                    <li>Compilar e testar: <code>pdflatex guide.tex</code></li>
+                    <li>Criar snapshot: <code>WIP/GUIDE/published/guide-v1.0.0-YYYYMMDD.tex</code></li>
+                    <li>Copiar para raiz: <code>guide.tex</code> (atualizar)</li>
+                    <li>Mover histórico: <code>WIP/GUIDE/prepub/</code> (documentar transição)</li>
+                    <li>Registrar em PROJECT-TRACKING: evento de versão v1.0.0</li>
+                </ol>
+
+                <h3>Padrão de Nome de Snapshot (Resumido)</h3>
+                <div class="alert-success">
+                    <strong>Formato:</strong> <code>guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex</code><br><br>
+                    <strong>Exemplos:</strong><br>
+                    • Pré-publicação: <code>guide-v0.1.0.0-20260105.tex</code><br>
+                    • Pré-publicação: <code>guide-v0.2.3.1-20260118.tex</code><br>
+                    • Release: <code>guide-v1.0.0-20260210.tex</code><br>
+                    • Pós-publicação: <code>guide-v1.1.2-20260315.tex</code><br>
+                    • Major update: <code>guide-v2.0.0-20260620.tex</code>
+                </div>
+
+                <h3 id="sincronizacao">Sincronização Guide-Snapshots</h3>
+                <table>
+                    <tr>
+                        <th>Arquivo</th>
+                        <th>Localização</th>
+                        <th>Propósito</th>
+                        <th>Atualização</th>
+                    </tr>
+                    <tr>
+                        <td><code>guide.tex</code></td>
+                        <td>Raiz do projeto</td>
+                        <td>Arquivo principal de trabalho (sempre atualizado)</td>
+                        <td>Toda integração ou snapshot</td>
+                    </tr>
+                    <tr>
+                        <td><code>guide-v0.x.x.x-*.tex</code></td>
+                        <td>WIP/GUIDE/prepub/</td>
+                        <td>Histórico pré-publicação (imutável)</td>
+                        <td>Uma vez por versão pré-pub</td>
+                    </tr>
+                    <tr>
+                        <td><code>guide-v1.x.x-*.tex</code></td>
+                        <td>WIP/GUIDE/published/ ou ARCHIVE/GUIDE/</td>
+                        <td>Histórico publicado (imutável)</td>
+                        <td>Uma vez por versão pub</td>
+                    </tr>
+                </table>
+
+                <p><strong>Workflow de Snapshot:</strong></p>
+                <ol>
+                    <li>Integra arquivo WIP (final) em <code>guide.tex</code></li>
+                    <li>Versão incrementa conforme regras (PATCH/MINOR/MAJOR)</li>
+                    <li>Atualiza macros (<code>\docversion</code>, <code>\docbuild</code>, etc.)</li>
+                    <li>Cria snapshot: <code>guide-vNEW-YYYYMMDD.tex</code></li>
+                    <li>Copia snapshot para histórico (prepub/ ou published/)</li>
+                    <li>Copia <code>guide.tex</code> (raiz) do snapshot</li>
+                </ol>
+
+                <h3>Princípio Fundamental ⭐</h3>
+                <div class="alert-success">
+                    <strong>🎯 Regra de Ouro:</strong><br>
+                    Apenas conteúdo <strong>integrado no arquivo principal <code>guide.tex</code></strong> dispara incremento de versão.<br><br>
+                    Arquivos WIP isolados (<code>section-*.tex</code>, <code>table-*.tex</code>, <code>notes-*.md</code>) NÃO afetam versão até integração.<br><br>
+                    <strong>Versão = Estado do guide.tex + snapshots</strong><br>
+                    <strong>WIP = Desenvolvimento paralelo (não afeta versão)</strong>
+                </div>
+
+                <h3>🎯 Checklist Pré-Integração</h3>
+                <ul>
+                    <li>☑️ Arquivo WIP em status <code>final</code></li>
+                    <li>☑️ Conteúdo compila sem erros LaTeX (<code>pdflatex</code>)</li>
+                    <li>☑️ Referências cruzadas resolvidas (labels/refs válidas)</li>
+                    <li>☑️ Tabelas formatadas corretamente</li>
+                    <li>☑️ Nenhuma marcação de "TODO" ou "FIXME"</li>
+                    <li>☑️ Integração manual em <code>guide.tex</code> testada</li>
+                    <li>☑️ Nova versão incrementada conforme regras</li>
+                    <li>☑️ Snapshot criado: <code>guide-vNEW-YYYYMMDD.tex</code></li>
+                    <li>☑️ Macros atualizadas (<code>\docversion</code>, <code>\docbuild</code>)</li>
+                    <li>☑️ Arquivo WIP renomeado para <code>approved</code></li>
+                    <li>☑️ Arquivo WIP movido para ARCHIVE/</li>
+                    <li>☑️ PROJECT-TRACKING atualizado</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('wipDate').value = today;
-            document.getElementById('versionDate').value = today;
-            
-            // Try to read version from URL param or default
-            document.getElementById('versionCurrent').value = '0.2.2.0';
+            document.getElementById('snapshotDate').value = today;
         });
 
-        // Tab switching
-        function switchTab(tab) {
-            const tabs = document.querySelectorAll('.tab-content');
-            const buttons = document.querySelectorAll('.tab-button');
+        // Tab Switching with Event Object
+        function switchTab(event, tabName) {
+            event.preventDefault();
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
             
-            tabs.forEach(t => t.classList.remove('active'));
-            buttons.forEach(b => b.classList.remove('active'));
-            
-            document.getElementById(tab).classList.add('active');
+            document.getElementById(tabName).classList.add('active');
             event.target.classList.add('active');
         }
 
-        // WIP Form
-        function updateWipFields() {
+        // WIP Name Generator with Enhanced Validation
+        function updateWipTemplate() {
             const type = document.getElementById('wipType').value;
-            document.getElementById('wipSectionFields').style.display = type === 'section' ? 'block' : 'none';
-            document.getElementById('wipTableFields').style.display = type === 'table' ? 'block' : 'none';
-            document.getElementById('wipNotesTypeField').style.display = type === 'notes' ? 'block' : 'none';
-            document.getElementById('wipVisualFields').style.display = type === 'visual' ? 'block' : 'none';
-        }
+            const fieldsDiv = document.getElementById('wipFields');
+            fieldsDiv.innerHTML = '';
 
-        function slugify(text) {
-            if (!text) return '';
-            let slug = text.toLowerCase()
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '')
-                .replace(/[^a-z0-9\s-]/g, '')
-                .trim();
-            
-            let words = slug.split(/\s+/).filter(w => w.length > 0);
-            if (words.length > 4) words = words.slice(0, 4);
-            
-            slug = words.join('-');
-            if (slug.length > 40) slug = slug.substring(0, 40).replace(/-+$/, '');
-            
-            return slug;
-        }
-
-        document.getElementById('wipForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const errorEl = document.getElementById('wipError');
-            errorEl.textContent = '';
-            errorEl.classList.remove('show');
-            
-            const type = document.getElementById('wipType').value;
-            const chapter = document.getElementById('wipChapter').value;
-            const title = document.getElementById('wipTitle').value.trim();
-            const status = document.getElementById('wipStatus').value;
-            const date = document.getElementById('wipDate').value;
-            
-            if (!type || !chapter || !title || !status || !date) {
-                errorEl.textContent = '❌ Error: All required fields must be filled.';
-                errorEl.classList.add('show');
-                return;
-            }
-            
-            let filename = '';
-            let breakdown = {};
-            
-            try {
-                if (type === 'section') {
-                    const section = document.getElementById('wipSection').value.trim();
-                    const subsection = document.getElementById('wipSubsection').value.trim();
-                    
-                    if (!section || !section.match(/^S\d+$/)) {
-                        throw new Error('Section level must be like S1, S2, etc.');
-                    }
-                    
-                    const slug = slugify(title);
-                    const ext = section + (subsection ? '-' + subsection : '');
-                    
-                    filename = `section-${chapter}-${ext}-${slug}-${status}-${date}.tex`;
-                    breakdown = {
-                        'Type': 'section',
-                        'Chapter': chapter,
-                        'Section': section,
-                        'Subsection': subsection || '(none)',
-                        'Slug': slug,
-                        'Status': status,
-                        'Date': date
-                    };
-                }
-                else if (type === 'table') {
-                    const context = document.getElementById('wipContext').value;
-                    const switchType = document.getElementById('wipSwitch').value;
-                    
-                    if (!context || !switchType) {
-                        throw new Error('Table context and switch must be selected.');
-                    }
-                    
-                    filename = `table-${chapter}-${context}-${switchType}-${status}-${date}.tex`;
-                    breakdown = {
-                        'Type': 'table',
-                        'Chapter': chapter,
-                        'Context': context,
-                        'Switch': switchType,
-                        'Status': status,
-                        'Date': date
-                    };
-                }
-                else if (type === 'notes') {
-                    const notesType = document.getElementById('wipNotesType').value;
-                    const slug = slugify(title);
-                    
-                    if (!notesType) {
-                        throw new Error('Notes type must be selected.');
-                    }
-                    
-                    filename = `notes-${chapter}-${slug}-${notesType}-${date}.md`;
-                    breakdown = {
-                        'Type': 'notes',
-                        'Chapter': chapter,
-                        'Slug': slug,
-                        'Notes Type': notesType,
-                        'Date': date,
-                        'Note': 'No status for notes'
-                    };
-                }
-                else if (type === 'visual') {
-                    const visualType = document.getElementById('wipVisualType').value;
-                    const ext = document.getElementById('wipVisualExt').value;
-                    const slug = slugify(title);
-                    
-                    if (!visualType || !ext) {
-                        throw new Error('Visual type and format must be selected.');
-                    }
-                    
-                    filename = `visual-${chapter}-${slug}-${visualType}-${status}-${date}${ext}`;
-                    breakdown = {
-                        'Type': 'visual',
-                        'Chapter': chapter,
-                        'Slug': slug,
-                        'Visual Type': visualType,
-                        'Status': status,
-                        'Date': date,
-                        'Extension': ext
-                    };
-                }
-                else if (type === 'chapter') {
-                    const slug = slugify(title);
-                    filename = `chapter-${chapter}-${slug}-${status}-${date}.tex`;
-                    breakdown = {
-                        'Type': 'chapter',
-                        'Chapter': chapter,
-                        'Slug': slug,
-                        'Status': status,
-                        'Date': date
-                    };
-                }
-                
-                if (filename) {
-                    document.getElementById('wipFilename').textContent = filename;
-                    
-                    let breakdownHTML = '';
-                    for (const [key, value] of Object.entries(breakdown)) {
-                        breakdownHTML += `<div class="breakdown-item"><span class="breakdown-label">${key}:</span> <span class="breakdown-value">${value}</span></div>`;
-                    }
-                    document.getElementById('wipBreakdown').innerHTML = breakdownHTML;
-                    document.getElementById('wipResult').classList.add('active');
-                }
-            } catch (err) {
-                errorEl.textContent = '❌ Error: ' + err.message;
-                errorEl.classList.add('show');
-            }
-        });
-
-        // Version Form
-        document.getElementById('versionForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const errorEl = document.getElementById('versionError');
-            errorEl.textContent = '';
-            errorEl.classList.remove('show');
-            
-            const current = document.getElementById('versionCurrent').value;
-            const type = document.getElementById('versionType').value;
-            const date = document.getElementById('versionDate').value;
-            const description = document.getElementById('versionDescription').value;
-            
-            if (!current || !type || !date) {
-                errorEl.textContent = '❌ Error: All required fields must be filled.';
-                errorEl.classList.add('show');
-                return;
-            }
-            
-            try {
-                // Parse current version
-                const parts = current.split('.');
-                let major = parseInt(parts[0]) || 0;
-                let minor = parseInt(parts[1]) || 0;
-                let patch = parseInt(parts[2]) || 0;
-                let increment = parseInt(parts[3]) || 0;
-                
-                // Calculate next version
-                if (type === 'major') {
-                    major++;
-                    minor = 0;
-                    patch = 0;
-                    increment = 0;
-                } else if (type === 'minor') {
-                    minor++;
-                    patch = 0;
-                    increment = 0;
-                } else if (type === 'patch') {
-                    patch++;
-                    increment = 0;
-                } else if (type === 'hotfix') {
-                    increment++;
-                }
-                
-                const nextVersion = `${major}.${minor}.${patch}.${increment}`;
-                const dateFormatted = date.replace(/-/g, '');
-                const filename = `guide-v${nextVersion}-${dateFormatted}.tex`;
-                
-                document.getElementById('versionFilename').textContent = filename;
-                
-                const breakdown = `
-                    <div class="breakdown-item"><span class="breakdown-label">Current Version:</span> <span class="breakdown-value">v${current}</span></div>
-                    <div class="breakdown-item"><span class="breakdown-label">Release Type:</span> <span class="breakdown-value">${type}</span></div>
-                    <div class="breakdown-item"><span class="breakdown-label">Next Version:</span> <span class="breakdown-value">v${nextVersion}</span></div>
-                    <div class="breakdown-item"><span class="breakdown-label">Date:</span> <span class="breakdown-value">${date}</span></div>
-                    ${description ? `<div class="breakdown-item"><span class="breakdown-label">Changes:</span> <span class="breakdown-value">${description}</span></div>` : ''}
+            if (type === 'chapter') {
+                fieldsDiv.innerHTML = `
+                    <div class="form-group">
+                        <label>Número do Capítulo (C{N})</label>
+                        <select id="wipChapter">
+                            <option value="">Selecione...</option>
+                            <option value="1">C1</option>
+                            <option value="2">C2</option>
+                            <option value="3">C3</option>
+                            <option value="4">C4</option>
+                            <option value="5">C5</option>
+                            <option value="6">C6</option>
+                            <option value="7">C7</option>
+                        </select>
+                    </div>
                 `;
-                
-                document.getElementById('versionBreakdown').innerHTML = breakdown;
-                document.getElementById('versionResult').classList.add('active');
-            } catch (err) {
-                errorEl.textContent = '❌ Error: ' + err.message;
-                errorEl.classList.add('show');
+            } else if (type === 'section') {
+                fieldsDiv.innerHTML = `
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Capítulo (C{N})</label>
+                            <select id="wipChapter">
+                                <option value="">Selecione...</option>
+                                <option value="1">C1</option>
+                                <option value="2">C2</option>
+                                <option value="3">C3</option>
+                                <option value="4">C4</option>
+                                <option value="5">C5</option>
+                                <option value="6">C6</option>
+                                <option value="7">C7</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Seção (S{M})</label>
+                            <input type="number" id="wipSection" min="1" placeholder="Ex: 2">
+                        </div>
+                        <div class="form-group">
+                            <label>Subseção (S{K}) - Opcional</label>
+                            <input type="number" id="wipSubsection" min="1" placeholder="Opcional">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Status Inicial</label>
+                        <select id="wipStatus">
+                            <option value="dev" selected>dev (recomendado)</option>
+                            <option value="review">review (se já revisado)</option>
+                        </select>
+                    </div>
+                `;
+            } else if (type === 'table') {
+                fieldsDiv.innerHTML = `
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Capítulo (C{N})</label>
+                            <select id="wipChapter">
+                                <option value="">Selecione...</option>
+                                <option value="1">C1</option>
+                                <option value="2">C2</option>
+                                <option value="3">C3</option>
+                                <option value="4">C4</option>
+                                <option value="5">C5</option>
+                                <option value="6">C6</option>
+                                <option value="7">C7</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Contexto</label>
+                            <select id="wipContext">
+                                <option value="">Selecione...</option>
+                                <option value="AA">AA (Air-to-Air)</option>
+                                <option value="AG">AG (Air-to-Ground)</option>
+                                <option value="DGFT">DGFT (Defensive/TF)</option>
+                                <option value="NAV">NAV (Navigation)</option>
+                                <option value="MFDS">MFDS (Display)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Switch HOTAS</label>
+                            <select id="wipSwitch">
+                                <option value="">Selecione...</option>
+                                <option value="TMS">TMS</option>
+                                <option value="DMS">DMS</option>
+                                <option value="CMS">CMS</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Status Inicial</label>
+                        <select id="wipStatus">
+                            <option value="dev" selected>dev (recomendado)</option>
+                            <option value="review">review</option>
+                        </select>
+                    </div>
+                `;
+            } else if (type === 'notes') {
+                fieldsDiv.innerHTML = `
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Capítulo (C{N}) ou GEN</label>
+                            <select id="wipChapter">
+                                <option value="">Selecione...</option>
+                                <option value="C1">C1</option>
+                                <option value="C2">C2</option>
+                                <option value="C3">C3</option>
+                                <option value="C4">C4</option>
+                                <option value="C5">C5</option>
+                                <option value="C6">C6</option>
+                                <option value="C7">C7</option>
+                                <option value="GEN">GEN (cross-chapter)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo de Nota</label>
+                            <select id="wipNoteType">
+                                <option value="">Selecione...</option>
+                                <option value="research">research</option>
+                                <option value="snippet">snippet</option>
+                                <option value="outline">outline</option>
+                                <option value="questions">questions</option>
+                                <option value="reference">reference</option>
+                                <option value="example">example</option>
+                            </select>
+                        </div>
+                    </div>
+                `;
+            } else if (type === 'visual') {
+                fieldsDiv.innerHTML = `
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Capítulo (C{N})</label>
+                            <select id="wipChapter">
+                                <option value="">Selecione...</option>
+                                <option value="1">C1</option>
+                                <option value="2">C2</option>
+                                <option value="3">C3</option>
+                                <option value="4">C4</option>
+                                <option value="5">C5</option>
+                                <option value="6">C6</option>
+                                <option value="7">C7</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo de Visual</label>
+                            <select id="wipVisualType">
+                                <option value="">Selecione...</option>
+                                <option value="diagram">diagram</option>
+                                <option value="flowchart">flowchart</option>
+                                <option value="schematic">schematic</option>
+                                <option value="reference">reference</option>
+                                <option value="illustration">illustration</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Extensão</label>
+                            <select id="wipExt">
+                                <option value="">Selecione...</option>
+                                <option value=".svg">SVG</option>
+                                <option value=".pdf">PDF</option>
+                                <option value=".png">PNG</option>
+                                <option value=".tex">TEX (TikZ)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Status Inicial</label>
+                        <select id="wipStatus">
+                            <option value="dev" selected>dev</option>
+                            <option value="review">review</option>
+                        </select>
+                    </div>
+                `;
             }
-        });
+        }
 
-        // Copy to clipboard
-        function copyToClipboard(tab) {
-            let text = '';
-            if (tab === 'wip') {
-                text = document.getElementById('wipFilename').textContent;
-            } else {
-                text = document.getElementById('versionFilename').textContent;
+        function generateWipName() {
+            const type = document.getElementById('wipType').value;
+            if (!type) {
+                alert('Selecione um tipo de arquivo');
+                return;
             }
-            
+
+            const title = document.getElementById('wipTitle').value.trim();
+            const date = document.getElementById('wipDate').value;
+
+            if (!title) {
+                alert('Preencha o título/descrição');
+                return;
+            }
+
+            if (!date) {
+                alert('Selecione uma data');
+                return;
+            }
+
+            let filename = '';
+            let validations = [];
+
+            if (type === 'chapter') {
+                const chapter = document.getElementById('wipChapter').value;
+                if (!chapter) {
+                    alert('Selecione o capítulo');
+                    return;
+                }
+                filename = `chapter-C${chapter}-${title}-dev-${date}.tex`;
+                validations = validateWip(filename, type, { chapter });
+            } else if (type === 'section') {
+                const chapter = document.getElementById('wipChapter').value;
+                const section = document.getElementById('wipSection').value;
+                const subsection = document.getElementById('wipSubsection').value;
+                const status = document.getElementById('wipStatus').value;
+
+                if (!chapter || !section) {
+                    alert('Preencha capítulo e seção');
+                    return;
+                }
+
+                let sectionPart = `C${chapter}-S${section}`;
+                if (subsection) sectionPart += `-S${subsection}`;
+
+                filename = `section-${sectionPart}-${title}-${status}-${date}.tex`;
+                validations = validateWip(filename, type, { chapter, section, status });
+            } else if (type === 'table') {
+                const chapter = document.getElementById('wipChapter').value;
+                const context = document.getElementById('wipContext').value;
+                const switchType = document.getElementById('wipSwitch').value;
+                const status = document.getElementById('wipStatus').value;
+
+                if (!chapter || !context || !switchType) {
+                    alert('Preencha todos os campos obrigatórios');
+                    return;
+                }
+
+                filename = `table-C${chapter}-${context}-${switchType}-${status}-${date}.tex`;
+                validations = validateWip(filename, type, { chapter, context, switchType, status });
+            } else if (type === 'notes') {
+                const chapter = document.getElementById('wipChapter').value;
+                const noteType = document.getElementById('wipNoteType').value;
+
+                if (!chapter || !noteType) {
+                    alert('Preencha capítulo e tipo');
+                    return;
+                }
+
+                filename = `notes-${chapter}-${title}-${noteType}-${date}.md`;
+                validations = validateWip(filename, type, { chapter, noteType });
+            } else if (type === 'visual') {
+                const chapter = document.getElementById('wipChapter').value;
+                const visualType = document.getElementById('wipVisualType').value;
+                const status = document.getElementById('wipStatus').value;
+                const ext = document.getElementById('wipExt').value;
+
+                if (!chapter || !visualType || !ext) {
+                    alert('Preencha todos os campos');
+                    return;
+                }
+
+                filename = `visual-C${chapter}-${title}-${visualType}-${status}-${date}${ext}`;
+                validations = validateWip(filename, type, { chapter, visualType, status });
+            }
+
+            displayResult('wipResult', 'wipNameDisplay', 'wipValidation', filename, validations);
+        }
+
+        function validateWip(filename, type, details) {
+            const validations = [];
+
+            // 1. Lowercase
+            validations.push({
+                pass: filename === filename.toLowerCase(),
+                text: 'Apenas minúsculas'
+            });
+
+            // 2. Caracteres válidos
+            const validCharsRegex = /^[a-z0-9\-\.]+$/;
+            validations.push({
+                pass: validCharsRegex.test(filename),
+                text: 'Apenas a-z, 0-9, hífens e ponto'
+            });
+
+            // 3. Sem espaços
+            validations.push({
+                pass: !filename.includes(' '),
+                text: 'Sem espaços'
+            });
+
+            // 4. Comprimento
+            validations.push({
+                pass: filename.length <= 100,
+                text: `Comprimento ≤ 100 (${filename.length} chars)`
+            });
+
+            // 5. Data válida
+            const dateRegex = /\d{4}-\d{2}-\d{2}/;
+            validations.push({
+                pass: dateRegex.test(filename),
+                text: 'Data formato YYYY-MM-DD'
+            });
+
+            // 6. Status válido
+            const validStatus = ['dev', 'review', 'final', 'approved', 'deprecated'];
+            validations.push({
+                pass: validStatus.some(s => filename.includes(s)),
+                text: 'Status válido'
+            });
+
+            // 7. Prefixo correto
+            validations.push({
+                pass: filename.startsWith(type + '-'),
+                text: `Começa com: ${type}-`
+            });
+
+            // 8. Tipo-específicas
+            if (type === 'chapter' && details.chapter) {
+                const chapterValid = parseInt(details.chapter) >= 1 && parseInt(details.chapter) <= 7;
+                validations.push({
+                    pass: chapterValid,
+                    text: `Capítulo válido (C1-C7): C${details.chapter}`
+                });
+            }
+
+            if (type === 'section' && details.section) {
+                validations.push({
+                    pass: parseInt(details.section) > 0,
+                    text: `Seção válida: S${details.section}`
+                });
+                validations.push({
+                    pass: details.status && ['dev', 'review', 'final'].includes(details.status),
+                    text: `Status válido: ${details.status}`
+                });
+            }
+
+            if (type === 'table') {
+                const contextValid = ['AA', 'AG', 'DGFT', 'NAV', 'MFDS'].includes(details.context);
+                const switchValid = ['TMS', 'DMS', 'CMS'].includes(details.switchType);
+                validations.push({
+                    pass: contextValid,
+                    text: `Contexto válido: ${details.context}`
+                });
+                validations.push({
+                    pass: switchValid,
+                    text: `Switch válido: ${details.switchType}`
+                });
+            }
+
+            if (type === 'notes') {
+                const noteTypeValid = ['research', 'snippet', 'outline', 'questions', 'reference', 'example'].includes(details.noteType);
+                validations.push({
+                    pass: noteTypeValid,
+                    text: `Tipo de nota válido: ${details.noteType}`
+                });
+            }
+
+            if (type === 'visual') {
+                const visualTypeValid = ['diagram', 'flowchart', 'schematic', 'reference', 'illustration'].includes(details.visualType);
+                validations.push({
+                    pass: visualTypeValid,
+                    text: `Tipo visual válido: ${details.visualType}`
+                });
+            }
+
+            return validations;
+        }
+
+        // Version System Generator with Enhanced Validation
+        function detectRegime() {
+            const version = document.getElementById('currentVersion').value;
+            if (!version) return;
+
+            const regimeInfo = document.getElementById('regimeInfo');
+            const regimeType = document.getElementById('regimeType');
+            const changeType = document.getElementById('changeType');
+            const preGroup = document.getElementById('preGroup');
+            const postGroup = document.getElementById('postGroup');
+
+            const isPre = version.startsWith('0.');
+            const isPost = !isPre && /^\d+\.\d+\.\d+$/.test(version);
+
+            if (isPre) {
+                regimeType.textContent = '🔵 Pré-Publicação (0.x.x.x)';
+                regimeInfo.style.display = 'block';
+                preGroup.style.display = 'optgroup';
+                postGroup.style.display = 'none';
+            } else if (isPost) {
+                regimeType.textContent = '🟢 Pós-Publicação (≥1.0, x.x.x)';
+                regimeInfo.style.display = 'block';
+                preGroup.style.display = 'none';
+                postGroup.style.display = 'optgroup';
+            } else {
+                regimeInfo.style.display = 'none';
+            }
+            changeType.value = '';
+        }
+
+        function generateVersionName() {
+            const currentVersion = document.getElementById('currentVersion').value;
+            const changeType = document.getElementById('changeType').value;
+            const snapshotDate = document.getElementById('snapshotDate').value;
+
+            if (!currentVersion || !changeType || !snapshotDate) {
+                alert('Preencha todos os campos obrigatórios');
+                return;
+            }
+
+            const versionParts = currentVersion.split('.').map(x => parseInt(x));
+            const isPre = currentVersion.startsWith('0.');
+
+            let newVersion = '';
+            let majorChange = '';
+
+            if (isPre) {
+                const [major, minor, patch, subpatch] = versionParts;
+
+                if (changeType === 'new-chapter') {
+                    newVersion = `0.${minor + 1}.0.0`;
+                    majorChange = '📌 MINOR incremented (novo capítulo)';
+                } else if (['restructure-chapter', 'table-major', 'latex-bugfix'].includes(changeType)) {
+                    newVersion = `0.${minor}.${(patch || 0) + 1}.0`;
+                    majorChange = '📌 PATCH incremented (mudança estrutural)';
+                } else if (['typo-fix', 'table-minor'].includes(changeType)) {
+                    newVersion = `0.${minor}.${patch || 0}.${(subpatch || 0) + 1}`;
+                    majorChange = '📌 SUBPATCH incremented (refinamento)';
+                }
+            } else {
+                const [major, minor, patch] = versionParts;
+
+                if (['major-reorg', 'scope-change'].includes(changeType)) {
+                    newVersion = `${major + 1}.0.0`;
+                    majorChange = '📌 MAJOR incremented (mudança ampla)';
+                } else if (['add-chapter', 'expand-chapters'].includes(changeType)) {
+                    newVersion = `${major}.${minor + 1}.0`;
+                    majorChange = '📌 MINOR incremented (expansão)';
+                } else if (['errata', 'typo'].includes(changeType)) {
+                    newVersion = `${major}.${minor}.${(patch || 0) + 1}`;
+                    majorChange = '📌 PATCH incremented (correção)';
+                }
+            }
+
+            const dateFormatted = snapshotDate.replace(/-/g, '');
+            const snapshotName = `guide-v${newVersion}-${dateFormatted}.tex`;
+            const macros = `\\newcommand{\\docversion}{${newVersion}}\n\\newcommand{\\docbuild}{${dateFormatted}}`;
+
+            const validations = validateVersion(snapshotName, newVersion);
+
+            const resultBox = document.getElementById('versionResult');
+            document.getElementById('versionNameDisplay').textContent = snapshotName;
+            document.getElementById('versionMacrosDisplay').textContent = macros;
+
+            let validationHTML = `<div style="margin-bottom: 12px;"><strong style="color: #32b8c6;">${majorChange}</strong></div>`;
+            validations.forEach(v => {
+                const icon = v.pass ? '✓' : '✗';
+                const iconClass = v.pass ? 'pass' : 'fail';
+                validationHTML += `
+                    <div class="validation-item">
+                        <div class="validation-icon ${iconClass}">${icon}</div>
+                        <div class="validation-text">${v.text}</div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('versionValidation').innerHTML = validationHTML;
+            resultBox.classList.add('show');
+        }
+
+        function validateVersion(filename, version) {
+            const validations = [];
+
+            validations.push({
+                pass: filename.match(/^guide-v[\d\.]+\-\d{8}\.tex$/),
+                text: 'Formato: guide-vVERSION-YYYYMMDD.tex'
+            });
+
+            validations.push({
+                pass: version.match(/^(0\.\d+\.\d+\.\d+|\d+\.\d+\.\d+)$/),
+                text: 'Versão: 0.x.x.x (pré) ou x.x.x (pós)'
+            });
+
+            validations.push({
+                pass: !filename.includes(' '),
+                text: 'Sem espaços'
+            });
+
+            validations.push({
+                pass: filename === filename.toLowerCase(),
+                text: 'Apenas minúsculas'
+            });
+
+            return validations;
+        }
+
+        function resetWipForm() {
+            document.getElementById('wipType').value = '';
+            document.getElementById('wipTitle').value = '';
+            document.getElementById('wipFields').innerHTML = '';
+            document.getElementById('wipResult').classList.remove('show');
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('wipDate').value = today;
+        }
+
+        function resetVersionForm() {
+            document.getElementById('currentVersion').value = '';
+            document.getElementById('changeType').value = '';
+            document.getElementById('snapshotDate').value = new Date().toISOString().split('T')[0];
+            document.getElementById('versionResult').classList.remove('show');
+            document.getElementById('regimeInfo').style.display = 'none';
+        }
+
+        function displayResult(resultBoxId, displayId, validationId, name, validations) {
+            const resultBox = document.getElementById(resultBoxId);
+            const display = document.getElementById(displayId);
+            const validation = document.getElementById(validationId);
+
+            display.textContent = name;
+
+            let validationHTML = '';
+            validations.forEach(v => {
+                const icon = v.pass ? '✓' : '✗';
+                const iconClass = v.pass ? 'pass' : 'fail';
+                validationHTML += `
+                    <div class="validation-item">
+                        <div class="validation-icon ${iconClass}">${icon}</div>
+                        <div class="validation-text">${v.text}</div>
+                    </div>
+                `;
+            });
+
+            validation.innerHTML = validationHTML;
+            resultBox.classList.add('show');
+        }
+
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+
             navigator.clipboard.writeText(text).then(() => {
-                const btn = event.target;
-                const original = btn.textContent;
-                btn.textContent = '✅ Copied!';
+                const button = event.target;
+                button.textContent = '✓ Copiado!';
+                button.classList.add('copied');
                 setTimeout(() => {
-                    btn.textContent = original;
+                    button.textContent = button.id.includes('version') ? '📋 Copiar' : '📋 Copiar para Clipboard';
+                    button.classList.remove('copied');
                 }, 2000);
             });
+        }
+
+        function scrollToSection(sectionId) {
+            setTimeout(() => {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100);
         }
     </script>
 </body>
