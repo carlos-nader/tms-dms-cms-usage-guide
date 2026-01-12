@@ -1,0 +1,299 @@
+% ============================================================================
+% FALCON BMS TMS/DMS/CMS HOTAS GUIDE
+% WIP FILE TEMPLATE V1.0 — FINAL (Briefing v0.2.0.1 + TOC Fix)
+% ============================================================================
+
+% IMPORTANTE: Este é um TEMPLATE padronizado para arquivos WIP (Work-In-Progress)
+% que serão integrados ao guide.tex.
+
+% Nomenclatura: Siga wip-naming-v1.3
+% Padrão: section-C{N}-S{M}[-S{K}]-{titulo}-{status}-{data}.tex
+% Exemplo: section-C5-S2-cms-actuation-hotas-tables-final-2026-01-10.tex
+
+% Status: dev | review | final | approved | deprecated
+% Locação: WIP/ (ativo) | ARCHIVE/ (aprovado/descartado)
+
+\documentclass[11pt,a4paper]{article}
+
+% --------------------------------------------------------------------------
+% BASIC ENCODING AND LANGUAGE
+% --------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% --------------------------------------------------------------------------
+% FONTS AND MICROTYPOGRAPHY
+% --------------------------------------------------------------------------
+
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --------------------------------------------------------------------------
+% PAGE GEOMETRY AND LAYOUT
+% --------------------------------------------------------------------------
+
+\usepackage{geometry}
+\geometry{a4paper, left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
+\usepackage{setspace}
+\onehalfspacing
+
+% --------------------------------------------------------------------------
+% COLORS AND LINKS
+% --------------------------------------------------------------------------
+
+\usepackage[table]{xcolor}
+\definecolor{linkblue}{HTML}{004488}
+\definecolor{linkred}{HTML}{882222}
+\definecolor{headerblue}{HTML}{003366}
+\definecolor{rowgray}{HTML}{F5F5F5}
+\definecolor{subheadgray}{HTML}{E0E0E0}
+\usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\usepackage{bookmark}
+
+% --------------------------------------------------------------------------
+% HEADERS AND FOOTERS
+% --------------------------------------------------------------------------
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --------------------------------------------------------------------------
+% TABLES AND MACROS
+% CORRECTD: \end commands repositioned --------------------------------------------------------------------------
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+% Custom Columns
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% HOTAS table environment (Briefing v0.2.0.1, Section 6)
+\newenvironment{hotastable}[1]{%
+  \small
+  \renewcommand{\arraystretch}{1.25}
+  \begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
+  \caption{#1}\\
+  \rowcolor{headerblue}
+  \textbf{\color{white}State} &
+  \textbf{\color{white}Dir} &
+  \textbf{\color{white}Act} &
+  \textbf{\color{white}Function} &
+  \textbf{\color{white}Effect / Nuance} &
+  \textbf{\color{white}Dash34} &
+  \textbf{\color{white}Train} \\
+  \endfirsthead
+  %
+  \rowcolor{headerblue}
+  \textbf{\color{white}State} &
+  \textbf{\color{white}Dir} &
+  \textbf{\color{white}Act} &
+  \textbf{\color{white}Function} &
+  \textbf{\color{white}Effect / Nuance} &
+  \textbf{\color{white}Dash34} &
+  \textbf{\color{white}Train} \\
+  \endhead
+  %
+  \multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+  \endfoot
+  %
+  \endlastfoot
+}{%
+  \end{longtable}
+}
+
+% --------------------------------------------------------------------------
+% SIMPLE REFERENCE MACROS FOR BMS DOCS
+% --------------------------------------------------------------------------
+
+\providecommand{\dashref}[1]{Dash-34~\S~#1}
+\providecommand{\dashone}[1]{Dash-1~\S~#1}
+\providecommand{\trnref}[1]{TRN~#1}
+\providecommand{\trnman}{BMS Training Manual 4.38.1}
+\providecommand{\bmsver}{Falcon BMS~4.38.1}
+\providecommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+
+% --------------------------------------------------------------------------
+% VERSION CONTROL MACROS
+% --------------------------------------------------------------------------
+
+\newcommand{\docversion}{C4-S1}
+\newcommand{\docbuild}{20260110}
+\newcommand{\fulldocversion}{\docversion+\docbuild}
+
+% --------------------------------------------------------------------------
+% GRAPHICS
+% --------------------------------------------------------------------------
+
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+
+% --------------------------------------------------------------------------
+% TITLE
+% --------------------------------------------------------------------------
+
+\title{TMS, DMS and CMS Usage Guide for \bmsver}
+\author{Carlos ``Metal'' Nader}
+\date{Version \fulldocversion{0.2.4.0} | January 2026}
+
+% --------------------------------------------------------------------------
+% DOCUMENT BEGIN
+% --------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+% ============================================================================
+
+% WIP FILE METADATA (NOT RENDERED IN PDF)
+
+% ============================================================================
+
+% File Name: section-C4-S1-concept-and-soi-dev-2026-01-12.tex
+
+% WIP Naming Convention: v1.4
+
+% Target Chapter: C4 (DMS — Display Management Switch)
+
+% Target Section: S1 (Concept and Sensor of Interest)
+
+% Target Subsection: S1.1, S1.2, S1.3
+
+%
+
+% WIP Status: dev
+
+% Created: 2026-01-12
+
+% Last Modified: 2026-01-12
+
+% Integration Status: TARGET v0.3.0.0
+
+%
+
+% Narrative Completion: 100%
+
+% Table Fill Status: 0% (tables belong to Section 4.3)
+
+%
+
+% Notes:
+
+% - Approved content from Carlos ``Metal'' Nader (2026-01-12)
+
+% - Sections 4.1.1, 4.1.2, 4.1.3 complete per briefing-v0.2.0.1 Section 3.1
+
+% - No tables in this section; content is purely narrative
+
+% - Cross-reference: Chapter 3 (TMS), Chapter 5 (CMS)
+
+% ============================================================================
+
+% ============================================================================
+
+% APPROVED CONTENT — DMS Introductory Narrative (Section 4.1)
+
+% ============================================================================
+
+\section{DMS — Display Management Switch}
+
+\label{sec:C4}
+
+\subsection{Concept and Sensor of Interest (SOI)}
+
+\label{sec:C4-S1}
+
+The Display Management Switch (DMS) is a four-direction spring-loaded hat located on the throttle grip. Its primary role is to manage which display or sensor receives hands-on control inputs, known as the Sensor of Interest (SOI), and to cycle through the Multifunction Display Set (MFDS) format pages.
+
+Unlike the Target Management Switch (TMS), which performs tactical functions such as target designation and data management (see Chapter 3), the DMS is a \textbf{transversal SOI architecture manager}. It does not designate targets or change radar modes directly; instead, it selects \textit{which display or sensor} the pilot is currently controlling with other HOTAS inputs (such as CURSOR/ENABLE or TMS).
+
+\subsubsection{SOI Definition and Scope Across Displays}
+
+\label{sec:C4-S1-S1}
+
+The Sensor of Interest (SOI) is the display or sensor that currently receives HOTAS cursor slew commands and, where applicable, TMS actions. At any moment, only one display can be the SOI. Valid SOI displays include:
+
+\begin{itemize}
+    \item \textbf{Fire Control Radar (FCR)} — A-A and A-G modes.
+    \item \textbf{Targeting Pod (TGP)} — when in A-G or A-A tracking.
+    \item \textbf{Horizontal Situation Display (HSD)} — all master modes.
+    \item \textbf{HARM Attack Display (HAD)} — A-G SEAD/EW context.
+    \item \textbf{Weapon page (WPN)} — IAMs, Maverick, Harpoon and other weapon-specific pages.
+    \item \textbf{Head-Up Display / Helmet Mounted Cueing System (HUD/HMCS)} — Navigation and A-G master modes only (not A-A or DGFT).
+\end{itemize}
+
+Displays that are \textit{not} valid SOI include: SMS (Stores Management Set), DTE (Data Transfer Equipment), TEST, and blank/inactive MFDS formats. These pages provide information or control but do not accept sensor-like slew or targeting inputs.
+
+The SOI is indicated visually:
+\begin{itemize}
+    \item On the \textbf{HUD/HMCS}: an asterisk (\texttt{*}) appears in the upper left corner when HUD/HMCS is the SOI.
+    \item On an \textbf{MFD}: a border outline appears around the edges of the display when it is the SOI. When an MFD format is \textit{not} the SOI, the text ``NOT SOI'' may appear on the format (depending on the mode).
+\end{itemize}
+
+\subsubsection{Role of the DMS in SOI Selection}
+
+\label{sec:C4-S1-S2}
+
+The DMS manages SOI selection through two orthogonal axes of control:
+
+\begin{itemize}
+    \item \textbf{Vertical (Up / Down):} Selects \textit{which display} is the SOI.
+        \begin{itemize}
+            \item \textbf{DMS Up:} Transfers SOI to the HUD/HMCS (when permitted by master mode).
+            \item \textbf{DMS Down:} Cycles SOI between MFDs, or from HUD/HMCS to an MFD.
+        \end{itemize}
+    \item \textbf{Horizontal (Left / Right):} Steps through MFDS format pages on the left or right MFD, independently of which display is the SOI.
+        \begin{itemize}
+            \item \textbf{DMS Left:} Cycles the left MFD format (FCR $\to$ SMS $\to$ HSD $\to$ TGP $\to$ ...).
+            \item \textbf{DMS Right:} Cycles the right MFD format.
+        \end{itemize}
+\end{itemize}
+
+\textbf{Critical constraint:} In Air-to-Air (A-A), Dogfight (DGFT) and Missile Override (MSL OVRD) master modes, the HUD/HMCS \textit{cannot} be the SOI. DMS Up has no effect in these modes. HUD/HMCS SOI is permitted only in Navigation (NAV) and Air-to-Ground (A-G) master modes.
+
+This constraint reflects the underlying sensor management architecture: A-A modes rely exclusively on the FCR, HSD or TGP (when in A-A track) for targeting and situational awareness. The HUD in A-A contexts displays weapon delivery cues but is not a selectable SOI.
+
+\subsubsection{Example SOI Flow (Overview)}
+
+\label{sec:C4-S1-S3}
+
+A typical SOI flow during an A-G mission might proceed as follows:
+
+\begin{enumerate}
+    \item \textbf{NAV mode, enroute:} HUD/HMCS is the SOI. Pilot monitors navigation symbology heads-up.
+    \item \textbf{Target area approach:} Pilot presses \textbf{DMS Down} to transfer SOI to the FCR MFD, enabling radar ground mapping and cursor slew via CURSOR/ENABLE.
+    \item \textbf{Initial Point (IP) identification:} Pilot presses \textbf{DMS Down} again to transfer SOI to the TGP MFD for visual confirmation of the target area.
+    \item \textbf{Target designation:} With TGP as SOI, pilot slews the crosshair over the target and uses TMS Forward to establish a POINT track.
+    \item \textbf{Weapon delivery cues:} Pilot presses \textbf{DMS Up} to return SOI to HUD/HMCS, allowing HUD steering and weapon release symbology to dominate the visual field during the attack run.
+\end{enumerate}
+
+This sequence illustrates the DMS's role as a \textit{display orchestrator}: it does not perform targeting or weapon release itself, but ensures that the correct sensor or display is active at each phase of the mission.
+
+In the following sections, this chapter details how the DMS interacts with MFDS format selection (Section 4.2) and how SOI selection varies across sensor and weapon contexts in both A-A and A-G operations (Section 4.3). Block-specific and variant notes are provided in Section 4.4.
+
+% ============================================================================
+
+% END OF SECTION 4.1
+
+% ============================================================================
+
+\end{document}

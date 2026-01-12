@@ -3,7 +3,7 @@
 **Document Version:** PROJECT-TRACKING-v5.0.0\
 **Regime:** Pre-publication (0.x.x.x)\
 **Project Start:** 2026-01-05\
-**Last Updated:** 2026-01-11\
+**Last Updated:** 2026-01-12\
 **Repository:** `carlos-nader/tms-dms-cms-usage-guide`
 
 This document tracks how governance rules, WIP files and guide versions evolve during the development of the **Falcon BMS TMS/DMS/CMS HOTAS Guide**.
@@ -21,7 +21,7 @@ These documents define the rules; PROJECT-TRACKING records how they are applied.
 | BRIEFING-v0.2.0.1 | v0.2.0.1 | Content and layout brief + template | Scope, style, layout standard (Geometry Option D, `hotastable` 15.6 cm, `\\arraystretch=1.25`), high-level roadmap. **NEW Section 11:** Complete template specification per BRIEFING-v0.2.0.1 Section 11. Includes: Geometry Option D, hotastable, arraystretch |
 | TEMPLATES/template-wip-V1.0.tex | V1.0 | Canonical WIP template | Per BRIEFING-v0.2.0.1 Section 11. Preamble/metadata/hotastable locked. Independent versioning (V1.0). Established Session 9. |
 | TRAIN. MISSIONS ABBR. TABLE | v1.0 | Official source for use with Tables | Defines abbreviations for all missions from the Training Manual, for use when building Tables |
-| PROJECT-TRACKING-v5.0.0 (this) | v5.0.0 | Project tracking and integration log | Records how WIP + VERSION-SYSTEM + layout decisions become concrete guide versions; integrated with Git/GitHub. Content updated Session 11; version unchanged. |
+| PROJECT-TRACKING-v5.0.0 (this) | v5.0.0 | Project tracking and integration log | Records how WIP + VERSION-SYSTEM + layout decisions become concrete guide versions; integrated with Git/GitHub. Content updated Session 12; version unchanged. |
 
 **Integration rules**
 
@@ -36,7 +36,7 @@ These documents define the rules; PROJECT-TRACKING records how they are applied.
 
 ## 2. Project Snapshot (Current State)
 
-High-level view of the project **as of 2026-01-11**.
+High-level view of the project **as of 2026-01-12**.
 
 - **Active Regime:** Pre-publication `0.x.x.x` (Phase 0 --- Chapter Scaffolding).
 - **Current Guide Version:** `guide-v0.2.4.0-20260111.tex` (section 5.3 integrated).
@@ -128,11 +128,11 @@ Key rules:
 - Active WIP lives in `WIP/`; integrated or deprecated WIP moves to `ARCHIVE/`.
 - **NEW (Session 9):** All new WIP files MUST copy from `TEMPLATES/template-wip-V1.0.tex` per BRIEFING-v0.2.0.1 Section 11.
 
-### 4.2 Active WIP Snapshot (as of 2026-01-11)
+### 4.2 Active WIP Snapshot (as of 2026-01-12)
 
 | File (relative path) | Status | Chapter | Template Compliance | Next Action |
 |---|---|---|---|---|
-| (nenhum arquivo ativo — próxima seção será Section C4.S1 do DMS) | --- | C4-S1 | ✅ BRIEFING-v0.2.0.1 Section 11 compliant | Start WIP for DMS Chapter 4 Section 1. |
+| `WIP/section-C4-S1-concept-and-soi-dev-2026-01-12.tex` | dev | C4-S1 | ✅ BRIEFING-v0.2.0.1 Section 11 compliant | Author review cycle (dev → review → final → integration into v0.3.0.0) |
 
 ### 4.3 WIP Integration Timeline (Historical)
 
@@ -142,6 +142,7 @@ Key rules:
 | 2026-01-08 | `section-C5-S1-concept-and-interactions-cmds-ecm-rwr-final-2026-01-07.tex` | v0.2.0.1 → v0.2.1.0 (PATCH) | section | Human-driven refinement of Chapter 5 internal structure (5.1--5.3 splits and headings). |
 | 2026-01-10 | `section-C5-S2-cms-actuation-hotas-tables-final-2026-01-09.tex` | v0.2.1.0 → v0.2.3.1 (PATCH) | section | Integrated CMS 5.2 "CMS Switch Actuation" narrative and main HOTAS table into Chapter 5. |
 | 2026-01-11 | `section-C5-S3-blocks-and-variants-final-2026-01-11.tex` | v0.2.3.1 → v0.2.4.0 | section | Integrated CMS 5.3 "Block and variant notes" narrative and reference tables (External ECM Pod, Internal IDIAS) into Chapter 5. Chapter 5 now structurally complete (all 3 sections). |
+| 2026-01-12 | `section-C4-S1-concept-and-soi-dev-2026-01-12.tex` | (pending) | section | DMS Chapter 4 Section 1 (Concept & SOI) WIP file created from template-wip-V1.0.tex and integrated with author-approved narrative. Status: dev (ready for review cycle). Narrative 100% complete; tables 0% (intentional — tables in Section 4.3). Compliance: ✅ 100% (wip-naming-v1.4, template-wip-V1.0.tex, briefing-v0.2.0.1). Integration target: v0.3.0.0. Author corrections applied (slug, docversion, Integration Status, labels). Canonical version documented in canonical-version-tracking.md. |
 
 Status codes reminder:
 
@@ -160,6 +161,7 @@ Summary of major decisions and changes per working session. Earlier sessions (1-
 | 9 | 2026-01-09 | `v0.2.2.0` (unchanged) | `v5.0.0` | ✅ **Template establishment:** BRIEFING → v0.2.0.1 (Section 11 --- complete template specification); WIP-NAMING → v1.4 (Section 0.5 --- how to create WIP file); VERSION-SYSTEM → v4.2.1 (references updated; 3-way integration documented). ✅ **TEMPLATES/template-wip-V1.0.tex** created and locked (preamble/metadata/hotastable per BRIEFING Section 11). ✅ **Section-C5-S2 & S3 WIP files** created using new template with corrected LaTeX syntax. 📝 **Going forward:** All new WIP files MUST use template; mandatory governance structure locked. |
 | 10 | 2026-01-10 | `v0.2.3.1` | `v5.0.0` | Integrated CMS 5.2 "CMS Switch Actuation" narrative and main HOTAS table into Chapter 5; C5-S2 WIP marked ready for archival; C5-S3 remains under review with dedicated review MD |
 | **11** | **2026-01-11** | **v0.2.4.0** | **v5.0.0** | ✅ **Section 5.3 Integration:** Integrated CMS 5.3 "Block and variant notes" narrative and 2 reference tables (External ECM Pod Blocks/Variants: 3 operators; Internal ECM/IDIAS Blocks/Variants: 2 operators). ✅ **Validation:** LaTeX syntax verified; Dash-34 alignment confirmed (sections 2.7.4.1.1/2, 2.7.4.2.5/6); BMS 4.38.1 block/variant compliance checked. ✅ **Archival:** WIP file moved to ARCHIVE with approved status. ✅ **Versioning:** v0.2.3.1 → v0.2.4.0 (MINOR versin bump — new complete section). 📋 **Next Phase:** DMS Chapter 4 integration planned for v0.3.0.0. |
+| **12** | **2026-01-12** | **v0.2.4.0** (unchanged) | **v5.0.0** | ✅ **WIP Section 4.1 Created & Validated:** Generated `section-C4-S1-concept-and-soi-dev-2026-01-12.tex` from template-wip-V1.0.tex, integrated author-approved DMS introduction narrative (Sections 4.1.1 SOI Definition, 4.1.2 DMS Role, 4.1.3 SOI Flow Example). Applied author corrections (slug "concept-soi" → "concept-and-soi"; \docversion "WIP Template v1.0" → "C4-S1"; Integration Status v0.2.1.0 → v0.3.0.0; labels simplified). ✅ **Full Compliance:** 100% conformance verified against wip-naming-v1.4, template-wip-V1.0.tex, and briefing-v0.2.0.1. ✅ **Status: dev** — never formally reviewed; canonical version established; ready for author review cycle. ✅ **Documentation:** canonical-version-tracking.md created (detailed change analysis, lifecycle, deployment instructions). **Next:** Author formally reviews WIP file; transitions dev → review → final; upon final approval, AI integrates into guide-v0.3.0.0. |
 
 > Future sessions should add new rows to this table, keeping summaries concise and always mentioning: (a) resulting guide version, (b) tracking version, and (c) main decisions.
 
@@ -170,11 +172,20 @@ Summary of major decisions and changes per working session. Earlier sessions (1-
 ### 6.1 Current Priorities (Post-v0.2.4.0)
 
 1. ✅ **COMPLETE:** Section 5.3 (CMS Block and variant notes) integrated into v0.2.4.0. **CMS chapter (5) now structurally complete** with all 3 sections (5.1 Concept, 5.2 Actuation, 5.3 Block/Variant Notes).
-2. **Next Target:** DMS Chapter 4 integration
-   - Start WIP development for Chapter 4 Section 1 (DMS Concept and SOI interaction).
+
+2. ⏳ **IN PROGRESS:** DMS Chapter 4 Section 1 WIP file created and ready for review.
+   - **File:** `section-C4-S1-concept-and-soi-dev-2026-01-12.tex` (status: dev)
+   - **Content:** 100% narrative complete (4.1.1, 4.1.2, 4.1.3); 0% tables (intentional — Section 4.3)
+   - **Compliance:** 100% verified (wip-naming-v1.4, template-wip-V1.0.tex, briefing-v0.2.0.1)
+   - **Next Action:** Author formal review cycle (dev → review → final)
+   - **Timeline:** Complete Sections 4.2 & 4.3 before integration into v0.3.0.0
+
+3. **Next Target:** DMS Chapter 4 integration (Sections 4.2 & 4.3)
+   - Start WIP development for Chapter 4 Section 2 (DMS MFDS Format Selection) and Section 3 (DMS Sensor/Weapon Context).
    - Target version: v0.3.0.0 (MINOR bump — new major chapter).
    - Estimated: [timeline TBD based on documentation availability].
-3. **TMS Chapter 3 Integration** (after DMS)
+
+4. **TMS Chapter 3 Integration** (after DMS)
    - WIP development for Chapter 3 Sections 3.1--3.5.
    - Target version: v0.4.0.0 (MINOR bump).
    - Estimated: [timeline TBD].
@@ -210,7 +221,7 @@ Phase boundaries and dates are guidelines; actual transitions must be explicitly
 |---|---|---|---|
 | `ARCHIVE/section-C5-S2-cms-actuation-hotas-tables-approved-2026-01-10.tex` | approved | section | Integrated into guide v0.2.3.1. |
 | `ARCHIVE/section-C5-S3-blocks-and-variants-approved-2026-01-11.tex` | approved | section | Integrated into guide v0.2.4.0. Chapter 5 now complete. |
-| (próximo WIP) | --- | DMS (C4-S1) | Ready for planning when documentation becomes available. |
+| `WIP/section-C4-S1-concept-and-soi-dev-2026-01-12.tex` | dev | section | Author review cycle (dev → review → final → integration into v0.3.0.0). |
 
 *(Additional WIP and ARCHIVE entries should be appended here as the project evolves.)*
 
@@ -222,7 +233,7 @@ Phase boundaries and dates are guidelines; actual transitions must be explicitly
 | `docs/WIP-FILE-NAMING-v1.4.md` | 1.4 | Reference | ✅ Active | WIP naming convention. **NEW Section 0.5:** How to Create WIP File (3-step workflow). **NEW Section 9:** Summary + best practices. Supersedes v1.3. |
 | `docs/VERSION-SYSTEM-v4.2.1.md` | 4.2.1 | Reference | ✅ Active | Guide versioning rules. References updated to WIP-FILE-NAMING-v1.4; BRIEFING-v0.2.0.1 Section 11 relation documented; 3-way integration clarified. Supersedes v4.2. |
 | `TEMPLATES/template-wip-V1.0.tex` | V1.0 | Template | ✅ Active | **Canonical WIP template** per BRIEFING-v0.2.0.1 Section 11. Preamble/metadata/hotastable locked. Independent versioning (V1.0). Established Session 9. Copy to WIP/ and rename per WIP-FILE-NAMING-v1.4 Section 0.5. |
-| `docs/PROJECT-TRACKING-v5.0.0.md` | 5.0.0 | Tracking | ✅ Active | This document --- unified tracking with Git/GitHub integration. Content updated Session 11. |
+| `docs/PROJECT-TRACKING-v5.0.0.md` | 5.0.0 | Tracking | ✅ Active | This document --- unified tracking with Git/GitHub integration. Content updated Session 12. |
 | `docs/BRIEFING-v0.2.0.1.docx` | 0.2.0.1 | Export | ✅ Derived | DOCX export from Markdown for convenient reading/sharing. |
 | `docs/VERSION-SYSTEM-v4.2.1.docx` | 4.2.1 | Export | ✅ Derived | DOCX export from Markdown. |
 | `docs/WIP-FILE-NAMING-v1.4.docx` | 1.4 | Export | ✅ Derived | DOCX export from Markdown. |
@@ -245,3 +256,4 @@ Phase boundaries and dates are guidelines; actual transitions must be explicitly
 | Date | Change | Section(s) Affected | Reason |
 |---|---|---|---|
 | 2026-01-11 | Updated guide version to v0.2.4.0; integrated Section 5.3; updated priorities to next DMS target | 2, 3.1, 3.2, 4.2, 4.3, 5, 6, 7 | Section 5.3 (CMS Block/Variant Notes) integration complete; Chapter 5 now structurally complete. |
+| 2026-01-12 | Added Session 12 (DMS WIP C4-S1 created); updated Active WIP Snapshot; enhanced Current Priorities | 4.2, 4.3, 5, 6.1 | DMS Section 4.1 WIP file generation complete with 100% compliance; author review cycle initiated; canonical version documented. |
