@@ -19,8 +19,7 @@ This project develops a structured guide explaining HOTAS functionality across m
 ```
 falcon-bms-hotas-tms-dms-cms-guide/
 │
-├── guide/                          # Active guide files (.tex)
-│   ├── guide-v0.2.2.0-*.tex       # Current production version│   
+├── guide.tex/                      # Current production version (.tex)
 │
 ├── TEMPLATES/                      # Structural templates & blueprints
 │   ├── template-wip-V*.tex         # Canonical WIP file template
@@ -38,7 +37,10 @@ falcon-bms-hotas-tms-dms-cms-guide/
 │   ├── table-*.tex                 # HOTAS table scaffolds & content
 │   ├── notes-*.md                  # Research notes & reference material
 │   ├── visual-*.*                  # Diagrams, schematics 
-│   └── ...                         # Other types
+│   ├── ...                         # Other types 
+│   └── GUIDE/                      # Active guide snapshot files (.tex)
+│       └── guide-v0.2.4.0-*.tex    # Current snapshot version
+│                         
 │
 ├── ARCHIVE/                        # Historical & approved files
 │   ├── [completed WIP files]       # Sections integrated into guide
@@ -117,7 +119,7 @@ All governance documents are available in **Markdown** (for editing) and **DOCX*
 
 | Metric | Value |
 |--------|-------|
-| **Guide Version** | v0.2.3.1 |
+| **Guide Version** | v0.2.4.0 |
 | **Total Chapters Planned** | 7 |
 | **Chapters with Narrative** | 2/7 |
 | **Chapters Scaffolded** | 4/7 |
