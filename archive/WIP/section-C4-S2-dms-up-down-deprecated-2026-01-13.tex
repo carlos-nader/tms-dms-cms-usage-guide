@@ -1,0 +1,542 @@
+% ============================================================================
+% FALCON BMS TMS/DMS/CMS HOTAS GUIDE
+% WIP FILE — Section C4, S2 (DMS Up/Down: SOI Management)
+% ============================================================================
+
+% IMPORTANTE: Este é um arquivo WIP (Work-In-Progress) a ser integrado em guide.tex.
+% Nomenclatura: Siga wip-naming-v1.4
+% Padrão: section-C{N}-S{M}-{titulo}-{status}-{data}.tex
+% Status: dev | review | final | approved | deprecated
+% Locação: WIP/ (ativo) | ARCHIVE/ (aprovado/descartado)
+
+\documentclass[11pt,a4paper]{article}
+
+% --------------------------------------------------------------------------
+% BASIC ENCODING AND LANGUAGE
+% --------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% --------------------------------------------------------------------------
+% FONTS AND MICROTYPOGRAPHY
+% --------------------------------------------------------------------------
+
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --------------------------------------------------------------------------
+% PAGE GEOMETRY AND LAYOUT
+% --------------------------------------------------------------------------
+
+\usepackage{geometry}
+\geometry{a4paper, left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
+\usepackage{setspace}
+\onehalfspacing
+
+% --------------------------------------------------------------------------
+% COLORS AND LINKS
+% --------------------------------------------------------------------------
+
+\usepackage[table]{xcolor}
+\definecolor{linkblue}{HTML}{004488}
+\definecolor{linkred}{HTML}{882222}
+\definecolor{headerblue}{HTML}{003366}
+\definecolor{rowgray}{HTML}{F5F5F5}
+\definecolor{subheadgray}{HTML}{E0E0E0}
+\usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\usepackage{bookmark}
+\usepackage{soul}
+
+% --------------------------------------------------------------------------
+% HEADERS AND FOOTERS
+% --------------------------------------------------------------------------
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --------------------------------------------------------------------------
+% TABLES AND MACROS
+% --------------------------------------------------------------------------
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+% Custom Columns
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% HOTAS table environment (Briefing v0.2.0.1, Section 6)
+\newenvironment{hotastable}[1]{%
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
+\caption{#1}\\
+\rowcolor{headerblue}
+\textbf{\color{white}State} &
+\textbf{\color{white}Dir} &
+\textbf{\color{white}Act} &
+\textbf{\color{white}Function} &
+\textbf{\color{white}Effect / Nuance} &
+\textbf{\color{white}Dash34} &
+\textbf{\color{white}Train} \\
+\endfirsthead
+
+\rowcolor{headerblue}
+\textbf{\color{white}State} &
+\textbf{\color{white}Dir} &
+\textbf{\color{white}Act} &
+\textbf{\color{white}Function} &
+\textbf{\color{white}Effect / Nuance} &
+\textbf{\color{white}Dash34} &
+\textbf{\color{white}Train} \\
+\endhead
+
+\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+\endfoot
+
+\endlastfoot
+}{%
+\end{longtable}
+}
+
+% --------------------------------------------------------------------------
+% SIMPLE REFERENCE MACROS FOR BMS DOCS
+% --------------------------------------------------------------------------
+
+\providecommand{\dashref}[1]{Dash-34~\S~#1}
+\providecommand{\dashone}[1]{Dash-1~\S~#1}
+\providecommand{\trnref}[1]{TRN~#1}
+\providecommand{\trnman}{BMS Training Manual 4.38.1}
+\providecommand{\bmsver}{Falcon BMS~4.38.1}
+\providecommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+
+% --------------------------------------------------------------------------
+% VERSION CONTROL MACROS
+% --------------------------------------------------------------------------
+
+\newcommand{\docversion}{C4-S2}
+\newcommand{\docbuild}{20260113}
+\newcommand{\fulldocversion}{\docversion+\docbuild}
+
+% --------------------------------------------------------------------------
+% GRAPHICS
+% --------------------------------------------------------------------------
+
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+
+% --------------------------------------------------------------------------
+% TITLE
+% --------------------------------------------------------------------------
+
+\title{TMS, DMS and CMS Usage Guide for \bmsver}
+\author{Carlos ``Metal'' Nader}
+\date{Version \fulldocversion{0.2.4.0} | January 2026}
+
+% --------------------------------------------------------------------------
+% DOCUMENT BEGIN
+% --------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+% ============================================================================
+% WIP FILE METADATA (NOT RENDERED IN PDF)
+% ============================================================================
+
+% File Name: section-C4-S2-dms-up-down-dev-2026-01-13.tex
+% WIP Naming Convention: v1.4
+% Target Chapter: C4 (DMS — Display Management Switch)
+% Target Section: S2 (DMS Up/Down: SOI Management)
+% Target Subsection: S2.1 (DMS Up), S2.2 (DMS Down), S2.3 (Placeholder for Master Mode Behavior Table)
+
+% WIP Status: dev
+% Created: 2026-01-13
+% Last Modified: 2026-01-13
+% Integration Status: TARGET v0.3.0.0
+
+% Narrative Completion: 95% (S2.1 and S2.2 content complete; S2.3 is placeholder)
+% Table Fill Status: 20% (small example tables only; full Master Mode Behavior Table deferred to separate WIP file)
+
+% Notes:
+% - Content for 4.2.1 and 4.2.2 complete per DMS-Chapter-Sync-v1.0 Phase 1 roadmap
+% - Section 4.2.3 (Master Mode Behavior Table) is PLACEHOLDER ONLY — full table will be in separate WIP file
+% - All Dash-34 references validated against exhaustive DMS research conducted 2026-01-13
+% - Narrative follows tone and structure of section-C4-S1-concept-soi-review-2026-01-12.tex
+% - Cross-references to Section 4.1 (Concept and SOI) and forward-reference to Section 4.3 (DMS Left/Right) and 4.4 (Integration with TMS)
+
+% ============================================================================
+% ============================================================================
+% APPROVED CONTENT — DMS Up/Down: SOI Management (Section 4.2)
+% ============================================================================
+
+\subsection{DMS Up: HUD/HMCS Designation as SOI}
+
+\label{sec:C4-S2-S1}
+
+% Status: Narrative 95% | Tables 0%
+% TODO: None — content complete pending human review
+
+The vertical axis of the DMS (Up / Down) \textbf{controls which display or sensor is designated as SOI}. Of these two directions, \textbf{DMS Up} is the most straightforward: it instantly transfers the SOI to the HUD, provided the current master mode permits it.
+
+\subsubsection{Function and Visual Indication}
+
+When the pilot presses \textbf{DMS Up}, the system attempts to designate the HUD as SOI. If the master mode allows HUD as SOI (see bellow for details), the action succeeds immediately:
+
+\begin{itemize}
+
+\item An asterisk (\texttt{*}) appears in the upper left corner of the HUD, above the airspeed scale, indicating that the HUD is now the Sensor of Interest.
+
+\item Any HOTAS inputs that act upon the SOI (such as CURSOR/ENABLE for slew, or TMS for target designation) now apply to the HUD and its symbology.
+
+\item The MFD border outlines (if any MFD was previously SOI) disappear, and the ``NOT SOI'' text may appear on MFD formats, indicating that no MFD is currently selected for HOTAS input.
+
+\end{itemize}
+
+The asterisk on the HUD is a critical visual cue; it informs the pilot at a glance that hands-on stick and throttle switches inputs are now commanding HUD-level actions (such as positioning a target designator box, moving a pipper, or cueing the HMCS targeting reticle).
+
+\subsubsection{DMS Up Effectiveness in All Master Modes}
+
+The vertical axis of the DMS operates fundamentally differently across the F-16's master modes. Understanding where DMS Up is operative and where it is architecturally inhibited is essential for efficient HOTAS management. This section treats all master modes with equal rigor, explaining not merely whether DMS Up functions, but \textit{why} the avionics system permits or denies HUD SOI selection in each operational context.
+
+\paragraph*{Master Modes Where DMS Up is Effective (HUD as SOI Permitted)}
+
+In three master modes, DMS Up is fully operative and HUD/HMCS SOI is a valid and often preferred operational state.
+
+\subparagraph*{NAV (Navigation) Master Mode}
+
+In Navigation mode, the HUD serves as the primary cockpit reference for situational awareness and navigation cueing. DMS Up is \textbf{fully effective}; pressing DMS Up immediately designates the HUD as SOI, and the asterisk appears in the upper left corner.
+
+When HUD is SOI in NAV, the pilot gains immediate hands-on control of navigation-specific symbology via HOTAS inputs (use of DED MARK page on \dashref{2.2.5.3}, for instance)
+
+\subparagraph*{A-G Preplanned Modes (PRE)}
+
+\hl{In preplanned air-to-ground delivery modes, targets are designated pre-mission via steerpoints or pre-entered coordinates. The HUD displays computed delivery solutions (release points, steering cues, altitude/range advisories). DMS Up is \textbf{fully effective} in all A-G PRE submodes.}
+
+When HUD is SOI in A-G PRE, the pilot controls:
+
+\begin{itemize}
+
+\item \textbf{Delivery symbology visualization:} The HUD shows the Continuously Computed Release Point (CCRP) pipper or Dive Toss (DTOS) cues, indicating where ordnance will impact if released at that moment. CURSOR/ENABLE inputs allow fine-tuning of the aircraft's approach to align the pipper with the target.
+
+\item \textbf{Altitude and range awareness:} The HUD displays time-to-go, descent rate cues, and range to target. These cues inform the pilot whether the solution is achievable or requires maneuver adjustment.
+
+\item \textbf{Loft angle and ballistic cueing (DTOS):} In loft delivery modes, the HUD displays the required pitch attitude for a successful toss delivery. TMS inputs may command loft angle adjustments or solution acceptance.
+
+\end{itemize}
+
+\hl{DMS Up is operationally optional in A-G PRE modes (the pilot can use WPN or FCR pages on MFDs), but it is \textbf{highly valuable} for maintaining eyes-out flying during the final approach and delivery phase. Many experienced pilots make HUD their primary SOI immediately before weapons release.} \dashref{4.2.2.2.1}
+
+\subparagraph*{A-G Visual Modes (VIS) --- CCIP, DTOS, AGM-65 VIS, IAM-VIS and Related Submodes:}
+
+In visual delivery modes, targets are visually identified and designated by the pilot. The HUD is the \textbf{primary command interface} for all target designation and rejection functions. DMS Up is not merely effective---it is \textbf{operationally mandatory}.
+
+When the pilot enters an A-G VIS mode (e.g., CCIP and AGM-65 VIS), the avionics system \textit{automatically configures HUD as SOI}. However, if the SOI has drifted to another display (e.g., TGP or WPN), the pilot must use DMS Up to restore HUD SOI before visual cueing can be properly controlled. The loss of HUD as SOI is a critical degradation. If the pilot accidentally transfers SOI to an MFD (via DMS Down), the CURSOR and TMS inputs will no longer control the visual designator box on the HUD.
+
+With HUD as SOI in A-G VIS, the pilot has full command of, for instance:
+
+\begin{itemize}
+
+\item \textbf{Visual target designation:} In CCIP the HUD displays a pipper (computed impact point or bullet track line). The pilot maneuvers the aircraft to place the pipper on the intended impact point and releases ordnance. CURSOR/ENABLE controls the pipper position; TMS Up/Down may designate or reject the target.
+
+\item \textbf{AGM-65 Maverick VIS target designation:} In AGM-65 VIS, the HUD displays a target designator (TD) box that slews the Maverick's seeker. The pilot uses CURSOR/ENABLE to position the TD box over the target, then TMS Up to lock the seeker. Target rejection (TMS Down) requires HUD to be SOI.
+
+\item \textbf{IAM (JSOW/JDAM) Visual target designation:}  In IAM-VIS, the HUD displays a target designator (TD) box and extended A-G solution cue for visual delivery. With HUD as SOI, the pilot positions the TD box over the target using aircraft maneuvering or CURSOR/ENABLE, then presses TMS Up to designate and ground-stabilize the target.
+
+\end{itemize}
+
+\paragraph*{Master Modes Where DMS Up is Ineffective (HUD as SOI Prohibited)}
+
+In A-A master modes---and also DGFT and MSL OVRD---the avionics architecture \textit{prohibits} HUD from being designated as SOI and DMS Up has no effect Understanding the rationale for this prohibition is crucial to grasping the overall sensor management philosophy.
+
+\subparagraph*{A-A (Air-to-Air) Master Mode:}
+
+In Air-to-Air master mode, the avionics system enforces a strict constraint: \textbf{the SOI is restricted} to FCR (Fire Control Radar), HSD (Horizontal Situation Display), or TGP (Targeting Pod). The \textbf{HUD cannot be SOI}.
+
+The same logic applies to \textbf{DGFT and MSL OVRD}, for they are also A-A modes and assume the same operational logic.
+
+\paragraph*{Summary: DMS Up Effectiveness by Master Mode}
+
+Table~\ref{tab:C4-S2-DMS-Up-Effectiveness} summarizes DMS Up behavior across all master modes:
+
+\begin{table}[ht]
+
+\centering
+
+\small
+
+\renewcommand{\arraystretch}{1.4}
+
+\caption{DMS Up Effectiveness Across All Master Modes}
+
+\label{tab:C4-S2-DMS-Up-Effectiveness}
+
+\begin{tabularx}{15.6cm}{L{2.2cm} C{1.3cm} L{5.5cm} L{6.0cm}}
+
+\rowcolor{headerblue}
+
+\textbf{\color{white}Master Mode} & \textbf{\color{white}DMS Up} & \textbf{\color{white}HUD SOI Permitted?} & \textbf{\color{white}Rationale} \\
+
+\midrule
+
+NAV (Navigation) & Active & Yes & HUD is primary reference for situational awareness; pilot transitions between HUD and MFDs for navigation cueing. \\
+
+\midrule
+
+A-G (PRE) & Active & Yes & HUD displays computed delivery solutions (CCRP, DTOS, altitude cues); optional but valuable for eyes-out delivery. \\
+
+\midrule
+
+A-G (VIS) & Active & Yes & HUD is \textbf{mandatory SOI}; all visual target designation and rejection occurs via HUD-resident symbology and HOTAS inputs. \\
+
+\midrule
+
+A-A (Air-to-Air) & Inactive & No & SOI restricted to FCR/HSD/TGP. HUD is display-only; all tactical actions (tracking, target management) occur on MFD-resident sensors. \\
+
+\midrule
+
+DGFT (Dogfight) & Inactive & No & SOI restricted to FCR/HSD/TGP. HUD displays passive cueing only (horizon, TD box, missile seeker cues); tactical actions remain on radar/tactical display. \\
+
+\midrule
+
+MSL OVRD (Missile Override) & Inactive & No & SOI restricted to FCR/HSD/TGP. Missile assignment and weapon management occur on WPN/SMS pages; HUD is advisory only. \\
+
+\bottomrule
+
+\end{tabularx}
+
+\end{table}
+
+The architectural design is clear: \textbf{DMS Up is available exactly where the HUD functions as a command interface (NAV, A-G PRE, A-G VIS) and is unavailable where the HUD functions as a passive display (A-A, DGFT, MSL OVRD).} This is not an arbitrary constraint; it reflects a deliberate separation between \textit{sensor-truth-based} operations (air-to-air) and \textit{display-cueing-based} operations (air-to-ground visual, navigation). Understanding this distinction is fundamental to competent HOTAS management across the entire operational envelope.
+
+\paragraph*{Important Clarification: DMS Up in Exception States}
+
+In certain rare states, DMS Up may be temporarily ineffective even in NAV or A-G modes:
+
+\begin{itemize}
+
+\item \textbf{Snowplow (SP) PRE state (unsta­bilized):} When the pilot enters Snowplow mode (a specialized ground-stabilization mode for slewing to arbitrary ground positions), and the SP position has not yet been stabilized with TMS Up, the SOI is defined as being ``nowhere''. Both the A-G radar and TGP display ``NOT SOI'' on the MFDs, and DMS Up/Down commands are ineffective until the SP position is stabilized. Once stabilized, SOI returns to its previous state, and DMS Up becomes effective again. (\dashref{4.2.1.4})
+
+\item \textbf{MARK/OFLY Submode:} In some specialized marking or overfly contexts, the SOI cannot be designated at all, and DMS commands are ignored. These modes are rare and are noted in specific weapon employment sections.
+
+\end{itemize}
+
+In normal operational contexts (NAV, A-G PRE, A-G VIS), DMS Up always works as expected.
+
+\subsection{DMS Down: SOI Alternation Between HUD and MFDs}
+
+\label{sec:C4-S2-S2}
+
+The second direction of the DMS vertical axis, \textbf{DMS Down}, provides the complementary function to DMS Up: it cycles the SOI away from the HUD and between MFD displays. Unlike DMS Up, which has a single, unambiguous target (the HUD), DMS Down's behavior depends on the current SOI state. This \textit{context-sensitive} toggle logic makes DMS Down a powerful but slightly more complex control.
+
+\subsubsection{Core Logic: Toggle Behavior by Current SOI}
+
+The rule for DMS Down is straightforward and applies consistently across all master modes (NAV, A-A, A-G, DGFT, MSL OVRD):
+
+\begin{itemize}
+
+\item \textbf{If HUD/HMCS is currently SOI:} DMS Down transfers the SOI to an MFD (typically the left or right MFD, depending on DTC/configuration). The HUD asterisk disappears. The border outline appears on the selected MFD, and ``NOT SOI'' text may disappear or move to the other MFD.
+
+\item \textbf{If an MFD is currently SOI:} DMS Down cycles the SOI to the other MFD. The border outline moves from one MFD to the other. This toggle continues: Left MFD $\leftrightarrow$ Right MFD $\leftrightarrow$ Left MFD, etc.
+
+\item \textbf{If multiple presses are held:} DMS Down can be used repeatedly to cycle through all available SOI-capable MFD formats (FCR, TGP, HAD, WPN, HSD, as permitted by master mode). Each press advances to the next available format on the target MFD.
+
+\end{itemize}
+
+Table~\ref{tab:C4-S2-DMS-Down-Logic} summarizes the toggle behavior for common SOI starting states:
+
+\begin{table}[ht]
+
+\centering
+
+\small
+
+\renewcommand{\arraystretch}{1.3}
+
+\caption{DMS Down Toggle Logic by Current SOI}
+
+\label{tab:C4-S2-DMS-Down-Logic}
+
+\begin{tabularx}{15.6cm}{L{3.2cm} L{5.0cm} L{6.8cm}}
+
+\rowcolor{headerblue}
+
+\textbf{\color{white}Current SOI} & \textbf{\color{white}DMS Down Press} & \textbf{\color{white}Result} \\
+
+\midrule
+
+HUD/HMCS & Transfers to MFD & SOI moves from HUD to one MFD (left or right, per DTC/layout). HUD asterisk disappears; MFD border appears. \\
+
+\midrule
+
+Left MFD (FCR, TGP, etc.) & Cycles to Right MFD & SOI moves from left MFD to right MFD. Right MFD now displays border; left MFD shows ``NOT SOI''. \\
+
+\midrule
+
+Right MFD (FCR, TGP, etc.) & Cycles to Left MFD & SOI moves from right MFD to left MFD. Left MFD now displays border; right MFD shows ``NOT SOI''. \\
+
+\midrule
+
+Right MFD (last toggle) & May cycle back to HUD & If NAV or A-G mode and HUD is valid SOI, DMS Down may return SOI to HUD (completing the full cycle). In A-A/DGFT modes, cycles back to left MFD. \\
+
+\bottomrule
+
+\end{tabularx}
+
+\end{table}
+
+This toggle pattern allows the pilot to navigate rapidly through all available displays without taking hands off the stick and throttle. It is particularly useful during mission execution, when the pilot needs to transition frequently between radar (FCR), targeting pod (TGP), weapons management (WPN), and situational awareness displays (HSD).
+
+\subsubsection{SOI Alternation in Specific Master Modes}
+
+Although the toggle behavior is consistent, the \textit{available} SOI-capable displays vary by master mode. Table~\ref{tab:C4-S2-DMS-Down-by-Mode} illustrates which displays can be SOI and thus which displays DMS Down will toggle through:
+
+\begin{table}[ht]
+
+\centering
+
+\small
+
+\renewcommand{\arraystretch}{1.3}
+
+\caption{DMS Down Behavior and Available SOI Displays by Master Mode}
+
+\label{tab:C4-S2-DMS-Down-by-Mode}
+
+\begin{tabularx}{15.6cm}{L{2.0cm} L{3.0cm} L{4.0cm} L{6.0cm}}
+
+\rowcolor{headerblue}
+
+\textbf{\color{white}Master Mode} & \textbf{\color{white}HUD SOI?} & \textbf{\color{white}DMS Down Cycles} & \textbf{\color{white}Typical Operational Flow} \\
+
+\midrule
+
+NAV & Yes & HUD $\to$ MFD $\to$ MFD $\to$ HUD & Pilot transitions between HUD navigation cues, FCR/TGP radar, and HSD tactical display. \\
+
+\midrule
+
+A-G (PRE) & Yes & HUD $\to$ MFD $\to$ MFD $\to$ HUD & Pilot alternates between HUD delivery symbology and MFD weapon/TGP management. \\
+
+\midrule
+
+A-G (VIS) & Yes & HUD $\to$ MFD $\to$ MFD $\to$ HUD & Pilot controls visual cueing on HUD, then drops to TGP/WPN MFDs for sensor refinement. \\
+
+\midrule
+
+A-A & No & MFD $\to$ MFD (no HUD cycle) & Pilot cycles between left MFD (FCR) and right MFD (HSD or TGP), never returning to HUD. \\
+
+\midrule
+
+DGFT & No & MFD $\to$ MFD (no HUD cycle) & Same as A-A: MFD-only toggle, HUD not available as SOI. \\
+
+\midrule
+
+MSL OVRD & No & MFD $\to$ MFD (no HUD cycle) & Same as A-A and DGFT: missile-focused context requires radar/tactical displays only. \\
+
+\bottomrule
+
+\end{tabularx}
+
+\end{table}
+
+The key distinction is clear: \textbf{In A-A, DGFT, and MSL OVRD modes, DMS Down only toggles between left and right MFDs; it never cycles to the HUD.} This is by design---these modes are radar-centric, and the HUD is a passive display. In NAV and A-G modes, DMS Down provides a full cycle that includes the HUD, maximizing the pilot's ability to transition between visual and sensor-based cueing.
+
+\subsubsection{Exception: Ineffective States}
+
+Just as with DMS Up, there are rare exception states in which DMS Down is temporarily ineffective:
+
+\begin{itemize}
+
+\item \textbf{Snowplow (SP) PRE (unstabilized):} When the A-G radar is in Snowplow mode and the SP position has not yet been stabilized, the SOI is ``nowhere''. DMS Down is ignored. The pilot must stabilize the SP position using \textbf{TMS Up} before DMS Down will function again. (\dashref{4.2.1.4})
+
+\item \textbf{MARK/OFLY Submode:} SOI cannot be designated, and DMS commands have no effect.
+
+\end{itemize}
+
+In normal A-G PRE, A-G VIS, NAV, A-A, DGFT, and MSL OVRD operations, DMS Down always cycles as expected.
+
+\subsubsection{Practical Scenarios}
+
+\paragraph*{Scenario 1: NAV Mode — Rapid Sensor Toggle}
+
+The pilot is in NAV mode, executing a ground route. Left MFD shows FCR; right MFD shows HSD. The pilot is currently using HUD for visual reference (HUD is SOI, asterisk visible).
+
+The pilot spots a radar contact of interest and wants to examine it on the left MFD (FCR). The pilot presses \textbf{DMS Down once}. The SOI transfers to the left MFD (FCR); the HUD asterisk disappears, and the FCR border outline appears. The pilot can now use CURSOR/ENABLE to slew the radar cursor and TMS to investigate the contact.
+
+After refining the radar picture, the pilot wants to check the HSD for route status. The pilot presses \textbf{DMS Down again}. The SOI transfers to the right MFD (HSD). The FCR border outline disappears.
+
+Later, the pilot wants to return to visual flying and presses \textbf{DMS Down a third time}. If configured to cycle back to HUD, the HUD becomes SOI again, and the asterisk reappears. The entire cycle took three HOTAS inputs and required no head-down time or menu selections.
+
+\paragraph*{Scenario 2: A-A Mode — MFD-Only Toggle}
+
+The pilot is in A-A mode, searching for a target. Left MFD shows FCR with a target of interest already in view; right MFD shows HSD with tactical information (bullseyes, friendly tracks).
+
+The SOI is currently on the left MFD (FCR). The pilot wants to reference the HSD for tactical context (distance to bullseye, friendly position) and presses \textbf{DMS Down}. The SOI transfers to the right MFD (HSD). The pilot can now use CURSOR/ENABLE to move the HSD cursor to mark significant points (e.g., launch zone boundaries).
+
+After confirming the tactical situation, the pilot presses \textbf{DMS Down again} to return the SOI to the left MFD (FCR) and continues target search. Note: The HUD is \textbf{never} an option in A-A mode; pressing DMS Down multiple times alternates only between left and right MFDs.
+
+\paragraph*{Scenario 3: A-G VIS (CCIP) — HUD to WPN Transition}
+
+The pilot is in A-G CCIP mode, visually tracking an airfield target. The HUD is SOI (asterisk visible), and the pilot is refining the CCIP pipper position with CURSOR/ENABLE inputs. The pilot wants to check weapon status on the WPN page (right MFD) before committing to release.
+
+The pilot presses \textbf{DMS Down}. The SOI transfers to the right MFD (WPN page). The HUD asterisk disappears; the WPN border appears. The pilot can now review fuze settings, arming delays, and station counts on the WPN page.
+
+When ready to resume visual delivery cueing, the pilot presses \textbf{DMS Down again} (or presses \textbf{DMS Down} again depending on cycle configuration) to return the SOI to the HUD. The asterisk reappears, and the pilot resumes CURSOR-based pipper positioning for the final delivery.
+
+---
+
+\subsection{Master Mode Behavior — SOI Selection and Availability}
+
+\label{sec:C4-S2-S3}
+
+% Status: PLACEHOLDER ONLY
+% TODO: Full Master Mode Behavior Table will be created in separate WIP file (target: section-C4-S2-3-master-mode-table-dev-YYYY-MM-DD.tex)
+
+\subsubsection{Overview}
+
+Section 4.2.3 will contain a comprehensive table consolidating the behavior of DMS Up and DMS Down across all master modes (NAV, A-A, A-G PRE, A-G VIS, DGFT, MSL OVRD, JETTISON) and documenting which displays can serve as SOI in each context.
+
+For the purposes of this WIP file, the key rules are summarized as follows:
+
+\begin{itemize}
+
+\item \textbf{DMS Up:} Effective only in NAV and A-G modes. Designates HUD/HMCS as SOI. Inactive in A-A, DGFT, MSL OVRD.
+
+\item \textbf{DMS Down:} Effective in all modes. Cycles SOI between HUD and MFDs (in NAV/A-G) or between left and right MFDs only (in A-A/DGFT/MSL OVRD). Valid SOI-capable formats vary by mode.
+
+\item \textbf{Exception states:} Snowplow (SP) PRE (unstabilized), MARK/OFLY—DMS commands ineffective until exception resolves.
+
+\end{itemize}
+
+A detailed table with visual indicators, cross-references to \dashref{2.1.1.2.3}, and operational examples will follow in Section 4.2.3.
+
+\subsubsection{Placeholder Note}
+
+This placeholder section will be expanded into a full reference table in a subsequent WIP iteration. The table will include columns for Master Mode, DMS Up behavior, DMS Down behavior, available SOI displays, and notes on special cases.
+
+For now, readers should refer to Section~\ref{sec:C4-S1} (Concept and Sensor of Interest) for the complete list of valid SOI displays by master mode, and to the scenarios in Sections~\ref{sec:C4-S2-S1-S4} and~\ref{sec:C4-S2-S2-S4} for operational context.
+
+% ============================================================================
+% END OF SECTION 4.2 (DMS Up/Down: SOI Management)
+% ============================================================================
+
+\end{document}

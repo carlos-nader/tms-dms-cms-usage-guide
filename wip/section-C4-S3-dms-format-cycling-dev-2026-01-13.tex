@@ -1,0 +1,425 @@
+% ============================================================================
+% FALCON BMS TMS/DMS/CMS HOTAS GUIDE
+% WIP FILE TEMPLATE V1.0 — Briefing v0.2.0.1
+% ============================================================================
+
+% IMPORTANT: This is a standardized WIP (Work-In-Progress) template file
+% that will be integrated into guide.tex.
+% Naming Convention: wip-naming-v1.4
+% Pattern: section-C{N}-S{M}[-S{K}]-{title}-{status}-{date}.tex
+% Example: section-C4-S3-dms-format-cycling-dev-2026-01-13.tex
+% Status: dev | review | final | approved | deprecated
+% Location: WIP/ (active) | ARCHIVE/ (approved/deprecated)
+
+\documentclass[11pt,a4paper]{article}
+
+% --------------------------------------------------------------------------
+% BASIC ENCODING AND LANGUAGE
+% --------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% --------------------------------------------------------------------------
+% FONTS AND MICROTYPOGRAPHY
+% --------------------------------------------------------------------------
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --------------------------------------------------------------------------
+% PAGE GEOMETRY AND LAYOUT
+% --------------------------------------------------------------------------
+\usepackage{geometry}
+\geometry{a4paper, left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
+\usepackage{setspace}
+\onehalfspacing
+
+% --------------------------------------------------------------------------
+% COLORS AND LINKS
+% --------------------------------------------------------------------------
+\usepackage[table]{xcolor}
+\definecolor{linkblue}{HTML}{004488}
+\definecolor{linkred}{HTML}{882222}
+\definecolor{headerblue}{HTML}{003366}
+\definecolor{rowgray}{HTML}{F5F5F5}
+\definecolor{subheadgray}{HTML}{E0E0E0}
+\usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\usepackage{bookmark}
+
+% --------------------------------------------------------------------------
+% HEADERS AND FOOTERS
+% --------------------------------------------------------------------------
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --------------------------------------------------------------------------
+% TABLES AND MACROS
+% --------------------------------------------------------------------------
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+% Custom Columns
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% HOTAS table environment (Briefing v0.2.0.1, Section 6)
+\newenvironment{hotastable}[1]{%
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
+\caption{#1}\\
+\rowcolor{headerblue}
+\textbf{\color{white}State} &
+\textbf{\color{white}Dir} &
+\textbf{\color{white}Act} &
+\textbf{\color{white}Function} &
+\textbf{\color{white}Effect / Nuance} &
+\textbf{\color{white}Dash34} &
+\textbf{\color{white}Train} \\
+\endfirsthead
+
+\rowcolor{headerblue}
+\textbf{\color{white}State} &
+\textbf{\color{white}Dir} &
+\textbf{\color{white}Act} &
+\textbf{\color{white}Function} &
+\textbf{\color{white}Effect / Nuance} &
+\textbf{\color{white}Dash34} &
+\textbf{\color{white}Train} \\
+\endhead
+
+\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+\endfoot
+
+\endlastfoot
+}{%
+\end{longtable}
+}
+
+% --------------------------------------------------------------------------
+% SIMPLE REFERENCE MACROS FOR BMS DOCS
+% --------------------------------------------------------------------------
+\providecommand{\dashref}[1]{Dash-34~\S~#1}
+\providecommand{\dashone}[1]{Dash-1~\S~#1}
+\providecommand{\trnref}[1]{TRN~#1}
+\providecommand{\trnman}{BMS Training Manual 4.38.1}
+\providecommand{\bmsver}{Falcon BMS~4.38.1}
+\providecommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+
+% --------------------------------------------------------------------------
+% VERSION CONTROL MACROS
+% --------------------------------------------------------------------------
+\newcommand{\docversion}{C4-S3}
+\newcommand{\docbuild}{20260113}
+\newcommand{\fulldocversion}{\docversion+\docbuild}
+
+% --------------------------------------------------------------------------
+% GRAPHICS
+% --------------------------------------------------------------------------
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+
+% --------------------------------------------------------------------------
+% TITLE
+% --------------------------------------------------------------------------
+\title{TMS, DMS and CMS Usage Guide for \bmsver}
+\author{Carlos ``Metal'' Nader}
+\date{Version \fulldocversion{0.2.4.0} | January 2026}
+
+% --------------------------------------------------------------------------
+% DOCUMENT BEGIN
+% --------------------------------------------------------------------------
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+% ============================================================================
+% WIP FILE METADATA (NOT RENDERED IN PDF)
+% ============================================================================
+
+% File Name: section-C4-S3-dms-format-cycling-dev-2026-01-13.tex
+% WIP Naming Convention: v1.4
+% Target Chapter: C4 (DMS — Display Management Switch)
+% Target Section: S3 (DMS Left/Right: MFD Format Cycling)
+% Target Subsections: S3.1, S3.2, S3.3
+
+% WIP Status: dev
+% Created: 2026-01-13
+% Last Modified: 2026-01-13
+% Integration Target: v0.2.4.0
+
+% Narrative Completion: 100% - READY FOR HUMAN REVIEW
+% Table Fill Status: 0% - PLACEHOLDER POSITIONS MARKED
+
+% Notes:
+% - Content is purely narrative and explanatory
+% - All DMS LEFT/RIGHT behaviors documented
+% - Master mode constraints explained
+% - Blank format skipping rule documented
+% - Cross-references to 4.2 (DMS UP/DOWN) and 4.4 (DMS + TMS integration) included
+% - All table placeholders marked as [TABLE 4.3.X HERE]
+% - Sourced from Dash-34 Sections 2.1.1.1.3, 2.1.6.2, 2.1.6.3, 2.1.6.10
+% - Ready for table population in next review cycle
+
+% ============================================================================
+% CONTENT: DMS Section 4.3 — Format Cycling (Horizontal Axis)
+% ============================================================================
+
+\section{DMS — Display Management Switch}
+\label{sec:C4}
+
+\subsection{DMS Left/Right: MFD Format Cycling}
+\label{sec:C4-S3}
+
+Whereas Section~\ref{sec:C4-S2} describes the \textbf{vertical axis of the DMS} (Up/Down) for selecting which display is the Sensor of Interest (SOI), this section covers the \textbf{horizontal axis} (Left/Right) for cycling through the format pages available on each Multifunction Display (MFD).
+
+DMS Left and DMS Right are independent of SOI selection. A pilot can cycle through MFD formats without changing which display holds the SOI, and conversely, can change the SOI without affecting which format is currently displayed on any MFD. This independence is a key design principle: format visibility and sensor/display control are orthogonal concerns.
+
+\paragraph*{Recap: Two Orthogonal Axes of the DMS}
+
+\begin{itemize}
+
+\item \textbf{Vertical (DMS Up/Down):} Selects which display is the SOI (HUD/HMCS, left MFD, or right MFD). Detailed in Section~\ref{sec:C4-S2}.
+
+\item \textbf{Horizontal (DMS Left/Right):} Cycles through format pages available on the left or right MFD, \textit{regardless} of which display is the current SOI.
+
+\end{itemize}
+
+The DMS is thus a \textbf{two-axis transversal manager}. The vertical axis manages \textit{sensor/display targeting} (SOI), while the horizontal axis manages \textit{display presentation} (format pages). Both are essential to HOTAS workflow, and both are independent from any changes in radar mode, weapon state, or tactical context.
+
+\subsubsection{DMS Format Cycling Mechanics}
+\label{sec:C4-S3-S1}
+
+Each MFD in Falcon BMS can display one of several format pages. Common formats include:
+
+\begin{itemize}
+
+\item \textbf{FCR:} Fire Control Radar display.
+
+\item \textbf{HSD:} Horizontal Situation Display (navigation and situational awareness).
+
+\item \textbf{TGP:} Targeting Pod optical image and tracking data.
+
+\item \textbf{HAD:} HARM Attack Display (anti-radiation weapon management).
+
+\item \textbf{SMS:} Stores Management Set (weapon configuration and employment).
+
+\item \textbf{WPN:} Weapon-specific page (for guided weapons like Maverick, IAMs, Harpoon).
+
+\item \textbf{TEST:} Built-in test and diagnostic page (avionics health check).
+
+\item \textbf{BLANK:} Empty/inactive page slot.
+
+\end{itemize}
+
+The specific formats available on each MFD depend on the current \textbf{master mode} and the aircraft's \textbf{configuration} (sensors installed, stores loaded, etc.). Within a given master mode, each MFD has up to three format slots: a primary format, and optionally one or more secondary formats.
+
+When the pilot presses DMS Left, the left MFD cycles to its next available format slot. Pressing DMS Left again cycles to the next slot, and so forth, eventually cycling back to the primary format. The same logic applies to DMS Right for the right MFD.
+
+\paragraph*{Cycling Pattern: Inside-to-Outside}
+
+Dash-34, Section~2.1.6.2, specifies that format cycling proceeds ``from inside to outside.'' This phrase refers to the logical order in which formats are presented:
+
+\begin{itemize}
+
+\item \textbf{Primary format:} The main display for the current master mode (e.g., FCR in A-A, HSD in NAV).
+
+\item \textbf{Secondary formats:} Alternative displays available for that mode (e.g., HSD or TGP in A-A).
+
+\item \textbf{Blank slots:} Pages that contain no active format (skipped automatically).
+
+\end{itemize}
+
+The inside-to-outside progression ensures that the pilot's primary attention stays on the most relevant display for the operational context, with secondary formats available via quick DMS Left/Right commands.
+
+\paragraph*{Blank Format Skipping Rule}
+
+Dash-34, Section~2.1.6.10, explicitly states: ``Any blank formats will be skipped when using DMS Left or Right.'' This means that if a format slot is empty (marked as BLANK on the MFD), the DMS command automatically skips over it and cycles to the next non-blank format.
+
+Blank formats arise when:
+
+\begin{itemize}
+
+\item A format is not available in the current master mode.
+
+\item A sensor is not installed or operational (e.g., TGP unavailable if targeting pod is not loaded).
+
+\item A custom configuration via Data Transfer Equipment (DTE) has left a slot intentionally empty.
+
+\end{itemize}
+
+This skipping behavior prevents the pilot from getting stuck on an inactive page; each DMS Left/Right press advances to a displayable format.
+
+\subsubsection{Format Availability by Master Mode}
+\label{sec:C4-S3-S2}
+
+The set of formats available for cycling on each MFD is determined by the current master mode. Dash-34, Section~2.1.1.2.1, provides a ``Master Mode Display Format'' table that maps each master mode to its available formats on the left and right MFDs.
+
+In many master modes, only the \textbf{primary format} is defined, with secondary slots left as BLANK. In these cases, DMS Left/Right will cycle back to the primary format immediately (or appear to have no effect), since all other slots are skipped.
+
+In other master modes, particularly those supporting complex sensor integration (e.g., A-G with FCR, TGP, WPN, and HSD options), multiple non-blank formats may be available, allowing meaningful cycling.
+
+[TABLE 4.3.2 HERE: Master Mode Format Availability]
+
+Placeholder: This table will document, for each master mode, which formats are available on the left and right MFDs, and in what cycling order. Formats will be marked as:
+
+\begin{itemize}
+
+\item \textbf{Primary} — default format for the mode.
+
+\item \textbf{Secondary} — alternative format available for cycling.
+
+\item \textbf{BLANK} — slot is empty (will be skipped).
+
+\item \textbf{N/A} — format not applicable to this mode.
+
+\end{itemize}
+
+\paragraph*{Practical Implication: Apparent No-Op in Some Modes}
+
+In air-to-air master modes (A-A, DGFT, MSL OVRD), the primary format slot on each MFD is typically occupied (e.g., FCR on the left), while secondary slots are BLANK. Pressing DMS Left in these modes will cycle through the BLANK slots and return to FCR, appearing to have no visible effect. This is expected behavior, not a bug.
+
+To access different formats in A-A contexts, a pilot must rely on:
+
+\begin{itemize}
+
+\item Pre-flight configuration via DTE to assign formats to secondary slots.
+
+\item Mode transition (switch to NAV or A-G to access additional formats).
+
+\end{itemize}
+
+In contrast, A-G modes typically provide multiple non-blank formats per side, making DMS Left/Right cycling a practical and frequently-used HOTAS action.
+
+\subsubsection{DMS Format Cycling Behavior: Universal Across Master Modes}
+\label{sec:C4-S3-S3}
+
+Unlike DMS Up/Down (which has different behavior in A-A vs.~A-G modes due to SOI constraints), DMS Left and DMS Right exhibit \textbf{uniform behavior across all master modes}. The mechanics are always the same:
+
+\begin{itemize}
+
+\item \textbf{DMS Left} $\Rightarrow$ Left MFD cycles to next non-blank format.
+
+\item \textbf{DMS Right} $\Rightarrow$ Right MFD cycles to next non-blank format.
+
+\item \textbf{Cycling direction} $\Rightarrow$ Always inside-to-outside (primary $\to$ secondary $\to$ primary...).
+
+\item \textbf{Blank skipping} $\Rightarrow$ Automatic; no pilot action needed.
+
+\end{itemize}
+
+What \textit{varies} is the \textit{set of available formats} in each master mode, not the mechanism of cycling itself. Thus, all practical guidance for DMS Left/Right can be consolidated into a single table describing which formats are available per mode, rather than separate tables for each master mode.
+
+This simplicity makes DMS format cycling one of the most straightforward HOTAS actions: press Left or Right, and the MFD displays the next available format. No mode-specific logic, no conditional constraints.
+
+\paragraph*{Independence from SOI and Tactical Context}
+
+DMS Left/Right are truly \textit{independent} from:
+
+\begin{itemize}
+
+\item \textbf{Current SOI:} Changing the format displayed on an MFD does not alter which display holds the SOI. If HUD is the SOI, pressing DMS Left has no effect on that; it only changes what the left MFD shows.
+
+\item \textbf{Radar mode:} Cycling to a new MFD format does not change the current radar mode or switch master modes.
+
+\item \textbf{Weapon state:} DMS Left/Right do not arm, safe, or change the employment status of any weapon.
+
+\item \textbf{Stored position or target:} Changing formats does not clear or alter any previously designated targets, steerpoints, or stored position data.
+
+\end{itemize}
+
+This robustness means that a pilot can freely experiment with DMS Left/Right to explore available displays without risk of accidentally changing tactical context or weapon configuration.
+
+\subsubsection{Relationship to DMS Up/Down and Cursor Control}
+\label{sec:C4-S3-S4}
+
+While DMS Left/Right cycles between \textit{formats} on an MFD, DMS Up/Down selects which display is the \textit{SOI}. A complete HOTAS workflow for display management often involves both:
+
+\begin{enumerate}
+
+\item \textbf{DMS Down:} Move SOI to the right MFD (or stay on left).
+
+\item \textbf{DMS Right:} Cycle the right MFD to the format you want (e.g., TGP).
+
+\item \textbf{CURSOR/ENABLE:} Slew the cursor on the now-SOI right MFD display to designate targets or adjust data.
+
+\end{enumerate}
+
+Similarly, when integrating with TMS for tactical actions (covered in Section~\ref{sec:C4-S4}), the pilot often:
+
+\begin{enumerate}
+
+\item \textbf{DMS:} Ensure the correct display is SOI and the right format is visible.
+
+\item \textbf{TMS:} Perform tactical actions (designate, track, cycle threats, etc.) on the SOI display.
+
+\end{enumerate}
+
+For detailed examples of DMS + TMS integration in weapon-specific contexts (e.g., HARM threat management, Link 16 datalink designation), see Section~\ref{sec:C4-S4}.
+
+[TABLE 4.3.3 HERE: HOTAS Quick Reference — DMS Left/Right Across Master Modes]
+
+Placeholder: This table will provide a concise reference showing DMS Left/Right behavior for each master mode. Structure will be:
+
+\begin{itemize}
+
+\item \textbf{State:} Master mode (NAV, A-A, A-G PRE, A-G VIS, DGFT, MSL OVRD).
+
+\item \textbf{DMS Left:} What happens when pressed (e.g., ``Left MFD cycles: FCR $\to$ HSD $\to$ FCR'').
+
+\item \textbf{DMS Right:} What happens when pressed (e.g., ``Right MFD cycles: TGP $\to$ WPN $\to$ TGP'').
+
+\item \textbf{Dash-34 Ref:} Section reference.
+
+\item \textbf{Training Ref:} Relevant training mission(s).
+
+\end{itemize}
+
+\paragraph*{Constraints and Exceptions}
+
+DMS Left/Right have \textbf{no special exceptions or constraints} in any master mode or tactical context. They always work as described: cycle the corresponding MFD format, skip blanks, and leave the rest of the aircraft state unchanged.
+
+This is in contrast to DMS Up (which is inactive in A-A/DGFT/MSL OVRD) and other HOTAS controls that may have mode-specific limitations. DMS Left/Right are universal and reliable.
+
+\subsubsection{Summary: DMS Format Cycling as a Workload Reduction Tool}
+\label{sec:C4-S3-S5}
+
+The DMS Left/Right functions exemplify a core F-16 design philosophy: allow the pilot to change display information (formats) without removing hands from the throttle or stick. In complex environments where a pilot must rapidly transition between different sensor views (radar, targeting pod, weapons page, navigation display), DMS Left/Right provide instant, intuitive access.
+
+By combining DMS Left/Right with DMS Up/Down, the pilot can:
+
+\begin{itemize}
+
+\item \textbf{Select which display is active} (SOI) via DMS Up/Down.
+
+\item \textbf{Choose what information is visible} on each display via DMS Left/Right.
+
+\item \textbf{Control selected displays} via CURSOR, TMS, and other secondary controls.
+
+\end{itemize}
+
+All of this occurs without a single hand leaving the throttle or stick—the definition of good HOTAS integration.
+
+The remainder of this chapter details how the DMS interacts with specific tactical contexts and weapons (Section~\ref{sec:C4-S4}), and how the DMS works in coordination with the TMS for complex, multi-sensor workflows.
+
+% ============================================================================
+% END OF SECTION 4.3 — DMS FORMAT CYCLING
+% ============================================================================
+
+\end{document}
