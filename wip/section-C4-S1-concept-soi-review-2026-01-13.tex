@@ -222,13 +222,22 @@
 
 \label{sec:C4-S1}
 
-The Display Management Switch (DMS) is a four-direction spring-loaded hat located on the throttle grip. Its primary role is to manage which display or sensor receives hands-on control inputs, known as the Sensor of Interest (SOI), and to cycle through the Multifunction Display Set (MFDS) format pages.
+The Display Management Switch (DMS) is a four-direction spring-loaded hat located on the flight stick. Its primary role is to manage which display or sensor receives hands-on control inputs, known as the Sensor of Interest (SOI), and to cycle through the Multifunction Display Set (MFDS) format pages.
 
-Unlike the Target Management Switch (TMS), which performs tactical functions such as target designation and data management (see Chapter 3), the DMS is a \textbf{transversal SOI architecture manager}. It does not designate targets or change radar modes directly; instead, it selects \textit{which display or sensor} the pilot is currently controlling with other HOTAS inputs (such as CURSOR/ENABLE or TMS).
+Unlike the Target Management Switch (TMS), which performs tactical functions such as target designation and data management (see Chapter 3), the DMS is a transversal SOI architecture manager. It does not designate targets or change radar modes directly; instead, it selects \textit{which display or sensor} the pilot is currently controlling with other HOTAS inputs (such as CURSOR/ENABLE or TMS).
+
+As presented in Chapter 3, condensed diagrams for throttle and flight stick switches functionalities can be found on \dashref{2.1.5}. Below is an image of the F-16 Flight Stick, with the DMS switch location.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.65\textwidth]{F-16_Side_Stick_Controller-1.jpg}
+\caption{F-16 Throttle and Flight Stick. Image by Falconpedia (\url{falcon4.wikidot.com}), via Wikimedia Commons (\url{https://commons.wikimedia.org/wiki/File:F-16_Side_Stick_Controller.jpg}), licensed under the Creative Commons Attribution-Share Alike 3.0 Unported (CC BY-SA 3.0) license.}
+\label{fig:f16_hotas_dms_location}
+\end{figure}
 
 \paragraph*{DMS Across F-16 Blocks and Variants:}
 
-The functionality of the DMS—SOI selection, MFD format cycling, and all associated behaviors—is identical across all F-16 blocks and variants available in Falcon BMS 4.38.1. Differences in aircraft avionics do not alter DMS switchology. For this reason, all DMS procedures in this chapter apply universally to the entire F-16 family.
+The functionality of the DMS—SOI selection, MFD format cycling and all associated behaviors is identical across all F-16 blocks and variants available in Falcon BMS 4.38.1. Differences in aircraft avionics do not alter DMS switch usage. For this reason, all DMS procedures in this chapter apply universally to the entire F-16 family.
 
 \subsubsection{SOI Definition and Scope Across Displays}
 
@@ -238,11 +247,11 @@ The Sensor of Interest (SOI) is the display or sensor that currently receives HO
 
 \begin{itemize}
     \item \textbf{Fire Control Radar (FCR)} — A-A and A-G modes.
-    \item \textbf{Targeting Pod (TGP)} — when in A-G or A-A tracking.
+    \item \textbf{Targeting Pod (TGP)} — A-G or A-A tracking.
     \item \textbf{Horizontal Situation Display (HSD)} — all master modes.
     \item \textbf{HARM Attack Display (HAD)} — A-G SEAD/EW context.
     \item \textbf{Weapon page (WPN)} — IAMs, Maverick, Harpoon and other weapon-specific pages.
-    \item \textbf{Head-Up Display / Helmet Mounted Cueing System (HUD/HMCS)} — Navigation and A-G master modes only (not A-A or DGFT).
+    \item \textbf{Head-Up Display(HUD)} — Navigation and A-G master modes only (not A-A).
 \end{itemize}
 
 Displays that are \textit{not} valid SOI include: SMS (Stores Management Set), DTE (Data Transfer Equipment), TEST, and blank/inactive MFDS formats. These pages provide information or control but do not accept sensor-like slew or targeting inputs.
@@ -254,18 +263,31 @@ The SOI is indicated visually:
 \end{itemize}
 
 \paragraph{Valid SOI Displays by Master Mode:}
-The availability of displays as valid SOI varies by master mode. Table~\ref{tab:C4-S1-SOI-by-mode} shows which displays can serve as SOI in the primary operational contexts. Note that in air-to-air modes (A-A, DGFT, MSL OVRD), the HUD/HMCS is \textbf{never} available as SOI;all three modes restrict the pilot to FCR, HSD, or TGP as the SOI. This constraint ensures that radar and tactical displays remain the primary source of truth in air-to-air engagements.
+The availability of displays as valid SOI varies by master mode. Table~\ref{tab:C4-S1-SOI-by-mode} shows which displays can serve as SOI in the primary operational contexts. Note that in air-to-air modes (A-A, DGFT, MSL OVRD), the HUD is \textbf{never} available as SOI; A-A modes restrict the pilot to FCR, HSD, or TGP as the SOI. This constraint ensures that radar and tactical displays remain the primary source of truth in air-to-air engagements.
 
-\begin{table}[ht]
-\centering
 \small
 \renewcommand{\arraystretch}{1.2}
-\caption{Valid SOI Displays by Master Mode}
-\label{tab:C4-S1-SOI-by-mode}
-\begin{tabularx}{15.6cm}{L{2.5cm} L{6.5cm} L{6.0cm}}
+
+\begin{longtable}{L{2.5cm} L{6.5cm} L{6.0cm}}
+\caption{Valid SOI Displays by Master Mode\label{tab:C4-S1-SOI-by-mode}}\\
+
 \rowcolor{headerblue}
 \textbf{\color{white}Master Mode} & \textbf{\color{white}Valid SOI Displays} & \textbf{\color{white}Constraints \& Notes} \\
 \midrule
+\endfirsthead
+
+\rowcolor{headerblue}
+\textbf{\color{white}Master Mode} & \textbf{\color{white}Valid SOI Displays} & \textbf{\color{white}Constraints \& Notes} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{3}{r}{\emph{Continues on next page}}\\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
 NAV (Navigation) & HUD/HMCS, FCR, TGP, HSD, WPN, HAD & All displays available. HUD is primary choice for situational awareness and NAV-specific tasks. \\
 \midrule
 A-A (Air-to-Air) & FCR, HSD, TGP & \textbf{HUD/HMCS cannot be SOI.} SOI limited to radar and tactical displays. \\
@@ -277,13 +299,11 @@ A-G (VIS) & HUD/HMCS, TGP, WPN & Restricted to visual-capable displays. FCR and 
 DGFT (Dogfight) & FCR, HSD, TGP & \textbf{HUD/HMCS cannot be SOI.} Dogfight context prioritizes radar and tactical displays. \\
 \midrule
 MSL OVRD (Missile Override) & FCR, HSD, TGP & \textbf{HUD/HMCS cannot be SOI.} Missile management takes precedence; HUD displays cues only. \\
-\bottomrule
-\end{tabularx}
-\end{table}
+\end{longtable}
 
 As shown in Table~\ref{tab:C4-S1-SOI-by-mode}, the availability of SOI displays is strategically constrained by master mode to align pilot attention with the operational context. Navigation and pre-planned air-to-ground modes offer maximum display flexibility, allowing the pilot to transition between HUD, radar, targeting pod, and weapon pages as needed.
 
-Conversely, air-to-air and dogfight modes eliminate HUD/HMCS as a selectable SOI, forcing reliance on the FCR, HSD, or TGP for all targeting decisions. This design reflects the fundamental principle that air-to-air engagements must be driven by primary sensor information rather than derived or display-level cues.
+Conversely, air-to-air and associated override modes eliminate HUD as a selectable SOI. This design reflects the fundamental principle that air-to-air engagements must be driven by primary sensor information rather than derived or display-level cues, although HCMS is always an option.
 
 For visual air-to-ground delivery (VIS modes),the SOI is restricted to visual-capable sensors: HUD/HMCS for target designation, TGP for optical tracking if available, and WPN for weapon-specific refinements.In these contexts, the radar falls out of the active SOI pool, and navigation accuracy defaults to system altitude and pre-entered steerpoint data rather than radar-derived range.
 
@@ -296,8 +316,8 @@ The DMS manages SOI selection through two orthogonal axes of control:
 \begin{itemize}
     \item \textbf{Vertical (Up / Down):} Selects \textit{which display} is the SOI.
         \begin{itemize}
-            \item \textbf{DMS Up:} Transfers SOI to the HUD/HMCS (when permitted by master mode).
-            \item \textbf{DMS Down:} Cycles SOI between MFDs, or from HUD/HMCS to an MFD.
+            \item \textbf{DMS Up:} Transfers SOI to the HUD (when permitted by master mode).
+            \item \textbf{DMS Down:} Cycles SOI between MFDs, or from HUD to an MFD.
         \end{itemize}
     \item \textbf{Horizontal (Left / Right):} Steps through MFDS format pages on the left or right MFD, independently of which display is the SOI.
         \begin{itemize}
@@ -306,11 +326,7 @@ The DMS manages SOI selection through two orthogonal axes of control:
         \end{itemize}
 \end{itemize}
 
-\textbf{Critical constraint:} In Air-to-Air (A-A), Dogfight (DGFT) and Missile Override (MSL OVRD) master modes, the HUD/HMCS \textit{cannot} be the SOI. DMS Up has no effect in these modes. HUD/HMCS SOI is permitted only in Navigation (NAV) and Air-to-Ground (A-G) master modes.
-
-This constraint reflects the underlying sensor management architecture: A-A modes rely exclusively on the FCR, HSD or TGP (when in A-A track) for targeting and situational awareness. The HUD in A-A contexts displays weapon delivery cues but is not a selectable SOI.
-
-In the following sections, this chapter details how the DMS interacts with MFD format selection (Section~\ref{sec:C4-S2} and \ref{sec:C4-S3}). and how DMS integrates with TMS in some weapon specifics circumstances in Section~\ref{sec:C4-S4}.
+In the following sections, this chapter details how the DMS interacts with MFD format selection (Section~\ref{sec:C4-S2} and \ref{sec:C4-S3}) and how DMS integrates with TMS in some weapon specifics circumstances in Section~\ref{sec:C4-S4}.
 
 % ============================================================================
 

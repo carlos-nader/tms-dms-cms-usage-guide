@@ -413,7 +413,7 @@ Flare-only program. Often pre-configured for close-range air-to-air engagements 
 % 5.2.1.2 Automatic Mode
 \paragraph{Automatic Mode:}
 
-The CMDS Automatic (AUTO) mode enables the ALE-47 CMDS to dispense chaff/flare programs continuously in response to RWR-detected threats, without requiring pilot consent for each event. Pilot consent is given once by pressing CMS Aft; dispensing continues until CMS Right is pressed or expendables are exhausted.
+The CMDS Automatic (AUTO) mode enables the ALE-47 CMDS to dispense chaff/flare programs continuously in response to RWR-detected threats, without requiring pilot consent for each event. Pilot consent is given once by pressing CMS Down; dispensing continues until CMS Right is pressed or expendables are exhausted.
 
 \begin{hotastable}{CMS Actuation with CMDS Automatic Mode}
 CMDS AUTO & Up & Short & Execute Program 1--4 &
@@ -422,18 +422,18 @@ Manual override: runs the selected program once, interrupting any ongoing AUTO d
 CMDS AUTO & Left & Short & Execute Program 6 &
 Manual flare-only program, overrides AUTO. After execution, AUTO resumes.
 & \dashref{2.7.2.2} & \trnref{19 (GUN AIM)} \\
-CMDS AUTO & Aft & Short & Give Consent; Enable AUTO Dispensing &
-CMS Aft grants consent for AUTO CMDS. RWR-detected threats trigger automatic program dispensing (selected via PRGM knob). Dispensing continues until threat clears or CMS Right is pressed. Consent state persists even if pilot switches to MAN mode; re-engaging AUTO will resume auto-dispense.
+CMDS AUTO & Down & Short & Give Consent; Enable AUTO Dispensing &
+CMS Down grants consent for AUTO CMDS. RWR-detected threats trigger automatic program dispensing (selected via PRGM knob). Dispensing continues until threat clears or CMS Right is pressed. Consent state persists even if pilot switches to MAN mode; re-engaging AUTO will resume auto-dispense.
 & \dashref{2.7.2.1} & \trnref{18 (BARCAP)}, \trnref{28 (SEAD-EW)} \\
 CMDS AUTO & Right & Short & Cancel Consent; Disable AUTO &
-CMS Right removes CMDS consent and places the ALE-47 in Standby. Automatic dispensing halts immediately. Pilot must re-issue CMS Aft to resume AUTO operation or use the system manually.
+CMS Right removes CMDS consent and places the ALE-47 in Standby. Automatic dispensing halts immediately. Pilot must re-issue CMS Down to resume AUTO operation or use the system manually.
 & \dashref{2.7.2.1} & \trnref{18 (BARCAP)}, \trnref{28 (SEAD-EW)} \\
 \end{hotastable}
 
 % 5.2.1.3 Semi-Automatic Mode
 \paragraph{Semi-Automatic Mode:}
 
-Semi-Automatic (SEMI) mode allows the ALE-47 to prompt the pilot for consent on a per-threat basis. When the RWR detects a threat requiring countermeasures, the CMDS displays ``DISPENSE RDY'' on the control unit and sounds a ``COUNTER'' voice message, requesting pilot consent via CMS Aft.
+Semi-Automatic (SEMI) mode allows the ALE-47 to prompt the pilot for consent on a per-threat basis. When the RWR detects a threat requiring countermeasures, the CMDS displays ``DISPENSE RDY'' on the control unit and sounds a ``COUNTER'' voice message, requesting pilot consent via CMS Down.
 
 \begin{hotastable}{CMS Actuation with CMDS Semi-Automatic Mode}
 CMDS SEMI & Up & Short & Execute Program 1--4 &
@@ -442,8 +442,8 @@ Manual override: runs the selected program once, independent of RWR threat state
 CMDS SEMI & Left & Short & Execute Program 6 &
 Manual flare-only program, independent of SEMI threat detection. After execution, CMDS resumes SEMI monitoring.
 & \dashref{2.7.2.2} & \trnref{19 (GUN AIM)} \\
-CMDS SEMI & Aft & Short & Give Consent; Dispense One Program &
-When CMDS issues ``COUNTER'' (threat detected), pilot presses CMS Aft to execute one instance of the selected program. If threat persists or a new threat appears, CMDS will issue ``COUNTER'' again. Consent state is tracked; switching to AUTO while consent active will trigger immediate AUTO dispensing on next threat.
+CMDS SEMI & Down & Short & Give Consent; Dispense One Program &
+When CMDS issues ``COUNTER'' (threat detected), pilot presses CMS Down to execute one instance of the selected program. If threat persists or a new threat appears, CMDS will issue ``COUNTER'' again. Consent state is tracked; switching to AUTO while consent active will trigger immediate AUTO dispensing on next threat.
 & \dashref{2.7.2.1} & \trnref{18 (BARCAP)}, \trnref{28 (SEAD-EW)} \\
 CMDS SEMI & Right & Short & Cancel Consent; Return to Standby &
 CMS Right removes SEMI consent. CMDS halts monitoring and returns to Standby. ``COUNTER'' messages cease.
@@ -453,26 +453,26 @@ CMS Right removes SEMI consent. CMDS halts monitoring and returns to Standby. ``
 % 5.2.2 CMS Actuation with ECM
 \subsubsection{CMS Actuation with ECM}\label{sec:C5-S2-S2}
 
-External ECM pods (ALQ-131, ALQ-184) and internal IDIAS (Improved Defensive Internal Avionic System) provide pilot-controlled jamming across frequency bands. The CMS Aft position controls transmit authority for external pods; CMS Left cycles modes for internal IDIAS. Both systems interact with the RF switch and respect landing gear constraints.
+External ECM pods (ALQ-131, ALQ-184) and internal IDIAS (Improved Defensive Internal Avionic System) provide pilot-controlled jamming across frequency bands. The CMS Down position controls transmit authority for external pods; CMS Left cycles modes for internal IDIAS. Both systems interact with the RF switch and respect landing gear constraints.
 
 % 5.2.2.1 External ECM Pod
 \paragraph{External ECM Pod (ALQ-131 / ALQ-184):}
 
-External ECM pods provide pilot-controlled jamming across five frequency-band programs. The CMS Aft position grants ``ECM consent,'' enabling the pod to transmit at the XMIT switch setting (modes 1, 2, or 3). The ECM Enable light on the miscellaneous panel indicates consent state.
+External ECM pods provide pilot-controlled jamming across five frequency-band programs. The CMS Down position grants ``ECM consent,'' enabling the pod to transmit at the XMIT switch setting (modes 1, 2, or 3). The ECM Enable light on the miscellaneous panel indicates consent state.
 
 \begin{hotastable}{CMS Actuation with External ECM Pod}
-ECM Pod & Aft & Short & Enable ECM Transmit; Grant Consent &
-CMS Aft illuminates the ECM Enable light and permits the external ECM pod to transmit in the mode set by the XMIT switch on the ECM control panel (XMIT 1: AUTO Avionics Priority; XMIT 2: AUTO ECM Priority; XMIT 3: Continuous Jam). Pod continues transmitting as long as ECM is not cancelled by the pilot or RF switch is moved away from NORM.
+ECM Pod & Down & Short & Enable ECM Transmit; Grant Consent &
+CMS Down illuminates the ECM Enable light and permits the external ECM pod to transmit in the mode set by the XMIT switch on the ECM control panel (XMIT 1: AUTO Avionics Priority; XMIT 2: AUTO ECM Priority; XMIT 3: Continuous Jam). Pod continues transmitting as long as ECM is not cancelled by the pilot or RF switch is moved away from NORM.
 & \dashref{2.7.4.2.5} & \trnref{28 (SEAD-EW)} \\
 ECM Pod & Right & Short & Disable ECM Transmit; Remove Consent &
-CMS Right extinguishes the ECM Enable light and places the ECM pod in Standby, halting transmission immediately. Pod will not transmit until CMS Aft is re-issued.
+CMS Right extinguishes the ECM Enable light and places the ECM pod in Standby, halting transmission immediately. Pod will not transmit until CMS Down is re-issued.
 & \dashref{2.7.4.2.5} & \trnref{28 (SEAD-EW)} \\
 \end{hotastable}
 
 % 5.2.2.2 Internal ECM (IDIAS)
 \paragraph{Internal ECM (IDIAS):}
 
-Internal avionics ECM (IDIAS: Improved Defensive Internal Avionic System) automatically selects frequency bands to jam based on RWR threat priority. CMS Left cycles through operational modes (Standby, Avionics Priority, ECM Priority). CMS Aft is not used for IDIAS; mode control is via CMS Left and the XMTR button on the ECM panel.
+Internal avionics ECM (IDIAS: Improved Defensive Internal Avionic System) automatically selects frequency bands to jam based on RWR threat priority. CMS Left cycles through operational modes (Standby, Avionics Priority, ECM Priority). CMS Down is not used for IDIAS; mode control is via CMS Left and the XMTR button on the ECM panel.
 
 \begin{hotastable}{CMS Actuation with Internal ECM (IDIAS)}
 IDIAS ECM & Left & Short & Cycle ECM Operational Mode &
@@ -486,11 +486,11 @@ CMS Right forces IDIAS ECM into STBY mode, halting all jamming operations. Requi
 % 5.2.3 CMS Consent and Constraints
 \subsubsection{CMS Consent and Constraints}\label{sec:C5-S2-S3}
 
-This subsection clarifies the relationship between CMDS consent (CMS Aft) and ECM transmit authority (CMS Aft for external pod). Understanding these interactions is critical for effective defensive posture management during high-workload combat operations.
+This subsection clarifies the relationship between CMDS consent (CMS Down) and ECM transmit authority (CMS Down for external pod). Understanding these interactions is critical for effective defensive posture management during high-workload combat operations.
 
 \begin{hotastable}{CMS Interaction with CMDS and ECM (Consent and Constraints)}
-CMDS AUTO/SEMI + ECM Pod & Aft & Short & Joint Consent (CMDS + ECM) &
-Single CMS Aft command grants consent to \textit{both} the ALE-47 CMDS (AUTO/SEMI) and the external ECM pod. There's no distinction between the two; both systems respond to the same CMS Aft press. This unified control maximizes pilot situational awareness and frees workload during combat maneuvering.
+CMDS AUTO/SEMI + ECM Pod & Down & Short & Joint Consent (CMDS + ECM) &
+Single CMS Down command grants consent to \textit{both} the ALE-47 CMDS (AUTO/SEMI) and the external ECM pod. There's no distinction between the two; both systems respond to the same CMS Down press. This unified control maximizes pilot situational awareness and frees workload during combat maneuvering.
 & \dashref{2.7.2.1}, \dashref{2.7.4.2.5} & \trnref{18 (BARCAP)}, \trnref{28 (SEAD-EW)} \\
 \end{hotastable}
 
@@ -500,19 +500,19 @@ Single CMS Aft command grants consent to \textit{both} the ALE-47 CMDS (AUTO/SEM
 The CMS provides rapid, tactile access to CMDS program selection and ECM transmit authority without requiring the pilot to manipulate distant panels during high-G maneuvering. Mastery of CMS actuation across all CMDS modes (MAN, SEMI, AUTO) and ECM configurations (external pod, IDIAS) is essential for effective defensive operations. Pilots must understand the consent state model, RF switch interactions, and inventory management to avoid unintended dispensing or system saturation.
 
 \paragraph*{Consent State Tracking:}
-In AUTO and SEMI modes, the CMDS tracks the consent state even if the pilot temporarily switches to MAN mode. If the pilot gives CMS Aft consent in AUTO, then switches the CMDS MODE knob to MAN, the consent state is retained. Upon re-engaging AUTO without issuing CMS Aft again, the CMDS will immediately begin dispensing if a threat is detected. This behavior can be exploited for rapid mode switching during combat but may also lead to unintended dispensing if not carefully managed.
+In AUTO and SEMI modes, the CMDS tracks the consent state even if the pilot temporarily switches to MAN mode. If the pilot gives CMS Down consent in AUTO, then switches the CMDS MODE knob to MAN, the consent state is retained. Upon re-engaging AUTO without issuing CMS Down again, the CMDS will immediately begin dispensing if a threat is detected. This behavior can be exploited for rapid mode switching during combat but may also lead to unintended dispensing if not carefully managed.
 
 \paragraph*{Bingo Quantity Behavior:}
-If expendables (chaff or flare) fall to or below the bingo quantity, the CMDS will still request consent (CMS Aft) and continue dispensing. The ``LOW'' and ``OUT'' voice messages alert the pilot to low or exhausted inventory, but dispensing does not automatically stop. Pilot must monitor EWS upfront pages and manually manage inventory via CMDS MAN or by pressing CMS Right to inhibit AUTO.
+If expendables (chaff or flare) fall to or below the bingo quantity, the CMDS will still request consent (CMS Down) and continue dispensing. The ``LOW'' and ``OUT'' voice messages alert the pilot to low or exhausted inventory, but dispensing does not automatically stop. Pilot must monitor EWS upfront pages and manually manage inventory via CMDS MAN or by pressing CMS Right to inhibit AUTO.
 
 \paragraph*{RF Switch Override:}
-The RF switch on the throttle is a master control for ECM transmission. Moving the RF switch away from NORM (e.g., to QUIET or SILENT) overrides any previous CMS Aft command and places both the external ECM pod and internal IDIAS in Standby. Returning RF to NORM does \textit{not} automatically restore transmission; the pilot must re-issue CMS Aft.
+The RF switch on the throttle is a master control for ECM transmission. Moving the RF switch away from NORM (e.g., to QUIET or SILENT) overrides any previous CMS Down command and places both the external ECM pod and internal IDIAS in Standby. Returning RF to NORM does \textit{not} automatically restore transmission; the pilot must re-issue CMS Down.
 
 \paragraph*{ECM Consent vs. CMDS Consent:}
-A single CMS Aft press grants consent to both the ALE-47 CMDS and the external ECM pod. The pilot does not issue separate commands; the CMS Aft action is unified. However, internal IDIAS uses CMS Left for mode cycling, not CMS Aft. This distinction is critical for aircraft configured with IDIAS.
+A single CMS Down press grants consent to both the ALE-47 CMDS and the external ECM pod. The pilot does not issue separate commands; the CMS Down action is unified. However, internal IDIAS uses CMS Left for mode cycling, not CMS Down. This distinction is critical for aircraft configured with IDIAS.
 
 \paragraph*{Ground Operations Safety:}
-On the ground, ECM pods are held in Standby for safety reasons. Pilots must not hold CMS Aft while on the ground in the vicinity of personnel, as the ECM pod may radiate and pose a hazard. Ground personnel must be clear before the pilot engages ECM for pre-flight high-level BIT (Built-In Test). Once airborne, ECM consent (CMS Aft) can be issued and maintained as tactically required.
+On the ground, ECM pods are held in Standby for safety reasons. Pilots must not hold CMS Down while on the ground in the vicinity of personnel, as the ECM pod may radiate and pose a hazard. Ground personnel must be clear before the pilot engages ECM for pre-flight high-level BIT (Built-In Test). Once airborne, ECM consent (CMS Down) can be issued and maintained as tactically required.
 
 % --------------------------------------------------------------------------
 % SECTION 5.3: CMS BLOCK / VARIANT NOTES (PLACEHOLDER)
@@ -520,7 +520,7 @@ On the ground, ECM pods are held in Standby for safety reasons. Pilots must not 
 \subsection{CMS Block and Variant Notes}\label{sec:C5-S3}
 
 Section~\ref{sec:C5-S2} defines CMS actuation procedures for CMDS and ECM systems. 
-CMS interaction with \textbf{CMDS is uniform across all F-16 blocks and variants} (see Section~\ref{sec:C5-S2-S1}). However, \textbf{ECM configuration varies significantly by block and operator}, resulting in different CMS procedures: external ECM pods (ALQ-131/ALQ-184) use CMS Aft as the transmit control, while internal IDIAS systems use CMS Left for mode cycling. These operational differences extend to panel controls (XMIT knob on external pods vs XMTR switch on IDIAS) and fundamentally change the pilot's CMS gesture sequence.
+CMS interaction with \textbf{CMDS is uniform across all F-16 blocks and variants} (see Section~\ref{sec:C5-S2-S1}). However, \textbf{ECM configuration varies significantly by block and operator}, resulting in different CMS procedures: external ECM pods (ALQ-131/ALQ-184) use CMS Down as the transmit control, while internal IDIAS systems use CMS Left for mode cycling. These operational differences extend to panel controls (XMIT knob on external pods vs XMTR switch on IDIAS) and fundamentally change the pilot's CMS gesture sequence.
 
 The present Section identifies which F-16 variants use which ECM configuration and maps them to the correct procedure section in Section~\ref{sec:C5-S2-S2}. Before flight, pilots must verify their aircraft's ECM configuration to ensure they apply the correct CMS procedures and avoid dangerous habit transfer between external ECM and IDIAS variants.
 
@@ -533,7 +533,7 @@ The present Section identifies which F-16 variants use which ECM configuration a
 Falcon BMS 4.38.1 implements two distinct ECM system architectures, each with different CMS actuation methods. The following paragraphs describe how the CMS interacts with each configuration and bring table depicting the blocks/variants equipped with each system architecture; detailed actuation procedures are provided in Section~\ref{sec:C5-S2}.
 
 \paragraph{External ECM Pods (ALQ-131 / ALQ-184):}
-These variants are equipped with an ECM Panel that employs manual jamming band selection. \textbf{CMS Aft} provides ECM transmit consent.\\\\
+These variants are equipped with an ECM Panel that employs manual jamming band selection. \textbf{CMS Down} provides ECM transmit consent.\\\\
 The XMIT knob (3-position switch: 1, 2, 3) selects the jamming mode: XMIT 1 (Avionics Priority, AFT antenna only), XMIT 2 (ECM Priority, both FWD+AFT antennas), or XMIT 3 (Active Jam, continuous transmission independent of RWR threats). For detailed procedures, see Section~\ref{sec:C5-S2-S2} and \dashrefs{2.7.4.1.1 and 2.7.4.2.5}.
 
 \begin{table}[h]
