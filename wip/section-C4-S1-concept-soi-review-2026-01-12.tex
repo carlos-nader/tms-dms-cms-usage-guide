@@ -130,7 +130,7 @@
 % --------------------------------------------------------------------------
 
 \newcommand{\docversion}{C4-S1}
-\newcommand{\docbuild}{20260110}
+\newcommand{\docbuild}{20260112}
 \newcommand{\fulldocversion}{\docversion+\docbuild}
 
 % --------------------------------------------------------------------------
@@ -252,6 +252,40 @@ The SOI is indicated visually:
     \item On the \textbf{HUD/HMCS}: an asterisk (\texttt{*}) appears in the upper left corner when HUD/HMCS is the SOI.
     \item On an \textbf{MFD}: a border outline appears around the edges of the display when it is the SOI. When an MFD format is \textit{not} the SOI, the text ``NOT SOI'' may appear on the format (depending on the mode).
 \end{itemize}
+
+\paragraph{Valid SOI Displays by Master Mode:}
+The availability of displays as valid SOI varies by master mode. Table~\ref{tab:C4-S1-SOI-by-mode} shows which displays can serve as SOI in the primary operational contexts. Note that in air-to-air modes (A-A, DGFT, MSL OVRD), the HUD/HMCS is \textbf{never} available as SOI;all three modes restrict the pilot to FCR, HSD, or TGP as the SOI. This constraint ensures that radar and tactical displays remain the primary source of truth in air-to-air engagements.
+
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\caption{Valid SOI Displays by Master Mode}
+\label{tab:C4-S1-SOI-by-mode}
+\begin{tabularx}{15.6cm}{L{2.5cm} L{6.5cm} L{6.0cm}}
+\rowcolor{headerblue}
+\textbf{\color{white}Master Mode} & \textbf{\color{white}Valid SOI Displays} & \textbf{\color{white}Constraints \& Notes} \\
+\midrule
+NAV (Navigation) & HUD/HMCS, FCR, TGP, HSD, WPN, HAD & All displays available. HUD is primary choice for situational awareness and NAV-specific tasks. \\
+\midrule
+A-A (Air-to-Air) & FCR, HSD, TGP & \textbf{HUD/HMCS cannot be SOI.} SOI limited to radar and tactical displays. \\
+\midrule
+A-G (PRE) & HUD/HMCS, FCR, TGP, WPN, HAD, HSD & All displays available. Common workflow: HUD for visual cueing, then TGP or WPN for weapon prep. \\
+\midrule
+A-G (VIS) & HUD/HMCS, TGP, WPN & Restricted to visual-capable displays. FCR and HAD are not typically available in pure visual modes (e.g., AGM-65 VIS EO, DTOS, CCIP). \\
+\midrule
+DGFT (Dogfight) & FCR, HSD, TGP & \textbf{HUD/HMCS cannot be SOI.} Dogfight context prioritizes radar and tactical displays. \\
+\midrule
+MSL OVRD (Missile Override) & FCR, HSD, TGP & \textbf{HUD/HMCS cannot be SOI.} Missile management takes precedence; HUD displays cues only. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+As shown in Table~\ref{tab:C4-S1-SOI-by-mode}, the availability of SOI displays is strategically constrained by master mode to align pilot attention with the operational context. Navigation and pre-planned air-to-ground modes offer maximum display flexibility, allowing the pilot to transition between HUD, radar, targeting pod, and weapon pages as needed.
+
+Conversely, air-to-air and dogfight modes eliminate HUD/HMCS as a selectable SOI, forcing reliance on the FCR, HSD, or TGP for all targeting decisions. This design reflects the fundamental principle that air-to-air engagements must be driven by primary sensor information rather than derived or display-level cues.
+
+For visual air-to-ground delivery (VIS modes),the SOI is restricted to visual-capable sensors: HUD/HMCS for target designation, TGP for optical tracking if available, and WPN for weapon-specific refinements.In these contexts, the radar falls out of the active SOI pool, and navigation accuracy defaults to system altitude and pre-entered steerpoint data rather than radar-derived range.
 
 \subsubsection{Role of the DMS in SOI Selection}
 

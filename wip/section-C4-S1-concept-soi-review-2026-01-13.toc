@@ -1,5 +1,0 @@
-\babel@toc {english}{}\relax 
-\contentsline {section}{\numberline {1}DMS — Display Management Switch}{3}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Concept and Sensor of Interest (SOI)}{3}{subsection.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.1}SOI Definition and Scope Across Displays}{3}{subsubsection.1.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.2}Role of the DMS in SOI Selection}{4}{subsubsection.1.1.2}%
