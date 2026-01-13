@@ -190,7 +190,7 @@
 
 %
 
-% Narrative Completion: 100%
+% Narrative Completion: 100% - needs human review
 
 % Table Fill Status: 0% (tables belong to Section 4.3)
 
@@ -200,7 +200,7 @@
 
 % - Approved content from Carlos ``Metal'' Nader (2026-01-12)
 
-% - Sections 4.1.1, 4.1.2, 4.1.3 complete per briefing-v0.2.0.1 Section 3.1
+% - Sections 4.1.1, 4.1.2 complete per briefing-v0.2.0.1 Section 3.1
 
 % - No tables in this section; content is purely narrative
 
@@ -272,23 +272,7 @@ The DMS manages SOI selection through two orthogonal axes of control:
 
 This constraint reflects the underlying sensor management architecture: A-A modes rely exclusively on the FCR, HSD or TGP (when in A-A track) for targeting and situational awareness. The HUD in A-A contexts displays weapon delivery cues but is not a selectable SOI.
 
-\subsubsection{Example SOI Flow (Overview)}
-
-\label{sec:C4-S1-S3}
-
-A typical SOI flow during an A-G mission might proceed as follows:
-
-\begin{enumerate}
-    \item \textbf{NAV mode, enroute:} HUD/HMCS is the SOI. Pilot monitors navigation symbology heads-up.
-    \item \textbf{Target area approach:} Pilot presses \textbf{DMS Down} to transfer SOI to the FCR MFD, enabling radar ground mapping and cursor slew via CURSOR/ENABLE.
-    \item \textbf{Initial Point (IP) identification:} Pilot presses \textbf{DMS Down} again to transfer SOI to the TGP MFD for visual confirmation of the target area.
-    \item \textbf{Target designation:} With TGP as SOI, pilot slews the crosshair over the target and uses TMS Forward to establish a POINT track.
-    \item \textbf{Weapon delivery cues:} Pilot presses \textbf{DMS Up} to return SOI to HUD/HMCS, allowing HUD steering and weapon release symbology to dominate the visual field during the attack run.
-\end{enumerate}
-
-This sequence illustrates the DMS's role as a \textit{display orchestrator}: it does not perform targeting or weapon release itself, but ensures that the correct sensor or display is active at each phase of the mission.
-
-In the following sections, this chapter details how the DMS interacts with MFDS format selection (Section 4.2) and how SOI selection varies across sensor and weapon contexts in both A-A and A-G operations (Section 4.3). Block-specific and variant notes are provided in Section 4.4.
+In the following sections, this chapter details how the DMS interacts with MFD format selection (Section~\ref{sec:C4-S2} and \ref{sec:C4-S3}). and how DMS integrates with TMS in some weapon specifics circunstances in Section~\ref{sec:C4-S4}.
 
 % ============================================================================
 
