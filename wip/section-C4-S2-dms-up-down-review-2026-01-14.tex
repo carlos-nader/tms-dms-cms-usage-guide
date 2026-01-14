@@ -214,31 +214,13 @@ The vertical axis of the DMS operates fundamentally differently across the F-16'
 
 \paragraph*{Master Modes Where DMS Up is Effective (HUD as SOI Permitted)}
 
-In three master modes, DMS Up is fully operative and HUD/HMCS SOI is a valid and often preferred operational state.
+In the following modes, DMS Up is fully operative and HUD SOI is a valid and often preferred operational state.
 
 \subparagraph*{NAV (Navigation) Master Mode}
 
 In Navigation mode, the HUD serves as the primary cockpit reference for situational awareness and navigation cueing. DMS Up is \textbf{fully effective}; pressing DMS Up immediately designates the HUD as SOI, and the asterisk appears in the upper left corner.
 
 When HUD is SOI in NAV, the pilot gains immediate hands-on control of navigation-specific symbology via HOTAS inputs (use of DED MARK page on \dashref{2.2.5.3}, for instance).
-
-\subparagraph*{A-G Preplanned Modes (PRE)}
-
-\hl{In preplanned air-to-ground delivery modes, targets are designated pre-mission via steerpoints or pre-entered coordinates. The HUD displays computed delivery solutions (release points, steering cues, altitude/range advisories). DMS Up is \textbf{fully effective} in all A-G PRE submodes.
-
-When HUD is SOI in A-G PRE, the pilot controls}:
-
-\begin{itemize}
-
-\item \textbf{Delivery symbology visualization:} The HUD shows the Continuously Computed Release Point (CCRP) pipper or Dive Toss (DTOS) cues, indicating where ordnance will impact if released at that moment. CURSOR/ENABLE inputs allow fine-tuning of the aircraft's approach to align the pipper with the target.
-
-\item \textbf{Altitude and range awareness:} The HUD displays time-to-go, descent rate cues, and range to target. These cues inform the pilot whether the solution is achievable or requires maneuver adjustment.
-
-\item \textbf{Loft angle and ballistic cueing (DTOS):} In loft delivery modes, the HUD displays the required pitch attitude for a successful toss delivery. TMS inputs may command loft angle adjustments or solution acceptance.
-
-\end{itemize}
-
-\hl{DMS Up is operationally optional in A-G PRE modes (the pilot can use WPN or FCR pages on MFDs), but it is \textbf{highly valuable} for maintaining eyes-out flying during the final approach and delivery phase. Many experienced pilots make HUD their primary SOI immediately before weapons release}. \dashref{4.2.2.2.1}
 
 \subparagraph*{A-G Visual Modes (VIS) --- CCIP, DTOS, AGM-65 VIS, IAM-VIS and Related Submodes:}
 
@@ -257,6 +239,8 @@ With HUD as SOI in A-G VIS, the pilot has full command of:
 \item \textbf{IAM (JSOW/JDAM) Visual target designation:} In IAM-VIS, the HUD displays a target designator (TD) box and extended A-G solution cue for visual delivery. With HUD as SOI, the pilot positions the TD box over the target using aircraft maneuvering or CURSOR/ENABLE, then presses TMS Up to designate and ground-stabilize the target.
 
 \end{itemize}
+
+DMS Up is also effective in A-G preplanned modes (CCRP, LADD, etc.), though its use is optional as pilots can refine solutions using MFD-based pages. The focus of this section is on contexts where DMS Up is operationally critical or most naturally employed
 
 \paragraph*{Master Modes Where DMS Up is Ineffective (HUD as SOI Prohibited)}
 
@@ -280,7 +264,7 @@ A-G & Up & Short & Designate HUD as SOI & DMS Up is fully effective in A-G maste
 
 \label{tab:C4-S2-DMS-Up-Usage}
 
-The architectural design is clear: \textbf{DMS Up is available exactly where the HUD functions as a command interface (NAV, A-G PRE, A-G VIS) and is unavailable where the HUD functions as a passive display (A-A, DGFT, MSL OVRD).} This is not an arbitrary constraint; it reflects a deliberate separation between \textit{sensor-truth-based} operations (air-to-air) and \textit{display-cueing-based} operations (air-to-ground visual, navigation). Understanding this distinction is fundamental to competent HOTAS management across the entire operational envelope.
+The architectural design is clear: \textbf{DMS Up is available exactly where the HUD functions as a command interface (NAV, and A-G VIS) and is unavailable where the HUD functions as a passive display (A-A, DGFT, MSL OVRD).} This is not an arbitrary constraint; it reflects a deliberate separation between \textit{sensor-truth-based} operations (air-to-air) and \textit{display-cueing-based} operations (air-to-ground visual, navigation). Understanding this distinction is fundamental to competent HOTAS management across the entire operational envelope.
 
 \paragraph*{Important Clarification: DMS Up in Exception States}
 
