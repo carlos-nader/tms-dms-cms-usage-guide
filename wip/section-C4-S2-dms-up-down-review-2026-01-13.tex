@@ -260,13 +260,9 @@ With HUD as SOI in A-G VIS, the pilot has full command of:
 
 \paragraph*{Master Modes Where DMS Up is Ineffective (HUD as SOI Prohibited)}
 
-In A-A master modes---and also DGFT and MSL OVRD---the avionics architecture \textit{prohibits} HUD from being designated as SOI and DMS Up has no effect. Understanding the rationale for this prohibition is crucial to grasping the overall sensor management philosophy.
+In A-A master modes---and also DGFT and MSL OVRD---the avionics architecture \textit{prohibits} HUD from being designated as SOI and DMS Up has no effect. \textbf{The SOI is restricted to FCR (Fire Control Radar), HSD (Horizontal Situation Display), or TGP}.
 
-\subparagraph*{A-A (Air-to-Air) Master Mode:}
-
-In Air-to-Air master mode, the avionics system enforces a strict constraint: \textbf{the SOI is restricted} to FCR (Fire Control Radar), HSD (Horizontal Situation Display), or TGP (Targeting Pod). The \textbf{HUD cannot be SOI}.
-
-The same logic applies to \textbf{DGFT and MSL OVRD}, for they are also A-A modes and assume the same operational logic.
+This restriction, however, applies exclusively to the SOI routing architecture (which displays receive HOTAS inputs) and does not eliminate the HUD or HMCS functional capability to acquire, track, or cue targets. For a detailed explanation of this distinction, refer to Section~\ref{sec:C4-S1-S3}.
 
 \subsubsection{DMS Up Usage Table}
 

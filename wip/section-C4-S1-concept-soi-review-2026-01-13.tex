@@ -328,6 +328,18 @@ The DMS manages SOI selection through two orthogonal axes of control:
 
 In the following sections, this chapter details how the DMS interacts with MFD format selection (Section~\ref{sec:C4-S2} and \ref{sec:C4-S3}) and how DMS integrates with TMS in some weapon specifics circumstances in Section~\ref{sec:C4-S4}.
 
+\subsubsection{HUD as SOI in A-A and HMCS Capabilities}
+
+\label{sec:C4-S1-S3}
+
+The restriction that HUD cannot be designated as SOI in A-A master mode applies exclusively to the \textbf{SOI routing architecture} — the mechanism by which HOTAS inputs (cursor slew, TMS commands) are delivered to a specific display. This architectural constraint \textbf{does not eliminate the functional capability} of the HUD or related displays to acquire, track, or cue targets in A-A operations.
+
+The \textbf{Helmet Mounted Cueing System (HMCS)} exemplifies this distinction. Although HMCS is an extension of the HUD display system and shares the HUD's architectural restriction in A-A mode (neither can be designated as SOI via DMS), HMCS retains \textbf{independent off-boresight targeting capability}. For example, the pilot can slave an AIM-9 seeker to the HMCS visor line-of-sight without regard to which display (FCR, HSD, or TGP) is currently the SOI, and can employ HMCS-derived target acquisition cues that function independently of SOI status.
+
+This principle reflects the fundamental architectural design: the SOI mechanism manages \textbf{HOTAS input routing}, while \textbf{display functional capabilities operate orthogonally}. Displays designated as SOI in A-A (FCR, HSD, TGP) receive these HOTAS inputs; displays not designated as SOI (HUD, HMCS) provide cueing and targeting functions through independent mechanisms (e.g., helmet line-of-sight, derived sensor information). Both types of functionality are essential to A-A operations, despite the SOI designation limitation.
+
+For further technical details on HMCS capabilities and behavior in A-A contexts, refer to \dashref{2.5} (Helmet Mounted Cueing System).
+
 % ============================================================================
 
 % END OF SECTION 4.1
