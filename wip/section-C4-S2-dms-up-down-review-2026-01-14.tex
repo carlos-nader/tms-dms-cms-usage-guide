@@ -194,13 +194,13 @@ The vertical axis of the DMS (Up / Down) \textbf{controls which display or senso
 
 \subsubsection{Function and Visual Indication}
 
-When the pilot presses \textbf{DMS Up}, the system attempts to designate the HUD as SOI. If the master mode allows HUD as SOI (see bellow for details), the action succeeds immediately:
+When the pilot presses \textbf{DMS Up}, the system attempts to designate the HUD as SOI. If the master mode allows HUD as SOI (as detailed in the following subsections), the action succeeds immediately:
 
 \begin{itemize}
 
 \item An asterisk (\texttt{*}) appears in the upper left corner of the HUD, above the airspeed scale, indicating that the HUD is now the Sensor of Interest.
 
-\item Any HOTAS inputs that act upon the SOI (such as CURSOR/ENABLE for slew, or TMS for target designation) now apply to the HUD and its symbology.
+\item Any HOTAS inputs that are tied to the SOI (such as CURSOR/ENABLE for symbology positioning, or TMS for target/waypoint designation) now apply to the HUD and its symbology. The specific effect of each control varies by operational context (see sections below for details).
 
 \item The MFD border outlines (if any MFD was previously SOI) disappear, and the ``NOT SOI'' text may appear on MFD formats, indicating that no MFD is currently selected for HOTAS input.
 
@@ -220,21 +220,21 @@ In the following modes, DMS Up is fully operative and HUD SOI is a valid and oft
 
 In Navigation mode, the HUD serves as the primary cockpit reference for situational awareness and navigation cueing. DMS Up is \textbf{fully effective}; pressing DMS Up immediately designates the HUD as SOI, and the asterisk appears in the upper left corner.
 
-When HUD is SOI in NAV, the pilot gains immediate hands-on control of navigation-specific symbology via HOTAS inputs (use of DED MARK page on \dashref{2.2.5.3}, for instance).
+When HUD is SOI in NAV, the pilot can control navigation-specific functions via HOTAS inputs directly on the HUD display (use of DED MARK page on \dashref{2.2.5.3}, for instance).
 
 \subparagraph*{A-G Visual Modes (VIS) --- CCIP, DTOS, AGM-65 VIS, IAM-VIS and Related Submodes:}
 
-In visual delivery modes, targets are visually identified and designated by the pilot. The HUD is the \textbf{primary command interface} for all target designation and rejection functions. DMS Up is not merely effective---it is \textbf{operationally mandatory}.
+In visual delivery modes, targets are visually identified and designated by the pilot. The HUD is the \textbf{primary command interface} for all target designation and rejection functions. DMS Up is not merely effective---it is operationally critical. In particular, if the SOI has drifted to another display (e.g., TGP or WPN), the pilot must use DMS Up to restore HUD SOI before visual cueing can be properly controlled.
 
-When the pilot enters an A-G VIS mode (e.g., CCIP and AGM-65 VIS), the avionics system \textit{automatically configures HUD as SOI}. However, if the SOI has drifted to another display (e.g., TGP or WPN), the pilot must use DMS Up to restore HUD SOI before visual cueing can be properly controlled. The loss of HUD as SOI is a critical degradation. If the pilot accidentally transfers SOI to an MFD (via DMS Down), the CURSOR and TMS inputs will no longer control the visual designator box on the HUD.
+When the pilot enters an A-G VIS mode (e.g., CCIP and AGM-65 VIS), the avionics system \textit{automatically configures HUD as SOI}. If SOI is later transferred to another display (e.g., TGP or WPN), visual cueing must first be restored to the HUD using DMS Up, as described above.
 
 With HUD as SOI in A-G VIS, the pilot has full command of:
 
 \begin{itemize}
 
-\item \textbf{Visual target designation:} In CCIP the HUD displays a pipper (computed impact point or bullet track line). The pilot maneuvers the aircraft to place the pipper on the intended impact point and releases ordnance. CURSOR/ENABLE controls the pipper position; TMS Up/Down may designate or reject the target.
+\item \textbf{Visual target designation:} In CCIP the HUD displays a pipper (computed impact point or bullet track line). The pilot maneuvers the aircraft to place the pipper on the intended impact point and commands weapon release with the WPN REL button. With HUD as SOI, CURSOR/ENABLE may be used (when AGR mechanics allow) to refine the impact solution by adjusting the visual reference point on the HUD.
 
-\item \textbf{AGM-65 Maverick VIS target designation:} In AGM-65 VIS, the HUD displays a target designator (TD) box that slews the Maverick's seeker. The pilot uses CURSOR/ENABLE to position the TD box over the target, then TMS Up to lock the seeker. Target rejection (TMS Down) requires HUD to be SOI.
+\item \textbf{AGM-65 Maverick VIS target designation:} In AGM-65 VIS, the HUD displays a target designator (TD) box that slews the Maverick's seeker. The pilot uses CURSOR/ENABLE to position the TD box over the target, then TMS Up to lock the seeker. Target rejection (TMS Down) via HUD symbology requires HUD to be SOI, so that TMS commands are routed to the visual TD box rather than to an MFD format.
 
 \item \textbf{IAM (JSOW/JDAM) Visual target designation:} In IAM-VIS, the HUD displays a target designator (TD) box and extended A-G solution cue for visual delivery. With HUD as SOI, the pilot positions the TD box over the target using aircraft maneuvering or CURSOR/ENABLE, then presses TMS Up to designate and ground-stabilize the target.
 
@@ -246,25 +246,23 @@ DMS Up is also effective in A-G preplanned modes (CCRP, LADD, etc.), though its 
 
 In A-A master modes---and also DGFT and MSL OVRD---the avionics architecture \textit{prohibits} HUD from being designated as SOI and DMS Up has no effect. \textbf{The SOI is restricted to FCR (Fire Control Radar), HSD (Horizontal Situation Display), or TGP}.
 
-This restriction, however, applies exclusively to the SOI routing architecture (which displays receive HOTAS inputs) and does not eliminate the HUD or HMCS functional capability to acquire, track, or cue targets. For a detailed explanation of this distinction, refer to Section~\ref{sec:C4-S1-S3}.
+This restriction, however, applies exclusively to the SOI routing architecture (which displays receive HOTAS inputs) and does not eliminate the HUD or HMCS functional capability to acquire, track, or cue targets. For a more complete discussion of HUD/HMCS capabilities in A-A master modes and their relationship to SOI routing, refer to Section~\ref{sec:C4-S1-S3}.
 
 \subsubsection{DMS Up Usage Table}
 
 The Table below summarizes DMS Up behavior across A-A and A-G Master Modes.
 
-In brief, the architectural design is clear: \textbf{DMS Up is available exactly where the HUD can function as a command interface (NAV and A-G) and is unavailable where the HUD functions as a passive display (A-A, DGFT, MSL OVRD).} This is not an arbitrary constraint; it reflects a deliberate separation between \textit{sensor-truth-based} operations (air-to-air) and \textit{display-cueing-based} operations (air-to-ground visual, navigation). 
+In brief, the architectural design is clear: DMS Up is available exactly where the HUD functions as a \textbf{command interface} (NAV and A-G visual modes) and is unavailable where the HUD functions as a \textbf{passive display} (A-A, DGFT, MSL OVRD). This is not an arbitrary constraint; it reflects a deliberate separation between sensor-truth-based operations (air-to-air, where HUD is passive) and display-cueing-based operations (air-to-ground visual and navigation, where HUD is a command interface). Understanding this distinction is fundamental to competent HOTAS management across the entire operational envelope. 
 
 \begin{hotastable}{DMS Up Usage Across A-A and A-G Master Modes}
 
 A-A & Up & Short & Designate HUD as SOI & DMS Up is \textbf{ineffective} in A-A master mode. The avionics architecture restricts SOI to FCR, HSD, or TGP only. HUD cannot be SOI in this mode---it functions as a passive display only. Pressing DMS Up has no effect; the pilot must manage SOI between MFDs via DMS Down. & 2.1.1.2.3 & --- \\
 
-A-G & Up & Short & Designate HUD as SOI & DMS Up is fully effective in A-G master modes. Pressing DMS Up immediately designates HUD as SOI, and an asterisk appears in the upper left corner of the HUD. Specially in A-G VIS, HUD is the \textbf{mandatory} command interface for visual target designation and rejection via CURSOR and TMS inputs. & 2.1.1.2.3, 4.2.2.1, 4.2.2.1.1 & \trnref{10 (GP Bombs)}, \trnref{11 (LGB)}, \trnref{13 (Maverick)}, \trnref{14 (Maverick Adv)}, \trnref{15 (IAM)} \\
+A-G & Up & Short & Designate HUD as SOI & DMS Up is fully effective in A-G master modes. Pressing DMS Up immediately designates HUD as SOI, and an asterisk appears in the upper left corner of the HUD. \textbf{In A-G visual modes (VIS)}, HUD is the operationally critical command interface for visual target designation and rejection via CURSOR and TMS inputs. If HUD loses SOI, visual cueing control is lost and must be recovered with DMS Up. & 2.1.1.2.3, 4.2.2.1, 4.2.2.1.1 & \trnref{10 (GP Bombs)}, \trnref{11 (LGB)}, \trnref{13 (Maverick)}, \trnref{14 (Maverick Adv)}, \trnref{15 (IAM)} \\
 
 \end{hotastable}
 
 \label{tab:C4-S2-DMS-Up-Usage}
-
-The architectural design is clear: \textbf{DMS Up is available exactly where the HUD functions as a command interface (NAV, and A-G VIS) and is unavailable where the HUD functions as a passive display (A-A, DGFT, MSL OVRD).} This is not an arbitrary constraint; it reflects a deliberate separation between \textit{sensor-truth-based} operations (air-to-air) and \textit{display-cueing-based} operations (air-to-ground visual, navigation). Understanding this distinction is fundamental to competent HOTAS management across the entire operational envelope.
 
 \paragraph*{Important Clarification: DMS Up in Exception States}
 
@@ -274,11 +272,9 @@ In certain rare states, DMS Up may be temporarily ineffective even in NAV or A-G
 
 \item \textbf{Snowplow (SP) PRE state (unstabilized):} When the pilot enters Snowplow mode (a specialized ground-stabilization mode for slewing to arbitrary ground positions), and the SP position has not yet been stabilized with TMS Up, the SOI is defined as being ``nowhere''. Both the A-G radar and TGP display ``NOT SOI'' on the MFDs, and DMS Up/Down commands are ineffective until the SP position is stabilized. Once stabilized, SOI returns to its previous state, and DMS Up becomes effective again. (\dashref{4.2.1.4})
 
-\item \textbf{MARK/OFLY Submode:} In some specialized marking or overfly contexts, the SOI cannot be designated at all, and DMS commands are ignored. These modes are rare and are noted in specific weapon employment sections.
+\item \textbf{MARK/OFLY Submode:} In the MARK/OFLY submode (a specialized target acquisition context documented in \dashref{2.1.1.2.3}), the SOI cannot be designated at all, and DMS commands are ignored. This exception is rare in normal operations.
 
 \end{itemize}
-
-In normal operational contexts (NAV, A-G PRE, A-G VIS), DMS Up always works as expected.
 
 \subsection{DMS Down: SOI Alternation Between HUD and MFDs}
 
@@ -406,7 +402,7 @@ Just as with DMS Up, there are rare exception states in which DMS Down is tempor
 
 \item \textbf{Snowplow (SP) PRE (unstabilized):} When the A-G radar is in Snowplow mode and the SP position has not yet been stabilized, the SOI is ``nowhere''. DMS Down is ignored. The pilot must stabilize the SP position using \textbf{TMS Up} before DMS Down will function again. (\dashref{4.2.1.4})
 
-\item \textbf{MARK/OFLY Submode:} SOI cannot be designated, and DMS commands have no effect.
+\item \textbf{MARK/OFLY Submode:} In the MARK/OFLY submode (a specialized target acquisition context documented in \dashref{2.1.1.2.3}), the SOI cannot be designated and DMS commands have no effect. This exception is rare in normal operations.
 
 \end{itemize}
 

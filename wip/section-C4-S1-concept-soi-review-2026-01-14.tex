@@ -10,7 +10,7 @@
 % Padrão: section-C{N}-S{M}[-S{K}]-{titulo}-{status}-{data}.tex
 % Exemplo: section-C5-S2-cms-actuation-hotas-tables-final-2026-01-10.tex
 
-% Status: dev | review | final | approved | deprecated
+% Status: review | review | final | approved | deprecated
 % Locação: WIP/ (ativo) | ARCHIVE/ (aprovado/descartado)
 
 \documentclass[11pt,a4paper]{article}
@@ -29,6 +29,7 @@
 
 \usepackage{lmodern}
 \usepackage{microtype}
+\usepackage{soul}
 
 % --------------------------------------------------------------------------
 % PAGE GEOMETRY AND LAYOUT
@@ -251,7 +252,7 @@ The Sensor of Interest (SOI) is the display or sensor that currently receives HO
     \item \textbf{Horizontal Situation Display (HSD)};
     \item \textbf{HARM Attack Display (HAD)};
     \item \textbf{Weapon page (WPN)};
-    \item \textbf{Head-Up Display(HUD)}.
+    \item \textbf{Heads-Up Display (HUD)}.
 \end{itemize}
 
 Displays that are \textit{not} valid SOI include: SMS (Stores Management Set), DTE (Data Transfer Equipment), TEST, and blank/inactive MFDS formats. These pages provide information or control but do not accept sensor-like slew or targeting inputs.
@@ -294,18 +295,18 @@ A-A (Air-to-Air) & FCR, HSD, TGP & \textbf{HUD cannot be SOI.} SOI limited to ra
 \midrule
 A-G (PRE) & HUD, FCR, TGP, WPN, HAD, HSD & All displays available. \\
 \midrule
-A-G (VIS) & HUD, TGP, WPN & Restricted to visual-capable displays. HUD used for target aquisition (e.g., AGM-65 VIS EO, DTOS, CCIP). \\
+A-G (VIS) & HUD, FCR, TGP, WPN & Restricted to visual-capable displays. HUD used for target acquisition (e.g., AGM-65 VIS EO, DTOS, CCIP). \\
 \midrule
 DGFT (Dogfight) & FCR, HSD, TGP & \textbf{HUD cannot be SOI}. \\
 \midrule
-MSL OVRD (Missile Override) & FCR, HSD, TGP & \textbf{HUD/HMCS cannot be SOI}. \\
+MSL OVRD (Missile Override) & FCR, HSD, TGP & \textbf{HUD cannot be SOI}. \\
 \end{longtable}
 
 As shown in Table~\ref{tab:C4-S1-SOI-by-mode}, the availability of SOI displays is strategically constrained by master mode to align pilot attention with the operational context. Navigation and air-to-ground modes offer maximum display flexibility, allowing the pilot to transition between HUD, radar, targeting pod, and weapon pages as needed.
 
-Conversely, air-to-air and associated override modes eliminate HUD as a selectable SOI. This design reflects the fundamental principle that air-to-air engagements must be driven by primary sensor information rather than derived or display-level cues, \textbf{although HCMS is always an option}.
+Conversely, air-to-air and associated override modes eliminate HUD as a selectable SOI. This design reflects the fundamental principle that air-to-air engagements must be driven by primary sensor information (FCR radar returns) rather than HUD-derived or symbology-based cues. However, HMCS provides an independent off-boresight capability (see Section~\ref{sec:C4-S1-S3} for details).
 
-\hl{For visual air-to-ground delivery (VIS modes),the SOI is restricted to visual-capable sensors: HUD for target designation, TGP for optical tracking if available, and WPN for weapon-specific refinements.In these contexts, the radar falls out of the active SOI pool, and navigation accuracy defaults to system altitude and pre-entered steerpoint data rather than radar-derived range}.
+For visual air-to-ground delivery (VIS modes), practical SOI control focuses on visual-capable sensors: the HUD for target designation, the TGP for optical tracking when available, and the WPN page for weapon-specific control. Although the FCR may continue to provide ranging data in the background, HUD- and sensor-video-driven symbology drive the attack in VIS delivery. See Section~\ref{sec:C4-S2-S1} for specific weapon examples (CCIP, DTOS, AGM-65 VIS EO, IAM VIS).
 
 \subsubsection{Role of the DMS in SOI Selection}
 
@@ -325,8 +326,6 @@ The DMS manages SOI selection through two orthogonal axes of control:
             \item \textbf{DMS Right:} Cycles the right MFD format (primary $\to$ secondary $\to$ tertiary).
         \end{itemize}
 \end{itemize}
-
-In the following sections, this chapter details how the DMS interacts with MFD format selection (Section~\ref{sec:C4-S2} and \ref{sec:C4-S3}) and how DMS integrates with TMS in some weapon specifics circumstances in Section~\ref{sec:C4-S4}.
 
 \subsubsection{HUD as SOI in A-A and HMCS Capabilities}
 
