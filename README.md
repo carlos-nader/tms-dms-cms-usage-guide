@@ -232,6 +232,6 @@ For questions, suggestions, or feedback about this guide, please:
 
 ---
 
-**Last Updated:** 2026-01-09  
-**Status:** Pre-publication v0.2.2.0  
+**Last Updated:** 2026-01-15  
+**Status:** Pre-publication v0.3.0.0  
 **License:** CC BY 4.0
