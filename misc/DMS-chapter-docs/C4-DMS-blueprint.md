@@ -39,12 +39,10 @@ There is **no separate block/variant section** and **no long integration section
 
 ### 4.1 Concept and Sensor of Interest (SOI)
 
-**Current implementation:** `section-C4-S1-concept-soi-final-2026-01-14.tex` (FINAL, integration pending in `guide.tex`).
+**Current implementation:** `section-C4-S1-concept-soi-approved-2026-01-14.tex` (integration into `guide.tex`).
 
 **Status:**
-- ✅ Narrative complete and approved.  
-- ✅ Structure and labels aligned with this blueprint.  
-- 🔄 Only remaining task: integrate into `guide.tex` and mark as ARCHIVE `...-approved-...` if desired.
+- ✅ Integrated into `guide.tex`
 
 **Structure:**
 
@@ -119,12 +117,9 @@ Final high‑level structure:
 
 ## 2. Section 4.2.1 — DMS Up: Designate HUD as SOI
 
-**Current implementation:** `section-C4-S2-dms-up-final.tex` (FINAL narrative, review‑level polish only).  
+**Current implementation:** `section-C4-S2-dms-up-integrated.tex` (integrated into `guide.tex`).  
 **Status:**
-- ✅ Content aligned with Dash‑34 and C4‑S1.  
-- ✅ Redundâncias com 4.1 removidas (remissões à tabela de SOI).  
-- ✅ Tabela de DMS Up ajustada para incluir NAV, A‑A e A‑G.  
-- 🔄 Apenas copyedit final e integração em `guide.tex` são pendentes.
+- ✅ Integrated into `guide.tex`
 
 **Structure in document terms:**
 
@@ -402,15 +397,15 @@ Conteúdo alvo:
 
 ## 6. WIP File Mapping and To-Do List
 
-**Existing, FINAL / near-final WIP files:**
+**Integrated (Aprroved) WIP files, moved to ARCHIVE\:**
 
-- `section-C4-S1-concept-soi-final-2026-01-14.tex`
-  - Maps to 4.1 (entire).  
-  - Status: FINAL; integrate into `guide.tex`.
+- `section-C4-S1-concept-soi-approved-2026-01-14.tex`
+  - Section 4.1 (entire).  
+  - Status: integrated into `guide.tex`.
 
-- `section-C4-S2-dms-up-final.tex`
-  - Maps to 4.2.1.  
-  - Status: FINAL narrative; only polishing/integration pending.
+- `section-C4-S2-dms-up-approved.tex`
+  - Section 4.2.1 (DMS Up).  
+  - Status: integrated into `guide.tex`.
 
 **Deprecated WIP files:**
 
@@ -437,13 +432,13 @@ Conteúdo alvo:
 **Project Tracking updates (to be done in `project-tracking-v5.0.0.md`):**
 
 - Mark Chapter 4:
-  - C4‑S1: COMPLETE (Final).  
-  - C4‑S2 (DMS Up): COMPLETE (Final).  
+  - C4‑S1: INTEGRATED (approved).  
+  - C4‑S2 (DMS Up): INTEGRATED (approved).  
   - C4‑S2 (DMS Down): IN PROGRESS (TO DO, WIP not yet created).  
   - C4‑S3 (Left/Right): NOT STARTED.  
   - 4.2.4 Summary: NOT STARTED.
 
-- Note archival of deprecated files and creation of `section-C4-S2-dms-up-final.tex` as the canonical DMS Up section.
+- Note archival of deprecated files and creation of `section-C4-S2-dms-up-approved.tex` as the canonical DMS Up section.
 
 ---
 

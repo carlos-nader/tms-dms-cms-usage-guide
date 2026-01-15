@@ -143,13 +143,13 @@
 % ============================================================================
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 % ============================================================================
-% File Name: section-C4-S2-dms-up-review-2026-01-14.tex
+% File Name: section-C4-S2-dms-up-approved-2026-01-15.tex
 % WIP Naming Convention: v1.4
 % Target Chapter: C4 (DMS — Display Management Switch)
 % Target Section: S2.1 (DMS Up: HUD Designation as SOI)
-% WIP Status: review
+% WIP Status: approved
 % Created: 2026-01-14
-% Last Modified: 2026-01-14
+% Last Modified: 2026-01-15
 % Integration Status: TARGET v0.3.0.0
 % Narrative Completion: 100% for DMS Up (requires human review)
 % Table Fill Status: 100% 
@@ -164,7 +164,7 @@
 % ============================================================================
 
 \subsection{DMS Up: HUD Designation as SOI}
-\label{sec:C4-S2-S1}
+\label{sec:C4-S2}
 
 % CHANGED: trimmed generic re-explanation of DMS vertical axis (already covered in Section 4.1).
 % Focus here is specifically on DMS Up behaviour, assuming reader has read Section 4.1.
@@ -174,17 +174,17 @@ The \textbf{DMS Up} command attempts to designate the HUD as the Sensor of Inter
 When DMS Up successfully designates the HUD as SOI, the HUD SOI asterisk appears and any previous MFD SOI border is removed, as described in Section~\ref{sec:C4-S1-S1}. From that moment, all SOI-dependent HOTAS inputs (such as CURSOR/ENABLE for symbology positioning and TMS for target or waypoint designation) act on HUD symbology rather than on any MFD format. This simple visual feedback --- the HUD asterisk and loss of MFD SOI borders --- allows the pilot to confirm at a glance that all SOI-dependent commands are now applied to HUD-level cueing rather than to an MFD sensor page.
 
 \subsubsection{DMS Up Effectiveness in All Master Modes}
-
+\label{sec:C4-S2-S1}
 % TRIM: removed exhaustive "per-master-mode" narrative already implied by Table 4.1.x.
 % Here we reference that table and focus on contexts where DMS Up is operationally important.
 
 DMS Up is only effective in master modes where the HUD is a valid SOI candidate. Table~\ref{tab:C4-S1-SOI-by-mode} in Section~\ref{sec:C4-S1} summarises these constraints. This subsection focuses on the modes where HUD SOI is both permitted and operationally significant, and then contrasts them with modes where DMS Up has no effect.
 
-\paragraph*{Master Modes Where DMS Up is Effective (HUD as SOI Permitted)}
+\paragraph*{Master Modes Where DMS Up is Effective (HUD as SOI Permitted):}
 
 In master modes where the HUD can be SOI, DMS Up is the hands‑on command used to designate the HUD as SOI, enabling HUD‑based visual cueing in those modes.
 
-\subparagraph*{NAV (Navigation) Master Mode}
+\subparagraph*{NAV (Navigation) Master Mode:}
 
 % CHANGED: kept operational flavour, removed redundant restatement of HUD validity (now via reference).
 
@@ -209,7 +209,7 @@ With HUD as SOI in typical A-G VIS contexts:
 
 DMS Up is also valid in non‑visual A‑G modes (such as CCRP or preplanned IAM deliveries), but in those cases HUD SOI is a convenience rather than a strict requirement, since targeting, cursor management, sighting‑point control, and sensor designation can be accomplished entirely with MFD‑centric SOI (FCR, TGP, HSD). The visual modes described earlier (DTOS, AGM‑65 VIS, HUD/HMCS MARK, IAM‑VIS) are where the coupling between DMS Up and TMS/CURSOR behaviour on HUD/HMCS symbology becomes operationally critical, as these modes rely on HUD/HMCS line‑of‑sight cueing and ground‑stabilization as primary designation methods.
 
-\paragraph*{Master Modes Where DMS Up is Ineffective (HUD as SOI Prohibited)}
+\paragraph*{Master Modes Where DMS Up is Ineffective (HUD as SOI Prohibited):}
 
 % TRIM: removed second explanation of "HUD cannot be SOI in A-A/DGFT/MSL OVRD";
 % now we state the operational consequence and point back to C4-S1 for the rationale.
@@ -217,6 +217,7 @@ DMS Up is also valid in non‑visual A‑G modes (such as CCRP or preplanned IAM
 In air-to-air employment modes (A-A, DGFT, and MSL OVRD), pressing DMS Up has no effect on SOI selection, because the HUD is not a valid SOI candidate in these modes (see Section~\ref{sec:C4-S1-S1} and Table~\ref{tab:C4-S1-SOI-by-mode}). SOI remains on one of the MFD formats, such as the FCR, HSD, or TGP. The architectural rationale for this restriction, and the complementary role of HMCS in providing high off-boresight cueing in air-to-air, are developed in Section~\ref{sec:C4-S1-S3}.
 
 \subsubsection{DMS Up Usage Table}
+\label{sec:C4-S2-S2}
 
 % CHANGED: table content preserved; only comments and surrounding prose adjusted for clarity.
 % This table remains the core reference for DMS Up across master modes (see briefing v0.2.0.1).
@@ -228,7 +229,6 @@ NAV & Up & Short & Designate HUD as SOI & DMS Up is fully effective in NAV maste
 A-A & Up & Short & Designate HUD as SOI & DMS Up is \textbf{ineffective} in A-A master mode. The avionics architecture restricts SOI to FCR, HSD, or TGP only. HUD cannot be SOI in this mode and functions purely as a passive display. & 2.1.1.2.3 & \\
 A-G & Up & Short & Designate HUD as SOI & DMS Up is fully effective in A-G master modes. Pressing DMS Up immediately designates HUD as SOI, and an asterisk appears in the upper left corner of the HUD. \textbf{In A-G visual modes (VIS)}, HUD is the operationally critical command interface for visual target designation and rejection via CURSOR and TMS inputs. If HUD loses SOI, visual cueing control is lost and must be recovered with DMS Up. & 2.1.1.2.3, 4.2.2.1, 4.2.2.1.1 & \trnref{10 (GP Bombs)}, \trnref{11 (LGB)}, \trnref{13 (Maverick)}, \trnref{14 (Maverick Adv)}, \trnref{15 (IAM)} \\
 \end{hotastable}
-
 \label{tab:C4-S2-DMS-Up-Usage}
 
 \subsubsection{DMS Up Exception States}
@@ -237,7 +237,7 @@ A-G & Up & Short & Designate HUD as SOI & DMS Up is fully effective in A-G maste
 % UNCHANGED: exceptions are intentionally inline in 4.2.1 per blueprint.
 % They are specific enough that there is no meaningful overlap with Section 4.1.
 
-In certain rare states, DMS Up may be temporarily ineffective even in modes where HUD is normally a valid SOI:
+In certain states, DMS Up may be temporarily ineffective even in modes where HUD is normally a valid SOI:
 
 \begin{itemize}
   \item \textbf{Snowplow (SP) PRE state (unstabilised):} When the pilot enters Snowplow mode (a specialised ground-stabilisation mode for slewing to arbitrary ground positions) and the SP position has not yet been stabilised with TMS Up, the SOI is effectively ``nowhere''. Both the A-G radar and TGP display ``NOT SOI'' on the MFDs, and DMS Up/Down commands are ineffective until the SP position is stabilised. Once stabilised, SOI returns to its previous state, and DMS Up becomes effective again (\dashref{4.2.1.4}).

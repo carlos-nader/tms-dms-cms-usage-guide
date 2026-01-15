@@ -119,11 +119,11 @@ All governance documents are available in **Markdown** (for editing) and **DOCX*
 
 | Metric | Value |
 |--------|-------|
-| **Guide Version** | v0.2.4.0 |
+| **Guide Version** | v0.3.0.0 |
 | **Total Chapters Planned** | 7 |
-| **Chapters with Narrative** | 2/7 |
+| **Chapters with Narrative** | 3/7 |
 | **Chapters Scaffolded** | 4/7 |
-| **Tables Populated** | CHAPTER 5 |
+| **Tables Populated** | CHAPTER 4 and 5 |
 | **Phase** | 0 (Chapter scaffolding and Content) |
 
 ---
