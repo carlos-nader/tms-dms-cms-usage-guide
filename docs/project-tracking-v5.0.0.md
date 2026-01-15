@@ -4,7 +4,7 @@
 **Document Version:** PROJECT-TRACKING-v5.0.0  
 **Regime:** Pre-publication (0.x.x.x)  
 **Project Start:** 2026-01-05  
-**Last Updated:** 2026-01-14, 21:37 PM -03  
+**Last Updated:** 2026-01-15, 02:10 AM -03  
 **Repository:** carlos-nader/tms-dms-cms-usage-guide
 
 This document tracks how governance rules, WIP files and guide versions evolve during the development of the Falcon BMS TMS/DMS/CMS HOTAS Guide.
@@ -29,7 +29,7 @@ Reference documents that define the project structure:
 
 ## 2. PROJECT SNAPSHOT
 
-Current state as of 2026-01-14, 21:37 PM -03:
+Current state as of 2026-01-15, 02:10 AM -03:
 
 ### 2.1 High-Level Overview
 
@@ -40,10 +40,10 @@ Current state as of 2026-01-14, 21:37 PM -03:
 - **Chapters with narrative complete in development:** 2/7
   - Chapter 1 -- Introduction (narrative complete)
   - Chapter 5 -- CMS Sections 5.1, 5.2, 5.3 (narrative and tables complete)
-  - (Chapter 4 -- DMS Sections 4.1, 4.1.3 narratives 100% complete; 4.2 narrative 95% complete; tables under development for 4.1, 4.2, 4.3)
+  - Chapter 4 -- DMS: Section 4.1 (Concept and SOI) narrative and table FINAL (section-C4-S1-concept-soi-final-2026-01-14.tex); Section 4.2.1 (DMS Up) narrative and HOTAS table FINAL (section-C4-S2-dms-up-final.tex); Sections 4.2.2 (DMS Down), 4.2.3 (DMS Left/Right) and 4.2.4 (Master Mode Summary) pending new WIP files per unified Chapter 4 DMS blueprint v1.1.
 - **Chapters with structure scaffolded:** 4/7
-  - Chapters 2 (HOTAS Fundamentals), 3 (TMS), 4 (DMS with sections 4.1, 4.1.3, 4.2 under review; 4.3 in dev), plus outlines for 6 (Training References) and 7 (HOTAS Visual Reference)
-- **Tables filled:** 1 major HOTAS table (CMS, integrated Sections 5.2--5.3); remaining tables: 3 in development (C4-S1, C4-S2, C4-S3 tables under construction)
+  - Chapters 2 (HOTAS Fundamentals), 3 (TMS), 4 (DMS with 4.1, 4.2 direction-based structure locked by blueprint v1.1), plus outlines for 6 (Training References) and 7 (HOTAS Visual Reference)
+- **Tables filled:** 1 major HOTAS table (CMS, integrated Sections 5.2--5.3) and 2 DMS tables (C4-S1 SOI-by-mode, C4-S2 DMS Up); remaining DMS tables (DMS Down, DMS Left/Right, DMS summary) pending.
 
 ### 2.2 Layout Standard
 
@@ -74,7 +74,7 @@ Since v0.2.2.0:
 
 | Target Version | Expected Area | Phase | Status | Notes |
 |---|---|---|---|---|
-| v0.3.0.0 | Chapter 4 -- DMS (Sections 4.1--4.3) | 0 | IN PROGRESS | **Session 14 update:** C4-S1 (Concept & SOI) WIP REVIEW status (section-C4-S1-concept-soi-review-2026-01-13.tex), includes Table "Valid SOI Displays by Master Mode" (6 rows: NAV, A-A, A-G PRE, A-G VIS, DGFT, MSL OVRD). C4-S1-S3 (HUD as SOI in A-A and HMCS Capabilities) NEW subsection, status DEV (section-C4-S1-S3-hud-soi-hmcs-capabilities-dev-2026-01-14.tex), ~220 words conceptual clarification, single Dash-34 ref. C4-S2 (DMS Up/Down: SOI Management) WIP REVIEW status (section-C4-S2-dms-up-down-review-2026-01-13.tex), 95% narrative complete (S2.1 and S2.2 complete, S2.3 placeholder for consolidated table), includes 3 practical scenarios + hotastable tables. C4-S2-DEPRECATED version exists (section-C4-S2-dms-up-down-deprecated-2026-01-13.tex) for audit trail. C4-S3 (DMS Left/Right: Format Cycling) WIP DEV status (section-C4-S3-dms-format-cycling-dev-2026-01-13.tex), not reviewed in Session 14. MINOR bump upon integration of all sections. |
+| v0.3.0.0 | Chapter 4 -- DMS (Sections 4.1--4.2) | 0 | IN PROGRESS | **Session 15 update:** C4-S1 (Concept & SOI) consolidated and renamed to section-C4-S1-concept-soi-final-2026-01-14.tex (FINAL, integration pending). Former standalone 4.1.3 HUD/HMCS subsection merged into C4-S1 final file. C4-S2 DMS Up extracted into standalone section-C4-S2-dms-up-final.tex (FINAL narrative and HOTAS table) with redundancy versus C4-S1 removed. Legacy combined C4-S2 WIP (DMS Up/Down) renamed to section-C4-S2-dms-up-down-deprecated-2026-01-14.tex and moved to ARCHIVE; relevant DMS Down narrative preserved separately as raw material for a new section-C4-S2-dms-down-review-2026-01-xx.tex. C4-S3 (DMS format cycling) dev file renamed to section-C4-S3-dms-format-cycling-deprecated-2026-01-13.tex and archived. Unified Chapter 4 DMS blueprint v1.1 (C4-DMS-blueprint.md) created, superseding previous C4 blueprints and locking final 4.1/4.2 structure and remaining work (DMS Down, DMS Left/Right, DMS summary). MINOR bump to v0.3.0.0 will occur after integration of C4-S1 and C4-S2 DMS Up into guide-v. |
 | v0.4.0.0 | Chapter 3 -- TMS (Sections 3.1--3.5) | 0 | Planned | Integrate full TMS coverage after DMS completion. MINOR bump. |
 | v0.5.0.0 | Chapter 2 -- HOTAS Fundamentals | 0 | Target | Integrate foundational SOI, short/long press timing, master modes. MINOR bump. |
 | v0.7.0.0 | All 7 chapters scaffolded | 0 | Target | All chapters with structure and basic narrative. Transition point from Phase 0 to Phase 1. MINOR bump. |
@@ -107,7 +107,7 @@ Per WIP-FILE-NAMING-v1.4:
 
 ---
 
-### 4.2 Active WIP Snapshot (as of 2026-01-14, 21:37 PM -03)
+### 4.2 Active WIP Snapshot (as of 2026-01-15, 02:10 AM -03)
 
 | Date | WIP Reference File | From Version | To Version | Status | Category | Notes |
 |---|---|---|---|---|---|---|
@@ -115,12 +115,10 @@ Per WIP-FILE-NAMING-v1.4:
 | 2026-01-08 | section-C5-S1-concept-and-interactions-cmds-ecm-rwr-final-2026-01-07.tex | v0.2.0.1 | v0.2.1.0 | INTEGRATED | section | Human-driven refinement of Chapter 5 internal structure (5.1--5.3 splits, headings). |
 | 2026-01-10 | section-C5-S2-cms-actuation-hotas-tables-final-2026-01-09.tex | v0.2.1.0 | v0.2.3.1 | INTEGRATED | section | Integrated CMS 5.2 (CMS Switch Actuation) narrative and main HOTAS table. |
 | 2026-01-11 | section-C5-S3-blocks-and-variants-final-2026-01-11.tex | v0.2.3.1 | v0.2.4.0 | INTEGRATED | section | Integrated CMS 5.3 (Block and Variant Notes) narrative and reference tables (External ECM Pod, Internal IDIAS). Chapter 5 now structurally complete (all 3 sections). |
-| 2026-01-12 | section-C4-S1-concept-and-soi-dev-2026-01-12.tex | -- | -- | dev | section | DMS Chapter 4 Section 1 (Concept and SOI). WIP file created from template-wip-V1.0.tex with author-approved narrative. Narrative 100% complete; tables: 0 (intentional, Section 4.3). Compliance 100% verified (wip-naming-v1.4, template-wip-V1.0.tex, briefing-v0.2.0.1). Status: dev → ready for review. |
-| 2026-01-13 | section-C4-S1-concept-soi-review-2026-01-13.tex | v0.2.4.0 | -- | **review** | section | DMS Chapter 4 Section 1 (Concept and SOI). Manually integrated by author with Table "Valid SOI Displays by Master Mode" (6 rows: NAV, A-A, A-G PRE, A-G VIS, DGFT, MSL OVRD). Heading uses official HOTAS pattern (rowcolor headerblue + textcolor white). Compliance 100% verified. Status: **dev → review** (NOT yet final; pending formal approval before guide-v0.3.0.0 integration). File remains in WIP/. |
-| 2026-01-14 | section-C4-S1-S3-hud-soi-hmcs-capabilities-dev-2026-01-14.tex | -- | -- | **dev** | section (subsection) | NEW Subsection 4.1.3: "HUD as SOI in A-A and HMCS Capabilities". Resolves reader confusion regarding HUD/HMCS targeting capability when HUD cannot be SOI. Clarifies: SOI routing mechanism ≠ Display functional capability. ~220 words, conceptual level, single Dash-34 Section 2.5 reference. Validates against Dash-34 2.1.1.2.3 (SOI definition), 2.5.5.1 (AIM-9 BORE), 2.5.5.5 (AATLL), 2.5.5.2-3 (FCR ACM BORE slaving). Full compliance verified (wip-naming-v1.4, template-wip-V1.0.tex, briefing-v0.2.0.1). Status: dev (ready for formal review and subsection-level integration into C4-S1 parent). |
-| 2026-01-14 | section-C4-S2-dms-up-down-review-2026-01-13.tex | v0.2.4.0 | -- | **review** | section | DMS Chapter 4 Section 2 (DMS Up/Down: SOI Management). Sections 4.2.1 (DMS Up) and 4.2.2 (DMS Down) 100% narrative complete with 3 practical scenarios (NAV toggle, A-A toggle, A-G VIS). Hotastable tables: Table 4.2.1 (DMS Up Usage Across A-A and A-G), Table 4.2 (DMS Down Toggle Logic by Current SOI), Table 4.3 (DMS Down Behavior and Available SOI Displays by Master Mode). Section 4.2.3 (Master Mode Behavior Consolidated) marked as placeholder for Phase 2 (future integrated table). Compliance 100% verified. Status: review (narrative 95% complete; ready for author formal approval cycle before guide-v0.3.0.0 integration). File: WIP/section-C4-S2-dms-up-down-review-2026-01-13.tex. |
-| 2026-01-14 | section-C4-S2-dms-up-down-deprecated-2026-01-13.tex | -- | -- | **deprecated** | section | DEPRECATED: Earlier iteration of C4-S2 (DMS Up/Down) WIP file retained for audit trail. Superseded by active C4-S2 review version. Kept in WIP/ with deprecated status for version control history. No further action; archive upon guide integration completion. |
-| 2026-01-13 | section-C4-S3-dms-format-cycling-dev-2026-01-13.tex | -- | -- | **dev** | section | DMS Chapter 4 Section 3 (DMS Left/Right: Format Cycling). Status: dev (not reviewed in Session 14). Placeholder for future detailed narrative on MFDS format page cycling, horizontal axis DMS behavior across all master modes. Tables and cross-references to follow. Next: Formal author review planned for subsequent session. |
+| 2026-01-15 | section-C4-S1-concept-soi-final-2026-01-14.tex | v0.2.4.0 | -- | final | section | DMS Chapter 4 Section 1 (Concept and SOI) consolidated into FINAL file, including former 4.1.3 HUD/HMCS subsection. Supersedes section-C4-S1-concept-soi-review-2026-01-13.tex and section-C4-S1-S3-hud-soi-hmcs-capabilities-dev-2026-01-14.tex. Integration into guide-v pending. |
+| 2026-01-15 | section-C4-S2-dms-up-final.tex | v0.2.4.0 | -- | final | section | DMS Chapter 4 Section 4.2.1 (DMS Up: HUD Designation as SOI) extracted from combined C4-S2 (DMS Up/Down) WIP, trimmed to remove redundancy with C4-S1, and promoted to FINAL status with dedicated HOTAS table and exception states. Integration into guide-v pending. |
+| 2026-01-14 | section-C4-S2-dms-up-down-deprecated-2026-01-14.tex | -- | -- | deprecated | section | DEPRECATED: Combined C4-S2 (DMS Up/Down) WIP file retired after extraction of standalone DMS Up section (section-C4-S2-dms-up-final.tex). Preserved in ARCHIVE/ for audit trail. Relevant DMS Down narrative stored separately as raw material for future section-C4-S2-dms-down-review-2026-01-xx.tex. |
+| 2026-01-13 | section-C4-S3-dms-format-cycling-deprecated-2026-01-13.tex | -- | -- | deprecated | section | DEPRECATED: Early attempt at DMS format cycling (Left/Right) narrative. Retired in favour of a clean 4.2.3 rewrite per unified Chapter 4 DMS blueprint v1.1. Remains in ARCHIVE/ for historical reference only. |
 
 **Status codes:**
 - dev -- Draft, author working
@@ -128,6 +126,7 @@ Per WIP-FILE-NAMING-v1.4:
 - final -- Author approved, ready for integration
 - approved -- Integrated into guide-v and archived
 - deprecated -- Intentionally retired (superseded or abandoned)
+- INTEGRATED -- WIP content already merged into a guide-v snapshot
 
 ---
 
@@ -145,6 +144,7 @@ Summary of major decisions and changes per working session. Earlier sessions 1--
 | 12 | 2026-01-12 | v0.2.4.0 (unchanged) | v5.0.0 | **DMS C4-S1 WIP Created:** Generated section-C4-S1-concept-and-soi-dev-2026-01-12.tex from TEMPLATES/template-wip-V1.0.tex. Integrated author-approved DMS introduction narrative (Sections 4.1.1 SOI Definition, 4.1.2 DMS Role, 4.1.3 SOI Flow Example). Applied author corrections (slug concept-soi → concept-and-soi). Full Compliance: 100% verified against wip-naming-v1.4, template-wip-V1.0.tex, briefing-v0.2.0.1. Status: dev (never formally reviewed). Canonical version established; ready for author review cycle. Next: Author formal review; dev → review → final; upon final approval, AI integrates into guide-v0.3.0.0. |
 | 13 | 2026-01-13 | v0.2.4.0 (unchanged) | v5.0.0 | **C4-S1 Manual Integration + Research Validation:** (1) C4-S1 manually integrated by author with new Table "Valid SOI Displays by Master Mode" (6 rows: NAV, A-A, A-G PRE, A-G VIS, DGFT, MSL OVRD). Heading uses official HOTAS pattern (rowcolor headerblue + textcolor white). File renamed to section-C4-S1-concept-soi-review-2026-01-13.tex (corrected date in filename); status: dev → **review** (NOT yet final; awaiting formal approval before guide integration). File location: WIP/section-C4-S1-concept-soi-review-2026-01-13.tex. (2) Deep technical research: HUD/HMCS SOI constraints in A-A/DGFT/MSL OVRD validated against Dash-34 Sections 2.1.1.2.3, 2.5.5.1, 2.5.5.5, 2.5.5.2-3. HMCS cueing independence from SOI status confirmed with evidence: AIM-9 BORE (2.5.5.1), AATLL (2.5.5.5), FCR ACM BORE slaving (2.5.5.2-3). (3) LaTeX formatting guidance: hotastable, tabularx, booktabs, array packages verified against guide.tex preamble. (4) Support documentation: Comprehensive validation document and analysis file generated. Next: Begin C4-S2 (DMS Up/Down operations). |
 | 14 | 2026-01-14 | v0.2.4.0 (unchanged, awaiting C4 integration) | v5.0.0 | **C4 Multi-File Development Sprint:** (1) **C4-S1-S3 NEW subsection created:** section-C4-S1-S3-hud-soi-hmcs-capabilities-dev-2026-01-14.tex. "HUD as SOI in A-A and HMCS Capabilities" resolves core ambiguity: SOI architectural restriction ≠ Display functional capability. ~220 words, conceptual level, single Dash-34 Section 2.5 reference. Comprehensive Dash-34 validation performed (sections 2.1.1.2.3, 2.5.5.1, 2.5.5.5, 2.5.5.2-3). Full compliance with wip-naming-v1.4, template-wip-V1.0.tex, briefing-v0.2.0.1. Status: dev (ready for formal review and subsection-level integration into C4-S1 parent). (2) **C4-S2 WIP Status Advanced:** section-C4-S2-dms-up-down-review-2026-01-13.tex reviewed and approved by author. Narrative sections 4.2.1 (DMS Up) and 4.2.2 (DMS Down) 100% complete with hotastable tables and 3 practical scenarios. Section 4.2.3 (Master Mode Behavior) marked as placeholder (consolidated table for future phase). Hotastable syntax verified (column type definitions corrected 2026-01-13). Status: review (narrative 95% complete; ready for formal approval cycle before guide-v0.3.0.0 integration). (3) **C4-S2-DEPRECATED version documented:** section-C4-S2-dms-up-down-deprecated-2026-01-13.tex retained for audit trail (superseded by active review version). (4) **C4-S3 WIP Status Noted:** section-C4-S3-dms-format-cycling-dev-2026-01-13.tex (DMS Left/Right: Format Cycling) remains in dev status. Not reviewed in Session 14; scheduled for formal author review in next session. (5) **Comprehensive analysis completed:** Deep Dash-34 validation of HUD/HMCS SOI constraints; identification of AIM-9 BORE, AATLL, FCR ACM BORE as proof that HMCS maintains off-boresight targeting independently of SOI status. Analysis saved in workspace documentation. (6) **Next scheduled milestones:** Await formal author review cycle completion for C4-S1 (may transition review → final); await author approval of C4-S1-S3 (likely final by next session); C4-S2 formal approval cycle initiated. Upon all 4 components (C4-S1, C4-S1-S3, C4-S2, C4-S3) reaching final status: AI integrates all into guide-v0.3.0.0 with MINOR version bump. **Session Output:** 4 .tex files tracked (C4-S1 existing but with updated filename date, C4-S1-S3 new, C4-S2 existing, C4-S2-deprecated existing for audit), comprehensive analysis document, integration recommendations documented. PROJECT-TRACKING-v5.0.0 updated with 15 alterations across 6 sections. |
+| 15 | 2026-01-15 | v0.2.4.0 (unchanged, integration pending) | v5.0.0 | **C4 Consolidation & Blueprint Unification:** (1) C4-S1 (Concept and SOI) and its 4.1.3 HUD/HMCS subsection merged and renamed to section-C4-S1-concept-soi-final-2026-01-14.tex (FINAL). (2) C4-S2 DMS Up extracted into standalone section-C4-S2-dms-up-final.tex with narrative and HOTAS table trimmed to remove redundancy with C4-S1 and to align with direction-based 4.2.1 structure (intro + effectiveness + table + exception states). (3) Legacy combined C4-S2 WIP renamed to section-C4-S2-dms-up-down-deprecated-2026-01-14.tex and moved to ARCHIVE; relevant DMS Down narrative preserved separately for future section-C4-S2-dms-down-review-2026-01-xx.tex. (4) C4-S3 DMS format-cycling dev file renamed to section-C4-S3-dms-format-cycling-deprecated-2026-01-13.tex and moved to ARCHIVE, clearing the path for a clean 4.2.3 rewrite. (5) Unified Chapter 4 DMS blueprint v1.1 (C4-DMS-blueprint.md) created, superseding previous C4 blueprints and locking final 4.1/4.2 structure (4.2.1 Up, 4.2.2 Down, 4.2.3 Left/Right, 4.2.4 Summary). Next: create new WIP files for DMS Down, DMS Left/Right and DMS summary following blueprint v1.1; integrate C4-S1 and C4-S2 DMS Up into guide-v0.3.0.0 with a MINOR bump once ready. |
 
 ---
 
@@ -162,6 +162,7 @@ High-level summary of each working session and resulting guide state.
 | 12 | 2026-01-12 | v0.2.4.0 | v5.0.0 | DMS C4-S1 WIP created from canonical template. 100% compliance verified. Author review cycle initiated. Canonical version documented. |
 | 13 | 2026-01-13 | v0.2.4.0 | v5.0.0 | C4-S1 manually integrated by author with Table "Valid SOI Displays by Master Mode". Status: dev → **review** (NOT final yet). File: WIP/section-C4-S1-concept-soi-review-2026-01-13.tex. Deep technical research on HUD/HMCS SOI constraints completed (Dash-34 validation). LaTeX guidance aligned with project standards. Next: Begin C4-S2 MFDS Format Cycling. |
 | 14 | 2026-01-14 | v0.2.4.0 | v5.0.0 | C4-S1-S3 new subsection created (HUD/HMCS SOI clarification). C4-S2 narrative reviewed and approved (95% complete; placeholder S2.3). Comprehensive Dash-34 validation completed. 4 .tex files in WIP (C4-S1 review, C4-S1-S3 dev, C4-S2 review, C4-S2-deprecated deprecated, C4-S3 dev) tracked with clear status. Analysis documentation generated. Target: v0.3.0.0 integration after formal review cycles complete. PROJECT-TRACKING-v5.0.0 updated (15 alterations across 6 sections). |
+| 15 | 2026-01-15 | v0.2.4.0 | v5.0.0 | C4-S1 promoted to FINAL (section-C4-S1-concept-soi-final-2026-01-14.tex). C4-S2 DMS Up extracted and promoted to FINAL (section-C4-S2-dms-up-final.tex). Legacy C4-S2 and C4-S3 WIPs marked deprecated and moved to ARCHIVE. Unified Chapter 4 DMS blueprint v1.1 created, defining final 4.1/4.2 structure and remaining work. |
 
 **Future sessions:** Add new rows to this table, keeping summaries concise and always mentioning: (a) resulting guide version, (b) tracking version, (c) main decisions.
 
@@ -183,7 +184,7 @@ High-level summary of each working session and resulting guide state.
 
 | Version | Area | Status | Notes |
 |---|---|---|---|
-| **v0.3.0.0** | Chapter 4 -- DMS (Sections 4.1, 4.1.3 narratives finalized; 4.2 approved-pending; 4.3 DEV) | IN PROGRESS | **Session 14 Update:** C4-S1 (Concept & SOI) WIP REVIEW status, includes Table "Valid SOI Displays by Master Mode" (6 rows). C4-S1-S3 (HUD as SOI in A-A and HMCS Capabilities) NEW subsection, status DEV. C4-S2 (DMS Up/Down: SOI Management) WIP REVIEW status, 95% narrative complete (S2.3 consolidated table is placeholder), includes 3 practical scenarios + hotastable tables. C4-S2-deprecated version retained for audit trail. C4-S3 (DMS Left/Right: Format Cycling) status DEV (not reviewed in Session 14). **Integration Plan:** Upon formal author approval of C4-S1, C4-S1-S3, and C4-S2 (expected next session), AI integrates all into guide-v0.3.0.0 with MINOR version bump. Full integration of Chapter 4 structure targeted for v0.3.x.x (subsequent minor bumps as C4-S3 and additional subsections complete). |
+| **v0.3.0.0** | Chapter 4 -- DMS (Sections 4.1 and 4.2 direction-based structure per blueprint v1.1) | IN PROGRESS | **Session 15 Update:** C4-S1 (Concept & SOI) and its HUD/HMCS clarification (former 4.1.3) consolidated into section-C4-S1-concept-soi-final-2026-01-14.tex (FINAL). C4-S2 (DMS Up) extracted into section-C4-S2-dms-up-final.tex (FINAL narrative + HOTAS table + exceptions). Legacy C4-S2-Up/Down and C4-S3 format-cycling WIPs marked deprecated and archived. Unified Chapter 4 DMS blueprint v1.1 (C4-DMS-blueprint.md) defines remaining work: new WIP files for 4.2.2 DMS Down, 4.2.3 DMS Left/Right, and 4.2.4 master-mode summary. Integration Plan: integrate C4-S1 and C4-S2 DMS Up into guide-v0.3.0.0 with a MINOR bump once new WIP files for DMS Down/Left-Right are at least in dev/review state. |
 | **v0.4.0.0** | Chapter 3 -- TMS (all sections) | Planned | Full TMS coverage after DMS completion. MINOR bump. |
 | **v0.5.0.0** | Chapter 2 -- HOTAS Fundamentals | Target | Foundational SOI, short/long press timing, master modes. MINOR bump. |
 | **v0.7.0.0** | All 7 chapters scaffolded | Target | Transition to Phase 1. Chapters 2, 3, 4, 5, 6, 7 with basic narrative. MINOR bump. |
@@ -201,7 +202,7 @@ High-level summary of each working session and resulting guide state.
 | guide-v0.2.1.0-20260108.tex | archive | main guide | Reference only; Ch. 5 structure refined. |
 | guide-v0.2.2.0-20260108.tex | archive | main guide | Reference only; layout Option D applied. |
 | guide-v0.2.3.1-20260110.tex | archive | main guide | Reference only; CMS 5.2 integrated. |
-| guide-v0.2.4.0-20260111.tex | **active** | main guide | Current baseline snapshot. Use as base for v0.3.0.0 prep (C4 sections pending formal approval before integration). |
+| guide-v0.2.4.0-20260111.tex | **active** | main guide | Current baseline snapshot. Use as base for v0.3.0.0 prep (C4-S1 and C4-S2 DMS Up pending formal integration). |
 
 ---
 
@@ -209,23 +210,15 @@ High-level summary of each working session and resulting guide state.
 
 | File (relative path) | Version | Type | Status | Short Purpose |
 |---|---|---|---|---|
-| WIP/section-C4-S1-concept-soi-review-2026-01-13.tex | -- | section | **review** | DMS Chapter 4 Section 1 (Concept and SOI). Manually integrated by author with Table "Valid SOI Displays by Master Mode" (6 rows: NAV, A-A, A-G PRE, A-G VIS, DGFT, MSL OVRD). Status: dev → **review** (NOT yet final; pending formal approval before guide-v0.3.0.0 integration). File remains in WIP/ pending author's formal review cycle completion. |
-| WIP/section-C4-S1-S3-hud-soi-hmcs-capabilities-dev-2026-01-14.tex | -- | section (subsection) | **dev** | NEW Subsection 4.1.3: "HUD as SOI in A-A and HMCS Capabilities". Resolves reader confusion regarding HUD/HMCS targeting capability when HUD cannot be SOI. Clarifies: SOI routing mechanism ≠ Display functional capability. ~220 words, conceptual level, single Dash-34 Section 2.5 reference. Comprehensive Dash-34 validation performed. Full compliance verified (wip-naming-v1.4, template-wip-V1.0.tex, briefing-v0.2.0.1). Status: dev (ready for formal review and subsection-level integration into C4-S1 parent). |
-| WIP/section-C4-S2-dms-up-down-review-2026-01-13.tex | -- | section | **review** | DMS Chapter 4 Section 2 (DMS Up/Down: SOI Management). Sections 4.2.1 (DMS Up) and 4.2.2 (DMS Down) 100% narrative complete with 3 practical scenarios. Hotastable tables: Table 4.2.1 (DMS Up Usage), Table 4.2 (Toggle Logic), Table 4.3 (DMS Down by Master Mode). Section 4.2.3 (Master Mode Behavior) is placeholder for consolidated table. Compliance 100% verified. Status: review (narrative ready; awaiting formal author approval cycle before guide-v0.3.0.0 integration). |
-| WIP/section-C4-S2-dms-up-down-deprecated-2026-01-13.tex | -- | section | **deprecated** | DEPRECATED: Earlier iteration of C4-S2 (DMS Up/Down) WIP file. Superseded by active C4-S2 review version. Retained for audit trail and version control history. No further action required; archive upon guide integration completion. |
-| WIP/section-C4-S3-dms-format-cycling-dev-2026-01-13.tex | -- | section | **dev** | DMS Chapter 4 Section 3 (DMS Left/Right: Format Cycling). Status: dev (not reviewed in Session 14). Placeholder for detailed narrative on MFDS format page cycling, horizontal axis DMS behavior. Tables and cross-references pending. Next: Formal author review planned for subsequent session. |
+| WIP/section-C4-S1-concept-soi-final-2026-01-14.tex | -- | section | **final** | DMS Chapter 4 Section 4.1 (Concept and SOI). Consolidated FINAL narrative + SOI-by-mode table + HUD/HMCS clarification. Ready for integration into guide-v0.3.0.0. |
+| WIP/section-C4-S2-dms-up-final.tex | -- | section | **final** | DMS Chapter 4 Section 4.2.1 (DMS Up: HUD Designation as SOI). FINAL narrative (intro + effectiveness by master mode + usage table + exception states) and HOTAS table. Ready for integration into guide-v0.3.0.0. |
+| WIP/section-C4-S2-dms-up-down-deprecated-2026-01-14.tex | -- | section | **deprecated** | DEPRECATED: Combined C4-S2 (DMS Up/Down) WIP file. Superseded by standalone DMS Up FINAL file and future DMS Down WIP. Kept in ARCHIVE/ for audit and historical reference. |
+| WIP/section-C4-S3-dms-format-cycling-deprecated-2026-01-13.tex | -- | section | **deprecated** | DEPRECATED: Early DMS format-cycling attempt. Superseded by planned 4.2.3 rewrite (DMS Left/Right) per unified Chapter 4 blueprint v1.1. |
 
-**Session 14 Status (2026-01-14):** PROJECT-TRACKING-v5.0.0 successfully updated with 15 alterations across 6 sections to reflect:
-- C4-S1 existing WIP file (REVIEW status, filename updated to reflect corrected 2026-01-13 date)
-- C4-S1-S3 NEW subsection WIP file (created 2026-01-14, DEV status)
-- C4-S2 existing WIP file (REVIEW status, narrative approved by author)
-- C4-S2-deprecated existing WIP file (DEPRECATED status, retained for audit trail)
-- C4-S3 existing WIP file (DEV status, not reviewed in Session 14)
-- Updated timeline and roadmap for v0.3.0.0 integration planning
-- Enhanced session log entry for Session 14
-- Expanded Project Snapshot to clarify multiple WIP files in development
-
-All updates preserve versioning scheme (PROJECT-TRACKING-v5.0.0 remains baseline structure) and integrate new state changes without structural overhaul.
+**Session 15 Status (2026-01-15):** PROJECT-TRACKING-v5.0.0 updated to reflect:
+- Promotion of C4-S1 and C4-S2 DMS Up to FINAL status with new filenames.  
+- Deprecation and archival of combined C4-S2 (Up/Down) and old C4-S3 format-cycling WIPs.  
+- Creation of unified Chapter 4 DMS blueprint v1.1 as the single authoritative reference for 4.1/4.2 structure and remaining work.
 
 ---
 
@@ -237,7 +230,7 @@ All updates preserve versioning scheme (PROJECT-TRACKING-v5.0.0 remains baseline
 | docs/WIP-FILE-NAMING-v1.4.md | 1.4 | reference | active | WIP naming convention. NEW Section 0.5: "How to Create WIP File" (3-step workflow). NEW Section 9: Summary + best practices. Supersedes v1.3. |
 | docs/VERSION-SYSTEM-v4.2.1.md | 4.2.1 | reference | active | Guide versioning rules. References updated to WIP-FILE-NAMING-v1.4 & BRIEFING-v0.2.0.1 Section 11; 3-way integration clarified. Supersedes v4.2. |
 | TEMPLATES/template-wip-V1.0.tex | V1.0 | template | active | **Canonical WIP template per BRIEFING-v0.2.0.1 Section 11.** Preamble/metadata/hotastable locked. Independent versioning (V1.0). Established Session 9. ALL new WIP files MUST copy from this template. |
-| docs/PROJECT-TRACKING-v5.0.0.md | 5.0.0 | tracking | active | This document -- unified tracking with Git/GitHub integration. Updated Session 14 with 15 alterations. |
+| docs/PROJECT-TRACKING-v5.0.0.md | 5.0.0 | tracking | active | This document -- unified tracking with Git/GitHub integration. Updated through Session 15 to reflect C4-S1/C4-S2 DMS Up finalisation and C4 blueprint unification. |
 | docs/BRIEFING-v0.2.0.1.docx | 0.2.0.1 | export | derived | DOCX export from Markdown. |
 | docs/VERSION-SYSTEM-v4.2.1.docx | 4.2.1 | export | derived | DOCX export from Markdown. |
 | docs/WIP-FILE-NAMING-v1.4.docx | 1.4 | export | derived | DOCX export from Markdown. |
@@ -247,12 +240,14 @@ All updates preserve versioning scheme (PROJECT-TRACKING-v5.0.0 remains baseline
 **Maintenance rule:**
 - All structural or governance changes to tracking MUST be made in PROJECT-TRACKING-v5.0.0.md (this file).
 - DOCX versions are GENERATED from this file and NEVER edited manually.
-- At the end of each working session, this document should be updated (especially Sections 2, 4.2, 4.3, 5, 6) to capture new state and decisions.
+- At the end of each working session, this document should be updated (especially Sections 2, 4.2, 4.3, 5, 6, 7) to capture new state and decisions.
 - Version number of PROJECT-TRACKING-v5.0.0 does NOT change with content updates. Version marks the baseline structure, not the state. (Designed for frequent updates; version reserved for structural overhauls only.)
 
 ---
 
 ### 7.4 Update Log
+
+Track high-level edits to this tracking document itself.
 
 | Date | Change | Sections Affected | Reason |
 |---|---|---|---|
@@ -260,11 +255,12 @@ All updates preserve versioning scheme (PROJECT-TRACKING-v5.0.0 remains baseline
 | 2026-01-12 | Added Session 12; DMS WIP C4-S1 created; updated Active WIP Snapshot; enhanced Current Priorities | 4.2, 4.3, 5, 6.1, 6.2, 7.2 | DMS Section 4.1 WIP file generation complete with 100% compliance. Author review cycle initiated. Canonical version documented. |
 | 2026-01-13 | Added Session 13; C4-S1 manual integration by author; table "Valid SOI Displays by Master Mode" integrated; status updated to review (NOT final); updated Active WIP Snapshot and Session Log | 4.2, 4.3, 5, 6.1, 6.2, 7.2, 7.4 | C4-S1 manually integrated by author with official HOTAS table pattern. Status: dev → review (pending formal approval cycle). File remains in WIP/. Deep technical validation and research documentation completed. Next: Begin C4-S2 MFDS Format Cycling. |
 | 2026-01-14 | Session 14 completions: C4-S1-S3 new subsection created; C4-S2 narrative approved; comprehensive Dash-34 validation completed; integration plan for v0.3.0.0 finalized. Updated Sections 2, 3, 4, 5, 6, 7 for WIP file tracking, roadmap clarity, session log entry. | 2, 3, 4, 5, 6, 7 | C4-S1-S3 subsection addresses HUD/HMCS SOI ambiguity with ~220 words conceptual explanation + comprehensive Dash-34 validation (sections 2.1.1.2.3, 2.5.5.1, 2.5.5.5, 2.5.5.2-3). C4-S2 advanced to review status with author approval (narrative 95% complete, tables complete, placeholder S2.3 for future consolidated table). C4-S2-deprecated version documented for audit trail. Multiple WIP files in different states (C4-S1 review, C4-S1-S3 dev, C4-S2 review, C4-S3 dev) require enhanced tracking. Next: Await formal author review cycle completion for C4-S1 and C4-S2; proceed to C4-S3 review or guide integration. PROJECT-TRACKING-v5.0.0 updated (15 alterations applied, version number remains v5.0.0). |
+| 2026-01-15 | Session 15 updates: C4-S1 and C4-S2 DMS Up marked FINAL; deprecated C4-S2 Up/Down and C4-S3 format-cycling WIPs; added unified C4 DMS blueprint reference; refreshed snapshots, roadmap and WIP status tables. | 2, 3.1, 4.2, 4.3, 5, 6.2, 7.2, 7.3 | Reflect consolidation of Chapter 4 DMS structure and WIP state after Session 15 without changing tracking document version number (remains v5.0.0). |
 
 ---
 
 ## END OF PROJECT TRACKING v5.0.0
 
 **For inquiries or updates, contact:** Carlos "Metal" Nader  
-**Last updated:** 2026-01-14, 21:37 PM -03  
+**Last updated:** 2026-01-15, 02:10 AM -03  
 **Status:** Ready for use / Download
