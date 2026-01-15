@@ -50,14 +50,6 @@ jobs:
           set +e
           VIOLATIONS=0
           
-          # Regex patterns
-          CHAPTER_REGEX='^chapter-C([1-7])-([a-z0-9]+(-[a-z0-9]+)*)-(dev|review|final|approved|deprecated)-([0-9]{4}-[0-9]{2}-[0-9]{2})\.tex$'
-          SECTION_REGEX='^section-C([1-7])(-S[0-9]+)*-([a-z0-9]+(-[a-z0-9]+)*)-(dev|review|final|approved|deprecated)-([0-9]{4}-[0-9]{2}-[0-9]{2})\.tex$'
-          TABLE_REGEX='^table-C([1-7])-([A-Z0-9]+)-([A-Z]{3,})-(dev|review|final|approved|deprecated)-([0-9]{4}-[0-9]{2}-[0-9]{2})\.tex$'
-          NOTES_REGEX='^notes-(C[1-7]|GEN)-([a-z0-9]+(-[a-z0-9]+)*)-(research|snippet|outline|questions|reference|example)-([0-9]{4}-[0-9]{2}-[0-9]{2})\.md$'
-          VISUAL_REGEX='^visual-C([1-7])-([a-z0-9]+(-[a-z0-9]+)*)-(diagram|flowchart|schematic|reference|illustration)-(dev|review|final|approved|deprecated)-([0-9]{4}-[0-9]{2}-[0-9]{2})\.(svg|pdf|png|tex)$'
-          GUIDE_REGEX='^guide-v([0-9]+)\.([0-9]+)\.([0-9]+)(\.([0-9]+))?-([0-9]{8})\.tex$'
-          
           echo "🔍 Validating file naming conventions..."
           echo ""
           
@@ -76,51 +68,34 @@ jobs:
             EXPECTED_PATTERN=""
             
             # Determine validation rules based on path
-            if [[ "$DIRPATH" =~ ^WIP/GUIDE$ || "$DIRPATH" =~ ^ARCHIVE/GUIDE$ ]]; then
-              # Guide snapshots: VERSION-SYSTEM-v4.2.1
-              if [[ "$FILENAME" =~ ^guide- ]]; then
-                if echo "$FILENAME" | grep -qE "$GUIDE_REGEX"; then
-                  VALID=1
-                fi
-                TYPE="GUIDE"
-                EXPECTED_PATTERN="guide-vMAJOR.MINOR.PATCH[.SUBPATCH]-YYYYMMDD.tex"
+            if [[ "$DIRPATH" =~ ^WIP/GUIDE$ ]] || [[ "$DIRPATH" =~ ^ARCHIVE/GUIDE$ ]]; then
+              if [[ "$FILENAME" =~ ^guide-v[0-9]+\.[0-9]+\.[0-9]+(\.[0-9]+)?-[0-9]{8}\.tex$ ]]; then
+                VALID=1
               fi
+              TYPE="GUIDE"
+              EXPECTED_PATTERN="guide-vMAJOR.MINOR.PATCH[.SUBPATCH]-YYYYMMDD.tex"
             elif [[ "$DIRPATH" =~ ^ARCHIVE/GUIDE-STRUCTURE ]]; then
-              # IGNORE: no validation required for GUIDE-STRUCTURE
               VALID=1
               TYPE="GUIDE-STRUCTURE (ignored)"
-            elif [[ "$DIRPATH" =~ ^(WIP|ARCHIVE/WIP)$ || "$DIRPATH" =~ ^WIP/$ || "$DIRPATH" =~ ^ARCHIVE/WIP/$ ]]; then
-              # WIP files: WIP-NAMING-v1.4
-              if [[ "$FILENAME" =~ ^chapter- ]]; then
-                if echo "$FILENAME" | grep -qE "$CHAPTER_REGEX"; then
-                  VALID=1
-                fi
+            elif [[ "$DIRPATH" =~ ^WIP$ ]] || [[ "$DIRPATH" =~ ^ARCHIVE/WIP$ ]]; then
+              if [[ "$FILENAME" =~ ^chapter-C[1-7]-[a-z0-9]+(-[a-z0-9]+)*-(dev|review|final|approved|deprecated)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.tex$ ]]; then
+                VALID=1
                 TYPE="CHAPTER"
-                EXPECTED_PATTERN="chapter-C{1-7}-{title}-{status}-YYYY-MM-DD.tex"
-              elif [[ "$FILENAME" =~ ^section- ]]; then
-                if echo "$FILENAME" | grep -qE "$SECTION_REGEX"; then
-                  VALID=1
-                fi
+              elif [[ "$FILENAME" =~ ^section-C[1-7](-S[0-9]+)*-[a-z0-9]+(-[a-z0-9]+)*-(dev|review|final|approved|deprecated)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.tex$ ]]; then
+                VALID=1
                 TYPE="SECTION"
-                EXPECTED_PATTERN="section-C{1-7}[-S{N}]...-{title}-{status}-YYYY-MM-DD.tex"
-              elif [[ "$FILENAME" =~ ^table- ]]; then
-                if echo "$FILENAME" | grep -qE "$TABLE_REGEX"; then
-                  VALID=1
-                fi
+              elif [[ "$FILENAME" =~ ^table-C[1-7]-[A-Z0-9]+-[A-Z]{3,}-(dev|review|final|approved|deprecated)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.tex$ ]]; then
+                VALID=1
                 TYPE="TABLE"
-                EXPECTED_PATTERN="table-C{1-7}-{CONTEXT}-{TMS|DMS|CMS}-{status}-YYYY-MM-DD.tex"
-              elif [[ "$FILENAME" =~ ^notes- ]]; then
-                if echo "$FILENAME" | grep -qE "$NOTES_REGEX"; then
-                  VALID=1
-                fi
+              elif [[ "$FILENAME" =~ ^notes-(C[1-7]|GEN)-[a-z0-9]+(-[a-z0-9]+)*-(research|snippet|outline|questions|reference|example)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.md$ ]]; then
+                VALID=1
                 TYPE="NOTES"
-                EXPECTED_PATTERN="notes-C{1-7}|GEN-{topic}-{type}-YYYY-MM-DD.md"
-              elif [[ "$FILENAME" =~ ^visual- ]]; then
-                if echo "$FILENAME" | grep -qE "$VISUAL_REGEX"; then
-                  VALID=1
-                fi
+              elif [[ "$FILENAME" =~ ^visual-C[1-7]-[a-z0-9]+(-[a-z0-9]+)*-(diagram|flowchart|schematic|reference|illustration)-(dev|review|final|approved|deprecated)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.(svg|pdf|png|tex)$ ]]; then
+                VALID=1
                 TYPE="VISUAL"
-                EXPECTED_PATTERN="visual-C{1-7}-{description}-{type}-{status}-YYYY-MM-DD.{svg|pdf|png|tex}"
+              else
+                TYPE="UNKNOWN"
+                EXPECTED_PATTERN="chapter-/section-/table-/notes-/visual- (see WIP-NAMING-v1.4.md)"
               fi
             fi
             
