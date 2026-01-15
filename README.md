@@ -19,46 +19,48 @@ This project develops a structured guide explaining HOTAS functionality across m
 ```
 falcon-bms-hotas-tms-dms-cms-guide/
 │
-├── guide.tex/                      # Current production version (.tex)
+├── guide.tex                         # Current production version (.tex)
 │
-├── TEMPLATES/                      # Structural templates & blueprints
-│   ├── template-wip-V*.tex         # Canonical WIP file template
-│   └── guide-structure-only-v*.tex # Chapter outline baseline
+├── TEMPLATES/                        # Structural templates & blueprints
+│   ├── template-wip-V*.tex           # Canonical WIP file template
+│   └── guide-structure-only-v*.tex   # Chapter outline baseline
 │
-├── docs/                           # Governance & tracking (Markdown)
-│   ├── Briefing document           # Project scope, style, layout rules
-│   ├── Naming conventions          # Rules for WIP file naming & status
-│   ├── Versioning system           # Guide version numbering & phases
-│   ├── Project tracking            # Session log, WIP status, milestones
-│   └── Training Mission Abb. Table # Table listing Training Mission Abbreviation for use in WIP and guide files
+├── DOCS/                             # Governance & tracking (Markdown)
+│   ├── Briefing document             # Project scope, style, layout rules
+│   ├── Naming conventions            # Rules for WIP file naming & status
+│   ├── Versioning system             # Guide version numbering & phases
+│   ├── Project tracking              # Session log, WIP status, milestones
+│   ├── Training Mission Abbre. Table # Table listing Training Mission Abbreviation for use in WIP and guide files
+│   └── CHARTS AND DIAGRAMS/          # AI image files describing various cycles of the files and the project
 │
-├── WIP/                            # Active work-in-progress files
-│   ├── section-*.tex               # Chapter sections under development
-│   ├── table-*.tex                 # HOTAS table scaffolds & content
-│   ├── notes-*.md                  # Research notes & reference material
-│   ├── visual-*.*                  # Diagrams, schematics 
-│   ├── ...                         # Other types 
-│   └── GUIDE/                      # Active guide snapshot files (.tex)
-│       └── guide-v0.2.4.0-*.tex    # Current snapshot version
+├── WIP/                              # Active work-in-progress files
+│   ├── WIP-life-cycle.png            # AI generated image depicting the life cycle of a WIP file
+│   ├── section-*.tex                 # Chapter sections under development
+│   ├── table-*.tex                   # HOTAS table scaffolds & content
+│   ├── notes-*.md                    # Research notes & reference material
+│   ├── visual-*.*                    # Diagrams, schematics 
+│   ├── ...                           # Other types 
+│   └── GUIDE/                        # Active guide snapshot files (.tex)
+│       └── guide-v*.tex              # Current snapshot version
 │                         
 │
-├── ARCHIVE/                        # Historical & approved files
-│   ├── [completed WIP files]       # Sections integrated into guide
-│   ├── [deprecated content]        # Intentionally retired material
-│   └── [guide snapshots]           # Older guide versions for rollback
+├── ARCHIVE/                          # Historical & approved files
+│   ├── WIP/                          # WIP files integrated into guide
+│   ├── GUIDE-STRUCTURE/              # Older structure only files
+│   └── GUIDE/                        # Older snapshot guide versions
 │
-├── MISC/                           # General-purpose materials
-│   ├── Reference documents         # External sources, notes
-│   ├── Research materials          # Background & supporting info
-│   └── Utilities & notes           # Miscellaneous project aids
+├── MISC/                             # General-purpose materials
+│   ├── Reference documents           # External sources, notes
+│   ├── Research materials            # Background & supporting info
+│   └── Utilities & notes             # Miscellaneous project aids
 │
-├── FIG/                            # Images used in the Guide
+├── FIG/                              # Images used in the Guide
 │
-├── WIP-version-name-generator.html # Interactive tool for WIP naming
-├── md-to-docx-v3-1-0.bat           # Batch converter (Markdown → DOCX)
+├── WIP-version-name-generator-*.html # Interactive tool for WIP naming
+├── md-to-docx-v3-1-0.bat             # Batch converter (Markdown → DOCX)
 │
-├── README.md                       # This file
-└── CONTRIBUTUING.md                # Contributions Guide
+├── README.md                         # This file
+└── CONTRIBUTUING.md                  # Contributions Guide
 
 ```
 
