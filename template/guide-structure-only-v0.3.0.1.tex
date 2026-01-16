@@ -1,0 +1,288 @@
+\documentclass[11pt,a4paper]{article}
+
+% --------------------------------------------------------------------------
+% BASIC ENCODING AND LANGUAGE
+% --------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% --------------------------------------------------------------------------
+% FONTS AND MICROTYPOGRAPHY
+% --------------------------------------------------------------------------
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --------------------------------------------------------------------------
+% PAGE GEOMETRY AND LAYOUT
+% --------------------------------------------------------------------------
+\usepackage{geometry}
+\geometry{a4paper, left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
+\usepackage{setspace}
+\onehalfspacing
+
+% --------------------------------------------------------------------------
+% COLORS AND LINKS
+% --------------------------------------------------------------------------
+\usepackage[table]{xcolor}
+\definecolor{linkblue}{HTML}{004488}
+\definecolor{linkred}{HTML}{882222}
+\definecolor{headerblue}{HTML}{003366}
+\definecolor{rowgray}{HTML}{F5F5F5}
+\definecolor{subheadgray}{HTML}{E0E0E0}
+\usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\usepackage{bookmark}
+
+% --------------------------------------------------------------------------
+% HEADERS AND FOOTERS
+% --------------------------------------------------------------------------
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --------------------------------------------------------------------------
+% TABLES AND MACROS
+% --------------------------------------------------------------------------
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+% Custom Columns
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% Macro for Visual Reference Links
+\newcommand{\imglink}[1]{\hspace{2pt}\hyperref[#1]{\scriptsize\textbf{[Fig]}}}
+
+% HOTAS table environment (per Briefing v0.2.0.1)
+\newenvironment{hotastable}[1]{%
+  \small
+  \renewcommand{\arraystretch}{1.25}
+  \begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
+  \caption{#1}\\
+  \rowcolor{headerblue}
+  \textbf{\color{white}State} &
+  \textbf{\color{white}Dir} &
+  \textbf{\color{white}Act} &
+  \textbf{\color{white}Function} &
+  \textbf{\color{white}Effect / Nuance} &
+  \textbf{\color{white}Dash34} &
+  \textbf{\color{white}Train} \\
+  \endfirsthead
+  \rowcolor{headerblue}
+  \textbf{\color{white}State} &
+  \textbf{\color{white}Dir} &
+  \textbf{\color{white}Act} &
+  \textbf{\color{white}Function} &
+  \textbf{\color{white}Effect / Nuance} &
+  \textbf{\color{white}Dash34} &
+  \textbf{\color{white}Train} \\
+  \endhead
+  \multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+  \endfoot
+  \endlastfoot
+}{%
+  \end{longtable}
+}
+
+% --------------------------------------------------------------------------
+% SIMPLE REFERENCE MACROS FOR BMS DOCS
+% --------------------------------------------------------------------------
+\providecommand{\dashref}[1]{Dash-34~\S~#1}
+\providecommand{\dashone}[1]{Dash-1~\S~#1}
+\providecommand{\trnref}[1]{TRN~#1}
+\providecommand{\trnman}{BMS Training Manual 4.38.1}
+\providecommand{\bmsver}{Falcon BMS~4.38.1}
+\providecommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+
+% --------------------------------------------------------------------------
+% VERSION CONTROL MACROS
+% --------------------------------------------------------------------------
+\newcommand{\docversion}{0.3.0.1}
+\newcommand{\docbuild}{20260115}
+\newcommand{\docstartdate}{05 January 2026}
+\newcommand{\docenddate}{15 jan 2026}
+\newcommand{\chapterscompletedof}{3/7}
+\newcommand{\tablesfilledpct}{Chapter 5 and 4.2}
+\newcommand{\fulldocversion}{\docversion+\docbuild}
+
+% --------------------------------------------------------------------------
+% GRAPHICS
+% --------------------------------------------------------------------------
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+
+% --------------------------------------------------------------------------
+% TITLE
+% --------------------------------------------------------------------------
+\title{TMS, DMS and CMS Usage Guide for \bmsver}
+\author{Carlos ``Metal'' Nader}
+\date{Version \fulldocversion{} | Progress: Chapters \chapterscompletedof{} | Tables \tablesfilledpct{} | January 2026}
+
+% --------------------------------------------------------------------------
+% DOCUMENT
+% --------------------------------------------------------------------------
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+\newpage
+\tableofcontents
+\pagenumbering{arabic}
+
+% ============================================================================
+% GUIDE STRUCTURE SKELETON (v0.3.0.1)
+% Sections, Subsections, and Subsubsections Only
+% ============================================================================
+
+\section{Introduction}
+
+\subsection{Development timeline and status}
+
+\subsection{Scope and purpose}
+
+\subsection{Version, authorship and AI assistance}
+
+\subsection{Sources and references}
+
+\subsection{Document structure and how to read it}
+
+\subsubsection{Part A: Foundational Sections}
+
+\subsubsection{Part B: Switch-Specific Sections}
+
+\subsubsection{Part C: Training and Visual Reference}
+
+\subsubsection{Part D: Appendices}
+
+% ============================================================================
+
+\section{HOTAS fundamentals}
+
+\subsection{Sensor of Interest (SOI) and display logic}
+
+\subsection{Short vs long presses and timing}
+
+\subsection{Master modes and context-sensitive behaviour}
+
+\subsection{Overview of TMS, DMS and CMS}
+
+% ============================================================================
+
+\section{TMS -- Target Management Switch}
+
+\subsection{Concept and general behaviour}
+
+\subsection{TMS and Situational Awareness displays}
+
+\subsection{TMS in Air-to-Air}
+
+\subsection{TMS in Air-to-Ground}
+
+\subsection{TMS in weapon employment}
+
+\subsection{TMS -- Block / variant notes}
+
+% ============================================================================
+
+\section{DMS -- Display Management Switch}
+
+\subsection{Concept and Sensor of Interest (SOI)}
+
+\subsubsection{SOI Definition and Scope Across Displays}
+
+\subsubsection{Role of the DMS in SOI Selection}
+
+\subsubsection{HUD as SOI in A-A and HMCS Capabilities}
+
+\subsection{DMS Up: HUD Designation as SOI}
+
+\subsubsection{DMS Up Effectiveness in All Master Modes}
+
+\subsubsection{DMS Up Usage Table}
+
+\subsubsection{DMS Up Exception States}
+
+% ============================================================================
+
+\section{CMS -- Countermeasures Management Switch}
+
+\subsection{Concept and Interaction with CMDS / ECM / RWR}
+
+\subsubsection{Concept}
+
+\subsubsection{Interaction with CMDS / ECM}
+
+\subsection{CMS Switch Actuation}
+
+\subsubsection{CMS Actuation with CMDS}
+
+\subsubsection{CMS Actuation with ECM}
+
+\subsubsection{CMS Consent and Constraints}
+
+\subsubsection{Important Operational Notes}
+
+\subsection{CMS Block and Variant Notes}
+
+\subsubsection{ECM Configurations present in BMS}
+
+% ============================================================================
+
+\section{Training references and practical flows}
+
+\subsection{How to use this guide with BMS training missions}
+
+\subsection{Recommended progression}
+
+\subsection{Example flows for typical missions}
+
+% ============================================================================
+
+\section{HOTAS visual reference}
+
+\subsection{F-16 HOTAS overview}
+
+\subsection{TMS diagrams}
+
+\subsection{DMS diagrams}
+
+\subsection{CMS diagrams}
+
+% ============================================================================
+
+\appendix
+
+\section{Block / variant overview}
+
+\subsection{F-16CM Block 50/52}
+
+\subsection{F-16C/D Block 40/42}
+
+\subsection{F-16AM/BM MLU}
+
+\subsection{F-16I Sufa and Israeli variants}
+
+\subsection{Other export variants}
+
+\section{Tables index}
+
+\subsection{TMS tables}
+
+\subsection{DMS tables}
+
+\subsection{CMS tables}
+
+% ============================================================================
+% END OF STRUCTURE SKELETON
+% ============================================================================
+\end{document}
