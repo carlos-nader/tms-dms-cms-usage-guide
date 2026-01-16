@@ -18,9 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout repository
+      - name: Checkout repository with SSH
         uses: actions/checkout@v4
         with:
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
           fetch-depth: 0
       
       - name: Set up Python
@@ -28,39 +29,29 @@ jobs:
         with:
           python-version: '3.11'
       
-      - name: Run report generator (v3 with DEBUG)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
+      - name: Run report generator
         run: |
           python3 scripts/generate-integrated-files.py 2>&1
       
-      - name: Check generated files
-        run: |
-          echo "=== Checking generated files ==="
-          ls -lah INTEGRATED-FILES.* 2>&1 || echo "Files not found"
-          echo ""
-          echo "=== INTEGRATED-FILES.md (first 50 lines) ==="
-          head -n 50 INTEGRATED-FILES.md 2>&1 || echo "File not found"
-      
-      - name: Commit and push changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          echo "=== Checking git status ==="
+      
+      - name: Commit and push changes
+        run: |
+          echo "=== Checking for changes ==="
           git status
-          # Always add and commit - no need for diff check since files are generated
-          echo ""
-          echo "=== Adding generated files ==="
+          
           git add INTEGRATED-FILES.md INTEGRATED-FILES.json
-          if git diff --cached --quiet; then
-          echo "No changes to commit"
+          
+          if ! git diff --cached --quiet; then
+            echo "✓ Changes detected, committing..."
+            git commit -m "chore: update integrated files report [skip ci]"
+            
+            echo "✓ Pushing to main branch..."
+            git push origin main
+            echo "✅ Push successful!"
           else
-          echo "Committing changes..."
-          git commit -m "chore: update integrated files report [skip ci]"
-          echo "Pushing with GITHUB_TOKEN..."
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git main
-          echo "✓ Changes pushed successfully"
+            echo "ℹ️ No changes to commit"
           fi
