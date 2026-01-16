@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown: Rich Preview</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        // Initialize highlight.js
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+        });
+
+        // Copy to clipboard function
+        function copyToClipboard(button) {
+            const codeBlock = button.closest('.code-block');
+            const code = codeBlock.querySelector('code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.backgroundColor = '#4CAF50';
+                button.style.color = 'white';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.backgroundColor = '';
+                    button.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+    <style>
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+        /* Twemoji emoji image style for inline, text-sized emojis */
+        img.emoji {
+            height: 1em;
+            width: 1em;
+            margin: 0 .05em 0 .1em;
+            vertical-align: -0.1em;
+            display: inline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            line-height: 1.25;
+        }
+        
+        h1 { 
+            font-size: 2em; 
+            border-bottom: 1px solid #eaecef; 
+            padding-bottom: 0.3em;
+            margin-top: 0.67em 0;
+        }
+        
+        h2 { 
+            font-size: 1.5em; 
+            border-bottom: 1px solid #eaecef; 
+            padding-bottom: 0.3em;
+            margin-top: 1.5em;
+        }
+        
+        h3 { 
+            font-size: 1.25em; 
+            margin-top: 1.25em;
+        }
+        
+        h4 { 
+            font-size: 1em; 
+            margin-top: 1em;
+        }
+        
+        a { 
+            color: #0366d6; 
+            text-decoration: none; 
+        }
+        
+        a:hover { 
+            text-decoration: underline; 
+        }
+        
+        strong { 
+            font-weight: 600; 
+        }
+        
+        pre {
+            background-color:rgb(9, 7, 10);
+            overflow: auto;
+            margin: 0;
+        }
+        
+        code {
+            font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+            padding: 0.2em 0.4em;
+            font-size: 90%;
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .code-block {
+            position: relative;
+            background-color:rgb(9, 7, 10);
+            border-radius: 6px;
+            margin: 1em 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 10px;
+            background-color:rgb(32, 30, 43);
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+
+        .language {
+            color: #efe9e9;
+            font-size: 0.9em;
+            font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+        }
+
+        .copy-button {
+            padding: 4px 8px;
+            font-size: 0.9em;
+            color: #efe9e9;
+            background-color: transparent;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-button:hover {
+            background-color: #e9e9e9;
+            border-color: #ccc;
+        }
+        
+        blockquote {
+            margin: 0;
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+        }
+        
+        ul, ol {
+            padding-left: 2em;
+        }
+        
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            overflow: auto;
+            margin-bottom: 16px;
+        }
+        
+        table th {
+            font-weight: 600;
+        }
+        
+        table th, table td {
+            padding: 6px 13px;
+            border: 1px solid #dfe2e5;
+        }
+        
+        table tr {
+            background-color: #fff;
+            border-top: 1px solid #c6cbd1;
+        }
+        
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        
+        img {
+            max-width: 100%;
+            box-sizing: content-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>Falcon BMS TMS/DMS/CMS Guide Version System v4.2.1</h1>
+<p><strong>Latest Update:</strong> 10 January 2026, 18:00 -03<br><strong>Effective Date:</strong> 10 January 2026<br><strong>Replaces:</strong> v4.2 (updates references to WIP-FILE-NAMING-v1.4 and clarifies relationship with BRIEFING-v0.2.0.1)</p>
+<hr>
+<h2>Repository Identification</h2>
+<ul>
+<li>GitHub repository name: <code>carlos-nader/falcon-bms-hotas-tms-dms-cms-guide</code></li>
+<li>Primary URL: <a href="https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide">https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide</a></li>
+<li>Default branch: <code>main</code></li>
+<li>Canonical guide file: <code>guide.tex</code> (repository root)</li>
+<li>Versioned snapshots: <code>WIP/GUIDE/guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex</code></li>
+</ul>
+<hr>
+<h2>0. How to Use This Document</h2>
+<h3>0.1 Initial Question</h3>
+<p>Before any version change, answer:</p>
+<ul>
+<li><strong>Does the guide already have a published edition (≥ 1.0)?</strong><ul>
+<li><strong>No</strong> → apply the <strong>Pre-publication Regime (0.x.x.x)</strong>.  </li>
+<li><strong>Yes</strong> → apply the <strong>Post-publication Regime (x.x.x)</strong>.</li>
+</ul>
+</li>
+</ul>
+<h3>0.2 Decision Steps</h3>
+<ol>
+<li><p><strong>Identify the type of change made in the work session:</strong></p>
+<ul>
+<li>Did a <strong>new chapter</strong> enter the main guide content?</li>
+<li>Was there a <strong>strong restructuring</strong> of sections or of how tables organize content?</li>
+<li>Were there only <strong>small adjustments</strong> to text, formatting, or table cells?</li>
+</ul>
+</li>
+<li><p><strong>Go to the appropriate &quot;When to Increment&quot; table:</strong></p>
+<ul>
+<li>If still in 0.x.x.x → use <strong>Quick Reference (0.x.x.x — pre-publication)</strong>.  </li>
+<li>If already in ≥ 1.0 → use <strong>Quick Reference (x.x.x — post-publication)</strong>.</li>
+</ul>
+</li>
+<li><p><strong>Apply the File Naming and Snapshot Workflow:</strong></p>
+<ul>
+<li>Update the <strong>version and date macros</strong> in the guide&#39;s LaTeX preamble.</li>
+<li>Save an updated <strong>snapshot file</strong> under <code>WIP/GUIDE/</code> with the new number and date.</li>
+<li>Copy this snapshot over <code>guide.tex</code> in the repository root so both files are identical.</li>
+<li>Update <strong>PROJECT-TRACKING</strong> with the new entry.</li>
+<li>Keep the previous snapshot in the archive structure.</li>
+</ul>
+</li>
+</ol>
+<h3>0.3 Scenario-Based Examples</h3>
+<ul>
+<li><p><strong>&quot;I finished the narrative of a new chapter, tables still incomplete.&quot;</strong></p>
+<ul>
+<li>Regime: 0.x.x.x.  </li>
+<li>Trend: <strong>MINOR</strong> goes up (new chapter in development), PATCH/SUBPATCH at 0.</li>
+</ul>
+</li>
+<li><p><strong>&quot;I filled part of an important table in an existing chapter, changing how the reader uses that chapter.&quot;</strong></p>
+<ul>
+<li>Regime: 0.x.x.x.  </li>
+<li>Trend: <strong>PATCH</strong> (structural change inside the chapter).</li>
+</ul>
+</li>
+<li><p><strong>&quot;I only fixed typos in two chapters, without changing structure or table logic.&quot;</strong></p>
+<ul>
+<li>Regime: 0.x.x.x or x.x.x, depending on current state.  </li>
+<li>Trend: <strong>SUBPATCH</strong> (in 0.x.x.x) or <strong>PATCH</strong> (in x.x.x).</li>
+</ul>
+</li>
+<li><p><strong>&quot;I integrated a fully reviewed section inside an existing chapter (for example CMS 5.2), without adding a new chapter or changing global structure.&quot;</strong>  </p>
+<ul>
+<li>Regime: 0.x.x.x.  </li>
+<li>Trend: <strong>PATCH/SUBPATCH</strong> depending on scope:  <ul>
+<li>If the change significantly modifies how that chapter is used (for example, first major HOTAS table for that chapter), increment <strong>PATCH</strong> (for example, <code>0.2.2.0 → 0.2.3.0</code>).  </li>
+<li>If the change is a local refinement on top of an already planned structure, or if you want to keep the change clearly marked as internal polish, increment <strong>SUBPATCH</strong> (for example, <code>0.2.2.0 → 0.2.3.1</code> for the first integration of CMS 5.2 into Chapter 5).</li>
+</ul>
+</li>
+<li>Concrete example: integration of CMS 5.2 &quot;CMS Switch Actuation&quot; narrative and its main HOTAS table in <code>v0.2.3.1</code>.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>1. Header and Scope</h2>
+<h3>1.1 Metadata</h3>
+<ul>
+<li><p><strong>Title:</strong> Falcon BMS TMS/DMS/CMS Guide Version System v4.2.1.  </p>
+</li>
+<li><p><strong>Role:</strong> defines how to name, number, update, and archive versions of the TMS/DMS/CMS guide.</p>
+</li>
+<li><p><strong>Current project regime:</strong></p>
+<ul>
+<li>While no edition ≥ 1.0 has been declared, the project is in <strong>0.x.x.x pre-publication regime</strong>.  </li>
+<li>After the first published edition, the project will combine:<ul>
+<li>Historical 0.x.x.x line (frozen).  </li>
+<li>Active versions in <strong>x.x.x (≥ 1.0, post-publication)</strong>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>1.2 Purpose</h3>
+<ul>
+<li>Establish a versioning system that:<ul>
+<li>Clearly distinguishes <strong>internal work (0.x.x.x)</strong> from <strong>published editions (≥ 1.0)</strong>.</li>
+<li>Aligns <strong>MAJOR</strong> with the guide &quot;edition&quot;, instead of internal phases (scaffold/tables/review).</li>
+<li>Treats <strong>tables as part of chapters</strong>, not as independent versions.</li>
+</ul>
+</li>
+</ul>
+<h3>1.3 Scope</h3>
+<ul>
+<li><p>Applies to:</p>
+<ul>
+<li>Canonical main guide source file in the repository root: <code>guide.tex</code>.</li>
+<li>Versioned guide <strong>snapshots</strong> in <code>WIP/GUIDE/</code> following the <code>guide-v*.tex</code> pattern.</li>
+<li>Derived artefacts: versioned PDFs, section files (<code>section-*.tex</code>), tracking documents (<code>PROJECT-TRACKING-*.md</code>), briefings.  </li>
+<li>Individual preparation file names follow their own rules defined in the separate <code>WIP-FILE-NAMING-v1.4</code> document (<code>section-</code>, <code>table-</code>, <code>visual-</code>, <code>notes-</code>).</li>
+</ul>
+</li>
+<li><p>Does not apply to other projects outside the TMS/DMS/CMS Guide unless explicitly stated.</p>
+</li>
+</ul>
+<h3>1.4 Version Fields in the Guide&#39;s LaTeX</h3>
+<p>The guide contains version and date macros in the preamble, for example:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\docversion</span>}{0.1.4.0}     <span class="hljs-comment">% Document version number</span>
+<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\docbuild</span>}{20260106}      <span class="hljs-comment">% Build date YYYYMMDD</span>
+<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\docstartdate</span>}{05 January 2026}
+<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\docenddate</span>}{DD MMM 2026}
+<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\chapterscompletedof</span>}{1/7}
+<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\tablesfilledpct</span>}{0<span class="hljs-keyword">\%</span>}
+<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\fulldocversion</span>}{<span class="hljs-keyword">\docversion</span>+<span class="hljs-keyword">\docbuild</span>}</code></pre>
+                </div>
+            <p>These macros are the <strong>internal source of truth</strong> for the document version.</p>
+<p>On every version change:</p>
+<ul>
+<li><code>\docversion</code> and <code>\docbuild</code> must be updated to reflect the new version and new date.  </li>
+<li><code>\fulldocversion</code> and derived fields (cover page, status section, etc.) start displaying the new value.</li>
+</ul>
+<p>The version number stored in these macros must always match:</p>
+<ul>
+<li>The number encoded in the <strong>snapshot file name</strong> under <code>WIP/GUIDE/</code>.  </li>
+<li>The number recorded in <strong>PROJECT-TRACKING</strong>.</li>
+</ul>
+<h3>1.5 Repository Structure and GitHub Workflow</h3>
+<p>To align the version system with GitHub branch protection and readable diffs, the repository follows these rules:</p>
+<ul>
+<li>The repository root contains a <strong>single canonical main file</strong>: <code>guide.tex</code>.</li>
+<li>The directory <code>WIP/GUIDE/</code> contains the <strong>current snapshot</strong> and archived snapshots named with the full version pattern, for example:<ul>
+<li><code>WIP/GUIDE/guide-v0.2.2.0-20260108.tex</code>.</li>
+</ul>
+</li>
+<li>Editing rule:<ul>
+<li>All substantive editing of the guide is done in the <strong>current snapshot</strong> inside <code>WIP/GUIDE/</code>.</li>
+<li>When a snapshot is ready (compiles and passes checks), an identical copy is saved as <code>guide.tex</code> in the repository root, overwriting the previous version.</li>
+<li><code>guide.tex</code> must not be edited directly; any change to its content must originate from a snapshot in <code>WIP/GUIDE/</code>.</li>
+</ul>
+</li>
+<li>Git and GitHub treat <code>guide.tex</code> as the canonical history of the document, providing line-by-line diffs across commits. Snapshots in <code>WIP/GUIDE/</code> provide additional safety and traceability but do not replace Git history.</li>
+</ul>
+<hr>
+<h2>2. Global Naming Convention</h2>
+<h3>2.1 Snapshot File Name Rule</h3>
+<p>Every <strong>snapshot</strong> of the main guide stored in <code>WIP/GUIDE/</code> must follow this pattern:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex</code></pre>
+                </div>
+            <ul>
+<li><code>MAJOR</code>, <code>MINOR</code>, <code>PATCH</code>, <code>SUBPATCH</code> are integers ≥ 0.  </li>
+<li><code>YYYYMMDD</code> is the <strong>build date</strong> (year, month, day).</li>
+</ul>
+<p>The root file <code>guide.tex</code> keeps a <strong>stable name</strong> and is always a byte-identical copy of the latest snapshot that represents the active version.</p>
+<h3>2.2 Date Format</h3>
+<ul>
+<li>The date always uses the format <code>YYYYMMDD</code> (for example, <code>20260106</code> for 06 January 2026).</li>
+<li>The build date is updated whenever:<ul>
+<li>A new version number is created (bump in any digit).</li>
+<li>A relevant snapshot is compiled, even without content change, when the artefact is to be archived.</li>
+</ul>
+</li>
+</ul>
+<h3>2.3 Examples</h3>
+<ul>
+<li><p>Pre-publication (0.x.x.x regime) snapshots in <code>WIP/GUIDE/</code>:</p>
+<ul>
+<li><code>WIP/GUIDE/guide-v0.1.0.0-20260105.tex</code>.</li>
+<li><code>WIP/GUIDE/guide-v0.1.4.0-20260106.tex</code>.</li>
+</ul>
+</li>
+<li><p>First published edition (≥ 1.0 regime, after promotion):</p>
+<ul>
+<li><code>WIP/GUIDE/guide-v1.0.0-2026XXXX.tex</code>.</li>
+</ul>
+</li>
+<li><p>Major revision in a new edition:</p>
+<ul>
+<li><code>WIP/GUIDE/guide-v2.0.0-2026XXXX.tex</code>.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>3. Pre-Publication Regime (0.x.x.x)</h2>
+<h3>3.1 Semantics of Digits in 0.x.x.x</h3>
+<p>During pre-publication, the version number has four digits:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">0.MINOR.PATCH.SUBPATCH</code></pre>
+                </div>
+            <ul>
+<li><p><strong>MAJOR = 0</strong>  </p>
+<ul>
+<li>Indicates the guide is in an internal development line, still unpublished.  </li>
+<li>Structure can change significantly (chapters entering, leaving, being reordered) with no stability commitment to the reader.</li>
+</ul>
+</li>
+<li><p><strong>MINOR (2nd digit)</strong>  </p>
+<ul>
+<li>Represents which nth chapter is being worked on in the guide (order of entry into the main file, not chapter number).</li>
+<li>Examples:<ul>
+<li><code>0.1.x.x</code> → 1st chapter in development (could be Chapter 1, 3, 5, etc.).</li>
+<li><code>0.2.x.x</code> → 2nd chapter in development (independent of being &quot;Chapter 2&quot;).</li>
+<li>... up to <code>0.7.x.x</code> when the 7 planned chapters have entered.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>PATCH (3rd digit)</strong>  </p>
+<ul>
+<li>Marks relevant structural changes inside the chapter(s) active under that MINOR:<ul>
+<li>Addition of new important sections.</li>
+<li>Reorganisation of sections/subsections.</li>
+<li>Introduction or reformulation of tables in ways that change how the chapter is used.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>SUBPATCH (4th digit)</strong>  </p>
+<ul>
+<li>Logs smaller refinements without significant structural change:<ul>
+<li>Spelling and typo corrections.</li>
+<li>Small wording improvements.</li>
+<li>Localised tweaks in table cells, footnotes, or formatting.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>3.2 Increment Rules in 0.x.x.x</h3>
+<p>Only MAJOR is fixed (0); the other digits vary according to change type.</p>
+<h4>3.2.1 Central Rule</h4>
+<ul>
+<li>Only content that reaches the <strong>guide snapshot in <code>WIP/GUIDE/</code> and the corresponding <code>guide.tex</code> copy in the repository root</strong> can trigger MINOR/PATCH/SUBPATCH bumps.  <ul>
+<li>Work left only in other WIP files (<code>section-...tex</code>, <code>table-...tex</code>, <code>visual-...{svg,pdf,png,tex}</code>, <code>notes-...md</code>, drafts) does not change the version number until integrated into the snapshot and propagated to <code>guide.tex</code>.</li>
+</ul>
+</li>
+</ul>
+<h4>3.2.2 &quot;When to Increment (Pre-Publication)&quot; Table</h4>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Increment</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Start working on a new chapter in the main file</td>
+<td><strong>MINOR</strong></td>
+<td>Example: <code>0.1.x.x → 0.2.0.1</code>.</td>
+</tr>
+<tr>
+<td>Add a new relevant section in an already active chapter</td>
+<td><strong>PATCH</strong></td>
+<td>Example: <code>0.1.1.0 → 0.1.2.0</code>.</td>
+</tr>
+<tr>
+<td>Restructure chapter sections/subsections</td>
+<td><strong>PATCH</strong></td>
+<td>Keeps MINOR; changes internal architecture.</td>
+</tr>
+<tr>
+<td>Fill/modify tables in a way that changes how the chapter is used</td>
+<td><strong>PATCH</strong></td>
+<td>Example: new HOTAS table that reorganises reading.</td>
+</tr>
+<tr>
+<td>Fix LaTeX syntax errors that prevented compilation</td>
+<td><strong>PATCH</strong></td>
+<td>Structural &quot;major bugfix&quot;.</td>
+</tr>
+<tr>
+<td>Fix typos, punctuation, small wording adjustments</td>
+<td><strong>SUBPATCH</strong></td>
+<td>Example: <code>0.1.4.0 → 0.1.4.1</code>.</td>
+</tr>
+<tr>
+<td>Adjust few table cells without changing logic/structure</td>
+<td><strong>SUBPATCH</strong></td>
+<td>Local refinement.</td>
+</tr>
+<tr>
+<td>Only compile/save, with no content change</td>
+<td><strong>Date</strong></td>
+<td>Update <code>YYYYMMDD</code>, not version number.</td>
+</tr>
+<tr>
+<td>Work in non-integrated WIP (<code>section-...tex</code>, <code>table-...tex</code>, <code>visual-...{svg,pdf,png,tex}</code>, <code>notes-...md</code>)</td>
+<td><strong>None</strong></td>
+<td>Version only goes up when content enters the snapshot and <code>guide.tex</code>.</td>
+</tr>
+</tbody></table>
+<h4>3.2.3 Internal Phases as Metadata</h4>
+<ul>
+<li>Phases like &quot;chapter scaffolding&quot;, &quot;table filling&quot;, &quot;review&quot; are treated as progress metadata, not as direct triggers for MAJOR changes in 0.x.x.x.</li>
+<li>These phases can show up:<ul>
+<li>In PROJECT-TRACKING.</li>
+<li>In the guide&#39;s own status section.</li>
+</ul>
+</li>
+</ul>
+<h3>3.3 Role of Tables in 0.x.x.x</h3>
+<h4>3.3.1 Tables as Part of Chapters</h4>
+<ul>
+<li>The <code>hotastable</code> environment is defined as a presentation medium, not as an independent structural unit.</li>
+<li>TMS, DMS, and CMS tables:<ul>
+<li>Are always part of sections/chapters (Ch. 3, 4, 5, etc.).</li>
+<li>Are indexed in the table appendix, reinforcing that they belong to main chapters.</li>
+</ul>
+</li>
+</ul>
+<h4>3.3.2 Tables and Version Increments</h4>
+<ul>
+<li><p><strong>PATCH because of tables</strong> when:</p>
+<ul>
+<li>Inclusion, removal, or large reformulation of a table:<ul>
+<li>Changes how the reader navigates or understands the chapter.</li>
+<li>Reorganises content (for example, replacing free text with a central reference table).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>SUBPATCH because of tables</strong> when:</p>
+<ul>
+<li>Adjustments:<ul>
+<li>Fix cell descriptions, typos, or references.</li>
+<li>Add/remove few rows without changing overall logic.</li>
+<li>Adjust formatting, reference notes, or similar details.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>3.4 Practical Examples (0.x.x.x)</h3>
+<h4>3.4.1 Pre-Publication Evolution Line</h4>
+<ul>
+<li><code>v0.1.0.0</code> — Introduction structured and included in guide (1st chapter in development).  </li>
+<li><code>v0.1.3.0</code> — TMS chapter structured, with main sections defined.  </li>
+<li><code>v0.1.4.0</code> — DMS chapter restructured; geometry fixes; new table layout adopted.  </li>
+<li><code>v0.2.0.1</code> — 2nd chapter in development enters guide (for example, HOTAS fundamentals).  </li>
+<li><code>v0.3.0.0</code> — 3rd chapter in development enters guide (for example, CMS), and so on, until:  </li>
+<li><code>v0.7.0.0</code> — All 7 planned chapters have entered the guide (scaffolding complete).</li>
+</ul>
+<h4>3.4.2 Mini-Cases by Scenario</h4>
+<ul>
+<li><p><strong>Case A — New chapter (Ch. 2) enters the guide:</strong></p>
+<ul>
+<li>Situation: until now, only Introduction was included as a developed chapter.</li>
+<li>Action: integrate Ch. 2 structure into the main file snapshot and propagate to <code>guide.tex</code>.</li>
+<li>Version: <code>0.1.4.0 → 0.2.0.1</code>.</li>
+</ul>
+</li>
+<li><p><strong>Case B — DMS restructuring in Ch. 4:</strong></p>
+<ul>
+<li>Situation: sections reordered, subsections regrouped, narrative adjusted.</li>
+<li>Version: <code>0.1.3.0 → 0.1.4.0</code> (PATCH).</li>
+</ul>
+</li>
+<li><p><strong>Case C — Partial filling of TMS <code>hotastable</code> in Ch. 3:</strong></p>
+<ul>
+<li>Situation: first table version that reorganises how the chapter is understood.</li>
+<li>Version: PATCH within the corresponding MINOR, for example <code>0.1.4.0 → 0.1.5.0</code>.</li>
+</ul>
+</li>
+<li><p><strong>Case D — Typo fixes in Introduction and TMS:</strong></p>
+<ul>
+<li>Situation: only typos and micro wording adjustments.</li>
+<li>Version: <code>0.2.3.0 → 0.2.3.1</code> (SUBPATCH).</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>4. Bridge to Publication (0.x.x.x → 1.0)</h2>
+<h3>4.1 Criteria to Declare 1.0</h3>
+<p>A <code>0.a.b.c</code> version can be promoted to <code>1.0.0</code> when all criteria below are met:</p>
+<ul>
+<li><p><strong>Overall chapter structure is stable.</strong>  </p>
+<ul>
+<li>All chapters planned for the 1st edition exist and have basic narrative complete.</li>
+<li>The chapter index reflects the structure to be &quot;frozen&quot; for readers.</li>
+</ul>
+</li>
+<li><p><strong>Guide is practically usable.</strong>  </p>
+<ul>
+<li>A reader can follow the flow and use TMS/DMS/CMS based on existing text.</li>
+<li>Tables may be partial, as long as this is clearly indicated (for example, labels like &quot;In development&quot; or explanatory notes).</li>
+</ul>
+</li>
+<li><p><strong>Minimum consistency and clarity review done.</strong>  </p>
+<ul>
+<li>Unified terminology (mode names, commands, displays, etc.).</li>
+<li>Critical references (Dash-1, Dash-34, BMS manuals) checked at key points.</li>
+</ul>
+</li>
+</ul>
+<h3>4.2 Transition Procedure</h3>
+<ol>
+<li><p><strong>Choose base 0.a.b.c.</strong>  </p>
+<ul>
+<li>Select, among existing 0.x.x.x versions, the one that best represents the state &quot;ready for 1.0&quot;.</li>
+<li>Confirm it meets the criteria in Section 4.1.</li>
+</ul>
+</li>
+<li><p><strong>Create version 1.0.0.</strong>  </p>
+<ul>
+<li>Update macros in the guide LaTeX snapshot:</li>
+</ul>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\docversion</span>}{1.0.0}
+<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\docbuild</span>}{YYYYMMDD}  <span class="hljs-comment">% Date when 1st edition is frozen</span></code></pre>
+                </div>
+            <ul>
+<li>Save the snapshot with the new name under <code>WIP/GUIDE/</code>:</li>
+</ul>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">WIP/GUIDE/guide-v1.0.0-YYYYMMDD.tex</code></pre>
+                </div>
+            <ul>
+<li>Copy this snapshot over <code>guide.tex</code> in the repository root so both files are identical.</li>
+</ul>
+</li>
+<li><p><strong>Freeze the 0.x.x.x line.</strong>  </p>
+<ul>
+<li>Move or group all <code>WIP/GUIDE/guide-v0.*.tex</code> files into a history area, for example:</li>
+</ul>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">WIP/GUIDE/prepub/guide-v0.*.tex</code></pre>
+                </div>
+            <ul>
+<li>Do not create new 0.* versions after 1.0.0 is born.</li>
+<li>The 0.x.x.x line becomes pre-publication history only.</li>
+</ul>
+</li>
+<li><p><strong>Update tracking.</strong>  </p>
+<ul>
+<li>In PROJECT-TRACKING, record:<ul>
+<li>Which <code>0.a.b.c</code> version was promoted to <code>1.0.0</code>.</li>
+<li>A short editorial justification for promotion (why this is the 1st edition).</li>
+<li>The path/identifier of the archived PDF <code>guide-v1.0.0-YYYYMMDD.pdf</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3>4.3 Cutover between Regimes</h3>
+<ul>
+<li>From the build date recorded in <code>\docbuild</code> of version <code>1.0.0</code> onward:<ul>
+<li>All new changes to the guide must follow the <strong>x.x.x regime</strong> described in Chapter 5.</li>
+<li>That is, any new version takes the form <code>1.MINOR.PATCH</code>, then <code>2.MINOR.PATCH</code>, and so on.</li>
+</ul>
+</li>
+</ul>
+<h3>4.4 Checklist before Promoting to 1.0.0</h3>
+<p>Before performing the transition, validate:</p>
+<ul>
+<li><code>\chapterscompletedof</code> and the chapter index correctly reflect the 1st edition&#39;s state (for example, they do not advertise chapters that do not yet exist).</li>
+<li>There are no obvious internal markers (like &quot;TODO&quot;, &quot;FIXME&quot;, temporary comments) in the main sections.</li>
+<li>Partial tables are clearly identified as such and do not look like errors.</li>
+<li>PROJECT-TRACKING is consistent with the state to be frozen as 1.0.0 (dates, versions, change descriptions).</li>
+</ul>
+<hr>
+<h2>5. Post-Publication Regime (≥ 1.0, x.x.x Scheme)</h2>
+<blockquote>
+<p>From <code>1.0.0</code> onwards, the focus moves from internal development to edition and revision management for readers.</p>
+</blockquote>
+<h3>5.1 Semantics of Digits in x.x.x</h3>
+<p>After the first published edition, the guide uses:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">MAJOR.MINOR.PATCH</code></pre>
+                </div>
+            <ul>
+<li><p><strong>MAJOR (1st digit) — Guide edition.</strong>  </p>
+<ul>
+<li>Represents main editions (1st, 2nd, 3rd, …).</li>
+<li>Should only change when there are broad enough changes to justify calling it a new edition.</li>
+<li>Typical examples:<ul>
+<li>Large chapter reorganisation (merges, splits, strong order changes).</li>
+<li>Addition/removal of large content blocks that alter global scope.</li>
+<li>Adaptation to a new major BMS version requiring substantial rewrite of several chapters.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>MINOR (2nd digit) — Compatible but substantial changes.</strong>  </p>
+<ul>
+<li>Marks important revisions, but still within the same edition.</li>
+<li>A reader of the current edition does not get lost when moving to a new MINOR:<ul>
+<li>Index and overall structure remain recognisable.</li>
+</ul>
+</li>
+<li>Examples:<ul>
+<li>Addition of a new relevant chapter.</li>
+<li>Large expansion of existing chapters (new sections and key tables).</li>
+<li>Relevant internal reorganisation of a subset of chapters while keeping global architecture.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>PATCH (3rd digit) — Smaller corrections and adjustments.</strong>  </p>
+<ul>
+<li>Logs fine-tuning within the same MINOR:<ul>
+<li>Spelling, grammar, formatting fixes.</li>
+<li>Clarity improvements in paragraphs, captions, notes.</li>
+<li>Small table, note, reference adjustments.</li>
+<li>Local error corrections without large restructuring.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>5.2 General Increment Rules in x.x.x</h3>
+<h4>5.2.1 General Principles</h4>
+<ol>
+<li><p><strong>Editorial compatibility.</strong>  </p>
+<ul>
+<li>If the reader can use the new version as a drop-in replacement for the previous one, without relearning global structure → generally not MAJOR.</li>
+<li>If the new version requires rethinking stable references (chapter number, global order) → candidate for MAJOR.</li>
+</ul>
+</li>
+<li><p><strong>Frequency.</strong>  </p>
+<ul>
+<li>MAJOR is rare (editions).</li>
+<li>MINOR is less rare, but still signals important revisions.</li>
+<li>PATCH can happen more frequently (errata, polish).</li>
+</ul>
+</li>
+<li><p><strong>Continuity with 0.x.x.x.</strong>  </p>
+<ul>
+<li>0.x.x.x becomes pre-publication history; in ≥ 1.0, avoid unnecessary architecture resets.</li>
+</ul>
+</li>
+</ol>
+<h4>5.2.2 &quot;When to Increment (Post-Publication)&quot; Table</h4>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Inc.</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Reorganise chapter structure (merges, splits, large order changes)</td>
+<td><strong>MAJOR</strong></td>
+<td>Reader sees it as a new edition of the guide.</td>
+</tr>
+<tr>
+<td>Add/remove large content blocks that change global scope</td>
+<td><strong>MAJOR</strong></td>
+<td>For example, whole new part, or removal of a dominant part.</td>
+</tr>
+<tr>
+<td>Adapt guide to a new major BMS version with substantial rewrite of several chapters</td>
+<td><strong>MAJOR</strong></td>
+<td>Old content is no longer fully current.</td>
+</tr>
+<tr>
+<td>Add a new important chapter within the same edition</td>
+<td><strong>MINOR</strong></td>
+<td>Scope expands, edition remains the same.</td>
+</tr>
+<tr>
+<td>Substantially expand one or more chapters (new sections, key tables)</td>
+<td><strong>MINOR</strong></td>
+<td>Significant improvement without breaking global organisation.</td>
+</tr>
+<tr>
+<td>Reorganise internally a subset of chapters, keeping index recognisable</td>
+<td><strong>MINOR</strong></td>
+<td>Revised edition within same MAJOR.</td>
+</tr>
+<tr>
+<td>Correct several localised content errors in text/tables</td>
+<td><strong>PATCH</strong></td>
+<td>Focus on fixing, not expanding scope.</td>
+</tr>
+<tr>
+<td>Fix typos, grammar, improve clarity, update references</td>
+<td><strong>PATCH</strong></td>
+<td>Typical errata/polish versions.</td>
+</tr>
+<tr>
+<td>Adjust few table cells, change labels without altering logic</td>
+<td><strong>PATCH</strong></td>
+<td>No chapter renumbering or flow changes.</td>
+</tr>
+</tbody></table>
+<h3>5.3 Role of Tables in ≥ 1.0</h3>
+<ul>
+<li><p>Tables are part of chapters, not MAJOR artefacts:</p>
+<ul>
+<li>A new large, central table in an important chapter:<ul>
+<li>May justify <strong>MINOR</strong>, if expansion is substantial.</li>
+<li>Or <strong>PATCH</strong>, if it is just a refinement of already described content.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Localised table corrections (cells, acronyms, notes):</p>
+<ul>
+<li>Tend to be <strong>PATCH</strong>, unless the change is so broad that it modifies the logic of a key section (then evaluate MINOR).</li>
+</ul>
+</li>
+</ul>
+<h3>5.4 Example Progression in x.x.x</h3>
+<h4>5.4.1 From the 1st Edition Onward</h4>
+<ul>
+<li><p><code>1.0.0</code> — 1st published edition.  </p>
+<ul>
+<li>Stable chapter structure, usable narrative, tables present and clearly marked when partial.</li>
+</ul>
+</li>
+<li><p><code>1.0.1</code> — Initial errata.  </p>
+<ul>
+<li>Typo fixes, small errors in TMS/DMS/CMS descriptions, localised formatting tweaks.</li>
+</ul>
+</li>
+<li><p><code>1.1.0</code> — Expanded revision within 1st edition.  </p>
+<ul>
+<li>Addition of one new relevant chapter (for example, advanced training flows).</li>
+<li>Some tables originally from 0.x.x.x have been completed.</li>
+</ul>
+</li>
+<li><p><code>1.1.3</code> — Third set of minor fixes on top of 1.1.0.  </p>
+<ul>
+<li><code>1.1.1</code>, <code>1.1.2</code>, <code>1.1.3</code> accumulate errata and clarifications.</li>
+</ul>
+</li>
+<li><p><code>2.0.0</code> — 2nd revised edition.  </p>
+<ul>
+<li>Several chapters regrouped, order revised, broad updates to follow a new major BMS version.</li>
+</ul>
+</li>
+</ul>
+<h4>5.4.2 Decision Examples</h4>
+<ul>
+<li><p><strong>Case 1 — New chapter &quot;TMS/DMS/CMS in additional aircraft&quot; in 1.x.</strong></p>
+<ul>
+<li>Global structure stays recognisable → <code>1.0.2 → 1.1.0</code> (MINOR).</li>
+</ul>
+</li>
+<li><p><strong>Case 2 — Fixing incorrect commands in CMS tables.</strong></p>
+<ul>
+<li>Cell-level fixes, no chapter restructuring → <code>1.1.0 → 1.1.1</code> (PATCH).</li>
+</ul>
+</li>
+<li><p><strong>Case 3 — Reorganising training part (Ch. 6) into two parts.</strong></p>
+<ul>
+<li>If only part of structure changes, with recognisable index → MINOR.  </li>
+<li>If it triggers wide architecture changes → evaluate MAJOR.</li>
+</ul>
+</li>
+</ul>
+<h3>5.5 Interaction with 0.x.x.x History</h3>
+<ul>
+<li><p>0.x.x.x versions:</p>
+<ul>
+<li>Kept as pre-publication history, useful for understanding evolution and didactic decisions.</li>
+</ul>
+</li>
+<li><p>After <code>1.0.0</code>:</p>
+<ul>
+<li>No new 0.* versions are created.</li>
+<li>All future changes follow x.x.x regime.</li>
+</ul>
+</li>
+</ul>
+<h3>5.6 Quick Checklist for ≥ 1.0</h3>
+<ol>
+<li><p>Does your change alter the edition (reader should perceive it as a new edition)?</p>
+<ul>
+<li>Yes → <strong>MAJOR</strong> (for example <code>1.3.2 → 2.0.0</code>).  </li>
+<li>No → continue.</li>
+</ul>
+</li>
+<li><p>Does your change significantly expand scope or reorganise an important part, while staying in same edition?</p>
+<ul>
+<li>Yes → <strong>MINOR</strong> (for example <code>1.0.0 → 1.1.0</code>).  </li>
+<li>No → continue.</li>
+</ul>
+</li>
+<li><p>Is your change local (fixes, clarifications, small table/text adjustments)?</p>
+<ul>
+<li>Yes → <strong>PATCH</strong> (for example <code>1.1.0 → 1.1.1</code>).</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>6. Rules Common to Both Regimes</h2>
+<h3>6.1 Build Date and Compilation</h3>
+<ul>
+<li><p>Build date (<code>YYYYMMDD</code>) must be updated whenever:</p>
+<ul>
+<li>A new version number (0.x.x.x or x.x.x) is established.  </li>
+<li>A relevant snapshot is compiled and saved.</li>
+</ul>
+</li>
+<li><p>Difference between internal snapshot and official version:</p>
+<ul>
+<li>Only versions whose number was updated in <code>\docversion</code> and in the snapshot file name enter PROJECT-TRACKING as milestones.</li>
+</ul>
+</li>
+</ul>
+<h3>6.2 File Naming and Snapshot Workflow</h3>
+<p>Single workflow for 0.x.x.x and x.x.x:</p>
+<ol>
+<li><p><strong>Determine change type.</strong>  </p>
+<ul>
+<li>Use the appropriate &quot;When to Increment&quot; tables (pre- or post-publication).</li>
+</ul>
+</li>
+<li><p><strong>Update version/date macros in LaTeX.</strong>  </p>
+<ul>
+<li>Set <code>\docversion</code> to the new number.</li>
+<li>Set <code>\docbuild</code> to the new <code>YYYYMMDD</code> date.</li>
+<li>Ensure <code>\fulldocversion</code> reflects the correct combination.</li>
+</ul>
+</li>
+<li><p><strong>Compile and check for errors.</strong>  </p>
+<ul>
+<li>Generate the PDF and check LaTeX warnings/errors.</li>
+</ul>
+</li>
+<li><p><strong>Save the snapshot under <code>WIP/GUIDE/</code>.</strong>  </p>
+<ul>
+<li>Apply the pattern:</li>
+</ul>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">WIP/GUIDE/guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex</code></pre>
+                </div>
+            </li>
+<li><p><strong>Propagate to the canonical file.</strong>  </p>
+<ul>
+<li>Copy the new snapshot over <code>guide.tex</code> in the repository root so that Git/GitHub see the change as an update of the same file.</li>
+</ul>
+</li>
+<li><p><strong>Update PROJECT-TRACKING.</strong>  </p>
+<ul>
+<li>Add a line with version, date, affected chapter(s), and a concise description of the change.</li>
+</ul>
+</li>
+<li><p><strong>Archive previous snapshots.</strong>  </p>
+<ul>
+<li>Keep the earlier <code>guide-v*.tex</code> files in <code>WIP/GUIDE/</code> (optionally grouped under <code>/prepub/</code> or <code>/published/</code>), and keep or generate the matching PDFs.</li>
+</ul>
+</li>
+</ol>
+<h3>6.3 Archival Strategy</h3>
+<ul>
+<li><p>Organisation by regime (inside <code>WIP/GUIDE/</code> or subfolders):</p>
+<ul>
+<li><code>prepub/guide-v0.*.tex</code> — internal development history.  </li>
+<li><code>published/guide-v1.*.tex</code>, <code>published/guide-v2.*.tex</code>, etc. — published editions and revisions.</li>
+</ul>
+</li>
+<li><p>Git (optional but recommended):</p>
+<ul>
+<li>Version <code>guide.tex</code> and other text files.</li>
+<li>Exclude heavy artefacts via <code>.gitignore</code>, for example:</li>
+</ul>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">*.pdf
+*.docx
+*.aux
+*.log
+*.synctex.gz</code></pre>
+                </div>
+            </li>
+</ul>
+<h3>6.4 Relationship with WIP File Naming and BRIEFING</h3>
+<ul>
+<li>This document (Version System v4.2.1) governs the versioning and naming of the <strong>guide snapshots</strong> (<code>WIP/GUIDE/guide-v*.tex</code>) and their relationship with the canonical <code>guide.tex</code> in the repository root.  </li>
+<li>Individual preparation files (<code>section-</code>, <code>table-</code>, <code>visual-</code>, <code>notes-</code>) follow their own rules defined in the separate <code>WIP-FILE-NAMING-v1.4</code> document.  </li>
+<li>The structural specification and template governance for WIP files is defined in <code>BRIEFING-v0.2.0.1</code> (Section 11).</li>
+<li>These WIP files only impact the guide version when their content is integrated into the current snapshot and propagated to <code>guide.tex</code>.</li>
+</ul>
+<hr>
+<h2>7. Consolidated Quick Reference</h2>
+<h3>7.1 Quick Reference (0.x.x.x — Pre-Publication)</h3>
+<ul>
+<li><strong>MAJOR = 0</strong> always.  </li>
+<li><strong>MINOR:</strong> new chapter enters guide.  </li>
+<li><strong>PATCH:</strong> structural change in chapter (sections/tables altering flow).  </li>
+<li><strong>SUBPATCH:</strong> fine-tuning (typos, wording, small table tweaks).</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Key Situation</th>
+<th>Pre Version (ex.)</th>
+<th>Post Version (ex.)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>New chapter enters guide</td>
+<td><code>0.1.4.0 → 0.2.0.1</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Restructure chapter sections</td>
+<td><code>0.2.1.0 → 0.2.2.0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Important table changes chapter usage</td>
+<td><code>0.2.2.0 → 0.2.3.0</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Typos and micro wording fixes</td>
+<td><code>0.2.3.0 → 0.2.3.1</code></td>
+<td>—</td>
+</tr>
+</tbody></table>
+<h3>7.2 Quick Reference (x.x.x — Post-Publication)</h3>
+<ul>
+<li><strong>MAJOR:</strong> new edition (broad changes, potential incompatibility).  </li>
+<li><strong>MINOR:</strong> compatible but substantial expansion (new chapters, large blocks).  </li>
+<li><strong>PATCH:</strong> minor corrections, clarifications, localised adjustments.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Key Situation</th>
+<th>Pre Version (ex.)</th>
+<th>Post Version (ex.)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Second revised edition (broad change)</td>
+<td>—</td>
+<td><code>1.3.2 → 2.0.0</code></td>
+</tr>
+<tr>
+<td>Important new chapter within same edition</td>
+<td>—</td>
+<td><code>1.0.0 → 1.1.0</code></td>
+</tr>
+<tr>
+<td>Minor fixes and clarifications on 1.1.0</td>
+<td>—</td>
+<td><code>1.1.0 → 1.1.1</code></td>
+</tr>
+</tbody></table>
+<h3>7.3 Key Notes</h3>
+<ul>
+<li>Tables are always part of chapters; they never define MAJOR alone.  </li>
+<li>0.x.x.x is never a published edition; it is always an internal development regime.  </li>
+<li><code>1.0</code> marks the first published edition; <code>2.0</code>, <code>3.0</code>, etc., are successive editions, consistent with good technical documentation practice.</li>
+</ul>
+<hr>
+<h2>8. Version History</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date &amp; Time (UTC-3)</th>
+<th>Type</th>
+<th>Changes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>v4.0</strong></td>
+<td>07 Jan 2026, 00:00</td>
+<td>Initial release</td>
+<td>Defines 0.x.x.x and x.x.x regimes; explains snapshot workflow; establishes repository structure.</td>
+</tr>
+<tr>
+<td><strong>v4.1</strong></td>
+<td>08 Jan 2026, 14:30</td>
+<td>MINOR UPDATE</td>
+<td>Added explicit reference to <code>WIP-FILE-NAMING v*</code> in scope (Section 1.3); clarified that individual WIP files do not trigger version bumps until integrated into guide snapshot; updated Section 6.4 to mention WIP-FILE-NAMING document; emphasized that <code>guide.tex</code> is canonical and must not be edited directly.</td>
+</tr>
+<tr>
+<td><strong>v4.2</strong></td>
+<td>09 Jan 2026, 09:34</td>
+<td>MINOR UPDATE</td>
+<td>Enhanced Section 0.3 Scenario-Based Examples; clarified date format (YYYYMMDD vs YYYY-MM-DD context); expanded Section 4.2 Transition Procedure with detailed checklist; reorganized Section 5 Post-Publication with clearer structure and decision examples; added Section 7 Consolidated Quick Reference for rapid lookup; updated archival strategy in Section 6.3 with examples of folder organization.</td>
+</tr>
+<tr>
+<td><strong>v4.2.1</strong></td>
+<td>09 Jan 2026, 18:00</td>
+<td>PATCH UPDATE</td>
+<td>Updated reference in Section 1.3 from <code>WIP-FILE-NAMING v*</code> to <code>WIP-FILE-NAMING-v1.4</code>; Updated reference in Section 6.4 from <code>WIP-FILE-NAMING v*</code> to <code>WIP-FILE-NAMING-v1.4</code>; Added explicit mention of <code>BRIEFING-v0.2.0.1</code> in Section 6.4 to establish three-way integration between VERSION-SYSTEM, WIP-NAMING, and BRIEFING; PATCH bump (not MINOR) as these are clarifications and reference updates, not structural changes.</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>End of document — Version System v4.2.1</strong></p>
+<p><strong>Document Status:</strong> Production-Ready (v4.2.1)<br><strong>Effective Date:</strong> 09 January 2026<br><strong>Last Updated:</strong> 09 January 2026, 18:00 -03</p>
+
+</body>
+</html>

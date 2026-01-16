@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown: Rich Preview</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        // Initialize highlight.js
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+        });
+
+        // Copy to clipboard function
+        function copyToClipboard(button) {
+            const codeBlock = button.closest('.code-block');
+            const code = codeBlock.querySelector('code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.backgroundColor = '#4CAF50';
+                button.style.color = 'white';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.backgroundColor = '';
+                    button.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+    <style>
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+        /* Twemoji emoji image style for inline, text-sized emojis */
+        img.emoji {
+            height: 1em;
+            width: 1em;
+            margin: 0 .05em 0 .1em;
+            vertical-align: -0.1em;
+            display: inline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            line-height: 1.25;
+        }
+        
+        h1 { 
+            font-size: 2em; 
+            border-bottom: 1px solid #eaecef; 
+            padding-bottom: 0.3em;
+            margin-top: 0.67em 0;
+        }
+        
+        h2 { 
+            font-size: 1.5em; 
+            border-bottom: 1px solid #eaecef; 
+            padding-bottom: 0.3em;
+            margin-top: 1.5em;
+        }
+        
+        h3 { 
+            font-size: 1.25em; 
+            margin-top: 1.25em;
+        }
+        
+        h4 { 
+            font-size: 1em; 
+            margin-top: 1em;
+        }
+        
+        a { 
+            color: #0366d6; 
+            text-decoration: none; 
+        }
+        
+        a:hover { 
+            text-decoration: underline; 
+        }
+        
+        strong { 
+            font-weight: 600; 
+        }
+        
+        pre {
+            background-color:rgb(9, 7, 10);
+            overflow: auto;
+            margin: 0;
+        }
+        
+        code {
+            font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+            padding: 0.2em 0.4em;
+            font-size: 90%;
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .code-block {
+            position: relative;
+            background-color:rgb(9, 7, 10);
+            border-radius: 6px;
+            margin: 1em 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 10px;
+            background-color:rgb(32, 30, 43);
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+
+        .language {
+            color: #efe9e9;
+            font-size: 0.9em;
+            font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+        }
+
+        .copy-button {
+            padding: 4px 8px;
+            font-size: 0.9em;
+            color: #efe9e9;
+            background-color: transparent;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-button:hover {
+            background-color: #e9e9e9;
+            border-color: #ccc;
+        }
+        
+        blockquote {
+            margin: 0;
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+        }
+        
+        ul, ol {
+            padding-left: 2em;
+        }
+        
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            overflow: auto;
+            margin-bottom: 16px;
+        }
+        
+        table th {
+            font-weight: 600;
+        }
+        
+        table th, table td {
+            padding: 6px 13px;
+            border: 1px solid #dfe2e5;
+        }
+        
+        table tr {
+            background-color: #fff;
+            border-top: 1px solid #c6cbd1;
+        }
+        
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        
+        img {
+            max-width: 100%;
+            box-sizing: content-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>TRAINING MISSION REFERENCE TABLE v1.0</h1>
+<h2>TMS/DMS/CMS Usage Guide — Standardized Abbreviations</h2>
+<p><strong>Document Type:</strong> Reference Standard<br><strong>Version:</strong> 1.0<br><strong>Created:</strong> 10 January 2026<br><strong>Scope:</strong> TMS/DMS/CMS Usage Guide Project<br><strong>Effective Date:</strong> 10 January 2026  </p>
+<hr>
+<h2>PURPOSE</h2>
+<p>This document establishes standardized abbreviations for all 33 BMS 4.38.1 training missions. It serves as the authoritative reference for populating the <strong>Train (Column 7)</strong> column in all HOTAS tables throughout the Falcon BMS TMS/DMS/CMS Usage Guide (guide.tex v0.2.2.0 and beyond).</p>
+<p>The abbreviations in this table are designed to:</p>
+<ol>
+<li><strong>Fit within column width constraints</strong> (1.4 cm, <code>\small</code> font, <code>\arraystretch = 1.25</code>)</li>
+<li><strong>Maintain clarity and readability</strong> across all table contexts</li>
+<li><strong>Ensure consistency</strong> in training mission references throughout the document</li>
+<li><strong>Follow industry and BMS community standards</strong> for acronym usage</li>
+</ol>
+<hr>
+<h2>INTEGRATION</h2>
+<p>This document is adopted as a referente for the TMS/DMS/CMS Usage Guide project. It is referenced in:</p>
+<ul>
+<li><strong>briefing document</strong></li>
+</ul>
+<p>Any modifications to mission abbreviations must be:</p>
+<ol>
+<li>Reviewed by the project author</li>
+<li>Documented in version control with change notes</li>
+</ol>
+<hr>
+<h2>MACRO AND SYNTAX STANDARD</h2>
+<p>All training mission references shall use the LaTeX macro defined in guide.tex and the briefing document:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\trnref</span>}[1]{BMS Training Mission~<span class="hljs-params">#1</span>}</code></pre>
+                </div>
+            <p><strong>Required Format:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\trnref</span>{XX (ABBREVIATION)}</code></pre>
+                </div>
+            <p>Where:</p>
+<ul>
+<li><strong>XX</strong> = Training mission number (1–28, including variants A/B/C/D)</li>
+<li><strong>ABBREVIATION</strong> = Short form from this table (1–3 words)</li>
+</ul>
+<p><strong>Examples:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\trnref</span>{1 (Ground Ops)}      <span class="hljs-comment">% Single mission</span>
+<span class="hljs-keyword">\trnref</span>{4D (AAR)}            <span class="hljs-comment">% Mission with variant</span>
+<span class="hljs-keyword">\trnref</span>{28 (SEAD-EW)}        <span class="hljs-comment">% Mission with hyphenated concept</span>
+<span class="hljs-keyword">\trnref</span>{9 (Failures)}, <span class="hljs-keyword">\trnref</span>{28 (SEAD-EW)}  <span class="hljs-comment">% Multiple missions</span></code></pre>
+                </div>
+            <hr>
+<h2>TRAINING MISSION REFERENCE TABLE</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Full Mission Name</th>
+<th>Standardized \trnref{} Format</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>MISSION 1: GROUND OPS</td>
+<td><code>\trnref{1 (Ground Ops)}</code></td>
+<td>Core topic: ground operations, ramp start, taxi, takeoff.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>MISSION 2: BASIC NAVIGATION</td>
+<td><code>\trnref{2 (Navigation)}</code></td>
+<td>Navigation (INS, TACAN) is primary; &quot;basic&quot; is understood.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>MISSION 3: LANDING</td>
+<td><code>\trnref{3 (Landing)}</code></td>
+<td>Single word sufficient; landing procedures only.</td>
+</tr>
+<tr>
+<td>4A</td>
+<td>MISSION 4A: FORMATIONS</td>
+<td><code>\trnref{4A (Formations)}</code></td>
+<td>Formation types and procedures. Variant 4A explicit.</td>
+</tr>
+<tr>
+<td>4B</td>
+<td>MISSION 4B: TACTICAL TURNS</td>
+<td><code>\trnref{4B (Tactical Turns)}</code></td>
+<td>Two-ship tactical turns. Keep &quot;Tactical&quot; for distinction.</td>
+</tr>
+<tr>
+<td>4C</td>
+<td>MISSION 4C: HARTS</td>
+<td><code>\trnref{4C (HARTS)}</code></td>
+<td>Single acronym; no abbreviation needed.</td>
+</tr>
+<tr>
+<td>4D</td>
+<td>MISSION 4D: AIR TO AIR REFUELING</td>
+<td><code>\trnref{4D (AAR)}</code></td>
+<td>Industry standard: Air-to-Air Refueling → AAR. Compact.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>MISSION 5: ILS LANDING AT NIGHT</td>
+<td><code>\trnref{5 (ILS Night)}</code></td>
+<td>Two words: focus on ILS system + night environment.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>MISSION 6: ILS LANDING IN BAD WEATHER</td>
+<td><code>\trnref{6 (ILS Weather)}</code></td>
+<td>Two words: ILS system + adverse weather context.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>MISSION 7: FLAMEOUT LANDING</td>
+<td><code>\trnref{7 (Flameout)}</code></td>
+<td>Single word; flameout recovery is the scenario.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>MISSION 8: LOW LEVEL NAVIGATION - TFR – FLIR</td>
+<td><code>\trnref{8 (TFR/FLIR)}</code></td>
+<td>Core systems: Terrain Following Radar + FLIR. Two acronyms, essential.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>MISSION 9: IN-FLIGHT FAILURES</td>
+<td><code>\trnref{9 (Failures)}</code></td>
+<td>Single word; controlled failures scenario.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>MISSION 10: AIR TO GROUND GENERAL PURPOSE BOMBS</td>
+<td><code>\trnref{10 (GP Bombs)}</code></td>
+<td>Two words: GP (general purpose) bombs are the weapon type.</td>
+</tr>
+<tr>
+<td>11</td>
+<td>MISSION 11: LASER GUIDED BOMBS</td>
+<td><code>\trnref{11 (LGB)}</code></td>
+<td>Industry standard acronym: Laser Guided Bomb → LGB.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>MISSION 12: AGM-88 HARMS</td>
+<td><code>\trnref{12 (HARM)}</code></td>
+<td>AGM-88 is the missile; HARM is the mode. Single word.</td>
+</tr>
+<tr>
+<td>13</td>
+<td>MISSION 13: AGM-65 MAVERICKS - Basic</td>
+<td><code>\trnref{13 (Maverick)}</code></td>
+<td>Single word; AGM-65 Maverick system. &quot;Basic&quot; is understood from variant.</td>
+</tr>
+<tr>
+<td>14</td>
+<td>MISSION 14: AGM-65 MAVERICKS – Advanced</td>
+<td><code>\trnref{14 (Maverick Adv.)}</code></td>
+<td>Two words: clarify advanced techniques beyond Mission 13.</td>
+</tr>
+<tr>
+<td>15</td>
+<td>MISSION 15: INERTIALLY AIDED MUNITIONS</td>
+<td><code>\trnref{15 (IAM)}</code></td>
+<td>Industry standard acronym: Inertially Aided Munition → IAM. Single.</td>
+</tr>
+<tr>
+<td>16</td>
+<td>MISSION 16: SPICE</td>
+<td><code>\trnref{16 (SPICE)}</code></td>
+<td>Single acronym; weapon type identifier.</td>
+</tr>
+<tr>
+<td>17A</td>
+<td>MISSION 17A: IR MISSILES - Intercept</td>
+<td><code>\trnref{17A (AIM)}</code></td>
+<td>IR (infrared) missiles; intercept scenario. Two words.</td>
+</tr>
+<tr>
+<td>17B</td>
+<td>MISSION 17B: IFF - Intercept</td>
+<td><code>\trnref{17B (IFF)}</code></td>
+<td>Identification Friend/Foe; single acronym. Intercept understood.</td>
+</tr>
+<tr>
+<td>17C</td>
+<td>MISSION 17C: IDM – LINK 16</td>
+<td><code>\trnref{17C (IDM/L16)}</code></td>
+<td>Two systems: Intra-flight Data Link (IDM) + LINK 16. Slashed for compactness.</td>
+</tr>
+<tr>
+<td>18</td>
+<td>MISSION 18: RADAR MISSILES – BARCAP</td>
+<td><code>\trnref{18 (BARCAP)}</code></td>
+<td>Combat air patrol mission type. Single word acronym.</td>
+</tr>
+<tr>
+<td>19</td>
+<td>MISSION 19: GUN &amp; HMCS/AIM-9X</td>
+<td><code>\trnref{19 (GUN AIM)}</code></td>
+<td>Two primary topics: gun employment + Helmet Mounted Cueing System. Slashed.</td>
+</tr>
+<tr>
+<td>20</td>
+<td>MISSION 20: AGM-84A HARPOON</td>
+<td><code>\trnref{20 (Harpoon)}</code></td>
+<td>Single word; AGM-84A Harpoon missile system.</td>
+</tr>
+<tr>
+<td>21</td>
+<td>MISSION 21: NAVIGATION FLIGHT OSAN-DAEGU: Part 1</td>
+<td><code>\trnref{21 (Nav1)}</code></td>
+<td>Two words: navigation type + route identifier.</td>
+</tr>
+<tr>
+<td>22</td>
+<td>MISSION 22: NAVIGATION FLIGHT OSAN-DAEGU: Part 2</td>
+<td><code>\trnref{22 (Nav2)}</code></td>
+<td>Continuation of TRN 21; same abbreviation.</td>
+</tr>
+<tr>
+<td>23</td>
+<td>MISSION 23: CARRIER OPS - Launch (F/A-18D)</td>
+<td><code>\trnref{23 (Carrier Launch)}</code></td>
+<td>Two words: carrier operations + launch phase. F/A-18D implicit.</td>
+</tr>
+<tr>
+<td>24</td>
+<td>MISSION 24: CARRIER OPS - CASE 1 RECOVERY (F/A-18C)</td>
+<td><code>\trnref{24 (Recovery 1)}</code></td>
+<td>Two words: CASE 1 recovery type. Carrier ops understood.</td>
+</tr>
+<tr>
+<td>25</td>
+<td>MISSION 25: CARRIER OPS - CASE 3 RECOVERY (F/A-18C)</td>
+<td><code>\trnref{25 (Recovery 2)}</code></td>
+<td>Two words: CASE 3 recovery type (adverse weather variant of CASE 1).</td>
+</tr>
+<tr>
+<td>26</td>
+<td>MISSION 26: CARRIER OPS – VERTICAL OPS (AV-8B)</td>
+<td><code>\trnref{26 (Vertical Ops)}</code></td>
+<td>Two words: vertical takeoff/landing operations (AV-8B Harrier).</td>
+</tr>
+<tr>
+<td>27</td>
+<td>MISSION 27: JTAC</td>
+<td><code>\trnref{27 (JTAC)}</code></td>
+<td>Single acronym: Joint Tactical Air Controller. Industry standard.</td>
+</tr>
+<tr>
+<td>28</td>
+<td>MISSION 28: SEAD-EW</td>
+<td><code>\trnref{28 (SEAD-EW)}</code></td>
+<td>Two linked mission types: SEAD (Suppression Enemy Air Defense) + EW (Electronic Warfare). Keep hyphenated.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>APPLICATION RULES</h2>
+<h3>Single Mission Reference</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex">CMDS AUTO <span class="hljs-built_in">&amp;</span> Aft <span class="hljs-built_in">&amp;</span> Short <span class="hljs-built_in">&amp;</span> Enable AUTO <span class="hljs-built_in">&amp;</span> ... <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\dashref</span>{2.7.2.1} <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\trnref</span>{28 (SEAD-EW)} <span class="hljs-keyword">\\</span></code></pre>
+                </div>
+            <h3>Multiple Mission References (Maximum 2–3 per cell)</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-comment">% Two missions:</span>
+ECM Pod <span class="hljs-built_in">&amp;</span> Aft <span class="hljs-built_in">&amp;</span> Short <span class="hljs-built_in">&amp;</span> Enable ECM <span class="hljs-built_in">&amp;</span> ... <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\dashref</span>{2.7.4.2.5} <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\trnref</span>{28 (SEAD-EW)}, <span class="hljs-keyword">\trnref</span>{12 (HARM)} <span class="hljs-keyword">\\</span>
+
+<span class="hljs-comment">% Three missions:</span>
+CMDS MAN <span class="hljs-built_in">&amp;</span> Up <span class="hljs-built_in">&amp;</span> Short <span class="hljs-built_in">&amp;</span> Execute Program <span class="hljs-built_in">&amp;</span> ... <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\dashref</span>{2.7.2.2} <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\trnref</span>{9 (Failures)}, <span class="hljs-keyword">\trnref</span>{28 (SEAD-EW)}, <span class="hljs-keyword">\trnref</span>{12 (HARM)} <span class="hljs-keyword">\\</span></code></pre>
+                </div>
+            <h3>No Direct Mission Applicable</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-comment">% Option 1: Leave blank</span>
+TMS Up <span class="hljs-built_in">&amp;</span> Short <span class="hljs-built_in">&amp;</span> ... <span class="hljs-built_in">&amp;</span> Designate target <span class="hljs-built_in">&amp;</span> ... <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\dashref</span>{...} <span class="hljs-built_in">&amp;</span>  <span class="hljs-keyword">\\</span>
+
+<span class="hljs-comment">% Option 2: Mention closest mission in Effect/Nuance column</span>
+TMS Up <span class="hljs-built_in">&amp;</span> Short <span class="hljs-built_in">&amp;</span> ... <span class="hljs-built_in">&amp;</span> Designate target <span class="hljs-built_in">&amp;</span> Applicable in air-to-air contexts; see TRN 18 (BARCAP) <span class="hljs-built_in">&amp;</span> <span class="hljs-keyword">\dashref</span>{...} <span class="hljs-built_in">&amp;</span>  <span class="hljs-keyword">\\</span></code></pre>
+                </div>
+            <h3>Variant Missions (Always Include Letter)</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-comment">% Correct:</span>
+<span class="hljs-keyword">\trnref</span>{4A (Formations)}    ✅
+<span class="hljs-keyword">\trnref</span>{17B (IFF)}          ✅
+
+<span class="hljs-comment">% Incorrect:</span>
+<span class="hljs-keyword">\trnref</span>{4 (Formations)}     ❌ Missing variant
+<span class="hljs-keyword">\trnref</span>{17 (IFF)}           ❌ Missing variant</code></pre>
+                </div>
+            <hr>
+<h2>INTEGRATION WITH HOTAS TABLES</h2>
+<p>The Train column in all <code>hotastable</code> environments shall use this table exclusively.</p>
+<p><strong>Column Specifications (from briefing-v0.2.0.1.md, Section 4.2):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Column Width</td>
+<td>1.4 cm (architecture-locked)</td>
+</tr>
+<tr>
+<td>Font Size</td>
+<td><code>\small</code> (10 pt)</td>
+</tr>
+<tr>
+<td>Row Height</td>
+<td><code>\arraystretch = 1.25</code></td>
+</tr>
+<tr>
+<td>Maximum Entries Per Cell</td>
+<td>2–3 missions</td>
+</tr>
+<tr>
+<td>Separator (Multiple Entries)</td>
+<td>Comma + space (<code>,</code>)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>SPECIAL CASES AND CONVENTIONS</h2>
+<h3>Missions with Variants (4A, 4B, 4C, 4D, 17A, 17B, 17C)</h3>
+<p>Variant letters are <strong>required</strong> in all references. These represent distinct missions in the training progression and must not be omitted or consolidated.</p>
+<h3>Two-Part Continuous Missions (21 &amp; 22)</h3>
+<p>Missions 21 and 22 form a continuous navigation flight (Osan-Daegu, Part 1 and Part 2). Both use the same abbreviation (<code>\trnref{21 (Nav Osan-Daegu)}</code> and <code>\trnref{22 (Nav Osan-Daegu)}</code>) to indicate progression and continuity.</p>
+<h3>Carrier Operations Missions (23–26)</h3>
+<p>Each carrier operations mission represents a distinct phase and aircraft type:</p>
+<ul>
+<li>TRN 23: Carrier launch (F/A-18D)</li>
+<li>TRN 24: CASE 1 recovery (F/A-18C)</li>
+<li>TRN 25: CASE 3 recovery (F/A-18C)</li>
+<li>TRN 26: Vertical operations (AV-8B)</li>
+</ul>
+<p>Abbreviations emphasize the <strong>operational difference</strong>. Aircraft type is implicit in table context and not repeated in the abbreviation.</p>
+<h3>Hyphenated Concepts (TRN 8, TRN 19, TRN 28)</h3>
+<p>Missions covering <strong>two linked systems or concepts</strong> use slashed notation (e.g., <code>TFR/FLIR</code>, <code>Gun/HMCS</code>, <code>SEAD-EW</code>) to indicate integration or dual focus. These are treated as single, unified abbreviations, not separate references.</p>
+<hr>
+<h2>DOCUMENT CONTROL</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date</th>
+<th>Change</th>
+<th>Author</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1.0</td>
+<td>10 Jan 2026</td>
+<td>Initial release. All 28 documented missions from BMS Training Manual 4.38.1 included. Abbreviations validated against column width constraints and approved for integration into project governing documents.</td>
+<td>Project Author</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>CONFORMANCE</h2>
+<p>All future WIP files (section-C*-S*.tex) that populate HOTAS tables must conform to the abbreviations and format specified in this document.</p>
+<hr>
+<p><strong>Document Reference:</strong> training-mission-abbrev-table.md<br><strong>Project:</strong> TMS/DMS/CMS Usage Guide<br><strong>Author:</strong> Carlos &quot;Metal&quot; Nader (Project Author)</p>
+
+</body>
+</html>

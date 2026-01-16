@@ -1,0 +1,2291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown: Rich Preview</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        // Initialize highlight.js
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+        });
+
+        // Copy to clipboard function
+        function copyToClipboard(button) {
+            const codeBlock = button.closest('.code-block');
+            const code = codeBlock.querySelector('code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.backgroundColor = '#4CAF50';
+                button.style.color = 'white';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.backgroundColor = '';
+                    button.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+    <style>
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+        /* Twemoji emoji image style for inline, text-sized emojis */
+        img.emoji {
+            height: 1em;
+            width: 1em;
+            margin: 0 .05em 0 .1em;
+            vertical-align: -0.1em;
+            display: inline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            line-height: 1.25;
+        }
+        
+        h1 { 
+            font-size: 2em; 
+            border-bottom: 1px solid #eaecef; 
+            padding-bottom: 0.3em;
+            margin-top: 0.67em 0;
+        }
+        
+        h2 { 
+            font-size: 1.5em; 
+            border-bottom: 1px solid #eaecef; 
+            padding-bottom: 0.3em;
+            margin-top: 1.5em;
+        }
+        
+        h3 { 
+            font-size: 1.25em; 
+            margin-top: 1.25em;
+        }
+        
+        h4 { 
+            font-size: 1em; 
+            margin-top: 1em;
+        }
+        
+        a { 
+            color: #0366d6; 
+            text-decoration: none; 
+        }
+        
+        a:hover { 
+            text-decoration: underline; 
+        }
+        
+        strong { 
+            font-weight: 600; 
+        }
+        
+        pre {
+            background-color:rgb(9, 7, 10);
+            overflow: auto;
+            margin: 0;
+        }
+        
+        code {
+            font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+            padding: 0.2em 0.4em;
+            font-size: 90%;
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .code-block {
+            position: relative;
+            background-color:rgb(9, 7, 10);
+            border-radius: 6px;
+            margin: 1em 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 10px;
+            background-color:rgb(32, 30, 43);
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+
+        .language {
+            color: #efe9e9;
+            font-size: 0.9em;
+            font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+        }
+
+        .copy-button {
+            padding: 4px 8px;
+            font-size: 0.9em;
+            color: #efe9e9;
+            background-color: transparent;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-button:hover {
+            background-color: #e9e9e9;
+            border-color: #ccc;
+        }
+        
+        blockquote {
+            margin: 0;
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+        }
+        
+        ul, ol {
+            padding-left: 2em;
+        }
+        
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            overflow: auto;
+            margin-bottom: 16px;
+        }
+        
+        table th {
+            font-weight: 600;
+        }
+        
+        table th, table td {
+            padding: 6px 13px;
+            border: 1px solid #dfe2e5;
+        }
+        
+        table tr {
+            background-color: #fff;
+            border-top: 1px solid #c6cbd1;
+        }
+        
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        
+        img {
+            max-width: 100%;
+            box-sizing: content-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>Falcon BMS TMS/DMS/CMS Guide — WIP File Naming Convention v1.4</h1>
+<h2>Work-in-Progress File Organization and Nomenclature</h2>
+<p><strong>Status:</strong> Official Rule Set (v1.4)<br><strong>Effective Date:</strong> 09 January 2026<br><strong>Applies to:</strong> All isolated chapter, section, table, note, and visual files under development<br><strong>Supersedes:</strong> v1.3<br><strong>Relationship to VERSION-SYSTEM-v4.2.1:</strong> Complementary; does NOT affect main document versioning<br><strong>Relationship to BRIEFING-v0.2.0.1:</strong> Operational rules for files described structurally in BRIEFING Section 11</p>
+<hr>
+<h2>0. Introduction and Scope</h2>
+<h3>0.1 Purpose</h3>
+<p>During the development of the TMS/DMS/CMS Guide, content is created and revised in <strong>isolated files</strong> before integration into the main document (<code>guide-v*.tex</code>). This specification establishes a <strong>clear, unambiguous naming convention</strong> for all work-in-progress (WIP) files to enable:</p>
+<ul>
+<li><strong>Quick identification</strong> of file type, target location, and development stage</li>
+<li><strong>Automatic sorting</strong> by chapter, section, and creation date</li>
+<li><strong>Audit trail</strong> of structure and progress</li>
+<li><strong>Efficient workflow</strong> without version-control overhead</li>
+<li><strong>Predictable automation</strong> of file status transitions and organization</li>
+</ul>
+<h3>0.2 Key Principle</h3>
+<p><strong>WIP files do NOT affect the version number of the main document (<code>guide-v*.tex</code>).</strong></p>
+<p>Only content integrated into the main file triggers a version bump. WIP filenames are organizational tools, not version markers.</p>
+<p><strong>All WIP files MUST be created from the canonical template:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">TEMPLATES/template-wip-V1.0.tex</code></pre>
+                </div>
+            <p>This ensures preamble consistency, metadata structure, and integration hygiene. The template is versioned independently (currently V1.0) and governed by BRIEFING-v0.2.0.1 Section 11. Never modify the template directly; always copy, rename following Section 2 patterns, and then edit the copy.</p>
+<h3>0.3 Scope</h3>
+<p>This convention applies to:</p>
+<ul>
+<li>Isolated chapter files (<code>chapter-*.tex</code>)</li>
+<li>Isolated section files (<code>section-*.tex</code>)</li>
+<li>Table files under development (<code>table-*.tex</code>)</li>
+<li>Research notes and snippets (<code>notes-*.md</code>)</li>
+<li>Visual assets (diagrams, flowcharts, schematics) (<code>visual-*.*</code>)</li>
+</ul>
+<p>This convention does <strong>NOT</strong> apply to:</p>
+<ul>
+<li>The main guide file (<code>guide-v*.tex</code>) — covered by VERSION-SYSTEM-v4.2.1</li>
+<li>Compiled PDFs or other binary outputs</li>
+<li>Git commit messages or version control metadata</li>
+<li>External reference materials or archived publications</li>
+<li><strong>The canonical template file</strong> (<code>TEMPLATES/template-wip-V1.0.tex</code>) — this is the <strong>structural foundation</strong> that WIP files derive from, not a WIP file itself</li>
+</ul>
+<h3>0.4 File Organization Structure</h3>
+<p>All WIP files are organized in a dedicated project root structure with a canonical template folder:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">project-root/
+├── guide.tex                                (MAIN — subject to VERSION-SYSTEM-v4.2.1)
+├
+├── DOCS/                                    (Project Governing Docs)             
+│   └── PROJECT-TRACKING.md                  (Actual State of the Project)  
+│   └── VERSION-SYSTEM-v4.2.1.md             (Main file and snapshot versioning rule)
+│   └── WIP-FILE-NAMING.md                   (This document)  
+│   └── TRAINING MISSIONS ABBRE. TABLE.md    (Table thata abbreviates Training Mission for use in guide.tex Tables)
+├── TEMPLATES/                               (Canonical templates)
+│   └── template-wip-V1.0.tex                (Mandatory starting point for all WIP files)
+│
+├── WIP/                                     (Active work-in-progress)
+│   ├── chapter-*.tex
+│   ├── section-*.tex
+│   ├── table-*.tex
+│   ├── notes-*.md
+│   ├── visual-*.*
+│   └── guide-v*.tex                         (Snapshot of the guide.tex — subject to VERSION-SYSTEM-v4.2.1)
+│
+└── ARCHIVE/                                 (Completed, deprecated, or integrated)
+    ├── section-*-approved-*.tex             (Successfully integrated)
+    ├── chapter-*-deprecated-*.tex           (Abandoned or rejected)
+    └── guide-v0.*.*..*-*.tex                (Previous main versions)</code></pre>
+                </div>
+            <h3>0.5 How to Create a New WIP File (Step-by-Step)</h3>
+<p>All WIP files MUST start from the canonical template. Follow this workflow:</p>
+<h4>Step 1: Copy the Template</h4>
+<p>Copy the template file from the TEMPLATES folder to the WIP folder with a <strong>temporary name</strong>:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">Copy: TEMPLATES/template-wip-V1.0.tex
+To: WIP/temporary-wip-file.tex</code></pre>
+                </div>
+            <p>The template is a complete, compilable LaTeX document. This ensures all WIP files inherit:</p>
+<ul>
+<li>Standardized preamble (geometry, packages, macros)</li>
+<li>Metadata block structure (for tracking)</li>
+<li>Pre-configured <code>hotastable</code> environment (ready for tables)</li>
+</ul>
+<h4>Step 2: Rename Following Section 2 Patterns</h4>
+<p>After copying, immediately rename the file using the exact naming pattern for your WIP type:</p>
+<p><strong>For chapters:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">chapter-C{N}-{TITLE}-{STATUS}-{DATE}.tex
+Example: chapter-C3-tms-target-management-dev-2026-01-09.tex</code></pre>
+                </div>
+            <p><strong>For sections:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">section-C{N}-S{M}[-S{K}]-{TITLE}-{STATUS}-{DATE}.tex
+Example: section-C5-S2-cms-actuation-dev-2026-01-09.tex</code></pre>
+                </div>
+            <p><strong>For tables:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">table-C{N}-{CONTEXT}-{SWITCH}-{STATUS}-{DATE}.tex
+Example: table-C3-AA-TMS-dev-2026-01-09.tex</code></pre>
+                </div>
+            <p><strong>For notes:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">notes-C{N}-{TOPIC}-{TYPE}-{DATE}.md
+Example: notes-C5-cms-structure-outline-2026-01-09.md</code></pre>
+                </div>
+            <p><strong>For visuals:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">visual-C{N}-{DESCRIPTION}-{TYPE}-{STATUS}-{DATE}.{ext}
+Example: visual-C7-tms-hat-layout-diagram-dev-2026-01-09.svg</code></pre>
+                </div>
+            <p>Always start with status <code>dev</code> (never started human review).</p>
+<h4>Step 3: Fill Content and Update Status as You Progress</h4>
+<ol>
+<li><p><strong>Edit the metadata block</strong> (lines 52–75 in template) to document:</p>
+<ul>
+<li>Target chapter, section, subsection</li>
+<li>Current status (<code>dev</code> initially)</li>
+<li>Your notes about what needs to be done</li>
+</ul>
+</li>
+<li><p><strong>Fill the content:</strong></p>
+<ul>
+<li>Write narrative in sections/subsections</li>
+<li>Populate <code>hotastable</code> rows for tables</li>
+<li>Add visual descriptions or references</li>
+</ul>
+</li>
+<li><p><strong>Update status in filename as you progress:</strong></p>
+<ul>
+<li><code>dev</code> → when first created from template</li>
+<li><code>dev</code> → <code>review</code> when you start human iteration</li>
+<li><code>review</code> → <code>final</code> when you decide &quot;this is solid, no more changes&quot;</li>
+<li><code>final</code> → <code>approved</code> (AI does this after integration into main document)</li>
+</ul>
+</li>
+</ol>
+<p><strong>Critical rule:</strong> NEVER modify the template file itself. Always copy first, then rename and edit the copy.</p>
+<hr>
+<h2>1. Global Naming Rules</h2>
+<h3>1.1 Character Set and Encoding</h3>
+<ul>
+<li><strong>Allowed characters:</strong> <code>a-z</code>, <code>0-9</code>, hyphens (<code>-</code>), underscores (for file extension in visuals)</li>
+<li><strong>Prohibited:</strong> spaces, dots (except file extension), special characters (<code>@</code>, <code>#</code>, <code>$</code>, etc.)</li>
+<li><strong>Case:</strong> lowercase only</li>
+<li><strong>Encoding:</strong> UTF-8</li>
+</ul>
+<h3>1.2 Separator Conventions</h3>
+<ul>
+<li><strong>Hyphens (<code>-</code>):</strong> Primary separator for all components within filename</li>
+<li><strong>Dots (<code>.</code>):</strong> Reserved for file extension only (e.g., <code>.tex</code>, <code>.md</code>, <code>.svg</code>)</li>
+<li><strong>No underscores</strong> within the filename body (exception: visual file extensions like <code>.svg</code>)</li>
+</ul>
+<p><strong>Example (correct):</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">section-C3-S2-S1-fcr-crm-modes-review-2026-01-18.tex
+         ↑   ↑   ↑                    ↑       ↑
+     hyphens for all separations; dots only for extension</code></pre>
+                </div>
+            <p><strong>Example (incorrect):</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">section_C3.S2.S1_fcr_crm_modes_review_20260118.tex  ❌ (wrong separators)
+section-C3.S2.S1-fcr-crm-modes-review-2026-01-18.tex  ❌ (dots in hierarchy confuse file extension)</code></pre>
+                </div>
+            <h3>1.3 Date Format</h3>
+<p>All dates in WIP filenames use <strong>ISO 8601 extended format:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">YYYY-MM-DD
+
+Examples:
+2026-01-06
+2026-01-18
+2026-02-05</code></pre>
+                </div>
+            <p><strong>Not acceptable:</strong></p>
+<ul>
+<li><code>20260106</code> (compact, not human-readable)</li>
+<li><code>01/06/2026</code> (ambiguous locale)</li>
+<li><code>6 Jan 2026</code> (inconsistent parsing)</li>
+</ul>
+<h3>1.4 Filename Length</h3>
+<ul>
+<li><strong>Maximum filename length:</strong> 255 characters (filesystem limit)</li>
+<li><strong>Recommended maximum:</strong> 100 characters (for readability and terminal compatibility)</li>
+<li><strong>Example current max:</strong> <code>section-C3-S2-S1-fcr-radar-frequency-cuing-in-sam-dt-and-fcr-modes-review-2026-01-18.tex</code> (~95 chars) ✅</li>
+</ul>
+<p>If a filename exceeds 100 characters, <strong>abbreviate the title component</strong> or split into multiple files.</p>
+<hr>
+<h2>2. File Categories and Naming Patterns</h2>
+<h3>2.1 Category 1: Full Chapter Files</h3>
+<p><strong>Purpose:</strong> Complete chapters or major chapter sections under development, scaffolding, or revision before integration into main document.</p>
+<p><strong>Naming Pattern:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">chapter-C{N}-{TITLE}-{STATUS}-{DATE}.tex</code></pre>
+                </div>
+            <p><strong>Components:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Format</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>chapter</code></td>
+<td>fixed prefix</td>
+<td>Type identifier (always &quot;chapter&quot;)</td>
+<td><code>chapter</code></td>
+</tr>
+<tr>
+<td><code>C{N}</code></td>
+<td>C + digit 1-7</td>
+<td>Target chapter number</td>
+<td><code>C1</code>, <code>C3</code>, <code>C7</code></td>
+</tr>
+<tr>
+<td><code>{TITLE}</code></td>
+<td>slugified string</td>
+<td>Descriptive title (lowercase, hyphens for spaces)</td>
+<td><code>introduction</code>, <code>tms-target-management</code></td>
+</tr>
+<tr>
+<td><code>{STATUS}</code></td>
+<td>one of: <code>dev</code>, <code>review</code>, <code>final</code>, <code>approved</code>, <code>deprecated</code></td>
+<td>Development stage (defined Section 3.1)</td>
+<td><code>dev</code>, <code>review</code>, <code>final</code>, <code>approved</code>, <code>deprecated</code></td>
+</tr>
+<tr>
+<td><code>{DATE}</code></td>
+<td>YYYY-MM-DD</td>
+<td>Creation or last-edit date</td>
+<td><code>2026-01-15</code>, <code>2026-01-20</code></td>
+</tr>
+<tr>
+<td>Extension</td>
+<td><code>.tex</code></td>
+<td>LaTeX source file</td>
+<td><code>.tex</code></td>
+</tr>
+</tbody></table>
+<p><strong>Examples:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">chapter-C1-introduction-dev-2026-01-05.tex
+chapter-C3-tms-target-management-review-2026-01-20.tex
+chapter-C5-cms-countermeasures-final-2026-01-21.tex
+chapter-C7-hotas-visual-reference-approved-2026-01-30.tex</code></pre>
+                </div>
+            <p><strong>Rules:</strong></p>
+<ol>
+<li>Chapter number <code>C{N}</code> must be 1-7 (matches planned scope).</li>
+<li>Title must be descriptive (avoid generic names like &quot;draft&quot; or &quot;work&quot;).</li>
+<li>Status is mandatory; no omissions.</li>
+<li>Date is mandatory; helps track file age.</li>
+<li>Template must be used as starting point (Section 0.5).</li>
+</ol>
+<hr>
+<h3>2.2 Category 2: Section and Subsection Files</h3>
+<p><strong>Purpose:</strong> Individual sections or subsections developed in isolation, to be merged into a chapter later.</p>
+<p><strong>Naming Pattern (Section):</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">section-C{N}-S{M}-{TITLE}-{STATUS}-{DATE}.tex</code></pre>
+                </div>
+            <p><strong>Naming Pattern (Subsection):</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">section-C{N}-S{M}-S{K}-{TITLE}-{STATUS}-{DATE}.tex</code></pre>
+                </div>
+            <p><strong>Components:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Format</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>section</code></td>
+<td>fixed prefix</td>
+<td>Type identifier</td>
+<td><code>section</code></td>
+</tr>
+<tr>
+<td><code>C{N}</code></td>
+<td>C + digit 1-7</td>
+<td>Target chapter</td>
+<td><code>C3</code>, <code>C4</code></td>
+</tr>
+<tr>
+<td><code>S{M}</code></td>
+<td>S + digit ≥ 1</td>
+<td>Section number within chapter</td>
+<td><code>S1</code>, <code>S2</code>, <code>S3</code></td>
+</tr>
+<tr>
+<td><code>[S{K}]</code></td>
+<td>S + digit ≥ 1</td>
+<td>Optional: subsection number</td>
+<td><code>S1</code>, <code>S2</code>, <code>S3</code> (appears if subsection exists)</td>
+</tr>
+<tr>
+<td><code>{TITLE}</code></td>
+<td>slugified string</td>
+<td>Descriptive title</td>
+<td><code>fcr-crm-modes</code>, <code>soi-definition</code></td>
+</tr>
+<tr>
+<td><code>{STATUS}</code></td>
+<td>one of: <code>dev</code>, <code>review</code>, <code>final</code>, <code>approved</code>, <code>deprecated</code></td>
+<td>Development stage</td>
+<td><code>dev</code>, <code>review</code>, <code>final</code>, <code>approved</code>, <code>deprecated</code></td>
+</tr>
+<tr>
+<td><code>{DATE}</code></td>
+<td>YYYY-MM-DD</td>
+<td>Creation or last-edit date</td>
+<td><code>2026-01-15</code></td>
+</tr>
+<tr>
+<td>Extension</td>
+<td><code>.tex</code></td>
+<td>LaTeX source file</td>
+<td><code>.tex</code></td>
+</tr>
+</tbody></table>
+<p><strong>Examples:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">section-C3-S1-concept-general-behaviour-dev-2026-01-15.tex
+section-C3-S2-fcr-crm-modes-review-2026-01-18.tex
+section-C3-S2-S1-fcr-detail-final-2026-01-19.tex
+section-C3-S2-S2-sam-approved-2026-01-20.tex
+section-C4-S1-soi-definition-dev-2026-01-16.tex
+section-C4-S2-S1-mfds-format-selection-review-2026-01-19.tex</code></pre>
+                </div>
+            <p><strong>Rules:</strong></p>
+<ol>
+<li>Chapter number <code>C{N}</code> must be 1-7.</li>
+<li>Section number <code>S{M}</code> starts at 1 and increments within chapter.</li>
+<li>Subsection <code>S{K}</code> is <strong>optional</strong>:<ul>
+<li>Omit if file represents a full section.</li>
+<li>Include if file represents a subsection within a section (e.g., <code>S2-S1</code>).</li>
+</ul>
+</li>
+<li>Subsection hierarchy can extend further if needed (<code>S{M}-S{K}-S{L}</code>), but keep filenames under 100 chars.</li>
+<li>Status and date mandatory.</li>
+<li>Template must be used as starting point (Section 0.5).</li>
+</ol>
+<hr>
+<h3>2.3 Category 3: Table Files</h3>
+<p><strong>Purpose:</strong> HOTAS tables (TMS, DMS, CMS) developed in isolation before embedding in section files.</p>
+<p><strong>Naming Pattern:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">table-C{N}-{CONTEXT}-{SWITCH}-{STATUS}-{DATE}.tex</code></pre>
+                </div>
+            <p><strong>Components:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Format</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>table</code></td>
+<td>fixed prefix</td>
+<td>Type identifier</td>
+<td><code>table</code></td>
+</tr>
+<tr>
+<td><code>C{N}</code></td>
+<td>C + digit 1-7</td>
+<td>Target chapter</td>
+<td><code>C3</code>, <code>C4</code>, <code>C5</code></td>
+</tr>
+<tr>
+<td><code>{CONTEXT}</code></td>
+<td>operational context code</td>
+<td>Operational context (A-A, A-G, DGFT, NAV, etc.)</td>
+<td><code>AA</code>, <code>AG</code>, <code>DGFT</code>, <code>NAV</code>, <code>MFDS</code></td>
+</tr>
+<tr>
+<td><code>{SWITCH}</code></td>
+<td>TMS, DMS, or CMS</td>
+<td>HOTAS switch/system type</td>
+<td><code>TMS</code>, <code>DMS</code>, <code>CMS</code></td>
+</tr>
+<tr>
+<td><code>{STATUS}</code></td>
+<td>one of: <code>dev</code>, <code>review</code>, <code>final</code>, <code>approved</code>, <code>deprecated</code></td>
+<td>Development stage</td>
+<td><code>dev</code>, <code>review</code>, <code>final</code>, <code>approved</code>, <code>deprecated</code></td>
+</tr>
+<tr>
+<td><code>{DATE}</code></td>
+<td>YYYY-MM-DD</td>
+<td>Creation or last-edit date</td>
+<td><code>2026-01-15</code></td>
+</tr>
+<tr>
+<td>Extension</td>
+<td><code>.tex</code></td>
+<td>LaTeX source file</td>
+<td><code>.tex</code></td>
+</tr>
+</tbody></table>
+<p><strong>Table-Specific Status Codes:</strong></p>
+<p>For tables, status codes indicate fill level and review state:</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Typical Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>dev</code></td>
+<td>Structure defined, rows being populated, never reviewed (0-70% filled)</td>
+<td>Ongoing table construction, never seen by human</td>
+</tr>
+<tr>
+<td><code>review</code></td>
+<td>Table has been reviewed by human, rows being refined (70-99% filled)</td>
+<td>In iteration after human feedback</td>
+</tr>
+<tr>
+<td><code>final</code></td>
+<td>All rows complete, human approval given, ready to integrate (99-100% filled)</td>
+<td>Awaiting integration into main document</td>
+</tr>
+<tr>
+<td><code>approved</code></td>
+<td>Integrated into main document, archived</td>
+<td>Historical record</td>
+</tr>
+<tr>
+<td><code>deprecated</code></td>
+<td>Abandoned, no longer valid (at any fill level)</td>
+<td>Alternative approach chosen; kept for audit trail</td>
+</tr>
+</tbody></table>
+<p><strong>Examples:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">table-C3-AA-TMS-dev-2026-01-15.tex
+table-C3-AA-TMS-review-2026-01-19.tex
+table-C3-AA-TMS-final-2026-01-20.tex
+table-C3-AA-TMS-approved-2026-01-21.tex
+table-C3-AG-TMS-dev-2026-01-18.tex
+table-C4-MFDS-DMS-review-2026-01-20.tex
+table-C5-ALLM-CMS-final-2026-01-22.tex</code></pre>
+                </div>
+            <p><strong>Rules:</strong></p>
+<ol>
+<li>Chapter number <code>C{N}</code> identifies target chapter.</li>
+<li>Context must be recognized operational mode (AA, AG, DGFT, NAV, etc.).</li>
+<li>Switch must be one of: <code>TMS</code>, <code>DMS</code>, <code>CMS</code>.</li>
+<li>Multiple tables per chapter-context-switch combination are possible; differentiate by dates and status.</li>
+<li>Status mandatory; reflects current development stage.</li>
+<li>Date mandatory; tracks table development timeline.</li>
+<li>Template must be used as starting point (Section 0.5).</li>
+</ol>
+<hr>
+<h3>2.4 Category 4: Notes and Research Files</h3>
+<p><strong>Purpose:</strong> Research notes, snippets, outlines, reference compilations, and example collections under development. These are <strong>never part of the main guide</strong>; they support writing and review.</p>
+<p><strong>Naming Pattern:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">notes-C{N}-{TOPIC}-{TYPE}-{DATE}.md</code></pre>
+                </div>
+            <p><strong>Components:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Format</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>notes</code></td>
+<td>fixed prefix</td>
+<td>Type identifier</td>
+<td><code>notes</code></td>
+</tr>
+<tr>
+<td><code>C{N}</code></td>
+<td>C + digit 1-7, or <code>GEN</code></td>
+<td>Target chapter, or <code>GEN</code> for cross-chapter</td>
+<td><code>C3</code>, <code>C4</code>, <code>GEN</code></td>
+</tr>
+<tr>
+<td><code>{TOPIC}</code></td>
+<td>slugified string</td>
+<td>Research or note topic</td>
+<td><code>fcr-radar-modes</code>, <code>dms-soi-logic</code></td>
+</tr>
+<tr>
+<td><code>{TYPE}</code></td>
+<td>one of: <code>research</code>, <code>snippet</code>, <code>outline</code>, <code>questions</code>, <code>reference</code>, <code>example</code></td>
+<td>Type of note (defined below)</td>
+<td><code>research</code>, <code>snippet</code>, <code>outline</code></td>
+</tr>
+<tr>
+<td><code>{DATE}</code></td>
+<td>YYYY-MM-DD</td>
+<td>Creation date</td>
+<td><code>2026-01-12</code></td>
+</tr>
+<tr>
+<td>Extension</td>
+<td><code>.md</code></td>
+<td>Markdown file (human-readable text)</td>
+<td><code>.md</code></td>
+</tr>
+</tbody></table>
+<p><strong>Note Types:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>research</code></td>
+<td>Raw research, citations, external references, source material</td>
+<td><code>notes-C3-fcr-radar-modes-research-2026-01-12.md</code></td>
+</tr>
+<tr>
+<td><code>snippet</code></td>
+<td>Partial paragraphs, draft explanations, early-stage writing</td>
+<td><code>notes-C4-dms-soi-logic-snippet-2026-01-14.md</code></td>
+</tr>
+<tr>
+<td><code>outline</code></td>
+<td>Detailed outline, structure planning, section breakdown</td>
+<td><code>notes-C5-cms-structure-outline-2026-01-15.md</code></td>
+</tr>
+<tr>
+<td><code>questions</code></td>
+<td>Open questions, gaps to fill, clarifications needed</td>
+<td><code>notes-GEN-missing-content-questions-2026-01-16.md</code></td>
+</tr>
+<tr>
+<td><code>reference</code></td>
+<td>Citation compilations, source collections, bibliography</td>
+<td><code>notes-C3-dash34-references-reference-2026-01-13.md</code></td>
+</tr>
+<tr>
+<td><code>example</code></td>
+<td>Practical examples, test cases, scenario descriptions</td>
+<td><code>notes-C3-tms-example-scenarios-example-2026-01-17.md</code></td>
+</tr>
+</tbody></table>
+<p><strong>Examples:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">notes-C3-fcr-radar-modes-research-2026-01-12.md
+notes-C4-dms-soi-logic-snippet-2026-01-14.md
+notes-C5-cms-structure-outline-2026-01-15.md
+notes-GEN-missing-content-questions-2026-01-16.md
+notes-C3-dash34-references-reference-2026-01-13.md
+notes-C3-tms-example-scenarios-example-2026-01-17.md</code></pre>
+                </div>
+            <p><strong>Rules:</strong></p>
+<ol>
+<li>Chapter identifier: use <code>C1</code> through <code>C7</code> for chapter-specific notes, or <code>GEN</code> for general/cross-chapter notes.</li>
+<li>Topic must be specific (avoid generic names).</li>
+<li>Type must be one of the six defined types above; no omissions or variations.</li>
+<li>Date mandatory; helps track note age and relevance.</li>
+<li><strong>Status field not used for notes</strong> — notes are always &quot;in progress&quot; until moved to archive.</li>
+<li>Notes are <strong>never published</strong> as part of the guide; they are <strong>support materials only</strong>.</li>
+</ol>
+<hr>
+<h3>2.5 Category 5: Visual and Diagram Files</h3>
+<p><strong>Purpose:</strong> Diagrams, flowcharts, schematics, reference cards, illustrations, and other visual assets under development.</p>
+<p><strong>Naming Pattern:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">visual-C{N}-{DESCRIPTION}-{TYPE}-{STATUS}-{DATE}.{ext}</code></pre>
+                </div>
+            <p><strong>Components:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Format</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>visual</code></td>
+<td>fixed prefix</td>
+<td>Type identifier</td>
+<td><code>visual</code></td>
+</tr>
+<tr>
+<td><code>C{N}</code></td>
+<td>C + digit 1-7</td>
+<td>Target chapter</td>
+<td><code>C3</code>, <code>C7</code></td>
+</tr>
+<tr>
+<td><code>{DESCRIPTION}</code></td>
+<td>slugified string</td>
+<td>What the visual shows</td>
+<td><code>tms-hat-layout</code>, <code>radar-mode-flowchart</code></td>
+</tr>
+<tr>
+<td><code>{TYPE}</code></td>
+<td>one of: <code>diagram</code>, <code>flowchart</code>, <code>schematic</code>, <code>reference</code>, <code>illustration</code></td>
+<td>Visual type (defined below)</td>
+<td><code>diagram</code>, <code>flowchart</code>, <code>schematic</code></td>
+</tr>
+<tr>
+<td><code>{STATUS}</code></td>
+<td>one of: <code>dev</code>, <code>review</code>, <code>final</code>, <code>approved</code>, <code>deprecated</code></td>
+<td>Development stage (visuals use same codes as text)</td>
+<td><code>dev</code>, <code>review</code>, <code>final</code>, <code>approved</code>, <code>deprecated</code></td>
+</tr>
+<tr>
+<td><code>{DATE}</code></td>
+<td>YYYY-MM-DD</td>
+<td>Creation or last-edit date</td>
+<td><code>2026-01-20</code></td>
+</tr>
+<tr>
+<td><code>{ext}</code></td>
+<td>file extension</td>
+<td><code>.svg</code>, <code>.pdf</code>, <code>.png</code>, or <code>.tex</code> (for TikZ)</td>
+<td><code>.svg</code>, <code>.pdf</code>, <code>.png</code>, <code>.tex</code></td>
+</tr>
+</tbody></table>
+<p><strong>Visual Types:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Purpose</th>
+<th>Typical Format</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>diagram</code></td>
+<td>HOTAS switch layout, system architecture, block diagrams</td>
+<td><code>.svg</code>, <code>.pdf</code></td>
+</tr>
+<tr>
+<td><code>flowchart</code></td>
+<td>Decision trees, mode progression, operational flow</td>
+<td><code>.tex</code> (TikZ), <code>.svg</code>, <code>.pdf</code></td>
+</tr>
+<tr>
+<td><code>schematic</code></td>
+<td>Detailed system block diagrams, functional architecture</td>
+<td><code>.svg</code>, <code>.pdf</code></td>
+</tr>
+<tr>
+<td><code>reference</code></td>
+<td>Quick-ref cards, checklists, summary sheets</td>
+<td><code>.pdf</code>, <code>.png</code></td>
+</tr>
+<tr>
+<td><code>illustration</code></td>
+<td>Annotated screenshots, example walkthrough, labeled images</td>
+<td><code>.png</code>, <code>.pdf</code></td>
+</tr>
+</tbody></table>
+<p><strong>Visual Status Codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Typical Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>dev</code></td>
+<td>Initial sketch, draft layout, structure being defined, never reviewed</td>
+<td>In progress, not ready for review</td>
+</tr>
+<tr>
+<td><code>review</code></td>
+<td>Complete or nearly complete, has been reviewed, undergoing refinement</td>
+<td>Design review feedback cycle</td>
+</tr>
+<tr>
+<td><code>final</code></td>
+<td>Approved by human, no further changes expected</td>
+<td>Approved for inclusion in main document</td>
+</tr>
+<tr>
+<td><code>approved</code></td>
+<td>Integrated into main document, archived</td>
+<td>Historical record</td>
+</tr>
+<tr>
+<td><code>deprecated</code></td>
+<td>Abandoned, no longer valid</td>
+<td>Alternative visual chosen; kept for audit trail</td>
+</tr>
+</tbody></table>
+<p><strong>Examples:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">visual-C7-tms-hat-layout-diagram-dev-2026-01-28.svg
+visual-C7-tms-hat-layout-diagram-review-2026-01-29.svg
+visual-C7-tms-hat-layout-diagram-final-2026-01-30.svg
+visual-C7-tms-hat-layout-diagram-approved-2026-02-02.svg
+visual-C3-radar-mode-flowchart-dev-2026-01-20.tex
+visual-C4-mfds-organization-schematic-review-2026-01-19.svg
+visual-C6-tms-dms-cms-quick-reference-final-2026-01-25.pdf</code></pre>
+                </div>
+            <p><strong>Rules:</strong></p>
+<ol>
+<li>Chapter number identifies the primary chapter where visual will appear.</li>
+<li>Description should be concise but descriptive.</li>
+<li>Type must be one of the five defined types.</li>
+<li>Status must be <code>dev</code>, <code>review</code>, <code>final</code>, <code>approved</code>, or <code>deprecated</code> (unified with text files).</li>
+<li>File extension must match the file format (<code>.svg</code> for Scalable Vector Graphics, <code>.pdf</code> for PDF, <code>.png</code> for raster, <code>.tex</code> for TikZ diagrams).<ul>
+<li><strong>Clarification:</strong> <code>.tex</code> files in this context are <strong>TikZ diagrams only</strong>, not main document files (those follow VERSION-SYSTEM-v4.2.1).</li>
+</ul>
+</li>
+<li>For <code>.svg</code> and <code>.tex</code> files, maintain source files in WIP folder (preferred for editability).</li>
+<li>Multiple versions of same visual may exist at different stages; distinguish by date and status.</li>
+</ol>
+<hr>
+<h2>2.6 Automation Rules</h2>
+<h3>2.6.1 Purpose</h3>
+<p>Automation rules enable <strong>predictable, algorithmic naming</strong> and <strong>status transitions</strong> without subjective judgment. These rules apply when:</p>
+<ul>
+<li><strong>AI generates</strong> new files</li>
+<li><strong>AI modifies</strong> existing files based on feedback</li>
+<li><strong>Human edits</strong> files and changes status</li>
+<li><strong>AI integrates</strong> files into main document</li>
+</ul>
+<h3>2.6.2 Decision Tree: Title Slugification</h3>
+<p><strong>When AI generates a filename, the <code>{TITLE}</code> component must be slugified according to these rules:</strong></p>
+<h4>Step 1: Input Analysis</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">Raw input: &quot;Frequency-Cued Radar (FCR) and Cockpit Resource Management (CRM) modes&quot;
+Chapter context: C3 (TMS/DMS/CMS Overview)
+File type: section</code></pre>
+                </div>
+            <h4>Step 2: Title Reduction Logic</h4>
+<p><strong>Rule: Prefer short, canonical names over exhaustive descriptive lists.</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">Decision Tree:
+
+Is there a recognized acronym or short form?
+├─ YES: Use it
+│  Example: &quot;FCR and CRM modes&quot; → fcr-crm-modes ✅
+│
+└─ NO: Proceed to Step 3</code></pre>
+                </div>
+            <h4>Step 3: Multi-Component Reduction</h4>
+<p><strong>Rule: Reduce multi-part titles to 2-4 key concepts; prioritize nouns over adjectives.</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">Decision Tree:
+
+Count components: {article} {adj} {noun} {prep} {adj} {noun}
+├─ ≤ 4 components: Keep all (slugify) → fcr-and-crm-modes
+├─ 5-7 components: Keep noun phrases only → fcr-crm-modes ✅ (2 nouns: FCR, CRM + object: modes)
+└─ &gt; 7 components: Extract key terms, use abbreviations
+
+Example transformations:
+&quot;The comprehensive Frequency-Cued Radar integration in the Tactical Mode Switch&quot;
+→ fcr-tactical-mode-switch (3 key terms: FCR, Tactical, ModeSwitch)
+
+&quot;Aircraft defensive systems countermeasure employment for all modes&quot;
+→ countermeasure-employment (2 key terms: less redundant)</code></pre>
+                </div>
+            <h4>Step 4: Acronym and Abbreviation Priority</h4>
+<p><strong>Rule: Prefer established acronyms and abbreviations already used in the guide.</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">Established acronyms (use these):
+- FCR → Frequency-Cued Radar
+- CRM → Cockpit Resource Management
+- SAM → Surface-to-Air Missile
+- DMS → Defensive Management System
+- TMS → Tactical Mode Switch
+- DCS → Digital Combat Simulation
+
+Do not expand: Use fcr-crm-modes, not frequency-cued-radar-cockpit-resource-modes</code></pre>
+                </div>
+            <h4>Step 5: Length Check &amp; Abbreviation</h4>
+<p><strong>Rule: If slugified title &gt; 30 characters, abbreviate further or split into sub-files.</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">Decision Tree:
+
+Length of {TITLE} component:
+├─ ≤ 30 chars: ACCEPT
+│  Example: fcr-crm-modes (14 chars) ✅
+│
+├─ 31-50 chars: Abbreviate non-key terms
+│  Example: frequency-cued-radar-cockpit-resource-modes (51 chars)
+│  → reduce to: fcr-crm-modes (14 chars) ✅
+│
+└─ &gt; 50 chars: SPLIT into multiple files OR use abbreviations
+   Example: &quot;radar-frequency-cuing-in-sam-defensive-terrain-following-modes&quot; (70 chars)
+   → Split: 
+      section-C3-S2-S1-fcr-sam-integration-dev-2026-01-15.tex (defensive: SAM)
+      section-C3-S2-S2-radar-terrain-following-dev-2026-01-15.tex (terrain-following)</code></pre>
+                </div>
+            <h4>Step 6: Hyphenation &amp; Word Separation</h4>
+<p><strong>Rule: Separate distinct concepts with hyphens; keep compound terms together.</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">Examples:
+✅ fcr-crm-modes (3 concepts: FCR, CRM, modes)
+✅ tms-hat-layout (3 concepts: TMS, HAT, layout)
+✅ dms-soi-logic (3 concepts: DMS, SOI, logic)
+❌ frequency-cued-radar-modes (too granular; use fcr-modes)
+❌ fcr_crm_modes (underscores prohibited in body)</code></pre>
+                </div>
+            <h3>2.6.3 Hierarchy Level Preference (Shallow &gt; Deep)</h3>
+<p><strong>Rule: Prefer shallow subsection hierarchies in filenames; use document structure for deeper nesting.</strong></p>
+<h4>Rationale</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">Flat filenames:
+section-C3-S2-fcr-crm-modes-dev-2026-01-15.tex (66 chars) ✅
+section-C3-S2-S1-fcr-detail-dev-2026-01-15.tex (59 chars) ✅
+section-C3-S2-S1-S1-mode-behavior-dev-2026-01-15.tex (67 chars) ✅
+
+Deep hierarchies:
+section-C3-S2-S1-S1-S1-very-detailed-topic-dev-2026-01-15.tex (75 chars) ❌ (excessive depth)</code></pre>
+                </div>
+            <h4>Decision Tree: When to Add Subsection Level</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">Decision Tree:
+
+Does the content fit logically in parent section?
+├─ YES: Omit subsection level
+│  File: section-C3-S2-fcr-crm-modes-dev-2026-01-15.tex ✅
+│
+└─ NO: Content is standalone, needs own file
+   Does it deserve its own file?
+   ├─ YES: Add ONE subsection level
+   │  File: section-C3-S2-S1-fcr-detail-dev-2026-01-15.tex ✅
+   │
+   └─ NO: Keep in parent, mark with subsection in document structure (not filename)
+      File: section-C3-S2-fcr-crm-modes-dev-2026-01-15.tex ✅
+      (Document structure inside the file shows subsections)</code></pre>
+                </div>
+            <h4>Preference Rules</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">1. PREFER ONE LEVEL: section-C3-S2-{TITLE}
+   When: Section content is coherent unit
+
+2. ACCEPT TWO LEVELS: section-C3-S2-S1-{TITLE}
+   When: Subsection is distinct enough to warrant separate file
+
+3. AVOID THREE+ LEVELS: section-C3-S2-S1-S1-{TITLE}
+   When: Document structure shows deeper nesting; filename stays shallow
+   Rationale: Keep filename readable; LaTeX \subsubsection handles the rest</code></pre>
+                </div>
+            <h3>2.6.4 Status Transition Rules</h3>
+<p><strong>Status transitions are AUTOMATIC based on file events, not subjective judgment.</strong></p>
+<h4>Rule Set 1: Status Transition Triggers</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">┌─────────────────────────────────────────────────────────────┐
+│ FILE GENERATION (AI)                                        │
+│ → Status: dev                                               │
+│ → Reason: Never reviewed by human; untouched                │
+│ → Location: WIP/                                            │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ FILE MODIFICATION (Human offline work OR AI with feedback)  │
+│ → Status: review                                            │
+│ → Reason: Human has touched/will touch; in iteration cycle  │
+│ → Location: WIP/                                            │
+│ → AI Action: If AI modifies, rename file to review          │
+│ → Human Action: If human edits, rename locally to review    │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ HUMAN APPROVAL (You decide: &quot;This is solid, done iterating&quot;)│
+│ → Status: final                                             │
+│ → Reason: Human confident; ready to integrate when able     │
+│ → Location: WIP/                                            │
+│ → Human Action: Only human decides; rename to final         │
+│ → AI Action: Awaiting integration signal                    │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ POST-INTEGRATION ARCHIVAL (After AI integrates into guide)  │
+│ → Status: approved                                          │
+│ → Reason: Successfully integrated; now historical record    │
+│ → Location: ARCHIVE/                                        │
+│ → Human Action: Move file from WIP/ to ARCHIVE/; rename     │
+│ → AI Action: Cannot move folders; document integration done │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ DISCARD DURING ITERATION (Human decides not to proceed)     │
+│ → Status: deprecated                                        │
+│ → Reason: File no longer needed during development cycle    │
+│ → Location: ARCHIVE/                                        │
+│ → Trigger: review → deprecated                              │
+│ → Human Action: Move file from WIP/ to ARCHIVE/; rename     │
+│ → AI Action: Document in PROJECT-TRACKING why deprecated    │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ DISCARD AFTER FINAL APPROVAL (Human changes mind)           │
+│ → Status: deprecated                                        │
+│ → Reason: File was ready but human decides not to use       │
+│ → Location: ARCHIVE/                                        │
+│ → Trigger: final → deprecated                               │
+│ → Human Action: Move file from WIP/ to ARCHIVE/; rename     │
+│ → AI Action: Document in PROJECT-TRACKING why deprecated    │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ EARLY ABANDONMENT (Human rejects before review)             │
+│ → Status: deprecated                                        │
+│ → Reason: File never reviewed; alternative approach chosen  │
+│ → Location: ARCHIVE/                                        │
+│ → Trigger: dev → deprecated                                 │
+│ → Human Action: Move file from WIP/ to ARCHIVE/; rename     │
+│ → AI Action: Document in PROJECT-TRACKING why deprecated    │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+                </div>
+            <h4>Rule Set 2: No Backwards Transitions and Allowed Transitions</h4>
+<p><strong>FORBIDDEN transitions (non-regressive):</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">FORBIDDEN transitions:
+review ↛ dev      (File cannot un-reviewed; stays review through iterations)
+final ↛ review    (Final files do not go back; only move forward to approved or deprecated)
+approved ↛ any    (Archived files are immutable; create new file if changes needed)
+deprecated ↛ any  (Archived files are immutable; create new file if reapproval needed)</code></pre>
+                </div>
+            <p><strong>ALLOWED transitions:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">ALLOWED transitions:
+dev → review          (First touch by human/AI)
+review ↔ review       (Multiple iteration cycles stay in review)
+review → final        (Human approval for integration into main document)
+review → deprecated   (Human decides file is useless during iteration)
+final → approved      (After integration &amp; move to ARCHIVE/)
+final → deprecated    (If, after being ready to integrate, human decides it&#x27;s useless &amp; move to ARCHIVE/)
+dev → deprecated      (If abandoned before any review &amp; move to ARCHIVE/)</code></pre>
+                </div>
+            <h4>Rule Set 3: Status Transitions by Actor</h4>
+<p><strong>For clarity, each transition is documented with trigger, decision maker, action, and automation level:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Transition</th>
+<th>Trigger</th>
+<th>Decision</th>
+<th>Action</th>
+<th>Auto?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>dev → review</strong></td>
+<td>File touched by human OR AI modifies it</td>
+<td>AI (implicit)</td>
+<td>AI renames if modifying; human renames if editing offline</td>
+<td>Semi</td>
+</tr>
+<tr>
+<td><strong>review → review</strong></td>
+<td>More iterations needed</td>
+<td>Human (implicit)</td>
+<td>File stays in review; continue editing</td>
+<td>Auto</td>
+</tr>
+<tr>
+<td><strong>review → final</strong></td>
+<td>Human satisfied, no more iterations</td>
+<td>Human (explicit)</td>
+<td>Human manually renames to final</td>
+<td>Manual</td>
+</tr>
+<tr>
+<td><strong>review → deprecated</strong></td>
+<td>Human decides file is useless during iteration</td>
+<td>Human (explicit)</td>
+<td>Human moves to ARCHIVE/ and renames to deprecated</td>
+<td>Manual</td>
+</tr>
+<tr>
+<td><strong>final → approved</strong></td>
+<td>File integrated into guide and moved to ARCHIVE/</td>
+<td>Human (explicit)</td>
+<td>Human moves file and renames to approved</td>
+<td>Manual</td>
+</tr>
+<tr>
+<td><strong>final → deprecated</strong></td>
+<td>Human changes mind after final approval</td>
+<td>Human (explicit)</td>
+<td>Human moves to ARCHIVE/ and renames to deprecated</td>
+<td>Manual</td>
+</tr>
+<tr>
+<td><strong>dev → deprecated</strong></td>
+<td>File abandoned before any review</td>
+<td>Human (explicit)</td>
+<td>Human moves to ARCHIVE/ and renames to deprecated</td>
+<td>Manual</td>
+</tr>
+</tbody></table>
+<h3>2.6.5 Automation Responsibility Matrix (v1.4)</h3>
+<p><strong>AI and Human responsibilities for WIP file operations:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>AI Capability</th>
+<th>Human Role</th>
+<th>Rules &amp; Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Generate new file</strong></td>
+<td>✅ Can do</td>
+<td>N/A</td>
+<td>Always <code>dev</code> status; use TEMPLATES/template-wip-V1.0.tex as base</td>
+</tr>
+<tr>
+<td><strong>Rename to review</strong></td>
+<td>⚠️ Semi-auto (only when explicitly asked)</td>
+<td>✅ Manual (when you edit)</td>
+<td>AI renames ONLY on explicit instructions: &quot;Improve this&quot;, &quot;Fix this&quot;, &quot;Review and enhance&quot;. Human renames locally after offline edits.</td>
+</tr>
+<tr>
+<td><strong>Decide final status</strong></td>
+<td>❌ Cannot do</td>
+<td>✅ Must decide</td>
+<td>Only human judges quality; always manual</td>
+</tr>
+<tr>
+<td><strong>Decide deprecated status</strong></td>
+<td>❌ Cannot do</td>
+<td>✅ Must decide</td>
+<td>Only human decides to discard (any stage); always manual</td>
+</tr>
+<tr>
+<td><em><em>Integrate into guide-v</em>.tex</em>*</td>
+<td>✅ Can do (LaTeX)</td>
+<td>⚠️ Verifies</td>
+<td>AI integrates; human verifies correctness</td>
+</tr>
+<tr>
+<td><strong>Move to ARCHIVE/</strong></td>
+<td>❌ Cannot do</td>
+<td>✅ Must do</td>
+<td>Human has filesystem access; only human can move folders</td>
+</tr>
+<tr>
+<td><strong>Rename to approved</strong></td>
+<td>❌ Cannot do</td>
+<td>✅ Must do</td>
+<td>Human renames after moving to ARCHIVE/</td>
+</tr>
+<tr>
+<td><strong>Mark deprecated</strong></td>
+<td>❌ Cannot do</td>
+<td>✅ Must do</td>
+<td>Human explicitly marks abandoned files at any stage</td>
+</tr>
+</tbody></table>
+<h3>2.6.6 Title Slugification Examples</h3>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Raw Content</th>
+<th>Decision</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Simple</strong></td>
+<td>&quot;Frequency-Cued Radar modes&quot;</td>
+<td>Use acronym (FCR)</td>
+<td><code>fcr-modes</code> ✅</td>
+</tr>
+<tr>
+<td><strong>Multi-acronym</strong></td>
+<td>&quot;FCR and CRM operational integration&quot;</td>
+<td>Keep both acronyms + object</td>
+<td><code>fcr-crm-integration</code> ✅</td>
+</tr>
+<tr>
+<td><strong>Verbose</strong></td>
+<td>&quot;The tactical employment of defensive systems in terrain-following mode&quot;</td>
+<td>Extract nouns (tactical, defensive, terrain-following)</td>
+<td><code>defensive-terrain-following</code> ✅</td>
+</tr>
+<tr>
+<td><strong>Compound</strong></td>
+<td>&quot;HOTAS Target Management System (TMS) button layout reference&quot;</td>
+<td>Use acronym + key concept</td>
+<td><code>tms-button-layout</code> ✅</td>
+</tr>
+<tr>
+<td><strong>Too Long</strong></td>
+<td>&quot;Frequency-Cued Radar Cockpit Resource Management mode selection decision logic flow&quot;</td>
+<td>Split into files</td>
+<td><code>fcr-crm-mode-selection</code> + <code>decision-logic-flow</code> ✅</td>
+</tr>
+<tr>
+<td><strong>Abbreviate</strong></td>
+<td>&quot;Surface-to-Air Missile target prioritization algorithm&quot;</td>
+<td>Use acronym + verb + object</td>
+<td><code>sam-target-prioritization</code> ✅</td>
+</tr>
+</tbody></table>
+<h3>2.6.7 Automation Checklist for AI</h3>
+<p><strong>When generating or modifying filenames, verify:</strong></p>
+<ul>
+<li>✅ All lowercase  </li>
+<li>✅ Hyphens separate components; no underscores in body  </li>
+<li>✅ Date is YYYY-MM-DD format  </li>
+<li>✅ Status is one of: <code>dev</code>, <code>review</code>, <code>final</code>, <code>approved</code>, <code>deprecated</code>  </li>
+<li>✅ Title is 2-4 key concepts maximum (slugified)  </li>
+<li>✅ Total filename ≤ 100 characters  </li>
+<li>✅ File type prefix matches content (chapter, section, table, notes, visual)  </li>
+<li>✅ Chapter/section numbers match document structure  </li>
+<li>✅ Subsection hierarchy is shallow (prefer C-S over C-S-S-S)  </li>
+<li>✅ File location matches status:<ul>
+<li><code>dev</code>, <code>review</code>, <code>final</code> → WIP/</li>
+<li><code>approved</code>, <code>deprecated</code> → ARCHIVE/</li>
+</ul>
+</li>
+<li>✅ WIP file created from TEMPLATES/template-wip-V1.0.tex (Section 0.5)</li>
+</ul>
+<hr>
+<h2>3. Status Codes and Lifecycle</h2>
+<h3>3.1 Status Code Definitions</h3>
+<p><strong>Four primary status codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Location</th>
+<th>Meaning</th>
+<th>Human Involvement</th>
+<th>Next Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><code>dev</code></strong></td>
+<td>WIP/</td>
+<td>Raw, never reviewed</td>
+<td>None yet</td>
+<td>review</td>
+</tr>
+<tr>
+<td><strong><code>review</code></strong></td>
+<td>WIP/</td>
+<td>Under iteration cycle</td>
+<td>Active (multiple cycles possible)</td>
+<td>final OR deprecated</td>
+</tr>
+<tr>
+<td><strong><code>final</code></strong></td>
+<td>WIP/</td>
+<td>Approved, ready to integrate</td>
+<td>Human decision made</td>
+<td>approved (after integration) OR deprecated (if no integration)</td>
+</tr>
+<tr>
+<td><strong><code>approved</code></strong></td>
+<td>ARCHIVE/</td>
+<td>Integrated &amp; archived</td>
+<td>Integration complete</td>
+<td>(immutable)</td>
+</tr>
+</tbody></table>
+<p><strong>Auxiliary status code:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Location</th>
+<th>Meaning</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><code>deprecated</code></strong></td>
+<td>ARCHIVE/</td>
+<td>Abandoned, no longer valid</td>
+<td>Alternative approach chosen; kept for audit trail</td>
+</tr>
+</tbody></table>
+<h3>3.2 Lifecycle Transitions</h3>
+<h4>Standard Lifecycle with All Deprecated Paths</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">                    ┌─────────────┐
+                    │   dev       │
+                    │  (WIP/)     │
+                    └────┬────────┘
+                         │
+                ┌────────┴────────┐
+                │                 │
+         (first edit)        (abandon early)
+                │                 │
+           ┌────▼─────┐    ┌──────▼──────────┐
+           │  review  │    │  deprecated     │
+           │ (WIP/)   │    │  (ARCHIVE/)     │
+           └────┬─────┘    └─────────────────┘
+                │          (dev→deprecated)
+       ┌────────┼────────┐
+       │                 │
+  (approve)         (discard during iter)
+       │                 │
+  ┌────▼──────┐          │
+  │   final   │──────────┤
+  │  (WIP/)   │          │
+  └────┬──────┘          │
+       │                 │
+ ┌─────┴──────┐    ┌─────▼────────────┐
+ │             │    │  deprecated      │
+(integrate)  (change mind) │  (ARCHIVE/)      │
+ │             │    └──────────────────┘
+ │             └────(final→deprecated)
+ │
+┌▼────────────┐
+│   approved  │
+│  (ARCHIVE/) │
+└─────────────┘</code></pre>
+                </div>
+            <h4>Scenario 1: Success Path (dev → review → final → approved)</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">2026-01-15: section-C3-S2-fcr-crm-modes-dev-2026-01-15.tex
+            (AI generated from template; never touched by human)
+
+2026-01-18: section-C3-S2-fcr-crm-modes-review-2026-01-18.tex
+            (You start working on it; or AI modifies + renames)
+            (In WIP/ folder; you make edits)
+
+2026-01-19: (Still in review; multiple edit cycles)
+            section-C3-S2-fcr-crm-modes-review-2026-01-19.tex
+
+2026-01-20: section-C3-S2-fcr-crm-modes-final-2026-01-20.tex
+            (You: &quot;This is solid. Done iterating.&quot;)
+            (Still in WIP/)
+
+2026-01-25: You tell AI: &quot;Integrate C3.S2 now&quot;
+            AI integrates into guide-v0.2.1.0-2026-01-25.tex
+
+2026-01-26: You verify integration, then:
+            Move from WIP/ to ARCHIVE/
+            Rename: ARCHIVE/section-C3-S2-fcr-crm-modes-approved-2026-01-26.tex</code></pre>
+                </div>
+            <p><strong>Key Points:</strong></p>
+<ul>
+<li>Iteration cycles occur within <code>review</code> status</li>
+<li>Only human decides when to advance to <code>final</code></li>
+<li>Only human moves to <code>ARCHIVE/</code> and renames to <code>approved</code> after integration</li>
+</ul>
+<h4>Scenario 2: Discard During Iteration (review → deprecated)</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">2026-01-15: section-C3-S2-fcr-alternative-design-dev-2026-01-15.tex
+            (AI generated from template)
+
+2026-01-18: section-C3-S2-fcr-alternative-design-review-2026-01-18.tex
+            (You start iterating on it)
+
+2026-01-19: section-C3-S2-fcr-alternative-design-review-2026-01-19.tex
+            (Multiple edit cycles)
+
+2026-01-21: (After 3 days of work, you realize main approach is better)
+            You decide to discard this alternative
+            You move to ARCHIVE/ and rename:
+            ARCHIVE/section-C3-S2-fcr-alternative-design-deprecated-2026-01-21.tex
+            (Document in PROJECT-TRACKING: &quot;Alternative approach abandoned; main version used&quot;)</code></pre>
+                </div>
+            <p><strong>Key Points:</strong></p>
+<ul>
+<li>File was in iteration but deemed unnecessary</li>
+<li>Discarded DURING development, not after approval</li>
+<li>Transition: <code>review → deprecated</code> (human decision)</li>
+<li>Archived for historical reference, clearly marked as not for use</li>
+</ul>
+<h4>Scenario 3: Last-Minute Regret (final → deprecated)</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">2026-01-20: section-C3-S2-new-radar-modes-final-2026-01-20.tex
+            (You approved it: &quot;Ready to integrate&quot;)
+
+2026-01-24: (You were planning to integrate, but chapter scope changed)
+            You realize this section is no longer needed
+            You move to ARCHIVE/ and rename:
+            ARCHIVE/section-C3-S2-new-radar-modes-deprecated-2026-01-24.tex
+            (Document in PROJECT-TRACKING: &quot;Scope change; section no longer applies&quot;)</code></pre>
+                </div>
+            <p><strong>Key Points:</strong></p>
+<ul>
+<li>File was <code>final</code> (ready for integration)</li>
+<li>But BEFORE integration, human changes mind</li>
+<li>Transition: <code>final → deprecated</code> (human decision)</li>
+<li>Prevents unnecessary integration into main document</li>
+<li>Archived with full context for future reference</li>
+</ul>
+<h4>Scenario 4: Early Abandonment (dev → deprecated)</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">2026-01-15: section-C3-S2-experimental-feature-dev-2026-01-15.tex
+            (AI generated from template)
+
+2026-01-15: (Immediately after generation, you review and decide not to pursue)
+            You realize this feature is no longer in scope
+            You move to ARCHIVE/ and rename:
+            ARCHIVE/section-C3-S2-experimental-feature-deprecated-2026-01-15.tex
+            (Document in PROJECT-TRACKING: &quot;Experimental feature out of scope; abandoned&quot;)</code></pre>
+                </div>
+            <p><strong>Key Points:</strong></p>
+<ul>
+<li>File was generated but NEVER edited by human</li>
+<li>Discarded before entering review cycle</li>
+<li>Transition: <code>dev → deprecated</code> (rare, but allowed)</li>
+<li>Prevents accumulation of dead files in WIP/</li>
+<li>Archived immediately, never caused iteration overhead</li>
+</ul>
+<h4>Notes Lifecycle (Simplified)</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">┌──────────┐         ┌──────────┐
+│   WIP/   │────────▶│ ARCHIVE/ │
+│ (active) │         │  (done)  │
+└──────────┘         └──────────┘
+(no status change; either in WIP or ARCHIVE)</code></pre>
+                </div>
+            <p>Notes do NOT have status codes in filename. Status is implicit:</p>
+<ul>
+<li>In WIP/ = still useful, might reference later</li>
+<li>In ARCHIVE/ = historical, no longer active</li>
+</ul>
+<hr>
+<h2>4. Integration Workflow</h2>
+<h3>4.1 When to Move a File to FINAL Status</h3>
+<p>A WIP file transitions to <code>final</code> status when:</p>
+<ol>
+<li><strong>Content is structurally complete</strong> — All planned sections/subsections/rows are present.</li>
+<li><strong>Content is narratively complete</strong> — Explanations are clear and sufficient; no major gaps remain.</li>
+<li><strong>Cross-references verified</strong> — Internal links to other sections, tables, and appendices are checked.</li>
+<li><strong>Terminology consistent</strong> — Names of modes, commands, screens, references align with rest of guide.</li>
+<li><strong>Technical accuracy confirmed</strong> — References to Dash-1, Dash-34, BMS manuals are verified where applicable.</li>
+<li><strong>Human approval given</strong> — You have reviewed and are satisfied; no more iterations needed.</li>
+</ol>
+<h3>4.2 Integration into Main Document</h3>
+<p>When a WIP file marked <code>final</code> is ready to integrate:</p>
+<ol>
+<li><strong>You tell AI:</strong> &quot;Ready to integrate [filename]&quot;</li>
+<li><strong>AI copies content</strong> from <code>final</code> file into appropriate location in <code>guide-v*.tex</code></li>
+<li><strong>AI handles LaTeX code:</strong><ul>
+<li>Cross-references, citations, labels</li>
+<li>Formatting consistency</li>
+<li>Package dependencies</li>
+</ul>
+</li>
+<li><strong>AI verifies compilation</strong> — Ensures no new LaTeX errors or warnings</li>
+<li><strong>AI updates main document version</strong> — Increment MAJOR, MINOR, or PATCH per VERSION-SYSTEM-v4.2.1</li>
+<li><strong>AI updates PROJECT-TRACKING</strong> — Log integration event, date, affected chapter(s)</li>
+<li><strong>You verify integration</strong> — Check main document; confirm content looks correct</li>
+<li><strong>You move file to ARCHIVE:</strong><ul>
+<li>Move from <code>WIP/</code> to <code>ARCHIVE/</code> (you have filesystem access)</li>
+<li>Rename <code>final</code> to <code>approved</code>: <code>ARCHIVE/section-C3-S2-fcr-crm-modes-approved-2026-01-26.tex</code></li>
+</ul>
+</li>
+</ol>
+<h3>4.3 Archival Strategy</h3>
+<p><strong>ARCHIVE/ folder contains three types of files:</strong></p>
+<ol>
+<li><p><strong>Successfully integrated files</strong> (<code>approved</code> status)</p>
+<ul>
+<li>Original WIP file moved here after integration confirmed</li>
+<li>Kept for audit trail and structure reference</li>
+<li>Shows what was merged and when</li>
+</ul>
+</li>
+<li><p><strong>Deprecated or abandoned files</strong> (<code>deprecated</code> status)</p>
+<ul>
+<li>Explicitly marked as rejected or no longer valid</li>
+<li>Example: alternative approaches not selected</li>
+<li>Kept for historical reference; clearly marked as not for use</li>
+</ul>
+</li>
+<li><p><strong>Previous main document versions</strong> — Older <code>guide-v*.tex</code> files (per VERSION-SYSTEM-v4.2.1)</p>
+<ul>
+<li>Frozen snapshots of main document at each version</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>5. Quick Reference Table</h2>
+<table>
+<thead>
+<tr>
+<th>File Type</th>
+<th>Pattern</th>
+<th>Example</th>
+<th>Status Codes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Chapter</strong></td>
+<td><code>chapter-C{N}-{TITLE}-{STATUS}-{DATE}.tex</code></td>
+<td><code>chapter-C3-tms-target-management-final-2026-01-20.tex</code></td>
+<td>dev, review, final, approved, deprecated</td>
+</tr>
+<tr>
+<td><strong>Section</strong></td>
+<td><code>section-C{N}-S{M}-{TITLE}-{STATUS}-{DATE}.tex</code></td>
+<td><code>section-C3-S2-fcr-crm-modes-review-2026-01-18.tex</code></td>
+<td>dev, review, final, approved, deprecated</td>
+</tr>
+<tr>
+<td><strong>Subsection</strong></td>
+<td><code>section-C{N}-S{M}-S{K}-{TITLE}-{STATUS}-{DATE}.tex</code></td>
+<td><code>section-C3-S2-S1-fcr-detail-final-2026-01-19.tex</code></td>
+<td>dev, review, final, approved, deprecated</td>
+</tr>
+<tr>
+<td><strong>Table</strong></td>
+<td><code>table-C{N}-{CONTEXT}-{SWITCH}-{STATUS}-{DATE}.tex</code></td>
+<td><code>table-C3-AA-TMS-final-2026-01-21.tex</code></td>
+<td>dev, review, final, approved, deprecated</td>
+</tr>
+<tr>
+<td><strong>Notes</strong></td>
+<td><code>notes-C{N}-{TOPIC}-{TYPE}-{DATE}.md</code></td>
+<td><code>notes-C3-fcr-radar-modes-research-2026-01-12.md</code></td>
+<td>(none; implicit)</td>
+</tr>
+<tr>
+<td><strong>Visual</strong></td>
+<td><code>visual-C{N}-{DESCRIPTION}-{TYPE}-{STATUS}-{DATE}.{ext}</code></td>
+<td><code>visual-C7-tms-hat-layout-diagram-final-2026-01-30.svg</code></td>
+<td>dev, review, final, approved, deprecated</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>6. Special Cases and Edge Cases</h2>
+<h3>6.1 Multiple Files for Same Content</h3>
+<p><strong>Scenario:</strong> Multiple versions of a section exist (e.g., alternative layouts, experimental content).</p>
+<p><strong>Solution:</strong> Create separate files with different titles or dates; do NOT reuse same filename:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">section-C3-S2-fcr-crm-modes-final-2026-01-18.tex  (primary version)
+section-C3-S2-fcr-crm-modes-alt-layout-review-2026-01-18.tex  (alternative)</code></pre>
+                </div>
+            <p>Mark non-primary versions clearly to avoid confusion. When one version is approved and integrated, the other can be archived with <code>deprecated</code> status.</p>
+<h3>6.2 Subsection Hierarchy Exceeding Three Levels</h3>
+<p><strong>Scenario:</strong> Content requires sub-sub-subsections (rare).</p>
+<p><strong>Solution:</strong> Extend the pattern as needed, but keep total filename under 100 characters:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">section-C3-S2-S1-S1-very-detailed-topic-review-2026-01-20.tex  (~83 chars) ✅</code></pre>
+                </div>
+            <p>Rationale: Document structure (inside the file) shows additional nesting; filename shows top-level hierarchy.</p>
+<h3>6.3 Table with Very Long Context or Descriptors</h3>
+<p><strong>Scenario:</strong> Context code or table name is long (e.g., &quot;WEAPON-EMPLOYMENT-AND-SPECIAL-MODES&quot;).</p>
+<p><strong>Solution:</strong> Use abbreviations or acronyms:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">❌ table-C3-WEAPON-EMPLOYMENT-AND-SPECIAL-MODES-TMS-dev-2026-01-15.tex  (too long)
+✅ table-C3-WASM-TMS-dev-2026-01-15.tex  (abbreviate)</code></pre>
+                </div>
+            <p>Or split into multiple focused tables:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">table-C3-weapon-employment-TMS-dev-2026-01-15.tex
+table-C3-special-modes-TMS-dev-2026-01-15.tex</code></pre>
+                </div>
+            <h3>6.4 Cross-Chapter Content</h3>
+<p><strong>Scenario:</strong> A section or note spans multiple chapters (e.g., &quot;HOTAS Principles&quot; applies to TMS, DMS, and CMS).</p>
+<p><strong>Solution:</strong> File primary location and reference others:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">section-C2-S1-hotas-principles-general-dev-2026-01-12.tex  (primary)
+notes-GEN-hotas-cross-chapter-reference-2026-01-12.md      (reference note)</code></pre>
+                </div>
+            <p>Or create chapter-specific versions:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">section-C2-S1-hotas-principles-general-dev-2026-01-12.tex
+section-C3-S1-hotas-principles-tms-context-dev-2026-01-12.tex
+section-C4-S1-hotas-principles-dms-context-dev-2026-01-12.tex
+section-C5-S1-hotas-principles-cms-context-dev-2026-01-12.tex</code></pre>
+                </div>
+            <h3>6.5 When to Split a Long File into Multiple Files</h3>
+<p><strong>Scenario:</strong> A section file grows very large (&gt; 3000 lines or &gt; 2000 words).</p>
+<p><strong>Solution:</strong> Split logically into subsections:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">text</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-text">OLD (too large):
+section-C3-S2-fcr-crm-comprehensive-guide-dev-2026-01-15.tex  (3500 lines)
+
+NEW (split):
+section-C3-S2-S1-fcr-concept-dev-2026-01-15.tex
+section-C3-S2-S2-fcr-modes-detail-dev-2026-01-15.tex
+section-C3-S2-S3-crm-integration-dev-2026-01-15.tex</code></pre>
+                </div>
+            <p>Rationale: Smaller files are easier to iterate, review, and integrate independently.</p>
+<hr>
+<h2>7. Compliance Checklist</h2>
+<h3>7.1 General Checklist (All File Types)</h3>
+<p>Before considering a WIP file valid under this convention:</p>
+<ul>
+<li>Filename follows correct pattern (correct prefixes, separators, date format)</li>
+<li>Status is one of the allowed codes (<code>dev</code>, <code>review</code>, <code>final</code>, <code>approved</code>, <code>deprecated</code>)</li>
+<li>Date is ISO 8601 format (<code>YYYY-MM-DD</code>)</li>
+<li>No spaces or prohibited characters in filename</li>
+<li>All lowercase</li>
+<li>File saved in <code>WIP/</code> folder (or <code>ARCHIVE/</code> if <code>approved</code>/<code>deprecated</code>)</li>
+<li>File extension matches file type (<code>.tex</code> for LaTeX, <code>.md</code> for Markdown, <code>.svg</code> for vectors, etc.)</li>
+<li>Title is slugified (hyphens between words, 2–4 key concepts max)</li>
+<li>File created from TEMPLATES/template-wip-V1.0.tex (Section 0.5)</li>
+</ul>
+<h3>7.2 Integration Checklist (Before Moving to APPROVED)</h3>
+<p>Only move a file to <code>approved</code> (and ARCHIVE/) when:</p>
+<ul>
+<li>AI has integrated content into main document</li>
+<li>LaTeX compiles without errors</li>
+<li>Cross-references updated in main document</li>
+<li>Main document version bumped per VERSION-SYSTEM-v4.2.1</li>
+<li>PROJECT-TRACKING updated with integration event</li>
+<li>You have verified integration looks correct</li>
+<li>Original file moved from <code>WIP/</code> to <code>ARCHIVE/</code></li>
+<li>File renamed from <code>final</code> to <code>approved</code> in <code>ARCHIVE/</code></li>
+</ul>
+<hr>
+<h2>8. Relationship to VERSION-SYSTEM-v4.2.1 and BRIEFING-v0.2.0.1</h2>
+<p>This WIP File Naming Convention is <strong>complementary</strong> to both VERSION-SYSTEM-v4.2 and BRIEFING-v0.2.0.1, not a replacement.</p>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>VERSION-SYSTEM-v4.2.1</code></td>
+<td>Defines version numbering for main document <code>guide-v*.tex</code></td>
+</tr>
+<tr>
+<td><code>BRIEFING-v0.2.0.1</code> (Section 11)</td>
+<td>Specifies structure, preamble, and configuration of <code>TEMPLATES/template-wip-V1.0.tex</code></td>
+</tr>
+<tr>
+<td><code>WIP File Naming v1.4</code></td>
+<td>Defines <strong>operational</strong> organization and <strong>status tracking</strong> for isolated WIP files; explains how to <strong>use</strong> the template</td>
+</tr>
+</tbody></table>
+<p><strong>Key integration points:</strong></p>
+<ol>
+<li><strong>Template as mandatory foundation</strong> — All WIP files created from TEMPLATES/template-wip-V1.0.tex per BRIEFING Section 11 and WIP-NAMING Section 0.5.</li>
+<li><strong>No version bumps from WIP files</strong> — Only content merged into main document triggers version increments per VERSION-SYSTEM-v4.2.1.</li>
+<li><strong>Integration workflow</strong> — When WIP file marked <code>final</code> is integrated by AI, main document version increments per VERSION-SYSTEM-v4.2.1 rules.</li>
+<li><strong>PROJECT-TRACKING</strong> — All three systems feed into <code>PROJECT-TRACKING.md</code> for unified project history.</li>
+<li><strong>AI Responsibility</strong> — AI handles LaTeX integration, version bumping, and file naming per this convention; human verifies and makes approval decisions.</li>
+</ol>
+<hr>
+<h2>9. Summary and Best Practices</h2>
+<h3>9.1 Summary of Key Rules</h3>
+<ol>
+<li>Use <strong>canonical template</strong> — All WIP files start from TEMPLATES/template-wip-V1.0.tex (Section 0.5).</li>
+<li>Use <strong>flat WIP folder</strong> — No subfolders; type-prefixed filenames provide structure.</li>
+<li><strong>Mandatory fields</strong> — All filenames must include type prefix, chapter/topic identifier, descriptive title, status, and date.</li>
+<li><strong>Status is explicit</strong> — Always include one of the defined status codes; no ambiguity.</li>
+<li><strong>Dates are ISO 8601</strong> — Ensures sortability and eliminates ambiguity.</li>
+<li><strong>Hyphens only</strong> — No dots except file extension, no spaces, no special characters.</li>
+<li><strong>Hierarchy in filename</strong> — Sections show <code>C3-S2-S1</code> notation; subsection numbers explicit in filename.</li>
+<li><strong>Shallow hierarchies preferred</strong> — Use document structure for deeper nesting; filenames stay readable.</li>
+<li><strong>Automation is algorithmic</strong> — Status transitions based on events, not subjective judgment.</li>
+<li><strong>Human controls approval</strong> — Only humans decide final status; only humans move files to <code>approved</code>.</li>
+</ol>
+<h3>9.2 Best Practices for Workflow</h3>
+<ol>
+<li>Use descriptive, concise titles — Avoid generic names; make filenames self-documenting. Slugify aggressively (2–4 key concepts).</li>
+<li>Update status regularly — As file evolves (<code>dev</code> → <code>review</code> → <code>final</code>), rename to reflect current state.</li>
+<li>Archive on integration — Move successfully merged files to <code>ARCHIVE/</code> to keep <code>WIP/</code> tidy and uncluttered.</li>
+<li>Use <code>PROJECT-TRACKING</code> — Log integration events, abandonment reasons, major milestones.</li>
+<li>Date represents last edit — Keep date current; update when making significant changes to a file.</li>
+<li>Respect status immutability — Files cannot go backwards (<code>review</code> never goes back to <code>dev</code>; <code>final</code> never back to <code>review</code>).</li>
+<li><strong>Start from template</strong> — Always copy TEMPLATES/template-wip-V1.0.tex before creating new WIP files; never edit template directly.</li>
+</ol>
+<hr>
+<h2>10. Version History</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date &amp; Time (UTC-3)</th>
+<th>Type</th>
+<th>Changes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>v1.0</strong></td>
+<td>07 Jan 2026, 00:00</td>
+<td>Initial release</td>
+<td>Defines five file categories, four status codes, integration workflow.</td>
+</tr>
+<tr>
+<td><strong>v1.1</strong></td>
+<td>07 Jan 2026, 01:30</td>
+<td>MAJOR UPDATE</td>
+<td>Added Section 2.6 Automation Rules; clarified status transitions (<code>dev</code>→<code>review</code>→<code>final</code>→<code>approved</code>/<code>deprecated</code>); added decision trees for title slugification; clarified hierarchy preference; added automation responsibility matrix; unified status codes across all file types.</td>
+</tr>
+<tr>
+<td><strong>v1.2</strong></td>
+<td>07 Jan 2026, 01:50</td>
+<td>MINOR UPDATE</td>
+<td>Expanded status transitions; added three independent deprecated paths (<code>review</code>→<code>deprecated</code>, <code>final</code>→<code>deprecated</code>, <code>dev</code>→<code>deprecated</code>); updated Section 2.6.4 Status Transitions by Actor with 7 explicit transitions; updated Section 3.2 Lifecycle Transitions with expanded ASCII diagram and four complete scenario timelines (Success, Discard During Iteration, Last-Minute Regret, Early Abandonment); clarified human decision points and automation boundaries for deprecation at all file lifecycle stages.</td>
+</tr>
+<tr>
+<td><strong>v1.3</strong></td>
+<td>07 Jan 2026, 03:04</td>
+<td>PATCH UPDATE</td>
+<td>Fixed separator rule typo in Section 1.2; clarified in Section 2.5 that <code>.tex</code> files in visuals are TikZ diagrams only; corrected Section 2.6.5 Automation Responsibility Matrix so that AI renames <code>dev→review</code> only when explicitly instructed by human; reformatted tables for improved clarity and legibility.</td>
+</tr>
+<tr>
+<td><strong>v1.4</strong></td>
+<td>09 Jan 2026, 05:52</td>
+<td>MINOR UPDATE</td>
+<td><strong>NEW Section 0.5: &quot;How to Create a New WIP File (Step-by-Step)&quot;</strong> — Mandatory workflow explaining template use (copy, rename, fill content); <strong>UPDATED Section 0.2</strong> — Added key principle about canonical template requirement; <strong>UPDATED Section 0.3</strong> — Clarified template is not a WIP file (it&#39;s the foundation); <strong>UPDATED Section 0.4</strong> — Added <code>TEMPLATES/</code> folder with template location; <strong>UPDATED all references</strong> BRIEFING-v0.1.4.1 → BRIEFING-v0.2.0.1; <strong>UPDATED Section 2.6.5</strong> — Added mandatory template requirement to automation checklist; <strong>UPDATED Relationship section</strong> — Added explicit link to BRIEFING-v0.2.0.1 Section 11; <strong>ADDED to all file categories</strong> — Template requirement in rules; <strong>Version bump rationale:</strong> Template establishment is a governance expansion (MINOR, not PATCH).</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Document Status:</strong> Production-Ready (v1.4)<br><strong>Effective Date:</strong> 09 January 2026<br><strong>Last Updated:</strong> 09 January 2026, 05:52 -03<br><strong>Version:</strong> v1.4</p>
+
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown: Rich Preview</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        // Initialize highlight.js
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+        });
+
+        // Copy to clipboard function
+        function copyToClipboard(button) {
+            const codeBlock = button.closest('.code-block');
+            const code = codeBlock.querySelector('code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.backgroundColor = '#4CAF50';
+                button.style.color = 'white';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.backgroundColor = '';
+                    button.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+    <style>
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+        /* Twemoji emoji image style for inline, text-sized emojis */
+        img.emoji {
+            height: 1em;
+            width: 1em;
+            margin: 0 .05em 0 .1em;
+            vertical-align: -0.1em;
+            display: inline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            line-height: 1.25;
+        }
+        
+        h1 { 
+            font-size: 2em; 
+            border-bottom: 1px solid #eaecef; 
+            padding-bottom: 0.3em;
+            margin-top: 0.67em 0;
+        }
+        
+        h2 { 
+            font-size: 1.5em; 
+            border-bottom: 1px solid #eaecef; 
+            padding-bottom: 0.3em;
+            margin-top: 1.5em;
+        }
+        
+        h3 { 
+            font-size: 1.25em; 
+            margin-top: 1.25em;
+        }
+        
+        h4 { 
+            font-size: 1em; 
+            margin-top: 1em;
+        }
+        
+        a { 
+            color: #0366d6; 
+            text-decoration: none; 
+        }
+        
+        a:hover { 
+            text-decoration: underline; 
+        }
+        
+        strong { 
+            font-weight: 600; 
+        }
+        
+        pre {
+            background-color:rgb(9, 7, 10);
+            overflow: auto;
+            margin: 0;
+        }
+        
+        code {
+            font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+            padding: 0.2em 0.4em;
+            font-size: 90%;
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .code-block {
+            position: relative;
+            background-color:rgb(9, 7, 10);
+            border-radius: 6px;
+            margin: 1em 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 10px;
+            background-color:rgb(32, 30, 43);
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+
+        .language {
+            color: #efe9e9;
+            font-size: 0.9em;
+            font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+        }
+
+        .copy-button {
+            padding: 4px 8px;
+            font-size: 0.9em;
+            color: #efe9e9;
+            background-color: transparent;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-button:hover {
+            background-color: #e9e9e9;
+            border-color: #ccc;
+        }
+        
+        blockquote {
+            margin: 0;
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+        }
+        
+        ul, ol {
+            padding-left: 2em;
+        }
+        
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            overflow: auto;
+            margin-bottom: 16px;
+        }
+        
+        table th {
+            font-weight: 600;
+        }
+        
+        table th, table td {
+            padding: 6px 13px;
+            border: 1px solid #dfe2e5;
+        }
+        
+        table tr {
+            background-color: #fff;
+            border-top: 1px solid #c6cbd1;
+        }
+        
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        
+        img {
+            max-width: 100%;
+            box-sizing: content-box;
+        }
+    </style>
+</head>
+<body>
+    <p>DMS Down (4.2.2) — Final Design Specification
+Date: 16 January 2026, 11:26 AM -03
+Status: READY FOR WIP.TEX GENERATION
+Based on: Dash-34 (§2.1.6.3, §2.1.1.2.3), C4-DMS-blueprint v1.1, DMS Up approved section (4.2.1), Training Manual 4.38.1</p>
+<p>SECTION 4.2.2 STRUCTURE (FINAL)
+text
+4.2.2 DMS Down: Toggle SOI Between Displays
+  [Intro — unnumbered, no \subsubsection]
+  4.2.2.1 DMS Down Effectiveness in All Master Modes
+  4.2.2.2 DMS Down Usage Table (hotastable)
+  4.2.2.3 DMS Down Exception States
+INTRO CONTENT (Unnumbered, ~2–3 Paragraphs)
+Opening concept + Toggle vs Cycle clarification:</p>
+<p>DMS Down toggles the Sensor of Interest (SOI) between the HUD and the two Multifunction Displays (MFDs), allowing the pilot to move SOI responsibility among these displays hands-on. The exact behavior depends on which master mode is active and whether the HUD is a valid SOI candidate in that mode (see Section 4.1.1).</p>
+<p>In master modes where the HUD is a valid SOI (NAV, A-G PRE, A-G VIS), repeated presses of DMS Down cycle through a repeating sequence: HUD → right MFD → left MFD → HUD → ... This allows the pilot to move SOI among all three displays.</p>
+<p>In master modes where the HUD is not a valid SOI candidate (A-A, DGFT, MSL OVRD), DMS Down toggles SOI only between the two MFDs (right MFD ↔ left MFD), and the HUD remains a passive display regardless of SOI status. This allows the pilot to choose which MFD sensor receives hands-on HOTAS commands.</p>
+<p>Clarification note:</p>
+<p>The distinction between &quot;toggle&quot; and &quot;cycle&quot; is a consequence of the avionics architecture&#39;s constraints on which displays can be SOI in each mode (detailed in Section 4.1.1). The DMS Down mechanism itself is uniform across all modes: it simply advances SOI to the next valid candidate in the system&#39;s SOI set for that master mode. [Note: This reference to Section 4.1.1 is a forward/backward cross-ref; it clarifies the toggle concept without duplicating future section 4.2.3 details about DMS Left/Right.]</p>
+<p>4.2.2.1 DMS DOWN EFFECTIVENESS IN ALL MASTER MODES
+Structure: Follow the same pattern as 4.2.1.1 (DMS Up):</p>
+<p>Master Modes Where HUD Is a Valid SOI Candidate (NAV, A-G PRE, A-G VIS)
+NAV (Navigation) Master Mode
+DMS Down cycles through all valid SOI candidates in NAV: HUD, FCR, TGP, HSD, WPN, HAD. In practice, the physical layout (HUD + left/right MFDs) creates a repeating 3-step cycle:</p>
+<p>HUD SOI → press DMS Down → right MFD SOI (FCR or TGP, depending on format configuration) → press DMS Down → left MFD SOI (HSD or WPN, depending on format configuration) → press DMS Down → HUD SOI → ...</p>
+<p>This allows the pilot to move hands-on command focus among the HUD (for heading/altitude/situational awareness) and the two MFD sensor pages (for detailed navigation sensor management). DMS Down is a convenience tool in NAV, enabling quick SOI transitions without OSB manipulation.</p>
+<p>A-G PRE (Preplanned Air-to-Ground) Master Mode
+In A-G PRE, valid SOI candidates are HUD, FCR, TGP, WPN, HAD, HSD. DMS Down cycles through the same pattern as NAV:</p>
+<p>HUD SOI → right MFD SOI → left MFD SOI → HUD SOI → ...</p>
+<p>However, the specific sensors on each MFD depend on how the pilot has configured the displays (e.g., right MFD might show TGP, left MFD might show HSD or WPN). DMS Down moves SOI among these configurations without changing which format is displayed. Like NAV, DMS Down in A-G PRE is a convenience tool, allowing the pilot to shift hands-on control between HUD and MFD sensor pages during mission planning or setup phases.</p>
+<p>A-G VIS (Visual Air-to-Ground: CCIP, DTOS, AGM-65 VIS, IAM-VIS, HUD/HMCS MARK)
+In A-G VIS modes, valid SOI candidates are HUD, FCR, TGP, WPN. DMS Down again cycles through the 3-step pattern:</p>
+<p>HUD SOI → right MFD SOI (typically TGP or WPN) → left MFD SOI (typically FCR or HSD) → HUD SOI → ...</p>
+<p>However, in A-G VIS, DMS Down is operationally critical, not merely convenient. This is because A-G VIS designations are HUD/HMCS–centric: the pilot aims using the HUD pipper (CCIP), target designator (AGM-65 VIS, IAM-VIS), or HUD/HMCS MARK symbology. These visual cues are controlled by CURSOR/ENABLE and TMS inputs routed through HUD SOI. If SOI migrates to an MFD (TGP, WPN, FCR, HSD), TMS and CURSOR commands are routed to that MFD display instead, and the HUD visual cueing no longer responds as expected.</p>
+<p>Therefore, DMS Down is the critical complement to DMS Up in A-G VIS flows:</p>
+<p>DMS Up re-establishes HUD SOI when SOI has &quot;drifted&quot; to an MFD during sensor management or configuration.</p>
+<p>DMS Down allows the pilot to temporarily move SOI off the HUD and onto an MFD (TGP for refining sensor search, WPN for weapon status, FCR/HSD for situational awareness outside the HUD field of view), then alternate back to HUD to resume visual designation.</p>
+<p>In A-G VIS, this Up/Down alternation is a fundamental part of the delivery flow and cannot be omitted without losing command flow efficiency or situational awareness.</p>
+<p>Master Modes Where HUD Is NOT a Valid SOI Candidate (A-A, DGFT, MSL OVRD)
+In air-to-air employment and dogfight modes, the avionics architecture restricts SOI to sensor formats on the MFDs: FCR, HSD, and TGP. The HUD cannot be SOI in these modes (see Section 4.1.3 for the architectural rationale).</p>
+<p>Consequently, DMS Down is restricted to toggling SOI between the two MFDs only:</p>
+<p>right MFD SOI ↔ left MFD SOI.</p>
+<p>This 2-way toggle allows the pilot to choose which MFD sensor page receives hands-on command priority. In A-A contexts, this is operationally primary: the pilot uses DMS Down to alternate SOI focus between, for example, FCR (for track/lock/missile control) and HSD (for picture/sorting/threat assessment), or between FCR and TGP (when using the targeting pod for situational awareness or supplemental tracking).</p>
+<p>DMS Down is the standard HOTAS mechanism for managing SOI in A-A, DGFT, and MSL OVRD modes, and its use is essential to efficient radar employment and tactical decision-making.</p>
+<p>4.2.2.2 DMS DOWN USAGE TABLE (HOTASTABLE)
+Table structure: Parallel to DMS Up table (4.2.2.2), with 3 main rows + exception states listed below.</p>
+<p>Core Table Rows
+State	Dir	Act	Function	Effect / Nuance	Dash34	Train
+NAV	Down	Short	Toggle SOI cycle through displays	DMS Down cycles SOI through HUD → right MFD → left MFD → HUD. With HUD SOI, hands-on commands (CURSOR/ENABLE, TMS) manage HUD navigation symbology. Pressing DMS Down transfers SOI to the next MFD; pilots can rotate through all three displays.	2.1.1.2.3, 2.1.6.3	—
+A-A	Down	Short	Toggle SOI between MFDs only	DMS Down toggles SOI only between right and left MFD (FCR, HSD, TGP only). HUD cannot be SOI in A-A and remains a passive display. This is the primary HOTAS method for choosing which MFD sensor page receives hands-on command priority for track management, picture evaluation, and weapons employment.	2.1.1.2.3, 2.1.6.3	\trnref{18 (BARCAP)}, \trnref{17B (IFF Intercept)}
+A-G	Down	Short	Toggle SOI between HUD and MFD sensor pages	DMS Down cycles SOI through HUD → right MFD → left MFD → HUD. In A-G PRE, this is a convenience tool for moving hands-on focus between HUD and MFD sensor management. In A-G VIS (CCIP, DTOS, AGM-65 VIS, IAM-VIS, HUD/HMCS MARK), DMS Down is operationally critical: HUD is the primary visual designation interface; DMS Down allows alternation between HUD visual cueing (TMS/CURSOR steering, pipper control, TD box positioning) and MFD sensor work (TGP search/refine, WPN status, FCR A-G ranging). Loss of HUD SOI in A-G VIS prevents proper visual designation and must be recovered with DMS Up.	2.1.1.2.3, 2.1.6.3	\trnref{10 (GP Bombs)}, \trnref{11 (LGB)}, \trnref{13 (Maverick)}, \trnref{14 (Maverick Adv)}, \trnref{15 (IAM)}
+4.2.2.3 DMS DOWN EXCEPTION STATES
+In certain special states and submodes, DMS Down may be temporarily ineffective even in master modes where SOI toggling normally works:</p>
+<p>Snowplow (SP) PRE State (Unstabilised)
+When the pilot enters Snowplow mode (a specialised A-G ground-stabilisation mode for slewing to arbitrary ground positions) and the SP position has not yet been stabilised with TMS Up, the SOI is effectively &quot;nowhere&quot;. Both the A-G radar and TGP MFD displays show NOT SOI, and neither display is designated as SOI. As a result, DMS Down has no effect in this state: the toggle mechanism has nowhere to advance SOI to.</p>
+<p>Once the SP position is stabilised with TMS Up (pressing TMS Up on the HUD), SOI returns to its previous designated display, and DMS Down resumes normal toggling behaviour.</p>
+<p>MARK/OFLY Submode
+In the MARK/OFLY submode (a specialised target-acquisition context documented in Dash-34 §2.1.1.2.3), the SOI cannot be designated or changed at all. Consequently, DMS Down has no effect in MARK/OFLY: you cannot toggle SOI when SOI designation itself is locked. This submode is rare in normal operations but is important to recognise if you encounter it during unusual procedures or system states.</p>
+<p>CROSS-REFERENCES AND NOTES
+Section 4.1.1: Defines valid SOI candidates by master mode (referenced throughout 4.2.2.1).</p>
+<p>Section 4.1.3: Explains the architectural rationale for HUD SOI restrictions in A-A/DGFT/MSL OVRD (referenced in A-A/DGFT/MSL OVRD subsection of 4.2.2.1).</p>
+<p>Section 4.2.1: DMS Up (complementary section; 4.2.2.3 exception states mirror those in 4.2.1.3).</p>
+<p>Section 4.2.3: DMS Left/Right (future section on format cycling, not SOI toggling; mentioned in intro as distinct from DMS Down).</p>
+<p>TRAINING MISSION ASSIGNMENTS
+A-G Visual Modes (Visual Designation Flows)
+TRN 10 – GP Bombs: CCIP/DTOS visual deliveries; HUD pipper and MFD format management.</p>
+<p>TRN 11 – LGB: HUD cueing + TGP sensor management; single-ship and buddy lasing.</p>
+<p>TRN 13 – Maverick Basic: AGM-65 VIS; HUD TD box and TGP/WPN coordination.</p>
+<p>TRN 14 – Maverick Advanced: Extended Maverick VIS and PRE scenarios.</p>
+<p>TRN 15 – IAM: JSOW/JDAM visual designations and HSD/TGP/IAM CNTL coordination.</p>
+<p>Rationale: These missions explicitly exercise HUD↔MFD SOI alternation in A-G VIS contexts, where DMS Down is operationally critical to delivery flows.</p>
+<p>A-A Radar / IFF Contexts
+TRN 18 – BARCAP: BVR tactics with extensive FCR/HSD use; SOI toggling between radar displays.</p>
+<p>TRN 17B – IFF Intercept: Radar identification with FCR + IFF + HSD coordination.</p>
+<p>Rationale: These missions focus on A-A master mode where HUD is not SOI; they exercise the MFD↔MFD toggle that is central to A-A operations.</p>
+<p>FINAL CHECKLIST BEFORE WIP.TEX GENERATION
+ Exception states confirmed: Snowplow PRE and MARK/OFLY only (no additional hidden exceptions).</p>
+<p> A-G VIS operationality: established as equal in importance to DMS Up (with detailed examples).</p>
+<p> Toggle vs Cycle: conceptually resolved (Dash-34 &quot;toggle&quot; mechanism produces 3-way cycle in HUD-valid modes, 2-way toggle in HUD-excluded modes).</p>
+<p> Training missions assigned: A-G visual flows (10/11/13/14/15) + A-A radar/IFF (18/17B).</p>
+<p> Cross-references: Identified and will use \ref{sec:C4-S1-...} format to avoid forward-referencing future sections (4.2.3 DMS Left/Right).</p>
+<p> LaTeX structure: Mirrors 4.2.1 (intro, subsection 4.2.2.1, subsection 4.2.2.2 hotastable, subsection 4.2.2.3 exceptions).</p>
+<p> Dash-34 grounding: All claims traceable to §2.1.6.3 (toggle definition) and §2.1.1.2.3 (SOI by master mode).</p>
+<p>NOTES FOR WIP FILE CREATION
+Use \label{sec:C4-S2-Down} for the main section (or similar, consistent with naming convention).</p>
+<p>Hotastable environment from briefing v0.2.0.1 (frozen spec: 7 columns, L widths as defined).</p>
+<p>Paragraph structure in 4.2.2.1: match 4.2.1.1 (bullet groups for each mode or mode group).</p>
+<p>Exception states in 4.2.2.3: use \begin{itemize}...\end{itemize} as in 4.2.1.3.</p>
+<p>Macro usage: \dashref{} for Dash-34 sections, \trnref{} for training missions (per project briefing v0.2.0.1).</p>
+<p>Page breaks: \newpage before hotastable if space permits (optional, per your earlier note that diagramação is flexible).</p>
+<p>Status: READY FOR WIP.TEX CREATION</p>
+<p>All design decisions confirmed with cross-validation against Dash-34, blueprint, approved DMS Up section, and training manual.</p>
+
+</body>
+</html>
