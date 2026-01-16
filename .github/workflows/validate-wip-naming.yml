@@ -19,20 +19,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Debug - List directory structure
-        run: |
-          echo "=================================="
-          echo "DEBUG: DIRECTORY STRUCTURE"
-          echo "=================================="
-          echo "Looking for WIP and ARCHIVE directories..."
-          find . -type d \( -name "WIP" -o -name "ARCHIVE" \) 2>/dev/null | head -20
-          echo ""
-          echo "Files in WIP/:"
-          find ./WIP -type f 2>/dev/null | head -20 || echo "WIP/ does not exist or is empty"
-          echo ""
-          echo "Files in ARCHIVE/:"
-          find ./ARCHIVE -type f 2>/dev/null | head -20 || echo "ARCHIVE/ does not exist or is empty"
-
       - name: Validate all WIP and ARCHIVE files
         run: |
           set +e
@@ -44,9 +30,8 @@ jobs:
           echo "=================================="
           echo ""
           
-          # Get list of all WIP and ARCHIVE files
-          # Using find with proper path matching
-          ALL_FILES=$(find . \( -path "*/WIP/*" -o -path "*/ARCHIVE/*" \) -type f ! -path "./.git/*" ! -path "./.*" 2>/dev/null | sed 's|^\./||' | sort)
+          # Get list of all WIP and ARCHIVE files (explicit root paths, case-insensitive)
+          ALL_FILES=$(find . -type f \( -path "./WIP/*" -o -path "./wip/*" -o -path "./ARCHIVE/*" -o -path "./archive/*" \) ! -path "./.git/*" ! -path "./.*" 2>/dev/null | sed 's|^\./||' | sort)
           
           FILE_COUNT=$(echo "$ALL_FILES" | grep -c '^' || echo 0)
           echo "DEBUG: Total files found: $FILE_COUNT"
@@ -68,6 +53,8 @@ jobs:
             
             FILENAME=$(basename "$FILE")
             DIRPATH=$(dirname "$FILE")
+            # Convert to uppercase for comparison (but keep original for display)
+            DIRPATH_UPPER=$(echo "$DIRPATH" | tr 'a-z' 'A-Z')
             VALID=0
             TYPE="UNKNOWN"
             
@@ -77,8 +64,8 @@ jobs:
             echo "  Directory: $DIRPATH"
             echo ""
             
-            # GUIDE Snapshots: WIP/GUIDE or ARCHIVE/GUIDE
-            if [[ "$DIRPATH" == "WIP/GUIDE" ]] || [[ "$DIRPATH" == "ARCHIVE/GUIDE" ]]; then
+            # GUIDE Snapshots: WIP/GUIDE or ARCHIVE/GUIDE (case-insensitive)
+            if [[ "$DIRPATH_UPPER" == "WIP/GUIDE" ]] || [[ "$DIRPATH_UPPER" == "ARCHIVE/GUIDE" ]]; then
               TYPE="GUIDE"
               # Pattern: guide-vMAJOR.MINOR.PATCH.SUBPATCH-YYYYMMDD.tex or .pdf
               if [[ "$FILENAME" =~ ^guide-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+-[0-9]{8}\.(tex|pdf)$ ]]; then
@@ -90,14 +77,14 @@ jobs:
                 echo "     Example: guide-v0.2.3.1-20260125.tex"
               fi
             
-            # IGNORED: ARCHIVE/GUIDE-STRUCTURE
-            elif [[ "$DIRPATH" == "ARCHIVE/GUIDE-STRUCTURE" ]]; then
+            # IGNORED: ARCHIVE/GUIDE-STRUCTURE (case-insensitive)
+            elif [[ "$DIRPATH_UPPER" == "ARCHIVE/GUIDE-STRUCTURE" ]]; then
               echo "  ℹ️  GUIDE-STRUCTURE (ignored - no validation)"
               VALID=1
               TYPE="IGNORED"
             
-            # WIP Content: WIP or ARCHIVE/WIP
-            elif [[ "$DIRPATH" == "WIP" ]] || [[ "$DIRPATH" == "ARCHIVE/WIP" ]]; then
+            # WIP Content: WIP or ARCHIVE/WIP (case-insensitive)
+            elif [[ "$DIRPATH_UPPER" == "WIP" ]] || [[ "$DIRPATH_UPPER" == "ARCHIVE/WIP" ]]; then
               
               # CHAPTER Pattern
               if [[ "$FILENAME" =~ ^chapter-C[1-7]-[a-z0-9]+(-[a-z0-9]+)*-(dev|review|final|approved|deprecated)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.(tex|pdf)$ ]]; then
@@ -145,6 +132,7 @@ jobs:
             else
               echo "  ❌ Invalid directory"
               echo "     Must be in: WIP/, WIP/GUIDE/, ARCHIVE/WIP/, ARCHIVE/GUIDE/, or ARCHIVE/GUIDE-STRUCTURE/"
+              echo "     (case-insensitive)"
               TYPE="INVALID_DIR"
             fi
             
