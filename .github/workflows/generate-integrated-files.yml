@@ -3,9 +3,9 @@ name: Generate Integrated Files Report
 on:
   push:
     paths:
-      - 'WIP/**/*.tex'
-      - 'ARCHIVE/**/*.tex'
-      - 'DOCS/**/*.md'
+      - 'wip/**/*.tex'
+      - 'archive/**/*.tex'
+      - 'docs/**/*.md'
       - 'guide.tex'
   workflow_dispatch:
 

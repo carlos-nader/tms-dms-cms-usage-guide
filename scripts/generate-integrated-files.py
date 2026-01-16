@@ -18,11 +18,11 @@ TIMEZONE = "UTC-3"
 OUTPUT_MD = "INTEGRATED-FILES.md"
 OUTPUT_JSON = "INTEGRATED-FILES.json"
 
-# Tracked paths
+# Tracked paths (LOWERCASE)
 TRACKED_PATHS = {
-    "WIP/": {"ext": ".tex", "subfolders": ["WIP/", "WIP/GUIDE/"]},
-    "ARCHIVE/": {"ext": ".tex", "subfolders": ["ARCHIVE/", "ARCHIVE/GUIDE/", "ARCHIVE/WIP/"]},
-    "DOCS/": {"ext": ".md", "subfolders": ["DOCS/"]},
+    "wip/": {"ext": ".tex", "subfolders": ["wip/", "wip/GUIDE/"]},
+    "archive/": {"ext": ".tex", "subfolders": ["archive/", "archive/GUIDE/", "archive/WIP/"]},
+    "docs/": {"ext": ".md", "subfolders": ["docs/"]},
     "guide.tex": {"ext": ".tex", "subfolders": None},
 }
 
@@ -40,14 +40,16 @@ def get_repo_info():
     """Get repository metadata"""
     repo_name = run_git_command("git config --get remote.origin.url").split("/")[-1].replace(".git", "")
     repo_url = run_git_command("git config --get remote.origin.url").replace(".git", "")
-    created_date = run_git_command("git log --follow --format=%ai -- . | tail -1").split()[0]
+    created_date = run_git_command("git log --follow --format=%ai -- . | tail -1").split()[0] if run_git_command("git log --follow --format=%ai -- . | tail -1") else "Unknown"
     last_push = datetime.now().strftime("%Y-%m-%d %H:%M:%S") + f" {TIMEZONE}"
     total_commits = run_git_command("git rev-list --count HEAD")
     releases = run_git_command("git tag -l 'v[0-9]*.[0-9]*.[0-9]*.[0-9]*' --sort=-version:refname | head -5")
     
     # Get languages (simple heuristic)
-    tex_count = len(list(REPO_ROOT.glob("**/*.tex")))
-    md_count = len(list(REPO_ROOT.glob("**/*.md")))
+    tex_files = list(REPO_ROOT.glob("**/*.tex"))
+    md_files = list(REPO_ROOT.glob("**/*.md"))
+    tex_count = len(tex_files)
+    md_count = len(md_files)
     total_files = tex_count + md_count
     tex_pct = int((tex_count / total_files * 100)) if total_files > 0 else 0
     md_pct = int((md_count / total_files * 100)) if total_files > 0 else 0
@@ -62,44 +64,62 @@ def get_repo_info():
         "languages": f"LaTeX: {tex_pct}%, Markdown: {md_pct}%"
     }
 
+def get_file_status(file_path):
+    """Determine file status via git"""
+    try:
+        # Check if file is in index
+        in_index = run_git_command(f"git ls-files '{file_path}'")
+        if not in_index:
+            return "untracked"
+        
+        # Check if modified
+        diff = run_git_command(f"git diff --name-only '{file_path}'")
+        if diff:
+            return "modified"
+        
+        # Check if staged
+        staged = run_git_command(f"git diff --cached --name-only '{file_path}'")
+        if staged:
+            return "staged"
+        
+        return "tracked"
+    except:
+        return "unknown"
+
 def get_tracked_files():
     """Get all tracked files with status and metadata"""
     tracked_files = {}
+    section_num = 1
     
     for base_path, config in TRACKED_PATHS.items():
         if config["subfolders"]:
-            # Multi-folder tracking (WIP, ARCHIVE)
+            # Multi-folder tracking (wip, archive)
             for subfolder in config["subfolders"]:
                 folder_path = REPO_ROOT / subfolder
-                if folder_path.exists():
+                if folder_path.exists() and folder_path.is_dir():
                     files_list = []
-                    for file in folder_path.rglob(f"*{config['ext']}"):
-                        if file.is_file():
-                            file_rel = file.relative_to(REPO_ROOT)
-                            stat = file.stat()
-                            mod_time = datetime.fromtimestamp(stat.st_mtime).strftime("%Y-%m-%d %H:%M:%S")
-                            size = stat.st_size
-                            
-                            # Determine status via git
-                            status = run_git_command(f"git diff-index --name-status HEAD -- '{file_rel}'")
-                            if not status:
-                                status = "tracked"  # File in HEAD
-                            elif "M" in status:
-                                status = "modified"
-                            elif "A" in status:
-                                status = "added"
-                            elif "D" in status:
-                                status = "deleted"
-                            
-                            files_list.append({
-                                "path": str(file_rel),
-                                "status": status,
-                                "last_modified": mod_time,
-                                "size": f"{size} bytes"
-                            })
+                    try:
+                        for file in folder_path.rglob(f"*{config['ext']}"):
+                            if file.is_file():
+                                file_rel = file.relative_to(REPO_ROOT)
+                                stat = file.stat()
+                                mod_time = datetime.fromtimestamp(stat.st_mtime).strftime("%Y-%m-%d %H:%M:%S")
+                                size = stat.st_size
+                                status = get_file_status(str(file_rel))
+                                
+                                files_list.append({
+                                    "path": str(file_rel),
+                                    "status": status,
+                                    "last_modified": mod_time,
+                                    "size": f"{size} bytes"
+                                })
+                    except Exception as e:
+                        print(f"Warning: Error scanning {subfolder}: {e}")
                     
                     if files_list:
-                        tracked_files[subfolder] = files_list
+                        section_key = f"{section_num}. {subfolder}"
+                        tracked_files[section_key] = files_list
+                        section_num += 1
         else:
             # Single file (guide.tex)
             file_path = REPO_ROOT / base_path
@@ -107,14 +127,16 @@ def get_tracked_files():
                 stat = file_path.stat()
                 mod_time = datetime.fromtimestamp(stat.st_mtime).strftime("%Y-%m-%d %H:%M:%S")
                 size = stat.st_size
-                status = "tracked"
+                status = get_file_status(base_path)
                 
-                tracked_files[base_path] = [{
+                section_key = f"{section_num}. {base_path} (Repository Root)"
+                tracked_files[section_key] = [{
                     "path": base_path,
                     "status": status,
                     "last_modified": mod_time,
                     "size": f"{size} bytes"
                 }]
+                section_num += 1
     
     return tracked_files
 
@@ -129,19 +151,18 @@ def get_recent_commits(limit=10):
             parts = line.split("|")
             if len(parts) >= 4:
                 commit_hash = parts[0]
-                timestamp = parts[1].split()[0]  # YYYY-MM-DD
+                timestamp = parts[1]
                 author = parts[2]
-                subject = parts[3]
                 
-                # Get modified tracked files
+                # Get modified files
                 modified = run_git_command(f"git diff-tree --no-commit-id --name-only -r {commit_hash}")
                 
                 commits.append({
-                    "hash": commit_hash,
-                    "date": timestamp,
-                    "time": parts[1].split()[1],
+                    "hash": commit_hash[:7],
+                    "date": timestamp.split()[0],
+                    "time": timestamp.split()[1],
                     "author": author,
-                    "modified_files": modified.split("\n")[:5] if modified else []
+                    "modified_files": [f for f in modified.split("\n") if f][:5]
                 })
     
     return commits
@@ -156,17 +177,17 @@ def get_version_tags():
     for tag in output.split("\n"):
         if tag and re.match(pattern, tag):
             commit_hash = run_git_command(f"git rev-list -n 1 {tag}")
-            tag_date = run_git_command(f"git log -1 --format=%ai {tag}").split()[0]
+            tag_date = run_git_command(f"git log -1 --format=%ai {tag}").split()[0] if run_git_command(f"git log -1 --format=%ai {tag}") else "Unknown"
             tag_msg = run_git_command(f"git tag -l {tag} -n1").split(" ", 1)[-1] if run_git_command(f"git tag -l {tag} -n1") else ""
             
             tags.append({
                 "tag": tag,
-                "commit": commit_hash[:7],
+                "commit": commit_hash[:7] if commit_hash else "Unknown",
                 "date": tag_date,
-                "message": tag_msg
+                "message": tag_msg[:60] if tag_msg else "-"
             })
     
-    return tags[:10]  # Limit to 10 most recent
+    return tags[:10]
 
 def get_github_issues():
     """Get GitHub issues using REST API"""
@@ -188,28 +209,20 @@ def get_github_issues():
         # Open issues
         open_url = f"https://api.github.com/repos/{repo}/issues?state=open&per_page=10"
         req = urllib.request.Request(open_url, headers=headers)
-        with urllib.request.urlopen(req) as response:
+        with urllib.request.urlopen(req, timeout=10) as response:
             open_issues = json_lib.loads(response.read().decode())
         
         # Recently closed issues (last 30 days)
         thirty_days_ago = (datetime.now() - timedelta(days=30)).isoformat()
         closed_url = f"https://api.github.com/repos/{repo}/issues?state=closed&since={thirty_days_ago}&per_page=10&sort=updated&direction=desc"
         req = urllib.request.Request(closed_url, headers=headers)
-        with urllib.request.urlopen(req) as response:
+        with urllib.request.urlopen(req, timeout=10) as response:
             closed_issues = json_lib.loads(response.read().decode())
         
         return {"open": open_issues, "closed": closed_issues}
     except Exception as e:
         print(f"Warning: Could not fetch issues: {e}")
         return {"open": [], "closed": []}
-
-def format_markdown_table(headers, rows):
-    """Format data as Markdown table"""
-    md = f"| {' | '.join(headers)} |\n"
-    md += f"|{' --- |' * len(headers)}\n"
-    for row in rows:
-        md += f"| {' | '.join(str(v) for v in row)} |\n"
-    return md
 
 def generate_markdown():
     """Generate INTEGRATED-FILES.md"""
@@ -247,8 +260,9 @@ def generate_markdown():
 """
     
     # Add tracked files by section
-    for folder, files in tracked_files.items():
-        md += f"### 2.{list(tracked_files.keys()).index(folder) + 1} {folder}\n\n"
+    idx = 1
+    for section_name, files in tracked_files.items():
+        md += f"### {section_name}\n\n"
         md += "| File Path | Status | Last Modified | Size |\n"
         md += "|-----------|--------|---------------|------|\n"
         for f in files:
@@ -268,8 +282,7 @@ def generate_markdown():
     md += "| Tag | Commit | Date | Message |\n"
     md += "|-----|--------|------|----------|\n"
     for tag in tags:
-        msg = tag['message'][:50] if tag['message'] else "-"
-        md += f"| {tag['tag']} | {tag['commit']} | {tag['date']} | {msg} |\n"
+        md += f"| {tag['tag']} | {tag['commit']} | {tag['date']} | {tag['message']} |\n"
     
     md += "\n---\n\n## 5. GITHUB ISSUES\n\n"
     md += "### 5.1 Open Issues\n\n"
@@ -284,7 +297,8 @@ def generate_markdown():
     md += "|---|-------|---------|--------|--------|\n"
     for issue in issues.get("closed", [])[:10]:
         labels = ", ".join([l["name"] for l in issue.get("labels", [])]) or "-"
-        md += f"| #{issue['number']} | {issue['title'][:50]} | {issue['created_at'][:10]} | {issue['closed_at'][:10]} | {labels} |\n"
+        closed_date = issue.get('closed_at', 'Unknown')[:10] if issue.get('closed_at') else 'Unknown'
+        md += f"| #{issue['number']} | {issue['title'][:50]} | {issue['created_at'][:10]} | {closed_date} | {labels} |\n"
     
     md += "\n---\n\n**End of Report**\n"
     
