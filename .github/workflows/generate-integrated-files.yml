@@ -51,14 +51,16 @@ jobs:
           echo "=== Checking git status ==="
           git status
           
+          # Always add and commit - no need for diff check since files are generated
           echo ""
-          echo "=== Checking git diff ==="
-          git diff --stat INTEGRATED-FILES.md INTEGRATED-FILES.json || echo "No changes detected"
+          echo "=== Adding generated files ==="
+          git add INTEGRATED-FILES.md INTEGRATED-FILES.json
           
-          if git diff --quiet INTEGRATED-FILES.md INTEGRATED-FILES.json; then
-            echo "No changes to report files"
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
           else
-            git add INTEGRATED-FILES.md INTEGRATED-FILES.json
+            echo "Committing changes..."
             git commit -m "chore: update integrated files report [skip ci]"
             git push
+            echo "✓ Changes pushed successfully"
           fi
