@@ -28,18 +28,32 @@ jobs:
         with:
           python-version: '3.11'
       
-      - name: Run report generator
+      - name: Run report generator (v3 with DEBUG)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
-          chmod +x scripts/generate-integrated-files.py
-          python3 scripts/generate-integrated-files.py
+          python3 scripts/generate-integrated-files.py 2>&1
+      
+      - name: Check generated files
+        run: |
+          echo "=== Checking generated files ==="
+          ls -lah INTEGRATED-FILES.* 2>&1 || echo "Files not found"
+          echo ""
+          echo "=== INTEGRATED-FILES.md (first 50 lines) ==="
+          head -n 50 INTEGRATED-FILES.md 2>&1 || echo "File not found"
       
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          echo "=== Checking git status ==="
+          git status
+          
+          echo ""
+          echo "=== Checking git diff ==="
+          git diff --stat INTEGRATED-FILES.md INTEGRATED-FILES.json || echo "No changes detected"
           
           if git diff --quiet INTEGRATED-FILES.md INTEGRATED-FILES.json; then
             echo "No changes to report files"
