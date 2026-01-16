@@ -5,6 +5,8 @@ on:
     branches:
       - main
       - develop
+  workflow_dispatch:
+    description: 'Manually validate all WIP/ARCHIVE files'
 
 jobs:
   validate-filenames:
@@ -17,18 +19,38 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Debug - List directory structure
+        run: |
+          echo "=================================="
+          echo "DEBUG: DIRECTORY STRUCTURE"
+          echo "=================================="
+          echo "Looking for WIP and ARCHIVE directories..."
+          find . -type d \( -name "WIP" -o -name "ARCHIVE" \) 2>/dev/null | head -20
+          echo ""
+          echo "Files in WIP/:"
+          find ./WIP -type f 2>/dev/null | head -20 || echo "WIP/ does not exist or is empty"
+          echo ""
+          echo "Files in ARCHIVE/:"
+          find ./ARCHIVE -type f 2>/dev/null | head -20 || echo "ARCHIVE/ does not exist or is empty"
+
       - name: Validate all WIP and ARCHIVE files
         run: |
           set +e
           VIOLATIONS=0
           
+          echo ""
           echo "=================================="
           echo "🔍 VALIDATING FILE NAMING CONVENTIONS"
           echo "=================================="
           echo ""
           
-          # Get list of all WIP and ARCHIVE files (both .tex and .pdf)
-          ALL_FILES=$(find . -type f \( -path "./WIP/*" -o -path "./ARCHIVE/*" \) ! -path "./.git/*" ! -path "./.*" | sed 's|^\./||' | sort)
+          # Get list of all WIP and ARCHIVE files
+          # Using find with proper path matching
+          ALL_FILES=$(find . \( -path "*/WIP/*" -o -path "*/ARCHIVE/*" \) -type f ! -path "./.git/*" ! -path "./.*" 2>/dev/null | sed 's|^\./||' | sort)
+          
+          FILE_COUNT=$(echo "$ALL_FILES" | grep -c '^' || echo 0)
+          echo "DEBUG: Total files found: $FILE_COUNT"
+          echo ""
           
           if [ -z "$ALL_FILES" ]; then
             echo "ℹ️  No WIP or ARCHIVE files found."
