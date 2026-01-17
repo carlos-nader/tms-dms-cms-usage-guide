@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown: Rich Preview</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        // Initialize highlight.js
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+        });
+
+        // Copy to clipboard function
+        function copyToClipboard(button) {
+            const codeBlock = button.closest('.code-block');
+            const code = codeBlock.querySelector('code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.backgroundColor = '#4CAF50';
+                button.style.color = 'white';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.backgroundColor = '';
+                    button.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+    <style>
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+        /* Twemoji emoji image style for inline, text-sized emojis */
+        img.emoji {
+            height: 1em;
+            width: 1em;
+            margin: 0 .05em 0 .1em;
+            vertical-align: -0.1em;
+            display: inline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            line-height: 1.25;
+        }
+        
+        h1 { 
+            font-size: 2em; 
+            border-bottom: 1px solid #eaecef; 
+            padding-bottom: 0.3em;
+            margin-top: 0.67em 0;
+        }
+        
+        h2 { 
+            font-size: 1.5em; 
+            border-bottom: 1px solid #eaecef; 
+            padding-bottom: 0.3em;
+            margin-top: 1.5em;
+        }
+        
+        h3 { 
+            font-size: 1.25em; 
+            margin-top: 1.25em;
+        }
+        
+        h4 { 
+            font-size: 1em; 
+            margin-top: 1em;
+        }
+        
+        a { 
+            color: #0366d6; 
+            text-decoration: none; 
+        }
+        
+        a:hover { 
+            text-decoration: underline; 
+        }
+        
+        strong { 
+            font-weight: 600; 
+        }
+        
+        pre {
+            background-color:rgb(9, 7, 10);
+            overflow: auto;
+            margin: 0;
+        }
+        
+        code {
+            font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+            padding: 0.2em 0.4em;
+            font-size: 90%;
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .code-block {
+            position: relative;
+            background-color:rgb(9, 7, 10);
+            border-radius: 6px;
+            margin: 1em 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 10px;
+            background-color:rgb(32, 30, 43);
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+
+        .language {
+            color: #efe9e9;
+            font-size: 0.9em;
+            font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+        }
+
+        .copy-button {
+            padding: 4px 8px;
+            font-size: 0.9em;
+            color: #efe9e9;
+            background-color: transparent;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-button:hover {
+            background-color: #e9e9e9;
+            border-color: #ccc;
+        }
+        
+        blockquote {
+            margin: 0;
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+        }
+        
+        ul, ol {
+            padding-left: 2em;
+        }
+        
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            overflow: auto;
+            margin-bottom: 16px;
+        }
+        
+        table th {
+            font-weight: 600;
+        }
+        
+        table th, table td {
+            padding: 6px 13px;
+            border: 1px solid #dfe2e5;
+        }
+        
+        table tr {
+            background-color: #fff;
+            border-top: 1px solid #c6cbd1;
+        }
+        
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        
+        img {
+            max-width: 100%;
+            box-sizing: content-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>Falcon BMS TMS/DMS/CMS Guide — Chapter 4 (DMS) Unified Blueprint v1.1</h1>
+<h2>CORRECTED &amp; REORGANIZED</h2>
+<p><strong>Date:</strong> 15 January 2026, ~02:06 -03<br><strong>Status:</strong> Unified, updated blueprint (supersedes <code>Chapter-4-DMS-Complete-Blueprint.md</code> and <code>blueprint-C4-incremental.md</code>)<br><strong>Version:</strong> 1.1 (CORRECTED 2026-01-16)<br><strong>Based on:</strong> Dash-34 (§2.1.1.2.3, §2.1.5, §2.1.6, §2.1.7.5.x, §2.5.6.x), C4‑S1 final, C4‑S2 DMS Up final, deprecated C4‑S2 (Up/Down), deprecated C4‑S3 (format cycling)</p>
+<hr>
+<h2>0. Purpose of This Blueprint</h2>
+<p>This document is the <strong>single, authoritative blueprint</strong> for <strong>Chapter 4 (DMS)</strong> of the Falcon BMS TMS/DMS/CMS Usage Guide. It:</p>
+<ol>
+<li>Defines the <strong>final structure</strong> of Chapter 4 (sections and subsections).  </li>
+<li>Documents the <strong>current implementation status</strong> of each section (final / review / TODO).  </li>
+<li>Consolidates content decisions from the previous <strong>full blueprint</strong> and the <strong>incremental blueprint</strong>, removing contradictions.  </li>
+<li>Guides all future work on DMS (including new WIP files and integration into <code>guide.tex</code>).</li>
+</ol>
+<p>This blueprint is written so that a future AI session can join the project mid‑stream and immediately know:</p>
+<ul>
+<li>What Chapter 4 must contain.  </li>
+<li>What already exists in final/review WIP files.  </li>
+<li>What remains to be written or refactored.</li>
+</ul>
+<hr>
+<h2>1. Final Chapter 4 Structure — Complete Hierarchy</h2>
+<h3>1.1 Chapter 4 Organization Overview</h3>
+<p>Chapter 4 is organized in <strong>two main subsections</strong> (4.1 and 4.2), followed by five <strong>direction-based sections</strong> (4.2 through 4.5):</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">plaintext</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-plaintext">4 DMS — Display Management Switch
+│
+├── 4.1 Concept and Sensor of Interest (SOI)
+│   ├── 4.1.1 SOI Definition and Scope Across Displays
+│   ├── 4.1.2 Role of the DMS in SOI Selection
+│   └── 4.1.3 HUD as SOI in A-A and HMCS Capabilities
+│
+├── 4.2 DMS Up: Designate HUD as SOI
+│   ├── [Intro: Function and visual indication — no subsubsection]
+│   ├── 4.2.1 DMS Up Effectiveness in All Master Modes
+│   ├── 4.2.2 DMS Up Usage Table
+│   └── 4.2.3 DMS Up Exception States (SP PRE, MARK/OFLY)
+│
+├── 4.3 DMS Down: Toggle SOI Between Displays
+│   ├── [Intro: Core toggle logic HUD / Right MFD / Left MFD — no subsubsection]
+│   ├── 4.3.1 DMS Down Effectiveness in All Master Modes
+│   ├── 4.3.2 DMS Down Usage Table
+│   └── 4.3.3 DMS Down Exception States
+│
+├── 4.4 DMS Left / Right: Cycle MFD Formats
+│   ├── 4.4.1 Format Cycling Mechanics
+│   ├── 4.4.2 Available Formats by Master Mode
+│   ├── 4.4.3 Left/Right and SOI Independence
+│   └── 4.4.4 DMS Left/Right Usage Table
+│
+└── 4.5 Master Mode Behavior — DMS Summary
+    ├── 4.5.1 Directional DMS Roles (Up / Down / Left / Right)
+    └── 4.5.2 Consolidated DMS × Master Mode Table</code></pre>
+                </div>
+            <h3>1.2 Key Architectural Principles</h3>
+<ul>
+<li><p><strong>No separate block/variant section</strong> — Block/variant identity is addressed once in 4.1; TMS/DMS integration is handled briefly inside each relevant subsection and in Chapter 3 (TMS) where weapon‑specific flows belong.</p>
+</li>
+<li><p><strong>Direction-centric organization</strong> — Sections 4.2–4.5 are organized by physical DMS direction (Up, Down, Left/Right), not by master mode. Master modes appear inside each directional section as constraints and examples.</p>
+</li>
+<li><p><strong>Orthogonal control axes:</strong></p>
+<ul>
+<li><strong>Vertical (Up / Down):</strong> Selects which display is SOI.</li>
+<li><strong>Horizontal (Left / Right):</strong> Cycles format pages on MFDs, independent of SOI.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>2. Section 4.1 — Concept and Sensor of Interest (SOI)</h2>
+<p><strong>Current implementation:</strong> <code>section-C4-S1-concept-soi-approved-2026-01-15.tex</code> (integration into <code>guide.tex</code>).</p>
+<p><strong>Status:</strong></p>
+<ul>
+<li>✅ Integrated into <code>guide.tex</code></li>
+</ul>
+<h3>2.1 Structure in Document Terms</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">plaintext</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-plaintext">4.1 Concept and Sensor of Interest (SOI)
+  4.1.1 SOI Definition and Scope Across Displays
+  4.1.2 Role of the DMS in SOI Selection
+  4.1.3 HUD as SOI in A-A and HMCS Capabilities</code></pre>
+                </div>
+            <h3>2.2 Section 4.1.1 — SOI Definition and Scope Across Displays</h3>
+<p><strong>Content:</strong></p>
+<ul>
+<li>Defines Sensor of Interest (SOI) as the <strong>single display/sensor that receives SOI‑dependent HOTAS inputs</strong> (cursor slew, TMS actions, etc.).</li>
+<li>Lists <strong>valid SOI displays:</strong><ul>
+<li>FCR, TGP, HSD, HAD, WPN, HUD.</li>
+</ul>
+</li>
+<li>Lists <strong>non‑SOI formats:</strong> SMS, DTE, TEST, blank/inactive MFDS.  </li>
+<li>Describes <strong>visual cues:</strong><ul>
+<li>HUD: asterisk (<code>*</code>) in upper left corner.  </li>
+<li>MFD: border outline; <code>NOT SOI</code> text when not selected.</li>
+</ul>
+</li>
+<li>Includes <strong>Table 4.1.x – Valid SOI Displays by Master Mode</strong> (<code>\label{tab:C4-S1-SOI-by-mode}</code>):<ul>
+<li>NAV: HUD, FCR, TGP, HSD, WPN, HAD.  </li>
+<li>A‑A: FCR, HSD, TGP (<strong>HUD cannot be SOI</strong>).  </li>
+<li>A‑G (PRE): HUD, FCR, TGP, WPN, HAD, HSD.  </li>
+<li>A‑G (VIS): HUD, FCR, TGP, WPN (visual‑driven context).  </li>
+<li>DGFT: FCR, HSD, TGP (<strong>HUD cannot be SOI</strong>).  </li>
+<li>MSL OVRD: FCR, HSD, TGP (<strong>HUD cannot be SOI</strong>).</li>
+</ul>
+</li>
+</ul>
+<h3>2.3 Section 4.1.2 — Role of the DMS in SOI Selection</h3>
+<p><strong>Content:</strong></p>
+<ul>
+<li>Explains the <strong>orthogonal axes</strong> of DMS:<ul>
+<li><strong>Vertical (Up / Down):</strong> chooses <strong>which display</strong> is SOI.  </li>
+<li><strong>Horizontal (Left / Right):</strong> cycles <strong>format pages</strong> on each MFD, independent of SOI.</li>
+</ul>
+</li>
+<li>Summarises baseline actions:<ul>
+<li>DMS Up → attempts to designate HUD/HMCS as SOI (when permitted).  </li>
+<li>DMS Down → toggles SOI between HUD and MFDs.  </li>
+<li>DMS Left/Right → change formats on left/right MFD without changing SOI.</li>
+</ul>
+</li>
+</ul>
+<h3>2.4 Section 4.1.3 — HUD as SOI in A‑A and HMCS Capabilities</h3>
+<p><strong>Content:</strong></p>
+<ul>
+<li>Clarifies that <strong>HUD cannot be SOI in A‑A/DGFT/MSL OVRD</strong> — this is an <strong>SOI routing restriction</strong>, not a loss of HUD/HMCS capability.</li>
+<li>Explains how <strong>HMCS</strong> provides off‑boresight cueing in A‑A <strong>independently of SOI:</strong><ul>
+<li>AIM‑9 boresight/slave to HMCS LOS.  </li>
+<li>FCR ACM BORE slaved to HMCS LOS when conditions allow.</li>
+</ul>
+</li>
+<li>Links this architecture to DMS:<ul>
+<li>DMS Up is <strong>ineffective</strong> in A‑A because HUD is not a valid SOI candidate.  </li>
+<li>SOI must be managed via DMS Down (MFD↔MFD) in air‑to‑air‑driven modes.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>3. Section 4.2 — DMS Up: Designate HUD as SOI</h2>
+<p><strong>Current implementation:</strong> <code>section-C4-S2-dms-up-approved-2026-01-15.tex</code> (integrated into <code>guide.tex</code>).</p>
+<p><strong>Status:</strong></p>
+<ul>
+<li>✅ Integrated into <code>guide.tex</code></li>
+</ul>
+<h3>3.1 Structure in Document Terms</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">plaintext</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-plaintext">4.2 DMS Up: Designate HUD as SOI
+  [Intro: Function and visual indication — no subsubsection]
+  4.2.1 DMS Up Effectiveness in All Master Modes
+  4.2.2 DMS Up Usage Table
+  4.2.3 DMS Up Exception States (SP PRE, MARK/OFLY)</code></pre>
+                </div>
+            <h3>3.2 Section 4.2 Intro (unnumbered) — Function and Visual Indication</h3>
+<p><strong>Content (one or two paragraphs, no <code>\subsubsection</code> heading):</strong></p>
+<ul>
+<li>DMS Up attempts to designate <strong>HUD (and HMCS, as an extension)</strong> as SOI.  </li>
+<li>When successful, <strong>HUD SOI asterisk</strong> appears, MFD SOI border disappears, as detailed in Section 4.1.1.  </li>
+<li>All SOI‑dependent HOTAS inputs (CURSOR/ENABLE, TMS) now act on HUD/HMCS symbology, not on any MFD format.</li>
+</ul>
+<h3>3.3 Section 4.2.1 — DMS Up Effectiveness in All Master Modes</h3>
+<p><strong>Content:</strong></p>
+<ul>
+<li>States that <strong>DMS Up is only effective when HUD is a valid SOI candidate</strong>, as per Table 4.1.x (Section 4.1.1).  </li>
+<li>Focuses on <strong>contexts where HUD SOI is operationally sensitive</strong> vs contexts where it is just a convenience.</li>
+</ul>
+<p><strong>Sub‑structure (using <code>\paragraph*</code> and <code>\subparagraph*</code>):</strong></p>
+<p><strong>Master Modes Where DMS Up is Effective (HUD as SOI Permitted):</strong></p>
+<ul>
+<li><p><strong>NAV (Navigation)</strong></p>
+<ul>
+<li>HUD is primary reference for flight path, steering and basic SA.  </li>
+<li>Short DMS Up → HUD becomes SOI.  </li>
+<li>With HUD/HMCS SOI:<ul>
+<li>CURSOR/ENABLE slews HUD/HMCS cursor/designator.  </li>
+<li>In HUD/HMCS MARK, TMS Up stabilises LOS and stores markpoints.  </li>
+<li>MFDs provide background navigation/systems info.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>A‑G Visual Modes (VIS) — CCIP, DTOS, AGM‑65 VIS, IAM‑VIS</strong></p>
+<ul>
+<li>Visual deliveries are HUD/HMCS‑centric; HUD SOI is often a <strong>prerequisite</strong> for correct TMS/CURSOR behaviour.  </li>
+<li>DMS Up is <strong>operationally critical</strong> whenever SOI has migrated to an MFD (TGP, WPN, etc.).</li>
+</ul>
+<p>Examples (bullets):</p>
+<ul>
+<li><p><strong>CCIP visual deliveries:</strong></p>
+<ul>
+<li>HUD pipper = primary aiming reference.  </li>
+<li>CURSOR/ENABLE (HUD SOI) can refine visual aimpoint when allowed.</li>
+</ul>
+</li>
+<li><p><strong>AGM‑65 VIS:</strong></p>
+<ul>
+<li>HUD TD box slaves Maverick seeker.  </li>
+<li>With HUD SOI, CURSOR/ENABLE slews TD box; TMS Up commands seeker lock.  </li>
+<li>If SOI remains on WPN MFD, TMS acts on WPN page and visual HUD control fails until DMS Up.</li>
+</ul>
+</li>
+<li><p><strong>IAM‑VIS (JDAM/JSOW visual):</strong></p>
+<ul>
+<li>HUD TD box + IAM solution cues.  </li>
+<li>HUD SOI + CURSOR/ENABLE refine TD; TMS Up designates/stabilizes.  </li>
+<li>If SOI is on an MFD, TMS does not update HUD until DMS Up.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>A‑G non‑VIS (CCRP, preplanned IAM)</strong></p>
+<ul>
+<li>DMS Up functions (HUD can be SOI), but HUD SOI is <strong>convenience, not requirement:</strong><ul>
+<li>Preplanned targeting, sensor SPI, sighting‑point control can be managed 100% via FCR/TGP/HSD SOI.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Master Modes Where DMS Up is Ineffective (HUD as SOI Prohibited):</strong></p>
+<ul>
+<li><strong>A‑A, DGFT, MSL OVRD</strong><ul>
+<li>In air-to-air employment modes, HUD is not a valid SOI candidate.  </li>
+<li>Pressing DMS Up <strong>does not alter</strong> SOI — remains on FCR, HSD or TGP.  </li>
+<li>Architectural rationale and HMCS role detailed in Section 4.1.3.</li>
+</ul>
+</li>
+</ul>
+<h3>3.4 Section 4.2.2 — DMS Up Usage Table</h3>
+<p><strong>Content:</strong></p>
+<ul>
+<li><p><code>\subsubsection{DMS Up Usage Table}</code> introduces a <code>hotastable</code> that summarises DMS Up in three main rows:</p>
+<ul>
+<li><p><strong>NAV</strong> – Up / Short / Designate HUD as SOI  </p>
+<ul>
+<li>Effect / Nuance: DMS Up fully effective; HUD/HMCS SOI, MARK, CURSOR/ENABLE and TMS Up; MFDs for background.  </li>
+<li>Dash‑34 refs: 2.1.1.2.3, 2.1.7.5.1, 2.1.7.5.4, 2.5.6.1.  </li>
+<li>Train: <code>---</code> (no specific NAV+DMS Up training mission).</li>
+</ul>
+</li>
+<li><p><strong>A‑A</strong> – Up / Short / Designate HUD as SOI  </p>
+<ul>
+<li>Effect / Nuance: DMS Up ineffective; architecture restricts SOI to FCR/HSD/TGP; HUD always passive as display.  </li>
+<li>Dash‑34 refs: 2.1.1.2.3.  </li>
+<li>Train: <code>---</code>.</li>
+</ul>
+</li>
+<li><p><strong>A‑G</strong> – Up / Short / Designate HUD as SOI  </p>
+<ul>
+<li>Effect / Nuance: DMS Up effective; HUD asterisk; in VIS, HUD is critical interface for CURSOR/TMS; loss of HUD SOI implies loss of visual control until new DMS Up.  </li>
+<li>Dash‑34 refs: 2.1.1.2.3, 4.2.2.1, 4.2.2.1.1 (AGM‑65 VIS/IAM‑VIS).  </li>
+<li>Train: <code>\trnref{10 (GP Bombs)}, \trnref{11 (LGB)}, \trnref{13 (Maverick)}, \trnref{14 (Maverick Adv)}, \trnref{15 (IAM)}</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>New page (<code>\newpage</code>) before table to ensure fresh page start.</p>
+</li>
+</ul>
+<h3>3.5 Section 4.2.3 — DMS Up Exception States</h3>
+<p><strong>Content (bullets):</strong></p>
+<ul>
+<li><p><strong>Snowplow (SP) PRE state (unstabilised):</strong></p>
+<ul>
+<li>When entering SP and before stabilizing with TMS Up, FCR/TGP show <code>NOT SOI</code>.  </li>
+<li>SOI is effectively &quot;none&quot;; DMS Up/Down have no effect until stabilized.  </li>
+<li>After stabilization, SOI returns to previous state and DMS Up becomes active again.</li>
+</ul>
+</li>
+<li><p><strong>MARK/OFLY Submode:</strong></p>
+<ul>
+<li>In MARK/OFLY, SOI cannot be designated (Dash‑34 §2.1.1.2.3).  </li>
+<li>DMS inputs that would normally change SOI have no effect.  </li>
+<li>Rare exception in normal operations.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>4. Section 4.3 — DMS Down: Toggle SOI Between Displays</h2>
+<p><strong>Current implementation:</strong></p>
+<ul>
+<li>No active WIP yet.  </li>
+<li>Deprecated content exists in <code>section-C4-S2-dms-up-down-deprecated-2026-01-14.tex</code> (archived for audit).</li>
+</ul>
+<p><strong>Status alvo:</strong></p>
+<ul>
+<li>Create new WIP <code>section-C4-S3-dms-down-review-2026-01-xx.tex</code>.  </li>
+<li>Reuse valid text from deprecated file, adjusting to structure below.  </li>
+<li>Remove redundancies with 4.1.</li>
+</ul>
+<h3>4.1 Structure (final)</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">plaintext</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-plaintext">4.3 DMS Down: Toggle SOI Between Displays
+  [Intro: Core toggle logic HUD / Right MFD / Left MFD — no subsubsection]
+  4.3.1 DMS Down Effectiveness in All Master Modes
+  4.3.2 DMS Down Usage Table
+  4.3.3 DMS Down Exception States</code></pre>
+                </div>
+            <h3>4.2 Section 4.3 Intro (unnumbered) — Core Toggle Logic</h3>
+<p><strong>Content (in running text, no heading):</strong></p>
+<ul>
+<li><p>DMS Down alters <strong>who is the SOI</strong>, alternating between:</p>
+<ul>
+<li>HUD,  </li>
+<li>MFD right,  </li>
+<li>MFD left.</li>
+</ul>
+</li>
+<li><p>In modes where HUD is valid SOI (NAV, A‑G), typical cycle:<br>HUD → Right MFD → Left MFD → HUD.  </p>
+</li>
+<li><p>In A‑A/DGFT/MSL OVRD, HUD is outside cycle; DMS Down alternates MFDs only.</p>
+</li>
+<li><p><strong>Clear phrase to avoid confusion with DMS Left/Right:</strong></p>
+<blockquote>
+<p>&quot;In this section, &#39;left MFD&#39; and &#39;right MFD&#39; refer only to which display currently holds SOI when DMS Down is pressed. Format cycling on each MFD is described separately in Section 4.4 (DMS Left/Right).&quot;</p>
+</blockquote>
+</li>
+</ul>
+<h3>4.3 Section 4.3.1 — DMS Down Effectiveness in All Master Modes</h3>
+<p><strong>Content:</strong></p>
+<ul>
+<li>Similar in spirit to Section 4.2.1, but for DMS Down:<ul>
+<li>Describe for each mode group how SOI alternates when DMS Down is pressed.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Target content:</strong></p>
+<ul>
+<li><p><strong>NAV</strong></p>
+<ul>
+<li>HUD is in cycle.  </li>
+<li>Typical alternation pattern: HUD → MFD right → MFD left → HUD.  </li>
+<li>DMS Down is primary way to exit HUD SOI and alternate SOI between MFDs.</li>
+</ul>
+</li>
+<li><p><strong>A‑G PRE/VIS</strong></p>
+<ul>
+<li>Similar to NAV: HUD in cycle, but emphasize:<ul>
+<li>Rapidly alternate from HUD (visual) to TGP, WPN or HAD as SOI on one MFD.  </li>
+<li>Return to HUD with more DMS Down press(es), per cycle logic.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>A‑A / DGFT / MSL OVRD</strong></p>
+<ul>
+<li>HUD is not valid SOI; cycle is <strong>MFD‑only:</strong><ul>
+<li>Example: FCR (Right MFD) ↔ HSD (Left MFD) ↔ TGP, etc.</li>
+</ul>
+</li>
+<li>DMS Down is primary tool to switch priority between FCR, HSD and TGP.</li>
+</ul>
+</li>
+</ul>
+<h3>4.4 Section 4.3.2 — DMS Down Usage Table</h3>
+<p><strong>Content:</strong></p>
+<ul>
+<li><p><code>\subsubsection{DMS Down Usage Table}</code> introduces <code>hotastable</code> parallel to DMS Up:</p>
+<ul>
+<li><p><strong>NAV</strong> — Down / Short / Toggle SOI between HUD and MFDs  </p>
+<ul>
+<li>Describe cycle pattern and use in navigation and SA management.</li>
+</ul>
+</li>
+<li><p><strong>A‑A</strong> — Down / Short / Toggle SOI between MFDs only  </p>
+<ul>
+<li>HUD outside cycle; FCR, HSD, TGP as candidates.</li>
+</ul>
+</li>
+<li><p><strong>A‑G</strong> — Down / Short / Toggle SOI between HUD and A‑G sensor pages  </p>
+<ul>
+<li>Emphasis on HUD↔TGP↔WPN↔HAD cycling, etc.</li>
+<li>Dash‑34 column with refs to 2.1.1.2.3 (SOI), 2.1.6 (MFDS), other useful sections.  </li>
+<li>Train column with relevant TRN (likely same as A‑G VIS, plus NAV if appropriate).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>4.5 Section 4.3.3 — DMS Down Exception States</h3>
+<p><strong>Content:</strong></p>
+<ul>
+<li><p>Parallel to Section 4.2.3, focusing on how special states affect DMS Down:</p>
+<ul>
+<li><p><strong>Snowplow (SP) PRE</strong>:</p>
+<ul>
+<li>When neither FCR nor TGP has SOI (both <code>NOT SOI</code>), DMS Down cannot transfer SOI between MFDs.  </li>
+<li>Only after stabilizing SP (TMS Up) does SOI cycle become valid again.</li>
+</ul>
+</li>
+<li><p><strong>MARK/OFLY</strong>:</p>
+<ul>
+<li>In MARK/OFLY, SOI cannot be designated; DMS Down does not alter SOI.  </li>
+<li>Same ineffectivity as DMS Up.</li>
+</ul>
+</li>
+<li><p>Other special states may be added if identified (but intent is to keep only cases truly distinct from nominal behavior).</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>5. Section 4.4 — DMS Left / Right: Cycle MFD Formats</h2>
+<p><strong>Current implementation:</strong></p>
+<ul>
+<li>Old <code>section-C4-S3-dms-format-cycling-dev-2026-01-13.tex</code> renamed to <code>section-C4-S3-dms-format-cycling-deprecated-2026-01-13.tex</code> and moved to ARCHIVE.  </li>
+<li>No new active WIP yet.</li>
+</ul>
+<p><strong>Status alvo:</strong></p>
+<ul>
+<li>Create new WIP <code>section-C4-S4-dms-left-right-review-2026-01-xx.tex</code> to implement 4.4 from scratch, aligned to this blueprint.</li>
+</ul>
+<h3>5.1 Structure (final)</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">plaintext</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-plaintext">4.4 DMS Left / Right: Cycle MFD Formats
+  4.4.1 Format Cycling Mechanics
+  4.4.2 Available Formats by Master Mode
+  4.4.3 Left/Right and SOI Independence
+  4.4.4 DMS Left/Right Usage Table</code></pre>
+                </div>
+            <h3>5.2 Section 4.4.1 — Format Cycling Mechanics</h3>
+<p><strong>Content:</strong></p>
+<ul>
+<li>Explain in general terms:<ul>
+<li>DMS Left → cycles formats on <strong>left MFD</strong> (primary → secondary → tertiary).  </li>
+<li>DMS Right → same for <strong>right MFD</strong>.  </li>
+<li>Does not change who is SOI; changes only <strong>what</strong> is displayed on that MFD.</li>
+</ul>
+</li>
+</ul>
+<h3>5.3 Section 4.4.2 — Available Formats by Master Mode</h3>
+<p><strong>Content:</strong></p>
+<ul>
+<li>Qualitative description (no separate table needed) of typical combinations:<ul>
+<li>NAV: FCR/HSD/SMS/etc.  </li>
+<li>A‑A: FCR, HSD, SMS, etc.  </li>
+<li>A‑G: FCR, TGP, HAD, WPN, SMS, HSD.</li>
+</ul>
+</li>
+</ul>
+<h3>5.4 Section 4.4.3 — Left/Right and SOI Independence</h3>
+<p><strong>Content:</strong></p>
+<ul>
+<li>Make crystal clear that <strong>DMS Left/Right do not change SOI</strong>.  </li>
+<li>Explain typical pattern:<ul>
+<li>Move SOI with Up/Down.  </li>
+<li>Change format on MFD where SOI is (or is not) with Left/Right.</li>
+</ul>
+</li>
+</ul>
+<h3>5.5 Section 4.4.4 — DMS Left/Right Usage Table</h3>
+<p><strong>Content:</strong></p>
+<ul>
+<li><code>hotastable</code> summarizing:<ul>
+<li>NAV — Left/Right / Short / Cycle formats on left/right MFD.  </li>
+<li>A‑A — same, with emphasis on FCR/HSD.  </li>
+<li>A‑G — same, with emphasis on FCR/TGP/WPN/HAD.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>6. Section 4.5 — Master Mode Behavior — DMS Summary</h2>
+<p><strong>Current implementation:</strong> None yet.</p>
+<p><strong>Status alvo:</strong> Short summary section + consolidated table.</p>
+<h3>6.1 Structure (final)</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">plaintext</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-plaintext">4.5 Master Mode Behavior — DMS Summary
+  4.5.1 Directional DMS Roles (Up / Down / Left / Right)
+  4.5.2 Consolidated DMS × Master Mode Table</code></pre>
+                </div>
+            <h3>6.2 Section 4.5.1 — Directional DMS Roles</h3>
+<p><strong>Content:</strong></p>
+<ul>
+<li>Brief recapitulation (1–2 paragraphs) of roles:<ul>
+<li><strong>Up:</strong> HUD/HMCS SOI when permitted.  </li>
+<li><strong>Down:</strong> toggle SOI between HUD↔MFDs.  </li>
+<li><strong>Left/Right:</strong> cycle formats on MFDs.</li>
+</ul>
+</li>
+</ul>
+<h3>6.3 Section 4.5.2 — Consolidated DMS × Master Mode Table</h3>
+<p><strong>Content:</strong></p>
+<ul>
+<li><p>Summary table:</p>
+<ul>
+<li>Rows: NAV, A‑A, A‑G PRE, A‑G VIS, DGFT, MSL OVRD.  </li>
+<li>Columns (example): Up / Down / Left / Right / Notes.</li>
+</ul>
+</li>
+<li><p>Objective: give reader a &quot;what does DMS do in each direction&quot; view per master mode, with cross-references to 4.2–4.4 and SOI table in 4.1.</p>
+</li>
+</ul>
+<hr>
+<h2>7. WIP File Mapping and To-Do List</h2>
+<h3>7.1 Integrated (Approved) WIP Files, moved to ARCHIVE</h3>
+<ul>
+<li><p><code>section-C4-S1-concept-soi-approved-2026-01-15.tex</code></p>
+<ul>
+<li>Section 4.1 (entire).  </li>
+<li>Status: integrated into <code>guide.tex</code>.</li>
+</ul>
+</li>
+<li><p><code>section-C4-S2-dms-up-approved-2026-01-15.tex</code></p>
+<ul>
+<li>Section 4.2 (DMS Up).  </li>
+<li>Status: integrated into <code>guide.tex</code>.</li>
+</ul>
+</li>
+</ul>
+<h3>7.2 Deprecated WIP Files</h3>
+<ul>
+<li><p><code>section-C4-S2-dms-up-down-deprecated-2026-01-14.tex</code></p>
+<ul>
+<li>Source of legacy DMS Down text; must <strong>not</strong> be re‑used directly.  </li>
+<li>Relevant DMS Down content already copied to separate scratch file.</li>
+</ul>
+</li>
+<li><p><code>section-C4-S3-dms-format-cycling-deprecated-2026-01-13.tex</code></p>
+<ul>
+<li>Old attempt at format cycling; not to be used as is.</li>
+</ul>
+</li>
+</ul>
+<h3>7.3 New WIP Files to Create</h3>
+<ol>
+<li><p><strong><code>section-C4-S3-dms-down-review-2026-01-xx.tex</code></strong></p>
+<ul>
+<li>Implements Section 4.3 per this blueprint.  </li>
+<li>Uses extracted DMS Down content from deprecated file as raw material, but rewritten for clarity and to avoid redundancy with 4.1.</li>
+</ul>
+</li>
+<li><p><strong><code>section-C4-S4-dms-left-right-review-2026-01-xx.tex</code></strong></p>
+<ul>
+<li>Implements Section 4.4 from scratch (format cycling, independent of SOI).  </li>
+<li>May borrow ideas from deprecated C4‑S3, but not structure.</li>
+</ul>
+</li>
+<li><p><strong><code>section-C4-S5-dms-summary-review-2026-01-xx.tex</code></strong> (or similar naming)</p>
+<ul>
+<li>Implements Section 4.5 summary and consolidated table.</li>
+</ul>
+</li>
+</ol>
+<h3>7.4 Project Tracking Updates (to be done in <code>project-tracking-v5.0.0.md</code>)</h3>
+<p>Mark Chapter 4 status:</p>
+<ul>
+<li>C4‑S1 (Section 4.1): <strong>INTEGRATED</strong> (approved).  </li>
+<li>C4‑S2 (Section 4.2 DMS Up): <strong>INTEGRATED</strong> (approved).  </li>
+<li>C4‑S3 (Section 4.3 DMS Down): <strong>IN PROGRESS</strong> (TO DO, WIP not yet created).  </li>
+<li>C4‑S4 (Section 4.4 Left/Right): <strong>NOT STARTED</strong>.  </li>
+<li>C4‑S5 (Section 4.5 Summary): <strong>NOT STARTED</strong>.</li>
+</ul>
+<p>Note archival of deprecated files and establishment of <code>section-C4-S2-dms-up-approved-2026-01-15.tex</code> as canonical DMS Up section.</p>
+<hr>
+<h2>8. Numbering Reconciliation — guide.tex vs Blueprint</h2>
+<table>
+<thead>
+<tr>
+<th>Blueprint Reference</th>
+<th>guide.tex Structure</th>
+<th>Content</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Section 4.1</td>
+<td><code>\subsection{Concept and Sensor of Interest (SOI)}</code></td>
+<td>SOI definition, displays, master modes</td>
+<td>✅ Integrated</td>
+</tr>
+<tr>
+<td>Section 4.2</td>
+<td><code>\subsection{DMS Up: HUD Designation as SOI}</code></td>
+<td>DMS Up functionality, usage table, exception states</td>
+<td>✅ Integrated</td>
+</tr>
+<tr>
+<td>Section 4.3</td>
+<td>(to be created) <code>\subsection{DMS Down: Toggle SOI Between Displays}</code></td>
+<td>DMS Down toggle logic, effectiveness, usage table, exception states</td>
+<td>⏳ Pending</td>
+</tr>
+<tr>
+<td>Section 4.4</td>
+<td>(to be created) <code>\subsection{DMS Left / Right: Cycle MFD Formats}</code></td>
+<td>Format cycling mechanics, independence from SOI, usage table</td>
+<td>⏳ Pending</td>
+</tr>
+<tr>
+<td>Section 4.5</td>
+<td>(to be created) <code>\subsection{Master Mode Behavior — DMS Summary}</code></td>
+<td>Directional roles summary, consolidated table</td>
+<td>⏳ Pending</td>
+</tr>
+</tbody></table>
+<hr>
+<p><em>End of unified Chapter 4 (DMS) blueprint v1.1 — CORRECTED &amp; REORGANIZED 2026-01-16</em></p>
+
+</body>
+</html>

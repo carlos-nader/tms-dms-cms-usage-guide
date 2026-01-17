@@ -191,11 +191,11 @@
 % INTRO (Unnumbered)
 % ============================================================================
 
-The \textbf{DMS Down command} toggles the Sensor of Interest (SOI) between the HUD and the two Multifunction Displays (MFDs), allowing the pilot to move SOI responsibility among these displays hands-on. The exact behavior depends on which master mode is active and whether the HUD is a valid SOI candidate in that mode (see Section~\ref{sec:C4-S1-S1}).
+The \textbf{DMS Down command} toggles the Sensor of Interest (SOI) among displays. The exact behavior depends on which master mode is active and whether the HUD is a valid SOI candidate in that mode (see Section~\ref{sec:C4-S1-S1}).
 
-In master modes where the HUD is a valid SOI (NAV and A-G), repeated presses of DMS Down cycle through a repeating sequence: HUD $\rightarrow$ right MFD $\rightarrow$ left MFD $\rightarrow$ HUD $\rightarrow$ \ldots\ This allows the pilot to move SOI among all three displays.
+In master modes where the HUD is a valid SOI (NAV and A-G), repeated presses of DMS Down cycle through a repeating sequence: HUD $\rightarrow$ MFD $\rightarrow$ MFD $\rightarrow$ HUD $\rightarrow$ \ldots\ This allows the pilot to move SOI among all three displays.
 
-In AA master mode, where the HUD is not a valid SOI candidate, DMS Down toggles SOI only between the two MFDs (right MFD $\leftrightarrow$ left MFD), and the HUD remains a passive display regardless of SOI status. This allows the pilot to choose which MFD sensor receives hands-on HOTAS commands.
+In AA master mode, where the HUD is not a valid SOI candidate, DMS Down toggles SOI only between the two MFDs (MFD $\leftrightarrow$ MFD), and the HUD remains a passive display regardless of SOI status. This allows the pilot to choose which MFD sensor receives hands-on HOTAS commands.
 
 \paragraph{Toggle vs.~Cycle Clarification:} The distinction between ``toggle'' and ``cycle'' is a consequence of the avionics architecture's constraints on which displays can be SOI in each mode (detailed in Section~\ref{sec:C4-S2-S1}).
 
@@ -214,7 +214,7 @@ It's dependant on the possibility of the HUD being designated as SOI.
 
 \subparagraph{NAV (Navigation) Master Mode:}
 
-DMS Down cycles through all valid SOI candidates in NAV: HUD, FCR, TGP, HSD, WPN, HAD. In practice, the physical layout (HUD + Left/Right MFDs) creates a repeating 3-step cycle: HUD $\rightarrow$ right MFD $\rightarrow$ left MFD $\rightarrow$ HUD $\rightarrow$ \ldots\
+DMS Down cycles through all valid SOI candidates in NAV: HUD, FCR, TGP, HSD, WPN, HAD. In practice, the physical layout (HUD + Left/Right MFDs) creates a repeating 3-step cycle: HUD $\rightarrow$ MFD $\rightarrow$ MFD $\rightarrow$ HUD $\rightarrow$ \ldots\
 
 This allows the pilot to move hands-on command focus among the HUD (for heading/altitude/situational awareness) and the two MFD sensor pages (for detailed navigation sensor management).
 
@@ -242,7 +242,7 @@ In A-G VIS, this Up/Down alternation is a fundamental part of the delivery flow 
 
 In air-to-air employment (A-A, DGFT, and MSL OVRD) modes, the avionics architecture restricts SOI to sensor formats on the MFDs: FCR, HSD, and TGP. The HUD cannot be SOI in these modes (see Section~\ref{sec:C4-S1-S3} for the architectural rationale).
 
-Consequently, DMS Down is restricted to toggling SOI \textbf{between the two MFDs only}: right MFD SOI $\leftrightarrow$ left MFD SOI $\leftrightarrow$ right MFD SOI \ldots.
+Consequently, DMS Down is restricted to toggling SOI \textbf{between the two MFDs only}: MFD SOI $\leftrightarrow$ MFD SOI \ldots.
 
 This 2-way toggle allows the pilot to choose which MFD sensor page receives hands-on command priority. In A-A contexts, this is \textit{operationally primary}: the pilot uses DMS Down to alternate SOI focus between, for example, FCR (for track/lock/missile control) and HSD (for picture/sorting/threat assessment), or between FCR and TGP (when using the targeting pod for situational awareness or supplemental tracking).
 
