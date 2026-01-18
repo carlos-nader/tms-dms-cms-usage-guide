@@ -6,9 +6,9 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 
 ---
 
-## 📖 About This Project
+## 📖 About This Project - ![Perplexity](https://img.shields.io/badge/perplexity-000000?style=for-the-badge&logo=perplexity&logoColor=088F8F)
 
-This project develops a structured guide explaining HOTAS functionality across multiple F-16 blocks and international variants. The guide serves both novice and experienced pilots, covering conceptual frameworks, switch actuation, system interactions, and operational nuances grounded in Falcon BMS manuals (Dash-34, Dash-1) and training materials.
+This project develops a structured guide explaining HOTAS functionality across multiple F-16 blocks and international variants. The guide serves both novice and experienced pilots, covering conceptual frameworks, switch actuation, system interactions, and operational nuances grounded in Falcon BMS manuals (Dash-34, Dash-1) and training materials. 
 
 **Current Status:** Pre-publication phase (v0.x.x.x) — Chapter scaffolding and narrative consolidation underway.
 
@@ -296,7 +296,6 @@ For questions, suggestions, or feedback about this guide, please:
 - **Templates** — `/TEMPLATES/` (WIP template, guide scaffold)
 - **Archived Content** — `/archive/` (completed & deprecated files)
 - **License** — `/LICENSE` (full CC BY-NC 4.0 legal text)
-
 ---
 
 **Last Updated:** 2026-01-18  
