@@ -166,16 +166,16 @@
 % ============================================================================
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 % ============================================================================
-% File Name: section-C4-S3-dms-down-dev-2026-01-16.tex
+% File Name: section-C4-S3-dms-down-review-2026-01-17.tex
 % WIP Naming Convention: v1.4
 % Target Chapter: C4 --- DMS Display Management Switch
 % Target Section: S3 --- DMS Down
 % Target Subsection: S3.x --- All subsections
-% WIP Status: dev
+% WIP Status: review
 % Created: 2026-01-16 (design finalized)
-% Last Modified: 2026-01-16 (full WIP generated)
+% Last Modified: 2026-01-17 (full WIP generated)
 % Integration Status: NOT YET INTEGRATED --- AWAITING HUMAN REVIEW & APPROVAL
-% Integration Target: guide-v0.3.1.0 (post-DMS Up, pre-DMS LeftRight)
+% Integration Target: guide-v0.3.2.0 (post-DMS Up and "report" structure change, pre-DMS LeftRight)
 % Narrative Completion: 100\% (core content complete, minor refinements pending)
 % Table Fill Status: 100\% (all 3 core rows + exception states complete)
 % Notes: need human review
@@ -216,11 +216,11 @@ It's dependant on the possibility of the HUD being designated as SOI.
 
 DMS Down cycles through all valid SOI candidates in NAV: HUD, FCR, TGP, HSD, WPN, HAD. In practice, the physical layout (HUD + Left/Right MFDs) creates a repeating 3-step cycle: HUD $\rightarrow$ MFD $\rightarrow$ MFD $\rightarrow$ HUD $\rightarrow$ \ldots\
 
-This allows the pilot to move hands-on command focus among the HUD (for heading/altitude/situational awareness) and the two MFD sensor pages (for detailed navigation sensor management).
+This allows the pilot to move hands-on command focus among the HUD and the two MFD sensor pages (for detailed navigation and sensor management).
 
 \subparagraph{A-G PRE (Preplanned Air-to-Ground) Mode:}
 
-In A-G PRE, valid SOI candidates are HUD, FCR, TGP, WPN, HAD, HSD. DMS Down cycles through the same pattern as NAV. DMS Down moves SOI among the MFDs without changing which format is displayed.
+In A-G PRE, valid SOI candidates are HUD, FCR, TGP, WPN, HAD, HSD. DMS Down cycles through the same pattern as NAV, just moving SOI among the MFDs, without changing which format is displayed.
 
 \subparagraph{A-G VIS (Visual Air-to-Ground: CCIP, DTOS, AGM-65 VIS, IAM-VIS, HUD/HMCS MARK):}
 
@@ -242,7 +242,7 @@ In A-G VIS, this Up/Down alternation is a fundamental part of the delivery flow 
 
 In air-to-air employment (A-A, DGFT, and MSL OVRD) modes, the avionics architecture restricts SOI to sensor formats on the MFDs: FCR, HSD, and TGP. The HUD cannot be SOI in these modes (see Section~\ref{sec:C4-S1-S3} for the architectural rationale).
 
-Consequently, DMS Down is restricted to toggling SOI \textbf{between the two MFDs only}: MFD SOI $\leftrightarrow$ MFD SOI \ldots.
+Consequently, DMS Down is restricted to toggling SOI \textbf{between the two MFDs only}: MFD $\leftrightarrow$ MFD \ldots.
 
 This 2-way toggle allows the pilot to choose which MFD sensor page receives hands-on command priority. In A-A contexts, this is \textit{operationally primary}: the pilot uses DMS Down to alternate SOI focus between, for example, FCR (for track/lock/missile control) and HSD (for picture/sorting/threat assessment), or between FCR and TGP (when using the targeting pod for situational awareness or supplemental tracking).
 
@@ -262,12 +262,12 @@ DMS Down is the standard HOTAS mechanism for managing SOI in air-to-air employme
     --- \\
   
   A-A & Down & Short & Toggle SOI between MFDs only & 
-    DMS Down toggles SOI only between right and left MFD (FCR, HSD, TGP only). HUD cannot be SOI in A-A and remains a passive display. This is the primary HOTAS method for choosing which MFD sensor page receives hands-on command priority for track management, picture evaluation, and weapons employment. & 
+    DMS Down toggles SOI only between the two MFDs (FCR, HSD, TGP only). HUD cannot be SOI in A-A and remains a passive display. This is the primary HOTAS method for choosing which MFD sensor page receives hands-on command priority for track management, picture evaluation, and weapons employment. & 
     2.1.1.2.3, 2.1.6.3 & 
     \trnref{18 BARCAP}, \trnref{17B IFF Intercept} \\
   
   A-G & Down & Short & Toggle SOI between HUD and MFD sensor pages & 
-    DMS Down cycles SOI through HUD $\rightarrow$ right MFD $\rightarrow$ left MFD $\rightarrow$ HUD. In A-G PRE, this is a convenience tool for moving hands-on focus between HUD and MFD sensor management. \textbf{In A-G VIS (CCIP, DTOS, AGM-65 VIS, IAM-VIS, HUD/HMCS MARK), DMS Down is operationally critical}: HUD is the primary visual designation interface; DMS Down allows alternation between HUD visual cueing (TMS/CURSOR steering, pipper control, TD box positioning) and MFD sensor work (TGP search/refine, WPN status, FCR A-G ranging). Loss of HUD SOI in A-G VIS prevents proper visual designation and must be recovered with DMS Up. & 
+    DMS Down cycles SOI through HUD $\rightarrow$ MFD $\rightarrow$ MFD $\rightarrow$ HUD. In A-G PRE, this is a convenience tool for moving hands-on focus between HUD and MFD sensor management. \textbf{In A-G VIS (CCIP, DTOS, AGM-65 VIS, IAM-VIS, HUD/HMCS MARK), DMS Down is operationally critical}: HUD is the primary visual designation interface; DMS Down allows alternation between HUD visual cueing (TMS/CURSOR steering, pipper control, TD box positioning) and MFD sensor work (TGP search/refine, WPN status, FCR A-G ranging). Loss of HUD SOI in A-G VIS prevents proper visual designation and must be recovered with DMS Up. & 
     2.1.1.2.3, 2.1.6.3 & 
     \trnref{10 GP Bombs}, \trnref{11 LGB}, \trnref{13 Maverick}, \trnref{14 Maverick Adv}, \trnref{15 IAM} \\
 \end{hotastable}
@@ -279,7 +279,7 @@ DMS Down is the standard HOTAS mechanism for managing SOI in air-to-air employme
 \subsection*{4.2.2.3 DMS Down Exception States}
 \label{secC4-S2-Down-Exceptions}
 
-In certain special states and submodes, DMS Down may be temporarily ineffective even in master modes where SOI toggling normally works:
+In certain special states and submodes, DMS Down may be temporarily ineffective even in master modes where SOI toggling normally works, as a reflection of DMS Up, as seen on Sectioxxx:
 
 \begin{itemize}
   \item \textbf{Snowplow (SP) PRE State (Unstabilised)}
@@ -291,30 +291,6 @@ In certain special states and submodes, DMS Down may be temporarily ineffective 
   \item \textbf{MARK/OFLY Submode}
   
     In the MARK/OFLY submode (a specialised target-acquisition context documented in \dashref{2.1.1.2.3}), the SOI cannot be designated or changed at all. Consequently, \textbf{DMS Down has no effect} in MARK/OFLY: you cannot toggle SOI when SOI designation itself is locked. This submode is rare in normal operations but is important to recognise if you encounter it during unusual procedures or system states.
-\end{itemize}
-
-% ============================================================================
-% CROSS-REFERENCES AND NOTES
-% ============================================================================
-
-\subsection*{Cross-References and Integration Notes}
-
-\begin{itemize}
-  \item \textbf{Section 4.1.1}: Defines valid SOI candidates by master mode (referenced throughout Section 4.2.2.1).
-  \item \textbf{Section 4.1.3}: Explains the architectural rationale for HUD SOI restrictions in A-A/DGFT/MSL OVRD (referenced in the A-A/DGFT/MSL OVRD subsection of Section 4.2.2.1).
-  \item \textbf{Section 4.2.1}: DMS Up (complementary section; Section 4.2.2.3 exception states mirror those in Section 4.2.1.3).
-  \item \textbf{Section 4.2.3} (future): DMS Left/Right (format cycling, distinct from SOI toggling; mentioned in intro as a separate mechanism).
-\end{itemize}
-
-\noindent\textbf{End of Section 4.2.2. Ready for integration review.}
-
-\noindent\textbf{WIP Status Summary:}
-\begin{itemize}
-  \item Narrative: 95\% (all core concepts written; minor terminology consistency pass recommended)
-  \item Table: 100\% (all 3 rows complete with A-A training missions added)
-  \item Exception states: 100\% (Snowplow PRE and MARK/OFLY documented)
-  \item Cross-references: Verified and formatted
-  \item Next: Human review, approval, then integration into main guide-v.tex
 \end{itemize}
 
 \end{document}

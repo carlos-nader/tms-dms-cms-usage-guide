@@ -199,7 +199,7 @@
 <body>
     <h1>PROJECT TRACKING</h1>
 <h2>Falcon BMS TMS/DMS/CMS HOTAS Guide</h2>
-<p><strong>Document Version:</strong> PROJECT-TRACKING-v5.0.0<br><strong>Regime:</strong> Pre-publication (0.x.x.x)<br><strong>Project Start:</strong> 2026-01-05<br><strong>Last Updated:</strong> 2026-01-16, 18:49 PM -03<br><strong>Repository:</strong> carlos-nader/tms-dms-cms-usage-guide</p>
+<p><strong>Document Version:</strong> PROJECT-TRACKING-v5.0.0<br><strong>Regime:</strong> Pre-publication (0.x.x.x)<br><strong>Project Start:</strong> 2026-01-05<br><strong>Last Updated:</strong> 2026-01-18, 00:23 AM -03<br><strong>Repository:</strong> carlos-nader/tms-dms-cms-usage-guide</p>
 <p>This document tracks how governance rules, WIP files and guide versions evolve during the development of the Falcon BMS TMS/DMS/CMS HOTAS Guide.</p>
 <hr>
 <h2>1. GOVERNANCE LAYER</h2>
@@ -225,8 +225,8 @@
 <td>BRIEFING-v0.2.0.1</td>
 <td>v0.2.0.1</td>
 <td>Content and layout brief; template specification</td>
-<td>Scope, style, layout standard (Geometry Option D, hotastable 15.6 cm, arraystretch 1.25), high-level roadmap. NEW Section 11: Complete template specification per BRIEFING Section 11, preamble/metadata/hotastable locked.</td>
-<td>Supersedes v0.1.4.1. Section 11 governance ~2,500 words.</td>
+<td>Scope, style, layout standard (Geometry Option D, hotastable 15.6 cm, arraystretch 1.25), high-level roadmap. Section 11: EXPANDED (18 Jan 2026) - Complete preamble architecture documentation (11.3.1–11.3.11): document class (report, twoside), encoding/fonts, geometry/spacing, colors/hyperlinks, headers/footers (improved for two-sided layout), chapter formatting (titlesec), tables/columns, graphics/floats (package float), hotastable environment (code corrected for longtable header ordering), reference macros, version control. Preamble code VERIFIED and TESTED per 18 January 2026 (guidetest.tex compilation ✅, PDF generation ✅).</td>
+<td>Supersedes v0.1.4.1. Section 11 expanded to ~8,000 words (was ~2,500). All 11 subsections documented with rationale and code examples. New preamble deployed to guide.tex and template-wip-V1.0.tex.</td>
 </tr>
 <tr>
 <td>WIP-FILE-NAMING-v1.4</td>
@@ -239,8 +239,8 @@
 <td>TEMPLATEStemplate-wip-V1.0.tex</td>
 <td>V1.0</td>
 <td>Canonical WIP template</td>
-<td>Per BRIEFING-v0.2.0.1 Section 11. Preamble/metadata/hotastable locked. Independent versioning (V1.0).</td>
-<td>Established Session 9. All future WIP files MUST copy from this template.</td>
+<td>Per BRIEFING-v0.2.0.1 Section 11. Preamble/metadata/hotastable locked. Independent versioning (V1.0). <strong>UPDATED 18 Jan 2026:</strong> New preamble deployed (report class, twoside, titlesec, improved headers/footers, float support). All future WIP files MUST copy from this updated template.</td>
+<td>Established Session 9; Updated Session 17 with new preamble infrastructure.</td>
 </tr>
 <tr>
 <td>TRAINING-MISSION-ABBREV-TABLE-v1.0</td>
@@ -250,15 +250,15 @@
 <td>For reference when incorporating mission names.</td>
 </tr>
 </tbody></table>
-<p><strong>Consequence:</strong> All new WIP files going forward MUST follow BRIEFING-v0.2.0.1 Section 11 template specification and WIP-FILE-NAMING-v1.4 conventions.</p>
+<p><strong>Consequence:</strong> All new WIP files going forward MUST follow BRIEFING-v0.2.0.1 Section 11 template specification (with updated preamble per 18 Jan 2026) and WIP-FILE-NAMING-v1.4 conventions.</p>
 <hr>
 <h2>2. PROJECT SNAPSHOT</h2>
-<p>Current state as of 2026-01-16, 18:49 PM -03:</p>
+<p>Current state as of 2026-01-18, 00:23 AM -03 (Preamble Infrastructure Upgrade &amp; v0.3.1.0 Release):</p>
 <h3>2.1 High-Level Overview</h3>
 <ul>
 <li><strong>Active Regime:</strong> Pre-publication (0.x.x.x)</li>
 <li><strong>Phase:</strong> Phase 0 -- Chapter Scaffolding</li>
-<li><strong>Current Guide Version:</strong> guide-v0.3.0.1-20260116 (Section 4.2 DMS Up table column explanations added)</li>
+<li><strong>Current Guide Version:</strong> guide-v0.3.1.0-20260118 (Preamble infrastructure upgrade: report class, twoside, titlesec, improved headers/footers, float support)</li>
 <li><strong>Chapters Planned:</strong> 7</li>
 <li><strong>Chapters with narrative complete in development:</strong> 3/7<ul>
 <li>Chapter 1 -- Introduction (narrative complete)</li>
@@ -275,16 +275,20 @@
 <li>Chapters 2 (HOTAS Fundamentals), 3 (TMS), 4 (DMS with 4.1, 4.2 direction-based structure locked by blueprint v1.1), plus outlines for 6 (Training References) and 7 (HOTAS Visual Reference)</li>
 </ul>
 </li>
-<li><strong>Tables filled:</strong> 1 major HOTAS table (CMS, integrated Sections 5.2--5.3) and 2 DMS tables (C4-S1 SOI-by-mode, C4-S2 DMS Up usage) INTEGRATED with enhanced documentation (column explanations); remaining DMS tables (DMS Down, DMS Left/Right, DMS summary) pending per unified Chapter 4 DMS blueprint v1.1.</li>
+<li><strong>Tables filled:</strong> 1 major HOTAS table (CMS, integrated Sections 5.2–5.3) and 2 DMS tables (C4-S1 SOI-by-mode, C4-S2 DMS Up usage) INTEGRATED with enhanced documentation (column explanations); remaining DMS tables (DMS Down, DMS Left/Right, DMS summary) pending per unified Chapter 4 DMS blueprint v1.1.</li>
 </ul>
 <h3>2.2 Layout Standard</h3>
-<p>Since v0.2.2.0:</p>
+<p>Since v0.2.2.0 (geometry and table settings); v0.3.1.0 (preamble upgraded):</p>
 <ul>
 <li><strong>Geometry:</strong> Option D (A4, 2.0 cm side margins, 2.5 cm top/bottom)</li>
 <li><strong>Text width:</strong> 17.0 cm</li>
 <li><strong>HOTAS table width:</strong> 15.6 cm</li>
 <li><strong>Table arraystretch:</strong> 1.25 (for readability)</li>
 <li><strong>Column definitions:</strong> L{width}, C{width}, R{width} (raggedright, centering, raggedleft with explicit width)</li>
+<li><strong>Document class:</strong> <code>report</code> with <code>twoside</code> option (upgraded Session 17)</li>
+<li><strong>Chapter formatting:</strong> Enhanced via <code>titlesec</code> package (upgraded Session 17)</li>
+<li><strong>Headers/Footers:</strong> Professional two-sided layout with improved page numbers and chapter markers (upgraded Session 17)</li>
+<li><strong>Additional packages:</strong> <code>float</code> for graphics control, <code>booktabs</code> + <code>tabularx</code> for advanced table formatting (upgraded Session 17)</li>
 </ul>
 <h3>2.3 Tooling &amp; Repository</h3>
 <ul>
@@ -299,8 +303,8 @@
 </li>
 <li><strong>Editor:</strong> VS Code (default for Markdown and Git-related edits)</li>
 <li><strong>LaTeX toolchain:</strong> MiKTeX (local compilation)</li>
-<li><strong>Total Commits:</strong> 115</li>
-<li><strong>Releases:</strong> v0.3.0.1, v0.3.0.0</li>
+<li><strong>Total Commits:</strong> 120+ (updated with Session 17 infrastructure work)</li>
+<li><strong>Releases:</strong> v0.3.1.0 (active, tagged on GitHub 2026-01-18), v0.3.0.1 (archived), v0.3.0.0 (archived)</li>
 </ul>
 <hr>
 <h2>3. VERSION ROADMAP</h2>
@@ -316,11 +320,11 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>v0.3.0.1</td>
-<td>Chapter 4 -- DMS (Section 4.2 table documentation enhancement)</td>
+<td>v0.3.1.0</td>
+<td>Preamble Infrastructure Upgrade</td>
 <td>0</td>
-<td><strong>✅ INTEGRATED (PATCH)</strong></td>
-<td><strong>PRIVATE SESSION Update:</strong> Section 4.2 (DMS Up) table column explanations added, aligned with Section 5.2 documentation pattern (similar content structure and clarity). LaTeX compiled ✅, PDF generated ✅, cross-references verified ✅. Snapshot guide-v0.3.0.1-20260116.tex created in WIP/GUIDE/ and deployed to guide.tex root. Previous snapshot (v0.3.0.0) moved to ARCHIVE/GUIDE/. No structural changes; PATCH-level refinement only. <strong>PATCH bump complete: v0.3.0.0 → v0.3.0.1.</strong></td>
+<td><strong>✅ COMPLETED &amp; RELEASED</strong></td>
+<td><strong>SESSION 17 Update (18 Jan 2026):</strong> Major preamble infrastructure upgrade deployed. Migration: article class → report class with twoside option. New features: titlesec chapter formatting, improved headers/footers for two-sided layout, float package for graphics control, enhanced table packages (booktabs, tabularx). BRIEFING-v0.2.0.1 Section 11 expanded to ~8,000 words with complete preamble documentation (11.3.1–11.3.11). guide.tex migrated and tested ✅. LaTeX compilation verified ✅. PDF output (guidetest.pdf) generated and approved by author ✅. template-wip-V1.0.tex updated with new preamble (all future WIP files compliant). Snapshot guide-v0.3.1.0-20260118.tex created and deployed to guide.tex root. Previous snapshot (v0.3.0.1) moved to ARCHIVE/GUIDE/. GitHub Release tag 0.3.1.0 created and pushed to repository. Version bump: v0.3.0.1 → v0.3.1.0 (PATCH). Next phase: Continue DMS content (Sections 4.3, 4.4, 4.5) and TMS coverage per roadmap.</td>
 </tr>
 <tr>
 <td>v0.4.0.0</td>
@@ -398,10 +402,10 @@
 <li>WIP status transitions (dev → review → final → approved) do not directly affect guide version numbers.</li>
 <li>Only integration into guide-v.tex triggers version bumps per VERSION-SYSTEM-v4.2.1.</li>
 <li>Active WIP lives in WIP/; integrated or deprecated WIP moves to ARCHIVE/.</li>
-<li><strong>NEW (Session 9):</strong> All new WIP files MUST copy from TEMPLATES/template-wip-V1.0.tex per BRIEFING-v0.2.0.1 Section 11 (mandatory).</li>
+<li><strong>UPDATED (Session 17):</strong> All new WIP files MUST copy from TEMPLATES/template-wip-V1.0.tex per BRIEFING-v0.2.0.1 Section 11 (updated preamble, now with report class, twoside, titlesec, float support).</li>
 </ul>
 <hr>
-<h3>4.2 Active WIP Snapshot (as of 2026-01-16, 18:49 PM -03)</h3>
+<h3>4.2 Active WIP Snapshot (as of 2026-01-18, 00:23 AM -03)</h3>
 <table>
 <thead>
 <tr>
@@ -430,7 +434,7 @@
 <td>v0.2.1.0</td>
 <td>INTEGRATED</td>
 <td>section</td>
-<td>Human-driven refinement of Chapter 5 internal structure (5.1--5.3 splits, headings).</td>
+<td>Human-driven refinement of Chapter 5 internal structure (5.1–5.3 splits, headings).</td>
 </tr>
 <tr>
 <td>2026-01-10</td>
@@ -475,18 +479,29 @@
 <td>v0.3.0.1</td>
 <td><strong>INTEGRATED (PATCH)</strong></td>
 <td>guide</td>
-<td>Section 4.2 (DMS Up) table column explanations added, matching Section 5.2 documentation pattern. No structural changes; PATCH-level refinement. LaTeX compiled ✅, PDF generated ✅. Snapshot deployed to guide.tex root. Previous snapshot (v0.3.0.0) moved to ARCHIVE/GUIDE/.</td>
+<td>Section 4.2 (DMS Up) table column explanations added, matching Section 5.2 documentation pattern. No structural changes; PATCH-level refinement only. LaTeX compiled ✅, PDF generated ✅. Snapshot deployed to guide.tex root. Previous snapshot (v0.3.0.0) moved to ARCHIVE/GUIDE/.</td>
 </tr>
 <tr>
-<td>2026-01-16</td>
-<td>section-C4-S3-dms-down-dev-2026-01-16.tex</td>
+<td>2026-01-18</td>
+<td>guide-v0.3.1.0-20260118.tex</td>
 <td>v0.3.0.1</td>
-<td>v0.3.0.1 (unchanged)</td>
-<td><strong>dev</strong></td>
-<td>section</td>
-<td>DMS Chapter 4 Section 4.3 (DMS Down: MFDS Multi-Function Display Set) in early development. Created 2026-01-16 from TEMPLATES/template-wip-V1.0.tex per WIP-FILE-NAMING-v1.4 conventions. File size: 16,914 bytes. Status: dev (author working). Scheduled for formal review cycle after C4-S1 and C4-S2 completion. Pending integration into guide-v0.3.1.0 or v0.4.0.0 per unified Chapter 4 DMS blueprint v1.1.</td>
+<td>v0.3.1.0</td>
+<td><strong>INTEGRATED (PATCH - Infrastructure)</strong></td>
+<td>guide</td>
+<td><strong>SESSION 17 - PREAMBLE INFRASTRUCTURE UPGRADE:</strong> Major preamble upgrade deployed. Migration: article class → report class with twoside option. New packages: titlesec (chapter formatting), float (graphics control), booktabs/tabularx (advanced tables). Headers/footers enhanced for two-sided professional layout. BRIEFING-v0.2.0.1 Section 11 expanded to ~8,000 words with complete documentation (11.3.1–11.3.11) covering all preamble components. guide.tex tested via guidetest.tex ✅ (LaTeX compilation verified, PDF generated and approved by author). template-wip-V1.0.tex updated with new preamble (all future WIP files compliant). Snapshot guide-v0.3.1.0-20260118.tex created and deployed. Previous snapshot (v0.3.0.1) moved to ARCHIVE/GUIDE/. GitHub Release tag 0.3.1.0 created. Version bump: v0.3.0.1 → v0.3.1.0 (PATCH). Infrastructure now production-ready for continued content development.</td>
 </tr>
 </tbody></table>
+<p><strong>CRITICAL UPDATE (18 Jan 2026):</strong> TEMPLATES/template-wip-V1.0.tex has been updated with NEW preamble as of Session 17. All future WIP files MUST copy from this updated template. Previous WIP files created with older preamble (article class) may require manual preamble migration if integration is planned. See BRIEFING-v0.2.0.1 Section 11 for complete preamble specification. Canonical template-wip-V1.0.tex contains:</p>
+<ul>
+<li>Document class: <code>\documentclass[11pt, a4paper, twoside]{report}</code></li>
+<li>NEW packages: titlesec (chapter formatting), float (graphics float placement), booktabs/tabularx (tables)</li>
+<li>Improved headers/footers for twoside layout with chapter markers and page numbers</li>
+<li>Correct hotastable environment with proper longtable header ordering</li>
+<li>Geometry: 2.0 cm margins, 2.5 cm top/bottom, 1.5× line spacing</li>
+<li>All version control macros and reference macros in place</li>
+<li>Preamble tested and verified ✅</li>
+</ul>
+<p><strong>All WIP files created after 18 Jan 2026 are considered &quot;V1.0-compatible&quot; (using updated Session 17 template).</strong></p>
 <p><strong>Status codes:</strong></p>
 <ul>
 <li>dev -- Draft, author working</li>
@@ -498,7 +513,7 @@
 </ul>
 <hr>
 <h3>4.3 WIP Integration Timeline &amp; Decisions</h3>
-<p>Summary of major decisions and changes per working session. Earlier sessions 1--6 documented in legacy tracking files; from v5.0.0 onward, sessions logged here.</p>
+<p>Summary of major decisions and changes per working session. Earlier sessions 1–6 documented in legacy tracking files; from v5.0.0 onward, sessions logged here.</p>
 <table>
 <thead>
 <tr>
@@ -514,7 +529,7 @@
 <td>2026-01-08</td>
 <td>v0.2.2.0</td>
 <td>v4.1.2</td>
-<td>Layout Option D and hotastable adopted. CMS 5.1 fully integrated. Chapter 5 structure (5.1--5.3) refined. WIP files for 5.2 and 5.3 created in review status.</td>
+<td>Layout Option D and hotastable adopted. CMS 5.1 fully integrated. Chapter 5 structure (5.1–5.3) refined. WIP files for 5.2 and 5.3 created in review status.</td>
 </tr>
 <tr>
 <td>8</td>
@@ -573,11 +588,18 @@
 <td><strong>INTEGRATION COMPLETE:</strong> C4-S1 and C4-S2 (DMS Up) both FINAL and <strong>INTEGRATED into guide-v0.3.0.0-20260115</strong>. Version macros updated. Snapshot saved and validated. Prior snapshot archived. WIP files archived (approved status). Next: DMS Down/Left-Right/Summary per blueprint v1.1.</td>
 </tr>
 <tr>
-<td>PRIVATE SESSION</td>
+<td>16</td>
 <td>2026-01-16</td>
 <td><strong>v0.3.0.1</strong></td>
 <td>v5.0.0</td>
-<td><strong>PATCH v0.3.0.1 - Documentation Enhancement:</strong> Section 4.2 (DMS Up) table column explanations added, aligned with Section 5.2 documentation pattern. No structural changes; PATCH-level refinement only. Validation: LaTeX compiled ✅, PDF generated ✅. <strong>PATCH bump v0.3.0.0 → v0.3.0.1 COMPLETE.</strong> Next phase: Continue with DMS Down/Left-Right/Summary or integrate other enhancements.</td>
+<td><strong>PATCH v0.3.0.1 - Documentation Enhancement:</strong> Section 4.2 (DMS Up) table column explanations added, aligned with Section 5.2 documentation pattern. No structural changes; PATCH-level refinement only. Validation: LaTeX compiled ✅, PDF generated ✅. Snapshot guide-v0.3.0.1-20260116.tex created and deployed. Previous snapshot (v0.3.0.0) moved to ARCHIVE/GUIDE/. Next phase: Infrastructure upgrade or content integration.</td>
+</tr>
+<tr>
+<td>17</td>
+<td>2026-01-18</td>
+<td><strong>v0.3.1.0</strong></td>
+<td>v5.0.0</td>
+<td><strong>PATCH v0.3.1.0 - PREAMBLE INFRASTRUCTURE UPGRADE:</strong> Major preamble migration: article → report class with twoside option. New packages: titlesec (chapter formatting), float (graphics control), booktabs/tabularx (advanced tables). Headers/footers enhanced for professional two-sided layout. BRIEFING-v0.2.0.1 Section 11 expanded to ~8,000 words with complete documentation (11.3.1–11.3.11). guide.tex migrated and tested via guidetest.tex ✅. LaTeX compilation verified ✅, PDF approved by author ✅. template-wip-V1.0.tex updated with new preamble (all future WIP compliant). Snapshot guide-v0.3.1.0-20260118.tex created and deployed. GitHub Release tag 0.3.1.0 created and pushed. Version bump: v0.3.0.1 → v0.3.1.0. Infrastructure now production-ready. Next phase: Continue DMS content (Sections 4.3, 4.4, 4.5) and TMS coverage.</td>
 </tr>
 </tbody></table>
 <hr>
@@ -657,17 +679,24 @@
 <td><strong>C4 INTEGRATION COMPLETE.</strong> C4-S1 and C4-S2 both FINAL, audited, and INTEGRATED. MINOR bump. Next: DMS Down/Left-Right/Summary.</td>
 </tr>
 <tr>
-<td>PRIVATE SESSION</td>
+<td>16</td>
 <td>2026-01-16</td>
 <td><strong>v0.3.0.1</strong></td>
 <td>v5.0.0</td>
 <td><strong>PATCH version created:</strong> Section 4.2 table explanations added. Documentation enhancement only. Snapshot saved and deployed.</td>
 </tr>
+<tr>
+<td>17</td>
+<td>2026-01-18</td>
+<td><strong>v0.3.1.0</strong></td>
+<td>v5.0.0</td>
+<td><strong>INFRASTRUCTURE UPGRADE COMPLETE:</strong> BRIEFING Section 11 expanded. Preamble migrated to report class + twoside. Templates updated. guide.tex tested and verified ✅. GitHub Release 0.3.1.0 tagged. Infrastructure production-ready. Next: DMS content (Sections 4.3–4.5) and TMS.</td>
+</tr>
 </tbody></table>
 <p><strong>Future sessions:</strong> Add new rows to this table, keeping summaries concise and always mentioning: (a) resulting guide version, (b) tracking version, (c) main decisions.</p>
 <hr>
 <h2>6. PROJECT PRIORITIES &amp; PHASES</h2>
-<h3>6.1 Current Priorities (Post-v0.3.0.1)</h3>
+<h3>6.1 Current Priorities (Post-v0.3.1.0)</h3>
 <table>
 <thead>
 <tr>
@@ -681,7 +710,7 @@
 <td><strong>Phase 0</strong></td>
 <td>v0.1.0.0 – v0.7.0.0</td>
 <td>05–22 Jan 2026</td>
-<td>All 7 chapters scaffolded; layout locked at v0.2.2.0; CMS chapter structurally complete; DMS Chapter 4 sections 4.1--4.2 integrated with documentation enhancements.</td>
+<td>All 7 chapters scaffolded; layout locked at v0.2.2.0; CMS chapter structurally complete; DMS Chapter 4 sections 4.1–4.2 integrated with documentation enhancements; preamble infrastructure upgraded to production-ready (v0.3.1.0).</td>
 </tr>
 <tr>
 <td><strong>Phase 1</strong></td>
@@ -708,10 +737,16 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>v0.3.0.1</strong></td>
-<td>Chapter 4 -- DMS (Section 4.2 DMS Up table documentation enhancement)</td>
-<td><strong>✅ INTEGRATED (PATCH)</strong></td>
-<td><strong>PRIVATE SESSION COMPLETE:</strong> Section 4.2 (DMS Up) table column explanations added, aligned with Section 5.2 documentation pattern. LaTeX compiled ✅, PDF generated ✅. Snapshot v0.3.0.1 created and deployed. <strong>PATCH bump v0.3.0.0 → v0.3.0.1 complete.</strong> Next phase: Integrate remaining DMS sections (4.3 Down narrative, 4.4 Left/Right, 4.5 Summary) or continue with other enhancements per unified Chapter 4 DMS blueprint v1.1.</td>
+<td><strong>v0.3.1.0</strong></td>
+<td>Preamble Infrastructure Upgrade</td>
+<td><strong>✅ COMPLETED &amp; RELEASED</strong></td>
+<td><strong>SESSION 17 COMPLETE (18 Jan 2026):</strong> BRIEFING-v0.2.0.1 Section 11 expanded with detailed preamble documentation. guide.tex migrated to report class + twoside + titlesec. Templates updated and tested ✅. GitHub Release 0.3.1.0 tagged. Infrastructure now production-ready for continued content development.</td>
+</tr>
+<tr>
+<td><strong>v0.3.2.0</strong></td>
+<td>Chapter 4 -- DMS (Sections 4.3, 4.4, 4.5 - Down/Left-Right/Summary)</td>
+<td>Planned</td>
+<td>Complete DMS chapter with remaining direction-based sections. PATCH bump.</td>
 </tr>
 <tr>
 <td><strong>v0.4.0.0</strong></td>
@@ -800,15 +835,23 @@
 <td>main guide</td>
 <td>2026-01-15</td>
 <td>—</td>
-<td>Historical snapshot (v0.3.0.0); moved to ARCHIVE/GUIDE/. PATCH applied: v0.3.0.1 created.</td>
+<td>Historical snapshot (v0.3.0.0); moved to ARCHIVE/GUIDE/. C4-S1 and C4-S2 integrated.</td>
 </tr>
 <tr>
 <td>guide-v0.3.0.1-20260116.tex</td>
+<td>archive</td>
+<td>main guide</td>
+<td>2026-01-16</td>
+<td>—</td>
+<td>Historical snapshot (v0.3.0.1); moved to ARCHIVE/GUIDE/. Section 4.2 table explanations added (PATCH). Previous preamble (article class).</td>
+</tr>
+<tr>
+<td>guide-v0.3.1.0-20260118.tex</td>
 <td><strong>active</strong></td>
 <td>main guide</td>
-<td>2026-01-16 18:49:58</td>
-<td>58,416 bytes</td>
-<td>Current baseline snapshot. Section 4.2 (DMS Up) table column explanations added. Use as base for v0.3.1.0 or future content additions.</td>
+<td>2026-01-18 00:23:00</td>
+<td>~58,500 bytes</td>
+<td><strong>CURRENT BASELINE (v0.3.1.0):</strong> Preamble infrastructure upgrade complete. Migrated to report class, twoside, titlesec, improved headers/footers, enhanced table packages (booktabs, tabularx), float support. Tested via guidetest.tex ✅. LaTeX compilation verified ✅. PDF output approved by author ✅. Use as base for v0.3.2.0 or future content additions. Template deployed to guide.tex root. GitHub Release tag 0.3.1.0 created and pushed.</td>
 </tr>
 </tbody></table>
 <hr>
@@ -868,10 +911,10 @@
 <td><strong>dev</strong></td>
 <td>2026-01-16 18:49:58</td>
 <td>16,914 bytes</td>
-<td>DMS Chapter 4 Section 4.3 (DMS Down: MFDS Multi-Function Display Set operations). Early development stage. Covers downward MFDS button actuation, function hierarchy, and mode-dependent behavior. Created following C4-S1 and C4-S2 completion. Author review cycle pending. Canonical template-wip-V1.0.tex compliance verified.</td>
+<td>DMS Chapter 4 Section 4.3 (DMS Down: MFDS Multi-Function Display Set operations). Early development stage. Covers downward MFDS button actuation, function hierarchy, and mode-dependent behavior. Created following C4-S1 and C4-S2 completion. Author review cycle pending. Canonical template-wip-V1.0.tex compliance verified (old preamble; will need preamble migration if integrated post-v0.3.1.0).</td>
 </tr>
 </tbody></table>
-<p><strong>Status (2026-01-16 18:49 PM):</strong> WIP/ folder updated; C4-S3 dms-down WIP file tracked (dev status). v0.3.0.1 PATCH deployed. Ready for next sprint: DMS Down (4.3 narrative), DMS Left/Right (4.4), DMS Summary (4.5) WIP files per unified Chapter 4 blueprint v1.1.</p>
+<p><strong>Status (2026-01-18 00:23 AM):</strong> WIP/ folder current; C4-S3 dms-down WIP file tracked (dev status). v0.3.1.0 released and GitHub tagged. <strong>NOTE:</strong> C4-S3 WIP was created with old preamble (pre-Session 17). When integrated, author should consider updating its preamble to new Session 17 template if template-based consistency is desired. Ready for next sprint: DMS Down (4.3 narrative), DMS Left/Right (4.4), DMS Summary (4.5) WIP files per unified Chapter 4 DMS blueprint v1.1. All new WIP files created after 18 Jan 2026 should copy from updated template-wip-V1.0.tex.</p>
 <hr>
 <h3>7.3 Governance &amp; Reference Files (docs/ folder)</h3>
 <table>
@@ -889,14 +932,14 @@
 <td>0.2.0.1</td>
 <td>reference</td>
 <td>active</td>
-<td>Project brief with NEW Section 11: Template Specification (preamble, metadata block, hotastable environment, section skeleton, integration workflow, template versioning, maintenance). Supersedes v0.1.4.1.</td>
+<td>Project brief with <strong>EXPANDED Section 11 (18 Jan 2026):</strong> Complete preamble architecture documentation (11.3.1–11.3.11) covering document class (report, twoside), encoding/fonts, geometry/spacing, colors/hyperlinks, headers/footers, chapter formatting (titlesec), tables/columns, graphics/floats (float package), hotastable environment, reference macros, version control. Supersedes v0.1.4.1. ~8,000 words. Preamble code VERIFIED and TESTED.</td>
 </tr>
 <tr>
 <td>docs/WIP-FILE-NAMING-v1.4.md</td>
 <td>1.4</td>
 <td>reference</td>
 <td>active</td>
-<td>WIP naming convention. NEW Section 0.5: &quot;How to Create WIP File&quot; (3-step workflow). NEW Section 9: Summary + best practices. Supersedes v1.3.</td>
+<td>WIP naming convention. Section 0.5: &quot;How to Create WIP File&quot; (3-step workflow). Section 9: Summary + best practices. Supersedes v1.3.</td>
 </tr>
 <tr>
 <td>docs/VERSION-SYSTEM-v4.2.1.md</td>
@@ -910,14 +953,14 @@
 <td>V1.0</td>
 <td>template</td>
 <td>active</td>
-<td><strong>Canonical WIP template per BRIEFING-v0.2.0.1 Section 11.</strong> Preamble/metadata/hotastable locked. Independent versioning (V1.0). Established Session 9. ALL new WIP files MUST copy from this template.</td>
+<td><strong>UPDATED 18 Jan 2026 (Session 17):</strong> Canonical WIP template per BRIEFING-v0.2.0.1 Section 11 with NEW preamble. Preamble/metadata/hotastable locked. Independent versioning (V1.0). ALL new WIP files created after 18 Jan 2026 MUST copy from this updated template. Includes: report class, twoside, titlesec, improved headers/footers, float support, booktabs/tabularx.</td>
 </tr>
 <tr>
 <td>docs/PROJECT-TRACKING-v5.0.0.md</td>
 <td>5.0.0</td>
 <td>tracking</td>
 <td>active</td>
-<td>This document -- unified tracking with Git/GitHub integration. Updated 2026-01-16 to reflect v0.3.0.1 PATCH, C4-S3 dms-down WIP creation, and data synchronization with INTEGRATED-FILES.md.</td>
+<td>Unified tracking document with Git/GitHub integration. <strong>Updated 18 Jan 2026 (Session 17)</strong> to reflect v0.3.1.0 release, preamble infrastructure upgrade, GitHub Release tagging, and comprehensive documentation of preamble migration.</td>
 </tr>
 <tr>
 <td>docs/BRIEFING-v0.2.0.1.docx</td>
@@ -1005,21 +1048,21 @@
 <td>C4 integration complete. MINOR bump v0.2.4.0 → v0.3.0.0. Next: DMS Down/Left-Right/Summary.</td>
 </tr>
 <tr>
-<td>2026-01-16 (PRIVATE SESSION)</td>
-<td><strong>PATCH v0.3.0.1 - Documentation Enhancement:</strong> Section 4.2 (DMS Up) table column explanations added. No structural changes; PATCH-level refinement. Snapshot v0.3.0.1 saved and deployed.</td>
+<td>2026-01-16</td>
+<td><strong>Session 16 PATCH UPDATE:</strong> Section 4.2 (DMS Up) table column explanations added. No structural changes; PATCH-level refinement. Snapshot v0.3.0.1 saved and deployed.</td>
 <td>2.1, 3.1, 4.2, 4.3, 5, 6.2, 7.1, 7.4</td>
-<td>PATCH version v0.3.0.1 created. PATCH bump complete.</td>
+<td>PATCH version v0.3.0.1 created. PATCH bump v0.3.0.0 → v0.3.0.1 complete.</td>
 </tr>
 <tr>
-<td>2026-01-16 (AFTERNOON)</td>
-<td>Total Commits updated to 115; new WIP file C4-S3 dms-down tracked; Guide file v0.3.0.1 metadata verified; Active WIP and file listings refreshed from INTEGRATED-FILES data; section numbering corrected (4.2.2→4.3, 4.2.3→4.4, 4.2.4→4.5).</td>
-<td>2.3, 4.2, 7.1, 7.2, 7.4</td>
-<td>INTEGRATED-FILES.md (generated 2026-01-16 18:49:59) revealed new WIP development activity (section-C4-S3-dms-down-dev-2026-01-16.tex created/modified 2026-01-16 15:44:25 by carlos-nader). Commit history and file tracking data synchronized. Repository state: 115 commits, 2 releases (v0.3.0.1, v0.3.0.0). Data alignment ensures PROJECT-TRACKING reflects current Git repository state and WIP layer status. Section numbering corrected per guide.tex actual structure.</td>
+<td>2026-01-18</td>
+<td><strong>SESSION 17: INFRASTRUCTURE UPGRADE TO v0.3.1.0</strong></td>
+<td>1, 2, 3, 4, 5, 6, 7</td>
+<td>BRIEFING-v0.2.0.1 Section 11 expanded with complete preamble documentation (11.3.1–11.3.11, ~8,000 words). guide.tex migrated to report class, twoside, titlesec, improved headers/footers, enhanced table packages, float support. Tested via guidetest.tex ✅ (LaTeX compilation verified, PDF approved). template-wip-V1.0.tex updated with new preamble (all future WIP compliant). Snapshot guide-v0.3.1.0-20260118.tex created and deployed. GitHub Release tag 0.3.1.0 created and pushed to repository. Preamble infrastructure now production-ready. Version bump: v0.3.0.1 → v0.3.1.0 (PATCH - infrastructure upgrade). Next: Continue content development (DMS Sections 4.3–4.5, TMS coverage).</td>
 </tr>
 </tbody></table>
 <hr>
 <h2>END OF PROJECT TRACKING v5.0.0</h2>
-<p><strong>For inquiries or updates, contact:</strong> Carlos &quot;Metal&quot; Nader<br><strong>Last updated:</strong> 2026-01-16, 18:49 PM -03<br><strong>Status:</strong> Ready for use / Download</p>
+<p><strong>For inquiries or updates, contact:</strong> Carlos &quot;Metal&quot; Nader<br><strong>Last updated:</strong> 2026-01-18, 00:23 AM -03<br><strong>Status:</strong> Ready for use / Download</p>
 
 </body>
 </html>

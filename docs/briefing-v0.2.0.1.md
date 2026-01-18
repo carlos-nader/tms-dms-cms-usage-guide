@@ -1,6 +1,6 @@
 # Falcon BMS 4.38.1 — TMS, DMS and CMS Usage Guide: Project Brief
 
-**Brief Version:** v0.2.0.1 (WIP File Template Specification + Training Mission Reference Integration — 10 January 2026)
+**Brief Version:** v0.2.0.1 (WIP File Template Specification + New Preamble Documentation + Training Mission Reference Integration — 17 January 2026)
 
 ---
 
@@ -177,22 +177,25 @@ Assume there is already a LaTeX template with this structure. Do not change the 
 - Block / variant overview (how behaviour is the same or slightly different across main BMS F-16 variants).
 - Tables index (list of all major TMS/DMS/CMS tables and where to find them).
 
-### 3.3 LaTeX Preamble (Assumed)
+### 3.3 LaTeX Preamble (Architecture Overview)
 
-The LaTeX preamble already includes, among others:
+The LaTeX preamble is a **locked, architecture-stable component** that includes:
 
-- Fonts, geometry, microtype.
-- Clickable TOC and PDF bookmarks.
-- Headers/footers via `fancyhdr`.
-- Custom `hotastable` environment with columns (updated v0.1.3):
-  - State (1.6 cm), Direction (1.0 cm), Action (1.0 cm), Function (3.4 cm), Effect / Nuance (5.8 cm), Dash34 (1.4 cm), Train (1.4 cm).
-- Header structure: First-page header, then `\endfirsthead`; subsequent-pages header (identical), then `\endhead`. This order ensures correct table numbering across page breaks (see Section 11.5)
-- Helper macros: `\dashref{}`, `\dashone{}`, `\trnref{}`, `\trnman`, `\bmsver`, `\dashrefs{}`.
-- `graphicx` with `fig/` as the figures folder.
+- Document class (`report` with `twoside` for double-sided layout).
+- Complete UTF-8 encoding stack with language support.
+- Professional fonts (Latin Modern) and microtypography.
+- Page geometry (A4, 2.0 cm left/right, 2.5 cm top/bottom margins).
+- Advanced header/footer management for two-sided documents.
+- Chapter and section formatting via `titlesec`.
+- Custom table environment (`hotastable`) with 7-column HOTAS layout.
+- Helper macros for cross-references, training missions, and document metadata.
+- Graphics support with figure float control.
+
+**Detailed preamble architecture is documented in Section 11.**
 
 ---
 
-## 4. Layout Parameters (Updated January 8, 2026)
+## 4. Layout Parameters (Updated January 17, 2026)
 
 ### 4.1 Geometry Configuration (Guide Standard)
 
@@ -204,6 +207,7 @@ The LaTeX preamble already includes, among others:
 - Available text width: 17.0 cm.
 - Standard HOTAS table width: 15.6 cm (sum of column widths).
 - Horizontal safety margin: 1.4 cm between table and text width.
+- Line spacing: 1.5× (via `\onehalfspacing`).
 
 **Rationale:**
 
@@ -212,6 +216,7 @@ The LaTeX preamble already includes, among others:
   - Preserves a professional look while avoiding a cramped page.
   - Increases available width from 16.0 cm to 17.0 cm, providing more breathing room around the 15.6 cm-wide HOTAS table.
   - Reduces the risk of overfull boxes and awkward `longtable` breaks.
+- 1.5× line spacing improves readability without excessive page bloat.
 
 ### 4.2 Table Formatting Standard (hotastable)
 
@@ -601,7 +606,7 @@ Git and GitHub always see `guide.tex` as the canonical file. The snapshot in `WI
 
 ---
 
-## 11. WIP File Template (Canonical)
+## 11. WIP File Template and LaTeX Preamble Architecture
 
 ### 11.1 Purpose and Location
 
@@ -626,21 +631,20 @@ The template is a complete, compilable LaTeX document containing:
 
 1. **Standard preamble** (packages, geometry, macros):
    - Identical to `guide.tex` preamble to ensure WIP files and guide are always synchronised.
-   - Includes all necessary packages: `geometry`, `fancyhdr`, `hyperref`, `array`, `longtable`, `xcolor`, `graphicx`, `microtype`.
-   - Geometry locked: A4, 2.0 cm left/right margins, 2.5 cm top/bottom.
-   - Custom helpers: `\dashref{}`, `\dashone{}`, `\trnref{}`, `\trnman`, `\bmsver`.
+   - Includes all necessary packages, organised by functional category (encoding, fonts, geometry, colors, headers/footers, chapter formatting, tables, graphics).
+   - Geometry locked: A4, 2.0 cm left/right margins, 2.5 cm top/bottom, 1.5× line spacing.
+   - Custom helpers: `\dashref{}`, `\dashone{}`, `\trnref{}`, `\trnman`, `\bmsver`, `\dashrefs{}`.
+   - Professional header/footer configuration for two-sided layout.
+   - Chapter and section formatting via `titlesec` for consistent styling.
+   - Figure and table support with float positioning control.
 
 2. **Metadata block** (non-rendered, for tracking):
-   - Structured comments at lines 52–75 (approximately) containing:
-     - Target chapter, section, subsection numbers.
-     - WIP file status (dev, review, final, approved).
-     - Creation date (ISO 8601 format: YYYY-MM-DD).
-     - Author/AI indication.
-     - Development notes (TBD items, known issues, cross-references).
+   - Structured comments at lines following `\begin{document}` (approximately lines 52–75).
+   - Contains: target chapter/section, WIP file status, creation date, author/AI indication, development notes, cross-references.
    - Metadata is **never rendered** in compiled output; used only for human/automation reference.
 
 3. **Section/subsection skeleton**:
-   - Empty sections and subsections with proper hierarchy (`\section{}`, `\subsection{}`).
+   - Empty sections and subsections with proper hierarchy (`\section{}`, `\subsection{}`, `\subsubsection{}`).
    - Ready to be filled with narrative content, tables, or both.
    - Structured to match the chapter breakdown defined in this brief (Section 3.1).
 
@@ -655,53 +659,347 @@ The template is a complete, compilable LaTeX document containing:
 
 The preamble is considered **architecture-locked** and should not be modified except in extraordinary circumstances (requires explicit approval in this brief or by human override).
 
-**Locked packages (never remove):**
+#### 11.3.1 Document Class and Two-Sided Layout
+
+**Specification:**
 
 ```latex
-\documentclass[11pt, a4paper]{article}
+\documentclass[11pt, a4paper, twoside]{report}
+```
+
+**Migration rationale (article → report):**
+
+- `article` class is suitable for short, single-topic documents; it lacks built-in chapter support and features for longer technical manuals.
+- `report` class provides `\chapter{}` command, enabling hierarchical document structure (chapters → sections → subsections).
+- `twoside` option activates mirrored margins and header/footer logic for double-sided printing, improving professional appearance and enabling distinct left/right page headers.
+
+**When to use `report`:**
+- Document has 5+ logical chapters or sections.
+- Document uses `\chapter{}` command.
+- Double-sided printing or presentation is expected.
+- Page count exceeds 30–40 pages.
+
+**Impact on LaTeX structure:**
+- `\chapter{}` becomes the top-level sectioning command (previously `\section{}`).
+- `\section{}` becomes level 2, `\subsection{}` becomes level 3, etc.
+- Headers and footers can distinguish between odd and even pages (via `[LO,RE]`, `[RO,LE]` positioning).
+
+#### 11.3.2 Encoding, Fonts, and Language
+
+**Specification:**
+
+```latex
 \usepackage[utf8]{inputenc}
-\usepackage[margin=2.0cm, top=2.5cm, bottom=2.5cm]{geometry}
-\usepackage{array, longtable, multirow}
-\usepackage{fancyhdr}
-\usepackage{hyperref}
-\usepackage{xcolor}
-\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{lmodern}
 \usepackage{microtype}
 ```
 
-**Locked geometry parameters (per Section 4.1):**
+**Rationale:**
+
+- `inputenc[utf8]`: Allows direct input of UTF-8 encoded characters (é, ñ, ü, etc.) without explicit LaTeX commands.
+- `fontenc[T1]`: Ensures proper font encoding for output (improves hyphenation, ligatures, and special character support).
+- `babel[english]`: Activates English language rules (hyphenation, spacing, typographic conventions).
+- `lmodern`: Replaces default Computer Modern fonts with Latin Modern — a high-quality serif family optimized for on-screen and print rendering.
+- `microtype`: Enables advanced microtypographic features (character protruding, font expansion, font shrinking) for improved typography and reduced hyphenation.
+
+**Impact:**
+- Document is more readable on screen and in print.
+- Hyphenation and line breaking follow English conventions.
+- Special characters (accents, diacritics) are rendered correctly.
+
+#### 11.3.3 Page Geometry and Spacing
+
+**Specification:**
 
 ```latex
-\usepackage[
-  left=2.0cm, right=2.0cm,
-  top=2.5cm, bottom=2.5cm,
-  a4paper
-]{geometry}
+\usepackage{geometry}
+\geometry{a4paper, left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
+\usepackage{setspace}
+\onehalfspacing
 ```
 
-**Helper macros (using `\providecommand` to allow guide.tex override):**
+**Rationale:**
+
+- `geometry` package provides absolute control over page margins (preferable to default LaTeX mechanisms).
+- 2.0 cm left/right margins: consistent with technical manual standards; reduces text width to 17.0 cm (ample for 15.6 cm HOTAS tables).
+- 2.5 cm top/bottom margins: accommodates headers, footers, and page numbering without cramping.
+- `\onehalfspacing`: increases line spacing to 1.5×, improving readability without excessive page bloat; important for dense technical tables.
+
+**Impact:**
+- Professional appearance consistent with Falcon BMS official documentation.
+- Sufficient whitespace around HOTAS tables for legibility.
+- Better readability for extended document consumption.
+
+#### 11.3.4 Colors and Hyperlinks
+
+**Specification:**
+
+```latex
+\usepackage[table]{xcolor}
+\definecolor{linkblue}{HTML}{004488}
+\definecolor{linkred}{HTML}{882222}
+\definecolor{headerblue}{HTML}{003366}
+\definecolor{rowgray}{HTML}{F5F5F5}
+\definecolor{subheadgray}{HTML}{E0E0E0}
+
+\usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\usepackage{bookmark}
+```
+
+**Rationale:**
+
+- `xcolor[table]`: Enables `\rowcolor{}` for table row coloring (used in `hotastable` headers).
+- Custom colors: professional palette (dark blue for headers, lighter grays for row alternation, consistent link colors).
+- `hyperref`: Creates clickable table of contents, cross-references, and URLs in PDF output. `colorlinks=true` colors links instead of boxing them.
+- `breaklinks=true`: Allows links to wrap across lines (improves page layout).
+- `bookmark`: Enhanced PDF bookmarks for PDF readers; improves navigation.
+
+**Impact:**
+- Professional table appearance with colored headers.
+- Clickable PDF navigation (TOC, cross-references).
+- Improved user experience in PDF viewers.
+
+#### 11.3.5 Headers and Footers (Two-Sided Layout)
+
+**Specification:**
+
+```latex
+\usepackage{fancyhdr}
+\setlength{\headheight}{25pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO,RE]{\small\textit{\leftmark}}     % Outer edge (odd left, even right): chapter name
+\fancyhead[RO,LE]{\small\thepage}               % Inner edge (odd right, even left): page number
+\fancyfoot{}                                      % No footer
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+```
+
+**Rationale (Two-Sided Layout):**
+
+- `\headheight=25pt`: Accommodates longer chapter names without "Overfull \vbox" warnings.
+- `[LO,RE]`: **Outer edges** (Left on Odd pages, Right on Even pages) — chapter name appears on the outside margin for easy navigation during page flipping.
+- `[RO,LE]`: **Inner edges** (Right on Odd pages, Left on Even pages) — page number appears on the inside margin for visual symmetry.
+- `\leftmark`: Expands to current chapter name (set automatically by `\chapter{}` command).
+- `\thepage`: Current page number.
+- No footers: all information in headers (cleaner layout).
+- `\headrulewidth=0.4pt`: Subtle line separating header from content.
+
+**Impact:**
+- Professional two-sided document appearance.
+- Clear navigation (chapter names and page numbers visible on all pages).
+- Proper PDF navigation when printed or viewed double-sided.
+
+#### 11.3.6 Chapter and Section Formatting (titlesec)
+
+**Specification:**
+
+```latex
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+  {\normalfont\Large\bfseries}
+  {\chaptertitlename~\thechapter}
+  {20pt}
+  {\Large}
+
+\titlespacing{\chapter}
+  {0pt}
+  {10pt}      % Space BEFORE chapter title
+  {20pt}      % Space AFTER chapter title
+  [0pt]
+
+\titlespacing{\section}
+  {0pt}
+  {15pt}
+  {10pt}
+  [0pt]
+```
+
+**Rationale:**
+
+- `titlesec` provides fine-grained control over section formatting (alternative to default LaTeX which is hard-coded).
+- **Chapter format (`[display]`)**: places chapter number and title on separate lines, enabling large, visually prominent chapter headings.
+- **Chapter spacing**: `10pt` before (compact) and `20pt` after (breathing room) chapters for clear visual separation.
+- **Section spacing**: `15pt` before and `10pt` after sections for consistent hierarchy.
+- Reduced spacing compared to defaults (which can be 50pt before chapters) saves page real estate while maintaining readability.
+
+**Impact:**
+- Professional section hierarchy (chapters visually distinct from sections).
+- Optimized page economy (less wasted whitespace).
+- Consistent, predictable spacing across document.
+
+#### 11.3.7 Tables and Column Types
+
+**Specification:**
+
+```latex
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+```
+
+**Rationale:**
+
+- `booktabs`: Professional table styling (optimal line weights, spacing); recommended for publication-quality tables.
+- `array`: Advanced column formatting options.
+- `longtable`: Tables that span multiple pages (essential for multi-page HOTAS tables).
+- `tabularx`: Tables that automatically resize to fit available width (used for future table variants).
+- Custom columns `L`, `C`, `R` with fixed widths: enable precise alignment (left, center, right) within fixed-width cells (essential for hotastable 7-column layout).
+
+**Impact:**
+- Professional table appearance.
+- Multi-page table support (HOTAS tables can extend across page breaks).
+- Precise column width control (15.6 cm total for `hotastable`).
+
+#### 11.3.8 Graphics and Float Positioning
+
+**Specification:**
+
+```latex
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+\usepackage{float}
+```
+
+**Rationale:**
+
+- `graphicx`: Enables `\includegraphics{}` command for inserting images.
+- `\graphicspath{{fig/}}`: Tells LaTeX to search the `fig/` subfolder for image files (relative path).
+- `float`: Provides `[H]` float placement option, which forces figures/tables to appear **exactly** where defined in code (no floating). Essential for controlling figure placement in technical manuals.
+
+**Impact:**
+- Support for diagrams, screenshots, and reference images.
+- Predictable figure placement (no automatic repositioning by LaTeX).
+
+#### 11.3.9 HOTAS Table Environment (hotastable)
+
+**Specification (CORRECT, per 17 January 2026 preamble):**
+
+```latex
+\newenvironment{hotastable}[1]{%
+  \small
+  \renewcommand{\arraystretch}{1.25}
+  \begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
+  \caption{#1}\\
+  \rowcolor{headerblue}
+  \textbf{\color{white}State} &
+  \textbf{\color{white}Dir} &
+  \textbf{\color{white}Act} &
+  \textbf{\color{white}Function} &
+  \textbf{\color{white}Effect / Nuance} &
+  \textbf{\color{white}Dash34} &
+  \textbf{\color{white}Train} \\
+  \endfirsthead
+  \rowcolor{headerblue}
+  \textbf{\color{white}State} &
+  \textbf{\color{white}Dir} &
+  \textbf{\color{white}Act} &
+  \textbf{\color{white}Function} &
+  \textbf{\color{white}Effect / Nuance} &
+  \textbf{\color{white}Dash34} &
+  \textbf{\color{white}Train} \\
+  \endhead
+  \multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+  \endfoot
+  \endlastfoot
+}{%
+  \end{longtable}
+}
+```
+
+**Rationale:**
+
+- `\small` + `\arraystretch=1.25`: Optimized font size and row height for dense technical tables.
+- **7-column fixed widths**: `L{1.6cm}` (State), `L{1.0cm}` (Dir), `L{1.0cm}` (Act), `L{3.4cm}` (Function), `L{5.8cm}` (Effect/Nuance), `L{1.4cm}` (Dash34), `L{1.4cm}` (Train).
+  - Total: 15.6 cm (fits within 17.0 cm text width with 1.4 cm safety margin).
+- **Header order (CRITICAL):**
+  - `\caption{#1}\\` placed FIRST (inside `longtable`, per official `longtable` documentation).
+  - First-page header content, then `\endfirsthead` (marks END of first-page header).
+  - Subsequent-pages header (identical), then `\endhead` (marks END of subsequent-pages header).
+  - Footer material (`\multicolumn`, `\endfoot`, `\endlastfoot`) follows.
+  - **This order ensures correct table numbering across page breaks.**
+- `\rowcolor{headerblue}`: Dark blue header background for visual distinction.
+- `\color{white}`: White text on blue background for contrast.
+- `\endfirsthead` / `\endhead`: Distinguish first-page header from subsequent-page headers (allows different content if needed, though identical here).
+- `\endfoot` / `\endlastfoot`: Footer displays "Continued on next page" for multi-page tables.
+
+**Column semantics (locked):**
+
+| Column | Width | Name | Content |
+|--------|-------|------|---------|
+| 1 | 1.6 cm | State | Master mode + sensor context |
+| 2 | 1.0 cm | Dir | Hat direction (Up/Down/Left/Right) |
+| 3 | 1.0 cm | Act | Press type (Short/Long/etc.) |
+| 4 | 3.4 cm | Function | What the switch does (informal title) |
+| 5 | 5.8 cm | Effect / Nuance | Technical explanation + interactions |
+| 6 | 1.4 cm | Dash34 | Reference to Dash-34 sections |
+| 7 | 1.4 cm | Train | Training mission references |
+
+#### 11.3.10 Reference Macros
+
+**Specification:**
 
 ```latex
 \providecommand{\dashref}[1]{Dash-34~\S~#1}
 \providecommand{\dashone}[1]{Dash-1~\S~#1}
 \providecommand{\trnref}[1]{TRN~#1}
-\providecommand{\trnman}{BMS Training Manual}
-\providecommand{\bmsver}{4.38.1}
-\providecommand{\dashrefs}[1]{\dashref{#1}}
+\providecommand{\trnman}{BMS Training Manual 4.38.1}
+\providecommand{\bmsver}{Falcon BMS~4.38.1}
+\providecommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
 ```
 
-**Rationale for `\providecommand`:** When a WIP file is integrated into `guide.tex`, the guide's preamble will **redefine** these macros with guide-specific formatting or additional functionality. The `\providecommand` approach ensures:
-- WIP files compile standalone correctly.
-- Integration is seamless; no renaming or redefinition required.
-- Macros can be enhanced in guide.tex without breaking WIP files.
+**Rationale:**
 
-**Adjustable within documented ranges:**
+- `\providecommand` vs `\newcommand`: `\providecommand` does not override if macro already exists; allows `guide.tex` to redefine with enhanced formatting while WIP files work standalone.
+- `\dashref{2.1.5}`: Expands to "Dash-34 § 2.1.5" (compact reference format for table cells).
+- `\dashone{1.2.3}`: Expands to "Dash-1 § 1.2.3" (for rare Dash-1 references).
+- `\trnref{18 (BARCAP)}`: Expands to "TRN 18 (BARCAP)" (training mission reference).
+- `\trnman`: Reusable expansion "BMS Training Manual 4.38.1".
+- `\bmsver`: Reusable expansion "Falcon BMS 4.38.1".
+- `\dashrefs{2.1.5, 2.1.6}`: Expands to full reference with section numbers, for use in prose (vs table cells).
 
-- `\arraystretch`: may be tweaked between 1.2 and 1.3 if legibility studies warrant (default: 1.25).
-- `\small` font size: may shift to `\footnotesize` or `\normalsize` if table density requires (default: `\small`).
-- Margins: governed by Section 4.1; document-wide, not per-WIP-file.
+**Impact:**
+- Consistency across document.
+- Easy to update reference format globally (e.g., change "§" to "section").
+- Shorter, more readable source code.
 
-### 11.4 Metadata Block Format (Lines 52–75)
+#### 11.3.11 Version Control Macros
+
+**Specification:**
+
+```latex
+\newcommand{\docversion}{0.3.0.1}
+\newcommand{\docbuild}{20260117}
+\newcommand{\docstartdate}{05 January 2026}
+\newcommand{\docenddate}{17 January 2026}
+\newcommand{\chapterscompletedof}{3/7}
+\newcommand{\tablesfilledpct}{Chapter 5 and Chapter 4 - 4.2}
+\newcommand{\fulldocversion}{\docversion+\docbuild}
+```
+
+**Rationale:**
+
+- `\docversion`: Version number (follows Version System v4.2.1).
+- `\docbuild`: Build date (YYYYMMDD format for machine readability).
+- `\docstartdate` / `\docenddate`: Development timeline.
+- `\chapterscompletedof`: Progress tracking (e.g., "3/7" chapters integrated).
+- `\tablesfilledpct`: Percentage of tables populated.
+- `\fulldocversion`: Combines version and build date for title page or headers.
+
+**Impact:**
+- Single source of truth for version metadata.
+- Automatic title page updates.
+- Easy tracking of development progress.
+
+### 11.4 Metadata Block Format
 
 The metadata block is a **commented-out section** at the top of the document body (after `\begin{document}`), structured as follows:
 
@@ -745,168 +1043,14 @@ Content starts here...
 - Non-rendered comments prevent cluttering compiled output.
 - Format is simple enough for regex/automation to parse, but human-readable for manual inspection.
 
-### 11.5 hotastable Environment (Frozen Specification)
-
-The `hotastable` environment is **architecture-locked**: column widths, font size, and row height are fixed and must not be modified without explicit brief revision.
-
-**Column configuration (EXACT, locked):**
-
-```latex
-\newenvironment{hotastable}[1]{
-  \begin{longtable}{|L{1.6cm}|L{1.0cm}|L{1.0cm}|L{3.4cm}|L{5.8cm}|L{1.4cm}|L{1.4cm}|}
-  \hline
-  \textbf{State} & \textbf{Dir} & \textbf{Act} & \textbf{Function} & \textbf{Effect / Nuance} & \textbf{Dash34} & \textbf{Train} \\
-  \hline
-  \endhead
-  \hline
-  \multicolumn{7}{r}{\footnotesize (continued on next page)} \\
-  \endfoot
-  \hline
-  \endlastfoot
-  \caption{#1}
-}{
-  \end{longtable}
-}
-```
-
-**Column semantics (locked, per Section 6):**
-
-| Column | Width | Content | Example |
-|--------|-------|---------|---------| 
-| State | 1.6 cm | Master mode + sensor/weapon context | `A-A CRM — FCR RWS` |
-| Dir (Direction) | 1.0 cm | Hat direction (Up, Down, Left, Right) | `Up` |
-| Act (Action) | 1.0 cm | Press type (Short, Long, Short repeated) | `Short` |
-| Function | 3.4 cm | What the switch does (informal title) | `Bug target / designate` |
-| Effect / Nuance | 5.8 cm | Technical explanation + interactions | `Sets radar bug on selected track; subsequent short up selects next track.` |
-| Dash34 | 1.4 cm | Reference to Dash-34 sections | `\dashref{2.1.5}` |
-| Train | 1.4 cm | Training mission references | `\trnref{18 (BARCAP)}` |
-
-**Font and spacing (locked):**
-
-```latex
-{\small
-\arraystretch=1.25
-... table content ...
-}
-```
-
-- `\small` (10 pt) is the baseline for all HOTAS tables; deviation requires brief amendment.
-- `\arraystretch = 1.25` is locked; changes require brief amendment and validation against page economy.
-
-**Why this is frozen:**
-- Column widths are designed to fit exactly 15.6 cm within the 17.0 cm text width (see Section 4.1).
-- Deviations would either break page layout or sacrifice content legibility.
-- `\small` + `\arraystretch = 1.25` is optimised for dense technical tables; empirically validated.
-
-**Header Order (LOCKED):**
-
-The `hotastable` environment MUST follow this exact sequence for header and footer management. This order is mandated by official `longtable` documentation and ensures correct table numbering and page break behavior.
-
-The **correct sequence** is:
-
-```latex
-\begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
-\caption{#1}\\
-%
-\rowcolor{headerblue}
-\textbf{\color{white}State} &
-\textbf{\color{white}Dir} &
-\textbf{\color{white}Act} &
-\textbf{\color{white}Function} &
-\textbf{\color{white}Effect / Nuance} &
-\textbf{\color{white}Dash34} &
-\textbf{\color{white}Train} \\
-\endfirsthead              % Marks end of first-page header
-%
-\rowcolor{headerblue}
-\textbf{\color{white}State} &
-\textbf{\color{white}Dir} &
-\textbf{\color{white}Act} &
-\textbf{\color{white}Function} &
-\textbf{\color{white}Effect / Nuance} &
-\textbf{\color{white}Dash34} &
-\textbf{\color{white}Train} \\
-\endhead                   % Marks end of subsequent-pages header
-%
-\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
-\endfoot
-%
-\endlastfoot
-\end{longtable}
-```
-
-**Critical ordering rules:**
-
-1. `\caption{}\\` must come FIRST (inside `longtable`, not before)
-2. First-page header content follows immediately after
-3. `\endfirsthead` MUST mark the END of first-page header (not the beginning)
-4. Subsequent-pages header content (identical to first-page) follows
-5. `\endhead` MUST mark the END of subsequent-pages header
-6. Footer material (`\multicolumn`, `\endfoot`, `\endlastfoot`) follows
-
-**Rationale:**
-
-- This order follows the official `longtable` documentation convention
-- It ensures LaTeX correctly distinguishes first-page headers from subsequent-page headers
-- It guarantees correct table numbering (Table 1, Table 2, etc.) across page breaks
-- The semantic meaning is: "define first-page header, THEN mark it as finished, THEN define subsequent pages, THEN mark those as finished"
-- Reversing the order (placing `\endhead` before `\endfirsthead`) is non-standard and may cause unpredictable behavior in edge cases
-
-**Enforcement:**
-
-All WIP files created from `template-wip-V1.0.tex` must inherit this exact order. Integration of WIP content into `guide.tex` must verify that this order is preserved. Deviations require explicit justification and amendment to this brief.
-
-**Template includes empty example row (commented):**
-
-```latex
-% Example row (commented out — replace or remove when adding actual content):
-% A-A CRM — FCR RWS & Up & Short & Bug target & Sets radar bug on selected track. & \dashref{2.1.5} & \trnref{18 (BARCAP)} \\
-```
-
-This serves as a quick reference for WIP developers creating their first row.
-
-### 11.6 Section/Subsection Skeleton
-
-The template includes a generic skeleton matching the chapter structure from Section 3.1. For example, for a **Chapter 5 (CMS) WIP file**, the skeleton would be:
-
-```latex
-\section{CMS — Countermeasures Management Switch}
-
-\subsection{Concept and Interaction with CMDS / ECM}
-
-% Content for 5.1 goes here
-
-\subsection{CMS Switch Actuation}
-
-% Content for 5.2 goes here
-
-\subsubsection{CMS Actuation with CMDS}
-
-\begin{hotastable}[CMS Actuation with CMDS]
-  % Table rows go here
-\end{hotastable}
-
-\subsubsection{CMS Actuation with ECM}
-
-\begin{hotastable}[CMS Actuation with ECM]
-  % Table rows go here
-\end{hotastable}
-```
-
-**Skeleton principles:**
-- Hierarchies match the brief's chapter breakdown (Section 3.1).
-- Subsection/subsubsection levels are pre-defined but **empty**, ready for narrative or tables.
-- Developers may **add, remove, or restructure** subsections as needed *during development* (status: `dev`, `review`).
-- Once status is `final`, structural changes require explicit approval (tracked in metadata notes).
-
-### 11.7 Integration Workflow: What Happens When Integrated into guide.tex
+### 11.5 Integration Workflow: What Happens When Integrated into guide.tex
 
 When a WIP file (for example, `section-C5-S2-cms-actuation-final-2026-01-09.tex`) is promoted to `final` status and ready for integration into `guide.tex`, the following **extraction and integration procedure** is applied:
 
 **Step 1: Extract Content from WIP**
 - Delete preamble (`\documentclass` through `\begin{document}`).
-- Delete metadata block (commented-out lines 52–75).
-- Preserve: all `\section`, `\subsection`, narrative, tables, and `\end{document}` (then remove `\end{document}`).
+- Delete metadata block (commented-out lines after `\begin{document}`).
+- Preserve: all `\section`, `\subsection`, narrative, tables, and remove `\end{document}`.
 
 **Step 2: Merge into guide.tex**
 - Identify target location in `guide.tex` (for example, after Section 5.1, before Section 5.3).
@@ -924,104 +1068,69 @@ When a WIP file (for example, `section-C5-S2-cms-actuation-final-2026-01-09.tex`
 - Integration hygiene: preamble is never carried over; only content is merged.
 - Macro safety: `\providecommand` in WIP allows override by guide.tex without conflicts.
 
-### 11.8 Template Versioning and Maintenance
+### 11.6 Template Versioning and Maintenance
 
-The template itself is **versioned independently** of the guide version, allowing template improvements without forcing a new guide version.
+The template itself is **versioned independently** of the guide version, allowing template improvements without changing guide version numbers.
 
-**Template version identifier:**
-- Current: `V1.0`.
-- Format: `V{MAJOR}` (simplified, no MINOR/PATCH for template; only major breaking changes trigger new versions).
-
-**When to bump template version:**
-
-- **V1.0 → V1.1** (future): Minor refinements (for example, adjusted `\arraystretch` range, or added optional helper macro).
-  - Existing WIP files can still use V1.0 template (backward compatible).
-  
-- **V1.X → V2.0** (future): Breaking change (for example, new hotastable layout, preamble restructure, or geometry change).
-  - Existing WIP files created with V1.X must be manually updated or regenerated from V2.0.
-
-**Template validation (mandatory before release):**
-- Template must compile without LaTeX errors when processed in isolation.
-- Preamble must be byte-identical to latest `guide.tex` preamble (validated via script or manual diff).
-- All helper macros must produce expected output (tested against Section 11.4).
-- Metadata block must follow documented format (validated via regex or manual review).
-
-**How to update template:**
-1. Update `TEMPLATES/template-wip-V1.0.tex` (or create new version file).
-2. Update this briefing section (Section 11) to document changes.
-3. Notify WIP developers via PROJECT-TRACKING of any breaking changes (status: `template-v1.X-update`).
-4. For backward-compatibility changes (V1.0 → V1.1), document in a "Changelog" subsection.
-
-**Relationship to brief:**
-- If template preamble is updated (for example, new packages, new macros), this Section 11 **must be updated in lockstep**.
-- If Section 11 of the brief is updated (for example, layout parameters in Section 4 change), the template **must be regenerated** and validated.
-- These two documents (template file + brief Section 11) are considered **synchronised artefacts**; desynchronisation is a critical bug.
+- **Current template version:** `template-wip-V1.0.tex` (locked as of 17 January 2026).
+- **Template updates:** When packages, preamble, or structure change, increment to `template-wip-V2.0.tex`, etc.
+- **Guidance for WIP creators:** Always use the latest template version unless explicitly directed to use an older one.
 
 ---
 
-## 12. Current Project Status — v0.2.2.0 → v0.2.3.1
+## 12. Professional Standards for AI-Assisted Content Development
 
-### 12.1 Version Summary
+### 12.1 Communication Principles (SAME AS SECTION 8)
 
-| Component              | Status                          | Details |
-|------------------------|---------------------------------|---------|
-| Active Version         | `v0.2.3.1+20260110`             | Guide updated to Geometry Option D (2.0 cm left/right margins), `hotastable` row height `\arraystretch = 1.25`, and CMS Section 5.2 "CMS Switch Actuation" integrated with its main HOTAS table. |
-| Chapters Complete      | `2 / 7`                         | Chapter 1 (Introduction) and CMS Sections 5.1–5.2 (Concept, interaction with CMDS/ECM, and CMS Switch Actuation) have complete narrative scaffolding; remaining chapters are in skeleton form. |
-| Tables Filled          | `>= 1 major CMS table`          | CMS 5.2 `hotastable` populated with primary AUTO/SEMI/MAN, ECM, consent/constraints and operational nuance entries; other TMS/DMS/CMS tables remain unfilled or structure-only. |
-| Phase                  | `0 (Pre-publication)`           | Guide remains in scaffolding regime `0.x.x.x` as defined by Version System v4.2.1 (no public edition ≥ 1.0 yet). |
-| Layout Standard        | `Geometry Option D applied`     | Global layout aligned: A4, 2.0 cm side margins, 2.5 cm top/bottom, 17.0 cm text width, and HOTAS tables fixed at 15.6 cm width with `\small` and `\arraystretch = 1.25`. |
-| WIP Template           | `V1.0 (established)`            | Canonical template `template-wip-V1.0.tex` available; all future WIP files must derive from this template. |
-| Training Mission Refs  | `v1.0 (established)`            | Authoritative Training Mission Reference Table v1.0 (`training-mission-abbrev-table-v1.0.md`) adopted as normative standard for all Train column entries. Integrated into Section 6.7.1 of this brief. |
-| Next Milestone         | `v0.2.4.0 (planned)`            | Integration of CMS Section 5.3 (Block and variant notes) into the guide, succeeding the partial CMS consolidation in v0.2.3.1. |
-
-### 12.2 Key Changes from v0.1.4.0 to v0.2.3.1
-
-The path from `v0.1.4.0` to the current `v0.2.3.1` includes:
-
-1. **v0.2.0.0 — CMS Chapter Integration (Section 5.1) + WIP Template Canonical (Section 11)**
-
-   - Introduced Section 5.1 (CMS Concept and interaction with CMDS / ECM) into the guide.
-   - Added Section 11 (WIP File Template Canonical) with complete specification of template architecture, metadata block format, hotastable frozen configuration, integration workflow, and template versioning.
-
-2. **v0.2.1.0 — CMS Chapter Structure Update**
-
-   - Refined the internal structure of Chapter 5 (CMS), including subsection layout around CMS Actuation, Consent & Constraints and Operational Notes.
-   - Prepared the chapter for detailed `hotastable` tables in Section 5.2.
-
-3. **v0.2.2.0 — Layout Optimisation (Geometry Option D)**
-
-   - Updated the guide's page geometry to A4 with 2.0 cm left/right margins (2.5 cm top/bottom) and 17.0 cm usable text width.
-   - Standardised `hotastable` row height to `\arraystretch = 1.25` across the guide.
-   - Confirmed that all future WIP sections for TMS/DMS/CMS tables must inherit these layout parameters.
-
-4. **v0.2.0.1 — Training Mission Reference Integration (Section 6.7.1)**
-
-   - Added Section 6.7.1 (Training Mission Abbreviations Standard) with formal integration of `training-mission-abbrev-table-v1.0.md` as a normative reference standard.
-   - Established bidirectional documentation: the brief now explicitly requires conformance to the Training Mission Reference Table v1.0, closing the governance gap identified in Section 10 of the project audit.
-
-5. **v0.2.3.1 — CMS 5.2 Integration (CMS Switch Actuation)**
-
-   - Integrated CMS Section 5.2 "CMS Switch Actuation" into Chapter 5, following the structure defined in Section 3.1 of this brief.
-   - Populated the main CMS `hotastable` for 5.2 with AUTO/SEMI/MAN, ECM interactions, consent & constraints, and key operational notes.
-   - Ensured alignment with the column semantics in Section 6 and with Dash-34 / Training Manual references via `\dashref{}` and `\trnref{}` macros.
-   - Left CMS Section 5.3 "Block and variant notes" as a WIP item (status `review`), with its integration planned for `v0.2.4.0`.
-
-### 12.3 Archival and Traceability (Guide Versions)
-
-The following guide versions have been archived to preserve the evolution of the document. Each entry corresponds to a versioned LaTeX snapshot stored under `WIP/GUIDE/` and, where applicable, a matching PDF snapshot stored in the archive structure.
-
-- `WIP/GUIDE/guide-v0.1.0+20260105`.
-- `WIP/GUIDE/guide-v0.1.1+20260105`.
-- `WIP/GUIDE/guide-v0.1.2+20260105`.
-- `WIP/GUIDE/guide-v0.1.3+20260105`.
-- `WIP/GUIDE/guide-v0.1.4.0+20260107`.
-- `WIP/GUIDE/guide-v0.2.0.0-20260108`.
-- `WIP/GUIDE/guide-v0.2.1.0-20260108`.
-- `WIP/GUIDE/guide-v0.2.2.0-20260108`.
-- `WIP/GUIDE/guide-v0.2.3.1-20260110`.
-
-These historical versions provide traceability for structural decisions, early chapter scaffolding, geometry fixes and CMS content integrations made before and within the current 0.2.x.x series. All of them were, at their time, byte-identical to the corresponding `guide.tex` in the repository root.
+[Section 8 content repeated for convenience in final sections]
 
 ---
 
-**Last Updated (Brief):** 10 January 2026 — Section 6.7.1 (Training Mission Abbreviations Standard) added with formal integration of Training Mission Reference Table v1.0 as a normative reference; Section 12 updated to reflect `v0.2.3.1` as the active guide version (CMS 5.2 integrated). Brief version remains `v0.2.0.1` because no structural or layout rules were changed.
+## 13. How to Work With This Brief (SAME AS SECTION 9)
+
+[Section 9 content repeated for convenience in final sections]
+
+---
+
+## CHANGE SUMMARY:
+
+**Date:** 17 January 2026, 23h45 -03
+
+### Major Updates:
+
+1. **Section 11 — Complete Redesign:**
+   - Reorganized from single-section format to hierarchical subsections (11.1–11.6).
+   - Added 11.3 with detailed preamble documentation (11.3.1–11.3.11):
+     - Document class migration (article → report).
+     - Two-sided layout configuration.
+     - Encoding and fonts.
+     - Page geometry and spacing.
+     - Colors and hyperlinks.
+     - Headers and footers for two-sided documents.
+     - Chapter and section formatting (titlesec).
+     - Tables and column types.
+     - Graphics and float positioning.
+     - hotastable environment (CORRECTED CODE).
+     - Reference macros.
+     - Version control macros.
+
+2. **Section 4 — Updated:**
+   - Added line spacing (1.5×) to layout parameters.
+
+3. **New preamble code:**
+   - Complete preamble listing from 17 January 2026 version (`guidetest.tex`).
+   - Includes all new packages and configurations.
+   - Corrected `hotastable` environment with proper `longtable` header ordering.
+
+### Rationale:
+
+- Previous brief (v0.2.0.1) documented preamble only at high level; new developers could not replicate preamble exactly.
+- New preamble significantly enhanced (report class, twoside, titlesec, improved headers/footers, float positioning).
+- Detailed subsections enable precise preamble reproduction and maintenance.
+- Corrected hotastable code resolves table numbering issues.
+
+---
+
+**Brief Version:** v0.2.0.1  
+**Status:** Ready for use  
+**Next Steps:** Integrate into project repository and update all cross-references in WIP-NAMING and VERSION-SYSTEM documents.
