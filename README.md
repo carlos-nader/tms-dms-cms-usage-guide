@@ -275,6 +275,7 @@ For questions, suggestions, or feedback about this guide, please:
 - Review the **Project Tracking** document (in `/docs/`) for current status
 - Check the other **Governance Documents** (in `/docs/`) for workflow details
 - Falcon BMS forum: https://forum.falcon-bms.com/topic/32541/in-development-tms-dms-cms-usage-guide-public-project
+
 ![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white) carlos.snm@gmail.com
 
 ---
