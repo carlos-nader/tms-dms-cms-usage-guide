@@ -198,15 +198,15 @@
 </head>
 <body>
     <h1>Falcon BMS 4.38.1 — TMS, DMS and CMS Usage Guide: Project Brief</h1>
-<p><strong>Brief Version:</strong> v0.2.0.1 (WIP File Template Specification + New Preamble Documentation + Training Mission Reference Integration — 17 January 2026)</p>
+<p><strong>Brief Version:</strong> v0.2.0.1-2026-01-18 (License &amp; Contributor Rights Section Added)</p>
 <hr>
 <h2>Repository Identification</h2>
 <ul>
 <li>GitHub repository name: <code>carlos-nader/tms-dms-cms-usage-guide</code></li>
-<li>Primary URL: <a href="https://github.com/carlos-nader/tms-dms-cms-usage-guide/tree/main/docs">https://github.com/carlos-nader/tms-dms-cms-usage-guide/tree/main/docs</a></li>
+<li>Primary URL: <a href="https://github.com/carlos-nader/tms-dms-cms-usage-guide">https://github.com/carlos-nader/tms-dms-cms-usage-guide</a></li>
 <li>Default branch: <code>main</code></li>
 <li>Canonical guide file: <code>guide.tex</code> (repository root)</li>
-<li>Versioned snapshots: <code>WIP/GUIDE/guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex</code></li>
+<li>Versioned snapshots: <code>wip/guide/guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex</code></li>
 </ul>
 <hr>
 <h2>0. Context and Working Assumptions</h2>
@@ -215,6 +215,7 @@
 <li>Scope, goals and structure of the document.</li>
 <li>Source material and style rules.</li>
 <li>Layout parameters and table standards.</li>
+<li>License and contributor rights.</li>
 <li>High-level overview of the Version System v4.2.1 and how it interacts with GitHub.</li>
 </ul>
 <p>All instructions to the assistant are given in <strong>Portuguese</strong>. All content that goes into the <strong>LaTeX document</strong> (text, tables, captions, macros) is in <strong>English</strong>.</p>
@@ -274,81 +275,27 @@
 <li>2.2 Short vs long presses and timing.</li>
 <li>2.3 Master modes and context-sensitive behaviour.</li>
 <li>2.4 Overview of TMS, DMS and CMS.</li>
-<li>Table with: switch, location (stick/throttle), general role, detailed chapter.</li>
 </ul>
 <p><strong>3. TMS — Target Management Switch</strong></p>
 <ul>
 <li>3.1 Concept and general behaviour.</li>
-<li>3.2 TMS and Situational Awareness displays (HSD, HSI, DED).<ul>
-<li>3.2.1 HSD cursor control and waypoint management.</li>
-<li>3.2.2 Integration with NAV master mode.</li>
-<li>3.2.3 Cross-mode SA display interaction (A-A, A-G context).</li>
-</ul>
-</li>
-<li>3.3 TMS in Air-to-Air.<ul>
-<li>FCR CRM (RWS / ULS / VSR).</li>
-<li>SAM / DT-SAM.</li>
-<li>TWS.</li>
-<li>STT.</li>
-<li>ACM (30×20, 10×60, BORE, SLEW).</li>
-<li>IFF interrogations (SCAN / LOS).</li>
-</ul>
-</li>
-<li>3.4 TMS in Air-to-Ground — sensors and SPI.<ul>
-<li>FCR A-G (GM / GMT / SEA / AGR).</li>
-<li>TGP A-G.</li>
-<li>HUD / HMCS (SPI, Snowplow, CZ, VIP/VRP cues).</li>
-<li>Markpoints and steerpoint management.</li>
-</ul>
-</li>
-<li>3.5 TMS in A-G weapon employment.<ul>
-<li>Unguided bombs and rockets (CCIP / CCRP / DTOS).</li>
-<li>EO weapons — Maverick (VIS / PRE / BORE).</li>
-<li>IAMs (JDAM / JSOW / WCMD / SPICE / others).</li>
-<li>LGBs and laser employment (single ship / buddy).</li>
-<li>Anti-radiation (HARM POS / HAS / HAD).</li>
-<li>Naval weapons (Harpoon, others).</li>
-</ul>
-</li>
+<li>3.2 TMS and Situational Awareness displays.</li>
+<li>3.3 TMS in Air-to-Air.</li>
+<li>3.4 TMS in Air-to-Ground.</li>
+<li>3.5 TMS in A-G weapon employment.</li>
 <li>3.6 TMS — Block / variant notes.</li>
 </ul>
 <p><strong>4. DMS — Display Management Switch</strong></p>
 <ul>
-<li>4.1 Concept and Sensor of Interest (SOI).<ul>
-<li>4.1.1 SOI definition and scope across displays.</li>
-<li>4.1.2 Role of the DMS in SOI selection.</li>
-<li>4.1.3 Example SOI flow (overview).</li>
-</ul>
-</li>
-<li>4.2 DMS in MFDS format selection and SWAP.<ul>
-<li>4.2.1 MFDS format selection and cycling.</li>
-<li>4.2.2 SWAP and display management.</li>
-<li>4.2.3 HSD control via SOI and MFDS functions.</li>
-</ul>
-</li>
-<li>4.3 DMS in sensor and weapon context.<ul>
-<li>4.3.1 SOI changes between FCR, TGP, HSD and HUD in Air-to-Air.</li>
-<li>4.3.2 SOI changes between FCR, TGP, HSD, HAD and WPN in Air-to-Ground.</li>
-<li>4.3.3 DMS with HARM — HAD page as SOI.</li>
-<li>4.3.4 DMS with IAMs and other weapon-driven MFDS pages (SMS/WPN).</li>
-</ul>
-</li>
+<li>4.1 Concept and Sensor of Interest (SOI).</li>
+<li>4.2 DMS in MFDS format selection and SWAP.</li>
+<li>4.3 DMS in sensor and weapon context.</li>
 <li>4.4 DMS — Block and variant notes.</li>
 </ul>
 <p><strong>5. CMS — Countermeasures Management Switch</strong></p>
 <ul>
-<li>5.1 Concept and interaction with CMDS / ECM.<ul>
-<li>5.1.1 Concept.</li>
-<li>5.1.2 Interaction with CMDS / ECM.</li>
-</ul>
-</li>
-<li>5.2 CMS Switch Actuation — main table in subsections using <code>hotastable</code>.<ul>
-<li>5.2.1 CMS Actuation with CMDS.</li>
-<li>5.2.2 CMS Actuation with ECM.</li>
-<li>5.2.3 CMS Consent &amp; Constraints.</li>
-<li>5.2.4 Important Operational Notes.</li>
-</ul>
-</li>
+<li>5.1 Concept and interaction with CMDS / ECM.</li>
+<li>5.2 CMS Switch Actuation — main table in subsections using <code>hotastable</code>.</li>
 <li>5.3 CMS — Block and variant notes.</li>
 </ul>
 <p><strong>6. Training References and Practical Flows</strong></p>
@@ -356,52 +303,19 @@
 <li>6.1 How to use this guide with BMS training missions.</li>
 <li>6.2 Recommended progression.</li>
 <li>6.3 Example flows for typical missions.</li>
-<li>6.4 Checklist: &quot;what to practise next&quot;.</li>
-<li>Two-column table: Topic × Recommended training missions.<ul>
-<li>Example: &quot;TMS A-A CRM&quot; → TRN 18, TRN 17B.</li>
-</ul>
-</li>
 </ul>
 <p><strong>7. HOTAS Visual Reference</strong></p>
 <ul>
-<li>7.1 F-16 HOTAS overview.<ul>
-<li>Single illustrative figure of stick + throttle, only labelling TMS, DMS and CMS positions (no other buttons).</li>
-</ul>
-</li>
-<li>7.2 TMS diagrams.<ul>
-<li>Close-ups of the TMS hat with arrows and short labels per direction, grouped by broad context (A-A radar, A-G sensors/SPI, SA displays).</li>
-</ul>
-</li>
-<li>7.3 DMS diagrams.<ul>
-<li>Close-ups of the DMS hat showing SOI / format control directions.</li>
-</ul>
-</li>
-<li>7.4 CMS diagrams.<ul>
-<li>Close-up of the CMS hat with arrows and short text per direction (up/left/right/aft) for CMDS/ECM interaction.</li>
-</ul>
-</li>
+<li>7.1 F-16 HOTAS overview.</li>
+<li>7.2 TMS, DMS, CMS diagrams with arrows and labels.</li>
 </ul>
 <h3>3.2 Appendices</h3>
 <ul>
-<li>Block / variant overview (how behaviour is the same or slightly different across main BMS F-16 variants).</li>
-<li>Tables index (list of all major TMS/DMS/CMS tables and where to find them).</li>
+<li>Block / variant overview.</li>
+<li>Tables index.</li>
 </ul>
-<h3>3.3 LaTeX Preamble (Architecture Overview)</h3>
-<p>The LaTeX preamble is a <strong>locked, architecture-stable component</strong> that includes:</p>
-<ul>
-<li>Document class (<code>report</code> with <code>twoside</code> for double-sided layout).</li>
-<li>Complete UTF-8 encoding stack with language support.</li>
-<li>Professional fonts (Latin Modern) and microtypography.</li>
-<li>Page geometry (A4, 2.0 cm left/right, 2.5 cm top/bottom margins).</li>
-<li>Advanced header/footer management for two-sided documents.</li>
-<li>Chapter and section formatting via <code>titlesec</code>.</li>
-<li>Custom table environment (<code>hotastable</code>) with 7-column HOTAS layout.</li>
-<li>Helper macros for cross-references, training missions, and document metadata.</li>
-<li>Graphics support with figure float control.</li>
-</ul>
-<p><strong>Detailed preamble architecture is documented in Section 11.</strong></p>
 <hr>
-<h2>4. Layout Parameters (Updated January 17, 2026)</h2>
+<h2>4. Layout Parameters</h2>
 <h3>4.1 Geometry Configuration (Guide Standard)</h3>
 <ul>
 <li>Page: A4 paper.</li>
@@ -410,76 +324,26 @@
 <li>Top margin: 2.5 cm.</li>
 <li>Bottom margin: 2.5 cm.</li>
 <li>Available text width: 17.0 cm.</li>
-<li>Standard HOTAS table width: 15.6 cm (sum of column widths).</li>
-<li>Horizontal safety margin: 1.4 cm between table and text width.</li>
-<li>Line spacing: 1.5× (via <code>\onehalfspacing</code>).</li>
-</ul>
-<p><strong>Rationale:</strong></p>
-<ul>
-<li>2.0 cm left/right margins are consistent with typical technical manual practice (including Falcon BMS Dash-1 and Dash-34 styling).</li>
-<li>Compared to the previous 2.5 cm margins, this layout:<ul>
-<li>Preserves a professional look while avoiding a cramped page.</li>
-<li>Increases available width from 16.0 cm to 17.0 cm, providing more breathing room around the 15.6 cm-wide HOTAS table.</li>
-<li>Reduces the risk of overfull boxes and awkward <code>longtable</code> breaks.</li>
-</ul>
-</li>
-<li>1.5× line spacing improves readability without excessive page bloat.</li>
+<li>Standard HOTAS table width: 15.6 cm.</li>
+<li>Line spacing: 1.5× (via <code>\\onehalfspacing</code>).</li>
 </ul>
 <h3>4.2 Table Formatting Standard (hotastable)</h3>
 <ul>
-<li>Font size: <code>\small</code> (10 pt).</li>
-<li>Row height multiplier: <code>\arraystretch = 1.25</code>.</li>
-</ul>
-<p><strong>Rationale:</strong></p>
-<ul>
-<li><code>\arraystretch = 1.25</code> slightly reduces vertical spacing relative to 1.3, improving page economy while preserving legibility.</li>
-<li>This value is within recommended ranges for dense technical tables using <code>longtable</code>.</li>
-<li>The combination of <code>\small</code> + <code>\arraystretch = 1.25</code> is the project-wide standard for all TMS/DMS/CMS tables implemented via <code>hotastable</code>.</li>
-</ul>
-<h3>4.3 Scope of Application (Layout Standard)</h3>
-<ul>
-<li>The geometry and <code>hotastable</code> parameters defined here apply to:<ul>
-<li>The <strong>canonical guide file in the repository root</strong>: <code>guide.tex</code>.</li>
-<li>Any <strong>standalone WIP section files</strong> that define their own page geometry and HOTAS tables.</li>
-<li>Any <strong>versioned guide snapshots</strong> under <code>WIP/GUIDE/</code> (see Section 10), which must remain byte-identical to <code>guide.tex</code> for a given version.</li>
-</ul>
-</li>
-<li>Column widths for <code>hotastable</code> are considered architecture-locked by this brief:<ul>
-<li><code>L{1.6cm}</code>, <code>L{1.0cm}</code>, <code>L{1.0cm}</code>, <code>L{3.4cm}</code>, <code>L{5.8cm}</code>, <code>L{1.4cm}</code>, <code>L{1.4cm}</code>.</li>
-</ul>
-</li>
-<li>Future layout tuning for HOTAS tables should be done only through:<ul>
-<li>Global page geometry (margins).</li>
-<li><code>\arraystretch</code> (row height), within a safe readability range.</li>
-</ul>
-</li>
+<li>Font size: <code>\\small</code> (10 pt).</li>
+<li>Row height multiplier: <code>\\arraystretch = 1.25</code>.</li>
+<li>Column widths (locked): <code>L{1.6cm}</code>, <code>L{1.0cm}</code>, <code>L{1.0cm}</code>, <code>L{3.4cm}</code>, <code>L{5.8cm}</code>, <code>L{1.4cm}</code>, <code>L{1.4cm}</code>.</li>
 </ul>
 <hr>
 <h2>5. Style and Content Rules</h2>
 <h3>5.1 General Style</h3>
 <ul>
 <li><strong>Language:</strong> English, neutral and technical, similar to a good community manual.</li>
-<li><strong>Length:</strong><ul>
-<li>Most sections: 2–4 short paragraphs.</li>
-<li>Avoid long walls of text; use lists when they improve clarity.</li>
-</ul>
-</li>
-<li><strong>Tone:</strong><ul>
-<li>Explanatory, not conversational; no chatty expressions.</li>
-</ul>
-</li>
-<li><strong>Terminology:</strong><ul>
-<li>Always define an acronym on first use in the document (for example &quot;Sensor of Interest (SOI)&quot;).</li>
-<li>Use consistent naming: TMS, DMS, CMS, CMDS, ECM, IAM, TGP, FCR, etc.</li>
-</ul>
-</li>
+<li><strong>Length:</strong> Most sections 2–4 short paragraphs.</li>
+<li><strong>Tone:</strong> Explanatory, not conversational.</li>
+<li><strong>Terminology:</strong> Always define acronyms on first use.</li>
 </ul>
 <h3>5.2 Focus</h3>
-<p>Focus is always TMS, DMS and CMS.</p>
-<ul>
-<li>Mention other controls or panels only when strictly needed to understand what these three switches are doing (for example, CMDS panel mode, RF switch position, etc.).</li>
-<li>Do not drift into full tactics textbooks. A short tactical note is allowed in the &quot;Effect / Nuance&quot; column or in a brief sentence, but the primary purpose is to document what the hat does in each context.</li>
-</ul>
+<p>Focus is always TMS, DMS and CMS. Mention other controls only when strictly needed.</p>
 <h3>5.3 Intro and &quot;How to Read&quot; Sections</h3>
 <p>The Introduction should clearly explain:</p>
 <ul>
@@ -488,291 +352,102 @@
 <li>The role of tables and training-mission references.</li>
 <li>That the visual chapter is a quick reference, not the primary source of truth.</li>
 </ul>
-<p>&quot;Document structure and how to read it&quot; should:</p>
-<ul>
-<li>Explain where the big tables are.</li>
-<li>Explain how to interpret the columns.</li>
-<li>Indicate where to look for training missions.</li>
-<li>Explain how to use the visual reference chapter together with the tables.</li>
-</ul>
 <hr>
-<h2>6. Column Filling Guidelines for hotastable (v0.1.3)</h2>
-<p>For every TMS/DMS/CMS table, use the following conventions.</p>
+<h2>6. Column Filling Guidelines for hotastable</h2>
 <h3>6.1 Column 1: State (1.6 cm)</h3>
+<p>Describe the condition or context where this action applies. Use structured format:</p>
 <ul>
-<li>Describe the condition or context where this action applies, combining master mode and the relevant sensor/weapon.</li>
-<li>Use a short, structured format, for example:<ul>
-<li>A-A CRM — FCR RWS.</li>
-<li>A-A ACM — BORE.</li>
-<li>A-G — FCR GM.</li>
-<li>A-G — TGP.</li>
-<li>A-G — HUD/HMCS SPI.</li>
-<li>NAV — HSD.</li>
-<li>IAM — PRE.</li>
-<li>HARM — POS.</li>
-<li>LGB — TGP.</li>
-</ul>
-</li>
-<li>This column is the &quot;address&quot; of the behaviour; keep it concise.</li>
-<li>If the behaviour is the same in all submodes of a given master mode, it is acceptable to write, for example:<ul>
-<li>A-A CRM — any.</li>
-<li>A-G — any FCR mode.</li>
-</ul>
-</li>
+<li>A-A CRM — FCR RWS</li>
+<li>A-G — FCR GM</li>
+<li>NAV — HSD</li>
 </ul>
 <h3>6.2 Column 2: Direction (1.0 cm)</h3>
-<ul>
-<li>Use physical directions of the hat: Up, Down, Left, Right.</li>
-<li>If a behaviour is truly independent of direction (rare), write &quot;Any&quot; and explain in Effect / Nuance.</li>
-<li>Do not include timing here.</li>
-</ul>
+<p>Use physical directions: Up, Down, Left, Right.</p>
 <h3>6.3 Column 3: Action (1.0 cm)</h3>
+<p>Describe press type:</p>
 <ul>
-<li>Describe the type of press, usually:<ul>
-<li>Short — quick tap, up to about 0.5–0.6 s.</li>
-<li>Long — press longer than about 0.5–0.6 s, when the simulator distinguishes short vs long.</li>
-</ul>
-</li>
-<li>Variants:<ul>
-<li>Short, repeated — for cycling actions.</li>
-<li>Long (hold) — for actions that only stay active while held.</li>
-</ul>
-</li>
-<li>Timing hints may be added if important, for example: <code>Long (&gt;0.5 s)</code>.</li>
-<li>Do not describe system behaviour here, only the nature of the press.</li>
+<li>Short — quick tap (≤0.6 s)</li>
+<li>Long — press &gt;0.6 s</li>
 </ul>
 <h3>6.4 Column 4: Function (3.4 cm)</h3>
+<p>Provide a short name for what the switch does:</p>
 <ul>
-<li>Provide a short name for what the switch does in that context, for example:<ul>
-<li>Bug / designate target.</li>
-<li>Drop track / RTS.</li>
-<li>Set / update SPI.</li>
-<li>Break track / CZ.</li>
-<li>Cycle SOI between MFDs.</li>
-<li>Give ECM consent.</li>
-<li>Update waypoint.</li>
-</ul>
-</li>
-<li>Think of this as the row&#39;s &quot;title&quot; — what a pilot might say informally.</li>
+<li>Bug / designate target</li>
+<li>Break track / CZ</li>
+<li>Cycle SOI between MFDs</li>
 </ul>
 <h3>6.5 Column 5: Effect / Nuance (5.8 cm)</h3>
+<p>Brief explanation (1–3 sentences) of what happens:</p>
 <ul>
-<li>Brief explanation (1–3 short sentences) of what actually happens:<ul>
-<li>How radar/TGP/HUD state changes (lock type, SPI, SOI, etc.).</li>
-<li>Interactions with other systems (CMDS AUTO/SEMI, ECM pod, IAM state, etc.).</li>
-<li>Conditions or exceptions (for example &quot;only with an existing track&quot;, &quot;no effect if no target&quot;).</li>
-</ul>
-</li>
-<li>Include nuances:<ul>
-<li>First press vs subsequent presses.</li>
-<li>What happens when there is no valid target.</li>
-<li>Very short tactical remarks if they help understanding the use.</li>
-</ul>
-</li>
+<li>How state changes</li>
+<li>Interactions with other systems</li>
+<li>Exceptions or conditions</li>
 </ul>
 <h3>6.6 Column 6: Dash34 (1.4 cm)</h3>
+<p>Reference relevant Dash-34 sections using macros:</p>
 <ul>
-<li>Reference the most relevant sections in Dash-34 (or Dash-1 when needed).</li>
-<li>Use macros instead of prose, for example:<ul>
-<li><code>\dashref{2.1.5}</code> for HOTAS hands-on controls.</li>
-<li><code>\dashref{2.7.1}</code> for CMS/ECM operation.</li>
-</ul>
-</li>
-<li>Multiple sections can be comma-separated: <code>\dashref{2.1.5}, \dashref{2.7.1}</code>.</li>
-<li>Keep it short and purely referential.</li>
+<li><code>\\dashref{2.1.5}</code></li>
+<li><code>\\dashref{2.1.5}, \\dashref{2.7.1}</code></li>
 </ul>
 <h3>6.7 Column 7: Train (1.4 cm)</h3>
-<p>Link behaviour to one or more BMS training missions. <strong>All training mission references in this column must conform to the standardized abbreviations defined in Section 6.7.1 below.</strong></p>
-<p><strong>Example references:</strong></p>
+<p>Link behaviour to BMS training missions using standardized abbreviations (see Training Mission Reference Table v1.0):</p>
 <ul>
-<li><code>\trnref{28 (SEAD-EW)}</code>.</li>
-<li><code>\trnref{12 (HARM)}</code>.</li>
-<li><code>\trnref{18 (BARCAP)}</code>.</li>
-<li><code>\trnref{11 (LGB)}</code>.</li>
+<li><code>\\trnref{18 (BARCAP)}</code></li>
+<li><code>\\trnref{18 (BARCAP)}, \\trnref{28 (SEAD-EW)}</code></li>
 </ul>
-<p>If several missions cover the behaviour, list 2–3:</p>
-<ul>
-<li><code>\trnref{18 (BARCAP)}, \trnref{17B (IFF Intercept)}</code>.</li>
-</ul>
-<p>If there is no direct mission, either:</p>
-<ul>
-<li>leave the column blank, or</li>
-<li>reference the closest one and mention that in Effect / Nuance.</li>
-</ul>
-<h4>6.7.1 Training Mission Abbreviations Standard</h4>
-<p>All training mission references in the Train column <strong>must conform</strong> to the standardized abbreviations defined in:</p>
-<p><strong>Training Mission Reference Table v1.0</strong> (<code>training-mission-abbrev-table-v1.0.md</code>)<br><em>Effective Date: 10 January 2026</em></p>
-<p>This document establishes the authoritative list of abbreviations for all 33 BMS 4.38.1 training missions, ensuring consistency and compliance with column width constraints (1.4 cm, <code>\small</code> font, <code>\arraystretch = 1.25</code>).</p>
-<p><strong>Required Reference Format:</strong></p>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="language">latex</span>
-                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\trnref</span>{XX (ABBREVIATION)}</code></pre>
-                </div>
-            <p>Where <code>XX</code> is the mission number (including variants A/B/C/D) and <code>ABBREVIATION</code> is taken directly from the Training Mission Reference Table v1.0.</p>
-<p><strong>Examples:</strong></p>
-<ul>
-<li><code>\trnref{1 (Ground Ops)}</code></li>
-<li><code>\trnref{4D (AAR)}</code></li>
-<li><code>\trnref{18 (BARCAP)}, \trnref{28 (SEAD-EW)}</code></li>
-</ul>
-<p>For detailed abbreviation rules, variant conventions, and multi-mission guidelines, refer directly to the Training Mission Reference Table v1.0.</p>
 <hr>
 <h2>7. Rules for the HOTAS Visual Reference Chapter</h2>
 <ul>
-<li>All figures are illustrative, not official; style should be schematic, similar to technical drawings.</li>
-</ul>
-<h3>7.1 F-16 HOTAS Overview</h3>
-<ul>
-<li>Show a generic stick + throttle layout.</li>
+<li>All figures are illustrative, not official.</li>
+<li>Style should be schematic, similar to technical drawings.</li>
 <li>Only label TMS, DMS and CMS positions; do not label other buttons.</li>
-<li>Example caption: &quot;F-16 HOTAS overview — TMS, DMS and CMS positions (illustrative, generic F-16CM Block 50/52 layout).&quot;</li>
+<li>Keep diagram text extremely short (a few words per arrow).</li>
+<li>Rely on tables for detailed explanations.</li>
 </ul>
-<h3>7.2 TMS Diagrams</h3>
-<ul>
-<li>Each diagram shows only the TMS hat, with arrows and very short labels per direction.</li>
-<li>Group diagrams by broad context, for example:<ul>
-<li>&quot;TMS — Air-to-Air radar contexts&quot;.</li>
-<li>&quot;TMS — Air-to-Ground sensor/SPI contexts&quot;.</li>
-<li>&quot;TMS — Situational Awareness displays&quot;.</li>
-</ul>
-</li>
-<li>The label for each direction must be consistent with the Function column in the corresponding tables.</li>
-</ul>
-<h3>7.3 DMS Diagrams</h3>
-<ul>
-<li>Show the DMS hat with arrows and short labels, for example:<ul>
-<li>HUD/HMCS SOI.</li>
-<li>Left/right MFD SOI/format cycling.</li>
-</ul>
-</li>
-<li>Again, text must match the Function column in DMS tables.</li>
-</ul>
-<h3>7.4 CMS Diagrams</h3>
-<ul>
-<li>Show the CMS hat with arrows and short labels, for example:<ul>
-<li>Up (manual programs).</li>
-<li>Left (program 6).</li>
-<li>Aft (ECM/CMDS consent).</li>
-<li>Right (cancel AUTO, inhibit).</li>
-</ul>
-</li>
-<li>Match labels with the CMS tables.</li>
-</ul>
-<p>In all diagrams, keep text extremely short (a few words per arrow) and rely on the tables for detailed explanations.</p>
 <hr>
 <h2>8. Professional Standards for AI-Assisted Content Development</h2>
 <h3>8.1 Communication Principles</h3>
-<p>When collaborating on this project, the following communication standards apply:</p>
 <ol>
-<li><p><strong>Professional rigour</strong><br>All analysis, recommendations, and structural proposals must be grounded in primary sources and technical accuracy, not assumptions or simplifications.</p>
-</li>
-<li><p><strong>No condescension</strong><br>Treat the human author as the subject-matter expert and decision-maker. The AI&#39;s role is to provide deep analysis, identify sources of potential error (including its own), and present options with supporting evidence — not to guide or direct.</p>
-</li>
-<li><p><strong>Error identification</strong><br>When the human corrects an analysis, acknowledge the correction explicitly, explain the flawed reasoning, and reference which sources or logic should have been consulted. This documents learning and improves future responses.</p>
-</li>
-<li><p><strong>Primary source grounding</strong><br>All statements about TMS/DMS/CMS behaviour must be traceable to:</p>
-<ul>
-<li>TO BMS 1F-16CMAM-34-1-1 (Dash-34).</li>
-<li>TO BMS 1F-16CMAM-1 (Dash-1).</li>
-<li>BMS Training Manual 4.38.1.</li>
-<li>BMS User Manual 4.38.</li>
-</ul>
-<p>Avoid inference or generalisation from partial information.</p>
-</li>
-<li><p><strong>Structural integrity</strong><br>When proposing changes to chapter organisation or section placement, analyse against:</p>
-<ul>
-<li>The actual use cases (NAV, A-A, A-G, DGFT).</li>
-<li>Which master modes rely on which switches.</li>
-<li>Where functionality overlaps vs where it is exclusive.</li>
-<li>The learning progression for virtual pilots.</li>
-<li>Whether a display/feature is primary to that context or incidental.</li>
-</ul>
-</li>
-<li><p><strong>Explicit scope boundaries</strong><br>Clearly distinguish between:</p>
-<ul>
-<li>What applies to all blocks/variants vs specific ones.</li>
-<li>What is primary TMS/DMS/CMS function vs incidental.</li>
-<li>What is in scope (these three switches) vs out of scope (other HOTAS controls).</li>
-</ul>
-</li>
+<li><strong>Professional rigour</strong> — All analysis must be grounded in primary sources and technical accuracy.</li>
+<li><strong>No condescension</strong> — Treat the human author as the subject-matter expert and decision-maker.</li>
+<li><strong>Error identification</strong> — When corrected, acknowledge the correction explicitly and explain the flawed reasoning.</li>
+<li><strong>Primary source grounding</strong> — All TMS/DMS/CMS claims must be traceable to Dash-34, Dash-1, BMS Training Manual, or BMS User Manual.</li>
+<li><strong>Structural integrity</strong> — Analyze organizational changes against actual use cases and operational contexts.</li>
+<li><strong>Explicit scope boundaries</strong> — Clearly distinguish between what applies to all blocks/variants vs. specific ones, and what is in scope vs. out of scope.</li>
 </ol>
-<h3>8.2 Application Examples</h3>
-<p><strong>Session 1 — HSD section placement</strong></p>
-<ul>
-<li>Initial error: proposed HSD section placement as 4.4 (after A-G SPI, before weapons), framing it as an A-G planning tool.</li>
-<li>Correction: HSD is a transversal NAV/PLANNING tool used across all master modes, with primary relevance in NAV, not as an A-G-specific feature.</li>
-<li>Flawed reasoning: confused &quot;tool used during A-G missions&quot; with &quot;A-G-specific tool&quot;; failed to distinguish between primary context (NAV) and incidental context (A-G backup/reference).</li>
-<li>Implication: section should appear early in Chapter 3 (after Concept), positioned as a transversal display that spans master modes, not in the A-G subsection.</li>
-<li>Learning: context of display use (master mode → then sensor → then purpose) should be the primary organising principle, not mission phase or tactical application.</li>
-</ul>
-<p><strong>Session 4 — DMS structure decision</strong></p>
-<ul>
-<li>Problem identified: DMS structure was ambiguous (three candidate organisations: A, B, C).</li>
-<li>Resolution methodology: used Dash-34 (sections 2.1.5, 2.1.6.2–2.1.6.3, 2.1.7.5.4) as the authoritative arbiter.</li>
-<li>Technical validation: confirmed that DMS is a transversal SOI/MFDS manager, not a sensor-specific or mode-specific switch.</li>
-<li>Decision: adopted Option B (&quot;Transversal SOI architecture&quot;) with Dash-34 terminology.</li>
-<li>Result structure:<ul>
-<li>4.1 Concept and Sensor of Interest (SOI).</li>
-<li>4.2 DMS in MFDS format selection and SWAP.</li>
-<li>4.3 DMS in sensor and weapon context.</li>
-<li>4.4 DMS — Block and variant notes.</li>
-</ul>
-</li>
-<li>Enforcement: two critical focus points: DMS does not perform tactical functions; NAV/A-A/A-G are contexts, not three different DMS implementations.</li>
-</ul>
 <hr>
 <h2>9. How to Work With This Brief</h2>
 <ul>
-<li>The human author will issue instructions in Portuguese, for example:<ul>
-<li>&quot;Preencha a seção &#39;CMS — Concept and interaction with CMDS / ECM&#39; no LaTeX.&quot;</li>
-<li>&quot;Crie a tabela de ações do CMS para os modos AUTO/SEMI/MAN dentro do hotastable.&quot;</li>
-</ul>
-</li>
-<li>The assistant should:<ul>
-<li>Generate or modify LaTeX snippets that fit cleanly into the existing template.</li>
+<li>The human author will issue instructions in Portuguese.</li>
+<li>The assistant should generate or modify LaTeX snippets that fit cleanly into the existing template.</li>
 <li>Keep sections, labels and references consistent with this brief.</li>
-<li>Use the helper macros and the <code>hotastable</code> environment as defined.</li>
+<li>Use helper macros and the <code>hotastable</code> environment as defined.</li>
 <li>Provide rigorous analysis grounded in primary sources.</li>
+<li>Suggest structural improvements only when grounded in technical analysis and with explicit approval.</li>
 </ul>
-</li>
-<li>The assistant may suggest structural improvements grounded in technical analysis and primary sources, but should not apply them unless explicitly approved.</li>
-</ul>
-<p>When in doubt, ask concise clarification and wait for the answer before making large refactors.</p>
 <hr>
-<h2>10. Version Control System (VERSION_SYSTEM_v4.2.1 — Overview)</h2>
-<p>This section provides a high-level overview of the versioning model used for the TMS/DMS/CMS guide. The authoritative rules are defined in the standalone document &quot;Falcon BMS TMS/DMS/CMS Guide Version System v4.2.1&quot;. In case of any discrepancy between this brief and that document, Version System v4.2.1 is the single source of truth.</p>
+<h2>10. Version Control System</h2>
+<p>This section provides a high-level overview of versioning. The authoritative rules are defined in <strong>VERSION-SYSTEM-v4.2.1</strong>. In case of discrepancy between this brief and that document, Version System v4.2.1 is the single source of truth.</p>
 <h3>10.1 Purpose and Scope</h3>
 <ul>
-<li>Ensure that the guide, its LaTeX sources and tracking documents use a consistent versioning scheme.</li>
-<li>Provide a quick reference so that AI-assisted and human edits do not invent ad-hoc version numbers.</li>
-<li>Clarify how the version macros in the LaTeX preamble relate to file names, snapshots, and to the project tracking document.</li>
+<li>Ensure the guide and its LaTeX sources use a consistent versioning scheme.</li>
+<li>Provide a quick reference so AI-assisted and human edits do not invent ad-hoc version numbers.</li>
+<li>Clarify how version macros in the LaTeX preamble relate to file names, snapshots, and the project tracking document.</li>
 </ul>
 <h3>10.2 Repository Structure for the Guide</h3>
-<p>To integrate versioning with GitHub and keep diffs readable, the project uses two levels for the main guide source:</p>
 <ul>
-<li><p><strong>Canonical file in the repository root:</strong></p>
+<li><p><strong>Canonical file in repository root:</strong> <code>guide.tex</code></p>
 <ul>
-<li><code>guide.tex</code>.</li>
-<li>This is the file Git and GitHub track as the main history of the document.</li>
-<li>It always contains the latest accepted version of the guide.</li>
+<li>This is the file Git/GitHub track as the main history.</li>
+<li>Always contains the latest accepted version.</li>
 </ul>
 </li>
-<li><p><strong>Versioned snapshots in <code>WIP/GUIDE/</code>:</strong></p>
+<li><p><strong>Versioned snapshots in <code>wip/guide/</code>:</strong></p>
 <ul>
-<li><p>For each version, there is a snapshot named:</p>
-
+<li>For each version, there is a snapshot named:
                 <div class="code-block">
                     <div class="code-header">
-                        <span class="language">text</span>
+                        <span class="language">plaintext</span>
                         <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -780,92 +455,93 @@
                             </svg>
                         </button>
                     </div>
-                    <pre><code class="hljs language-text">WIP/GUIDE/guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex</code></pre>
+                    <pre><code class="hljs language-plaintext">wip/guide/guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex</code></pre>
                 </div>
             </li>
-<li><p>The snapshot for the active version must be byte-identical to <code>guide.tex</code>.</p>
-</li>
-<li><p>Older snapshots are kept for safety and traceability.</p>
-</li>
+<li>The snapshot for the active version must be byte-identical to <code>guide.tex</code>.</li>
 </ul>
 </li>
 </ul>
 <h3>10.3 LaTeX Version Macros</h3>
-<p>The LaTeX preamble of the guide (both in <code>guide.tex</code> and in its snapshot under <code>WIP/GUIDE/</code>) must contain, at minimum:</p>
+<p>The LaTeX preamble must contain:</p>
 <ul>
-<li><code>\newcommand{\docversion}{...}</code>.</li>
-<li><code>\newcommand{\docbuild}{YYYYMMDD}</code>.</li>
-<li><code>\newcommand{\fulldocversion}{\docversion+\docbuild}</code>.</li>
+<li><code>\\newcommand{\\docversion}{...}</code></li>
+<li><code>\\newcommand{\\docbuild}{YYYYMMDD}</code></li>
+<li><code>\\newcommand{\\fulldocversion}{\\docversion+\\docbuild}</code></li>
 </ul>
-<p>These fields must always match:</p>
+<p>These must always match:</p>
 <ul>
-<li>The version encoded in the <strong>snapshot file name</strong> under <code>WIP/GUIDE/</code>.</li>
-<li>The entry for that version in the <strong>PROJECT-TRACKING</strong> document.</li>
+<li>The version in the snapshot file name</li>
+<li>The entry in PROJECT-TRACKING document</li>
 </ul>
 <h3>10.4 Two Regimes: Pre-publication (0.x.x.x) and Post-publication (≥ 1.0)</h3>
-<p>Version System v4.2.1 defines two distinct regimes:</p>
 <ul>
-<li><p><strong>Pre-publication regime (0.x.x.x):</strong></p>
+<li><p><strong>Pre-publication (0.x.x.x):</strong></p>
 <ul>
-<li>Used while the guide is still being built and no public edition has been declared.</li>
-<li><code>MAJOR = 0</code> always.</li>
-<li><code>MINOR</code> roughly tracks the order in which chapters are integrated into the guide.</li>
-<li><code>PATCH</code> marks structural changes within those chapters (new sections, reorganisation, major table changes).</li>
-<li><code>SUBPATCH</code> records small refinements (typos, wording, small table cell adjustments) that do not change the overall architecture.</li>
+<li><code>MAJOR = 0</code> always</li>
+<li><code>MINOR</code> tracks order of chapter integration</li>
+<li><code>PATCH</code> marks structural changes within chapters</li>
+<li><code>SUBPATCH</code> records small refinements (typos, wording)</li>
 </ul>
 </li>
-<li><p><strong>Post-publication regime (≥ 1.0, x.y.z):</strong></p>
+<li><p><strong>Post-publication (≥ 1.0):</strong></p>
 <ul>
-<li>Used after the first public edition (<code>1.0.0</code>) of the guide is declared.</li>
-<li><code>MAJOR</code> = edition number of the guide (1st, 2nd, 3rd...).</li>
-<li><code>MINOR</code> = significant but compatible revisions within the same edition.</li>
-<li><code>PATCH</code> = local corrections and polish (errata, clarity, minor table fixes).</li>
+<li><code>MAJOR</code> = edition number</li>
+<li><code>MINOR</code> = significant compatible revisions</li>
+<li><code>PATCH</code> = local corrections and polish</li>
 </ul>
 </li>
 </ul>
-<p>The exact decision tables for when to increment each digit are defined in Version System v4.2.1 and should not be reimplemented here.</p>
-<h3>10.5 Quick Operational Rules</h3>
-<p>The following rules are intended as a working checklist; always refer to Version System v4.2.1 for the full logic and examples.</p>
-<ul>
-<li>Only content integrated into the guide snapshot in <code>WIP/GUIDE/</code> and propagated to <code>guide.tex</code> can change its version.<ul>
-<li>Work done only in WIP files (<code>section-</code>, <code>table-</code>, <code>visual-</code>, <code>notes-</code>) does not affect the guide version until it is integrated into the snapshot and copied over <code>guide.tex</code>.</li>
-</ul>
-</li>
-<li>Pre-publication (0.x.x.x):<ul>
-<li>New chapter structure integrated into the guide → typically a MINOR increment.</li>
-<li>Structural changes inside existing chapters (new sections, major table reorganisation) → typically a PATCH increment.</li>
-<li>Typos, wording and small formatting fixes → typically a SUBPATCH increment.</li>
-</ul>
-</li>
-<li>Post-publication (≥ 1.0):<ul>
-<li>Widening scope or large reorganisations that feel like a new edition → MAJOR increment.</li>
-<li>Substantial expansions within the same edition (new chapter, large content additions) → MINOR increment.</li>
-<li>Local corrections, improved clarity, small table fixes → PATCH increment.</li>
-</ul>
-</li>
-<li>Build date (<code>\docbuild</code> and <code>YYYYMMDD</code> in the snapshot file name) is updated every time a new version number is established.</li>
-</ul>
-<h3>10.6 Synchronisation Between Files</h3>
-<p>To avoid divergence between different artefacts, the following three elements must always be synchronised whenever a new guide version is created:</p>
-<ol>
-<li><strong>LaTeX macros</strong> in the guide preamble (snapshot and <code>guide.tex</code>):<ul>
-<li><code>\docversion</code> and <code>\docbuild</code> must reflect the new version and build date.</li>
-</ul>
-</li>
-<li><strong>Snapshot file name</strong> in <code>WIP/GUIDE/</code>:<ul>
-<li>Must match the version and date, for example <code>WIP/GUIDE/guide-v0.2.2.0-20260108.tex</code>.</li>
-</ul>
-</li>
-<li><strong>PROJECT-TRACKING entry</strong>:<ul>
-<li>Must record the same version number, date, affected chapters/sections, and a concise description of the changes.</li>
-</ul>
-</li>
-</ol>
-<p>Git and GitHub always see <code>guide.tex</code> as the canonical file. The snapshot in <code>WIP/GUIDE/</code> is the working copy that is edited; when ready, it is copied over <code>guide.tex</code> so that the Git history shows the evolution of a single, stable file.</p>
 <hr>
-<h2>11. WIP File Template and LaTeX Preamble Architecture</h2>
-<h3>11.1 Purpose and Location</h3>
-<p>All work-in-progress files (chapters, sections, tables, visuals) <strong>MUST</strong> be created by copying and adapting the canonical template:</p>
+<h2>11. License &amp; Contributor Rights</h2>
+<h3>11.1 Project License</h3>
+<p>This project and all work contributed to it (guide.tex, WIP files, templates, governance documents) is released under:</p>
+<p><strong>Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</strong></p>
+<p><strong>Full license:</strong> <a href="https://creativecommons.org/licenses/by-nc/4.0/">https://creativecommons.org/licenses/by-nc/4.0/</a></p>
+<h3>11.2 What This Means for Contributors</h3>
+<h4>You Can Do:</h4>
+<ul>
+<li><strong>Use and Share:</strong> Copy, distribute, print, and share this guide freely</li>
+<li><strong>Translate:</strong> Translate into other languages (translations also CC BY-NC)</li>
+<li><strong>Adapt &amp; Integrate:</strong> Use sections within your own works (e.g., include TMS explanation in your tactical guide)</li>
+<li><strong>Improve:</strong> Create enhanced versions with corrections, additional tables, or new sections</li>
+</ul>
+<h4>You Cannot Do:</h4>
+<ul>
+<li><strong>Monetize:</strong> You cannot sell this guide or any derivative work</li>
+<li><strong>Claim Ownership:</strong> Derivatives cannot claim official status; must indicate source and original author</li>
+</ul>
+<h4>Attribution Required:</h4>
+<p>All contributions and derivatives must include:</p>
+<ol>
+<li>Title: &quot;TMS, DMS, CMS Usage Guide for Falcon BMS&quot;</li>
+<li>Author: &quot;Carlos &#39;Metal&#39; Nader&quot;</li>
+<li>Source: <a href="https://github.com/carlos-nader/tms-dms-cms-usage-guide">https://github.com/carlos-nader/tms-dms-cms-usage-guide</a></li>
+<li>License: &quot;CC BY-NC 4.0&quot; with link to creativecommons.org/licenses/by-nc/4.0/</li>
+</ol>
+<h3>11.3 Contributing Work to This Project</h3>
+<p>When you create WIP files (sections, tables, visuals, notes) that are integrated into this guide:</p>
+<ul>
+<li>Your contribution becomes part of a CC BY-NC 4.0 work</li>
+<li>You retain authorship credit (metadata blocks capture author/AI indication)</li>
+<li>The project author (Carlos &quot;Metal&quot; Nader) retains responsibility for final accuracy and presentation</li>
+<li>Your work will be accessible and free to the Falcon BMS community</li>
+</ul>
+<h3>11.4 Governance &amp; Tracking</h3>
+<p>License status and contributor rights are documented in:</p>
+<ul>
+<li><strong>LICENSE file:</strong> Full CC BY-NC 4.0 legal text (repository root)</li>
+<li><strong>README.md:</strong> License summary and usage details</li>
+<li><strong>Guide Section 1.3:</strong> License statement in published guide</li>
+<li><strong>WIP files metadata:</strong> Author/AI indication in all WIP files</li>
+<li><strong>PROJECT-TRACKING:</strong> Attribution and copyright notes in session logs</li>
+</ul>
+<h3>11.5 Special Case: Official Versions</h3>
+<p>The project author (Carlos &quot;Metal&quot; Nader) publishes <strong>official versions</strong> (v1.0.0, v2.0.0, etc.) on GitHub. While the CC BY-NC license permits community members to create enhanced versions, the <strong>official repository</strong> remains the canonical source for the community.</p>
+<hr>
+<h2>12. WIP File Template and LaTeX Preamble Architecture</h2>
+<h3>12.1 Purpose and Location</h3>
+<p>All work-in-progress files <strong>MUST</strong> be created by copying and adapting:</p>
 
                 <div class="code-block">
                     <div class="code-header">
@@ -879,56 +555,34 @@
                     </div>
                     <pre><code class="hljs language-text">TEMPLATES/template-wip-V1.0.tex</code></pre>
                 </div>
-            <p>This requirement ensures that:</p>
+            <p>This ensures:</p>
 <ul>
-<li>All WIP files inherit a <strong>standardised, validated preamble</strong> identical to the main guide structure.</li>
-<li><strong>Metadata blocks</strong> follow a consistent, machine-readable format.</li>
-<li><strong>Content structures</strong> (sections, subsections, tables) align with the brief&#39;s expectations.</li>
-<li><strong>Integration into guide.tex</strong> can be automated or semi-automated without structural surprises.</li>
+<li>Standardized, validated preamble identical to main guide</li>
+<li>Consistent metadata blocks</li>
+<li>Content structures aligned with brief expectations</li>
+<li>Automated or semi-automated integration into guide.tex</li>
 </ul>
-<p>Template use is <strong>mandatory</strong> for AI-assisted WIP file creation and <strong>strongly recommended</strong> for human-authored WIP files.</p>
-<h3>11.2 What the Template Provides</h3>
-<p>The template is a complete, compilable LaTeX document containing:</p>
+<h3>12.2 What the Template Provides</h3>
 <ol>
-<li><p><strong>Standard preamble</strong> (packages, geometry, macros):</p>
-<ul>
-<li>Identical to <code>guide.tex</code> preamble to ensure WIP files and guide are always synchronised.</li>
-<li>Includes all necessary packages, organised by functional category (encoding, fonts, geometry, colors, headers/footers, chapter formatting, tables, graphics).</li>
-<li>Geometry locked: A4, 2.0 cm left/right margins, 2.5 cm top/bottom, 1.5× line spacing.</li>
-<li>Custom helpers: <code>\dashref{}</code>, <code>\dashone{}</code>, <code>\trnref{}</code>, <code>\trnman</code>, <code>\bmsver</code>, <code>\dashrefs{}</code>.</li>
-<li>Professional header/footer configuration for two-sided layout.</li>
-<li>Chapter and section formatting via <code>titlesec</code> for consistent styling.</li>
-<li>Figure and table support with float positioning control.</li>
-</ul>
-</li>
-<li><p><strong>Metadata block</strong> (non-rendered, for tracking):</p>
-<ul>
-<li>Structured comments at lines following <code>\begin{document}</code> (approximately lines 52–75).</li>
-<li>Contains: target chapter/section, WIP file status, creation date, author/AI indication, development notes, cross-references.</li>
-<li>Metadata is <strong>never rendered</strong> in compiled output; used only for human/automation reference.</li>
-</ul>
-</li>
-<li><p><strong>Section/subsection skeleton</strong>:</p>
-<ul>
-<li>Empty sections and subsections with proper hierarchy (<code>\section{}</code>, <code>\subsection{}</code>, <code>\subsubsection{}</code>).</li>
-<li>Ready to be filled with narrative content, tables, or both.</li>
-<li>Structured to match the chapter breakdown defined in this brief (Section 3.1).</li>
-</ul>
-</li>
-<li><p><strong>Configured hotastable environment</strong>:</p>
-<ul>
-<li>Pre-configured 7-column layout with locked dimensions.</li>
-<li>Column widths: 1.6 cm, 1.0 cm, 1.0 cm, 3.4 cm, 5.8 cm, 1.4 cm, 1.4 cm (State, Direction, Action, Function, Effect/Nuance, Dash34, Train).</li>
-<li>Font size: <code>\small</code> (10 pt).</li>
-<li>Row height: <code>\arraystretch = 1.25</code>.</li>
-<li>Template includes one <strong>empty example row</strong> (commented out) for quick reference during table population.</li>
-</ul>
-</li>
+<li><strong>Standard preamble</strong> (packages, geometry, macros) identical to <code>guide.tex</code></li>
+<li><strong>Metadata block</strong> (non-rendered comments for tracking)</li>
+<li><strong>Section/subsection skeleton</strong> with proper hierarchy</li>
+<li><strong>Configured hotastable environment</strong> with 7-column HOTAS layout</li>
 </ol>
-<h3>11.3 Preamble Configuration (Locked Architecture)</h3>
-<p>The preamble is considered <strong>architecture-locked</strong> and should not be modified except in extraordinary circumstances (requires explicit approval in this brief or by human override).</p>
-<h4>11.3.1 Document Class and Two-Sided Layout</h4>
-<p><strong>Specification:</strong></p>
+<h3>12.3 Preamble Highlights</h3>
+<ul>
+<li>Document class: <code>report</code> with <code>twoside</code> option (double-sided layout)</li>
+<li>Geometry: A4, 2.0 cm left/right, 2.5 cm top/bottom, 1.5× line spacing</li>
+<li>Headers/footers: Professional two-sided configuration</li>
+<li>Chapter formatting: <code>titlesec</code> for consistent styling</li>
+<li>Tables: <code>booktabs</code>, <code>longtable</code>, <code>tabularx</code> with custom columns</li>
+<li>Graphics: <code>graphicx</code> with <code>fig/</code> path, <code>float</code> for position control</li>
+<li>Colors: Professional palette with <code>xcolor[table]</code></li>
+<li>Hyperlinks: Clickable PDF with <code>hyperref</code></li>
+<li>Reference macros: <code>\\dashref{}</code>, <code>\\trnref{}</code>, <code>\\bmsver</code>, etc.</li>
+<li>Version macros: <code>\\docversion</code>, <code>\\docbuild</code>, <code>\\fulldocversion</code></li>
+</ul>
+<h3>12.4 Metadata Block Format</h3>
 
                 <div class="code-block">
                     <div class="code-header">
@@ -940,645 +594,106 @@
                             </svg>
                         </button>
                     </div>
-                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\documentclass</span>[11pt, a4paper, twoside]{report}</code></pre>
-                </div>
-            <p><strong>Migration rationale (article → report):</strong></p>
-<ul>
-<li><code>article</code> class is suitable for short, single-topic documents; it lacks built-in chapter support and features for longer technical manuals.</li>
-<li><code>report</code> class provides <code>\chapter{}</code> command, enabling hierarchical document structure (chapters → sections → subsections).</li>
-<li><code>twoside</code> option activates mirrored margins and header/footer logic for double-sided printing, improving professional appearance and enabling distinct left/right page headers.</li>
-</ul>
-<p><strong>When to use <code>report</code>:</strong></p>
-<ul>
-<li>Document has 5+ logical chapters or sections.</li>
-<li>Document uses <code>\chapter{}</code> command.</li>
-<li>Double-sided printing or presentation is expected.</li>
-<li>Page count exceeds 30–40 pages.</li>
-</ul>
-<p><strong>Impact on LaTeX structure:</strong></p>
-<ul>
-<li><code>\chapter{}</code> becomes the top-level sectioning command (previously <code>\section{}</code>).</li>
-<li><code>\section{}</code> becomes level 2, <code>\subsection{}</code> becomes level 3, etc.</li>
-<li>Headers and footers can distinguish between odd and even pages (via <code>[LO,RE]</code>, <code>[RO,LE]</code> positioning).</li>
-</ul>
-<h4>11.3.2 Encoding, Fonts, and Language</h4>
-<p><strong>Specification:</strong></p>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="language">latex</span>
-                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\usepackage</span>[utf8]{inputenc}
-<span class="hljs-keyword">\usepackage</span>[T1]{fontenc}
-<span class="hljs-keyword">\usepackage</span>[english]{babel}
-<span class="hljs-keyword">\usepackage</span>{lmodern}
-<span class="hljs-keyword">\usepackage</span>{microtype}</code></pre>
-                </div>
-            <p><strong>Rationale:</strong></p>
-<ul>
-<li><code>inputenc[utf8]</code>: Allows direct input of UTF-8 encoded characters (é, ñ, ü, etc.) without explicit LaTeX commands.</li>
-<li><code>fontenc[T1]</code>: Ensures proper font encoding for output (improves hyphenation, ligatures, and special character support).</li>
-<li><code>babel[english]</code>: Activates English language rules (hyphenation, spacing, typographic conventions).</li>
-<li><code>lmodern</code>: Replaces default Computer Modern fonts with Latin Modern — a high-quality serif family optimized for on-screen and print rendering.</li>
-<li><code>microtype</code>: Enables advanced microtypographic features (character protruding, font expansion, font shrinking) for improved typography and reduced hyphenation.</li>
-</ul>
-<p><strong>Impact:</strong></p>
-<ul>
-<li>Document is more readable on screen and in print.</li>
-<li>Hyphenation and line breaking follow English conventions.</li>
-<li>Special characters (accents, diacritics) are rendered correctly.</li>
-</ul>
-<h4>11.3.3 Page Geometry and Spacing</h4>
-<p><strong>Specification:</strong></p>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="language">latex</span>
-                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\usepackage</span>{geometry}
-<span class="hljs-keyword">\geometry</span>{a4paper, left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
-<span class="hljs-keyword">\usepackage</span>{setspace}
-<span class="hljs-keyword">\onehalfspacing</span></code></pre>
-                </div>
-            <p><strong>Rationale:</strong></p>
-<ul>
-<li><code>geometry</code> package provides absolute control over page margins (preferable to default LaTeX mechanisms).</li>
-<li>2.0 cm left/right margins: consistent with technical manual standards; reduces text width to 17.0 cm (ample for 15.6 cm HOTAS tables).</li>
-<li>2.5 cm top/bottom margins: accommodates headers, footers, and page numbering without cramping.</li>
-<li><code>\onehalfspacing</code>: increases line spacing to 1.5×, improving readability without excessive page bloat; important for dense technical tables.</li>
-</ul>
-<p><strong>Impact:</strong></p>
-<ul>
-<li>Professional appearance consistent with Falcon BMS official documentation.</li>
-<li>Sufficient whitespace around HOTAS tables for legibility.</li>
-<li>Better readability for extended document consumption.</li>
-</ul>
-<h4>11.3.4 Colors and Hyperlinks</h4>
-<p><strong>Specification:</strong></p>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="language">latex</span>
-                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\usepackage</span>[table]{xcolor}
-<span class="hljs-keyword">\definecolor</span>{linkblue}{HTML}{004488}
-<span class="hljs-keyword">\definecolor</span>{linkred}{HTML}{882222}
-<span class="hljs-keyword">\definecolor</span>{headerblue}{HTML}{003366}
-<span class="hljs-keyword">\definecolor</span>{rowgray}{HTML}{F5F5F5}
-<span class="hljs-keyword">\definecolor</span>{subheadgray}{HTML}{E0E0E0}
-
-<span class="hljs-keyword">\usepackage</span>[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
-<span class="hljs-keyword">\usepackage</span>{bookmark}</code></pre>
-                </div>
-            <p><strong>Rationale:</strong></p>
-<ul>
-<li><code>xcolor[table]</code>: Enables <code>\rowcolor{}</code> for table row coloring (used in <code>hotastable</code> headers).</li>
-<li>Custom colors: professional palette (dark blue for headers, lighter grays for row alternation, consistent link colors).</li>
-<li><code>hyperref</code>: Creates clickable table of contents, cross-references, and URLs in PDF output. <code>colorlinks=true</code> colors links instead of boxing them.</li>
-<li><code>breaklinks=true</code>: Allows links to wrap across lines (improves page layout).</li>
-<li><code>bookmark</code>: Enhanced PDF bookmarks for PDF readers; improves navigation.</li>
-</ul>
-<p><strong>Impact:</strong></p>
-<ul>
-<li>Professional table appearance with colored headers.</li>
-<li>Clickable PDF navigation (TOC, cross-references).</li>
-<li>Improved user experience in PDF viewers.</li>
-</ul>
-<h4>11.3.5 Headers and Footers (Two-Sided Layout)</h4>
-<p><strong>Specification:</strong></p>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="language">latex</span>
-                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\usepackage</span>{fancyhdr}
-<span class="hljs-keyword">\setlength</span>{<span class="hljs-keyword">\headheight</span>}{25pt}
-<span class="hljs-keyword">\pagestyle</span>{fancy}
-<span class="hljs-keyword">\fancyhf</span>{}
-<span class="hljs-keyword">\fancyhead</span>[LO,RE]{<span class="hljs-keyword">\small</span><span class="hljs-keyword">\textit</span>{<span class="hljs-keyword">\leftmark</span>}}     <span class="hljs-comment">% Outer edge (odd left, even right): chapter name</span>
-<span class="hljs-keyword">\fancyhead</span>[RO,LE]{<span class="hljs-keyword">\small</span><span class="hljs-keyword">\thepage</span>}               <span class="hljs-comment">% Inner edge (odd right, even left): page number</span>
-<span class="hljs-keyword">\fancyfoot</span>{}                                      <span class="hljs-comment">% No footer</span>
-<span class="hljs-keyword">\renewcommand</span>{<span class="hljs-keyword">\headrulewidth</span>}{0.4pt}
-<span class="hljs-keyword">\renewcommand</span>{<span class="hljs-keyword">\footrulewidth</span>}{0pt}</code></pre>
-                </div>
-            <p><strong>Rationale (Two-Sided Layout):</strong></p>
-<ul>
-<li><code>\headheight=25pt</code>: Accommodates longer chapter names without &quot;Overfull \vbox&quot; warnings.</li>
-<li><code>[LO,RE]</code>: <strong>Outer edges</strong> (Left on Odd pages, Right on Even pages) — chapter name appears on the outside margin for easy navigation during page flipping.</li>
-<li><code>[RO,LE]</code>: <strong>Inner edges</strong> (Right on Odd pages, Left on Even pages) — page number appears on the inside margin for visual symmetry.</li>
-<li><code>\leftmark</code>: Expands to current chapter name (set automatically by <code>\chapter{}</code> command).</li>
-<li><code>\thepage</code>: Current page number.</li>
-<li>No footers: all information in headers (cleaner layout).</li>
-<li><code>\headrulewidth=0.4pt</code>: Subtle line separating header from content.</li>
-</ul>
-<p><strong>Impact:</strong></p>
-<ul>
-<li>Professional two-sided document appearance.</li>
-<li>Clear navigation (chapter names and page numbers visible on all pages).</li>
-<li>Proper PDF navigation when printed or viewed double-sided.</li>
-</ul>
-<h4>11.3.6 Chapter and Section Formatting (titlesec)</h4>
-<p><strong>Specification:</strong></p>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="language">latex</span>
-                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\usepackage</span>{titlesec}
-
-<span class="hljs-keyword">\titleformat</span>{<span class="hljs-keyword">\chapter</span>}[display]
-  {<span class="hljs-keyword">\normalfont</span><span class="hljs-keyword">\Large</span><span class="hljs-keyword">\bfseries</span>}
-  {<span class="hljs-keyword">\chaptertitlename</span>~<span class="hljs-keyword">\thechapter</span>}
-  {20pt}
-  {<span class="hljs-keyword">\Large</span>}
-
-<span class="hljs-keyword">\titlespacing</span>{<span class="hljs-keyword">\chapter</span>}
-  {0pt}
-  {10pt}      <span class="hljs-comment">% Space BEFORE chapter title</span>
-  {20pt}      <span class="hljs-comment">% Space AFTER chapter title</span>
-  [0pt]
-
-<span class="hljs-keyword">\titlespacing</span>{<span class="hljs-keyword">\section</span>}
-  {0pt}
-  {15pt}
-  {10pt}
-  [0pt]</code></pre>
-                </div>
-            <p><strong>Rationale:</strong></p>
-<ul>
-<li><code>titlesec</code> provides fine-grained control over section formatting (alternative to default LaTeX which is hard-coded).</li>
-<li><strong>Chapter format (<code>[display]</code>)</strong>: places chapter number and title on separate lines, enabling large, visually prominent chapter headings.</li>
-<li><strong>Chapter spacing</strong>: <code>10pt</code> before (compact) and <code>20pt</code> after (breathing room) chapters for clear visual separation.</li>
-<li><strong>Section spacing</strong>: <code>15pt</code> before and <code>10pt</code> after sections for consistent hierarchy.</li>
-<li>Reduced spacing compared to defaults (which can be 50pt before chapters) saves page real estate while maintaining readability.</li>
-</ul>
-<p><strong>Impact:</strong></p>
-<ul>
-<li>Professional section hierarchy (chapters visually distinct from sections).</li>
-<li>Optimized page economy (less wasted whitespace).</li>
-<li>Consistent, predictable spacing across document.</li>
-</ul>
-<h4>11.3.7 Tables and Column Types</h4>
-<p><strong>Specification:</strong></p>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="language">latex</span>
-                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\usepackage</span>{booktabs}
-<span class="hljs-keyword">\usepackage</span>{array}
-<span class="hljs-keyword">\usepackage</span>{longtable}
-<span class="hljs-keyword">\usepackage</span>{tabularx}
-
-<span class="hljs-keyword">\newcolumntype</span>{L}[1]{&gt;{<span class="hljs-keyword">\raggedright</span><span class="hljs-keyword">\arraybackslash</span>}p{<span class="hljs-params">#1</span>}}
-<span class="hljs-keyword">\newcolumntype</span>{C}[1]{&gt;{<span class="hljs-keyword">\centering</span><span class="hljs-keyword">\arraybackslash</span>}p{<span class="hljs-params">#1</span>}}
-<span class="hljs-keyword">\newcolumntype</span>{R}[1]{&gt;{<span class="hljs-keyword">\raggedleft</span><span class="hljs-keyword">\arraybackslash</span>}p{<span class="hljs-params">#1</span>}}</code></pre>
-                </div>
-            <p><strong>Rationale:</strong></p>
-<ul>
-<li><code>booktabs</code>: Professional table styling (optimal line weights, spacing); recommended for publication-quality tables.</li>
-<li><code>array</code>: Advanced column formatting options.</li>
-<li><code>longtable</code>: Tables that span multiple pages (essential for multi-page HOTAS tables).</li>
-<li><code>tabularx</code>: Tables that automatically resize to fit available width (used for future table variants).</li>
-<li>Custom columns <code>L</code>, <code>C</code>, <code>R</code> with fixed widths: enable precise alignment (left, center, right) within fixed-width cells (essential for hotastable 7-column layout).</li>
-</ul>
-<p><strong>Impact:</strong></p>
-<ul>
-<li>Professional table appearance.</li>
-<li>Multi-page table support (HOTAS tables can extend across page breaks).</li>
-<li>Precise column width control (15.6 cm total for <code>hotastable</code>).</li>
-</ul>
-<h4>11.3.8 Graphics and Float Positioning</h4>
-<p><strong>Specification:</strong></p>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="language">latex</span>
-                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\usepackage</span>{graphicx}
-<span class="hljs-keyword">\graphicspath</span>{{fig/}}
-<span class="hljs-keyword">\usepackage</span>{float}</code></pre>
-                </div>
-            <p><strong>Rationale:</strong></p>
-<ul>
-<li><code>graphicx</code>: Enables <code>\includegraphics{}</code> command for inserting images.</li>
-<li><code>\graphicspath{{fig/}}</code>: Tells LaTeX to search the <code>fig/</code> subfolder for image files (relative path).</li>
-<li><code>float</code>: Provides <code>[H]</code> float placement option, which forces figures/tables to appear <strong>exactly</strong> where defined in code (no floating). Essential for controlling figure placement in technical manuals.</li>
-</ul>
-<p><strong>Impact:</strong></p>
-<ul>
-<li>Support for diagrams, screenshots, and reference images.</li>
-<li>Predictable figure placement (no automatic repositioning by LaTeX).</li>
-</ul>
-<h4>11.3.9 HOTAS Table Environment (hotastable)</h4>
-<p><strong>Specification (CORRECT, per 17 January 2026 preamble):</strong></p>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="language">latex</span>
-                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\newenvironment</span>{hotastable}[1]{<span class="hljs-comment">%</span>
-  <span class="hljs-keyword">\small</span>
-  <span class="hljs-keyword">\renewcommand</span>{<span class="hljs-keyword">\arraystretch</span>}{1.25}
-  <span class="hljs-keyword">\begin</span>{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
-  <span class="hljs-keyword">\caption</span>{<span class="hljs-params">#1</span>}<span class="hljs-keyword">\\</span>
-  <span class="hljs-keyword">\rowcolor</span>{headerblue}
-  <span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}State} <span class="hljs-built_in">&amp;</span>
-  <span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Dir} <span class="hljs-built_in">&amp;</span>
-  <span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Act} <span class="hljs-built_in">&amp;</span>
-  <span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Function} <span class="hljs-built_in">&amp;</span>
-  <span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Effect / Nuance} <span class="hljs-built_in">&amp;</span>
-  <span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Dash34} <span class="hljs-built_in">&amp;</span>
-  <span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Train} <span class="hljs-keyword">\\</span>
-  <span class="hljs-keyword">\endfirsthead</span>
-  <span class="hljs-keyword">\rowcolor</span>{headerblue}
-  <span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}State} <span class="hljs-built_in">&amp;</span>
-  <span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Dir} <span class="hljs-built_in">&amp;</span>
-  <span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Act} <span class="hljs-built_in">&amp;</span>
-  <span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Function} <span class="hljs-built_in">&amp;</span>
-  <span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Effect / Nuance} <span class="hljs-built_in">&amp;</span>
-  <span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Dash34} <span class="hljs-built_in">&amp;</span>
-  <span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Train} <span class="hljs-keyword">\\</span>
-  <span class="hljs-keyword">\endhead</span>
-  <span class="hljs-keyword">\multicolumn</span>{7}{r}{<span class="hljs-keyword">\small</span><span class="hljs-keyword">\emph</span>{Continued on next page}}<span class="hljs-keyword">\\</span>
-  <span class="hljs-keyword">\endfoot</span>
-  <span class="hljs-keyword">\endlastfoot</span>
-}{<span class="hljs-comment">%</span>
-  <span class="hljs-keyword">\end</span>{longtable}
-}</code></pre>
-                </div>
-            <p><strong>Rationale:</strong></p>
-<ul>
-<li><code>\small</code> + <code>\arraystretch=1.25</code>: Optimized font size and row height for dense technical tables.</li>
-<li><strong>7-column fixed widths</strong>: <code>L{1.6cm}</code> (State), <code>L{1.0cm}</code> (Dir), <code>L{1.0cm}</code> (Act), <code>L{3.4cm}</code> (Function), <code>L{5.8cm}</code> (Effect/Nuance), <code>L{1.4cm}</code> (Dash34), <code>L{1.4cm}</code> (Train).<ul>
-<li>Total: 15.6 cm (fits within 17.0 cm text width with 1.4 cm safety margin).</li>
-</ul>
-</li>
-<li><strong>Header order (CRITICAL):</strong><ul>
-<li><code>\caption{#1}\\</code> placed FIRST (inside <code>longtable</code>, per official <code>longtable</code> documentation).</li>
-<li>First-page header content, then <code>\endfirsthead</code> (marks END of first-page header).</li>
-<li>Subsequent-pages header (identical), then <code>\endhead</code> (marks END of subsequent-pages header).</li>
-<li>Footer material (<code>\multicolumn</code>, <code>\endfoot</code>, <code>\endlastfoot</code>) follows.</li>
-<li><strong>This order ensures correct table numbering across page breaks.</strong></li>
-</ul>
-</li>
-<li><code>\rowcolor{headerblue}</code>: Dark blue header background for visual distinction.</li>
-<li><code>\color{white}</code>: White text on blue background for contrast.</li>
-<li><code>\endfirsthead</code> / <code>\endhead</code>: Distinguish first-page header from subsequent-page headers (allows different content if needed, though identical here).</li>
-<li><code>\endfoot</code> / <code>\endlastfoot</code>: Footer displays &quot;Continued on next page&quot; for multi-page tables.</li>
-</ul>
-<p><strong>Column semantics (locked):</strong></p>
-<table>
-<thead>
-<tr>
-<th>Column</th>
-<th>Width</th>
-<th>Name</th>
-<th>Content</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>1.6 cm</td>
-<td>State</td>
-<td>Master mode + sensor context</td>
-</tr>
-<tr>
-<td>2</td>
-<td>1.0 cm</td>
-<td>Dir</td>
-<td>Hat direction (Up/Down/Left/Right)</td>
-</tr>
-<tr>
-<td>3</td>
-<td>1.0 cm</td>
-<td>Act</td>
-<td>Press type (Short/Long/etc.)</td>
-</tr>
-<tr>
-<td>4</td>
-<td>3.4 cm</td>
-<td>Function</td>
-<td>What the switch does (informal title)</td>
-</tr>
-<tr>
-<td>5</td>
-<td>5.8 cm</td>
-<td>Effect / Nuance</td>
-<td>Technical explanation + interactions</td>
-</tr>
-<tr>
-<td>6</td>
-<td>1.4 cm</td>
-<td>Dash34</td>
-<td>Reference to Dash-34 sections</td>
-</tr>
-<tr>
-<td>7</td>
-<td>1.4 cm</td>
-<td>Train</td>
-<td>Training mission references</td>
-</tr>
-</tbody></table>
-<h4>11.3.10 Reference Macros</h4>
-<p><strong>Specification:</strong></p>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="language">latex</span>
-                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\providecommand</span>{<span class="hljs-keyword">\dashref</span>}[1]{Dash-34~<span class="hljs-keyword">\S</span>~<span class="hljs-params">#1</span>}
-<span class="hljs-keyword">\providecommand</span>{<span class="hljs-keyword">\dashone</span>}[1]{Dash-1~<span class="hljs-keyword">\S</span>~<span class="hljs-params">#1</span>}
-<span class="hljs-keyword">\providecommand</span>{<span class="hljs-keyword">\trnref</span>}[1]{TRN~<span class="hljs-params">#1</span>}
-<span class="hljs-keyword">\providecommand</span>{<span class="hljs-keyword">\trnman</span>}{BMS Training Manual 4.38.1}
-<span class="hljs-keyword">\providecommand</span>{<span class="hljs-keyword">\bmsver</span>}{Falcon BMS~4.38.1}
-<span class="hljs-keyword">\providecommand</span>{<span class="hljs-keyword">\dashrefs</span>}[1]{<span class="hljs-keyword">\textit</span>{TO 1F-16CMAM-34-1-1}, Dash-34, sections <span class="hljs-keyword">\texttt</span>{<span class="hljs-params">#1</span>}}</code></pre>
-                </div>
-            <p><strong>Rationale:</strong></p>
-<ul>
-<li><code>\providecommand</code> vs <code>\newcommand</code>: <code>\providecommand</code> does not override if macro already exists; allows <code>guide.tex</code> to redefine with enhanced formatting while WIP files work standalone.</li>
-<li><code>\dashref{2.1.5}</code>: Expands to &quot;Dash-34 § 2.1.5&quot; (compact reference format for table cells).</li>
-<li><code>\dashone{1.2.3}</code>: Expands to &quot;Dash-1 § 1.2.3&quot; (for rare Dash-1 references).</li>
-<li><code>\trnref{18 (BARCAP)}</code>: Expands to &quot;TRN 18 (BARCAP)&quot; (training mission reference).</li>
-<li><code>\trnman</code>: Reusable expansion &quot;BMS Training Manual 4.38.1&quot;.</li>
-<li><code>\bmsver</code>: Reusable expansion &quot;Falcon BMS 4.38.1&quot;.</li>
-<li><code>\dashrefs{2.1.5, 2.1.6}</code>: Expands to full reference with section numbers, for use in prose (vs table cells).</li>
-</ul>
-<p><strong>Impact:</strong></p>
-<ul>
-<li>Consistency across document.</li>
-<li>Easy to update reference format globally (e.g., change &quot;§&quot; to &quot;section&quot;).</li>
-<li>Shorter, more readable source code.</li>
-</ul>
-<h4>11.3.11 Version Control Macros</h4>
-<p><strong>Specification:</strong></p>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="language">latex</span>
-                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\docversion</span>}{0.3.0.1}
-<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\docbuild</span>}{20260117}
-<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\docstartdate</span>}{05 January 2026}
-<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\docenddate</span>}{17 January 2026}
-<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\chapterscompletedof</span>}{3/7}
-<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\tablesfilledpct</span>}{Chapter 5 and Chapter 4 - 4.2}
-<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\fulldocversion</span>}{<span class="hljs-keyword">\docversion</span>+<span class="hljs-keyword">\docbuild</span>}</code></pre>
-                </div>
-            <p><strong>Rationale:</strong></p>
-<ul>
-<li><code>\docversion</code>: Version number (follows Version System v4.2.1).</li>
-<li><code>\docbuild</code>: Build date (YYYYMMDD format for machine readability).</li>
-<li><code>\docstartdate</code> / <code>\docenddate</code>: Development timeline.</li>
-<li><code>\chapterscompletedof</code>: Progress tracking (e.g., &quot;3/7&quot; chapters integrated).</li>
-<li><code>\tablesfilledpct</code>: Percentage of tables populated.</li>
-<li><code>\fulldocversion</code>: Combines version and build date for title page or headers.</li>
-</ul>
-<p><strong>Impact:</strong></p>
-<ul>
-<li>Single source of truth for version metadata.</li>
-<li>Automatic title page updates.</li>
-<li>Easy tracking of development progress.</li>
-</ul>
-<h3>11.4 Metadata Block Format</h3>
-<p>The metadata block is a <strong>commented-out section</strong> at the top of the document body (after <code>\begin{document}</code>), structured as follows:</p>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="language">latex</span>
-                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\begin</span>{document}
-
-<span class="hljs-comment">% ============================================================================</span>
-<span class="hljs-comment">% METADATA BLOCK (non-rendered, for tracking and automation)</span>
+                    <pre><code class="hljs language-latex"><span class="hljs-comment">% ============================================================================</span>
+<span class="hljs-comment">% METADATA BLOCK (non-rendered, for tracking)</span>
 <span class="hljs-comment">% ============================================================================</span>
 <span class="hljs-comment">% Target: Chapter C, Section S, Subsection S</span>
 <span class="hljs-comment">% Status: dev</span>
 <span class="hljs-comment">% Date: YYYY-MM-DD</span>
 <span class="hljs-comment">% Author: AI / Human Name</span>
 <span class="hljs-comment">% Notes: TBD: Table population. Known issues: None.</span>
-<span class="hljs-comment">% Cross-ref: Guide v0.2.2.0, guides-section-C-S-*.tex</span>
-<span class="hljs-comment">% ============================================================================</span>
-
-<span class="hljs-keyword">\section</span>{Section Title}
-
-Content starts here...</code></pre>
+<span class="hljs-comment">% Cross-ref: Guide v0.2.2.0, related-section-*.tex</span>
+<span class="hljs-comment">% ============================================================================</span></code></pre>
                 </div>
             <p><strong>Mandatory fields:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Format</th>
-<th>Example</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Target</td>
-<td><code>Chapter C[, Section S[, Subsection S]]</code></td>
-<td><code>Chapter 5, Section 2, Subsection 1</code></td>
-<td>Identifies where in guide structure this WIP belongs.</td>
-</tr>
-<tr>
-<td>Status</td>
-<td><code>dev | review | final | approved</code></td>
-<td><code>dev</code></td>
-<td>Status per WIP-NAMING-v1.4. Approved files should be in ARCHIVE/.</td>
-</tr>
-<tr>
-<td>Date</td>
-<td><code>YYYY-MM-DD</code></td>
-<td><code>2026-01-09</code></td>
-<td>Creation or last-edit date. Updated whenever status changes.</td>
-</tr>
-<tr>
-<td>Author</td>
-<td><code>AI</code> or <code>Human Name</code></td>
-<td><code>AI (Session 9)</code></td>
-<td>Indicates authorship for traceability.</td>
-</tr>
-</tbody></table>
-<p><strong>Optional fields (but recommended):</strong></p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Purpose</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Notes</td>
-<td>Development notes, TBD items, known issues</td>
-<td><code>TBD: Populate rows 5–12. Known issue: CMS ECM column needs Dash-34 validation.</code></td>
-</tr>
-<tr>
-<td>Cross-ref</td>
-<td>Links to related WIP files, guide versions, or source sections</td>
-<td><code>See also: section-C5-S2-*.tex. Reference: Dash-34 §2.1.7.</code></td>
-</tr>
-</tbody></table>
-<p><strong>Rationale:</strong></p>
 <ul>
-<li>Metadata stays in the file, making it self-documenting.</li>
-<li>Non-rendered comments prevent cluttering compiled output.</li>
-<li>Format is simple enough for regex/automation to parse, but human-readable for manual inspection.</li>
-</ul>
-<h3>11.5 Integration Workflow: What Happens When Integrated into guide.tex</h3>
-<p>When a WIP file (for example, <code>section-C5-S2-cms-actuation-final-2026-01-09.tex</code>) is promoted to <code>final</code> status and ready for integration into <code>guide.tex</code>, the following <strong>extraction and integration procedure</strong> is applied:</p>
-<p><strong>Step 1: Extract Content from WIP</strong></p>
-<ul>
-<li>Delete preamble (<code>\documentclass</code> through <code>\begin{document}</code>).</li>
-<li>Delete metadata block (commented-out lines after <code>\begin{document}</code>).</li>
-<li>Preserve: all <code>\section</code>, <code>\subsection</code>, narrative, tables, and remove <code>\end{document}</code>.</li>
-</ul>
-<p><strong>Step 2: Merge into guide.tex</strong></p>
-<ul>
-<li>Identify target location in <code>guide.tex</code> (for example, after Section 5.1, before Section 5.3).</li>
-<li>Insert extracted content (sections through tables).</li>
-<li>Merge any helper macros (<code>\dashref{}</code>, etc.) into guide.tex&#39;s definition set; WIP&#39;s <code>\providecommand</code> placeholders are <strong>overridden</strong> by guide.tex&#39;s <code>\newcommand</code> definitions.</li>
-</ul>
-<p><strong>Step 3: Archive and Record</strong></p>
-<ul>
-<li>Move WIP file from <code>WIP/</code> to <code>ARCHIVE/section-C5-S2-cms-actuation-approved-2026-01-XX.tex</code>.</li>
-<li>Update metadata block status to <code>approved</code>.</li>
-<li>Record integration in PROJECT-TRACKING.</li>
-<li>Update <code>guide-v*.tex</code> version and build date.</li>
-</ul>
-<p><strong>Why this workflow works:</strong></p>
-<ul>
-<li>Standalone compilation: WIP files are always compilable (thanks to preamble).</li>
-<li>Integration hygiene: preamble is never carried over; only content is merged.</li>
-<li>Macro safety: <code>\providecommand</code> in WIP allows override by guide.tex without conflicts.</li>
-</ul>
-<h3>11.6 Template Versioning and Maintenance</h3>
-<p>The template itself is <strong>versioned independently</strong> of the guide version, allowing template improvements without changing guide version numbers.</p>
-<ul>
-<li><strong>Current template version:</strong> <code>template-wip-V1.0.tex</code> (locked as of 17 January 2026).</li>
-<li><strong>Template updates:</strong> When packages, preamble, or structure change, increment to <code>template-wip-V2.0.tex</code>, etc.</li>
-<li><strong>Guidance for WIP creators:</strong> Always use the latest template version unless explicitly directed to use an older one.</li>
+<li><strong>Target:</strong> Where in guide structure this WIP belongs</li>
+<li><strong>Status:</strong> dev → review → final → approved → deprecated</li>
+<li><strong>Date:</strong> Creation or last-edit date (YYYY-MM-DD)</li>
+<li><strong>Author:</strong> AI (Session #) or Human Name</li>
 </ul>
 <hr>
-<h2>12. Professional Standards for AI-Assisted Content Development</h2>
-<h3>12.1 Communication Principles (SAME AS SECTION 8)</h3>
-<p>[Section 8 content repeated for convenience in final sections]</p>
-<hr>
-<h2>13. How to Work With This Brief (SAME AS SECTION 9)</h2>
-<p>[Section 9 content repeated for convenience in final sections]</p>
-<hr>
-<h2>CHANGE SUMMARY:</h2>
-<p><strong>Date:</strong> 17 January 2026, 23h45 -03</p>
-<h3>Major Updates:</h3>
-<ol>
-<li><p><strong>Section 11 — Complete Redesign:</strong></p>
+<h2>13. How to Create and Integrate WIP Files</h2>
+<h3>Step 1: Create from Template</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">bash</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-bash"><span class="hljs-built_in">cp</span> TEMPLATES/template-wip-V1.0.tex wip/section-C5-S2-cms-new-dev-2026-01-20.tex</code></pre>
+                </div>
+            <h3>Step 2: Update Metadata Block</h3>
 <ul>
-<li>Reorganized from single-section format to hierarchical subsections (11.1–11.6).</li>
-<li>Added 11.3 with detailed preamble documentation (11.3.1–11.3.11):<ul>
-<li>Document class migration (article → report).</li>
-<li>Two-sided layout configuration.</li>
-<li>Encoding and fonts.</li>
-<li>Page geometry and spacing.</li>
-<li>Colors and hyperlinks.</li>
-<li>Headers and footers for two-sided documents.</li>
-<li>Chapter and section formatting (titlesec).</li>
-<li>Tables and column types.</li>
-<li>Graphics and float positioning.</li>
-<li>hotastable environment (CORRECTED CODE).</li>
-<li>Reference macros.</li>
-<li>Version control macros.</li>
+<li>Set Target, Status (dev), Date, Author</li>
+<li>Add development notes</li>
 </ul>
-</li>
-</ul>
-</li>
-<li><p><strong>Section 4 — Updated:</strong></p>
+<h3>Step 3: Develop Content</h3>
 <ul>
-<li>Added line spacing (1.5×) to layout parameters.</li>
+<li>Replace skeleton sections with actual narrative, tables, etc.</li>
+<li>Use <code>hotastable</code> environment for HOTAS tables</li>
+<li>Use reference macros: <code>\\dashref{}</code>, <code>\\trnref{}</code>, etc.</li>
 </ul>
-</li>
-<li><p><strong>New preamble code:</strong></p>
+<h3>Step 4: Test Compilation</h3>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">bash</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-bash">pdflatex section-C5-S2-cms-new-dev-2026-01-20.tex</code></pre>
+                </div>
+            <h3>Step 5: Workflow</h3>
 <ul>
-<li>Complete preamble listing from 17 January 2026 version (<code>guidetest.tex</code>).</li>
-<li>Includes all new packages and configurations.</li>
-<li>Corrected <code>hotastable</code> environment with proper <code>longtable</code> header ordering.</li>
-</ul>
-</li>
-</ol>
-<h3>Rationale:</h3>
-<ul>
-<li>Previous brief (v0.2.0.1) documented preamble only at high level; new developers could not replicate preamble exactly.</li>
-<li>New preamble significantly enhanced (report class, twoside, titlesec, improved headers/footers, float positioning).</li>
-<li>Detailed subsections enable precise preamble reproduction and maintenance.</li>
-<li>Corrected hotastable code resolves table numbering issues.</li>
+<li><strong>dev</strong>: Author working</li>
+<li><strong>review</strong>: Human review</li>
+<li><strong>final</strong>: Ready for integration</li>
+<li><strong>approved</strong>: Integrated into guide, moved to ARCHIVE</li>
 </ul>
 <hr>
-<p><strong>Brief Version:</strong> v0.2.0.1<br><strong>Status:</strong> Ready for use<br><strong>Next Steps:</strong> Integrate into project repository and update all cross-references in WIP-NAMING and VERSION-SYSTEM documents.</p>
+<h2>14. Quick Reference: File Naming Convention</h2>
+<p><strong>Pattern:</strong> <code>prefix-C#-S#-title-STATUS-YYYYMMDD.ext</code></p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li><code>section-C4-S3-dms-down-review-2026-01-17.tex</code></li>
+<li><code>table-C5-S2-cms-table-final-2026-01-15.tex</code></li>
+<li><code>visual-C7-hotas-diagram-dev-2026-01-18.svg</code></li>
+<li><code>notes-C3-research-questions-2026-01-19.md</code></li>
+</ul>
+<p><strong>Status codes:</strong></p>
+<ul>
+<li><code>dev</code> — Draft</li>
+<li><code>review</code> — Under review</li>
+<li><code>final</code> — Ready for integration</li>
+<li><code>approved</code> — Integrated and archived</li>
+<li><code>deprecated</code> — Intentionally retired</li>
+</ul>
+<hr>
+<h2>15. Checklist for Contributors</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Copy template from TEMPLATES/</li>
+<li><input disabled="" type="checkbox"> Follow naming convention</li>
+<li><input disabled="" type="checkbox"> Complete metadata block</li>
+<li><input disabled="" type="checkbox"> Update Status as work progresses</li>
+<li><input disabled="" type="checkbox"> Test LaTeX compilation</li>
+<li><input disabled="" type="checkbox"> Provide Dash-34 and training mission references</li>
+<li><input disabled="" type="checkbox"> Request review when ready (Status: review)</li>
+<li><input disabled="" type="checkbox"> Incorporate feedback</li>
+<li><input disabled="" type="checkbox"> Mark final when complete (Status: final)</li>
+<li><input disabled="" type="checkbox"> Author integrates and archives</li>
+</ul>
+<hr>
+<p><strong>Last Updated:</strong> 2026-01-18, 01:54 AM -03<br><strong>Status:</strong> Ready for use and contribution<br><strong>License:</strong> CC BY-NC 4.0<br><strong>Next Update:</strong> After project phase transitions</p>
 
 </body>
 </html>

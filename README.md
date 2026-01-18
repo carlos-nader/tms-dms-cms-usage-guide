@@ -1,8 +1,8 @@
-# TMS/DMS/CMS Usage Guide focused on Falcon BMS F-16 Flight Simulator
+# TMS/DMS/CMS Usage Guide for Falcon BMS F-16 Flight Simulator
 
-A comprehensive **LaTeX-based technical guide** documenting F-16 HOTAS switch systems (Throttle Management Switch, Data Management Switch, and Countermeasures Management Switch) for Falcon BMS F-16 Fligth Simulator.
+A comprehensive **LaTeX-based technical guide** documenting F-16 HOTAS switch systems (Throttle Management Switch, Data Management Switch, and Countermeasures Management Switch) for Falcon BMS F-16 Flight Simulator.
 
-The author is by no means affiliated to or endorsed by Falcon BMS or its developers. This guide is not an official Falcon BMS guide or manual. It's intended to help Falcon BMS Community.
+The author is by no means affiliated to or endorsed by Falcon BMS or its developers. This guide is not an official Falcon BMS guide or manual. It's intended to help the Falcon BMS Community.
 
 ---
 
@@ -17,50 +17,42 @@ This project develops a structured guide explaining HOTAS functionality across m
 ## 📁 Project Structure
 
 ```
-falcon-bms-hotas-tms-dms-cms-guide/
+tms-dms-cms-usage-guide/
 │
 ├── guide.tex                         # Current production version (.tex)
 │
 ├── TEMPLATES/                        # Structural templates & blueprints
-│   ├── template-wip-V*.tex           # Canonical WIP file template
+│   ├── template-wip-V1.0.tex         # Canonical WIP file template
 │   └── guide-structure-only-v*.tex   # Chapter outline baseline
 │
-├── DOCS/                             # Governance & tracking (Markdown)
-│   ├── Briefing document             # Project scope, style, layout rules
-│   ├── Naming conventions            # Rules for WIP file naming & status
-│   ├── Versioning system             # Guide version numbering & phases
-│   ├── Project tracking              # Session log, WIP status, milestones
-│   ├── Training Mission Abbre. Table # Table listing Training Mission Abbreviation for use in WIP and guide files
-│   └── CHARTS AND DIAGRAMS/          # AI image files describing various cycles of the files and the project
+├── docs/                             # Governance & tracking (Markdown)
+│   ├── BRIEFING-v0.2.0.1.md          # Project scope, style, layout rules
+│   ├── WIP-FILE-NAMING-v1.4.md       # Rules for WIP file naming & status
+│   ├── VERSION-SYSTEM-v4.2.1.md      # Guide version numbering & phases
+│   ├── PROJECT-TRACKING-v5.0.0.md    # Session log, WIP status, milestones
+│   ├── TRAINING-MISSION-ABBREV-TABLE-v1.0.md # Table listing Training Mission Abbreviations
+│   └── CHARTS_AND_DIAGRAMS/          # AI-generated images of project workflows
 │
-├── WIP/                              # Active work-in-progress files
-│   ├── WIP-life-cycle.png            # AI generated image depicting the life cycle of a WIP file
+├── wip/                              # Active work-in-progress files
+│   ├── WIP-life-cycle.png            # AI-generated image depicting WIP file lifecycle
 │   ├── section-*.tex                 # Chapter sections under development
 │   ├── table-*.tex                   # HOTAS table scaffolds & content
 │   ├── notes-*.md                    # Research notes & reference material
-│   ├── visual-*.*                    # Diagrams, schematics 
-│   ├── ...                           # Other types 
-│   └── GUIDE/                        # Active guide snapshot files (.tex)
+│   ├── visual-*.*                    # Diagrams, schematics
+│   └── guide/                        # Active guide snapshot files (.tex)
 │       └── guide-v*.tex              # Current snapshot version
-│                         
 │
-├── ARCHIVE/                          # Historical & approved files
+├── archive/                          # Historical & approved files
 │   ├── WIP/                          # WIP files integrated into guide
-│   ├── GUIDE-STRUCTURE/              # Older structure only files
+│   ├── GUIDE-STRUCTURE/              # Older structure-only files
 │   └── GUIDE/                        # Older snapshot guide versions
 │
-├── MISC/                             # General-purpose materials
-│   ├── Reference documents           # External sources, notes
-│   ├── Research materials            # Background & supporting info
-│   └── Utilities & notes             # Miscellaneous project aids
+├── fig/                              # Images used in the guide
 │
-├── FIG/                              # Images used in the Guide
-│
-├── WIP-version-name-generator-*.html # Interactive tool for WIP naming
-├── md-to-docx-v3-1-0.bat             # Batch converter (Markdown → DOCX)
-│
+├── LICENSE                           # CC BY-NC 4.0 license text
 ├── README.md                         # This file
-└── CONTRIBUTUING.md                  # Contributions Guide
+├── CONTRIBUTING.md                   # Contributions guide
+└── wip-version-name-generator.html   # Interactive tool for WIP naming
 
 ```
 
@@ -70,30 +62,30 @@ falcon-bms-hotas-tms-dms-cms-guide/
 
 ### Governance Layer
 
-The project uses **three integrated governance documents** (in `/docs/`) that define rules, structure, and workflows:
+The project uses **four integrated governance documents** (in `/docs/`) that define rules, structure, and workflows:
 
-1. **Briefing Document**
+1. **Briefing Document (BRIEFING-v0.2.0.1.md)**
    - Project scope, content outline, and style guidelines
    - Layout standards and table formatting rules
    - Current status & roadmap
 
-2. **WIP Naming Conventions Guide**
+2. **WIP Naming Conventions Guide (WIP-FILE-NAMING-v1.4.md)**
    - Rules for organizing WIP files (sections, tables, visuals, notes)
    - Status lifecycle: dev → review → final → approved → deprecated
    - How to create and track new WIP files
 
-3. **Versioning System Guide**
+3. **Versioning System Guide (VERSION-SYSTEM-v4.2.1.md)**
    - Guide version numbering (0.x.x.x pre-publication, x.y.z post-publication)
    - MAJOR/MINOR/PATCH/SUBPATCH semantics
    - Integration workflow from WIP to guide snapshots
 
-4. **Project Tracking** (living document)
+4. **Project Tracking (PROJECT-TRACKING-v5.0.0.md)** — Living document
    - Session-by-session progress log
    - WIP status snapshot
    - Integration timeline & milestones
    - Current priorities & phases
 
-All governance documents are available in **Markdown** (for editing) and **DOCX** (for sharing).
+All governance documents are available in **Markdown** (for editing).
 
 ---
 
@@ -101,11 +93,11 @@ All governance documents are available in **Markdown** (for editing) and **DOCX*
 
 ### For Contributors & Developers:
 
-1. **Create**: Copy template from `TEMPLATES/` to `WIP/` folder
-2. **Name**: Follow naming conventions (use interactive HTML tool in root if needed, or guides in `DOCS/`)
+1. **Create**: Copy template from `TEMPLATES/` to `wip/` folder
+2. **Name**: Follow naming conventions (use interactive HTML tool in root if needed, or guides in `docs/`)
 3. **Develop**: Edit file with status (`dev` → `review` → `final` → `approved`)
 4. **Review**: Human review of narrative, accuracy, and style alignment
-5. **Archive**: Integrate approved files into guide, move to `ARCHIVE/`
+5. **Archive**: Integrate approved files into guide, move to `archive/`
 6. **Track**: Update project tracking document with new version & session log
 
 ### File Status Codes:
@@ -125,8 +117,8 @@ All governance documents are available in **Markdown** (for editing) and **DOCX*
 | **Total Chapters Planned** | 7 |
 | **Chapters with Narrative** | 3/7 |
 | **Chapters Scaffolded** | 4/7 |
-| **Tables Populated** | CHAPTER 4 and 5 |
-| **Phase** | 0 (Chapter scaffolding and Content) |
+| **Tables Populated** | Chapters 4 & 5 |
+| **Phase** | 0 (Chapter scaffolding and content development) |
 
 ---
 
@@ -135,19 +127,16 @@ All governance documents are available in **Markdown** (for editing) and **DOCX*
 ### WIP Naming Generator
 Interactive HTML tool in project root for generating compliant WIP file names based on chapter, section, status, and date.
 
-### Markdown-to-DOCX Converter
-Batch script (using Pandoc) to export governance documents from Markdown to DOCX format for convenient sharing and reading - see CONVERTER-SETUP.docx in `MISC/` for further instructions about the md converter bat file.
-
 ---
 
 ## 📚 Sources & References
 
 This guide is grounded in:
 
-- **TO 1F-16CMAM-34-1-1** — Falcon BMS Simlator F-16 Avionics & Weapons Manual (Dash-34)
-- **TO 1F-16CMAM-1** — Falcon BMS Simlator F-16C/D Flight Manual (Dash-1)
-- **Falcon BMS 4.38.1 Training Manual** — Falcon BMS Simlator training missions guide
-- **F-16 Combat Aircraft Fundamentals Handbook** — USAF Multi-Command guidelines
+- **TO 1F-16CMAM-34-1-1** — Falcon BMS Simulator F-16 Avionics & Weapons Manual (Dash-34)
+- **TO 1F-16CMAM-1** — Falcon BMS Simulator F-16C/D Flight Manual (Dash-1)
+- **Falcon BMS 4.38.1 Training Manual** — Falcon BMS Simulator training missions guide
+- **F-16 Combat Aircraft Fundamentals Handbook (MCH 11-F16 Vol 5)** — USAF Multi-Command guidelines
 - **Various online sources**
 
 All technical claims are cross-referenced to these sources.
@@ -156,16 +145,92 @@ All technical claims are cross-referenced to these sources.
 
 ## 📜 License
 
-This project is released under the **Creative Commons Attribution 4.0 International (CC BY 4.0)** license.
+This project is released under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)** license.
 
-You are free to:
-- **Share** — copy and redistribute the material in any medium or format
-- **Adapt** — remix, transform, and build upon the material for any purpose
+**You are free to:**
+- **Share** — Copy, distribute, and print this guide
+- **Translate** — Adapt to other languages
+- **Adapt** — Use sections or content within your own works (with attribution)
+- **Enhance** — Create improved or corrected versions
 
-**Under the following terms:**
-- **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made
+**Under the following restrictions:**
+- **No Commercial Use** — You cannot sell this guide or any derivative work
+- **Attribution Required** — You must credit Carlos "Metal" Nader and link to the original repository
 
-For full license details, see: [Creative Commons BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+For full legal details, see: [Creative Commons BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
+
+---
+
+## 📋 License & Usage Details
+
+This section clarifies what you can and cannot do with this guide under CC BY-NC 4.0.
+
+### What You CAN Do:
+
+✅ **Copy & Share**
+- Make copies and share with others (personally, in communities, on forums)
+- Distribute PDF links or physical printouts
+- Post in Falcon BMS communities and Discord servers
+
+✅ **Translate**
+- Translate the guide to Portuguese, Spanish, German, Russian, etc.
+- Share translations with credit to original author
+- Translations must also be CC BY-NC (free to all users)
+
+✅ **Adapt for Integration**
+- Extract sections (e.g., TMS explanation) and incorporate into your own tactical guides
+- Reorganize or reformat for readability in different contexts
+- Combine with other materials (e.g., create a "Falcon BMS Starter Pack" that includes this guide)
+- **Always include:** Original title, author (Carlos "Metal" Nader), and link to this repository
+
+✅ **Enhance & Improve**
+- Create enhanced versions with corrections, additional tables, or new sections
+- Publish improved versions (v2.0, v2.1, etc.)
+- Improved versions must also be CC BY-NC (free to community)
+- **Must clearly label** as "Enhanced/Community Version" or similar (cannot claim official status)
+- **Must credit** the original guide and author
+
+### What You CANNOT Do:
+
+❌ **Sell or Monetize**
+- You cannot sell this guide (printed, digital, or any format)
+- You cannot charge for courses or training that uses this as core material
+- You cannot include this in paid products without explicit permission
+- You cannot use in commercial products or services
+
+❌ **Claim Official Status**
+- Derivative versions cannot be presented as "the official guide"
+- Must clearly indicate when content is based on or derived from this work
+
+### Attribution Format (When Sharing or Adapting):
+
+Include **all four elements** when sharing or adapting:
+
+1. **Title:** "TMS, DMS, CMS Usage Guide for Falcon BMS"
+2. **Author:** "Carlos 'Metal' Nader"
+3. **Source:** Link to `https://github.com/carlos-nader/tms-dms-cms-usage-guide`
+4. **License:** "CC BY-NC 4.0" with link to `https://creativecommons.org/licenses/by-nc/4.0/`
+
+#### Example Attribution:
+
+```
+Falcon BMS TMS/DMS/CMS Usage Guide by Carlos "Metal" Nader
+(https://github.com/carlos-nader/tms-dms-cms-usage-guide)
+Licensed under CC BY-NC 4.0 (https://creativecommons.org/licenses/by-nc/4.0/)
+Adapted for [your project name]
+```
+
+### Frequently Asked Questions:
+
+- **Can I translate?** Yes (free, CC BY-NC)
+- **Can I make v2.0?** Yes (free, CC BY-NC, must credit original)
+- **Can I use in my blog?** Yes (free, with attribution)
+- **Can I print and give to friends?** Yes (free)
+- **Can I sell printed copies?** No (violates CC BY-NC)
+- **Can I include in a paid course?** No (violates CC BY-NC)
+- **Can I use a section in my guide?** Yes (free, with clear attribution to this work)
+
+For full legal text and definitions, see the [LICENSE](./LICENSE) file in the repository.
 
 ---
 
@@ -181,8 +246,8 @@ For full license details, see: [Creative Commons BY 4.0](https://creativecommons
 
 **Tools & Utilities:**
 - Pandoc (Markdown conversion)
-- TexMaker (tex document editor and compiler)
-- Visual Studios Code (md files editing)
+- TexMaker (LaTeX document editor and compiler)
+- Visual Studio Code (Markdown editing)
 - Git/GitHub (version control)
 
 ---
@@ -196,7 +261,7 @@ Contributions are welcome! If you have:
 - **New sections** — Expanded coverage of HOTAS systems or variants
 - **Testing feedback** — LaTeX compilation or PDF rendering issues
 
-Please read CONTRIBUTING.md.
+Please read [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ---
 
@@ -205,11 +270,10 @@ Please read CONTRIBUTING.md.
 For questions, suggestions, or feedback about this guide, please:
 
 - Open an issue in the repository
-- Review the **Project Tracking** document (in `/DOCS/`) for current status
-- Check the other **Governance Documents** (in `/DOCS/`) for workflow details
-- Send the author an e-mail: carlos.snm@gmail.com
-- Falcon BMS forum post: https://forum.falcon-bms.com/topic/32541/in-development-tms-dms-cms-usage-guide-public-project?_=1768013631558
-- Sorry....no social media
+- Review the **Project Tracking** document (in `/docs/`) for current status
+- Check the other **Governance Documents** (in `/docs/`) for workflow details
+- Send email: carlos.snm@gmail.com
+- Falcon BMS forum: https://forum.falcon-bms.com/topic/32541/in-development-tms-dms-cms-usage-guide-public-project
 
 ---
 
@@ -225,15 +289,15 @@ For questions, suggestions, or feedback about this guide, please:
 
 ## 🔍 Quick Links
 
-- **Active Guide** — `/guide.tex in Root directory/` (current production version)
-- **Work in Progress** — `/WIP/` (sections, tables, visuals under development)
+- **Active Guide** — `/guide.tex` (current production version)
+- **Work in Progress** — `/wip/` (sections, tables, visuals under development)
 - **Governance Docs** — `/docs/` (briefing, naming, versioning, tracking)
 - **Templates** — `/TEMPLATES/` (WIP template, guide scaffold)
-- **Archived Content** — `/ARCHIVE/` (completed & deprecated files)
-- **Utilities** — Root directory (naming generator, format converter)
+- **Archived Content** — `/archive/` (completed & deprecated files)
+- **License** — `/LICENSE` (full CC BY-NC 4.0 legal text)
 
 ---
 
-**Last Updated:** 2026-01-15  
-**Status:** Pre-publication v0.3.0.0  
-**License:** CC BY 4.0
+**Last Updated:** 2026-01-18  
+**Status:** Pre-publication v0.3.1.0 (Preamble Infrastructure Upgrade)  
+**License:** CC BY-NC 4.0
