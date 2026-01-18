@@ -12,43 +12,44 @@ on:
 permissions:
   contents: write
   issues: read
+  pull-requests: read
 
 jobs:
   generate-report:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository with SSH
         uses: actions/checkout@v4
         with:
           ssh-key: ${{ secrets.DEPLOY_KEY }}
           fetch-depth: 0
-      
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      
+
       - name: Run report generator
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           python3 scripts/generate-integrated-files.py 2>&1
-      
+
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      
+
       - name: Commit and push changes
         run: |
           echo "=== Checking for changes ==="
           git status
-          
           git add INTEGRATED-FILES.md INTEGRATED-FILES.json
-          
           if ! git diff --cached --quiet; then
             echo "✓ Changes detected, committing..."
             git commit -m "chore: update integrated files report [skip ci]"
-            
             echo "✓ Pushing to main branch..."
             git push origin main
             echo "✅ Push successful!"
