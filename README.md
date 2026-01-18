@@ -62,7 +62,9 @@ tms-dms-cms-usage-guide/
 
 ### Governance Layer
 
-The project uses **four integrated governance documents** (in `/docs/`) that define rules, structure, and workflows:
+The project uses **four integrated governance documents** (in `/docs/`) that define rules, structure, and workflows.
+
+![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white) https://carlos-nader.github.io/tms-dms-cms-usage-guide/
 
 1. **Briefing Document (BRIEFING-v0.2.0.1.md)**
    - Project scope, content outline, and style guidelines
