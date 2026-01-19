@@ -282,7 +282,7 @@ For questions, suggestions, or feedback about this guide, please:
 
 ## 🎯 Community Support
 
-[![Forum Votes](https://img.shields.io/badge/Forum%20Votes-5%20votes%20%E2%80%A2%20612%20views-green)](https://forum.falcon-bms.com/topic/32541)
+[![Forum Votes](https://img.shields.io/badge/Forum%20Votes-0%20votes-yellow)](https://forum.falcon-bms.com/topic/32541)
 
 **💬 Your Vote Matters!** This guide is being developed for the Falcon BMS community. If you find it useful, please [👉 vote on the forum](https://forum.falcon-bms.com/topic/32541) to show your support! Or just add a coment, compliment, critique, contribution... Your feedback helps prioritize future content.
 
