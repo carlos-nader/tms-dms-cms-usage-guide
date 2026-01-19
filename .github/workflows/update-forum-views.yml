@@ -3,7 +3,7 @@ name: 📊 Update Forum Views Badge (DEBUG)
 # Trigger: Every 2 hours
 on:
   schedule:
-    - cron: "0 */2 * * *"  # 2-hour interval (UTC)
+    - cron: "0 10 * * *"  # once a day (10 am UTC)
   
   workflow_dispatch:
 
