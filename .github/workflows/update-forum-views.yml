@@ -1,4 +1,4 @@
-name: 📊 Update Forum Engagement Badge
+name: 📊 Update Forum Views Badge
 
 # Trigger: Every 2 hours
 on:
@@ -26,12 +26,12 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 🔄 Scrape forum data and update badge
+      - name: 🔄 Scrape forum topic views
         env:
-          FORUM_RSS_URL: ${{ secrets.FORUM_RSS_URL }}
+          FORUM_TOPIC_URL: ${{ secrets.FORUM_TOPIC_URL }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          python3 scripts/scrape-forum-votes.py 2>&1
+          python3 scripts/scrape-forum-views.py 2>&1
 
       - name: ⚙️ Configure Git
         run: |
@@ -46,7 +46,7 @@ jobs:
           fi
           
           git add README.md
-          git commit -m "chore: update forum engagement badge ⬆️"
+          git commit -m "chore: update forum views badge ⬆️"
           git push origin main
           echo "✅ README updated and pushed"
 
@@ -54,7 +54,7 @@ jobs:
         if: success()
         run: |
           echo "═══════════════════════════════════════════════"
-          echo "✅ Forum Badge Updated Successfully"
+          echo "✅ Forum Views Badge Updated Successfully"
           echo "═══════════════════════════════════════════════"
           echo "📅 Timestamp: $(date -u +%Y-%m-%d' '%H:%M:%S' 'UTC)"
           echo "🔗 Repository: ${{ github.repository }}"
@@ -63,9 +63,9 @@ jobs:
       - name: ❌ Log failure
         if: failure()
         run: |
-          echo "❌ Forum Badge Update FAILED"
+          echo "❌ Forum Views Badge Update FAILED"
           echo "Please check:"
-          echo "  1. FORUM_RSS_URL secret configured"
+          echo "  1. FORUM_TOPIC_URL secret configured"
           echo "  2. DEPLOY_KEY secret configured"
           echo "  3. GH_TOKEN secret configured"
-          echo "  4. RSS feed URL valid"
+          echo "  4. Topic URL valid and accessible"
