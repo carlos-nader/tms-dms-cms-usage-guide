@@ -300,6 +300,6 @@ For questions, suggestions, or feedback about this guide, please:
 - **License** — `/LICENSE` (full CC BY-NC 4.0 legal text)
 ---
 
-**Last Updated:** 2026-01-18  
-**Status:** Pre-publication v0.3.1.0 (Preamble Infrastructure Upgrade)  
+**Last Updated:** 2026-01-19  
+**Status:** Pre-publication v0.3.2.0 (Preamble Infrastructure Upgrade)  
 **License:** CC BY-NC 4.0
