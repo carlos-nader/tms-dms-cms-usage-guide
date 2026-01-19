@@ -1,4 +1,4 @@
-name: 📊 Update Forum Views Badge
+name: 📊 Update Forum Views Badge (DEBUG)
 
 # Trigger: Every 2 hours
 on:
@@ -26,12 +26,12 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 🔄 Scrape forum topic views
+      - name: 🔄 Scrape forum topic views (DEBUG)
         env:
           FORUM_TOPIC_URL: ${{ secrets.FORUM_TOPIC_URL }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          python3 scripts/scrape-forum-views.py 2>&1
+          python3 scripts/scrape-forum-views-debug.py 2>&1
 
       - name: ⚙️ Configure Git
         run: |
