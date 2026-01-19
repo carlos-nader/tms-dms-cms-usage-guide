@@ -22,9 +22,10 @@ jobs:
   update-readme:
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Checkout repository
+      - name: 📥 Checkout repository with SSH
         uses: actions/checkout@v4
         with:
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
           fetch-depth: 0
 
       - name: 🐍 Set up Python
@@ -69,7 +70,7 @@ jobs:
           else
             git add README.md
             git commit -m "chore: update README version to ${{ steps.version.outputs.version }}"
-            git push origin HEAD:main
+            git push origin main
             echo "✓ Changes pushed to repository"
           fi
 
