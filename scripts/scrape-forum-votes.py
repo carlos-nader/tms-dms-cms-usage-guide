@@ -179,20 +179,32 @@ def update_readme_badge(stats):
             badge_text = f"{votes} votes"
             color = "brightgreen" if votes >= 10 else "green" if votes >= 5 else "yellow"
         
-        # Replace badge pattern
+        # Replace badge pattern using safe method to avoid group reference errors
         # Pattern: [![Forum Votes](...badge/Forum%20Votes-X-COLOR...](...)]
-        badge_pattern = r'(!\[Forum.*?\]\(https://img\.shields\.io/badge/Forum%20(?:Votes|Engagement)-)[^-]+-[^)]+(\)\(.*?\))'
-        badge_replacement = rf'\1{badge_text.replace(" ", "%20")}-{color}\2'
+        badge_pattern = r'!\[Forum[^\]]*\]\(https://img\.shields\.io/badge/Forum%20(?:Votes|Engagement)-[^-]+-[^)]+\)\([^)]+\)'
         
-        new_content = re.sub(badge_pattern, badge_replacement, content)
+        # Create replacement with proper escaping
+        safe_badge_text = badge_text.replace(" ", "%20")
+        new_badge = f'![Forum Votes](https://img.shields.io/badge/Forum%20Votes-{safe_badge_text}-{color})(https://forum.falcon-bms.com/topic/32541)'
+        
+        # Use simple string replacement instead of regex replacement to avoid group issues
+        new_content = re.sub(badge_pattern, new_badge, content, flags=re.IGNORECASE)
         
         # If pattern not found, try to add it
         if new_content == content:
-            print("⚠ Badge pattern not found in README, adding new one...")
-            # Add badge after title or at beginning
-            add_badge = f'[![Forum Votes](https://img.shields.io/badge/Forum%20Votes-{badge_text.replace(" ", "%20")}-{color})](https://forum.falcon-bms.com/topic/32541)\n\n'
-            new_content = add_badge + content
-            print("✓ New badge added to README")
+            print("⚠ Badge pattern not found in README, trying alternative pattern...")
+            # Try alternative pattern with more flexible matching
+            alt_pattern = r'!\[Forum[^\]]*\]\([^)]*img\.shields\.io[^)]*\)\([^)]*\)'
+            new_content = re.sub(alt_pattern, new_badge, content, flags=re.IGNORECASE)
+            
+            if new_content == content:
+                print("ℹ Badge pattern not found, will add new one at top...")
+                # Add badge after title or at beginning
+                add_badge = f'{new_badge}\n\n'
+                new_content = add_badge + content
+                print("✓ New badge added to README")
+            else:
+                print(f"✓ Badge updated with alternative pattern: {badge_text}")
         else:
             print(f"✓ Badge updated: {badge_text}")
         
@@ -204,6 +216,8 @@ def update_readme_badge(stats):
         
     except Exception as e:
         print(f"✗ Error updating README: {e}")
+        import traceback
+        traceback.print_exc()
         return None, False
 
 def output_to_github_actions(stats):
@@ -236,7 +250,7 @@ def output_to_github_actions(stats):
 def main():
     """Main execution logic."""
     print("=" * 60)
-    print("📊 Forum Engagement Scraper v1.0")
+    print("📊 Forum Engagement Scraper v1.1 (FIXED)")
     print("=" * 60)
 
     # Step 1: Get RSS URL from environment
