@@ -1,18 +1,7 @@
 #!/usr/bin/env python3
 """
-Scrape Falcon BMS Forum RSS feed to extract forum engagement metrics.
-Updates README badge with current vote count and engagement stats.
-
-Usage:
-    python scrape-forum-votes.py
-
-Environment Variables:
-- FORUM_RSS_URL: Full RSS feed URL (with token) from forum
-- GITHUB_OUTPUT: Path to GitHub Actions output file (auto-set by Actions)
-
-Returns:
-- Exit code 0: Success
-- Exit code 1: Error (network issue, parsing error, etc.)
+Forum Engagement Scraper - Fixed Version
+Scrapes Falcon BMS Forum RSS feed and updates README badge
 """
 
 import os
@@ -25,59 +14,30 @@ from urllib.request import urlopen
 from urllib.error import URLError
 
 def fetch_rss_feed(rss_url):
-    """
-    Fetch and parse RSS feed from Falcon BMS forum.
-
-    Args:
-        rss_url (str): Full RSS URL with authentication token
-
-    Returns:
-        ET.Element: Root XML element
-        None: If fetch or parse fails
-    """
+    """Fetch and parse RSS feed"""
     try:
         print(f"🔄 Fetching RSS feed...")
         with urlopen(rss_url, timeout=10) as response:
             rss_content = response.read()
         
         root = ET.fromstring(rss_content)
-        print(f"✓ RSS feed fetched and parsed successfully")
+        print(f"✓ RSS feed fetched successfully")
         return root
     except URLError as e:
-        print(f"✗ Network error fetching RSS: {e}")
+        print(f"✗ Network error: {e}")
         return None
     except ET.ParseError as e:
         print(f"✗ XML parse error: {e}")
         return None
     except Exception as e:
-        print(f"✗ Unexpected error: {e}")
+        print(f"✗ Error fetching RSS: {e}")
         return None
 
 def extract_votes_and_stats(rss_root):
-    """
-    Extract vote count, views, and posts from RSS feed.
-    
-    Falcon BMS forum RSS structure includes:
-    - title: Contains vote count info (e.g., "Topic Title [5 votes]" or similar)
-    - description: Post content
-    - Comments/custom fields may contain engagement stats
-
-    Args:
-        rss_root (ET.Element): Parsed RSS root element
-
-    Returns:
-        dict: {
-            'votes': int,
-            'views': int,
-            'posts': int,
-            'last_update': str (ISO format)
-        }
-        None: If parsing fails
-    """
+    """Extract metrics from RSS feed"""
     try:
-        print(f"📊 Parsing forum engagement metrics...")
+        print(f"📊 Parsing metrics...")
         
-        # Initialize defaults
         stats = {
             'votes': 0,
             'views': 0,
@@ -85,126 +45,80 @@ def extract_votes_and_stats(rss_root):
             'last_update': datetime.now().isoformat()
         }
         
-        # Find channel/item elements (standard RSS)
         channel = rss_root.find('channel')
         if channel is None:
-            print("⚠ No channel element found in RSS")
+            print("⚠ No channel element found")
             return stats
         
-        # Count items (posts)
+        # Count posts
         items = channel.findall('item')
         stats['posts'] = len(items)
         print(f"  ✓ Found {stats['posts']} posts")
         
-        # Extract votes from first item title or description
-        # Different forums have different formats
         if items:
             first_item = items[0]
-            
-            # Try to extract from title
             title = first_item.findtext('title', '')
             description = first_item.findtext('description', '')
-            
-            # Pattern 1: Look for vote count in title/description
-            # Formats: "5 votes", "[5]", "Votes: 5", etc.
-            vote_patterns = [
-                r'(\d+)\s*votes?',
-                r'\[\s*(\d+)\s*votes?\s*\]',
-                r'votes?:?\s*(\d+)',
-            ]
-            
             combined_text = title + ' ' + description
             
-            for pattern in vote_patterns:
-                match = re.search(pattern, combined_text, re.IGNORECASE)
-                if match:
-                    stats['votes'] = int(match.group(1))
-                    print(f"  ✓ Found {stats['votes']} votes")
-                    break
+            # Extract votes - FIXED: Simple pattern, no numbered groups
+            vote_match = re.search(r'(\d+)\s*votes?', combined_text, re.IGNORECASE)
+            if vote_match:
+                stats['votes'] = int(vote_match.group(1))
+                print(f"  ✓ Found {stats['votes']} votes")
             
-            # Try to extract views (often in descriptions)
-            view_patterns = [
-                r'(\d+)\s*views?',
-                r'viewed?\s*(\d+)\s*times?',
-            ]
-            
-            for pattern in view_patterns:
-                match = re.search(pattern, combined_text, re.IGNORECASE)
-                if match:
-                    stats['views'] = int(match.group(1))
-                    print(f"  ✓ Found {stats['views']} views")
-                    break
+            # Extract views
+            view_match = re.search(r'(\d+)\s*views?', combined_text, re.IGNORECASE)
+            if view_match:
+                stats['views'] = int(view_match.group(1))
+                print(f"  ✓ Found {stats['views']} views")
         
-        stats['last_update'] = datetime.now().isoformat()
-        print(f"✓ Metrics extracted successfully")
+        print(f"✓ Metrics extracted")
         return stats
         
     except Exception as e:
-        print(f"✗ Error parsing metrics: {e}")
+        print(f"✗ Error parsing: {e}")
         return None
 
 def update_readme_badge(stats):
-    """
-    Update README.md with new forum engagement badge.
-    
-    Replaces badge pattern:
-    [![Forum Votes](https://img.shields.io/badge/Forum%20Votes-X-brightgreen)](...)
-    
-    Args:
-        stats (dict): Forum engagement statistics
-        
-    Returns:
-        tuple: (updated_content, was_updated)
-    """
+    """Update README with forum engagement badge - FIXED VERSION"""
     try:
         print(f"📝 Updating README badge...")
         
         readme_path = "README.md"
         if not Path(readme_path).exists():
-            print(f"⚠ README.md not found, skipping badge update")
+            print(f"⚠ README.md not found")
             return None, False
         
         with open(readme_path, 'r', encoding='utf-8') as f:
             content = f.read()
         
-        # Build new badge text
         votes = stats['votes']
         views = stats['views']
         
-        # Badge with votes and views
+        # Build badge text
         if views > 0:
             badge_text = f"{votes} votes • {views} views"
-            color = "brightgreen" if votes >= 10 else "green" if votes >= 5 else "yellow"
         else:
             badge_text = f"{votes} votes"
-            color = "brightgreen" if votes >= 10 else "green" if votes >= 5 else "yellow"
         
-        # Replace badge pattern using safe method to avoid group reference errors
-        # Pattern: [![Forum Votes](...badge/Forum%20Votes-X-COLOR...](...)]
-        badge_pattern = r'!\[Forum[^\]]*\]\(https://img\.shields\.io/badge/Forum%20(?:Votes|Engagement)-[^-]+-[^)]+\)\([^)]+\)'
+        # Color based on votes
+        color = "brightgreen" if votes >= 10 else "green" if votes >= 5 else "yellow"
         
-        # Create replacement with proper escaping
+        # FIXED: Safe regex without numbered groups like \10
         safe_badge_text = badge_text.replace(" ", "%20")
-        new_badge = f'![Forum Votes](https://img.shields.io/badge/Forum%20Votes-{safe_badge_text}-{color})(https://forum.falcon-bms.com/topic/32541)'
+        new_badge = f'![Forum Votes](https://img.shields.io/badge/Forum%20Votes-{safe_badge_text}-{color})'
         
-        # Use simple string replacement instead of regex replacement to avoid group issues
+        # Pattern: Simple and safe - no problematic group references
+        badge_pattern = r'!\[Forum[^\]]*\]\(https://img\.shields\.io/badge/Forum[^)]*\)'
+        
         new_content = re.sub(badge_pattern, new_badge, content, flags=re.IGNORECASE)
         
-        # If pattern not found, try to add it
+        # If pattern not found, add badge at top
         if new_content == content:
-            print("⚠ Badge pattern not found in README, trying alternative pattern...")
-            # Try alternative pattern with more flexible matching
-            alt_pattern = r'!\[Forum[^\]]*\]\([^)]*img\.shields\.io[^)]*\)\([^)]*\)'
-            new_content = re.sub(alt_pattern, new_badge, content, flags=re.IGNORECASE)
-            
-            if new_content == content:
-                print("ℹ Badge pattern not found, will add new one at top...")
-                # Add badge after title or at beginning
-                add_badge = f'{new_badge}\n\n'
-                new_content = add_badge + content
-                print("✓ New badge added to README")
-            else:
-                print(f"✓ Badge updated with alternative pattern: {badge_text}")
+            print("⚠ Badge pattern not found, adding new...")
+            new_content = new_badge + '\n\n' + content
+            print("✓ New badge added to README")
         else:
             print(f"✓ Badge updated: {badge_text}")
         
@@ -221,18 +135,10 @@ def update_readme_badge(stats):
         return None, False
 
 def output_to_github_actions(stats):
-    """
-    Write metrics to GitHub Actions output for use in subsequent steps.
-
-    Args:
-        stats (dict): Forum engagement statistics
-        
-    Returns:
-        bool: True if successful
-    """
+    """Write metrics to GitHub Actions output"""
     github_output = os.getenv("GITHUB_OUTPUT")
     if not github_output:
-        print("ℹ Not running in GitHub Actions (GITHUB_OUTPUT not set)")
+        print("ℹ Not running in GitHub Actions")
         return False
 
     try:
@@ -244,47 +150,43 @@ def output_to_github_actions(stats):
         print(f"✓ GitHub Actions outputs set")
         return True
     except Exception as e:
-        print(f"⚠ Could not write GitHub Actions output: {e}")
+        print(f"⚠ Could not write outputs: {e}")
         return False
 
 def main():
-    """Main execution logic."""
+    """Main execution"""
     print("=" * 60)
-    print("📊 Forum Engagement Scraper v1.1 (FIXED)")
+    print("📊 Forum Engagement Scraper v1.2 (FIXED)")
     print("=" * 60)
 
-    # Step 1: Get RSS URL from environment
-    print("\n[1/4] Reading configuration...")
+    # Get RSS URL
     rss_url = os.getenv("FORUM_RSS_URL")
     if not rss_url:
-        print("✗ FAILED: FORUM_RSS_URL environment variable not set")
-        print("   Set it in GitHub Secrets or pass via workflow")
+        print("✗ FORUM_RSS_URL environment variable not set")
         sys.exit(1)
     
     print(f"✓ RSS URL configured (token masked)")
 
-    # Step 2: Fetch and parse RSS
-    print("\n[2/4] Fetching forum data...")
+    # Fetch RSS
+    print(f"\n[1/4] Fetching forum data...")
     rss_root = fetch_rss_feed(rss_url)
     if rss_root is None:
-        print("✗ FAILED: Could not fetch RSS feed")
+        print("✗ Failed to fetch RSS")
         sys.exit(1)
 
-    # Step 3: Extract metrics
-    print("\n[3/4] Extracting metrics...")
+    # Extract metrics
+    print(f"\n[2/4] Extracting metrics...")
     stats = extract_votes_and_stats(rss_root)
     if stats is None:
-        print("✗ FAILED: Could not extract metrics")
+        print("✗ Failed to extract metrics")
         sys.exit(1)
 
-    # Step 4: Update README
-    print("\n[4/4] Updating README...")
+    # Update README
+    print(f"\n[3/4] Updating README...")
     new_content, was_updated = update_readme_badge(stats)
-    if not was_updated and new_content is None:
-        print("⚠ WARNING: Could not update README")
     
-    # Bonus: Output to GitHub Actions
-    print("\n[BONUS] Setting GitHub Actions output variables...")
+    # Output to GitHub Actions
+    print(f"\n[4/4] Setting GitHub Actions outputs...")
     output_to_github_actions(stats)
 
     # Success summary
