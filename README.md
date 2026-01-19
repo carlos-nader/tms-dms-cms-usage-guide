@@ -87,7 +87,7 @@ The project uses **four integrated governance documents** (in `/docs/`) that def
    - Integration timeline & milestones
    - Current priorities & phases
 
-All governance documents are available in **Markdown** (for editing).
+All governance documents are available in **Markdown** (for editing) and **html** for easy reading.
 
 ---
 
@@ -248,10 +248,10 @@ For full legal text and definitions, see the [LICENSE](./LICENSE) file in the re
 - F-16 community knowledge & subject-matter experts
 
 **Tools & Utilities:**
-- Pandoc (Markdown conversion)
-- TexMaker (LaTeX document editor and compiler)
-- Visual Studio Code (Markdown editing)
-- Git/GitHub (version control)
+- TexMaker
+- Visual Studio Code
+- Git/GitHub
+- Perplexity AI Pro
 
 ---
 
