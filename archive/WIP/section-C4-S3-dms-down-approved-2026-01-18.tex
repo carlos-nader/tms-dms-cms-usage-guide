@@ -129,8 +129,8 @@
 % VERSION CONTROL MACROS
 % --------------------------------------------------------------------------
 
-\newcommand{\docversion}{WIP Template v1.0}
-\newcommand{\docbuild}{20260110}
+\newcommand{\docversion}{C4:S3}
+\newcommand{\docbuild}{20260119}
 \newcommand{\fulldocversion}{\docversion+\docbuild}
 
 % --------------------------------------------------------------------------
@@ -166,15 +166,15 @@
 % ============================================================================
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 % ============================================================================
-% File Name: section-C4-S3-dms-down-review-2026-01-18.tex
+% File Name: section-C4-S3-dms-down-approved-2026-01-19.tex
 % WIP Naming Convention: v1.4
 % Target Chapter: C4 --- DMS Display Management Switch
 % Target Section: S3 --- DMS Down
 % Target Subsection: S3.x --- All subsections
-% WIP Status: review
+% WIP Status: approved
 % Created: 2026-01-16 (design finalized)
 % Last Modified: 2026-01-18 (full WIP generated)
-% Integration Status: NOT YET INTEGRATED --- AWAITING HUMAN REVIEW & APPROVAL
+% Integration Status: INTEGRATED ---
 % Integration Target: guide-v0.3.2.0 (post-DMS Up and "report" structure change, pre-DMS LeftRight)
 % Narrative Completion: 100\% (core content complete, minor refinements pending)
 % Table Fill Status: 100\% (all 3 core rows + exception states complete)
@@ -191,16 +191,16 @@
 % INTRO (Unnumbered)
 % ============================================================================
 
-DMS Down toggles the Sensor of Interest SOI among the displays available in the current master mode. As established in Section~\ref{sec:C4-S1-S1}, the set of valid SOI displays varies by mode: in NAV and A-G modes, the HUD is available; in air-to-air employment modes (A-A, DGFT, MSL OVRD), it is not
+DMS Down toggles the Sensor of Interest SOI among the displays available in the current master mode. As established in Section~\ref{sec:C4-S1-S1}, the set of valid SOI displays varies by mode: in NAV and A-G modes, the HUD is available; in air-to-air employment modes (A-A, DGFT, MSL OVRD), it is not.
 
 Consequently, DMS Down behaves in two distinct ways:
 
 \begin{itemize}
-  \item In \textbf{NAV} and \textbf{A-G} modes, DMS Down toggles SOI through all available displays: HUD $\rightarrow$ L/R MFD $\rightarrow$ l/R MFD $\rightarrow$ HUD.
-  \item In \textbf{air-to-air employment modes} (A-A, DGFT, MSL OVRD), DMS Down toggles SOI only between the two MFD (L/R MFD $\leftrightarrow$ l/R MFD), since the HUD is not a valid SOI candidate
+  \item In \textbf{NAV} and \textbf{A-G} modes, DMS Down toggles SOI through all available displays: HUD $\rightarrow$ L/R MFD $\rightarrow$ L/R MFD $\rightarrow$ HUD.
+  \item In \textbf{air-to-air employment modes} (A-A, DGFT, MSL OVRD), DMS Down toggles SOI only between the two MFD (L/R MFD $\leftrightarrow$ L/R MFD), since the HUD is not a valid SOI candidate
 \end{itemize}
 
-This design ensures that DMS Up and DMS Down work together to manage SOI across all available displays in each operational context. It is \textbf{important to note} that DMS Down transitions SOI between displays—HUD and the two MFD—without changing which format is currently displayed on any MFD. The pilot executes hands-on commands on whatever format is available at the selected display. Format transitions within an MFD are controlled by DMS Right and DMS Left, covered in Section~\ref{sec:C4-S4}.
+This design ensures that DMS Up and DMS Down work together to manage SOI across all available displays in each operational context. It is \textbf{important to note} that \textbf{DMS Down} transitions SOI between displays—HUD and the two MFD—without changing which format is currently displayed on any MFD. The pilot executes hands-on commands on whatever format is available at the selected display. Format transitions \textbf{within an MFD} are controlled by DMS Right and DMS Left, covered in Section~\ref{sec:C4-S4}.
 
 % ============================================================================
 % 4.3.1: DMS DOWN EFFECTIVENESS IN ALL MASTER MODES
@@ -212,7 +212,7 @@ This design ensures that DMS Up and DMS Down work together to manage SOI across 
 DMS Down effectiveness depends on which displays can serve as SOI in the current master 
 mode, as established in Section~\ref{sec:C4-S1-S1}.
 
-\paragraph{Master Modes Where HUD Is a Valid SOI Candidate:}
+\paragraph{Master Modes Where HUD is a Valid SOI Candidate:}
 
 \subparagraph{NAV (Navigation) Master Mode:}
 
@@ -228,7 +228,7 @@ In A-G PRE, valid SOI candidates are the HUD and both MFD. DMS Down follows the
 same 3-step toggle pattern as NAV, moving SOI among the HUD and the two MFD. This allows the pilot to shift hands-on 
 control focus while examining different sensor pages.
 
-\subparagraph{A-G in VIS (Visual Air-to-Ground: CCIP, DTOS, AGM-65 VIS, IAM-VIS):}
+\subparagraph{A-G in VIS (Visual Air-to-Ground)---CCIP, DTOS, AGM-65 VIS, IAM-VIS:}
 
 In A-G VIS modes, valid SOI candidates are the HUD and both MFD. DMS Down toggles through 
 the same 3-step pattern as in NAV. However, in A-G VIS, DMS Down becomes \textbf{operationally 
@@ -241,22 +241,22 @@ is currently SOI. If SOI migrates to an MFD---such as TGP for sensor refinement,
 weapon status, or FCR/HSD for situational awareness---those same CURSOR and TMS commands 
 will act on the MFD instead of the HUD, and visual designation on the HUD ceases to respond.
 
-Therefore, DMS Down and DMS Up work in tandem in A-G VIS: DMS Down allows the pilot to 
+Therefore, \textbf{DMS Down and DMS Up} work in tandem in A-G VIS: DMS Down allows the pilot to 
 temporarily move SOI to an MFD for sensor work or information review, while DMS Up 
 immediately restores HUD SOI to resume visual designation. This up-down alternation is 
 fundamental to efficient A-G VIS delivery and cannot be omitted without degrading command 
 flow or situational awareness.
 
-\paragraph{Master Modes Where HUD Is NOT a Valid SOI Candidate:}
+\paragraph{Master Modes Where HUD is NOT a Valid SOI Candidate:}
 
 In air-to-air employment (A-A, DGFT, and MSL OVRD) modes, the avionics architecture 
 restricts SOI to the MFD only. The HUD cannot be designated as SOI 
-in these modes (see Section~\ref{sec:C4-S1-S3} for the architectural rationale). 
+in these modes (see Sections~\ref{sec:C4-S1-S1} and \ref{sec:C4-S1-S3}). 
 Consequently, DMS Down is limited to toggling SOI between the two MFD (L/R MFD 
 $\leftrightarrow$ L/R MFD). This 2-way toggle allows the pilot to select which MFD sensor 
 display receives hands-on command priority.
 
-In A-A contexts, this is operationally essential: the pilot uses DMS Down to shift SOI focus between onde MFD and the ohter so he can access and have direct control over whichever format is being actually displayed: FCR for track management 
+In A-A contexts, this is \textbf{operationally essential}: the pilot uses DMS Down to shift SOI focus between onde MFD and the ohter so he can access and have direct control over whichever format is being actually displayed: FCR for track management 
 and missile employment, HSD for tactical picture and threat assessment or between 
 the FCR and TGP for situational awareness or supplemental tracking. Efficient air-to-air engagement depends critically on rapid SOI management via 
 DMS Down.
@@ -279,7 +279,7 @@ DMS Down.
     \trnref{18 BARCAP}, \trnref{17B IFF Intercept} \\
   
   A-G & Down & Short & Toggle SOI between HUD and MFD sensor pages & 
-    DMS Down toggles SOI through HUD $\rightarrow$ L/R MFD $\rightarrow$ L/R MFD $\rightarrow$ HUD. In A-G PRE, DMS Down is a convenience tool for shifting hands-on focus between HUD and MFD sensor pages. \textbf{In A-G VIS (CCIP, DTOS, AGM-65 VIS, IAM-VIS), DMS Down is operationally critical:} the HUD is the primary visual designation interface. DMS Down allows the pilot to alternate between HUD visual cueing (TMS/CURSOR steering, pipper control, TD box positioning) and MFD sensor work (TGP search/refine, WPN status, FCR A-G ranging). Loss of HUD SOI in A-G VIS prevents proper visual designation and must be recovered with DMS Up. & 
+    DMS Down toggles SOI through HUD $\rightarrow$ L/R MFD $\rightarrow$ L/R MFD $\rightarrow$ HUD. In A-G PRE, DMS Down is a convenience tool for shifting hands-on focus between HUD and MFD sensor pages. \textbf{In A-G VIS (CCIP, DTOS, AGM-65 VIS, IAM-VIS), DMS Down is operationally critical:} the HUD is the primary visual designation interface. DMS Down allows the pilot to alternate between HUD visual cueing (TMS/CURSOR steering, pipper control, TD box positioning) and MFD sensor work (TGP search/refine, WPN status, FCR A-G ranging). Loss of HUD as SOI in A-G VIS prevents proper visual designation and must be recovered with DMS Up. & 
     2.1.1.2.3, 2.1.6.3 & 
     \trnref{10 GP Bombs}, \trnref{11 LGB}, \trnref{13 Maverick}, \trnref{14 Maverick Adv}, \trnref{15 IAM} \\
 \end{hotastable}
@@ -291,18 +291,12 @@ DMS Down.
 \subsubsection{DMS Down Exception States}
 \label{sec:C4-S3-S3}
 
-In certain special states and submodes, DMS Down may be temporarily ineffective, even in master modes where SOI toggling normally works, as a reflection of DMS Up, as seen on Section~\ref{sec:C4-S2-S3}
+In certain special states and submodes, DMS Down may be temporarily ineffective, as a direct reflection of DMS Up (see Section~\ref{sec:C4-S2-S3}).
 
 \begin{itemize}
-  \item \textbf{Snowplow (SP) PRE State (Unstabilised)}
-  
-    When the pilot enters Snowplow mode (a specialised A-G ground-stabilisation mode for slewing to arbitrary ground positions) and the SP position has not yet been stabilised with TMS Up, the SOI is effectively ``nowhere.'' Both the A-G radar and TGP MFD displays show \texttt{NOT SOI}, and neither display is designated as SOI. As a result, \textbf{DMS Down has no effect} in this state: the toggle mechanism has nowhere to advance SOI to.
-    
-    Once the SP position is stabilised with TMS Up (pressing TMS Up on the HUD), SOI returns to its previous designated display, and DMS Down resumes normal toggling behaviour.
+  \item \textbf{Snowplow (SP) PRE State (not stabilised):} When the pilot enters Snowplow mode (a specialised A-G ground-stabilisation mode for slewing to arbitrary ground positions) and the SP position has not yet been stabilised with TMS Up, the SOI is effectively ``nowhere.'' Both the A-G radar and TGP MFD displays show \texttt{NOT SOI}, and neither display is designated as SOI. As a result, \textbf{DMS Down has no effect} in this state: the toggle mechanism has nowhere to advance SOI to. Once the SP position is stabilised with TMS Up (pressing TMS Up on the HUD), SOI returns to its previous designated display, and DMS Down resumes normal toggling behaviour.
 
-  \item \textbf{MARK/OFLY Submode}
-  
-    In the MARK/OFLY submode (a specialised target-acquisition context documented in \dashref{2.1.1.2.3}), the SOI cannot be designated or changed at all. Consequently, \textbf{DMS Down has no effect} in MARK/OFLY: you cannot toggle SOI when SOI designation itself is locked. This submode is rare in normal operations but is important to recognise if you encounter it during unusual procedures or system states.
+  \item \textbf{MARK/OFLY Submode:} In the MARK/OFLY submode (a specialised target-acquisition context documented in \dashref{2.1.1.2.3}), the SOI cannot be designated or changed at all. Consequently, \textbf{DMS Down has no effect} in MARK/OFLY: you cannot toggle SOI when SOI designation itself is locked. This submode is rare in normal operations but is important to recognise if you encounter it during unusual procedures or system states.
 \end{itemize}
 
 \end{document}
