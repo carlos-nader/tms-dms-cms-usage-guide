@@ -64,7 +64,7 @@ tms-dms-cms-usage-guide/
 
 The project uses **four integrated governance documents** (in `/docs/`) that define rules, structure, and workflows.
 
-![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white) https://carlos-nader.github.io/tms-dms-cms-usage-guide/
+[![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://carlos-nader.github.io/tms-dms-cms-usage-guide/)
 
 1. **Briefing Document (BRIEFING-v0.2.0.1.md)**
    - Project scope, content outline, and style guidelines
@@ -111,11 +111,13 @@ All governance documents are available in **Markdown** (for editing) and **html*
 
 ---
 
-## 📊 Current Project State
+## 📊 Current Project State 
+
+[![v0.3.2.0](https://img.shields.io/badge/Release-v0.3.2.0-blue)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/guide.pdf)
 
 | Metric | Value |
 |--------|-------|
-| **Guide Version** | v0.3.2.0 |
+| **Guide Version** | v0.3.2.0 | 
 | **Total Chapters Planned** | 7 |
 | **Chapters with Narrative** | 3/7 |
 | **Chapters Scaffolded** | 4/7 |
@@ -146,7 +148,7 @@ All technical claims are cross-referenced to these sources.
 ---
 
 ## 📜 License
-[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-blue.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
 This project is released under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)** license.
 
@@ -255,7 +257,7 @@ For full legal text and definitions, see the [LICENSE](./LICENSE) file in the re
 
 ---
 
-## 🤝 Contributing
+## 🤝 Contributing [![Static Badge](https://img.shields.io/badge/how_to-contribute-violet?style=plastic&logoSize=auto)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/CONTRIBUTING.md)
 
 Contributions are welcome! If you have:
 
@@ -264,7 +266,7 @@ Contributions are welcome! If you have:
 - **New sections** — Expanded coverage of HOTAS systems or variants
 - **Testing feedback** — LaTeX compilation or PDF rendering issues
 
-Please read [CONTRIBUTING.md](./CONTRIBUTING.md).
+
 
 ---
 ## 📞 Contact & Feedback
@@ -276,7 +278,7 @@ For questions, suggestions, or feedback about this guide, please:
 - Check the other **Governance Documents** (in `/docs/`) for workflow details
 - Falcon BMS forum: https://forum.falcon-bms.com/topic/32541/in-development-tms-dms-cms-usage-guide-public-project
 
-![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white) carlos.snm@gmail.com
+![Gmail](https://img.shields.io/badge/Gmail-D14836?style=plastic=gmail&logoColor=white&logoSize=auto) carlos.snm@gmail.com
 
 ---
 
