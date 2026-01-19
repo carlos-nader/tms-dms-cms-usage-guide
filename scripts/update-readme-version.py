@@ -122,12 +122,12 @@ def update_readme_content(content, new_version):
     Update version in README content.
     
     Replaces patterns like:
-      **Document Version:** PROJECT-TRACKING-v5.0.0
+      **Status:** Pre-publication v0.3.1.0 (Preamble Infrastructure Upgrade)
       with:
-      **Document Version:** PROJECT-TRACKING-v{new_version}
+      **Status:** Pre-publication v{new_version} (...)
     
     Also updates:
-      **Last Updated:** YYYY-MM-DD, HH:MM AM/PM -03
+      **Last Updated:** YYYY-MM-DD
     
     Args:
         content (str): Original README content
@@ -139,24 +139,26 @@ def update_readme_content(content, new_version):
     updated = content
     replacements = 0
     
-    # Pattern 1: Update version in "Document Version" line
-    version_pattern = r'(\*\*Document Version:\*\*\s+[A-Z]+-v)[\d.]+'
+    # Pattern 1: Update version in "Pre-publication v..." line
+    # Matches: **Status:** Pre-publication v0.3.1.0 (optional description)
+    version_pattern = r'(Pre-publication\s+v)[\d.]+'
     replacement = rf'\g<1>{new_version}'
     new_content, count = re.subn(version_pattern, replacement, updated)
     
     if count > 0:
-        print(f"✓ Updated version references: {count} occurrence(s)")
+        print(f"✓ Updated Guide Version references: {count} occurrence(s)")
         replacements += count
         updated = new_content
     else:
-        print("⚠ No 'Document Version' line found in README")
+        print("⚠ No 'Pre-publication v...' pattern found in README")
     
-    # Pattern 2: Update "Last Updated" timestamp
+    # Pattern 2: Update "Last Updated" timestamp (simple date format)
     now = datetime.now()
-    # Format: 2026-01-19, 01:41 AM -03
-    timestamp = now.strftime("%Y-%m-%d, %I:%M %p -03")
+    # Format: 2026-01-19 (simple date)
+    timestamp = now.strftime("%Y-%m-%d")
     
-    timestamp_pattern = r'(\*\*Last Updated:\*\*\s+)\d{4}-\d{2}-\d{2},\s+\d{2}:\d{2}\s+(?:AM|PM)\s+-\d{2}'
+    # Match: **Last Updated:** YYYY-MM-DD
+    timestamp_pattern = r'(\*\*Last Updated:\*\*\s+)\d{4}-\d{2}-\d{2}'
     timestamp_replacement = rf'\g<1>{timestamp}'
     new_content, count = re.subn(timestamp_pattern, timestamp_replacement, updated)
     
