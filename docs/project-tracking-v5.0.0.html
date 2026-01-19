@@ -199,7 +199,7 @@
 <body>
     <h1>PROJECT TRACKING</h1>
 <h2>Falcon BMS TMS/DMS/CMS HOTAS Guide</h2>
-<p><strong>Document Version:</strong> PROJECT-TRACKING-v5.0.0<br><strong>Regime:</strong> Pre-publication (0.x.x.x)<br><strong>Project Start:</strong> 2026-01-05<br><strong>Last Updated:</strong> 2026-01-18, 06:39 PM -03<br><strong>Repository:</strong> carlos-nader/tms-dms-cms-usage-guide</p>
+<p><strong>Document Version:</strong> PROJECT-TRACKING-v5.0.0<br><strong>Regime:</strong> Pre-publication (0.x.x.x)<br><strong>Project Start:</strong> 2026-01-05<br><strong>Last Updated:</strong> 2026-01-19, 01:16 AM -03<br><strong>Repository:</strong> carlos-nader/tms-dms-cms-usage-guide</p>
 <p>This document tracks how governance rules, WIP files and guide versions evolve during the development of the Falcon BMS TMS/DMS/CMS HOTAS Guide.</p>
 <hr>
 <h2>1. GOVERNANCE LAYER</h2>
@@ -253,20 +253,20 @@
 <p><strong>Consequence:</strong> All new WIP files going forward MUST follow BRIEFING-v0.2.0.1 Section 11 template specification (with updated preamble per 18 Jan 2026) and WIP-FILE-NAMING-v1.4 conventions.</p>
 <hr>
 <h2>2. PROJECT SNAPSHOT</h2>
-<p>Current state as of 2026-01-18, 06:39 PM -03 (Session 19 - C4-S3 Finalized):</p>
+<p>Current state as of 2026-01-19, 01:16 AM -03 (Session 20 - v0.3.2.0 Integration Complete):</p>
 <h3>2.1 High-Level Overview</h3>
 <ul>
 <li><strong>Active Regime:</strong> Pre-publication (0.x.x.x)</li>
 <li><strong>Phase:</strong> Phase 0 -- Chapter Scaffolding</li>
-<li><strong>Current Guide Version:</strong> guide-v0.3.1.0-20260117 (Preamble infrastructure upgrade: report class, twoside, titlesec, improved headers/footers, float support) — stored in wip/guide/, synchronized to guide.tex root</li>
+<li><strong>Current Guide Version:</strong> guide-v0.3.2.0-20260119 (Section 4.3 DMS Down integrated, redaction corrections in 4.1 and 4.2, enhanced semantic clarity) — stored in wip/guide/, synchronized to guide.tex root</li>
 <li><strong>Chapters Planned:</strong> 7</li>
 <li><strong>Chapters with narrative complete in development:</strong> 3/7<ul>
 <li>Chapter 1 -- Introduction (narrative complete)</li>
 <li>Chapter 5 -- CMS Sections 5.1, 5.2, 5.3 (narrative and tables complete)</li>
-<li><strong>Chapter 4 -- DMS Sections 4.1 and 4.2 (narrative and tables COMPLETE and INTEGRATED)</strong><ul>
-<li>Section 4.1 (Concept and SOI) - FINAL &amp; INTEGRATED</li>
-<li>Section 4.2 (DMS Up: HUD Designation as SOI) - FINAL &amp; INTEGRATED</li>
-<li>Section 4.3 (DMS Down: Toggle SOI Between Displays) - <strong>FINAL &amp; READY FOR INTEGRATION</strong> (promoted review→final 2026-01-18)</li>
+<li><strong>Chapter 4 -- DMS Sections 4.1, 4.2, and 4.3 (narrative and tables COMPLETE and INTEGRATED)</strong><ul>
+<li>Section 4.1 (Concept and SOI) - FINAL &amp; INTEGRATED (with redaction corrections)</li>
+<li>Section 4.2 (DMS Up: HUD Designation as SOI) - FINAL &amp; INTEGRATED (with redaction corrections)</li>
+<li>Section 4.3 (DMS Down: Toggle SOI Between Displays) - <strong>FINAL &amp; INTEGRATED (v0.3.2.0)</strong> (promoted review→final 2026-01-18, integrated 2026-01-19)</li>
 <li>Sections 4.4 (DMS Left/Right) and 4.5 (Master Mode Summary) pending per unified Chapter 4 DMS blueprint v1.1</li>
 </ul>
 </li>
@@ -276,10 +276,10 @@
 <li>Chapters 2 (HOTAS Fundamentals), 3 (TMS), 4 (DMS with 4.1, 4.2, 4.3 direction-based structure locked by blueprint v1.1), plus outlines for 6 (Training References) and 7 (HOTAS Visual Reference)</li>
 </ul>
 </li>
-<li><strong>Tables filled:</strong> 1 major HOTAS table (CMS, integrated Sections 5.2–5.3), 2 DMS tables (C4-S1 SOI-by-mode, C4-S2 DMS Up usage), and 1 DMS Down usage table (C4-S3) all INTEGRATED with enhanced documentation (column explanations); remaining DMS tables (DMS Left/Right, DMS summary) pending per unified Chapter 4 DMS blueprint v1.1.</li>
+<li><strong>Tables filled:</strong> 1 major HOTAS table (CMS, integrated Sections 5.2–5.3), 3 DMS tables (C4-S1 SOI-by-mode, C4-S2 DMS Up usage, C4-S3 DMS Down usage) all INTEGRATED with enhanced documentation (column explanations); remaining DMS tables (DMS Left/Right, DMS summary) pending per unified Chapter 4 DMS blueprint v1.1.</li>
 </ul>
 <h3>2.2 Layout Standard</h3>
-<p>Since v0.2.2.0 (geometry and table settings); v0.3.1.0 (preamble upgraded):</p>
+<p>Since v0.2.2.0 (geometry and table settings); v0.3.1.0 (preamble upgraded); v0.3.2.0 (semantic refinements):</p>
 <ul>
 <li><strong>Geometry:</strong> Option D (A4, 2.0 cm side margins, 2.5 cm top/bottom)</li>
 <li><strong>Text width:</strong> 17.0 cm</li>
@@ -304,8 +304,8 @@
 </li>
 <li><strong>Editor:</strong> VS Code (default for Markdown and Git-related edits)</li>
 <li><strong>LaTeX toolchain:</strong> MiKTeX (local compilation)</li>
-<li><strong>Total Commits:</strong> 121 (GitHub tracked)</li>
-<li><strong>Releases:</strong> v0.3.1.0 (active, tagged on GitHub 2026-01-18), v0.3.0.1 (archived), v0.3.0.0 (archived)</li>
+<li><strong>Total Commits:</strong> 144 (GitHub tracked)</li>
+<li><strong>Releases:</strong> v0.3.2.0 (active, tagged on GitHub 2026-01-19), v0.3.1.0 (released 2026-01-18), v0.3.0.1 (archived), v0.3.0.0 (archived)</li>
 </ul>
 <hr>
 <h2>3. VERSION ROADMAP</h2>
@@ -325,14 +325,14 @@
 <td>Preamble Infrastructure Upgrade</td>
 <td>0</td>
 <td><strong>✅ COMPLETED &amp; RELEASED</strong></td>
-<td><strong>SESSION 17 Update (18 Jan 2026):</strong> Major preamble infrastructure upgrade deployed. Migration: article class → report class with twoside option. New features: titlesec chapter formatting, improved headers/footers for two-sided layout, float package for graphics control, enhanced table packages (booktabs, tabularx). BRIEFING-v0.2.0.1 Section 11 expanded to ~8,000 words with complete preamble documentation (11.3.1–11.3.11). guide.tex migrated and tested ✅. LaTeX compilation verified ✅. PDF output (guidetest.pdf) generated and approved by author ✅. template-wip-V1.0.tex updated with new preamble (all future WIP files compliant). Snapshot guide-v0.3.1.0-20260117.tex created, deployed to wip/guide/, and synchronized to guide.tex root. Previous snapshot (v0.3.0.1) moved to ARCHIVE/GUIDE/. GitHub Release tag 0.3.1.0 created and pushed to repository. Version bump: v0.3.0.1 → v0.3.1.0 (PATCH). Next phase: Continue DMS content (Section 4.3 finalized, Sections 4.4, 4.5) and TMS coverage per roadmap.</td>
+<td><strong>SESSION 17 Update (18 Jan 2026):</strong> Major preamble infrastructure upgrade deployed. Migration: article class → report class with twoside option. New features: titlesec chapter formatting, improved headers/footers for two-sided layout, float package for graphics control, enhanced table packages (booktabs, tabularx). BRIEFING-v0.2.0.1 Section 11 expanded to ~8,000 words with complete preamble documentation (11.3.1–11.3.11). guide.tex migrated and tested ✅. LaTeX compilation verified ✅. PDF output (guidetest.pdf) generated and approved by author ✅. template-wip-V1.0.tex updated with new preamble (all future WIP files compliant). Snapshot guide-v0.3.1.0-20260117.tex created, deployed to wip/guide/, and synchronized to guide.tex root. Previous snapshot (v0.3.0.1) moved to ARCHIVE/GUIDE/. GitHub Release tag 0.3.1.0 created and pushed to repository. Version bump: v0.3.0.1 → v0.3.1.0 (PATCH). Next phase: Continue DMS content (Section 4.3 integration, Sections 4.4, 4.5) and TMS coverage per roadmap.</td>
 </tr>
 <tr>
 <td>v0.3.2.0</td>
-<td>Chapter 4 -- DMS (Section 4.3 final→integrate, Sections 4.4, 4.5 WIP)</td>
+<td>Chapter 4 -- DMS (Section 4.3 integrated, redaction corrections in 4.1-4.2)</td>
 <td>0</td>
-<td>Planned</td>
-<td>Complete DMS chapter with remaining direction-based sections. Section 4.3 now FINAL; ready for integration. Sections 4.4 (DMS Left/Right) and 4.5 (Master Mode Summary) in WIP creation per unified Chapter 4 DMS blueprint v1.1. PATCH bump.</td>
+<td><strong>✅ COMPLETED &amp; RELEASED</strong></td>
+<td><strong>SESSION 20 Update (19 Jan 2026):</strong> Section 4.3 (DMS Down) integrated into guide after final semantic refinements and redaction corrections applied to Sections 4.1 and 4.2. Changes: (1) Redaction corrections (grammar, clarity) applied throughout 4.1 and 4.2. (2) Section 4.3 integrated with enhanced semantic clarity: new intro paragraph separating display toggling from format transitions; replaced &quot;valid SOI candidates are HUD, FCR, TGP, WPN...&quot; with &quot;HUD and both MFD&quot; for clarity; HOTAS table Effect/Nuance column optimized (NAV, A-A, A-G refined; &quot;picture evaluation&quot; → &quot;situational awareness&quot;). Validation: Dash-34 alignment confirmed; LaTeX structure verified; cross-references checked. File size: 71935 bytes (guide-v0.3.2.0-20260119.tex in wip/guide/). GitHub Release tag 0.3.2.0 created and pushed. Version bump: v0.3.1.0 → v0.3.2.0 (MINOR bump). Next phase: Sections 4.4 (DMS Left/Right) and 4.5 (Master Mode Summary) WIP development per unified Chapter 4 DMS blueprint v1.1.</td>
 </tr>
 <tr>
 <td>v0.4.0.0</td>
@@ -413,7 +413,7 @@
 <li><strong>UPDATED (Session 17):</strong> All new WIP files MUST copy from TEMPLATES/template-wip-V1.0.tex per BRIEFING-v0.2.0.1 Section 11 (updated preamble, now with report class, twoside, titlesec, float support).</li>
 </ul>
 <hr>
-<h3>4.2 Active WIP Snapshot (as of 2026-01-18, 06:39 PM -03)</h3>
+<h3>4.2 Active WIP Snapshot (as of 2026-01-19, 01:16 AM -03)</h3>
 <table>
 <thead>
 <tr>
@@ -500,12 +500,21 @@
 </tr>
 <tr>
 <td>2026-01-18</td>
-<td>section-C4-S3-dms-down-final-2026-01-18.tex</td>
+<td>section-C4-S3-dms-down-approved-2026-01-18.tex</td>
 <td>v0.3.1.0</td>
-<td>v0.3.1.0 (pending integration)</td>
-<td><strong>FINAL</strong></td>
+<td>v0.3.2.0</td>
+<td><strong>FINAL &amp; INTEGRATED</strong></td>
 <td>section</td>
-<td>DMS Chapter 4 Section 4.3 (DMS Down: Toggle SOI Between Displays). Refined intro and Effect/Nuance column per semantic clarity (HUD and both MFD vs format lists). 4.3.1 (DMS Down Effectiveness) subsections complete; 4.3.2 HOTAS table finalized; 4.3.3 exception states documented. Status promoted review→final. Ready for integration into v0.3.2.0.</td>
+<td>DMS Chapter 4 Section 4.3 (DMS Down: Toggle SOI Between Displays). Promoted review→final on 2026-01-18. <strong>INTEGRATED into guide-v0.3.2.0-20260119</strong> on 2026-01-19. Refined intro separating display toggling from format transitions. Semantic refinement: &quot;HUD and both MFD&quot; replaces format listing for clarity. HOTAS table Effect/Nuance column (col 5) optimized: NAV, A-A, A-G all updated; &quot;picture evaluation&quot; → &quot;situational awareness&quot; (A-A row). Full subsection structure verified: 4.3.1 (DMS Down Effectiveness), 4.3.2 HOTAS table (3 rows + mission refs), 4.3.3 Exception States (Snowplow, MARK/OFLY). File size: 15,094 bytes (archived approved version). Preamble compatibility: V1.0 (updated Session 17). File moved to ARCHIVE with approved status.</td>
+</tr>
+<tr>
+<td>2026-01-19</td>
+<td>guide-v0.3.2.0-20260119.tex</td>
+<td>v0.3.1.0</td>
+<td>v0.3.2.0</td>
+<td><strong>INTEGRATED (MINOR)</strong></td>
+<td>guide</td>
+<td><strong>SESSION 20 - DMS SECTION 4.3 INTEGRATION + REDACTION CORRECTIONS:</strong> Section 4.3 (DMS Down) integrated into guide. Additionally, redaction corrections applied to Sections 4.1 and 4.2 (grammar, clarity, semantic refinements). Version bump: v0.3.1.0 → v0.3.2.0 (MINOR bump reflecting integration of Section 4.3). Snapshot guide-v0.3.2.0-20260119.tex created in wip/guide/ (71935 bytes) and synchronized to guide.tex root. Previous snapshot (v0.3.1.0) moved to ARCHIVE/GUIDE/. GitHub Release tag 0.3.2.0 created. Chapter 4 now contains integrated Sections 4.1, 4.2, 4.3 with enhanced semantic clarity and redaction corrections. Next phase: DMS Sections 4.4 (Left/Right) and 4.5 (Master Mode Summary) WIP development per unified Chapter 4 DMS blueprint v1.1.</td>
 </tr>
 </tbody></table>
 <p><strong>CRITICAL UPDATE (18 Jan 2026):</strong> TEMPLATES/template-wip-V1.0.tex has been updated with NEW preamble as of Session 17. All future WIP files MUST copy from this updated template. Previous WIP files created with older preamble (article class) may require manual preamble migration if integration is planned. See BRIEFING-v0.2.0.1 Section 11 for complete preamble specification. Canonical template-wip-V1.0.tex contains:</p>
@@ -522,7 +531,7 @@
 <p><strong>Status codes:</strong></p>
 <ul>
 <li>dev -- Draft, author working</li>
-<li>review -- <strong>Under human review, not yet final or integrated</strong></li>
+<li>review -- Under human review, not yet final or integrated</li>
 <li>final -- Author approved, ready for integration</li>
 <li>approved -- Integrated into guide-v and archived</li>
 <li>deprecated -- Intentionally retired (superseded or abandoned)</li>
@@ -632,6 +641,13 @@
 <td>v5.0.0</td>
 <td><strong>SESSION 19 - DMS DOWN SECTION FINALIZED:</strong> C4-S3 (DMS Down) promoted from review to FINAL. Major refinements: (1) Intro clarification with &quot;It is important to note...&quot; to separate display toggling from format transitions. (2) Semantic refinement throughout: replaced &quot;valid SOI candidates are HUD, FCR, TGP, WPN...&quot; with &quot;HUD and both MFD&quot; to eliminate confusion with format selection (DMS Right/Left) vs display selection (DMS Down). (3) Effect/Nuance column in HOTAS table updated: NAV, A-A, A-G all refined; A-A term &quot;picture evaluation&quot; changed to &quot;situational awareness&quot;. (4) Full subsection structure verified: 4.3.1 (DMS Down Effectiveness) with paragraph-based organization; 4.3.2 HOTAS table (3 rows + mission refs); 4.3.3 Exception States (Snowplow, MARK/OFLY). Validation: Dash-34 alignment confirmed; LaTeX structure verified; cross-references checked. File size: 15,171 bytes. Preamble compatibility: V1.0 (updated Session 17). Next action: Integrate into guide-v0.3.2.0 after section 4.4 (DMS Right/Left) completion per unified Chapter 4 DMS blueprint v1.1.</td>
 </tr>
+<tr>
+<td>20</td>
+<td>2026-01-19</td>
+<td><strong>v0.3.2.0</strong></td>
+<td>v5.0.0</td>
+<td><strong>SESSION 20 - v0.3.2.0 INTEGRATION COMPLETE:</strong> Section 4.3 (DMS Down) integrated into guide-v0.3.2.0-20260119 (file size: 71,935 bytes). Redaction corrections applied to Sections 4.1 and 4.2 (grammar, clarity, semantic refinements). Version bump: v0.3.1.0 → v0.3.2.0 (MINOR bump). GitHub Release tag 0.3.2.0 created and pushed. Snapshot guide-v0.3.2.0-20260119.tex created in wip/guide/, synchronized to guide.tex root. Previous snapshot (v0.3.1.0) moved to ARCHIVE/GUIDE/. Chapter 4 now contains FINAL &amp; INTEGRATED Sections 4.1, 4.2, 4.3 with enhanced semantic clarity and comprehensive redaction. Total commits: 144. Next phase: DMS Sections 4.4 (DMS Left/Right) and 4.5 (Master Mode Summary) WIP development per unified Chapter 4 DMS blueprint v1.1.</td>
+</tr>
 </tbody></table>
 <hr>
 <h2>5. SESSION LOG</h2>
@@ -737,10 +753,17 @@
 <td>v5.0.0</td>
 <td><strong>C4-S3 FINALIZED:</strong> DMS Down section promoted review→final. Intro clarification added. Semantic refinement: HUD/MFD displays vs format selection terminology. HOTAS table column 5 optimized. Exception states documented. Ready for integration into v0.3.2.0.</td>
 </tr>
+<tr>
+<td>20</td>
+<td>2026-01-19</td>
+<td><strong>v0.3.2.0</strong></td>
+<td>v5.0.0</td>
+<td><strong>v0.3.2.0 INTEGRATION COMPLETE:</strong> Section 4.3 integrated. Redaction corrections in 4.1 and 4.2. MINOR version bump. GitHub Release 0.3.2.0 tagged. Chapter 4 now FINAL &amp; INTEGRATED (Sections 4.1, 4.2, 4.3). Next: DMS 4.4 and 4.5 WIP development. Total commits: 144.</td>
+</tr>
 </tbody></table>
 <hr>
 <h2>6. PROJECT PRIORITIES &amp; PHASES</h2>
-<h3>6.1 Current Priorities (Post-v0.3.1.0)</h3>
+<h3>6.1 Current Priorities (Post-v0.3.2.0)</h3>
 <table>
 <thead>
 <tr>
@@ -754,7 +777,7 @@
 <td><strong>Phase 0</strong></td>
 <td>v0.1.0.0 – v0.7.0.0</td>
 <td>05–22 Jan 2026</td>
-<td>All 7 chapters scaffolded; layout locked at v0.2.2.0; CMS chapter structurally complete; DMS Chapter 4 sections 4.1–4.2 integrated with documentation enhancements; Section 4.3 finalized and ready for integration; preamble infrastructure upgraded to production-ready (v0.3.1.0).</td>
+<td>All 7 chapters scaffolded; layout locked at v0.2.2.0; CMS chapter structurally complete; DMS Chapter 4 sections 4.1–4.3 integrated with semantic refinements and redaction corrections; preamble infrastructure upgraded to production-ready (v0.3.1.0); DMS Sections 4.4–4.5 in WIP development.</td>
 </tr>
 <tr>
 <td><strong>Phase 1</strong></td>
@@ -781,16 +804,10 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>v0.3.1.0</strong></td>
-<td>Preamble Infrastructure Upgrade</td>
-<td><strong>✅ COMPLETED &amp; RELEASED</strong></td>
-<td><strong>SESSION 17 COMPLETE (18 Jan 2026):</strong> BRIEFING-v0.2.0.1 Section 11 expanded with detailed preamble documentation. guide.tex migrated to report class + twoside + titlesec. Templates updated and tested ✅. GitHub Release 0.3.1.0 tagged. Infrastructure now production-ready for continued content development.</td>
-</tr>
-<tr>
 <td><strong>v0.3.2.0</strong></td>
-<td>Chapter 4 -- DMS (Section 4.3 final→integrate, Sections 4.4, 4.5 WIP)</td>
-<td>Planned</td>
-<td>Complete DMS chapter with remaining direction-based sections. Section 4.3 now FINAL; ready for integration. Sections 4.4 (DMS Left/Right) and 4.5 (Master Mode Summary) in WIP creation per unified Chapter 4 DMS blueprint v1.1. PATCH bump.</td>
+<td>Chapter 4 -- DMS (Sections 4.1–4.3 final→integrated, Sections 4.4–4.5 pending)</td>
+<td><strong>✅ COMPLETED &amp; RELEASED</strong></td>
+<td><strong>SESSION 20 COMPLETE (19 Jan 2026):</strong> Section 4.3 (DMS Down) integrated into guide-v0.3.2.0-20260119. Redaction corrections applied to Sections 4.1 and 4.2. MINOR bump: v0.3.1.0 → v0.3.2.0. GitHub Release 0.3.2.0 tagged. Chapter 4 now contains FINAL &amp; INTEGRATED Sections 4.1, 4.2, 4.3 with enhanced semantic clarity and comprehensive redaction. Total commits: 144. Next: DMS Sections 4.4 (Left/Right) and 4.5 (Master Mode Summary) WIP development per unified Chapter 4 DMS blueprint v1.1.</td>
 </tr>
 <tr>
 <td><strong>v0.4.0.0</strong></td>
@@ -826,84 +843,28 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>guide-v0.1.4.0-20260106.tex</td>
+<td>guide-v0.3.1.0-20260117.tex</td>
 <td>archive</td>
-<td>main guide</td>
-<td>2026-01-06</td>
-<td>—</td>
-<td>Reference only; pre-CMS integration.</td>
-</tr>
-<tr>
-<td>guide-v0.2.0.1-20260108.tex</td>
-<td>archive</td>
-<td>main guide</td>
-<td>2026-01-08</td>
-<td>—</td>
-<td>Reference only; CMS 5.1 integrated.</td>
-</tr>
-<tr>
-<td>guide-v0.2.1.0-20260108.tex</td>
-<td>archive</td>
-<td>main guide</td>
-<td>2026-01-08</td>
-<td>—</td>
-<td>Reference only; Ch. 5 structure refined.</td>
-</tr>
-<tr>
-<td>guide-v0.2.2.0-20260108.tex</td>
-<td>archive</td>
-<td>main guide</td>
-<td>2026-01-08</td>
-<td>—</td>
-<td>Reference only; layout Option D applied.</td>
-</tr>
-<tr>
-<td>guide-v0.2.3.1-20260110.tex</td>
-<td>archive</td>
-<td>main guide</td>
-<td>2026-01-10</td>
-<td>—</td>
-<td>Reference only; CMS 5.2 integrated.</td>
-</tr>
-<tr>
-<td>guide-v0.2.4.0-20260111.tex</td>
-<td>archive</td>
-<td>main guide</td>
-<td>2026-01-11</td>
-<td>—</td>
-<td>Historical snapshot; moved to ARCHIVE/GUIDE/.</td>
-</tr>
-<tr>
-<td>guide-v0.3.0.0-20260115.tex</td>
-<td>archive</td>
-<td>main guide</td>
-<td>2026-01-15</td>
-<td>—</td>
-<td>Historical snapshot (v0.3.0.0); moved to ARCHIVE/GUIDE/. C4-S1 and C4-S2 integrated.</td>
-</tr>
-<tr>
-<td>guide-v0.3.0.1-20260116.tex</td>
-<td>archive</td>
-<td>main guide</td>
-<td>2026-01-16</td>
-<td>—</td>
-<td>Historical snapshot (v0.3.0.1); moved to ARCHIVE/GUIDE/. Section 4.2 table explanations added (PATCH). Previous preamble (article class).</td>
-</tr>
-<tr>
-<td>wip/guide/guide-v0.3.1.0-20260117.tex</td>
-<td><strong>active</strong></td>
-<td>main guide (WIP)</td>
+<td>main guide snapshot</td>
 <td>2026-01-18 03:56:16</td>
 <td>62,878 bytes</td>
-<td><strong>CURRENT DEVELOPMENT SNAPSHOT (v0.3.1.0):</strong> Stored in wip/guide/ for version control and iteration. Preamble infrastructure upgrade complete (report class, twoside, titlesec, improved headers/footers, enhanced tables, float support). LaTeX compilation verified ✅. Synchronized to guide.tex (repository root) as working version. Created 2026-01-17, last modified by GitHub workflow 2026-01-18 03:56:16. Use as base for v0.3.2.0 or future content additions. GitHub Release tag 0.3.1.0 references this version.</td>
+<td>Historical snapshot (v0.3.1.0). Moved to ARCHIVE/GUIDE/ for reference and version tracking.</td>
+</tr>
+<tr>
+<td>wip/guide/guide-v0.3.2.0-20260119.tex</td>
+<td><strong>active</strong></td>
+<td>main guide (WIP)</td>
+<td>2026-01-19 04:06:00</td>
+<td>71,935 bytes</td>
+<td><strong>CURRENT DEVELOPMENT SNAPSHOT (v0.3.2.0):</strong> Stored in wip/guide/ for version control and iteration. Contains integrated Sections 4.1, 4.2, 4.3 (DMS Down) with redaction corrections and semantic refinements. Preamble infrastructure: report class, twoside, titlesec, improved headers/footers, enhanced tables, float support (upgraded Session 17). Synchronized to guide.tex (repository root) as working version. Created 2026-01-19, deployed to GitHub. GitHub Release tag 0.3.2.0 references this version. Use as base for v0.4.0.0 or future content additions.</td>
 </tr>
 <tr>
 <td>guide.tex</td>
 <td><strong>active</strong></td>
 <td>main guide (root)</td>
-<td>2026-01-18 03:56:16</td>
-<td>62,878 bytes</td>
-<td><strong>ACTIVE WORKING GUIDE (root copy):</strong> Synchronized with wip/guide/guide-v0.3.1.0-20260117.tex. Deployed to repository root for direct access and compilation. Byte-identical to 20260117 snapshot (62,878 bytes). Use this as the primary guide.tex for development and LaTeX compilation in local workflow.</td>
+<td>2026-01-19 04:06:00</td>
+<td>71,935 bytes</td>
+<td><strong>ACTIVE WORKING GUIDE (root copy):</strong> Synchronized with wip/guide/guide-v0.3.2.0-20260119.tex. Deployed to repository root for direct access and compilation. Byte-identical to 20260119 snapshot (71,935 bytes). Use this as the primary guide.tex for development and LaTeX compilation in local workflow. Contains Chapters 1 (Intro), 2–4 (scaffolding + DMS 4.1–4.3 integrated), 5 (CMS complete).</td>
 </tr>
 </tbody></table>
 <hr>
@@ -921,52 +882,16 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>wip/section-C4-S1-concept-soi-final-2026-01-14.tex</td>
-<td>--</td>
-<td>section</td>
-<td><strong>final</strong></td>
-<td>2026-01-14</td>
-<td>—</td>
-<td>DMS Chapter 4 Section 4.1 (Concept and SOI). Consolidated FINAL narrative + SOI-by-mode table + HUD/HMCS clarification. <strong>NOW ARCHIVED (approved status).</strong></td>
-</tr>
-<tr>
-<td>wip/section-C4-S2-dms-up-final.tex</td>
-<td>--</td>
-<td>section</td>
-<td><strong>final</strong></td>
-<td>2026-01-15</td>
-<td>—</td>
-<td>DMS Chapter 4 Section 4.2 (DMS Up: HUD Designation as SOI). FINAL narrative and HOTAS table. <strong>NOW ARCHIVED (approved status).</strong></td>
-</tr>
-<tr>
 <td>wip/section-C4-S3-dms-down-final-2026-01-18.tex</td>
 <td>--</td>
 <td>section</td>
-<td><strong>FINAL</strong></td>
+<td><strong>FINAL &amp; ARCHIVED</strong></td>
 <td>2026-01-18 15:42:49</td>
 <td>15,171 bytes</td>
-<td>DMS Chapter 4 Section 4.3 (DMS Down: Toggle SOI Between Displays). <strong>STATUS PROMOTED: review → FINAL (2026-01-18).</strong> Refined intro with &quot;It is important to note...&quot; clause separating display toggling from format transitions. Semantic refinement: replaced &quot;valid SOI candidates FCR, TGP, WPN...&quot; with &quot;HUD and both MFD&quot; throughout (eliminates confusion with DMS Right/Left format selection). HOTAS table Effect/Nuance column (col 5) optimized: NAV, A-A, A-G all updated; &quot;picture evaluation&quot; → &quot;situational awareness&quot; (A-A row). Full subsection structure verified: 4.3.1 (DMS Down Effectiveness), 4.3.2 HOTAS table, 4.3.3 Exception States. Preamble: V1.0 (updated Session 17, compatible). Next: Integration cycle for v0.3.2.0 after DMS 4.4, 4.5 WIP completion.</td>
-</tr>
-<tr>
-<td>wip/section-C4-S2-dms-up-down-deprecated-2026-01-14.tex</td>
-<td>--</td>
-<td>section</td>
-<td><strong>deprecated</strong></td>
-<td>2026-01-14</td>
-<td>—</td>
-<td>DEPRECATED: Combined C4-S2 (DMS Up/Down) WIP file. Superseded by standalone DMS Up FINAL file and future DMS Down WIP. <strong>Moved to ARCHIVE/ for audit and historical reference.</strong></td>
-</tr>
-<tr>
-<td>wip/section-C4-S3-dms-format-cycling-deprecated-2026-01-13.tex</td>
-<td>--</td>
-<td>section</td>
-<td><strong>deprecated</strong></td>
-<td>2026-01-13</td>
-<td>—</td>
-<td>DEPRECATED: Early DMS format-cycling attempt. Superseded by planned 4.4 rewrite (DMS Left/Right) per unified Chapter 4 blueprint v1.1. <strong>Moved to ARCHIVE/ for audit.</strong></td>
+<td>DMS Chapter 4 Section 4.3 (DMS Down: Toggle SOI Between Displays). <strong>STATUS PROMOTED: review → FINAL (2026-01-18), then INTEGRATED (2026-01-19).</strong> Refined intro with &quot;It is important to note...&quot; clause. Semantic refinement: &quot;HUD and both MFD&quot; throughout. HOTAS table Effect/Nuance column optimized. Full structure: 4.3.1 (effectiveness), 4.3.2 HOTAS table, 4.3.3 exception states. Preamble: V1.0. <strong>NOW ARCHIVED (approved status after integration).</strong></td>
 </tr>
 </tbody></table>
-<p><strong>Status (2026-01-18 18:39 PM):</strong> WIP/ folder synchronized with GitHub state (INTEGRATED-FILES.md). <strong>KEY UPDATE:</strong> C4-S3 dms-down WIP file confirmed promoted to FINAL status (date: 2026-01-18, last modified: 2026-01-18 15:42:49). File size optimized to 15,171 bytes. Ready for next sprint: C4-S3 integration into v0.3.2.0, C4-S4 (DMS Left/Right), C4-S5 (DMS Summary) WIP creation per unified Chapter 4 DMS blueprint v1.1. All new WIP files created after 18 Jan 2026 should copy from updated template-wip-V1.0.tex.</p>
+<p><strong>Status (2026-01-19 01:16 AM):</strong> WIP/ folder synchronized with GitHub state (INTEGRATED-FILES.md as of 2026-01-19 04:06:02). <strong>KEY UPDATE:</strong> C4-S3 DMS Down WIP file integrated into v0.3.2.0 (2026-01-19). No active WIP files in wip/ folder at this moment; focus shifts to creating DMS 4.4 (Left/Right) and 4.5 (Master Mode Summary) WIP per unified Chapter 4 DMS blueprint v1.1. All new WIP files created after 18 Jan 2026 should copy from updated template-wip-V1.0.tex.</p>
 <hr>
 <h3>7.3 Governance &amp; Reference Files (docs/ folder)</h3>
 <table>
@@ -1012,42 +937,14 @@
 <td>5.0.0</td>
 <td>tracking</td>
 <td>active</td>
-<td>Unified tracking document with Git/GitHub integration. <strong>Updated 18 Jan 2026 (Sessions 17–19)</strong> to reflect v0.3.1.0 release, preamble infrastructure upgrade, GitHub Release tagging, file structure alignment per INTEGRATED-FILES audit, WIP C4-S3 status promotion (dev → review → FINAL), and Session 19 finalization of DMS Down section.</td>
+<td>Unified tracking document with Git/GitHub integration. <strong>Updated 2026-01-19 01:16 AM</strong> (Session 20) to reflect v0.3.2.0 release, Section 4.3 integration, redaction corrections in 4.1–4.2, GitHub Release 0.3.2.0 tagging, total commits (144), and readiness for DMS 4.4–4.5 WIP development.</td>
 </tr>
 <tr>
-<td>docs/BRIEFING-v0.2.0.1.docx</td>
-<td>0.2.0.1</td>
-<td>export</td>
-<td>derived</td>
-<td>DOCX export from Markdown.</td>
-</tr>
-<tr>
-<td>docs/VERSION-SYSTEM-v4.2.1.docx</td>
-<td>4.2.1</td>
-<td>export</td>
-<td>derived</td>
-<td>DOCX export from Markdown.</td>
-</tr>
-<tr>
-<td>docs/WIP-FILE-NAMING-v1.4.docx</td>
-<td>1.4</td>
-<td>export</td>
-<td>derived</td>
-<td>DOCX export from Markdown.</td>
-</tr>
-<tr>
-<td>docs/PROJECT-TRACKING-v5.0.0.docx</td>
-<td>5.0.0</td>
-<td>export</td>
-<td>derived</td>
-<td>DOCX export from this Markdown via md-to-docx script.</td>
-</tr>
-<tr>
-<td>docs/TRAINING-MISSION-ABBREV-TABLE-v1.0.docx</td>
+<td>docs/TRAINING-MISSION-ABBREV-TABLE-v1.0.md</td>
 <td>1.0</td>
-<td>export</td>
-<td>derived</td>
-<td>DOCX export from source.</td>
+<td>reference</td>
+<td>active</td>
+<td>Standardized abbreviations for 33 BMS 4.38.1 training missions. Used when incorporating mission names in HOTAS tables.</td>
 </tr>
 </tbody></table>
 <p><strong>Maintenance rule:</strong></p>
@@ -1121,12 +1018,18 @@
 <td>2026-01-18</td>
 <td><strong>SESSION 19: C4-S3 DMS DOWN FINALIZED</strong></td>
 <td>2.1, 3.1, 4.2, 4.3, 5, 6.2, 7.2, 7.4</td>
-<td>DMS Section 4.3 (DMS Down: Toggle SOI Between Displays) promoted from review to FINAL. Major semantic refinement: (1) Intro clarification separating display toggling (DMS Down) from format transitions (DMS Right/Left) with new paragraph: &quot;It is important to note that DMS Down transitions SOI between displays—HUD and the two MFDs—without changing which format is currently displayed on any MFD.&quot; (2) Throughout sections 4.3.1: replaced &quot;valid SOI candidates are HUD, FCR, TGP, WPN...&quot; with &quot;HUD and both MFD&quot; for semantic clarity (eliminates confusion with DMS Right/Left, which manipulates formats). (3) HOTAS table column 5 (Effect/Nuance) optimized: all three rows (NAV, A-A, A-G) refined; A-A term &quot;picture evaluation&quot; changed to &quot;situational awareness&quot;. (4) Full structure verified: 4.3.1 (subsections for NAV/A-G/A-A), 4.3.2 HOTAS table with 3 rows + mission training refs, 4.3.3 Exception States (Snowplow, MARK/OFLY). Validation complete: Dash-34 alignment, LaTeX syntax, cross-references. File size: 15,171 bytes (optimized). Preamble: V1.0 (Session 17 updated). Next: Integrate into guide-v0.3.2.0 after DMS 4.4 (Left/Right) and 4.5 (Summary) WIP completion per unified Chapter 4 DMS blueprint v1.1.</td>
+<td>DMS Section 4.3 (DMS Down: Toggle SOI Between Displays) promoted from review to FINAL. Major semantic refinement: (1) Intro clarification separating display toggling from format transitions with new paragraph: &quot;It is important to note that DMS Down transitions SOI between displays—HUD and the two MFDs—without changing which format is currently displayed on any MFD.&quot; (2) Throughout sections 4.3.1: replaced &quot;valid SOI candidates are HUD, FCR, TGP, WPN...&quot; with &quot;HUD and both MFD&quot; for semantic clarity (eliminates confusion with DMS Right/Left, which manipulates formats). (3) HOTAS table column 5 (Effect/Nuance) optimized: all three rows (NAV, A-A, A-G) refined; A-A term &quot;picture evaluation&quot; changed to &quot;situational awareness&quot;. (4) Full structure verified: 4.3.1 (subsections for NAV/A-G/A-A), 4.3.2 HOTAS table with 3 rows + mission training refs, 4.3.3 Exception States (Snowplow, MARK/OFLY). Validation complete: Dash-34 alignment, LaTeX syntax, cross-references. File size: 15,171 bytes (optimized). Preamble: V1.0 (Session 17 updated). Next: Integrate into guide-v0.3.2.0.</td>
+</tr>
+<tr>
+<td>2026-01-19</td>
+<td><strong>SESSION 20: v0.3.2.0 INTEGRATION COMPLETE</strong></td>
+<td>1, 2, 3, 4, 5, 6, 7</td>
+<td>Section 4.3 (DMS Down) integrated into guide-v0.3.2.0-20260119 (71,935 bytes). Redaction corrections applied to Sections 4.1 and 4.2 (grammar, clarity, semantic refinements). MINOR version bump: v0.3.1.0 → v0.3.2.0. GitHub Release tag 0.3.2.0 created and pushed. Total commits: 144. Snapshot guide-v0.3.2.0-20260119.tex created in wip/guide/, synchronized to guide.tex root. Previous snapshot (v0.3.1.0) moved to ARCHIVE/GUIDE/. Chapter 4 now FINAL &amp; INTEGRATED (Sections 4.1, 4.2, 4.3) with enhanced semantic clarity and comprehensive redaction. Next: DMS Sections 4.4 (Left/Right) and 4.5 (Master Mode Summary) WIP development per unified Chapter 4 DMS blueprint v1.1.</td>
 </tr>
 </tbody></table>
 <hr>
 <h2>END OF PROJECT TRACKING v5.0.0</h2>
-<p><strong>For inquiries or updates, contact:</strong> Carlos &quot;Metal&quot; Nader<br><strong>Last updated:</strong> 2026-01-18, 06:39 PM -03<br><strong>Status:</strong> Ready for use / Download</p>
+<p><strong>For inquiries or updates, contact:</strong> Carlos &quot;Metal&quot; Nader<br><strong>Last updated:</strong> 2026-01-19, 01:16 AM -03<br><strong>Status:</strong> Ready for use / Download</p>
 
 </body>
 </html>
