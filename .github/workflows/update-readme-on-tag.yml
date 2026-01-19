@@ -1,9 +1,19 @@
 name: Update README on Tag Push
 
 on:
+  # Trigger automático: quando você faz push de uma tag
   push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+.[0-9]+'
+  
+  # ✨ NOVO: Trigger manual - clique no botão "Run workflow" no GitHub Actions
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to update (e.g., 0.3.2.0)'
+        required: true
+        default: '0.3.2.0'
+        type: string
 
 permissions:
   contents: write
@@ -11,32 +21,75 @@ permissions:
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout repository
+      - name: 📥 Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
-      - name: Set up Python
+
+      - name: 🐍 Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      
-      - name: Update README with new version
+
+      # ✨ NOVO: Detecta se é automático (tag) ou manual (workflow_dispatch)
+      - name: 🔍 Determine version source
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            # Automático: pega a tag mais recente
+            VERSION=$(git describe --tags --abbrev=0 | sed 's/v//')
+            SOURCE="tag"
+            echo "📌 Source: Git tag (automatic)"
+          else
+            # Manual: usa input do usuário
+            VERSION="${{ github.event.inputs.version }}"
+            SOURCE="manual"
+            echo "📌 Source: Manual workflow dispatch"
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "source=$SOURCE" >> $GITHUB_OUTPUT
+          echo "✓ Version determined: $VERSION"
+
+      - name: 📝 Update README with new version
         run: python scripts/update-readme-version.py
-      
-      - name: Configure Git
+        env:
+          # Passa a versão pro script (pode ser usado por ambos os triggers)
+          OVERRIDE_VERSION: ${{ steps.version.outputs.version }}
+
+      - name: ⚙️ Configure Git
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-      
-      - name: Commit and push changes
+
+      - name: 💾 Commit and push changes
         run: |
           if git diff --quiet README.md; then
-            echo "No changes to commit"
+            echo "ℹ No changes to commit"
           else
             git add README.md
-            git commit -m "chore: update guide version from tag"
-            git push
+            git commit -m "chore: update README version to ${{ steps.version.outputs.version }}"
+            git push origin HEAD:main
+            echo "✓ Changes pushed to repository"
           fi
+
+      # ✨ NOVO: Log visual melhorado no resumo do workflow
+      - name: ✅ Log update result
+        if: success()
+        run: |
+          echo "═══════════════════════════════════════════════"
+          echo "✅ README updated successfully"
+          echo "═══════════════════════════════════════════════"
+          echo "📝 Version: ${{ steps.version.outputs.version }}"
+          echo "📌 Source: ${{ steps.version.outputs.source }}"
+          echo "📅 Date: $(date +%Y-%m-%d' '%H:%M:%S' '-03)"
+          echo "🔗 Repository: ${{ github.repository }}"
+          echo "═══════════════════════════════════════════════"
+
+      # Fallback: se algo der errado
+      - name: ❌ Log error (if failed)
+        if: failure()
+        run: |
+          echo "❌ README update FAILED"
+          echo "Version attempted: ${{ steps.version.outputs.version }}"
+          echo "Source: ${{ steps.version.outputs.source }}"
