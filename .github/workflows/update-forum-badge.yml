@@ -1,0 +1,87 @@
+name: 📊 Update Forum Engagement Badge
+
+# Trigger: Every 2 hours
+on:
+  schedule:
+    - cron: "0 */2 * * *"  # 2-hour interval (UTC)
+  
+  # Manual trigger for testing
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: "Enable debug mode"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+# ✅ Permissions: GitHub Actions needs write access to repo
+permissions:
+  contents: write
+
+jobs:
+  update-forum-badge:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🐍 Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: 🔄 Scrape forum data and update badge
+        env:
+          FORUM_RSS_URL: ${{ secrets.FORUM_RSS_URL }}
+        run: |
+          python scripts/scrape-forum-votes.py
+
+      - name: ⚙️ Configure Git (GitHub Actions Bot)
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - name: 💾 Commit and push changes using GITHUB_TOKEN
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Check if README.md has changes
+          if git diff --quiet README.md; then
+            echo "ℹ️  No changes to README detected"
+            exit 0
+          fi
+          
+          # Stage and commit changes
+          git add README.md
+          git commit -m "chore: update forum engagement badge ⬆️"
+          
+          # Push to main branch
+          git push origin main
+          
+          echo "✅ README updated and pushed to repository"
+
+      - name: ✅ Log success
+        if: success()
+        run: |
+          echo "═══════════════════════════════════════════════"
+          echo "✅ Forum Badge Updated Successfully"
+          echo "═══════════════════════════════════════════════"
+          echo "📅 Timestamp: $(date -u +%Y-%m-%d' '%H:%M:%S' 'UTC)"
+          echo "🔗 Repository: ${{ github.repository }}"
+          echo "🎯 Event: ${{ github.event_name }}"
+          echo "═══════════════════════════════════════════════"
+
+      - name: ❌ Log failure
+        if: failure()
+        run: |
+          echo "❌ Forum Badge Update FAILED"
+          echo "Please check:"
+          echo "  1. FORUM_RSS_URL secret is configured in GitHub Settings"
+          echo "  2. RSS feed URL is still valid"
+          echo "  3. Network connection to forum is working"
