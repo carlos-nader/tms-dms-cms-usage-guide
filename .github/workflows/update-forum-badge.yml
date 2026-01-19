@@ -6,15 +6,6 @@ on:
     - cron: "0 */2 * * *"  # 2-hour interval (UTC)
   
   workflow_dispatch:
-    inputs:
-      debug:
-        description: "Enable debug mode"
-        required: false
-        default: "false"
-        type: choice
-        options:
-          - "false"
-          - "true"
 
 permissions:
   contents: write
@@ -24,30 +15,30 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: 📥 Checkout repository
+      - name: 📥 Checkout repository with SSH
         uses: actions/checkout@v4
         with:
-          ssh-key: ${{ secrets.DEPLOYKEY }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
           fetch-depth: 0
 
-      - name: 🐍 Set up Python 3.11
+      - name: 🐍 Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
       - name: 🔄 Scrape forum data and update badge
         env:
           FORUM_RSS_URL: ${{ secrets.FORUM_RSS_URL }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          python scripts/scrape-forum-votes.py
+          python3 scripts/scrape-forum-votes.py 2>&1
 
       - name: ⚙️ Configure Git
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-      - name: 💾 Commit and push
+      - name: 💾 Commit and push changes
         run: |
           if git diff --quiet README.md; then
             echo "ℹ️  No changes to README"
@@ -75,5 +66,6 @@ jobs:
           echo "❌ Forum Badge Update FAILED"
           echo "Please check:"
           echo "  1. FORUM_RSS_URL secret configured"
-          echo "  2. DEPLOYKEY secret configured"
-          echo "  3. RSS feed URL valid"
+          echo "  2. DEPLOY_KEY secret configured"
+          echo "  3. GH_TOKEN secret configured"
+          echo "  4. RSS feed URL valid"
