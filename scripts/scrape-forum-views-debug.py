@@ -65,7 +65,7 @@ def extract_views_from_html(html_content):
                 (r'<span class="fw-bold" title="(\d+)">', "Span.fw-bold with title"),
                 (r'class="fw-bold" title="(\d+)"', "fw-bold title attribute"),
                 (r'\|\s*(\d+)\s+views?', "| views (pipe separator)"),
-                (r'views["\']?\s*:\s*(\d+)', "JSON: views: N"),,
+                (r'views["\']?\s*:\s*(\d+)', "JSON: views: N"),
             ]
             
             for pattern, desc in alt_patterns:
