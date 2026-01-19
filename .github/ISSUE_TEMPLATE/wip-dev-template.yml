@@ -1,0 +1,117 @@
+name: "[WIP DEV] Define structure and generate first version"
+description: "Create WIP file with initial structure and first draft"
+title: "[C{N}:S{M}] DEV — Define structure and generate first version"
+labels: ["documentation", "wip"]
+assignees:
+  - carlos-nader
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # [WIP DEV] Define structure and generate first version
+        
+        ## Overview
+        
+        This is the **first of 4 sequential issues** for a section milestone:
+        1. ✅ **Issue #X (THIS):** DEV — Create WIP file with structure
+        2. ⏳ Issue #(X+1): REVIEW — Content review and refinement
+        3. ⏳ Issue #(X+2): FINAL — Approve, finalize, lock
+        4. ⏳ Issue #(X+3): APPROVED — Integrate into guide.tex, create release
+        
+        **Blocked by:** None (this is the starting point)  
+        **Blocks:** Next issue (REVIEW status)
+  
+  - type: input
+    id: chapter_section
+    attributes:
+      label: "Chapter and Section Identifier"
+      placeholder: "C4:S4"
+      description: "Use format: C{CHAPTER}:S{SECTION} — for example, C4:S4"
+    validations:
+      required: true
+  
+  - type: input
+    id: section_title
+    attributes:
+      label: "Section Topic Title"
+      placeholder: "TMS Right/Left"
+      description: "Full descriptive title for this section (e.g., 'DMS Down: Toggle SOI Between Displays')"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: wip_target
+    attributes:
+      label: "WIP Target Filename"
+      value: |
+        ```
+        wip/section-C{N}-S{M}-{TITLE}-dev-2026-01-{DD}.tex
+        ```
+      description: "Expected WIP filename — replace {N}, {M}, {TITLE}, {DD} with actual values"
+      render: text
+  
+  - type: markdown
+    attributes:
+      value: |
+        ## Deliverables
+        
+        Complete all items before marking this issue as done.
+  
+  - type: checkboxes
+    id: deliverables
+    attributes:
+      label: "Content & Structure"
+      description: "Structural components and first draft"
+      options:
+        - label: "Structure defined: Main subsections and HOTAS table outline (if applicable)"
+        - label: "First draft written: Narrative complete at ~80% polish level"
+        - label: "HOTAS table outline: If this section includes a table, skeleton created with column headers"
+        - label: "References noted: Technical source citations added (Dash-34, BMS Training Manual, etc.)"
+  
+  - type: checkboxes
+    id: technical
+    attributes:
+      label: "Technical Requirements"
+      description: "LaTeX and file standards"
+      options:
+        - label: "File created from canonical template: TEMPLATES/template-wip-V1.0.tex"
+        - label: "File named correctly: Matches pattern section-C{N}-S{M}-{TITLE}-dev-DATE.tex"
+        - label: "LaTeX compiles: No pdflatex errors (warnings acceptable at this stage)"
+        - label: "Metadata updated in preamble (\\def\\wiptitle, \\def\\wipstatus, etc.)"
+        - label: "PDF generated and visually acceptable"
+  
+  - type: checkboxes
+    id: quality
+    attributes:
+      label: "Quality Standards"
+      description: "Consistency and alignment"
+      options:
+        - label: "Terminology: Uses Technical Glossary where applicable"
+        - label: "Mission codes (if any): Checked against TRAINING-MISSION-ABBREV-TABLE-v1.0"
+        - label: "Subsection hierarchy: Clear and logical (\\section, \\subsection, etc.)"
+        - label: "No blocking syntax errors: Compilation succeeds"
+  
+  - type: textarea
+    id: notes
+    attributes:
+      label: "Additional Notes (Optional)"
+      placeholder: "Any special considerations, known limitations, or dependencies for this section..."
+      description: "Use this space to document anything important for the REVIEW phase"
+  
+  - type: markdown
+    attributes:
+      value: |
+        ## Related Documentation
+        
+        - 📖 [WIP-FILE-NAMING-v1.4](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/wip-naming-v1.4.md) — WIP file status codes and lifecycle
+        - 📖 [BRIEFING-v0.2.0.1](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/briefing-v0.2.0.1.md) — Project governance and template rules
+        - 📖 [VERSION-SYSTEM-v4.2.1](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/version-system-v4.2.1.md) — Versioning logic
+        - 📖 [TRAINING-MISSION-ABBREV-TABLE-v1.0](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/training-mission-abbrev-table-v1.0.md) — Mission code references
+        
+        ## Acceptance Criteria
+        
+        ✅ **Ready to move to Issue #(X+1) REVIEW when:**
+        - All deliverables above are checked
+        - File compiles without errors
+        - Content structure is clear and coherent
+        - You are satisfied with the ~80% draft quality

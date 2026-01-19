@@ -1,0 +1,152 @@
+name: "[WIP FINAL] Approve and lock for integration"
+description: "Final approval: declare production-ready, no more changes expected"
+title: "[C{N}:S{M}] FINAL — Approve, finalize, and lock for integration"
+labels: ["documentation", "wip"]
+assignees:
+  - carlos-nader
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # [WIP FINAL] Approve and lock for integration
+        
+        ## Overview
+        
+        This is the **third of 4 sequential issues** for a section milestone:
+        1. ✅ Issue #X: DEV — Create WIP file with structure **[CLOSED]**
+        2. ✅ Issue #(X+1): REVIEW — Content review and refinement **[CLOSED]**
+        3. ✅ **Issue #(X+2) (THIS):** FINAL — Approve, finalize, lock
+        4. ⏳ Issue #(X+3): APPROVED — Integrate into guide.tex, create release
+        
+        **Blocked by:** Issue #(X+1) (REVIEW status)  
+        **Blocks:** Next issue (APPROVED status)
+        
+        ## What Happens Here
+        
+        This is the **approval gate**:
+        - 🔒 You declare the WIP file production-ready
+        - ✅ File status transitions: -review- → -final-
+        - 📄 No further content changes are expected
+        - 🚀 Ready for integration in next issue
+        
+        **Only one cycle here.** This is approval, not iteration.
+  
+  - type: input
+    id: chapter_section
+    attributes:
+      label: "Chapter and Section Identifier"
+      placeholder: "C4:S4"
+      description: "Use format: C{CHAPTER}:S{SECTION}"
+    validations:
+      required: true
+  
+  - type: input
+    id: section_title
+    attributes:
+      label: "Section Topic Title"
+      placeholder: "TMS Right/Left"
+      description: "Full descriptive title"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: wip_target
+    attributes:
+      label: "WIP Target Filename"
+      value: |
+        ```
+        wip/section-C{N}-S{M}-{TITLE}-final-2026-01-{DD}.tex
+        ```
+      description: "File will be RENAMED from -review- to -final- as part of this issue"
+      render: text
+  
+  - type: markdown
+    attributes:
+      value: |
+        ## Final Approval Checklist
+        
+        ✅ **All items must be checked before closing this issue.**
+  
+  - type: checkboxes
+    id: final_approval
+    attributes:
+      label: "Content & Quality"
+      description: "Final sign-off on content quality"
+      options:
+        - label: "All issues from REVIEW are resolved"
+        - label: "Content is technically accurate (verified against Dash-34, BMS Training Manual)"
+        - label: "No typos, grammar errors, or unclear wording"
+        - label: "HOTAS tables are complete and all cells are filled (or explicitly marked as future work)"
+        - label: "Tone and terminology consistent with rest of guide"
+  
+  - type: checkboxes
+    id: file_readiness
+    attributes:
+      label: "File Readiness"
+      description: "Technical validation"
+      options:
+        - label: "File renamed: -review- → -final- in filename"
+        - label: "LaTeX compiles with zero errors"
+        - label: "PDF generated and visually correct"
+        - label: "Metadata in preamble is current (dates, status = final, etc.)"
+        - label: "No LaTeX warnings (or warnings documented and acceptable)"
+  
+  - type: checkboxes
+    id: integration_check
+    attributes:
+      label: "Pre-Integration Validation"
+      description: "Ready for merging into guide.tex"
+      options:
+        - label: "File structure matches guide.tex chapter architecture"
+        - label: "No conflicts with other sections anticipated"
+        - label: "Cross-references are valid or marked for update during integration"
+        - label: "Ready for human/AI to merge into main guide"
+  
+  - type: markdown
+    attributes:
+      value: |
+        ## Approval Decision
+        
+        ⚠️ **This is the approval gate. Explicitly confirm you approve this file for integration.**
+  
+  - type: checkboxes
+    id: approval
+    attributes:
+      label: "Final Approval"
+      description: "Your explicit sign-off"
+      options:
+        - label: "✅ I APPROVE this WIP file for integration into guide.tex"
+        - label: "I am confident this file is production-ready with no further content changes expected"
+  
+  - type: textarea
+    id: final_notes
+    attributes:
+      label: "Final Notes (Optional)"
+      placeholder: "Any last-minute observations, known limitations, or special instructions for the APPROVED phase..."
+      description: "Information helpful for integration"
+  
+  - type: markdown
+    attributes:
+      value: |
+        ## Next Steps
+        
+        Once you close this issue:
+        
+        1. Issue #(X+3) (APPROVED) will be unblocked
+        2. You (or AI) will integrate this WIP content into guide.tex
+        3. Version numbers will be updated
+        4. A new GitHub release tag will be created
+        5. WIP file will be moved to archive/ with -approved- status
+        
+        ## Related Documentation
+        
+        - 📖 [WIP-FILE-NAMING-v1.4](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/wip-naming-v1.4.md) — Status code definitions
+        - 📖 [VERSION-SYSTEM-v4.2.1](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/version-system-v4.2.1.md) — Versioning rules
+        
+        ## Acceptance Criteria
+        
+        ✅ **Complete when:**
+        - All approval checkboxes are checked
+        - File is renamed to -final- status
+        - You have explicitly approved the file
+        - PDF looks good and compiles clean

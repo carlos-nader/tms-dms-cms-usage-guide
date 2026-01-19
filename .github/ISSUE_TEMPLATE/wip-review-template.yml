@@ -1,0 +1,173 @@
+name: "[WIP REVIEW] Review content and refine"
+description: "Human review cycle: validate content, refactor, iterate"
+title: "[C{N}:S{M}] REVIEW — Review content and transform DEV→REVIEW"
+labels: ["documentation", "wip"]
+assignees:
+  - carlos-nader
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # [WIP REVIEW] Review content and refine
+        
+        ## Overview
+        
+        This is the **second of 4 sequential issues** for a section milestone:
+        1. ✅ Issue #X: DEV — Create WIP file with structure **[CLOSED]**
+        2. ✅ **Issue #(X+1) (THIS):** REVIEW — Content review and refinement
+        3. ⏳ Issue #(X+2): FINAL — Approve, finalize, lock
+        4. ⏳ Issue #(X+3): APPROVED — Integrate into guide.tex, create release
+        
+        **Blocked by:** Issue #X (DEV status)  
+        **Blocks:** Next issue (FINAL status)
+        
+        ## What Happens Here
+        
+        This issue manages the **active review cycle**:
+        - 🔍 You review content for clarity, accuracy, flow
+        - ✏️ You make edits, refinements, iterations
+        - 🔄 You recompile and validate after each change
+        - ✅ When satisfied, you close this issue
+        
+        **This may cycle multiple times.** Do not advance until you are confident the content is ready.
+  
+  - type: input
+    id: chapter_section
+    attributes:
+      label: "Chapter and Section Identifier"
+      placeholder: "C4:S4"
+      description: "Use format: C{CHAPTER}:S{SECTION}"
+    validations:
+      required: true
+  
+  - type: input
+    id: section_title
+    attributes:
+      label: "Section Topic Title"
+      placeholder: "TMS Right/Left"
+      description: "Full descriptive title"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: wip_target
+    attributes:
+      label: "WIP Target Filename"
+      value: |
+        ```
+        wip/section-C{N}-S{M}-{TITLE}-review-2026-01-{DD}.tex
+        ```
+      description: "File will be RENAMED from -dev- to -review- during this phase"
+      render: text
+  
+  - type: markdown
+    attributes:
+      value: |
+        ## Content Validation Checklist
+        
+        Review these aspects of the content before proceeding.
+  
+  - type: checkboxes
+    id: technical_accuracy
+    attributes:
+      label: "Technical Accuracy"
+      description: "Verify against source materials"
+      options:
+        - label: "All claims align with Dash-34 (F-16 Avionics Manual)"
+        - label: "BMS-specific details match BMS Training Manual v4.38.1"
+        - label: "No conflicting information with other chapters or sections"
+        - label: "Terminology is consistent with Technical Glossary"
+        - label: "Mission codes (if any) are valid and match TRAINING-MISSION-ABBREV-TABLE-v1.0"
+  
+  - type: checkboxes
+    id: structure_validation
+    attributes:
+      label: "Structural Validation"
+      description: "LaTeX structure and consistency"
+      options:
+        - label: "All subsections properly nested (\\section, \\subsection, \\subsubsection hierarchy)"
+        - label: "All HOTAS tables use hotastable environment"
+        - label: "Table columns are consistent (Master Mode | Control | Effect | Nuance | Training Refs)"
+        - label: "Internal cross-references (\\ref{}) are correct or marked for later fix"
+        - label: "No orphaned or incomplete sentences or paragraphs"
+  
+  - type: checkboxes
+    id: clarity_polish
+    attributes:
+      label: "Clarity & Polish"
+      description: "Readability and presentation"
+      options:
+        - label: "No spelling errors (grammar/spell check pass completed)"
+        - label: "No obvious grammar issues"
+        - label: "Explanations are clear and not redundant"
+        - label: "Tables have proper captions and column explanations"
+        - label: "Any ambiguous phrasing has been resolved"
+        - label: "Reading flow is natural and logical"
+  
+  - type: markdown
+    attributes:
+      value: |
+        ## File Preparation
+  
+  - type: checkboxes
+    id: file_prep
+    attributes:
+      label: "File & Build Readiness"
+      description: "Before closing this issue"
+      options:
+        - label: "File renamed: -dev- → -review- in filename"
+        - label: "LaTeX recompiled: No new errors after edits"
+        - label: "PDF generated and reviewed for visual correctness"
+        - label: "All metadata in preamble is current (dates, status = review, etc.)"
+  
+  - type: textarea
+    id: review_notes
+    attributes:
+      label: "Review Notes"
+      placeholder: |
+        Document any significant changes made, decisions reached, or issues discovered:
+        - Changed X because Y
+        - Clarified explanation of Z
+        - Discovered potential conflict with Section 4.2 (noted for later)
+      description: "These notes help with FINAL and APPROVED phases"
+  
+  - type: markdown
+    attributes:
+      value: |
+        ## Iteration Cycles
+        
+        ⚡ **This issue may cycle multiple times:**
+        
+        1. You review content
+        2. You make edits
+        3. You recompile and check PDF
+        4. Repeat until satisfied
+        5. **Then close the issue** to move to FINAL phase
+        
+        Each cycle, update this issue with notes so you track what changed.
+  
+  - type: textarea
+    id: blockers
+    attributes:
+      label: "Known Issues or Blockers (Optional)"
+      placeholder: "e.g., 'Missing image reference from Dash-34 (will add later)', 'Cross-ref to 4.5 not yet written'..."
+      description: "Document anything that's incomplete or needs follow-up"
+  
+  - type: markdown
+    attributes:
+      value: |
+        ## Related Documentation
+        
+        - 📖 [WIP-FILE-NAMING-v1.4](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/wip-naming-v1.4.md) — Status code definitions
+        - 📖 [TECHNICAL-GLOSSARY](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/) — Terminology reference
+        - 📖 [DASH-34](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/tree/main/source-materials) — F-16 avionics primary source
+        - 📖 [BMS Training Manual](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/tree/main/source-materials) — BMS-specific reference
+        
+        ## Acceptance Criteria
+        
+        ✅ **Ready to move to Issue #(X+2) FINAL when:**
+        - All review checklist items are checked
+        - Content is technically accurate and well-written
+        - File is named with -review- status
+        - PDF looks good and compiles clean
+        - No changes expected in FINAL phase (only approval)

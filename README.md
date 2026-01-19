@@ -284,9 +284,8 @@ For questions, suggestions, or feedback about this guide, please:
 
 | Phase | Duration | Target | Milestone |
 |:-----:|----------|--------|-----------|
-| **0** | Current  | v0.1.0 → v0.7.0 | All chapters scaffolded; layout locked |
-| **1** | TBD | v1.0.0 → v1.0.x | HOTAS tables populated & validated |
-| **2** | TBD | v2.0.0-RC → Stable | Final review & public release |
+| **0** | Current  | v0.1.0 → v0.7.0 | Chapters scaffolded; layout locked |
+| **1** | TBD | v1.0.0 → v1.0.x | First public release |
 
 ---
 

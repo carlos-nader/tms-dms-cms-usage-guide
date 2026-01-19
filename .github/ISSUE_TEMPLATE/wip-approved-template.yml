@@ -1,0 +1,242 @@
+name: "[WIP APPROVED] Integrate into guide and create release"
+description: "Integration & versioning: merge into guide.tex, bump version, create release tag"
+title: "[C{N}:S{M}] APPROVED — Integrate into guide.tex and create release tag"
+labels: ["documentation", "wip"]
+assignees:
+  - carlos-nader
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # [WIP APPROVED] Integrate into guide and create release
+        
+        ## Overview
+        
+        This is the **fourth of 4 sequential issues** for a section milestone:
+        1. ✅ Issue #X: DEV — Create WIP file with structure **[CLOSED]**
+        2. ✅ Issue #(X+1): REVIEW — Content review and refinement **[CLOSED]**
+        3. ✅ Issue #(X+2): FINAL — Approve, finalize, lock **[CLOSED]**
+        4. ✅ **Issue #(X+3) (THIS):** APPROVED — Integrate into guide.tex, create release
+        
+        **Blocked by:** Issue #(X+2) (FINAL status)  
+        **Blocks:** Nothing (completion of this milestone)
+        
+        ## What Happens Here
+        
+        This issue manages **integration and versioning**:
+        - 📥 Merge approved WIP content into guide.tex
+        - 🔢 Update version macros per VERSION-SYSTEM-v4.2.1
+        - 🏷️ Create GitHub release tag (e.g., v0.4.0.0)
+        - 📋 Update PROJECT-TRACKING with integration record
+        - 📦 Archive WIP file with -approved- status
+        - ✅ Close milestone
+  
+  - type: input
+    id: chapter_section
+    attributes:
+      label: "Chapter and Section Identifier"
+      placeholder: "C4:S4"
+      description: "Use format: C{CHAPTER}:S{SECTION}"
+    validations:
+      required: true
+  
+  - type: input
+    id: section_title
+    attributes:
+      label: "Section Topic Title"
+      placeholder: "TMS Right/Left"
+      description: "Full descriptive title"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: wip_source
+    attributes:
+      label: "WIP Source Filename"
+      value: |
+        ```
+        wip/section-C{N}-S{M}-{TITLE}-final-2026-01-{DD}.tex
+        ```
+      description: "The -final- status file being integrated"
+      render: text
+  
+  - type: markdown
+    attributes:
+      value: |
+        ## Pre-Integration Checklist
+        
+        Verify everything is ready before proceeding with merge.
+  
+  - type: checkboxes
+    id: pre_integration
+    attributes:
+      label: "Before Integration"
+      description: "Final validation"
+      options:
+        - label: "✅ Issue #(X+2) (FINAL) is closed"
+        - label: "WIP file is in -final- status (filename contains -final-)"
+        - label: "File compiles without errors"
+        - label: "PDF preview of WIP file looks correct"
+        - label: "No last-minute changes discovered"
+  
+  - type: markdown
+    attributes:
+      value: |
+        ## Integration Steps
+        
+        ⚠️ **Follow these steps sequentially. Each step must complete before moving to the next.**
+        
+        ### Step 1: Extract and Prepare Content
+        
+        - [ ] Open WIP file: `wip/section-C{N}-S{M}-{TITLE}-final-*.tex`
+        - [ ] Copy section content (excluding preamble)
+        - [ ] Identify insertion point in guide.tex (which chapter/section)
+        - [ ] Prepare content for merge (adjust cross-refs as needed)
+        
+        ### Step 2: Merge into guide.tex
+        
+        - [ ] Locate correct chapter in guide.tex
+        - [ ] Insert WIP content at appropriate section level
+        - [ ] Verify hierarchy: \\chapter → \\section → \\subsection
+        - [ ] Update any local \\ref{} cross-references to match guide structure
+        
+        ### Step 3: Update Version Macros
+        
+        - [ ] Edit guide.tex preamble
+        - [ ] Update `\\def\\majorversion{...}` if needed
+        - [ ] Update `\\def\\minorversion{...}` (MINOR usually bumps for new section)
+        - [ ] Update `\\def\\patchversion{...}` (reset to 0 if MINOR bumped)
+        - [ ] Update `\\def\\subpatchversion{...}` (reset to 0 if PATCH/MINOR bumped)
+        - [ ] Update `\\def\\builddate{DD MMM YYYY}` (today's date)
+        
+        ### Step 4: Compile Full Guide
+        
+        - [ ] Run: `pdflatex guide.tex` (full compilation)
+        - [ ] Check for LaTeX errors: **MUST be zero errors**
+        - [ ] Check for missing cross-references: `LaTeX Warning: Reference ... undefined`
+        - [ ] Verify TOC is correct (new section appears in table of contents)
+        - [ ] PDF generated successfully
+        
+        ### Step 5: Create Versioned Snapshot
+        
+        - [ ] Determine new version: e.g., `v0.4.0.0`
+        - [ ] Save snapshot: `WIP/GUIDE/guide-v0.4.0.0-YYYYMMDD.tex` (byte-identical copy of updated guide.tex)
+        - [ ] Copy to root: `guide.tex = guide-v0.4.0.0-YYYYMMDD.tex`
+        - [ ] Verify: both files are identical
+        
+        ### Step 6: Create GitHub Release Tag
+        
+        - [ ] Stage files: `git add guide.tex WIP/GUIDE/guide-v0.4.0.0-*.tex`
+        - [ ] Commit: `git commit -m "Integrate Section C{N}:S{M} — v0.4.0.0"`
+        - [ ] Tag: `git tag -a v0.4.0.0 -m "Release v0.4.0.0: Section C{N}:S{M} ({TITLE}) integrated"`
+        - [ ] Push: `git push origin main --tags`
+        - [ ] Verify on GitHub: Release page shows v0.4.0.0
+        
+        ### Step 7: Archive WIP File
+        
+        - [ ] Move WIP file: `wip/section-C{N}-S{M}-{TITLE}-final-*.tex` → `archive/WIP/section-C{N}-S{M}-{TITLE}-approved-*.tex`
+        - [ ] Verify in archive/ with -approved- status
+        - [ ] Commit archive move: `git add archive/WIP/ && git commit -m "Archive: approved WIP for C{N}:S{M}"`
+  
+  - type: markdown
+    attributes:
+      value: |
+        ## Post-Integration Checklist
+        
+        After integration is complete.
+  
+  - type: checkboxes
+    id: post_integration
+    attributes:
+      label: "After Integration"
+      description: "Finalization"
+      options:
+        - label: "guide.tex updated with new section content"
+        - label: "Version macros updated to new version (e.g., v0.4.0.0)"
+        - label: "Full guide compiles with zero errors"
+        - label: "All cross-references resolve"
+        - label: "GitHub Release tag v0.X.Y.Z created"
+        - label: "WIP file moved to archive/ with -approved- status"
+        - label: "PROJECT-TRACKING.md updated with new integration record"
+  
+  - type: textarea
+    id: version_info
+    attributes:
+      label: "Version Information"
+      value: |
+        **Old Version:** v0.X.X.X
+        **New Version:** v0.X.Y.Z
+        **Reason for Bump:** Section C{N}:S{M} ({TITLE}) integrated
+        **Release Tag:** v0.X.Y.Z-YYYYMMDD
+      description: "Fill in version details for documentation"
+  
+  - type: markdown
+    attributes:
+      value: |
+        ## PROJECT-TRACKING Update
+        
+        Add a new entry to the "WIP Integration Timeline" section of PROJECT-TRACKING-v5.0.0.md:
+        
+        ```markdown
+        | Date | Section | From Version | To Version | Status | Notes |
+        |------|---------|--------------|------------|--------|-------|
+        | 2026-01-{DD} | C{N}:S{M} ({TITLE}) | v0.X.X.X | v0.X.Y.Z | INTEGRATED | {summary} |
+        ```
+  
+  - type: textarea
+    id: integration_notes
+    attributes:
+      label: "Integration Notes (Optional)"
+      placeholder: |
+        Document any special circumstances during integration:
+        - Cross-ref conflicts resolved
+        - Content adjustments made
+        - PDF generation issues encountered/resolved
+        - Any other relevant information
+      description: "For project history and future reference"
+  
+  - type: markdown
+    attributes:
+      value: |
+        ## After This Issue Closes
+        
+        ✅ **The milestone is complete. Next steps:**
+        
+        1. New version v0.X.Y.Z is released on GitHub
+        2. INTEGRATED-FILES.md is auto-generated (if workflow exists)
+        3. PROJECT-TRACKING is updated with integration record
+        4. **New milestone opens** for next section (e.g., C4:S5)
+        5. Issues cycle repeats: DEV → REVIEW → FINAL → APPROVED
+        
+        ## Related Documentation
+        
+        - 📖 [VERSION-SYSTEM-v4.2.1](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/version-system-v4.2.1.md) — Versioning rules and when to increment
+        - 📖 [WIP-FILE-NAMING-v1.4](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/wip-naming-v1.4.md) — Status code definitions
+        - 📖 [PROJECT-TRACKING-v5.0.0](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/project-tracking-v5.0.0.md) — Integration history and guidelines
+        
+        ## For AI Assistants Helping with Integration
+        
+        If an AI system is helping with integration:
+        
+        1. **Extract:** Copy approved WIP content to buffer (exclude preamble)
+        2. **Locate:** Find insertion point in guide.tex at correct chapter/section
+        3. **Merge:** Insert content at correct hierarchy level
+        4. **Validate:** Compile guide.tex, check for errors
+        5. **Version:** Determine new version per VERSION-SYSTEM-v4.2.1 rules
+        6. **Snapshot:** Create versioned copy in WIP/GUIDE/
+        7. **Tag:** Create GitHub release tag
+        8. **Archive:** Move WIP file to archive/ with -approved- status
+        9. **Report:** Confirm integration success with new version number
+        
+        **Critical:** Do not modify WIP file itself. Only **read** it for extraction. The human archives it after confirming integration success.
+        
+        ## Acceptance Criteria
+        
+        ✅ **Complete when:**
+        - All integration steps are checked
+        - guide.tex compiles with zero errors
+        - All cross-references resolve
+        - GitHub Release tag created
+        - PROJECT-TRACKING updated
+        - WIP file moved to archive/ with -approved- status
+        - Commits pushed to GitHub
