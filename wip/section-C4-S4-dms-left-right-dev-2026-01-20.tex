@@ -1,0 +1,650 @@
+%============================================================================
+% LICENSING NOTICE
+%============================================================================
+% This WIP file, upon integration into guide-v.tex, becomes part of the
+% TMS/DMS/CMS Usage Guide and is released under CC BY-NC 4.0.
+% For details, see LICENSE in the repository root.
+%============================================================================
+
+%============================================================================
+% FALCON BMS TMS/DMS/CMS HOTAS GUIDE
+% WIP FILE TEMPLATE V1.0 — FINAL (Briefing v0.2.0.1 + TOC Fix)
+%============================================================================
+
+% IMPORTANTE: Este é um TEMPLATE padronizado para arquivos WIP (Work-In-Progress)
+% que serão integrados ao guide.tex.
+
+% Nomenclatura: Siga wip-naming-v1.3
+% Padrão: section-C{N}-S{M}[-S{K}]-{titulo}-{status}-{data}.tex
+% Exemplo: section-C5-S2-cms-actuation-hotas-tables-final-2026-01-10.tex
+
+% Status: dev | review | final | approved | deprecated
+% Locação: WIP/ (ativo) | ARCHIVE/ (aprovado/descartado)
+
+%============================================================================
+% PREAMBLE COMPLETO — TMS/DMS/CMS Usage Guide for Falcon BMS 4.38.1
+% Gerado: 17 January 2026
+% Status: Novo preâmbulo (report + twoside + titlesec + fancyhdr melhorado)
+%============================================================================
+
+\documentclass[11pt, a4paper, twoside]{report}
+
+%--------------------------------------------------------------------------
+% BASIC ENCODING AND LANGUAGE
+%--------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+%--------------------------------------------------------------------------
+% FONTS AND MICROTYPOGRAPHY
+%--------------------------------------------------------------------------
+
+\usepackage{lmodern}
+\usepackage{microtype}
+
+%--------------------------------------------------------------------------
+% PAGE GEOMETRY AND LAYOUT
+%--------------------------------------------------------------------------
+
+\usepackage{geometry}
+\geometry{a4paper, left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
+\usepackage{setspace}
+\onehalfspacing
+
+%--------------------------------------------------------------------------
+% COLORS AND LINKS
+%--------------------------------------------------------------------------
+
+\usepackage[table]{xcolor}
+\definecolor{linkblue}{HTML}{004488}
+\definecolor{linkred}{HTML}{882222}
+\definecolor{headerblue}{HTML}{003366}
+\definecolor{rowgray}{HTML}{F5F5F5}
+\definecolor{subheadgray}{HTML}{E0E0E0}
+
+\usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\usepackage{bookmark}
+
+%--------------------------------------------------------------------------
+% HEADERS AND FOOTERS (IMPROVED for report + twoside)
+%--------------------------------------------------------------------------
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{25pt}                    % Increased (was 15pt) for long names
+\pagestyle{fancy}
+\fancyhf{}                                        % Clear all
+\fancyhead[LO,RE]{\small\textit{\leftmark}}     % Outer edge (odd left, even right): chapter name
+\fancyhead[RO,LE]{\small\thepage}               % Inner edge (odd right, even left): page number
+\fancyfoot{}                                      % No footer (page number in header)
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+%-------------------------------------------------------------------------
+% CHAPTER FORMATTING AND SPACING (via titlesec)
+%--------------------------------------------------------------------------
+
+\usepackage{titlesec}
+
+% Chapter format: display style with custom spacing
+\titleformat{\chapter}[display]
+  {\normalfont\Large\bfseries}
+  {\chaptertitlename~\thechapter}
+  {20pt}
+  {\Large}
+
+% Chapter spacing: before=10pt (was 50pt), after=20pt (was 40pt)
+\titlespacing{\chapter}
+  {0pt}
+  {10pt}      % Space BEFORE chapter title
+  {20pt}      % Space AFTER chapter title
+  [0pt]
+
+% Section spacing (optional, for consistency)
+\titlespacing{\section}
+  {0pt}
+  {15pt}
+  {10pt}
+  [0pt]
+
+%--------------------------------------------------------------------------
+% TABLES AND MACROS
+%--------------------------------------------------------------------------
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+% Custom Columns
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% Macro for Visual Reference Links
+\newcommand{\imglink}[1]{\hspace{2pt}\hyperref[#1]{\scriptsize\textbf{[Fig]}}}
+
+%============================================================================
+% HOTAS table environment (per Briefing v0.2.0.1)
+%============================================================================
+
+\newenvironment{hotastable}[1]{%
+  \small
+  \renewcommand{\arraystretch}{1.25}
+  \begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
+  \caption{#1}\\
+  \rowcolor{headerblue}
+  \textbf{\color{white}State} &
+  \textbf{\color{white}Dir} &
+  \textbf{\color{white}Act} &
+  \textbf{\color{white}Function} &
+  \textbf{\color{white}Effect / Nuance} &
+  \textbf{\color{white}Dash34} &
+  \textbf{\color{white}Train} \\
+  \endfirsthead
+  \rowcolor{headerblue}
+  \textbf{\color{white}State} &
+  \textbf{\color{white}Dir} &
+  \textbf{\color{white}Act} &
+  \textbf{\color{white}Function} &
+  \textbf{\color{white}Effect / Nuance} &
+  \textbf{\color{white}Dash34} &
+  \textbf{\color{white}Train} \\
+  \endhead
+  \multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+  \endfoot
+  \endlastfoot
+}{%
+  \end{longtable}
+}
+
+%--------------------------------------------------------------------------
+% SIMPLE REFERENCE MACROS FOR BMS DOCS
+%--------------------------------------------------------------------------
+
+\providecommand{\dashref}[1]{Dash-34~\S~#1}
+\providecommand{\dashone}[1]{Dash-1~\S~#1}
+\providecommand{\trnref}[1]{TRN~#1}
+\providecommand{\trnman}{BMS Training Manual 4.38.1}
+\providecommand{\bmsver}{Falcon BMS~4.38.1}
+\providecommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+
+%--------------------------------------------------------------------------
+% VERSION CONTROL MACROS
+%--------------------------------------------------------------------------
+
+\newcommand{\docversion}{0.3.2.0}
+\newcommand{\docbuild}{20260120}
+\newcommand{\docstartdate}{05 January 2026}
+\newcommand{\docenddate}{20012026}
+\newcommand{\chapterscompletedof}{2/7}
+\newcommand{\tablesfilledpct}{0}
+\newcommand{\fulldocversion}{\docversion+\docbuild}
+
+%--------------------------------------------------------------------------
+% GRAPHICS
+%--------------------------------------------------------------------------
+
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+\usepackage{float}
+
+%--------------------------------------------------------------------------
+% TITLE
+%--------------------------------------------------------------------------
+
+\title{TMS, DMS and CMS Usage Guide for \bmsver}
+\author{Carlos ``Metal'' Nader}
+\date{Version \fulldocversion{} | Progress: Chapters \chapterscompletedof{} | Tables \tablesfilledpct{} | January 2026}
+
+%============================================================================
+% DOCUMENT BEGIN
+%============================================================================
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+
+%============================================================================
+% TOC DEPTH CONFIGURATION (CRITICAL for report)
+%============================================================================
+\setcounter{tocdepth}{3}       % Show up to \subsubsection in TOC
+\setcounter{secnumdepth}{3}    % Number up to \subsubsection
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\pagenumbering{arabic}
+
+%============================================================================
+% WIP FILE METADATA (NOT RENDERED IN PDF)
+%============================================================================
+
+% File Name: section-C4-S4-dms-left-rightdev-20260120.tex
+% WIP Naming Convention: v1.3
+% Target Chapter: C{N} (Chapter Title)
+% Target Section: S{M} (Section Title)
+% [Target Subsection: S{K} (Subsection Title) — OPTIONAL]
+%
+% WIP Status: dev | review | final | approved | deprecated
+% Created: 2026-01-20
+% Last Modified: 2026-01-20
+% Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.{MINOR}.{PATCH}
+%
+% Narrative Completion: 0-100%
+% Table Fill Status: 0-100%
+%
+% Notes: first draft - needs full review
+% - [Describe what's done, what's pending, open questions]
+% - [Cross-references to other WIP files or guide.tex sections]
+% - [Any divergences from briefing or validation issues]
+
+%============================================================================
+%============================================================================
+% TEMPLATE STRUCTURE — Replace section/subsection headers with your content
+%============================================================================
+% CONTENT BEGINS HERE
+
+%============================================================================
+
+\section{DMS Left/Right: Multifunction Display Format Cycling}
+
+\label{sec:C4-S4}
+
+%--------------------------------------------------------------------------
+
+% SECTION 4.4.1: CONCEPT AND ORTHOGONALITY
+
+%--------------------------------------------------------------------------
+
+\subsection{Concept and Orthogonality: Format Cycling vs. SOI Selection}
+
+\label{sec:C4-S4-S1}
+
+The DMS Left and DMS Right commands are fundamentally orthogonal to the DMS Up and DMS Down controls described in Sections~\ref{sec:C4-S2} and~\ref{sec:C4-S3}. Whereas DMS Up and DMS Down select \textit{which display} (HUD, Left MFD, or Right MFD) becomes the Sensor of Interest (SOI), DMS Left and DMS Right cycle through different \textit{format pages} displayed on a given MFD, independent of which display is currently designated as SOI.
+
+\paragraph*{Definition of Format Cycling:}
+
+Each MFD in \bmsver can display up to three different format pages (also called ``Direct Access'' pages), pre-configured during mission planning via the Data Transfer Cartridge (DTC) system. These three slots are designated as PRIMARY, SECONDARY, and TERTIARY. DMS Left and DMS Right allow the pilot to cycle through these slots, advancing to the next format page with each button press. This operation does \textit{not} change which display is SOI; it changes only what is currently shown on the screen.
+
+\paragraph*{Orthogonality Principle:}
+
+The critical distinction is this: DMS Up/Down operate on the \textbf{display selection axis} (which MFD is SOI?), whereas DMS Left/Right operate on the \textbf{format display axis} (which page is shown on this MFD?). A pilot can simultaneously manage both axes:
+
+\begin{itemize}
+
+\item Press DMS Down to transfer SOI from the Left MFD to the Right MFD (changes which display receives HOTAS commands).
+
+\item Press DMS Right to cycle the Right MFD to a different format page (changes what is displayed, independent of SOI).
+
+\item Both operations happen without conflict because they control independent subsystems.
+
+\end{itemize}
+
+This orthogonality is operationally powerful: the pilot can organize the visual workspace (Left MFD shows radar, Right MFD shows situational display) while simultaneously managing which display receives hands-on input (SOI). The two mechanisms do not interfere.
+
+\paragraph*{Why This Matters:}
+
+In Sections~\ref{sec:C4-S2} and~\ref{sec:C4-S3}, the behavior of DMS Up/Down varies by master mode because SOI designation has different constraints in air-to-air (HUD not valid) versus air-to-ground (HUD valid). By contrast, DMS Left/Right behave \textit{identically} in all master modes: they cycle through whatever three format pages are configured for that mode. This simplicity is a direct result of their orthogonality---format cycling is a display convenience, not a tactical constraint.
+
+---
+
+%--------------------------------------------------------------------------
+
+% SECTION 4.4.2: OPERATING PRINCIPLES
+
+%--------------------------------------------------------------------------
+
+\subsection{Operating Principles: The Three Slots Architecture}
+
+\label{sec:C4-S4-S2}
+
+\subsubsection{Primary, Secondary, and Tertiary Slots}
+
+\label{sec:C4-S4-S2-S1}
+
+Each MFD in the F-16 avionics suite has three \textit{format slots}---called PRIMARY, SECONDARY, and TERTIARY---where distinct information pages can be configured. These slots are \textit{not} physical; they are logical positions in the DTC configuration that specify which format page (radar, navigation, weapons data, system status, etc.) is displayed in each slot position.
+
+\paragraph*{OSB (Onscreen Button) Locations:}
+
+The three format slots correspond to the three central buttons in the lower OSB row of each MFD:
+
+\begin{itemize}
+
+\item \textbf{OSB 14 (left button):} PRIMARY slot
+
+\item \textbf{OSB 13 (center button):} SECONDARY slot
+
+\item \textbf{OSB 12 (right button):} TERTIARY slot
+
+\end{itemize}
+
+The OSB numbering system starts at the top-left corner of the MFD bezel and proceeds clockwise around the perimeter. The lower row progresses right-to-left (in reverse), so OSB 15 and OSB 11 flank the three central buttons. The diagram below illustrates this layout:
+
+INSERIR IMAGEM MFD DE INTERNET
+
+\paragraph*{Why Three Slots?}
+
+The three-slot architecture provides mission planning flexibility. During mission planning in the BMS Briefing, the pilot pre-configures which format pages are most useful for a given Master Mode. For instance, in air-to-air mode, the pilot might configure:
+
+\begin{itemize}
+
+\item PRIMARY (OSB 14) = FCR (Fire Control Radar page)
+
+\item SECONDARY (OSB 13) = HSD (Horizontal Situation Display)
+
+\item TERTIARY (OSB 12) = TGP (Targeting Pod page, for auxiliary visual cues)
+
+\end{itemize}
+
+With three slots, the pilot can quickly access the most relevant pages via DMS Left/Right presses, avoiding the need to hunt for less-common formats through a longer menu. This is especially important in time-critical engagements where every second counts.
+
+---
+
+\subsubsection{Master Mode Display Format Configuration (DTC)}
+
+\label{sec:C4-S4-S2-S2}
+
+Each Master Mode (A-A, A-G, NAV, DGFT, MSL OVRD, Jettison) has its own independent three-slot configuration. When the pilot switches Master Modes in-flight, the avionics automatically load the format configuration for that mode and display the PRIMARY format. This auto-switch behavior is managed by the DTC (Data Transfer Cartridge) system.
+
+\paragraph*{Canned Default Configuration:}
+
+\bmsver provides a standardized default configuration that applies to all Master Modes:
+
+\begin{itemize}
+
+\item Left MFD PRIMARY: FCR (Fire Control Radar)
+
+\item Left MFD SECONDARY: BLANK
+
+\item Left MFD TERTIARY: BLANK
+
+\item Right MFD PRIMARY: SMS (Stores Management System)
+
+\item Right MFD SECONDARY: BLANK
+
+\item Right MFD TERTIARY: BLANK
+
+\end{itemize}
+
+This canned default provides a baseline that is consistent and familiar across all modes. However, pilots routinely customize these configurations during mission planning.
+
+\paragraph*{DTC Customization:}
+
+During mission planning in the BMS Briefing (MODES tab of the DTC page), the pilot can assign any valid format to any slot of any mode. For example, in air-to-air mode, the pilot might customize to:
+
+\begin{itemize}
+
+\item Left MFD: FCR | HSD | TGP (instead of FCR | BLANK | BLANK)
+
+\end{itemize}
+
+Or in air-to-ground mode:
+
+\begin{itemize}
+
+\item Left MFD: FCR | TGP | WPN
+
+\item Right MFD: SMS | HAD | HSD
+
+\end{itemize}
+
+These customizations are stored in the DTC and loaded automatically when the pilot takes off. They persist for the duration of the flight.
+
+\paragraph*{Auto-Switch Behavior:}
+
+When the pilot presses the Master Mode button to transition from one mode to another (e.g., from A-A to A-G), the avionics automatically:
+
+1. Load the three-slot configuration for the new Master Mode.
+
+2. Display the PRIMARY format of the new mode.
+
+3. Keep SOI on the same MFD (e.g., if SOI was Left MFD in A-A, it remains Left MFD in A-G; only the format changes).
+
+\textbf{Critical implication:} Cycling via DMS Left/Right now uses the new mode's three slots, not the old mode's slots. If the pilot customizes A-A as FCR/HSD/TGP and A-G as FCR/TGP/WPN, then DMS Left cycling in A-A will advance through FCR→HSD→TGP, but DMS Left cycling in A-G will advance through FCR→TGP→WPN. The slots are mode-specific, not global.
+
+---
+
+\subsubsection{Format Cycling Mechanism: The Wrap-Around Sequence}
+
+\label{sec:C4-S4-S2-S3}
+
+\paragraph*{Cycling Direction:}
+
+DMS Left and DMS Right advance through format slots in an anti-clockwise direction relative to the OSB button layout. For the Left MFD:
+
+\begin{itemize}
+
+\item DMS Left press 1: PRIMARY (OSB 14) → SECONDARY (OSB 13)
+
+\item DMS Left press 2: SECONDARY (OSB 13) → TERTIARY (OSB 12)
+
+\item DMS Left press 3: TERTIARY (OSB 12) → PRIMARY (OSB 14) [wrap-around]
+
+\item DMS Left press 4: PRIMARY → SECONDARY again [cycle repeats]
+
+\end{itemize}
+
+The same cyclic sequence applies to DMS Right for the Right MFD. The direction is consistent and predictable, allowing pilots to develop muscle memory.
+
+\paragraph*{Wrap-Around Behavior:}
+
+After cycling through TERTIARY, the next DMS press returns to PRIMARY, creating an infinite loop. There is no ``off'' state or ``hold'' position. The cycling is continuous and wrap-around is instantaneous. If a slot is configured as BLANK (unused), cycling skips it automatically and advances to the next occupied slot (see Section~\ref{sec:C4-S4-S3-S1}).
+
+\paragraph*{Press Type: Short Press (Tap Only):}
+
+DMS Left/Right respond to \textbf{short press only} (tap). There is no long-press or continuous-hold variant. A single tap advances to the next format; holding the button does \textit{not} cycle continuously. This behavior is consistent across all Master Modes and all configurations. If the pilot needs to cycle through multiple slots, separate taps are required.
+
+\paragraph*{Example Scenario:}
+
+A pilot in air-to-air mode has customized the Left MFD as FCR/HSD/TGP. Initially, the Left MFD displays FCR (PRIMARY). The pilot wants to check the tactical picture on HSD. The pilot presses DMS Left once. The Left MFD now displays HSD (SECONDARY). The pilot presses DMS Left again. The Left MFD now displays TGP (TERTIARY). The pilot decides to return to FCR. The pilot presses DMS Left once more. The Left MFD displays FCR again (wrap-around from TERTIARY back to PRIMARY). The SOI designation, if Left MFD was SOI, remains unchanged throughout these cycling operations.
+
+---
+
+%--------------------------------------------------------------------------
+
+% SECTION 4.4.3: CYCLING CONSTRAINTS AND EDGE CASES
+
+%--------------------------------------------------------------------------
+
+\subsection{Cycling Constraints and Edge Cases}
+
+\label{sec:C4-S4-S3}
+
+\subsubsection{BLANK Format Skipping}
+
+\label{sec:C4-S4-S3-S1}
+
+If one or more format slots are configured as BLANK (meaning no format is assigned to that slot, either by choice or by default), cycling automatically skips over BLANK slots and advances to the next non-BLANK slot.
+
+\paragraph*{Example:}
+
+Configuration: PRIMARY = FCR, SECONDARY = BLANK, TERTIARY = HSD.
+
+Cycling sequence:
+\begin{itemize}
+
+\item Press DMS Left (once): FCR → [skips BLANK] → HSD
+
+\item Press DMS Left (again): HSD → [skips BLANK] → FCR [wrap-around]
+
+\item Result: Only two visible formats cycle; BLANK is transparent.
+
+\end{itemize}
+
+This automatic skipping means that BLANK slots do \textit{not} create ``pauses'' or ``dead stops'' in cycling. The pilot never sees a BLANK page; cycling flows smoothly from one occupied slot to the next.
+
+---
+
+\subsubsection{Non-SOI-Candidate Formats (Edge Case)}
+
+\label{sec:C4-S4-S3-S2}
+
+In certain Master Modes, some format pages are \textit{not valid} candidates for SOI designation. For example, SMS (Stores Management System) is not a valid SOI candidate in air-to-air mode. If a pilot customizes the air-to-air configuration to include SMS in one of the three slots, cycling can advance to SMS. The MFD will display SMS, but the page will show ``NOT SOI'' text, indicating that HOTAS commands routed to this MFD will not affect the SMS page.
+
+\paragraph*{Operational Implication:}
+
+This is an edge case that arises from unusual customizations. For normal operations, pilots should configure the three slots with formats that are valid SOI candidates in the intended Master Mode (e.g., in A-A: FCR, HSD, TGP; in A-G: FCR, TGP, WPN). If a non-candidate format is encountered, the pilot simply cycles to another slot; the behavior is well-defined, and no malfunction occurs.
+
+\textit{Note:} This section flags the edge case for completeness. Detailed behavior (e.g., whether SOI is automatically removed, whether HOTAS inputs are blocked) is beyond the scope of this guide and depends on implementation details documented in \dashref{2.1.1.2.3}.
+
+---
+
+\subsubsection{Format Persistence Across Master Mode Change}
+
+\label{sec:C4-S4-S3-S3}
+
+When the pilot changes Master Mode, the displayed format resets to the PRIMARY slot of the new mode. There is \textit{no carryover} of the previously viewed slot.
+
+\paragraph*{Example:}
+
+Pilot is in A-A mode, Left MFD is cycling through FCR/HSD/TGP, and the pilot has advanced to TERTIARY (TGP). The pilot then presses the A-G button to switch to air-to-ground mode. Immediately, the Left MFD resets to PRIMARY of the A-G configuration (let's say it's FCR or SMS, depending on customization). The fact that the pilot was viewing TERTIARY in A-A is not remembered in A-G.
+
+\paragraph*{Why This Design:}
+
+Each Master Mode has a distinct operational context and a distinct three-slot configuration. Automatically resetting to PRIMARY ensures the pilot starts from a known, predictable state in the new mode. This prevents confusion and aligns with the principle that Master Mode transitions should reset the pilot's display focus to the primary sensor of that mode.
+
+---
+
+%--------------------------------------------------------------------------
+
+% SECTION 4.4.4: DMS LEFT VS. DMS RIGHT
+
+%--------------------------------------------------------------------------
+
+\subsection{DMS Left vs. DMS Right: Independent MFD Control}
+
+\label{sec:C4-S4-S4}
+
+\textbf{This section addresses one of the most frequently misunderstood aspects of DMS operation.}
+
+DMS Left and DMS Right are \textbf{completely independent}. DMS Left controls the Left MFD only; DMS Right controls the Right MFD only. Pressing one does not affect the other.
+
+\paragraph*{Left MFD Independence:}
+
+DMS Left cycles through the three-slot configuration of the \textit{Left MFD only}. If the Left MFD is displaying FCR (PRIMARY), pressing DMS Left advances it to whatever format is in the SECONDARY slot of the Left MFD configuration. The Right MFD is unaffected.
+
+\paragraph*{Right MFD Independence:}
+
+DMS Right cycles through the three-slot configuration of the \textit{Right MFD only}. The Left MFD is unaffected.
+
+\paragraph*{Independence from SOI:}
+
+Additionally, format cycling via DMS Left/Right is independent of which MFD is designated as SOI. The pilot can have:
+
+\begin{itemize}
+
+\item Left MFD = SOI (receives HOTAS commands)
+
+\item Right MFD = not SOI
+
+\end{itemize}
+
+And still cycle both displays independently. Pressing DMS Right changes the Right MFD format even though it is not SOI. Pressing DMS Left changes the Left MFD format, and because Left MFD is SOI, it also receives any HOTAS input the pilot subsequently gives.
+
+\paragraph*{Practical Scenario: A-A Engagement:}
+
+A typical air-to-air configuration might be:
+
+\begin{itemize}
+
+\item Left MFD: FCR (radar page, customized with FCR/HSD/TGP slots)
+
+\item Right MFD: SMS (stores page, customized with SMS/HAD/BLANK slots)
+
+\item SOI = Left MFD (pilot is managing radar tracks with HOTAS cursor and TMS)
+
+\end{itemize}
+
+During the engagement, the pilot might want to:
+\begin{itemize}
+
+\item Use DMS Left to cycle Left MFD between FCR and HSD (changes radar view).
+
+\item Use DMS Right to cycle Right MFD between SMS and HAD (checks stores status).
+
+\item Meanwhile, SOI remains on Left MFD; HOTAS TMS and cursor commands continue to affect the radar page.
+
+\end{itemize}
+
+Both MFDs cycle independently, and neither DMS Left/Right press affects the SOI designation.
+
+\paragraph*{Why This Matters Tactically:}
+
+This independence allows the pilot to organize a visual workspace suited to the mission:
+
+\begin{itemize}
+
+\item Left MFD = Primary tactical sensor (under SOI control for hands-on management).
+
+\item Right MFD = Supplemental information (updated via DMS Right, providing situational awareness without consuming SOI).
+
+\end{itemize}
+
+The pilot never has to ``choose'' which display to look at or which to control; both are available simultaneously via independent mechanisms.
+
+---
+
+%--------------------------------------------------------------------------
+
+% SECTION 4.4.5: USAGE TABLE
+
+%--------------------------------------------------------------------------
+
+\subsection{DMS Left/Right Usage Table}
+
+\label{sec:C4-S4-S5}
+
+The table below summarizes DMS Left and DMS Right behavior across all Master Modes. Because format cycling is \textit{identical} in all modes, the table shows a single row for each DMS direction, applicable to every Master Mode: A-A, A-G and NAV.
+
+\begin{hotastable}{DMS Left/Right Format Cycling Across All Master Modes}
+
+A-A, A-G, NAV & Left & Short & Cycle Left MFD format & DMS Left cycles the Left MFD through its configured 3-slot sequence: PRIMARY → SECONDARY → TERTIARY → PRIMARY (wrap-around). If BLANK slots are present, they are skipped automatically. Each press advances one step; no continuous cycling on hold. SOI designation to any MFD is unaffected. & 2.1.1.2.1, 2.1.6.3 & — \\
+
+\hline
+
+A-A, A-G, NAV & Right & Short & Cycle Right MFD format & DMS Right cycles the Right MFD through its configured 3-slot sequence: PRIMARY → SECONDARY → TERTIARY → PRIMARY (wrap-around). If BLANK slots are present, they are skipped automatically. Each press advances one step; no continuous cycling on hold. Cycling Right does not affect Left MFD or SOI. & 2.1.1.2.1, 2.1.6.3 & — \\
+
+\end{hotastable}
+
+\paragraph*{How to Use This Table:}
+
+\begin{enumerate}
+
+\item Identify the Master Mode you are operating in (A-A, A-G, etc.). \textit{All modes use the same cycling rules.}
+
+\item Determine which MFD you want to cycle: Left or Right.
+
+\item Press DMS in the appropriate direction (Left or Right) for as many steps as needed to reach the desired format.
+
+\item Check which format is now displayed. Refer to Section~\ref{sec:C4-S1} to understand valid SOI candidates if you need to manage hands-on control.
+
+\end{enumerate}
+
+\paragraph*{Special Notes:}
+
+\begin{itemize}
+
+\item \textbf{Short Press Only:} DMS Left/Right do not support long-press or hold variants. Each tap advances one slot.
+
+\item \textbf{Training Column Empty:} The Training (Train) column is left blank as per author guidance; training mission references will be populated in a future update.
+
+\item \textbf{Consistency Across Modes:} Unlike DMS Up/Down (Sections~\ref{sec:C4-S2} and~\ref{sec:C4-S3}), DMS Left/Right behavior is \textit{identical} in all Master Modes. Format cycling is a simple, mode-agnostic operation. Customization via DTC is the only variable.
+
+\end{itemize}
+
+---
+
+%--------------------------------------------------------------------------
+
+% END OF SECTION
+
+%--------------------------------------------------------------------------
+
+\end{document}

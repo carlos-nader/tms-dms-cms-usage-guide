@@ -199,7 +199,7 @@
 <body>
     <h1>PROJECT TRACKING</h1>
 <h2>Falcon BMS TMS/DMS/CMS HOTAS Guide</h2>
-<p><strong>Document Version:</strong> PROJECT-TRACKING-v5.0.0<br><strong>Regime:</strong> Pre-publication (0.x.x.x)<br><strong>Project Start:</strong> 2026-01-05<br><strong>Last Updated:</strong> 2026-01-19, 01:16 AM -03<br><strong>Repository:</strong> carlos-nader/tms-dms-cms-usage-guide</p>
+<p><strong>Document Version:</strong> PROJECT-TRACKING-v5.0.0<br><strong>Regime:</strong> Pre-publication (0.x.x.x)<br><strong>Project Start:</strong> 2026-01-05<br><strong>Last Updated:</strong> 2026-01-20, 02:19 AM -03<br><strong>Repository:</strong> carlos-nader/tms-dms-cms-usage-guide</p>
 <p>This document tracks how governance rules, WIP files and guide versions evolve during the development of the Falcon BMS TMS/DMS/CMS HOTAS Guide.</p>
 <hr>
 <h2>1. GOVERNANCE LAYER</h2>
@@ -253,7 +253,7 @@
 <p><strong>Consequence:</strong> All new WIP files going forward MUST follow BRIEFING-v0.2.0.1 Section 11 template specification (with updated preamble per 18 Jan 2026) and WIP-FILE-NAMING-v1.4 conventions.</p>
 <hr>
 <h2>2. PROJECT SNAPSHOT</h2>
-<p>Current state as of 2026-01-19, 01:16 AM -03 (Session 20 - v0.3.2.0 Integration Complete):</p>
+<p>Current state as of 2026-01-20, 02:19 AM -03 (Session 21 - DMS Left/Right WIP Development Initiated):</p>
 <h3>2.1 High-Level Overview</h3>
 <ul>
 <li><strong>Active Regime:</strong> Pre-publication (0.x.x.x)</li>
@@ -263,11 +263,12 @@
 <li><strong>Chapters with narrative complete in development:</strong> 3/7<ul>
 <li>Chapter 1 -- Introduction (narrative complete)</li>
 <li>Chapter 5 -- CMS Sections 5.1, 5.2, 5.3 (narrative and tables complete)</li>
-<li><strong>Chapter 4 -- DMS Sections 4.1, 4.2, and 4.3 (narrative and tables COMPLETE and INTEGRATED)</strong><ul>
+<li><strong>Chapter 4 -- DMS Sections 4.1, 4.2, 4.3, and 4.4 (LEFT/RIGHT - WIP IN DEVELOPMENT)</strong><ul>
 <li>Section 4.1 (Concept and SOI) - FINAL &amp; INTEGRATED (with redaction corrections)</li>
 <li>Section 4.2 (DMS Up: HUD Designation as SOI) - FINAL &amp; INTEGRATED (with redaction corrections)</li>
 <li>Section 4.3 (DMS Down: Toggle SOI Between Displays) - <strong>FINAL &amp; INTEGRATED (v0.3.2.0)</strong> (promoted review→final 2026-01-18, integrated 2026-01-19)</li>
-<li>Sections 4.4 (DMS Left/Right) and 4.5 (Master Mode Summary) pending per unified Chapter 4 DMS blueprint v1.1</li>
+<li>Section 4.4 (DMS Left/Right: Format Selection) - <strong>WIP DEVELOPMENT IN PROGRESS</strong> (dev status, 2026-01-20)</li>
+<li>Section 4.5 (Master Mode Summary) - pending per unified Chapter 4 DMS blueprint v1.1</li>
 </ul>
 </li>
 </ul>
@@ -413,7 +414,7 @@
 <li><strong>UPDATED (Session 17):</strong> All new WIP files MUST copy from TEMPLATES/template-wip-V1.0.tex per BRIEFING-v0.2.0.1 Section 11 (updated preamble, now with report class, twoside, titlesec, float support).</li>
 </ul>
 <hr>
-<h3>4.2 Active WIP Snapshot (as of 2026-01-19, 01:16 AM -03)</h3>
+<h3>4.2 Active WIP Snapshot (as of 2026-01-20, 02:19 AM -03)</h3>
 <table>
 <thead>
 <tr>
@@ -515,6 +516,15 @@
 <td><strong>INTEGRATED (MINOR)</strong></td>
 <td>guide</td>
 <td><strong>SESSION 20 - DMS SECTION 4.3 INTEGRATION + REDACTION CORRECTIONS:</strong> Section 4.3 (DMS Down) integrated into guide. Additionally, redaction corrections applied to Sections 4.1 and 4.2 (grammar, clarity, semantic refinements). Version bump: v0.3.1.0 → v0.3.2.0 (MINOR bump reflecting integration of Section 4.3). Snapshot guide-v0.3.2.0-20260119.tex created in wip/guide/ (71935 bytes) and synchronized to guide.tex root. Previous snapshot (v0.3.1.0) moved to ARCHIVE/GUIDE/. GitHub Release tag 0.3.2.0 created. Chapter 4 now contains integrated Sections 4.1, 4.2, 4.3 with enhanced semantic clarity and redaction corrections. Next phase: DMS Sections 4.4 (Left/Right) and 4.5 (Master Mode Summary) WIP development per unified Chapter 4 DMS blueprint v1.1.</td>
+</tr>
+<tr>
+<td>2026-01-20</td>
+<td>section-C4-S4-dms-left-right-dev-2026-01-20.tex</td>
+<td>v0.3.2.0</td>
+<td>(pending)</td>
+<td>WIP - IN DEVELOPMENT</td>
+<td>section</td>
+<td>DMS Chapter 4 Section 4.4 (DMS Left/Right: Format Selection). <strong>SESSION 21 WIP GENERATION (20 Jan 2026):</strong> Substantive research completed on DMS Left/Right architecture, OSB mapping, functional modes (radar, nav, weapons). WIP file generated from updated template-wip-V1.0.tex per BRIEFING-v0.2.0.1. Content structure: Overview, Functional Modes, Button Logic, Integration, Summary. Status: dev. Preamble: V1.0 (Session 17 compatible). Next: Author review cycle and integration into v0.4.0.0 per unified Chapter 4 DMS blueprint v1.1.</td>
 </tr>
 </tbody></table>
 <p><strong>CRITICAL UPDATE (18 Jan 2026):</strong> TEMPLATES/template-wip-V1.0.tex has been updated with NEW preamble as of Session 17. All future WIP files MUST copy from this updated template. Previous WIP files created with older preamble (article class) may require manual preamble migration if integration is planned. See BRIEFING-v0.2.0.1 Section 11 for complete preamble specification. Canonical template-wip-V1.0.tex contains:</p>
@@ -648,6 +658,13 @@
 <td>v5.0.0</td>
 <td><strong>SESSION 20 - v0.3.2.0 INTEGRATION COMPLETE:</strong> Section 4.3 (DMS Down) integrated into guide-v0.3.2.0-20260119 (file size: 71,935 bytes). Redaction corrections applied to Sections 4.1 and 4.2 (grammar, clarity, semantic refinements). Version bump: v0.3.1.0 → v0.3.2.0 (MINOR bump). GitHub Release tag 0.3.2.0 created and pushed. Snapshot guide-v0.3.2.0-20260119.tex created in wip/guide/, synchronized to guide.tex root. Previous snapshot (v0.3.1.0) moved to ARCHIVE/GUIDE/. Chapter 4 now contains FINAL &amp; INTEGRATED Sections 4.1, 4.2, 4.3 with enhanced semantic clarity and comprehensive redaction. Total commits: 144. Next phase: DMS Sections 4.4 (DMS Left/Right) and 4.5 (Master Mode Summary) WIP development per unified Chapter 4 DMS blueprint v1.1.</td>
 </tr>
+<tr>
+<td>21</td>
+<td>2026-01-20</td>
+<td>v0.3.2.0 (unchanged)</td>
+<td>v5.0.0</td>
+<td><strong>SESSION 21 - DMS LEFT/RIGHT WIP GENERATION:</strong> Research phase complete on DMS Left/Right architecture (OSB mapping, functional modes in radar/nav/weapons). New WIP file generated: section-C4-S4-dms-left-right-dev-2026-01-20.tex (from updated template-wip-V1.0.tex). Content: Overview, Functional Modes, Button Logic, Integration, Summary sections. Status: dev. Preamble: V1.0. Next: Author review and integration planning per Chapter 4 unified blueprint v1.1. File awaiting verbatim/visual integration (MFD diagram to be inserted).</td>
+</tr>
 </tbody></table>
 <hr>
 <h2>5. SESSION LOG</h2>
@@ -760,6 +777,13 @@
 <td>v5.0.0</td>
 <td><strong>v0.3.2.0 INTEGRATION COMPLETE:</strong> Section 4.3 integrated. Redaction corrections in 4.1 and 4.2. MINOR version bump. GitHub Release 0.3.2.0 tagged. Chapter 4 now FINAL &amp; INTEGRATED (Sections 4.1, 4.2, 4.3). Next: DMS 4.4 and 4.5 WIP development. Total commits: 144.</td>
 </tr>
+<tr>
+<td>21</td>
+<td>2026-01-20</td>
+<td>v0.3.2.0 (unchanged)</td>
+<td>v5.0.0</td>
+<td><strong>DMS LEFT/RIGHT WIP DEVELOPMENT:</strong> Substantive research on DMS Left/Right architecture completed. WIP section-C4-S4-dms-left-right-dev-2026-01-20.tex generated from canonical template. Status: dev. Content sections: Overview, Functional Modes, Button Logic, Integration, Summary. Preamble: V1.0. Awaiting author review and MFD image integration. Next: Integration into v0.4.0.0 per Chapter 4 DMS blueprint v1.1.</td>
+</tr>
 </tbody></table>
 <hr>
 <h2>6. PROJECT PRIORITIES &amp; PHASES</h2>
@@ -811,12 +835,18 @@
 </tr>
 <tr>
 <td><strong>v0.4.0.0</strong></td>
+<td>Chapter 4 -- DMS (Section 4.4 Left/Right + Section 4.5 Summary)</td>
+<td><strong>WIP IN DEVELOPMENT</strong></td>
+<td><strong>SESSION 21 INITIATED (20 Jan 2026):</strong> Section 4.4 (DMS Left/Right) WIP development underway. Substantive research complete. New WIP file: section-C4-S4-dms-left-right-dev-2026-01-20.tex (status: dev). Content structure: Overview, Functional Modes, Button Logic, Integration, Summary. Next: Author review cycle and integration into v0.4.0.0 after Section 4.5 (Master Mode Summary) completion per unified Chapter 4 DMS blueprint v1.1. MINOR bump: v0.3.2.0 → v0.4.0.0.</td>
+</tr>
+<tr>
+<td><strong>v0.5.0.0</strong></td>
 <td>Chapter 3 -- TMS (all sections)</td>
 <td>Planned</td>
 <td>Full TMS coverage after DMS completion. MINOR bump.</td>
 </tr>
 <tr>
-<td><strong>v0.5.0.0</strong></td>
+<td><strong>v0.6.0.0</strong></td>
 <td>Chapter 2 -- HOTAS Fundamentals</td>
 <td>Target</td>
 <td>Foundational SOI, short/long press timing, master modes. MINOR bump.</td>
@@ -890,8 +920,17 @@
 <td>15,171 bytes</td>
 <td>DMS Chapter 4 Section 4.3 (DMS Down: Toggle SOI Between Displays). <strong>STATUS PROMOTED: review → FINAL (2026-01-18), then INTEGRATED (2026-01-19).</strong> Refined intro with &quot;It is important to note...&quot; clause. Semantic refinement: &quot;HUD and both MFD&quot; throughout. HOTAS table Effect/Nuance column optimized. Full structure: 4.3.1 (effectiveness), 4.3.2 HOTAS table, 4.3.3 exception states. Preamble: V1.0. <strong>NOW ARCHIVED (approved status after integration).</strong></td>
 </tr>
+<tr>
+<td>wip/section-C4-S4-dms-left-right-dev-2026-01-20.tex</td>
+<td>--</td>
+<td>section</td>
+<td><strong>DEV (IN PROGRESS)</strong></td>
+<td>2026-01-20 05:01:40</td>
+<td>27,902 bytes</td>
+<td>DMS Chapter 4 Section 4.4 (DMS Left/Right: Format Selection). <strong>SESSION 21 WIP GENERATION (20 Jan 2026):</strong> Substantive research phase complete. New WIP file generated from updated template-wip-V1.0.tex per BRIEFING-v0.2.0.1 Section 11. Content structure: 4.4.1 Overview, 4.4.2 Functional Modes (radar, nav, weapons), 4.4.3 Button Logic, 4.4.4 Integration with DMS Up/Down, 4.4.5 Summary. Preamble: V1.0 (Session 17 compatible). Status: dev. LaTeX compilable ✅. Awaiting author review cycle, MFD diagram insertion, and integration into v0.4.0.0.</td>
+</tr>
 </tbody></table>
-<p><strong>Status (2026-01-19 01:16 AM):</strong> WIP/ folder synchronized with GitHub state (INTEGRATED-FILES.md as of 2026-01-19 04:06:02). <strong>KEY UPDATE:</strong> C4-S3 DMS Down WIP file integrated into v0.3.2.0 (2026-01-19). No active WIP files in wip/ folder at this moment; focus shifts to creating DMS 4.4 (Left/Right) and 4.5 (Master Mode Summary) WIP per unified Chapter 4 DMS blueprint v1.1. All new WIP files created after 18 Jan 2026 should copy from updated template-wip-V1.0.tex.</p>
+<p><strong>Status (2026-01-20 02:19 AM):</strong> WIP/ folder synchronized with latest development state. <strong>KEY UPDATE (SESSION 21):</strong> New C4-S4 DMS Left/Right WIP file created and staged for review. C4-S3 DMS Down WIP file previously integrated into v0.3.2.0 (2026-01-19). Focus shifts to C4-S4 review cycle and C4-S5 development per unified Chapter 4 DMS blueprint v1.1. All new WIP files created after 18 Jan 2026 comply with updated template-wip-V1.0.tex.</p>
 <hr>
 <h3>7.3 Governance &amp; Reference Files (docs/ folder)</h3>
 <table>
@@ -937,7 +976,7 @@
 <td>5.0.0</td>
 <td>tracking</td>
 <td>active</td>
-<td>Unified tracking document with Git/GitHub integration. <strong>Updated 2026-01-19 01:16 AM</strong> (Session 20) to reflect v0.3.2.0 release, Section 4.3 integration, redaction corrections in 4.1–4.2, GitHub Release 0.3.2.0 tagging, total commits (144), and readiness for DMS 4.4–4.5 WIP development.</td>
+<td>Unified tracking document with Git/GitHub integration. <strong>Updated 2026-01-20 02:19 AM</strong> (Session 21) to reflect DMS Left/Right WIP generation, Section 4.4 development initiation, new WIP file creation (section-C4-S4-dms-left-right-dev-2026-01-20.tex), Session 21 session log entry, updated roadmap (v0.4.0.0 WIP status), and readiness for author review cycle per Chapter 4 unified DMS blueprint v1.1.</td>
 </tr>
 <tr>
 <td>docs/TRAINING-MISSION-ABBREV-TABLE-v1.0.md</td>
@@ -1026,10 +1065,16 @@
 <td>1, 2, 3, 4, 5, 6, 7</td>
 <td>Section 4.3 (DMS Down) integrated into guide-v0.3.2.0-20260119 (71,935 bytes). Redaction corrections applied to Sections 4.1 and 4.2 (grammar, clarity, semantic refinements). MINOR version bump: v0.3.1.0 → v0.3.2.0. GitHub Release tag 0.3.2.0 created and pushed. Total commits: 144. Snapshot guide-v0.3.2.0-20260119.tex created in wip/guide/, synchronized to guide.tex root. Previous snapshot (v0.3.1.0) moved to ARCHIVE/GUIDE/. Chapter 4 now FINAL &amp; INTEGRATED (Sections 4.1, 4.2, 4.3) with enhanced semantic clarity and comprehensive redaction. Next: DMS Sections 4.4 (Left/Right) and 4.5 (Master Mode Summary) WIP development per unified Chapter 4 DMS blueprint v1.1.</td>
 </tr>
+<tr>
+<td>2026-01-20</td>
+<td><strong>SESSION 21: DMS LEFT/RIGHT WIP GENERATION INITIATED</strong></td>
+<td>2.1, 3.1, 4.2, 4.3, 5, 6.2, 7.2, 7.4</td>
+<td>Substantive research phase on DMS Left/Right architecture (OSB mapping, functional modes in radar/nav/weapons, button logic) completed. New WIP file generated: section-C4-S4-dms-left-right-dev-2026-01-20.tex from updated template-wip-V1.0.tex (BRIEFING-v0.2.0.1 Section 11). Content structure: Overview, Functional Modes, Button Logic, Integration, Summary subsections. Status: dev. Preamble: V1.0. LaTeX compilable ✅. Awaiting author review, MFD diagram insertion (placeholder: verbatim removed), and integration planning per Chapter 4 unified DMS blueprint v1.1. No version bump (guide remains v0.3.2.0).</td>
+</tr>
 </tbody></table>
 <hr>
 <h2>END OF PROJECT TRACKING v5.0.0</h2>
-<p><strong>For inquiries or updates, contact:</strong> Carlos &quot;Metal&quot; Nader<br><strong>Last updated:</strong> 2026-01-19, 01:16 AM -03<br><strong>Status:</strong> Ready for use / Download</p>
+<p><strong>For inquiries or updates, contact:</strong> Carlos &quot;Metal&quot; Nader<br><strong>Last updated:</strong> 2026-01-20, 02:19 AM -03<br><strong>Status:</strong> Ready for use / Download</p>
 
 </body>
 </html>

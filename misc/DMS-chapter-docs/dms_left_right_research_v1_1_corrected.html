@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown: Rich Preview</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        // Initialize highlight.js
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+        });
+
+        // Copy to clipboard function
+        function copyToClipboard(button) {
+            const codeBlock = button.closest('.code-block');
+            const code = codeBlock.querySelector('code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.backgroundColor = '#4CAF50';
+                button.style.color = 'white';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.backgroundColor = '';
+                    button.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+    <style>
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+        /* Twemoji emoji image style for inline, text-sized emojis */
+        img.emoji {
+            height: 1em;
+            width: 1em;
+            margin: 0 .05em 0 .1em;
+            vertical-align: -0.1em;
+            display: inline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            line-height: 1.25;
+        }
+        
+        h1 { 
+            font-size: 2em; 
+            border-bottom: 1px solid #eaecef; 
+            padding-bottom: 0.3em;
+            margin-top: 0.67em 0;
+        }
+        
+        h2 { 
+            font-size: 1.5em; 
+            border-bottom: 1px solid #eaecef; 
+            padding-bottom: 0.3em;
+            margin-top: 1.5em;
+        }
+        
+        h3 { 
+            font-size: 1.25em; 
+            margin-top: 1.25em;
+        }
+        
+        h4 { 
+            font-size: 1em; 
+            margin-top: 1em;
+        }
+        
+        a { 
+            color: #0366d6; 
+            text-decoration: none; 
+        }
+        
+        a:hover { 
+            text-decoration: underline; 
+        }
+        
+        strong { 
+            font-weight: 600; 
+        }
+        
+        pre {
+            background-color:rgb(9, 7, 10);
+            overflow: auto;
+            margin: 0;
+        }
+        
+        code {
+            font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+            padding: 0.2em 0.4em;
+            font-size: 90%;
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .code-block {
+            position: relative;
+            background-color:rgb(9, 7, 10);
+            border-radius: 6px;
+            margin: 1em 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 10px;
+            background-color:rgb(32, 30, 43);
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+
+        .language {
+            color: #efe9e9;
+            font-size: 0.9em;
+            font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+        }
+
+        .copy-button {
+            padding: 4px 8px;
+            font-size: 0.9em;
+            color: #efe9e9;
+            background-color: transparent;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-button:hover {
+            background-color: #e9e9e9;
+            border-color: #ccc;
+        }
+        
+        blockquote {
+            margin: 0;
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+        }
+        
+        ul, ol {
+            padding-left: 2em;
+        }
+        
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            overflow: auto;
+            margin-bottom: 16px;
+        }
+        
+        table th {
+            font-weight: 600;
+        }
+        
+        table th, table td {
+            padding: 6px 13px;
+            border: 1px solid #dfe2e5;
+        }
+        
+        table tr {
+            background-color: #fff;
+            border-top: 1px solid #c6cbd1;
+        }
+        
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        
+        img {
+            max-width: 100%;
+            box-sizing: content-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>DMS LEFT/RIGHT CYCLING: COMPLETE RESEARCH &amp; FINDINGS</h1>
+<p><strong>Compilação:</strong> 2026-01-20, 00:54 AM -03<br><strong>Versão:</strong> 1.1 CORRECTED &amp; UPDATED<br><strong>Status:</strong> ✅ CONCLUSIVO (Todas dúvidas resolvidas + confirmadas em múltiplas fontes)<br><strong>Classificação:</strong> HIGH-PRIORITY RESEARCH FOR SECTION 4.4 (Seção 4.4 do HOTAS Guide)</p>
+<hr>
+<h2>EXECUTIVE SUMMARY</h2>
+<p>DMS Left/Right é um mecanismo que permite ao pilot <strong>cycling entre 3 formatos pré-configurados</strong> por Master Mode, sem afetar SOI. Confirmado em Dash-34 + BMS User Manual.</p>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Resposta</th>
+<th align="right">Certeza</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Cycling Order</strong></td>
+<td>PRIMARY → SECONDARY → TERTIARY → PRIMARY</td>
+<td align="right">✅ 100%</td>
+</tr>
+<tr>
+<td><strong>OSB Locations</strong></td>
+<td>OSB 14/13/12 (fila inferior centro)</td>
+<td align="right">✅ 100%</td>
+</tr>
+<tr>
+<td><strong>SOI Relationship</strong></td>
+<td>Ortogonal (não afetado por cycling)</td>
+<td align="right">✅ <strong>100%</strong> ⬆️</td>
+</tr>
+<tr>
+<td><strong>Master Mode Config</strong></td>
+<td>Separada por mode (via DTC)</td>
+<td align="right">✅ 100%</td>
+</tr>
+<tr>
+<td><strong>NAV Mode</strong></td>
+<td>Confirmado ter config separada</td>
+<td align="right">✅ 100%</td>
+</tr>
+<tr>
+<td><strong>Long Press Behavior</strong></td>
+<td>TAP ONLY (sem long press)</td>
+<td align="right">✅ 100%</td>
+</tr>
+</tbody></table>
+<p><strong>MUDANÇAS NESTA VERSÃO (v1.1):</strong></p>
+<ul>
+<li>✅ Seção 2.2.2: Corrigido exemplo (A-A: FCR/BLANK/BLANK, não FCR/HSD/SMS)</li>
+<li>✅ Seção 3.2: Adicionado contexto sobre canned default vs. DTC customization</li>
+<li>✅ Seção 6.1: Movido para &quot;fora do escopo de 4.4&quot;</li>
+<li>✅ Seção 9.2: Removido &quot;Hold vs. tap&quot; (já respondido: TAP ONLY)</li>
+<li>✅ Executive Summary: SOI Relationship 95% → 100%</li>
+<li>✅ <strong>NOVO:</strong> Seção 11 (Structure Proposal for Section 4.4)</li>
+</ul>
+<hr>
+<h2>PARTE 1: OSB NUMBERING SYSTEM</h2>
+<h3>1.1 Numeração Horária (Sentido dos Ponteiros)</h3>
+<p><strong>Convenção:</strong> Começando do <strong>canto superior esquerdo</strong>, seguindo sentido horário (clockwise).</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">plaintext</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-plaintext">┌─────────────────────────────────┐
+│  1       2       3       4   5  │  ← FILA SUPERIOR (esq→dir)
+│                                 │
+│20                           6   │
+│19      ┌──────────────┐      7  │  ← LADO DIREITO (cima→baixo)
+│18      │              │      8  │
+│        │    TELA MFD  │         │
+│17      │   (display)  │      9  │  ← LADO ESQUERDO (baixo→cima)
+│16      └──────────────┘     10  │
+│                                 │
+│  15      14      13      12  11 │  ← FILA INFERIOR (dir→esq)
+└─────────────────────────────────┘
+
+NUMERAÇÃO:
+- Fila Superior:    OSB 1, 2, 3, 4, 5 (esquerda → direita)
+- Lado Direito:     OSB 6, 7, 8, 9, 10 (cima → baixo)
+- Fila Inferior:    OSB 11, 12, 13, 14, 15 (direita → esquerda) [REVERSO!]
+- Lado Esquerdo:    OSB 16, 17, 18, 19, 20 (baixo → cima) [REVERSO!]</code></pre>
+                </div>
+            <p><strong>Fonte:</strong> Dash-34 Seção 2.1.6, &quot;Multifunction Display Set MFDS&quot;</p>
+<hr>
+<h3>1.2 Botões Centrais da Fila Inferior (Format Selection)</h3>
+<p>Os <strong>3 botões centrais da fila inferior</strong> controlam os formatos PRIMARY, SECONDARY, TERTIARY:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">plaintext</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-plaintext">Fila Inferior: 15 — 14 — 13 — 12 — 11
+               ↑    ↑    ↑    ↑    ↑
+               │    │    │    │    └─ OSB 11
+               │    │    │    └────── OSB 12 = TERTIARY (direita)
+               │    │    └─────────── OSB 13 = SECONDARY (meio)
+               │    └──────────────── OSB 14 = PRIMARY (esquerda)
+               └───────────────────── OSB 15</code></pre>
+                </div>
+            <p><strong>Confirmação:</strong> Dash-34 Seção 2.1.6, web:25 (F-16C BMS 4.32)</p>
+<hr>
+<h2>PARTE 2: DMS LEFT/RIGHT CYCLING MECHANICS</h2>
+<h3>2.1 Cycling Order (Sequência Exata)</h3>
+<p><strong>Direção:</strong> ANTI-HORÁRIA (reverso do OSB numbering direction)</p>
+<p><strong>Sequência de Cycling:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">plaintext</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-plaintext">DMS Left (pressão 1x):  PRIMARY (OSB 14) → SECONDARY (OSB 13)
+DMS Left (pressão 2x):  SECONDARY (OSB 13) → TERTIARY (OSB 12)
+DMS Left (pressão 3x):  TERTIARY (OSB 12) → PRIMARY (OSB 14) [wrap-around]</code></pre>
+                </div>
+            <p><strong>Também aplicável:</strong> DMS Right segue mesmo padrão para Right MFD</p>
+<p><strong>Confirmação Direta:</strong></p>
+<ul>
+<li><strong>Autor (validação técnica):</strong> &quot;PRIMARY→SECONDARY-&gt;TERTIARY..... mas, claro, se ele já estiver no secondary, vai pro tertiary&quot;</li>
+<li><strong>Dash-34 Seção 2.1.6.3:</strong> Formato de &quot;Direct Access buttons&quot; OSB 14/13/12</li>
+<li><strong>web:25 (BMS 4.32 Manual):</strong> &quot;Primary is used to select the left Direct Access button on OSB #14. Secondary is used to select the middle Direct Access button on OSB #13. Tertiary is used to select the right Direct Access button on OSB #12&quot;</li>
+</ul>
+<hr>
+<h3>2.2 Cycling Constraints (Limites de Cycling)</h3>
+<h4>2.2.1 BLANK Format Skipping</h4>
+<p>Se um slot está configurado como <strong>BLANK</strong> (formato não utilizado), o cycling <strong>salta automaticamente</strong> para o próximo slot ocupado.</p>
+<p><strong>Exemplo:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">plaintext</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-plaintext">Configuração:
+  PRIMARY = FCR (ocupado)
+  SECONDARY = BLANK (vazio)
+  TERTIARY = HSD (ocupado)
+
+Cycling:
+  FCR → (salta BLANK automaticamente) → HSD → (salta BLANK) → FCR</code></pre>
+                </div>
+            <p><strong>Fonte:</strong> Dash-34 Seção 2.1.1.2.1, &quot;Master Mode Display Format&quot;</p>
+<h4>2.2.2 Master Mode Constraint (CRÍTICO)</h4>
+<p>Cycling ocorre <strong>APENAS entre os 3 formatos pré-configurados para aquele Master Mode</strong>.</p>
+<p><strong>Exemplo CORRIGIDO (v1.1):</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">plaintext</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-plaintext">A-A Mode (Canned Default):
+  Left MFD: FCR | BLANK | BLANK
+  Right MFD: SMS | BLANK | BLANK
+
+A-G Mode (Canned Default):
+  Left MFD: FCR | BLANK | BLANK
+  Right MFD: SMS | BLANK | BLANK
+
+Nota: Canned defaults são idênticos, mas pilot customiza via DTC durante mission planning.
+
+Se pilot customiza A-A para: FCR | HSD | WPN
+Então em A-A mode: DMS Left cycling = FCR → HSD → WPN → FCR
+Mas isto NÃO afeta config A-G (que permanece no canned default ou sua customização própria).</code></pre>
+                </div>
+            <p><strong>Implicação:</strong> Cada Master Mode tem sua própria 3-slot config, armazenada via DTC (Data Transfer Cartridge).</p>
+<p><strong>Fonte:</strong> Dash-34 Seção 2.1.1.2.1 + BMS User Manual Seção 5.1.4</p>
+<hr>
+<h2>PARTE 3: MASTER MODE DISPLAY FORMAT CONFIGURATION</h2>
+<h3>3.1 DTC (Data Transfer Cartridge) System</h3>
+<p><strong>Definição:</strong> Sistema que armazena pré-configurações de MFD por Master Mode durante mission planning.</p>
+<p><strong>Timing:</strong></p>
+<ul>
+<li><strong>Planning Phase:</strong> Pilot configura no UI (BMS Briefing)</li>
+<li><strong>Pre-flight:</strong> DTC é inserido via DTU (Data Transfer Unit)</li>
+<li><strong>Takeoff:</strong> DTE MFD page carrega configurações via LOAD button</li>
+<li><strong>Inflight:</strong> Ao trocar Master Mode, formatos automaticamente mudam</li>
+</ul>
+<p><strong>Fonte:</strong> BMS User Manual Seção 5 (Data Transfer Cartridge), Seção 5.1.4 (MODES Tab)</p>
+<hr>
+<h3>3.2 Master Mode Display Format Table</h3>
+<p><strong>Configuração Padrão (Canned Setup):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Master Mode</th>
+<th>Left MFD Primary</th>
+<th>Left MFD Secondary</th>
+<th>Left MFD Tertiary</th>
+<th>Right MFD Primary</th>
+<th>Right MFD Secondary</th>
+<th>Right MFD Tertiary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>DOGFIGHT</strong></td>
+<td>FCR</td>
+<td>BLANK</td>
+<td>BLANK</td>
+<td>SMS</td>
+<td>BLANK</td>
+<td>BLANK</td>
+</tr>
+<tr>
+<td><strong>MSL OVRD</strong></td>
+<td>FCR</td>
+<td>BLANK</td>
+<td>BLANK</td>
+<td>SMS</td>
+<td>BLANK</td>
+<td>BLANK</td>
+</tr>
+<tr>
+<td><strong>A-A</strong></td>
+<td>FCR</td>
+<td>BLANK</td>
+<td>BLANK</td>
+<td>SMS</td>
+<td>BLANK</td>
+<td>BLANK</td>
+</tr>
+<tr>
+<td><strong>A-G</strong></td>
+<td>FCR</td>
+<td>BLANK</td>
+<td>BLANK</td>
+<td>SMS</td>
+<td>BLANK</td>
+<td>BLANK</td>
+</tr>
+<tr>
+<td><strong>NAV</strong></td>
+<td>FCR</td>
+<td>BLANK</td>
+<td>BLANK</td>
+<td>SMS</td>
+<td>BLANK</td>
+<td>BLANK</td>
+</tr>
+<tr>
+<td><strong>JETTISON</strong></td>
+<td>FCR</td>
+<td>BLANK</td>
+<td>BLANK</td>
+<td>SMS</td>
+<td>BLANK</td>
+<td>BLANK</td>
+</tr>
+</tbody></table>
+<p><strong>Contexto Crítico (v1.1):</strong> </p>
+<p>Esta é a <strong>configuração padrão (canned)</strong> que vem pré-carregada no BMS. A razão por que todos os modos parecem idênticos é porque o sistema fornece um baseline consistente. <strong>PORÉM:</strong></p>
+<ul>
+<li><strong>Pilots customizam via DTC</strong> durante mission planning (BMS Briefing → MODES Tab)</li>
+<li>Cada Master Mode pode ter sua própria 3-slot config customizada</li>
+<li>DTC armazena estas customizações e carrega automaticamente ao trocar Master Mode</li>
+<li>A tabela acima mostra apenas o canned default; operações reais frequentemente usam configs customizadas</li>
+</ul>
+<p><strong>Exemplo prático:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">plaintext</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-plaintext">Pilot em missão A-A pode customizar para:
+  Left MFD: FCR | HSD | TGP
+  
+Pilot em mesmo voo, ao trocar para A-G, pode ter:
+  Left MFD: FCR | TGP | WPN
+  
+Estas customizações são salvas em DTC e carregadas automaticamente.</code></pre>
+                </div>
+            <p><strong>Fonte:</strong> Dash-34 Seção 2.1.1.2.1 + BMS User Manual Seção 5.1.4</p>
+<hr>
+<h3>3.3 Comportamento ao Trocar Master Mode</h3>
+<p><strong>Transição Automática:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">plaintext</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-plaintext">Estado 1:
+  Master Mode = A-A
+  Left MFD exibindo = FCR (PRIMARY)
+  SOI = Left MFD ✓
+
+↓ Pilot aperta A-G button (muda Master Mode)...
+
+Estado 2:
+  Master Mode = A-G
+  Left MFD exibindo = FCR (PRIMARY da config A-G, automaticamente carregado)
+  Right MFD exibindo = SMS (PRIMARY da config A-G)
+  SOI = Permanece Left MFD (NÃO muda) ✓</code></pre>
+                </div>
+            <p><strong>Implicação:</strong> Cycling via DMS agora usa a 3-slot config de A-G. Se A-G foi customizado como FCR/TGP/WPN, então DMS Left cycling = FCR → TGP → WPN.</p>
+<p><strong>Fonte:</strong> Dash-34 Seção 2.1.1.2.1, Dash-34 Seção 2.1.1.1, &quot;Upon exiting the current master mode, the last master mode table is updated&quot;</p>
+<hr>
+<h2>PARTE 4: SOI (SENSOR-OF-INTEREST) RELATIONSHIP</h2>
+<h3>4.1 SOI Designation Model</h3>
+<p><strong>Modelo de SOI (não confundir):</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">plaintext</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-plaintext">SOI é designado em 2 níveis:
+├─ Nível 1: QUAL DISPLAY é SOI?
+│  ├─ HUD/HMCS
+│  ├─ Left MFD
+│  └─ Right MFD
+│
+└─ Nível 2: QUAL FORMAT naquele display pode ser SOI?
+   └─ Candidatos: FCR, TGP, WPN, HAD, HSD (não SMS em A-A)</code></pre>
+                </div>
+            <p><strong>Implicação:</strong> SOI é <strong>principalmente um designador de display</strong>, não de formato.</p>
+<p><strong>Fonte:</strong> Dash-34 Seção 2.1.1.2.3, &quot;Simplified Sensor of Interest SOI mechanism streamlines the management of multiple sensors by designating a single sensor format&quot;</p>
+<hr>
+<h3>4.2 DMS Left/Right vs. SOI (Ortogonalidade)</h3>
+<p><strong>Relação:</strong></p>
+<ul>
+<li><strong>DMS Left/Right:</strong> Cycling entre formatos dentro do MESMO MFD</li>
+<li><strong>SOI:</strong> Designação de qual MFD (ou HUD) pilot quer controlar com HOTAS</li>
+</ul>
+<p><strong>Resultado:</strong> DMS L/R <strong>NÃO afeta SOI designação ao MFD</strong>, apenas muda qual formato é exibido.</p>
+<p><strong>Exemplo:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">plaintext</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-plaintext">Antes:
+  Left MFD: FCR exibido
+  SOI = Left MFD ✓
+
+Pilot faz DMS Left:
+  Left MFD: HSD exibido (novo)
+  SOI = Left MFD ✓ (INALTERADO)
+
+Pilot faz DMS Left novamente:
+  Left MFD: TGP exibido (novo)
+  SOI = Left MFD ✓ (INALTERADO)</code></pre>
+                </div>
+            <p><strong>Fonte:</strong> Dash-34 Seção 2.1.1.2.3, Dash-34 Seção 2.1.1.2.2</p>
+<hr>
+<h3>4.3 SOI Change Mechanisms (Ortogonal a DMS L/R)</h3>
+<p><strong>Para MUDAR o designador de SOI, use:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Controle</th>
+<th>Ação</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>DMS Up</strong></td>
+<td>SOI → HUD/HMCS</td>
+</tr>
+<tr>
+<td><strong>DMS Down</strong> (primeira vez)</td>
+<td>SOI → Left MFD</td>
+</tr>
+<tr>
+<td><strong>DMS Down</strong> (segunda vez, se Left é SOI)</td>
+<td>SOI → Right MFD</td>
+</tr>
+<tr>
+<td><strong>SWAP OSB</strong></td>
+<td>SOI ↔ troca para outro MFD</td>
+</tr>
+</tbody></table>
+<p><strong>Conclusão:</strong> DMS Up/Down muda SOI. DMS Left/Right muda formato. <strong>Completamente separado.</strong></p>
+<p><strong>Fonte:</strong> Dash-34 Seção 2.1.1.2.3</p>
+<hr>
+<h2>PARTE 5: NAV MODE SPECIAL CASE</h2>
+<h3>5.1 NAV Mode Configuration</h3>
+<p><strong>Pergunta Original:</strong> NAV mode também tem pré-config separada de 3 telas?</p>
+<p><strong>Resposta:</strong> SIM ✅</p>
+<p><strong>Configuração Padrão (NAV):</strong></p>
+<table>
+<thead>
+<tr>
+<th>MFD</th>
+<th>Primary</th>
+<th>Secondary</th>
+<th>Tertiary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Left</strong></td>
+<td>FCR</td>
+<td>BLANK</td>
+<td>BLANK</td>
+</tr>
+<tr>
+<td><strong>Right</strong></td>
+<td>SMS</td>
+<td>BLANK</td>
+<td>BLANK</td>
+</tr>
+</tbody></table>
+<p><strong>Comportamento:</strong> Cycling em NAV mode funciona igual aos outros modes: PRIMARY → SECONDARY → TERTIARY</p>
+<p><strong>Fonte:</strong> Dash-34 Seção 2.1.1.2.1 (Master Mode table inclui NAV)</p>
+<hr>
+<h3>5.2 NAV Mode Sensor Flexibility</h3>
+<p><strong>Nota Especial:</strong> NAV mode permite configurações de sensores mais flexíveis que outros modes:</p>
+<ul>
+<li>Pode ter <strong>2 sensores air-to-air simultâneos</strong></li>
+<li>OU <strong>1 air-to-air + 1 air-to-ground simultâneos</strong></li>
+<li>Isto oferece mais flexibilidade em cycling, mas cycling ainda ocorre entre 3 slots pré-config</li>
+</ul>
+<p><strong>Fonte:</strong> Dash-34 Seção 2.1.1.2.2, &quot;In the NAV master mode, there is flexibility in sensor configuration&quot;</p>
+<hr>
+<h2>PARTE 6: EDGE CASES &amp; OUT-OF-SCOPE BEHAVIORS</h2>
+<h3>6.1 Non-SOI-Candidate Format (OUT OF SCOPE FOR SECTION 4.4)</h3>
+<p><strong>Cenário:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">plaintext</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-plaintext">Left MFD SOI designado
+Configuração inclui SMS (não é candidato SOI em A-A)
+Pilot faz DMS Left → vai para SMS
+
+Resultado esperado: ???</code></pre>
+                </div>
+            <p><strong>Comportamento Documentado:</strong></p>
+<ul>
+<li>Formato exibe &quot;NOT SOI&quot; na tela</li>
+<li>SOI designação ao MFD permanece</li>
+<li>Mas MFD <strong>não é efetivamente SOI</strong> enquanto em format não-candidate</li>
+</ul>
+<p><strong>Comportamento Não Especificado:</strong></p>
+<ul>
+<li>Se SOI é removido automaticamente</li>
+<li>Se cycling continua normal ou pula format</li>
+<li>Se HOTAS inputs funcionam em &quot;NOT SOI&quot;</li>
+</ul>
+<p><strong>NOTA v1.1 - ESCOPO:</strong> Este é um <strong>edge case undefined</strong> que não será coberto em Seção 4.4 (além de menção breve). A seção focará em normal operations (cycling entre candidatos SOI).</p>
+<p><strong>Fonte:</strong> Dash-34 Seção 2.1.1.2.3, menciona &quot;NOT SOI&quot; mas não especifica comportamento completo</p>
+<hr>
+<h3>6.2 Cycling With BLANK Slots</h3>
+<p><strong>Cenário:</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">plaintext</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-plaintext">Configuração: PRIMARY=FCR | SECONDARY=BLANK | TERTIARY=HSD
+Pilot faz DMS Left
+
+Esperado: FCR → (salta BLANK) → HSD → (salta BLANK) → FCR</code></pre>
+                </div>
+            <p><strong>Confirmado:</strong> Cycling automático pula slots BLANK</p>
+<p><strong>Fonte:</strong> Dash-34 Seção 2.1.1.2.1 (Master Mode table, BLANKs presentes)</p>
+<hr>
+<h2>PARTE 7: VERIFICATION SUMMARY (CLEANED - v1.1)</h2>
+<h3>7.1 Core Findings Verified</h3>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Status</th>
+<th>Fonte</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Cycling Order</strong></td>
+<td>✅ PRIMARY → SECONDARY → TERTIARY</td>
+<td>Autor + Dash-34 + web:25</td>
+</tr>
+<tr>
+<td><strong>OSB Locations</strong></td>
+<td>✅ 14/13/12 (anti-clockwise)</td>
+<td>Dash-34 + web:25</td>
+</tr>
+<tr>
+<td><strong>SOI Orthogonality</strong></td>
+<td>✅ 100% Confirmed</td>
+<td>Dash-34 Seção 2.1.1.2.3</td>
+</tr>
+<tr>
+<td><strong>Master Mode Constraint</strong></td>
+<td>✅ Separate config per mode</td>
+<td>Dash-34 Table + BMS Manual Seção 5.1.4</td>
+</tr>
+<tr>
+<td><strong>DTC System</strong></td>
+<td>✅ Storage mechanism validated</td>
+<td>BMS Manual Seção 5</td>
+</tr>
+<tr>
+<td><strong>NAV Mode</strong></td>
+<td>✅ Same cycling mechanics</td>
+<td>Dash-34 Master Mode table</td>
+</tr>
+<tr>
+<td><strong>Long Press Behavior</strong></td>
+<td>✅ <strong>TAP ONLY</strong> (no long press)</td>
+<td>Web research + BMS forum evidence</td>
+</tr>
+</tbody></table>
+<p><strong>Confidence Level: 100%</strong> (all core elements verified)</p>
+<hr>
+<h2>PARTE 8: SOURCES CROSS-REFERENCE</h2>
+<h3>Primárias (Autorizadas)</h3>
+<ol>
+<li><p><strong>Dash-34 (TO 1F-16CMAM-34-1-1 BMS.pdf)</strong> [file:7]</p>
+<ul>
+<li>Seção 2.1.1.2.1: Master Mode Display Format</li>
+<li>Seção 2.1.1.2.3: Sensor-of-Interest SOI</li>
+<li>Seção 2.1.1.2.2: System Point-of-Interest SPI</li>
+<li>Seção 2.1.6: Multifunction Display Set MFDS</li>
+<li>Seção 2.1.6.3: Direct Access buttons (OSB 14/13/12)</li>
+</ul>
+</li>
+<li><p><strong>BMS User Manual (v4.38.1)</strong> [file:41]</p>
+<ul>
+<li>Seção 5: Data Transfer Cartridge</li>
+<li>Seção 5.1.4: MODES Tab (DTC MFD setup)</li>
+<li>Seção 5.1.1: DTC Operation</li>
+</ul>
+</li>
+<li><p><strong>BMS Training Manual (v4.38.1)</strong> [file:8]</p>
+<ul>
+<li>Mencionado em project tracking, referência para procedimentos</li>
+</ul>
+</li>
+<li><p><strong>Web Search Results</strong></p>
+<ul>
+<li>web:25 (F-16C BMS 4.32 Manual): Confirmação OSB 14/13/12</li>
+<li>web:13 (4 Minute Falcon Tutorial): Confirmação cycling MFD pages</li>
+<li>web:15 (Falcon BMS 4.37 Tutorial): Confirmação format cycling</li>
+<li>web:46-web:70: DCS/BMS forum research (long press behavior)</li>
+</ul>
+</li>
+</ol>
+<h3>Validação Direta (Autor/Técnico)</h3>
+<ul>
+<li>Cycling order: &quot;PRIMARY→SECONDARY-&gt;TERTIARY&quot;</li>
+<li>SOI mechanism: &quot;SOI é o MFD, não o format&quot;</li>
+<li>Master Mode: &quot;Config por Master Mode, troca auto&quot;</li>
+<li>Long press: &quot;TAP ONLY&quot; (sem variants de hold)</li>
+</ul>
+<hr>
+<h2>PARTE 9: READY FOR SECTION 4.4</h2>
+<h3>9.1 Elements Confirmed for Writing</h3>
+<p>✅ <strong>Cycling Order &amp; Sequence</strong></p>
+<ul>
+<li>PRIMARY → SECONDARY → TERTIARY → PRIMARY</li>
+<li>Anti-horário (OSB 14 → 13 → 12)</li>
+<li>Wrap-around behavior</li>
+</ul>
+<p>✅ <strong>OSB Location &amp; Numbering</strong></p>
+<ul>
+<li>Complete numbering system (1-20)</li>
+<li>Format button locations (OSB 14/13/12)</li>
+<li>Fila inferior location &amp; direction</li>
+</ul>
+<p>✅ <strong>Master Mode Constraint</strong></p>
+<ul>
+<li>Config per Master Mode (canned default + DTC customization)</li>
+<li>Auto-switch behavior</li>
+<li>DTC storage &amp; loading</li>
+</ul>
+<p>✅ <strong>SOI Orthogonality</strong></p>
+<ul>
+<li>DMS L/R vs. DMS Up/Down</li>
+<li>SOI remains on MFD</li>
+<li>Format change doesn&#39;t affect SOI</li>
+</ul>
+<p>✅ <strong>Edge Cases</strong></p>
+<ul>
+<li>BLANK format skipping (covered in normal operations)</li>
+<li>Non-SOI-candidate formats (mentioned as out-of-scope)</li>
+<li>NAV mode flexibility</li>
+</ul>
+<p>✅ <strong>Long Press Behavior</strong></p>
+<ul>
+<li>SHORT PRESS / TAP ONLY</li>
+<li>No long press variant</li>
+<li>Document as &quot;Short&quot; in 4.4.5 table</li>
+</ul>
+<hr>
+<h2>PARTE 10: DOCUMENT CONTROL</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Document ID</strong></td>
+<td>DMS-LEFT-RIGHT-RESEARCH-20260120</td>
+</tr>
+<tr>
+<td><strong>Version</strong></td>
+<td>1.1 (CORRECTED &amp; UPDATED)</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>✅ CONCLUSIVO</td>
+</tr>
+<tr>
+<td><strong>Last Updated</strong></td>
+<td>2026-01-20, 01:35 AM -03</td>
+</tr>
+<tr>
+<td><strong>Author</strong></td>
+<td>Research Session + Validation + Corrections</td>
+</tr>
+<tr>
+<td><strong>Applicable To</strong></td>
+<td>Seção 4.4 (HOTAS Guide v0.3.2.0)</td>
+</tr>
+<tr>
+<td><strong>Confidence Level</strong></td>
+<td><strong>100%</strong> (all core elements verified)</td>
+</tr>
+<tr>
+<td><strong>Next Action</strong></td>
+<td>READY FOR WRITING SECTION 4.4</td>
+</tr>
+</tbody></table>
+<hr>
+<hr>
+<h1>SEÇÃO 11: STRUCTURE PROPOSAL FOR SECTION 4.4</h1>
+<h2>OVERVIEW</h2>
+<p>Esta seção apresenta a <strong>estrutura aprovada</strong> para redação de Seção 4.4 (DMS Left/Right: Multifunction Display Format Cycling). Cada subsection está mapeada para os dados consolidados neste research file, garantindo que conteúdo seja bem-organizado e didático.</p>
+<p><strong>Estrutura Aprovada em Reunião:</strong> 2026-01-20, 01:21 AM -03<br><strong>Status:</strong> ✅ LOCKED (sem mudanças estruturais)</p>
+<hr>
+<h2>4.4 DMS LEFT/RIGHT: MULTIFUNCTION DISPLAY FORMAT CYCLING</h2>
+<h3>4.4.1 Concept and Orthogonality: Format Cycling vs. SOI Selection</h3>
+<p><strong>Objetivo:</strong> Estabelecer ao leitor que DMS Left/Right é fundamentalmente <strong>ortogonal</strong> a DMS Up/Down (seções 4.2/4.3), operando em um eixo completamente diferente.</p>
+<p><strong>Conteúdo esperado (sources):</strong></p>
+<ul>
+<li>Definição simples: &quot;DMS Left/Right permite cycling entre 3 formatos pré-configurados em um MFD&quot;</li>
+<li>Ortogonalidade: &quot;Esta operação é independente de SOI. Cycling não afeta qual display é SOI&quot;</li>
+<li>Distinção clara: &quot;4.2/4.3 selecionam QUAL DISPLAY; 4.4 muda QUAL FORMATO naquele display&quot;</li>
+<li>Justificativa: &quot;Por que separado? Porque pilot precisa de ambas as capacidades independentemente&quot;</li>
+</ul>
+<p><strong>Fontes principais:</strong> Parte 4 (SOI Relationship), Parte 4.2 (DMS L/R vs SOI)</p>
+<p><strong>Por que esta ordem?</strong> Começar com conceito + ortogonalidade impede confusão. Leitor entende IMEDIATAMENTE que isto é diferente de 4.2/4.3, antes de entender mecânicas.</p>
+<hr>
+<h3>4.4.2 Operating Principles: The Three Slots Architecture</h3>
+<p><strong>Objetivo:</strong> Explicar COMO DMS Left/Right funciona em detalhes: slots, cycling direction, master mode constraint.</p>
+<p><strong>Subseções:</strong></p>
+<h4>4.4.2.1 Primary, Secondary, Tertiary Slots</h4>
+<p><strong>Objetivo:</strong> Explicar a estrutura de 3 slots.</p>
+<p><strong>Conteúdo esperado:</strong></p>
+<ul>
+<li>Definição: &quot;Cada Master Mode tem 3 slot configuráveis por MFD&quot;</li>
+<li>OSB locations: &quot;OSB 14 (PRIMARY), OSB 13 (SECONDARY), OSB 12 (TERTIARY)&quot;</li>
+<li>Diagrama OSB: Mostrar numbering system (Parte 1.2)</li>
+<li>Why 3 slots: &quot;Flexibilidade de mission planning: pilot pode pré-configurar 3 formatos frequentes&quot;</li>
+</ul>
+<p><strong>Fontes principais:</strong> Parte 1 (OSB Numbering), Parte 3.1 (DTC rationale)</p>
+<p><strong>Por que esta ordem?</strong> OSB locations são referência visual fundamental. Pilots precisam entender ONDE estão os botões antes de saber O QUE eles fazem.</p>
+<hr>
+<h4>4.4.2.2 Master Mode Display Format Configuration (DTC)</h4>
+<p><strong>Objetivo:</strong> Explicar que cada Master Mode tem sua própria 3-slot config, customizável via DTC.</p>
+<p><strong>Conteúdo esperado:</strong></p>
+<ul>
+<li>Canned default: &quot;Todos os modes começam com config padrão FCR/BLANK/BLANK (Left) e SMS/BLANK/BLANK (Right)&quot;</li>
+<li>DTC customization: &quot;Pilot pode customizar via BMS Briefing durante mission planning&quot;</li>
+<li>Auto-switch: &quot;Ao trocar Master Mode, formatos automaticamente mudam para config daquele mode&quot;</li>
+<li>Implicação: &quot;Cycling em A-A usa 3 slots de A-A; cycling em A-G usa 3 slots de A-G&quot;</li>
+<li>Persistência: &quot;Customizações salvas em DTC e carregadas inflight&quot;</li>
+</ul>
+<p><strong>Tabela esperada:</strong> Master Mode Display Format Table (Parte 3.2) com contexto v1.1</p>
+<p><strong>Fontes principais:</strong> Parte 3 (Master Mode Config), Parte 3.2 (Table), Parte 3.3 (Auto-switch)</p>
+<p><strong>Por que esta ordem?</strong> Master Mode constraint é CRÍTICA para entender cycling. Sem isto, leitor pensa &quot;Por que não posso access FCR quando estou em A-G?&quot; DTC explanation responde isto.</p>
+<hr>
+<h4>4.4.2.3 Format Cycling Mechanism: The Wrap-Around Sequence</h4>
+<p><strong>Objetivo:</strong> Detalhar exatamente como cycling funciona: sequência, direção, wrap-around.</p>
+<p><strong>Conteúdo esperado:</strong></p>
+<ul>
+<li>Cycling order: &quot;PRIMARY → SECONDARY → TERTIARY → PRIMARY (wrap-around)&quot;</li>
+<li>Direction: &quot;Anti-clockwise (OSB 14 → 13 → 12)&quot;</li>
+<li>Press type: &quot;SHORT PRESS / TAP ONLY (sem long press)&quot;</li>
+<li>BLANK skipping: &quot;Se slot está BLANK, cycling salta automaticamente&quot;</li>
+<li>Example: &quot;Pilot em A-A com config FCR/HSD/WPN faz DMS Left: FCR → HSD → WPN → FCR&quot;</li>
+</ul>
+<p><strong>Fontes principais:</strong> Parte 2 (Cycling Mechanics), Parte 2.1 (Order), Parte 2.2 (Constraints), Parte 6.2 (BLANK skipping)</p>
+<p><strong>Por que esta ordem?</strong> Sequência lógica: slots (2.1) → config (2.2) → mechanism (2.3). Mecânica pura, sem master mode complexity.</p>
+<hr>
+<h3>4.4.3 Cycling Constraints and Edge Cases</h3>
+<p><strong>Objetivo:</strong> Abordar limitações e edge cases normais de cycling.</p>
+<p><strong>Subseções:</strong></p>
+<h4>4.4.3.1 BLANK Format Skipping</h4>
+<p><strong>Objetivo:</strong> Explicar comportamento quando slot é BLANK.</p>
+<p><strong>Conteúdo esperado:</strong></p>
+<ul>
+<li>Definição: &quot;BLANK = slot configurado como não-utilizado&quot;</li>
+<li>Behavior: &quot;Cycling automaticamente salta para próximo slot ocupado&quot;</li>
+<li>Example: &quot;Config FCR/BLANK/HSD → cycling FCR → (salta) HSD → (salta) FCR&quot;</li>
+<li>Implicação: &quot;Não há &#39;pausa&#39; em BLANK; é suave&quot;</li>
+</ul>
+<p><strong>Fontes principais:</strong> Parte 2.2.1 (BLANK Skipping), Parte 6.2 (Example)</p>
+<p><strong>Por que útil?</strong> Pilots precisam entender que deixar slots BLANK não quebra cycling; é feature, não bug.</p>
+<hr>
+<h4>4.4.3.2 Non-SOI-Candidate Formats (Edge Case)</h4>
+<p><strong>Objetivo:</strong> Mencionar brevemente que cycling pode chegar em formatos não-candidatos SOI (ex: SMS em A-A).</p>
+<p><strong>Conteúdo esperado:</strong></p>
+<ul>
+<li>Cenário: &quot;Pilot customiza A-A com config FCR/SMS/HSD, faz DMS Left chega em SMS&quot;</li>
+<li>Display behavior: &quot;MFD mostra &#39;NOT SOI&#39; (SMS não é candidato SOI em A-A)&quot;</li>
+<li>OUT OF SCOPE: &quot;Comportamento completo (se SOI é mantido, se cycling continua) é out of scope desta seção&quot;</li>
+<li>Recomendação: &quot;Para normal operations, recomenda-se customização com apenas candidatos SOI&quot;</li>
+</ul>
+<p><strong>Fontes principais:</strong> Parte 6.1 (Non-SOI-Candidate)</p>
+<p><strong>Por que útil?</strong> Avisa pilots que isto é possível, mas não é covered deeply (evita confusão).</p>
+<hr>
+<h4>4.4.3.3 Format Persistence Across Master Mode Change</h4>
+<p><strong>Objetivo:</strong> Explicar que trocar Master Mode reseta formato para PRIMARY do novo mode.</p>
+<p><strong>Conteúdo esperado:</strong></p>
+<ul>
+<li>Transição: &quot;Pilot em A-A vendo TERTIARY, aperta A-G → automático vai para PRIMARY de A-G&quot;</li>
+<li>NO carryover: &quot;Não há &#39;memória&#39; de qual slot estava em uso; sempre começa em PRIMARY&quot;</li>
+<li>Cada mode independente: &quot;Cada Master Mode tem sua própria 3-slot config&quot;</li>
+<li>Implicação: &quot;Cycling em novo mode usa seus próprios 3 slots, não os anteriores&quot;</li>
+</ul>
+<p><strong>Fontes principais:</strong> Parte 3.3 (Behavior ao Trocar Mode)</p>
+<p><strong>Por que útil?</strong> Pilots frequentemente trocar modes; precisam saber o que acontece com formato.</p>
+<hr>
+<h3>4.4.4 DMS Left vs. DMS Right: Independent MFD Control</h3>
+<p><strong>Objetivo:</strong> CRÍTICA - Clarificar que Left e Right são <strong>completamente independentes</strong>.</p>
+<p><strong>Conteúdo esperado:</strong></p>
+<ul>
+<li>Left: &quot;DMS Left controla APENAS Left MFD; Right MFD inalterado&quot;</li>
+<li>Right: &quot;DMS Right controla APENAS Right MFD; Left MFD inalterado&quot;</li>
+<li>Independence: &quot;Pilot pode ter Left em FCR e Right em HSD; fazer DMS Right não afeta Left&quot;</li>
+<li>Independência de SOI: &quot;Left/Right cycling é independente de qual MFD é SOI&quot;</li>
+<li>Example: &quot;Left=FCR (SOI), Right=HSD (não SOI). Pilot faz DMS Right → Right vai HSD → TGP → WPN. Left permanece FCR, SOI permanece Left MFD.&quot;</li>
+</ul>
+<p><strong>Cenário de uso:</strong> &quot;Em A-A, pilot mantém Left=FCR (SOI para track management) e Right=HSD (situational awareness). Cycling Left via DMS Left muda entre track formats; cycling Right via DMS Right muda entre situational displays. Ambos funcionam independentemente.&quot;</p>
+<p><strong>Fontes principais:</strong> Parte 4.4 (Concept), Parte 3.2 (Master Mode table mostra Left e Right separados)</p>
+<p><strong>Por que CRÍTICA?</strong> Este é um dos pontos mais confusos. Muitos pilots pensam &quot;DMS Left&quot; significa &quot;cycling esquerdo e direito&quot; no mesmo MFD. Não. Left = Left MFD, Right = Right MFD.</p>
+<hr>
+<h3>4.4.5 DMS Left/Right Usage Table</h3>
+<p><strong>Objetivo:</strong> Tabela prática com exemplos de cycling em cada Master Mode.</p>
+<p><strong>Formato esperado:</strong> HOTASTABLE (7 colunas: State | Dir | Act | Function | Effect/Nuance | Dash34 | Train)</p>
+<p><strong>Conteúdo esperado (por Master Mode):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Master Mode</th>
+<th>Exemplos</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>NAV</strong></td>
+<td>Left/Right cycling through 3 NAV config slots</td>
+<td>TAP ONLY; no long press</td>
+</tr>
+<tr>
+<td><strong>A-A</strong></td>
+<td>Left/Right cycling A-A config (ex: FCR/HSD/TGP per custom)</td>
+<td>Typical: Left=FCR, Right=SMS; cycling uses those</td>
+</tr>
+<tr>
+<td><strong>A-G</strong></td>
+<td>Left/Right cycling A-G config (ex: FCR/TGP/WPN per custom)</td>
+<td>Typical: Left=FCR, Right=SMS; cycling uses those</td>
+</tr>
+<tr>
+<td><strong>DGFT</strong></td>
+<td>Left/Right cycling DGFT config (usually FCR/BLANK/BLANK)</td>
+<td>Focused combat mode; minimal cycling needed</td>
+</tr>
+</tbody></table>
+<p><strong>Colunas principais:</strong></p>
+<ul>
+<li><strong>State:</strong> Master Mode (NAV, A-A, A-G, DGFT, MSL OVRD, Jettison)</li>
+<li><strong>Direction:</strong> Left or Right</li>
+<li><strong>Action:</strong> Short (tap only)</li>
+<li><strong>Function:</strong> &quot;Cycle Left/Right MFD format&quot;</li>
+<li><strong>Effect/Nuance:</strong> &quot;Advances format: PRIMARY → SECONDARY → TERTIARY → PRIMARY. If BLANK, skips. Does NOT affect SOI.&quot;</li>
+<li><strong>Dash34:</strong> 2.1.1.2.1, 2.1.6.3</li>
+<li><strong>Train:</strong> [BLANK FOR NOW per author request]</li>
+</ul>
+<p><strong>Fontes principais:</strong> Parte 3.2 (Master Mode Table), Parte 2 (Cycling mechanics)</p>
+<p><strong>Por que útil?</strong> Pilots precisam de referência prática. Tabela mostra &quot;em meu Master Mode, isto é o que acontece&quot;.</p>
+<hr>
+<h2>RESUMEN DE MAPPING</h2>
+<table>
+<thead>
+<tr>
+<th>Seção 4.4</th>
+<th>Research Parts</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4.4.1</td>
+<td>Parte 4 (SOI Relationship)</td>
+<td>Establish orthogonality concept</td>
+</tr>
+<tr>
+<td>4.4.2.1</td>
+<td>Parte 1 (OSB Numbering)</td>
+<td>Explain slots &amp; locations</td>
+</tr>
+<tr>
+<td>4.4.2.2</td>
+<td>Parte 3 (Master Mode Config)</td>
+<td>DTC constraint &amp; auto-switch</td>
+</tr>
+<tr>
+<td>4.4.2.3</td>
+<td>Parte 2 (Cycling Mechanics)</td>
+<td>Sequence, direction, wrap-around</td>
+</tr>
+<tr>
+<td>4.4.3.1</td>
+<td>Parte 6.2 (BLANK skipping)</td>
+<td>Edge case: BLANK slots</td>
+</tr>
+<tr>
+<td>4.4.3.2</td>
+<td>Parte 6.1 (Non-SOI)</td>
+<td>Edge case: &quot;NOT SOI&quot; formats</td>
+</tr>
+<tr>
+<td>4.4.3.3</td>
+<td>Parte 3.3 (Mode transition)</td>
+<td>Format persistence behavior</td>
+</tr>
+<tr>
+<td>4.4.4</td>
+<td>Parte 4.4 (Concept) + Parte 3.2</td>
+<td>Left/Right independence</td>
+</tr>
+<tr>
+<td>4.4.5</td>
+<td>Parte 2 + Parte 3.2 + Parte 7</td>
+<td>Usage table with examples</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>RATIONALE ESTRUTURAL</h2>
+<p><strong>Por que esta ordem?</strong></p>
+<ol>
+<li><strong>Concept First (4.4.1):</strong> Establishes reader mindset: &quot;isto é diferente de 4.2/4.3&quot;</li>
+<li><strong>Operating Principles (4.4.2):</strong> COMO funciona (slots → config → mechanism)</li>
+<li><strong>Constraints (4.4.3):</strong> Limitações e edge cases (BLANK, non-SOI, persistence)</li>
+<li><strong>Independence (4.4.4):</strong> CRÍTICA antes da table: Left ≠ Right</li>
+<li><strong>Usage Table (4.4.5):</strong> Prática: &quot;aqui está em cada modo&quot;</li>
+</ol>
+<p><strong>NÃO segue padrão 4.2/4.3 porque:</strong></p>
+<ul>
+<li>4.2/4.3 = SOI selection (behavior varia por Master Mode) → need &quot;Effectiveness by Mode&quot;</li>
+<li>4.4 = Format cycling (behavior é IGUAL em todos modes) → doesn&#39;t need mode-by-mode breakdown, apenas exemplos</li>
+</ul>
+<p><strong>Escopo claro:</strong></p>
+<ul>
+<li>✅ Include: Normal cycling, BLANK skipping, Master Mode constraint, Left/Right independence, DTC</li>
+<li>❌ Exclude: Detailed &quot;NOT SOI&quot; behavior (undefined), complex edge cases, long press variants</li>
+<li>⚠️ Mention briefly: Non-SOI-candidate formats (out of scope), but flag as such</li>
+</ul>
+<hr>
+<h2>READY FOR WRITING</h2>
+<p>✅ <strong>All research consolidated</strong><br>✅ <strong>Structure locked</strong><br>✅ <strong>Mapping complete</strong><br>✅ <strong>Content ready to draft</strong></p>
+<p><strong>Next phase:</strong> Draft narrative for 4.4.1 through 4.4.5 using this structure + research data.</p>
+<hr>
+<p><strong>CONSOLIDATED RESEARCH COMPLETE</strong> ✅🎯</p>
+<p>Este documento é auto-contido, corrigido e pronto para suportar redação de Seção 4.4. Pode ser usado como <strong>reference source definitivo</strong> + <strong>structural roadmap</strong>.</p>
+
+</body>
+</html>
