@@ -3,17 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src * 'self' data: https: file:; script-src * 'unsafe-inline'; style-src * 'unsafe-inline' https: file:; font-src * https: file:;">
     <title>Markdown: Rich Preview</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="file:///c%3A%5CUsers%5Ccarlo%5C.vscode%5Cextensions%5Cnur-srijan.markdown-rich-preview-1.2.0%5Cassets%5Cvendor/highlight/styles/github-dark.min.css" onerror="console.error('Failed to load Highlight.js CSS:', this.href)">
+    <link rel="stylesheet" href="file:///c%3A%5CUsers%5Ccarlo%5C.vscode%5Cextensions%5Cnur-srijan.markdown-rich-preview-1.2.0%5Cassets%5Cvendor/katex/katex.min.css" onerror="console.error('Failed to load KaTeX CSS:', this.href)">
     <script>
-        // Initialize highlight.js
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('pre code').forEach((block) => {
-                hljs.highlightElement(block);
-            });
-        });
+        // Highlighting is done on the extension side during markdown parsing.
+        // No browser-side initialization of highlight.js is needed.
 
         // Copy to clipboard function
         function copyToClipboard(button) {
@@ -42,7 +38,6 @@
             line-height: 1.6;
             padding: 0 20px;
         }
-        /* Twemoji emoji image style for inline, text-sized emojis */
         img.emoji {
             height: 1em;
             width: 1em;
@@ -50,68 +45,56 @@
             vertical-align: -0.1em;
             display: inline;
         }
-        
         h1, h2, h3, h4, h5, h6 {
             font-weight: 600;
             margin-top: 24px;
             margin-bottom: 16px;
             line-height: 1.25;
         }
-        
         h1 { 
             font-size: 2em; 
             border-bottom: 1px solid #eaecef; 
             padding-bottom: 0.3em;
             margin-top: 0.67em 0;
         }
-        
         h2 { 
             font-size: 1.5em; 
             border-bottom: 1px solid #eaecef; 
             padding-bottom: 0.3em;
             margin-top: 1.5em;
         }
-        
         h3 { 
             font-size: 1.25em; 
             margin-top: 1.25em;
         }
-        
         h4 { 
             font-size: 1em; 
             margin-top: 1em;
         }
-        
         a { 
             color: #0366d6; 
             text-decoration: none; 
         }
-        
         a:hover { 
             text-decoration: underline; 
         }
-        
         strong { 
             font-weight: 600; 
         }
-        
         pre {
             background-color:rgb(9, 7, 10);
             overflow: auto;
             margin: 0;
         }
-        
         code {
             font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
             padding: 0.2em 0.4em;
             font-size: 90%;
         }
-        
         pre code {
             background-color: transparent;
             padding: 0;
         }
-
         .code-block {
             position: relative;
             background-color:rgb(9, 7, 10);
@@ -120,7 +103,6 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             overflow: hidden;
         }
-
         .code-header {
             display: flex;
             justify-content: space-between;
@@ -130,13 +112,11 @@
             border-top-left-radius: 6px;
             border-top-right-radius: 6px;
         }
-
         .language {
             color: #efe9e9;
             font-size: 0.9em;
             font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
         }
-
         .copy-button {
             padding: 4px 8px;
             font-size: 0.9em;
@@ -147,23 +127,19 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-
         .copy-button:hover {
             background-color: #e9e9e9;
             border-color: #ccc;
         }
-        
         blockquote {
             margin: 0;
             padding: 0 1em;
             color: #6a737d;
             border-left: 0.25em solid #dfe2e5;
         }
-        
         ul, ol {
             padding-left: 2em;
         }
-        
         table {
             border-collapse: collapse;
             border-spacing: 0;
@@ -171,39 +147,119 @@
             overflow: auto;
             margin-bottom: 16px;
         }
-        
         table th {
             font-weight: 600;
         }
-        
         table th, table td {
             padding: 6px 13px;
-            border: 1px solid #dfe2e5;
+            border: 1px solid var(--vscode-editorGroup-border, #dfe2e5);
         }
-        
         table tr {
-            background-color: #fff;
-            border-top: 1px solid #c6cbd1;
+            background-color: var(--vscode-editor-background, #fff);
+            border-top: 1px solid var(--vscode-editorGroup-border, #c6cbd1);
         }
-        
         table tr:nth-child(2n) {
-            background-color: #f6f8fa;
+            background-color: var(--vscode-list-hoverBackground, #f6f8fa);
         }
-        
         img {
             max-width: 100%;
             box-sizing: content-box;
         }
+        /* GitHub-style Alerts */
+        .markdown-alert {
+            padding: 0.25rem 1rem;
+            margin-bottom: 1rem;
+            color: inherit;
+            border-left: 0.25em solid #dfe2e5;
+            border-radius: 6px;
+        }
+        .markdown-alert-title {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            line-height: 1;
+        }
+        .markdown-alert-title svg {
+            margin-right: 8px;
+        }
+        .markdown-alert-note { border-left-color: #0969da; }
+        .markdown-alert-note .markdown-alert-title { color: #0969da; }
+        .markdown-alert-tip { border-left-color: #1a7f37; }
+        .markdown-alert-tip .markdown-alert-title { color: #1a7f37; }
+        .markdown-alert-important { border-left-color: #8250df; }
+        .markdown-alert-important .markdown-alert-title { color: #8250df; }
+        .markdown-alert-warning { border-left-color: #9a6700; }
+        .markdown-alert-warning .markdown-alert-title { color: #9a6700; }
+        .markdown-alert-caution { border-left-color: #d1242f; }
+        .markdown-alert-caution .markdown-alert-title { color: #d1242f; }
+
+        /* Footnotes */
+        .footnotes {
+            font-size: 12px;
+            color: #6a737d;
+            border-top: 1px solid #dfe2e5;
+            margin-top: 24px;
+        }
+        .footnotes ol {
+            padding-left: 16px;
+        }
+        .footnote-backref {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            margin-left: 4px;
+        }
+
+        /* Task Lists */
+        ul.contains-task-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .task-list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 4px;
+        }
+        .task-list-item input[type="checkbox"] {
+            margin: 0.25em 0.5em 0 0;
+            vertical-align: middle;
+        }
+
+        /* Front Matter */
+        .front-matter {
+            margin-bottom: 24px;
+            border: 1px solid var(--vscode-editorGroup-border, #dfe2e5);
+            border-radius: 6px;
+            padding: 12px;
+            background-color: var(--vscode-list-hoverBackground, #f6f8fa);
+        }
+        .front-matter table {
+            margin-bottom: 0;
+            border: none;
+        }
+        .front-matter table tr {
+            background-color: transparent;
+            border: none;
+        }
+        .front-matter table td {
+            border: none;
+            padding: 4px 8px;
+        }
+        .front-matter-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 12px;
+            color: var(--vscode-descriptionForeground, #6a737d);
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
-    <h1>INTEGRATED FILES REPORT</h1>
+    <h1 id="integrated-files-report">INTEGRATED FILES REPORT</h1>
 <p><strong>Repository:</strong> tms-dms-cms-usage-guide</p>
-<p><strong>Generated:</strong> 2026-01-22 00:41:28 UTC-3</p>
+<p><strong>Generated:</strong> 2026-01-22 01:18:54 UTC-3</p>
 <p><strong>Trigger:</strong> [push | workflow_dispatch]</p>
 <p><strong>Branch:</strong> main</p>
-<hr>
-<h2>1. REPOSITORY INFO</h2>
+<hr />
+<h2 id="1-repository-info">1. REPOSITORY INFO</h2>
 <table>
 <thead>
 <tr>
@@ -225,11 +281,11 @@
 </tr>
 <tr>
 <td>Last Push</td>
-<td>2026-01-22 00:41:26 UTC-3</td>
+<td>2026-01-22 01:18:52 UTC-3</td>
 </tr>
 <tr>
 <td>Total Commits</td>
-<td>198</td>
+<td>200</td>
 </tr>
 <tr>
 <td>Releases</td>
@@ -240,9 +296,9 @@
 <td>LaTeX: 57%, Markdown: 42%</td>
 </tr>
 </tbody></table>
-<hr>
-<h2>2. TRACKED FILES</h2>
-<h3>1. wip/</h3>
+<hr />
+<h2 id="2-tracked-files">2. TRACKED FILES</h2>
+<h3 id="1-wip">1. wip/</h3>
 <table>
 <thead>
 <tr>
@@ -255,17 +311,17 @@
 <tbody><tr>
 <td>wip/section-C4-S4-dms-left-right-review-2026-01-21.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:25</td>
+<td>2026-01-22 01:18:52</td>
 <td>27171 bytes</td>
 </tr>
 <tr>
 <td>wip/guide/guide-v0.3.2.0-20260119.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:25</td>
+<td>2026-01-22 01:18:52</td>
 <td>71921 bytes</td>
 </tr>
 </tbody></table>
-<h3>2. archive/</h3>
+<h3 id="2-archive">2. archive/</h3>
 <table>
 <thead>
 <tr>
@@ -278,143 +334,143 @@
 <tbody><tr>
 <td>archive/GUIDE-STRUCTURE/guide-structure-only-v0.1.3-20260105.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>9653 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE-STRUCTURE/guide-structure-only-v0.1.0+20260105.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>10518 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE-STRUCTURE/guide-structure-only-v0.2.3.4.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>10908 bytes</td>
 </tr>
 <tr>
 <td>archive/WIP/section-C4-S2-dms-up-down-deprecated-2026-01-14.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>25505 bytes</td>
 </tr>
 <tr>
 <td>archive/WIP/section-C5-S1-concept-and-interactions-cmds-ecm-rwr-approved-2026-01-07.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>5771 bytes</td>
 </tr>
 <tr>
 <td>archive/WIP/section-C4-S3-dms-format-cycling-deprecated-2026-01-13.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>18811 bytes</td>
 </tr>
 <tr>
 <td>archive/WIP/section-C4-S2-dms-up-down-deprecated-2026-01-13.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>27406 bytes</td>
 </tr>
 <tr>
 <td>archive/WIP/section-C4-S3-dms-down-approved-2026-01-18.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>15094 bytes</td>
 </tr>
 <tr>
 <td>archive/WIP/section-C5-S3-blocks-and-variants-approved-2026-01-11.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>8031 bytes</td>
 </tr>
 <tr>
 <td>archive/WIP/section-C4-S2-dms-up-approved-2026-01-14.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>16022 bytes</td>
 </tr>
 <tr>
 <td>archive/WIP/section-C5-S2-cms-actuation-hotas-table-approved-2026-01-10.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>20948 bytes</td>
 </tr>
 <tr>
 <td>archive/WIP/section-C4-S1-concept-soi-approved-2026-01-15.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>15571 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.1.1.0-20260105.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>21966 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.2.2.0-20260108.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>25606 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.3.0.1-20260116.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>58416 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.1.0.0-20260105.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>22094 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.1.3.0-20260105.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>22112 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.2.2.0-20260110.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>24914 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.2.4.0-20260112.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>39632 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.2.3.1-20260110.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>35744 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.3.0.0-20260115.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>56360 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.3.1.0-20260117.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>63459 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.1.2.0-20260105.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>21826 bytes</td>
 </tr>
 </tbody></table>
-<h3>3. archive/GUIDE/</h3>
+<h3 id="3-archiveguide">3. archive/GUIDE/</h3>
 <table>
 <thead>
 <tr>
@@ -427,71 +483,71 @@
 <tbody><tr>
 <td>archive/GUIDE/guide-v0.1.1.0-20260105.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>21966 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.2.2.0-20260108.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>25606 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.3.0.1-20260116.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>58416 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.1.0.0-20260105.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>22094 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.1.3.0-20260105.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>22112 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.2.2.0-20260110.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>24914 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.2.4.0-20260112.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>39632 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.2.3.1-20260110.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>35744 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.3.0.0-20260115.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>56360 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.3.1.0-20260117.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>63459 bytes</td>
 </tr>
 <tr>
 <td>archive/GUIDE/guide-v0.1.2.0-20260105.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>21826 bytes</td>
 </tr>
 </tbody></table>
-<h3>4. archive/WIP/</h3>
+<h3 id="4-archivewip">4. archive/WIP/</h3>
 <table>
 <thead>
 <tr>
@@ -504,59 +560,59 @@
 <tbody><tr>
 <td>archive/WIP/section-C4-S2-dms-up-down-deprecated-2026-01-14.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>25505 bytes</td>
 </tr>
 <tr>
 <td>archive/WIP/section-C5-S1-concept-and-interactions-cmds-ecm-rwr-approved-2026-01-07.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>5771 bytes</td>
 </tr>
 <tr>
 <td>archive/WIP/section-C4-S3-dms-format-cycling-deprecated-2026-01-13.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>18811 bytes</td>
 </tr>
 <tr>
 <td>archive/WIP/section-C4-S2-dms-up-down-deprecated-2026-01-13.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>27406 bytes</td>
 </tr>
 <tr>
 <td>archive/WIP/section-C4-S3-dms-down-approved-2026-01-18.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>15094 bytes</td>
 </tr>
 <tr>
 <td>archive/WIP/section-C5-S3-blocks-and-variants-approved-2026-01-11.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>8031 bytes</td>
 </tr>
 <tr>
 <td>archive/WIP/section-C4-S2-dms-up-approved-2026-01-14.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>16022 bytes</td>
 </tr>
 <tr>
 <td>archive/WIP/section-C5-S2-cms-actuation-hotas-table-approved-2026-01-10.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>20948 bytes</td>
 </tr>
 <tr>
 <td>archive/WIP/section-C4-S1-concept-soi-approved-2026-01-15.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>15571 bytes</td>
 </tr>
 </tbody></table>
-<h3>5. docs/</h3>
+<h3 id="5-docs">5. docs/</h3>
 <table>
 <thead>
 <tr>
@@ -569,41 +625,41 @@
 <tbody><tr>
 <td>docs/project-tracking-v5.0.0.md</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
-<td>43323 bytes</td>
+<td>2026-01-22 01:18:51</td>
+<td>20465 bytes</td>
 </tr>
 <tr>
 <td>docs/briefing-v0.2.0.1.md</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>16901 bytes</td>
 </tr>
 <tr>
 <td>docs/version-system-v4.2.1.md</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>28549 bytes</td>
 </tr>
 <tr>
 <td>docs/training-mission-abbrev-table-v1.0.md</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>9667 bytes</td>
 </tr>
 <tr>
 <td>docs/wip-naming-v1.4.md</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>56226 bytes</td>
 </tr>
 <tr>
 <td>docs/tex-preamble-consolidated.md</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>7297 bytes</td>
 </tr>
 </tbody></table>
-<h3>6. guide.tex (Repository Root)</h3>
+<h3 id="6-guidetex-repository-root">6. guide.tex (Repository Root)</h3>
 <table>
 <thead>
 <tr>
@@ -616,12 +672,12 @@
 <tbody><tr>
 <td>guide.tex</td>
 <td>tracked</td>
-<td>2026-01-22 00:41:24</td>
+<td>2026-01-22 01:18:51</td>
 <td>71921 bytes</td>
 </tr>
 </tbody></table>
-<hr>
-<h2>3. COMMITS</h2>
+<hr />
+<h2 id="3-commits">3. COMMITS</h2>
 <p>Commits that modified tracked files (last 10 commits):</p>
 <table>
 <thead>
@@ -632,6 +688,16 @@
 </tr>
 </thead>
 <tbody><tr>
+<td>2026-01-21 22:13:07</td>
+<td>carlos-nader</td>
+<td>docs/INTEGRATED-FILES.html, docs/project-tracking-v5.0.0.html, docs/project-tracking-v5.0.0.md</td>
+</tr>
+<tr>
+<td>2026-01-22 00:41:29</td>
+<td>github-actions[bot]</td>
+<td>INTEGRATED-FILES.json, INTEGRATED-FILES.md</td>
+</tr>
+<tr>
 <td>2026-01-22 00:36:29</td>
 <td>github-actions[bot]</td>
 <td>INTEGRATED-FILES.json, INTEGRATED-FILES.md</td>
@@ -671,19 +737,9 @@
 <td>carlos-nader</td>
 <td>docs/INTEGRATED-FILES.html, docs/project-tracking-v5.0.0.html, docs/project-tracking-v5.0.0.md</td>
 </tr>
-<tr>
-<td>2026-01-20 05:13:25</td>
-<td>github-actions[bot]</td>
-<td>INTEGRATED-FILES.json, INTEGRATED-FILES.md</td>
-</tr>
-<tr>
-<td>2026-01-20 05:10:15</td>
-<td>github-actions[bot]</td>
-<td>INTEGRATED-FILES.json, INTEGRATED-FILES.md</td>
-</tr>
 </tbody></table>
-<hr>
-<h2>4. VERSION TAGS</h2>
+<hr />
+<h2 id="4-version-tags">4. VERSION TAGS</h2>
 <p>Tags matching pattern: <code>^v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$</code></p>
 <table>
 <thead>
@@ -719,9 +775,9 @@
 <td>Guide v0.3.0.0 - C4-S1 and C4-S2.1 integrated</td>
 </tr>
 </tbody></table>
-<hr>
-<h2>5. GITHUB ISSUES</h2>
-<h3>5.1 Open Issues</h3>
+<hr />
+<h2 id="5-github-issues">5. GITHUB ISSUES</h2>
+<h3 id="51-open-issues">5.1 Open Issues</h3>
 <table>
 <thead>
 <tr>
@@ -756,7 +812,7 @@
 <td>enhancement</td>
 </tr>
 </tbody></table>
-<h3>5.2 Recently Closed Issues (Last 30 days)</h3>
+<h3 id="52-recently-closed-issues-last-30-days">5.2 Recently Closed Issues (Last 30 days)</h3>
 <table>
 <thead>
 <tr>
@@ -831,9 +887,9 @@
 <td>documentation</td>
 </tr>
 </tbody></table>
-<hr>
-<h2>6. GITHUB MILESTONES</h2>
-<h3>6.1 Open Milestones</h3>
+<hr />
+<h2 id="6-github-milestones">6. GITHUB MILESTONES</h2>
+<h3 id="61-open-milestones">6.1 Open Milestones</h3>
 <table>
 <thead>
 <tr>
@@ -856,7 +912,7 @@
 <td></td>
 </tr>
 </tbody></table>
-<h3>6.2 Closed Milestones</h3>
+<h3 id="62-closed-milestones">6.2 Closed Milestones</h3>
 <table>
 <thead>
 <tr>
@@ -871,7 +927,7 @@
 <td>2026-01-20</td>
 </tr>
 </tbody></table>
-<hr>
+<hr />
 <p><strong>End of Report</strong></p>
 
 </body>
