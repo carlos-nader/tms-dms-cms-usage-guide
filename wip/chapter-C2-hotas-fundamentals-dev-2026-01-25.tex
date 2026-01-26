@@ -1,0 +1,285 @@
+%============================================================================
+% LICENSING NOTICE
+%============================================================================
+% This WIP file, upon integration into guide-v.tex, becomes part of the
+% TMS/DMS/CMS Usage Guide and is released under CC BY-NC 4.0.
+% For details, see LICENSE in the repository root.
+%============================================================================
+
+%============================================================================
+% FALCON BMS TMS/DMS/CMS HOTAS GUIDE
+% WIP FILE TEMPLATE V1.0 — FINAL (Briefing v0.2.0.1 + TOC Fix)
+%============================================================================
+
+% IMPORTANTE: Este é um TEMPLATE padronizado para arquivos WIP (Work-In-Progress)
+% que serão integrados ao guide.tex.
+
+% Nomenclatura: Siga wip-naming-v1.3
+% Padrão: section-C{N}-S{M}[-S{K}]-{titulo}-{status}-{data}.tex
+% Exemplo: section-C5-S2-cms-actuation-hotas-tables-final-2026-01-10.tex
+
+% Status: dev | review | final | approved | deprecated
+% Locação: WIP/ (ativo) | ARCHIVE/ (aprovado/descartado)
+
+%============================================================================
+% PREAMBLE COMPLETO — TMS/DMS/CMS Usage Guide for Falcon BMS 4.38.1
+% Gerado: 17 January 2026
+% Status: Novo preâmbulo (report + twoside + titlesec + fancyhdr melhorado)
+%============================================================================
+
+\documentclass[11pt, a4paper, twoside]{report}
+
+%--------------------------------------------------------------------------
+% BASIC ENCODING AND LANGUAGE
+%--------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+%--------------------------------------------------------------------------
+% FONTS AND MICROTYPOGRAPHY
+%--------------------------------------------------------------------------
+
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{soul}
+\usepackage{xcolor}
+
+%--------------------------------------------------------------------------
+% PAGE GEOMETRY AND LAYOUT
+%--------------------------------------------------------------------------
+
+\usepackage{geometry}
+\geometry{a4paper, left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
+\usepackage{setspace}
+\onehalfspacing
+
+%--------------------------------------------------------------------------
+% COLORS AND LINKS
+%--------------------------------------------------------------------------
+
+\usepackage[table]{xcolor}
+\definecolor{linkblue}{HTML}{004488}
+\definecolor{linkred}{HTML}{882222}
+\definecolor{headerblue}{HTML}{003366}
+\definecolor{rowgray}{HTML}{F5F5F5}
+\definecolor{subheadgray}{HTML}{E0E0E0}
+
+\usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\usepackage{bookmark}
+
+%--------------------------------------------------------------------------
+% HEADERS AND FOOTERS (IMPROVED for report + twoside)
+%--------------------------------------------------------------------------
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{25pt}                    % Increased (was 15pt) for long names
+\pagestyle{fancy}
+\fancyhf{}                                        % Clear all
+\fancyhead[LO,RE]{\small\textit{\leftmark}}     % Outer edge (odd left, even right): chapter name
+\fancyhead[RO,LE]{\small\thepage}               % Inner edge (odd right, even left): page number
+\fancyfoot{}                                      % No footer (page number in header)
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+%-------------------------------------------------------------------------
+% CHAPTER FORMATTING AND SPACING (via titlesec)
+%--------------------------------------------------------------------------
+
+\usepackage{titlesec}
+
+% Chapter format: display style with custom spacing
+\titleformat{\chapter}[display]
+  {\normalfont\Large\bfseries}
+  {\chaptertitlename~\thechapter}
+  {20pt}
+  {\Large}
+
+% Chapter spacing: before=10pt (was 50pt), after=20pt (was 40pt)
+\titlespacing{\chapter}
+  {0pt}
+  {10pt}      % Space BEFORE chapter title
+  {20pt}      % Space AFTER chapter title
+  [0pt]
+
+% Section spacing (optional, for consistency)
+\titlespacing{\section}
+  {0pt}
+  {15pt}
+  {10pt}
+  [0pt]
+
+%--------------------------------------------------------------------------
+% TABLES AND MACROS
+%--------------------------------------------------------------------------
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+% Custom Columns
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% Macro for Visual Reference Links
+\newcommand{\imglink}[1]{\hspace{2pt}\hyperref[#1]{\scriptsize\textbf{[Fig]}}}
+
+%============================================================================
+% HOTAS table environment (per Briefing v0.2.0.1)
+%============================================================================
+
+\newenvironment{hotastable}[1]{%
+  \small
+  \renewcommand{\arraystretch}{1.25}
+  \begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
+  \caption{#1}\\
+  \rowcolor{headerblue}
+  \textbf{\color{white}State} &
+  \textbf{\color{white}Dir} &
+  \textbf{\color{white}Act} &
+  \textbf{\color{white}Function} &
+  \textbf{\color{white}Effect / Nuance} &
+  \textbf{\color{white}Dash34} &
+  \textbf{\color{white}Train} \\
+  \endfirsthead
+  \rowcolor{headerblue}
+  \textbf{\color{white}State} &
+  \textbf{\color{white}Dir} &
+  \textbf{\color{white}Act} &
+  \textbf{\color{white}Function} &
+  \textbf{\color{white}Effect / Nuance} &
+  \textbf{\color{white}Dash34} &
+  \textbf{\color{white}Train} \\
+  \endhead
+  \multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+  \endfoot
+  \endlastfoot
+}{%
+  \end{longtable}
+}
+
+%--------------------------------------------------------------------------
+% SIMPLE REFERENCE MACROS FOR BMS DOCS
+%--------------------------------------------------------------------------
+
+\providecommand{\dashref}[1]{Dash-34~\S~#1}
+\providecommand{\dashone}[1]{Dash-1~\S~#1}
+\providecommand{\trnref}[1]{TRN~#1}
+\providecommand{\trnman}{BMS Training Manual 4.38.1}
+\providecommand{\bmsver}{Falcon BMS~4.38.1}
+\providecommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+
+%--------------------------------------------------------------------------
+% VERSION CONTROL MACROS
+%--------------------------------------------------------------------------
+
+\newcommand{\docversion}{0.3.2.0}
+\newcommand{\docbuild}{2026-01-25}
+\newcommand{\docstartdate}{05 January 2026}
+\newcommand{\docenddate}{xx xxx 2026}
+\newcommand{\chapterscompletedof}{x/7}
+\newcommand{\tablesfilledpct}{DESCRIBE}
+\newcommand{\fulldocversion}{\docversion+\docbuild}
+
+%--------------------------------------------------------------------------
+% GRAPHICS
+%--------------------------------------------------------------------------
+
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+\usepackage{float}
+
+%--------------------------------------------------------------------------
+% TITLE
+%--------------------------------------------------------------------------
+
+\title{TMS, DMS and CMS Usage Guide for \bmsver}
+\author{Carlos ``Metal'' Nader}
+\date{Version \fulldocversion{} | Progress: Chapters \chapterscompletedof{} | Tables \tablesfilledpct{} | January 2026}
+
+%============================================================================
+% DOCUMENT BEGIN
+%============================================================================
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+
+%============================================================================
+% TOC DEPTH CONFIGURATION (CRITICAL for report)
+%============================================================================
+\setcounter{tocdepth}{3}       % Show up to \subsubsection in TOC
+\setcounter{secnumdepth}{3}    % Number up to \subsubsection
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\pagenumbering{arabic}
+
+%============================================================================
+% WIP FILE METADATA (NOT RENDERED IN PDF)
+%============================================================================
+
+% File Name: chapter-C4-hotas-fundamentals-2026-01-25.tex
+% WIP Naming Convention: v1.4
+% Target Chapter: C4
+% Target Section: S2 and S3
+% [Target Subsection: S{K} (Subsection Title) — OPTIONAL]
+%
+% WIP Status: dev | review | final | approved | deprecated
+% Created: 2026-01-25
+% Last Modified: 2026-01-25
+% Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.{MINOR}.{PATCH}
+%
+% Narrative Completion: 100%
+% Table Fill Status: N/A
+%
+% Notes: review 2.2
+% - [Describe what's done, what's pending, open questions]
+% - [Cross-references to other WIP files or guide.tex sections]
+% - [Any divergences from briefing or validation issues]
+
+%============================================================================
+%============================================================================
+% TEMPLATE STRUCTURE — Replace section/subsection headers with your content
+%============================================================================
+
+%============================================================================
+% CONTENT BEGINS HERE (use \chapter{}, \section{}, \subsection{}, etc.)
+%============================================================================
+
+\chapter{HOTAS Fundamentals}
+\label{chap:C2}
+
+\section{Overview of TMS, DMS, and CMS}
+\label{sec:C2-S1}
+This chapter introduces the three HOTAS switches central to this guide: the Target Management Switch (TMS), Display Management Switch (DMS), and Countermeasures Management Switch (CMS). It assumes familiarity with basic F-16 operation as described in the primary sources—particularly Dash-34 sections 2.1 (Cockpit Controls and Displays) and 2.1.5 (Hands-On Controls)—including master modes, HOTAS layout, and Sensor of Interest (SOI) concepts (detailed in Section 4.1). Readers new to Falcon BMS should consult these references and the ones below, before proceeding to switch-specific chapters of this guide.
+
+\paragraph{TMS:}The TMS manages target designation, data manipulation, and sensor cueing in both air-to-air and air-to-ground contexts. Its actions vary significantly by master mode, sensor state, and weapon configuration, making it the most context-sensitive of the three switches (see Chapter \ref{chap:C3} for complete explanation). For example, in air-to-air, TMS directions designate bugs, break tracks, or slave missiles, while in air-to-ground, they support ground stabilization and weapon release cues (\dashref{2.1.5.1}).
+
+\paragraph{DMS:}The DMS serves as the transversal display manager, selecting the Sensor of Interest (SOI) among HUD and MFDs, and cycling MFD formats. Unlike the TMS's tactical focus, DMS behavior is primarily master mode-dependent: there are restrictions when in A-A (see Chapter\ref{chap:C4} for complete explanation).
+
+\paragraph{CMS:}The CMS controls the Countermeasures Management System (CMDS) dispensing and Electronic Countermeasures (ECM) programming through a unified consent architecture that operates independently of master mode or SOI status. All directions converge on consent logic, for SEMI or AUTO CMDS operation modes, and direct systems operation while in MANUAL CMDS mode. There are also operational nuances for external vs internal ECM pods (see Chapter\ref{chap:C5} for complete explanation and \dashrefs{2.1.1.11, 2.1.13}).
+
+Together, these switches form the core HOTAS interface for situational awareness, targeting, display management, and self-protection. Their behaviors are tightly coupled to master mode and SOI (detailed in Section~\ref{C2-S2}), but each has unique scope: TMS is tactical/contextual, DMS is display-routing, and CMS is defensive/consent-based.
+
+The chapters that follow (3 --- TMS, 4 --- DMS and 5 --- CMS) provide direction-specific tables organized by operational context, with cross-references to Dash-34 sections and BMS training missions for practical validation. Use this overview to orient yourself before diving into the detailed HOTAS behaviors.
+
+\section{Master Modes and Context Principles}
+\label{sec:C2-S2}
+
+\hl{Master modes define the operational context that governs TMS, DMS, and CMS responses in Falcon BMS 4.38.1 (Dash-34 2.1.1.2.1). The primary modes are NAV (flexible situational awareness, full SOI options), A-A (air-to-air engagement, MFD/SOI restricted to FCR/HSD/TGP, HUD passive), A-G PRE/VIS (air-to-ground preplanned/visual, HUD SOI critical for designation), DGFT (dogfight, A-A-like restrictions), and MSL OVRD (missile override, MFD-only). These modes determine switch effectiveness—DMS toggles vary (3-way NAV/A-G vs 2-way A-A), TMS actions adapt (bug/track A-A vs ground-stab A-G), while CMS remains mode-independent for immediate defense (fwd Chapters 3-5 tables).
+
+Context-sensitive behavior emerges from mode + SOI + sensor/weapon interactions (Dash-34 2.1.1.2.3). For instance, NAV permits HUD/MFD SOI flexibility for TMS waypoint/marking and DMS cycling, while A-A prioritizes radar-driven tactics with TMS track management routed exclusively to FCR/HSD (HUD no-SOI, fwd 4.1). A-G VIS demands HUD-DMS alternation for visual cueing (TMS TD box on HUD, fwd 4.2-4.3), and CMS consent operates universally regardless—short presses dispense chaff/flares, long program ECM (mode-agnostic, fwd 5.1-5.2). This hierarchy ensures switches align with tactical priorities without pilot reconfiguration.
+
+Timing distinctions—short (~0.6s tap) vs long/hold presses—further refine behaviors but are switch-granular and detailed in Chapters 3-5 tables rather than generalized here (Dash-34 2.1.5 Hands-On Controls). With these principles established, readers can navigate the mode-dependent tables that form the guide's core: Chapter 3 (TMS tactical actions), Chapter 4 (DMS SOI/format management), and Chapter 5 (CMS defensive programming). Cross-references to Dash-34 sections and BMS training missions enable immediate practical application}
+
+\end{document}
