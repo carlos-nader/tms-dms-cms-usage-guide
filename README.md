@@ -252,7 +252,7 @@ For full legal text and definitions, see the [LICENSE](./LICENSE) file in the re
 - F-16 community knowledge & subject-matter experts
 
 **Tools & Utilities:**
-- TexMaker
+- Texstudio
 - Visual Studio Code
 - Git/GitHub
 - Perplexity AI Pro
