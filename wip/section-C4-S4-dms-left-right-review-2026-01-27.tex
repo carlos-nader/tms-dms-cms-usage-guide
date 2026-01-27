@@ -43,6 +43,7 @@
 
 \usepackage{lmodern}
 \usepackage{microtype}
+\usepackage{soul}
 
 %--------------------------------------------------------------------------
 % PAGE GEOMETRY AND LAYOUT
@@ -267,15 +268,15 @@
 
 \label{sec:C4-S4-S1}
 
-The DMS Left and DMS Right commands are fundamentally orthogonal to the DMS Up and DMS Down controls described in Sections~\ref{sec:C4-S2} and~\ref{sec:C4-S3}. Whereas DMS Up and DMS Down select \textit{which display} (HUD, Left MFD or Right MFD) becomes the Sensor of Interest (SOI), DMS Left and DMS Right cycle through different \textit{format pages} displayed on \textit{each MFD}, independently of which display is currently designated as SOI --- even if the HUD is the actual SOI, DMS Left/Right will actuate on each MFD. 
+The DMS Left and DMS Right commands are fundamentally orthogonal to the DMS Up and DMS Down controls described in Sections~\ref{sec:C4-S2} and~\ref{sec:C4-S3}. Whereas DMS Up and DMS Down select \textit{which display} (HUD, Left MFD or Right MFD) becomes the Sensor of Interest (SOI), DMS Left and DMS Right cycle through different \textit{format pages} displayed on \textit{each MFD}, independently of which display is currently designated as SOI --- \textbf{even if the HUD is the actual SOI, DMS Left/Right will actuate on each MFD}. 
 
-\paragraph*{Definition of Format Cycling:}
+\paragraph{Definition of Format Cycling:}
 
 Each MFD can display up to three different format pages, pre-configured during mission planning via the Data Transfer Cartridge (DTC) or directly by the pilot, in-flight. These three format pages are designated as PRIMARY, SECONDARY, and TERTIARY. DMS Left and DMS Right allow the pilot to cycle through these slots, advancing to the next format page with each button press. This operation does \textit{not} change which display is SOI; it changes only what is currently shown on the screen.
 
 It's important to understand that DMS Left \textit{only} changes format pages on the Left MFD and DMS Right \textit{only} changes format pages on the right MFD, on a continuous cycle that will be better detailed further down in this Section.
 
-\paragraph*{Orthogonality Principle:}
+\paragraph{Orthogonality Principle:}
 
 The critical distinction is this: DMS Up/Down operates on the \textbf{display selection axis} (designation of which display is SOI), whereas DMS Left/Right operates on the \textbf{format pages axis} (which page is shown on an MFD). A pilot can simultaneously manage both axes:
 
@@ -287,7 +288,7 @@ The critical distinction is this: DMS Up/Down operates on the \textbf{display se
 
 \end{itemize}
 
-This orthogonality is operationally powerful: the pilot can organize the MFD for increased situational awareness while simultaneously managing which display receives hands-on input (SOI). The two mechanisms do not interfere and DMS Rigth/Left is not restricted by the current Master Mode, for the switch only actuates on MFD, never on the HUD.
+This orthogonality is operationally powerful: the pilot can organize the MFD for increased situational awareness while simultaneously managing which display receives hands-on input (SOI). The two mechanisms do not interfere eith each other and DMS Rigth/Left is not restricted by the current Master Mode.
 
 %--------------------------------------------------------------------------
 
@@ -299,11 +300,72 @@ This orthogonality is operationally powerful: the pilot can organize the MFD for
 
 \label{sec:C4-S4-S2}
 
-\subsubsection{Primary, Secondary, and Tertiary format pages}
+\subsubsection{Display Format Configuration (DTC)}
 
 \label{sec:C4-S4-S2-S1}
 
-The PRIMARY, SECONDARY, and TERTIARY format pages configured by the pilot are accessed by pressing the corresponding button on the bottom row of each MFD. Each format page corresponds to one of the three central buttons in the lower OSB row of each MFD:
+Each Master Mode (A-A, A-G, NAV) and also DGFT, MSL OVRD and Jettison has its own independent three-slot configuration, as preset in the DTC. When the pilot switches Master Modes in-flight, the avionics automatically load the format configuration for that mode and display the chosen format.
+
+The formats can also be reconfigured by the pilot in flight, by pressing again the OSB corresponding to the actual format being displayed. See \dashref{2.1.6.2} for a comprehensive explanation.
+
+Below is a list of every possible display pages currently present in Falcon BMS that could be configured as an MFD format, either through the DTC or by the pilot in-flight. Note that not all of them can be SOI. When selecting, in any MFD, a format that can't be designated SOI, the \textit{SOI is automatically transferred to the other MFD}.
+
+\small
+\renewcommand{\arraystretch}{1.2}
+
+\begin{longtable}{L{1.8cm} L{5.5cm} L{6.5cm} L{2.5cm}}
+	\caption{Falcon BMS Possible MFD Formats\label{table:C4-S4-S2-S1}}\\
+	
+	\rowcolor{headerblue}
+	\textbf{\color{white}Acronym} & \textbf{\color{white}Full Name} & \textbf{\color{white}Definition} & \textbf{\color{white}Can be SOI} \\
+	\midrule
+	\endfirsthead
+	
+	\rowcolor{headerblue}
+	\textbf{\color{white}Acronym} & \textbf{\color{white}Full Name} & \textbf{\color{white}Definition} & \textbf{\color{white}Can be SOI} \\
+	\midrule
+	\endhead
+	
+	\midrule
+	\multicolumn{4}{r}{\emph{Continues on next page}}\\
+	\endfoot
+	
+	\bottomrule
+	\endlastfoot
+	
+	FCR & Fire Control Radar & Provides air-to-air and air-to-ground radar detection, tracking, and targeting data with multiple search and track modes for weapons employment & YES \\
+	
+	HSD & Horizontal Situation Display & Presents tactical navigation, situational awareness, and positioning information on a moving map display for mission planning & YES \\
+	
+	TGP & Targeting Pod & Displays targeting pod imagery for target acquisition, tracking, identification, and laser designation of air-to-ground targets & YES \\
+	
+	WPN & Weapon/Stores Management & Shows weapons status, aircraft ordnance configuration, and munitions management for air-to-air and air-to-ground missions & YES \\
+	
+	HAD & HARM Attack Display & Provides detection and targeting information from air defense radar sources for anti-radiation warfare missions & NO \\
+	
+	FLIR & Forward Looking Infrared Navigation Pod & Displays thermal imaging data for navigation, target detection, and low-level flight operations in degraded visibility & NO \\
+	
+	TFR & Terrain Following Radar Navigation Pod & Presents terrain elevation and clearance data for automated low-level navigation and terrain avoidance & NO \\
+	
+	SMS & Stores Management System & Displays current weapons configuration, loadout, and stores management parameters and status information & NO \\
+	
+	TCN & TACAN Format & Shows TACAN navigation aid position and bearing information for tactical air navigation and station keeping & NO \\
+	
+	DTE & Data Transfer Equipment & Provides interface and status for external data link communications with ground stations and other aircraft & NO \\
+	
+	FLCS & Digital Flight Control System & Displays flight control system parameters, status, and diagnostics for aircraft control system monitoring & NO \\
+	
+	TEST & Test Format & Provides system test and diagnostic pages for built-in test (BIT) functions and aircraft system verification & NO \\
+	
+	BLANK & Blank Format & Displays an empty/blank page with no symbology or information for display configuration flexibility & NO \\
+	
+\end{longtable}
+
+\subsubsection{Primary, Secondary, and Tertiary format pages}
+
+\label{sec:C4-S4-S2-S2}
+
+\hl{The PRIMARY, SECONDARY, and TERTIARY format pages configured by the pilot are accessed by pressing the corresponding button on the bottom row of each MFD. Each format page corresponds to one of the three central buttons in the lower OSB row of each MFD}:
 
 \begin{itemize}
 
@@ -315,13 +377,11 @@ The PRIMARY, SECONDARY, and TERTIARY format pages configured by the pilot are ac
 
 \end{itemize}
 
-The diagram below illustrates the OSB layout in the F-16 MFD:
+\hl{The diagram below illustrates the OSB layout in the F-16 MFD:
 
 INSERIR IMAGEM MFD DE INTERNET
 
-\paragraph*{Why Three Slots?}
-
-The three-slot architecture provides mission planning flexibility. During mission planning in the BMS Briefing, the pilot pre-configures which format pages are most useful for a given Master Mode. For instance, in air-to-air mode, the pilot might configure:
+The three-slot architecture provides mission planning flexibility. During mission planning in the BMS Briefing, the pilot pre-configures which format pages are most useful for a given Master Mode. For instance, in air-to-air mode, the pilot might configure}:
 
 \begin{itemize}
 
@@ -333,41 +393,11 @@ The three-slot architecture provides mission planning flexibility. During missio
 
 \end{itemize}
 
-With three slots, the pilot can quickly access the most relevant pages via DMS Left/Right presses, avoiding the need to hunt for less-common formats through a longer menu. This is especially important in time-critical engagements where every second counts.
+\hl{With three slots, the pilot can quickly access the most relevant pages via DMS Left/Right presses. This is especially important in time-critical engagements}.
 
----
+\paragraph{DTC Customization in Falcon BMS:}
 
-\subsubsection{Display Format Configuration (DTC)}
-
-\label{sec:C4-S4-S2-S2}
-
-Each Master Mode (A-A, A-G, NAV, DGFT, MSL OVRD, Jettison) has its own independent three-slot configuration. When the pilot switches Master Modes in-flight, the avionics automatically load the format configuration for that mode and display the PRIMARY format. This auto-switch behavior is managed by the DTC (Data Transfer Cartridge) system.
-
-\paragraph*{Canned Default Configuration:}
-
-\bmsver provides a standardized default configuration that applies to all Master Modes:
-
-\begin{itemize}
-
-\item Left MFD PRIMARY: FCR (Fire Control Radar)
-
-\item Left MFD SECONDARY: BLANK
-
-\item Left MFD TERTIARY: BLANK
-
-\item Right MFD PRIMARY: SMS (Stores Management System)
-
-\item Right MFD SECONDARY: BLANK
-
-\item Right MFD TERTIARY: BLANK
-
-\end{itemize}
-
-This canned default provides a baseline that is consistent and familiar across all modes. However, pilots routinely customize these configurations during mission planning.
-
-\paragraph*{DTC Customization:}
-
-During mission planning in the BMS Briefing (MODES tab of the DTC page), the pilot can assign any valid format to any slot of any mode. For example, in air-to-air mode, the pilot might customize to:
+\hl{During mission planning in the BMS Briefing (MODES tab of the DTC page), the pilot can assign any valid format to any slot of any mode. For example, in air-to-air mode, the pilot might customize to}:
 
 \begin{itemize}
 
@@ -385,7 +415,7 @@ Or in air-to-ground mode:
 
 \end{itemize}
 
-These customizations are stored in the DTC and loaded automatically when the pilot takes off. They persist for the duration of the flight.
+\hl{These customizations are stored in the DTC and loaded automatically when the pilot takes off. They persist for the duration of the flight}.
 
 \paragraph*{Auto-Switch Behavior:}
 
