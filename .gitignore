@@ -8,7 +8,7 @@
 *.log *.aux *.synctex.gz *.toc *.out *.bbl *.blg *.fls *.fdb_latexmk
 
 # PDF de ARCHIVE
-archive/*.pdf
+archive/**/*.pdf
 
 # PASTA PESSOAL
 misc/pessoal/*.*
