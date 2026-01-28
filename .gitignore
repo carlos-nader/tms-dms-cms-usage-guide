@@ -1,0 +1,14 @@
+# VS Code
+.vscode/*
+*.code-workspace
+.vscode-settings.json
+!.vscode/settings.json
+
+# Gerais
+*.log *.aux *.synctex.gz *.toc *.out *.bbl *.blg *.fls *.fdb_latexmk
+
+# PDF de ARCHIVE
+archive/*.pdf
+
+# PASTA PESSOAL
+misc/pessoal/*.*

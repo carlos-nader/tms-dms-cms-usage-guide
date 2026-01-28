@@ -14,7 +14,7 @@
 % IMPORTANTE: Este é um TEMPLATE padronizado para arquivos WIP (Work-In-Progress)
 % que serão integrados ao guide.tex.
 
-% Nomenclatura: Siga wip-naming-v1.3
+% Nomenclatura: Siga wip-naming-v1.4
 % Padrão: section-C{N}-S{M}[-S{K}]-{titulo}-{status}-{data}.tex
 % Exemplo: section-C5-S2-cms-actuation-hotas-tables-final-2026-01-10.tex
 
@@ -23,8 +23,9 @@
 
 %============================================================================
 % PREAMBLE COMPLETO — TMS/DMS/CMS Usage Guide for Falcon BMS 4.38.1
-% Gerado: 17 January 2026
-% Status: Novo preâmbulo (report + twoside + titlesec + fancyhdr melhorado)
+% Gerado: 28 January 2026
+% Status: Novo preâmbulo (report + twoside + titlesec + fancyhdr melhorado +
+%soul + caption)
 %============================================================================
 
 \documentclass[11pt, a4paper, twoside]{report}
@@ -64,8 +65,11 @@
 \definecolor{rowgray}{HTML}{F5F5F5}
 \definecolor{subheadgray}{HTML}{E0E0E0}
 
+\usepackage{soul}
 \usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
 \usepackage{bookmark}
+\usepackage{caption}
+\captionsetup{font=footnotesize, labelfont=bf, justification=raggedright, singlelinecheck=false}
 
 %--------------------------------------------------------------------------
 % HEADERS AND FOOTERS (IMPROVED for report + twoside)
