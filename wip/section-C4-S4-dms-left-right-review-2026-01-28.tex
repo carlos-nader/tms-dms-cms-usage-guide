@@ -304,7 +304,7 @@ This orthogonality is operationally powerful: the pilot can organize the MFD for
 
 \label{sec:C4-S4-S2-S1}
 
-Each Master Mode (A-A, A-G, NAV) and also DGFT, MSL OVRD and Jettison has its own independent three-slot configuration, as preset in the DTC. When the pilot switches Master Modes in-flight, the avionics automatically load the format configuration for that mode and display the chosen format.
+Each Master Mode (A-A, A-G, NAV) and also DGFT and MSL OVRD has its own independent three-slot configuration, as preset in the DTC. When the pilot switches Master Modes in-flight, the avionics automatically load the format configuration for that mode and display the chosen format. Every press of DMS Left/Right will act upon the new set of three-slot formats.
 
 The formats can also be reconfigured by the pilot in flight, by pressing again the OSB corresponding to the actual format being displayed. See \dashref{2.1.6.2} for a comprehensive explanation.
 
@@ -361,6 +361,12 @@ Below is a list of every possible display pages currently present in Falcon BMS 
 	
 \end{longtable}
 
+\paragraph{DTC Customization in Falcon BMS:}
+
+During mission planning in Falcon BMS (2D map screen) the pilot can access the DTC configuration by pressing its corresponding button on the right side bar (see User Manual §§ 5.1 and 9.3.4.2 for extensive explanations on DTC use in-game). In the MODES tab of the DTC configuration menu (see User Manual § 5.1.4 for extensive explanations on hot to set the formats), the pilot can assign any valid format to the three available slots of all suported modes (A-A, A-G, NAV, DGFT and MSL OVRD), and define the format (not necessarily the PRIMARY one) that will be firstly displayed on the MFD in use when entering that specific Master Mode in-flight.
+
+All modifications to the DTC must be saved and loaded in the 2D map screen before taking off for any mission, as stated in the User Manual §§ 5.1.1, 5.1.9 e 9.4. These customizations are then stored in the DTC and loaded automatically when the pilot takes off. They persist for the duration of the flight, unless the pilot changes them in-flight through the OSB buttons.
+
 \subsubsection{Primary, Secondary, and Tertiary format pages}
 
 \label{sec:C4-S4-S2-S2}
@@ -394,42 +400,6 @@ The three-slot architecture provides mission planning flexibility. During missio
 \end{itemize}
 
 \hl{With three slots, the pilot can quickly access the most relevant pages via DMS Left/Right presses. This is especially important in time-critical engagements}.
-
-\paragraph{DTC Customization in Falcon BMS:}
-
-\hl{During mission planning in the BMS Briefing (MODES tab of the DTC page), the pilot can assign any valid format to any slot of any mode. For example, in air-to-air mode, the pilot might customize to}:
-
-\begin{itemize}
-
-\item Left MFD: FCR | HSD | TGP (instead of FCR | BLANK | BLANK)
-
-\end{itemize}
-
-Or in air-to-ground mode:
-
-\begin{itemize}
-
-\item Left MFD: FCR | TGP | WPN
-
-\item Right MFD: SMS | HAD | HSD
-
-\end{itemize}
-
-\hl{These customizations are stored in the DTC and loaded automatically when the pilot takes off. They persist for the duration of the flight}.
-
-\paragraph*{Auto-Switch Behavior:}
-
-When the pilot presses the Master Mode button to transition from one mode to another (e.g., from A-A to A-G), the avionics automatically:
-
-1. Load the three-slot configuration for the new Master Mode.
-
-2. Display the PRIMARY format of the new mode.
-
-3. Keep SOI on the same MFD (e.g., if SOI was Left MFD in A-A, it remains Left MFD in A-G; only the format changes).
-
-\textbf{Critical implication:} Cycling via DMS Left/Right now uses the new mode's three slots, not the old mode's slots. If the pilot customizes A-A as FCR/HSD/TGP and A-G as FCR/TGP/WPN, then DMS Left cycling in A-A will advance through FCR→HSD→TGP, but DMS Left cycling in A-G will advance through FCR→TGP→WPN. The slots are mode-specific, not global.
-
----
 
 \subsubsection{Format Cycling Mechanism: The Wrap-Around Sequence}
 
