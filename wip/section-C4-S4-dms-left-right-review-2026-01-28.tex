@@ -237,7 +237,7 @@
 %
 % WIP Status: review --- dev | review | final | approved | deprecated
 % Created: 2026-01-20
-% Last Modified: 2026-01-20
+% Last Modified: 2026-01-28
 % Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.{MINOR}.{PATCH}
 %
 % Narrative Completion: 0-100%
@@ -266,19 +266,18 @@
 
 %--------------------------------------------------------------------------
 
-\subsection{Concept and Orthogonality: Format Cycling vs. SOI Selection}
+\subsection{Concept}
 
 \label{sec:C4-S4-S1}
 
-The DMS Left and DMS Right commands are fundamentally orthogonal to the DMS Up and DMS Down controls described in Sections~\ref{sec:C4-S2} and~\ref{sec:C4-S3}. Whereas DMS Up and DMS Down select \textit{which display} (HUD, Left MFD or Right MFD) becomes the Sensor of Interest (SOI), DMS Left and DMS Right cycle through different \textit{format pages} displayed on \textit{each MFD}, independently of which display is currently designated as SOI --- \textbf{even if the HUD is the actual SOI, DMS Left/Right will actuate on each MFD}. 
+The DMS Left and DMS Right commands are fundamentally orthogonal to the DMS Up and DMS Down controls described in Sections~\ref{sec:C4-S2} and~\ref{sec:C4-S3}. Whereas DMS Up and DMS Down select \textit{which display} (HUD, Left MFD or Right MFD) becomes the Sensor of Interest (SOI), DMS Left and DMS Right cycle through different \textit{format pages} displayed on \textit{each MFD}, independently of which display is currently designated as SOI --- \textbf{even if the HUD is the actual SOI, DMS Left/Right will actuate on each MFD}.
 
 \paragraph{Definition of Format Cycling:}
 
-Each MFD can display up to three different format pages, pre-configured during mission planning via the Data Transfer Cartridge (DTC) or directly by the pilot, in-flight. These three format pages are designated as PRIMARY, SECONDARY, and TERTIARY. DMS Left and DMS Right allow the pilot to cycle through these slots, advancing to the next format page with each button press. This operation does \textit{not} change which display is SOI; it changes only what is currently shown on the screen.
+Each MFD can display up to three different format pages, pre-configured during mission planning via the Data Transfer Cartridge (DTC) or directly by the pilot, in-flight. These three format pages are designated as PRIMARY, SECONDARY, and TERTIARY (see section \ref{sec:C4-S4-S2}). DMS Left and DMS Right allow the pilot to cycle through these slots, advancing to the next format page with each button press.
 
-It's important to understand that DMS Left \textit{only} changes format pages on the Left MFD and DMS Right \textit{only} changes format pages on the right MFD, on a continuous cycle that will be better detailed further down in this Section.
-
-\paragraph{Orthogonality Principle:}
+\subsubsection{Format Cycling and SOI Selection --- Distinctions}
+\label{sec:C4-S4-S1-S1}
 
 The critical distinction is this: DMS Up/Down operates on the \textbf{display selection axis} (designation of which display is SOI), whereas DMS Left/Right operates on the \textbf{format pages axis} (which page is shown on an MFD). A pilot can simultaneously manage both axes:
 
@@ -290,7 +289,18 @@ The critical distinction is this: DMS Up/Down operates on the \textbf{display se
 
 \end{itemize}
 
-This orthogonality is operationally powerful: the pilot can organize the MFD for increased situational awareness while simultaneously managing which display receives hands-on input (SOI). The two mechanisms do not interfere eith each other and DMS Rigth/Left is not restricted by the current Master Mode.
+This orthogonality is operationally powerful: the pilot can organize the MFD for increased situational awareness while simultaneously managing which display receives HOTAS inputs --- which display is SOI. So, pressing DMS Right changes the Right MFD format even if it is not SOI; the same applies to the Left MFD by pressing DMS Left.
+
+The two mechanisms (SOI definition and MFD format cycling) do not interfere eith each other and DMS Rigth/Left is not restricted by the current Master Mode.
+
+Beyond that, DMS Left and DMS Right are \textbf{completely independent} from each other. DMS Left controls the Left MFD \textit{only}; DMS Right controls the Right MFD \textit{only}: pressing DMS Right won't, for instance, go aback to the previous left MFD format.
+
+\begin{center}
+	$\mathtt{DMS\ LEFT} \longrightarrow \mathtt{LEFT\ MFD}$\\[1em]
+	$\mathtt{DMS\ RIGHT} \longrightarrow \mathtt{RIGHT\ MFD}$
+\end{center}
+
+In summary, \textbf{both MFD cycle independently and DMS Left/Right pressings don't affect SOI designation}, this is accomplished by DMS Up/Down. This independence allows the pilot to organize a visual workspace suited to the mission, so they never have to ``choose'' which display to look at or which to control; both are available simultaneously via independent mechanisms.
 
 %--------------------------------------------------------------------------
 
@@ -442,8 +452,6 @@ DMS Left/Right respond to \textbf{short press only} (tap). There is no long-pres
 
 A pilot in air-to-air mode has customized the Left MFD as FCR/HSD/TGP. Initially, the Left MFD displays FCR (PRIMARY). The pilot wants to check the tactical picture on HSD. The pilot presses DMS Left once. The Left MFD now displays HSD (SECONDARY). The pilot presses DMS Left again. The Left MFD now displays TGP (TERTIARY). The pilot decides to return to FCR. The pilot presses DMS Left once more. The Left MFD displays FCR again (wrap-around from TERTIARY back to PRIMARY). The SOI designation, if Left MFD was SOI, remains unchanged throughout these cycling operations.
 
----
-
 %--------------------------------------------------------------------------
 
 % SECTION 4.4.3: CYCLING CONSTRAINTS AND EDGE CASES
@@ -507,96 +515,15 @@ Pilot is in A-A mode, Left MFD is cycling through FCR/HSD/TGP, and the pilot has
 
 Each Master Mode has a distinct operational context and a distinct three-slot configuration. Automatically resetting to PRIMARY ensures the pilot starts from a known, predictable state in the new mode. This prevents confusion and aligns with the principle that Master Mode transitions should reset the pilot's display focus to the primary sensor of that mode.
 
----
-
 %--------------------------------------------------------------------------
 
-% SECTION 4.4.4: DMS LEFT VS. DMS RIGHT
-
-%--------------------------------------------------------------------------
-
-\subsection{DMS Left vs. DMS Right: Independent MFD Control}
-
-\label{sec:C4-S4-S4}
-
-\textbf{This section addresses one of the most frequently misunderstood aspects of DMS operation.}
-
-DMS Left and DMS Right are \textbf{completely independent}. DMS Left controls the Left MFD only; DMS Right controls the Right MFD only. Pressing one does not affect the other.
-
-\paragraph*{Left MFD Independence:}
-
-DMS Left cycles through the three-slot configuration of the \textit{Left MFD only}. If the Left MFD is displaying FCR (PRIMARY), pressing DMS Left advances it to whatever format is in the SECONDARY slot of the Left MFD configuration. The Right MFD is unaffected.
-
-\paragraph*{Right MFD Independence:}
-
-DMS Right cycles through the three-slot configuration of the \textit{Right MFD only}. The Left MFD is unaffected.
-
-\paragraph*{Independence from SOI:}
-
-Additionally, format cycling via DMS Left/Right is independent of which MFD is designated as SOI. The pilot can have:
-
-\begin{itemize}
-
-\item Left MFD = SOI (receives HOTAS commands)
-
-\item Right MFD = not SOI
-
-\end{itemize}
-
-And still cycle both displays independently. Pressing DMS Right changes the Right MFD format even though it is not SOI. Pressing DMS Left changes the Left MFD format, and because Left MFD is SOI, it also receives any HOTAS input the pilot subsequently gives.
-
-\paragraph*{Practical Scenario: A-A Engagement:}
-
-A typical air-to-air configuration might be:
-
-\begin{itemize}
-
-\item Left MFD: FCR (radar page, customized with FCR/HSD/TGP slots)
-
-\item Right MFD: SMS (stores page, customized with SMS/HAD/BLANK slots)
-
-\item SOI = Left MFD (pilot is managing radar tracks with HOTAS cursor and TMS)
-
-\end{itemize}
-
-During the engagement, the pilot might want to:
-\begin{itemize}
-
-\item Use DMS Left to cycle Left MFD between FCR and HSD (changes radar view).
-
-\item Use DMS Right to cycle Right MFD between SMS and HAD (checks stores status).
-
-\item Meanwhile, SOI remains on Left MFD; HOTAS TMS and cursor commands continue to affect the radar page.
-
-\end{itemize}
-
-Both MFDs cycle independently, and neither DMS Left/Right press affects the SOI designation.
-
-\paragraph*{Why This Matters Tactically:}
-
-This independence allows the pilot to organize a visual workspace suited to the mission:
-
-\begin{itemize}
-
-\item Left MFD = Primary tactical sensor (under SOI control for hands-on management).
-
-\item Right MFD = Supplemental information (updated via DMS Right, providing situational awareness without consuming SOI).
-
-\end{itemize}
-
-The pilot never has to ``choose'' which display to look at or which to control; both are available simultaneously via independent mechanisms.
-
----
-
-%--------------------------------------------------------------------------
-
-% SECTION 4.4.5: USAGE TABLE
+% SECTION 4.4.4: USAGE TABLE
 
 %--------------------------------------------------------------------------
 
 \subsection{DMS Left/Right Usage Table}
 
-\label{sec:C4-S4-S5}
+\label{sec:C4-S4-S4}
 
 The table below summarizes DMS Left and DMS Right behavior across all Master Modes. Because format cycling is \textit{identical} in all modes, the table shows a single row for each DMS direction, applicable to every Master Mode: A-A, A-G and NAV.
 
