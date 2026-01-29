@@ -343,13 +343,13 @@
 %
 % WIP Status: review --- dev | review | final | approved | deprecated
 % Created: 2026-01-20
-% Last Modified: 2026-01-28
+% Last Modified: 2026-01-29
 % Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.{MINOR}.{PATCH}
 %
 % Narrative Completion: 0-100%
 % Table Fill Status: 0-100%
 %
-% Notes: first draft - review stopped on section 4.4.2
+% Notes: first draft - missing sections for review: 4.4.2.3 and 4.4.2.4
 % - [Describe what's done, what's pending, open questions]
 % - [Cross-references to other WIP files or guide.tex sections]
 % - [Any divergences from briefing or validation issues]
@@ -418,7 +418,7 @@ In summary, \textbf{both MFD cycle independently and DMS Left/Right pressings do
 
 \label{sec:C4-S4-S2}
 
-\subsubsection{Display Format Configuration (DTC)}
+\subsubsection{Display Format Configuration via DTC}
 
 \label{sec:C4-S4-S2-S1}
 
@@ -455,11 +455,11 @@ Below is a list of every possible display pages currently present in Falcon BMS 
 	
 	HSD & Horizontal Situation Display & Presents tactical navigation, situational awareness, and positioning information on a moving map display for mission planning & YES \\
 	
-	TGP & Targeting Pod & Displays targeting pod imagery for target acquisition, tracking, identification, and laser designation of air-to-ground targets & YES \\
+	TGP & Targeting Pod & Displays targeting pod imagery for target acquisition, tracking, identification, and laser designation of targets & YES \\
 	
-	WPN & Weapon/Stores Management & Shows weapons status, aircraft ordnance configuration, and munitions management for air-to-air and air-to-ground missions & YES \\
+	WPN & Weapon Management & Shows weapons status, aircraft ordnance configuration, and munitions management for air-to-ground missions & YES \\
 	
-	HAD & HARM Attack Display & Provides detection and targeting information from air defense radar sources for anti-radiation warfare missions & NO \\
+	HAD & HARM Attack Display & Provides detection and targeting information from air defense radar sources for anti-radiation warfare missions & YES \\
 	
 	FLIR & Forward Looking Infrared Navigation Pod & Displays thermal imaging data for navigation, target detection, and low-level flight operations in degraded visibility & NO \\
 	
@@ -479,7 +479,8 @@ Below is a list of every possible display pages currently present in Falcon BMS 
 	
 \end{longtable}
 
-\paragraph{DTC Customization in Falcon BMS:}
+\subsubsection{DTC Customization in Falcon BMS:}
+\label{sec:C4-S4-S2-S2}
 
 During mission planning in Falcon BMS (2D map screen) the pilot can access the DTC configuration by pressing its corresponding button on the right side bar (see User Manual §§ 5.1 and 9.3.4.2 for extensive explanations on DTC use in-game). In the MODES tab of the DTC configuration menu (see User Manual § 5.1.4 for extensive explanations on hot to set the formats), the pilot can assign any valid format to the three available slots of all suported modes (A-A, A-G, NAV, DGFT and MSL OVRD), and define the format (not necessarily the PRIMARY one) that will be firstly displayed on both MFD when entering that specific Master Mode in-flight.
 
@@ -487,7 +488,7 @@ All modifications to the DTC must be saved and loaded in the 2D map screen befor
 
 \subsubsection{Primary, Secondary, and Tertiary format pages}
 
-\label{sec:C4-S4-S2-S2}
+\label{sec:C4-S4-S2-S3}
 
 \hl{The PRIMARY, SECONDARY, and TERTIARY format pages configured by the pilot are accessed by pressing the corresponding button on the bottom row of each MFD. Each format page corresponds to one of the three central buttons in the lower OSB row of each MFD}:
 
@@ -526,7 +527,7 @@ All modifications to the DTC must be saved and loaded in the 2D map screen befor
 
 \subsubsection{Format Cycling Mechanism: The Wrap-Around Sequence}
 
-\label{sec:C4-S4-S2-S3}
+\label{sec:C4-S4-S2-S4}
 
 \paragraph*{Cycling Direction:}
 
