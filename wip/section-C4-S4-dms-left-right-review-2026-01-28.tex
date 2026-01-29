@@ -590,45 +590,29 @@ When the pilot changes Master Mode, the displayed formats on both MFD reset to t
 
 \label{sec:C4-S4-S4}
 
-The table below summarizes DMS Left and DMS Right behavior across all Master Modes. Because format cycling is \textit{identical} in all modes, the table shows a single row for each DMS direction, applicable to every Master Mode: A-A, A-G and NAV.
+The table below summarizes DMS Left and DMS Right behavior across all Master Modes. Because format cycling is \textit{identical} in all modes, the table shows a single row for each DMS direction, applicable to every Master Mode: A-A (including DGFT and MSL OVRD), A-G and NAV.
+
+Each table entry specifies:
+
+\begin{itemize}
+	\item \textbf{State}: The operational context (Master Mode).
+	\item \textbf{Direction}: The physical direction for pressing the CMS hat (Left or Right).
+	\item \textbf{Action}: The press type (Short, Long, Long Hold).
+	\item \textbf{Function}: What the DMS command activates or controls.
+	\item \textbf{Effect / Nuance}: The resulting system behavior, including tactics and constraints.
+	\item \textbf{Dash34}: Reference section in the Dash-34 manual.
+	\item \textbf{Training}: Recommended BMS training missions for hands-on practice.
+\end{itemize}
 
 \begin{hotastable}{DMS Left/Right Format Cycling Across All Master Modes}
 
-A-A, A-G, NAV & Left & Short & Cycle Left MFD format & DMS Left cycles the Left MFD through its configured 3-slot sequence: PRIMARY → SECONDARY → TERTIARY → PRIMARY (wrap-around). If BLANK slots are present, they are skipped automatically. Each press advances one step; no continuous cycling on hold. SOI designation to any MFD is unaffected. & 2.1.1.2.1, 2.1.6.3 & — \\
+A-A, A-G, NAV & Left & Short & Cycle Left MFD format & DMS Left cycles the Left MFD through its configured 3-slot sequence: PRIMARY → SECONDARY → TERTIARY → PRIMARY (wrap-around). If BLANK slots are present, they are skipped automatically. Each press advances one step; no continuous cycling on hold. SOI designation of any valid display is unaffected. & 2.1.1.2.1, 2.1.6.3 & — \\
 
 \hline
 
-A-A, A-G, NAV & Right & Short & Cycle Right MFD format & DMS Right cycles the Right MFD through its configured 3-slot sequence: PRIMARY → SECONDARY → TERTIARY → PRIMARY (wrap-around). If BLANK slots are present, they are skipped automatically. Each press advances one step; no continuous cycling on hold. Cycling Right does not affect Left MFD or SOI. & 2.1.1.2.1, 2.1.6.3 & — \\
+A-A, A-G, NAV & Right & Short & Cycle Right MFD format & DMS Right cycles the Right MFD through its configured 3-slot sequence: PRIMARY → SECONDARY → TERTIARY → PRIMARY (wrap-around). If BLANK slots are present, they are skipped automatically. Each press advances one step; no continuous cycling on hold. SOI designation of any valid display is unaffected. & 2.1.1.2.1, 2.1.6.3 & — \\
 
 \end{hotastable}
-
-\paragraph*{How to Use This Table:}
-
-\begin{enumerate}
-
-\item Identify the Master Mode you are operating in (A-A, A-G, etc.). \textit{All modes use the same cycling rules.}
-
-\item Determine which MFD you want to cycle: Left or Right.
-
-\item Press DMS in the appropriate direction (Left or Right) for as many steps as needed to reach the desired format.
-
-\item Check which format is now displayed. Refer to Section~\ref{sec:C4-S1} to understand valid SOI candidates if you need to manage hands-on control.
-
-\end{enumerate}
-
-\paragraph*{Special Notes:}
-
-\begin{itemize}
-
-\item \textbf{Short Press Only:} DMS Left/Right do not support long-press or hold variants. Each tap advances one slot.
-
-\item \textbf{Training Column Empty:} The Training (Train) column is left blank as per author guidance; training mission references will be populated in a future update.
-
-\item \textbf{Consistency Across Modes:} Unlike DMS Up/Down (Sections~\ref{sec:C4-S2} and~\ref{sec:C4-S3}), DMS Left/Right behavior is \textit{identical} in all Master Modes. Format cycling is a simple, mode-agnostic operation. Customization via DTC is the only variable.
-
-\end{itemize}
-
----
 
 %--------------------------------------------------------------------------
 
