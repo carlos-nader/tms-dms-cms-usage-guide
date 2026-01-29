@@ -1,5 +1,7 @@
 ![Forum Views](https://img.shields.io/badge/Forum%20Views-656%20views-brightgreen)
 
+![Forum Views](https://img.shields.io/badge/Forum%20Views-656%20views-brightgreen)
+
 =======
 # TMS/DMS/CMS Usage Guide for Falcon BMS F-16 Flight Simulator
 
