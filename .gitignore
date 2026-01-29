@@ -9,6 +9,7 @@
 *.megaignore
 *.ini
 check-guide-integrity.ps1
+guide-integrity-check.log
 
 # PDF de ARCHIVE
 archive/**/*.pdf
