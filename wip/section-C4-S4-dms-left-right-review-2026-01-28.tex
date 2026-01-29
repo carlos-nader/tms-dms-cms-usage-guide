@@ -90,26 +90,132 @@
 
 \usepackage{titlesec}
 
-% Chapter format: display style with custom spacing
+% --------------------------------------------------------------------------
+% CHAPTER - Nível 0 (Destaque Máximo)
+% --------------------------------------------------------------------------
+% Shape: display → standalone em nova linha
+% Font: \Large\bfseries --- label e título ambos em bold para destaque máximo
+% Numeração: SIM
+% Espaçamento: 15pt antes, 28pt depois
+% --------------------------------------------------------------------------
+
 \titleformat{\chapter}[display]
-  {\normalfont\Large\bfseries}
-  {\chaptertitlename~\thechapter}
-  {20pt}
-  {\Large}
+{\normalfont\Large\bfseries}           % Formato: LARGE + bold (label)
+{\chaptertitlename~\thechapter}        % Rótulo: "Chapter 1" (bold também)
+{20pt}                                 % Espaço vertical antes do corpo
+{\Large\bfseries}                      % Corpo do título: LARGE + bold
 
-% Chapter spacing: before=10pt (was 50pt), after=20pt (was 40pt)
 \titlespacing{\chapter}
-  {0pt}
-  {10pt}      % Space BEFORE chapter title
-  {20pt}      % Space AFTER chapter title
-  [0pt]
+{0pt}       % Margem esquerda (sem indent)
+{15pt}      % Espaço ANTES do título do capítulo
+{28pt}      % Espaço DEPOIS do título do capítulo (AUMENTADO)
+[0pt]       % Margem direita
 
-% Section spacing (optional, for consistency)
+% --------------------------------------------------------------------------
+% SECTION - Nível 1
+% --------------------------------------------------------------------------
+% Shape: hang → label à esquerda, corpo indentado (compacto)
+% Font: \large\bfseries (mesmo destaque que chapter para coerência)
+% Numeração: SIM
+% Espaçamento: 15pt antes, 8pt depois (REDUZIDO de 15pt/10pt anteriores)
+% --------------------------------------------------------------------------
+
+\titleformat{\section}[hang]
+{\normalfont\large\bfseries}           % Formato: large + bold
+{\thesection}                          % Rótulo: "1", "2", etc
+{1em}                                  % Espaço entre rótulo e corpo
+{}                                     % Corpo do título (herda do format)
+
 \titlespacing{\section}
-  {0pt}
-  {15pt}
-  {10pt}
-  [0pt]
+{0pt}       % Margem esquerda (sem indent)
+{15pt}      % Espaço ANTES do título da seção (REDUZIDO)
+{8pt}       % Espaço DEPOIS do título da seção (REDUZIDO)
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SUBSECTION - Nível 2
+% --------------------------------------------------------------------------
+% Shape: hang → label esquerda, corpo indentado
+% Font: \normalsize\bfseries (redução visual, ainda robusto)
+% Numeração: SIM
+% Espaçamento: 12pt antes, 6pt depois (compacto)
+% --------------------------------------------------------------------------
+
+\titleformat{\subsection}[hang]
+{\normalfont\normalsize\bfseries}      % Formato: tamanho normal + bold
+{\thesubsection}                       % Rótulo: "1.1", "1.2", etc
+{1em}                                  % Espaço entre rótulo e corpo
+{}                                     % Corpo do título
+
+\titlespacing{\subsection}
+{0pt}       % Margem esquerda (sem indent)
+{12pt}      % Espaço ANTES do título da subseção
+{6pt}       % Espaço DEPOIS do título da subseção
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SUBSUBSECTION - Nível 3
+% --------------------------------------------------------------------------
+% Shape: hang → label esquerda, máximo recuo (bem compacto)
+% Font: \normalsize\bfseries (mesmo tamanho que subsection, padrão)
+% Numeração: SIM (configurable com secnumdepth)
+% Espaçamento: 10pt antes, 4pt depois (bem comprimido)
+% --------------------------------------------------------------------------
+
+\titleformat{\subsubsection}[hang]
+{\normalfont\normalsize\bfseries}      % Formato: tamanho normal + bold
+{\thesubsubsection}                    % Rótulo: "1.1.1", "1.1.2", etc
+{1em}                                  % Espaço entre rótulo e corpo
+{}                                     % Corpo do título
+
+\titlespacing{\subsubsection}
+{0pt}       % Margem esquerda (sem indent)
+{10pt}       % Espaço ANTES do título
+{4pt}       % Espaço DEPOIS do título (bem comprimido)
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% PARAGRAPH - Nível 4 (CRÍTICO: Ilusão Óptica Resolvida)
+% --------------------------------------------------------------------------
+% Shape: runin → inline, integrado ao texto (seu requisito)
+% Font: \small\bfseries (SOLUÇÃO PARA ILUSÃO ÓPTICA DO NEGRITO)%       
+% Numeração: NÃO (padrão para \paragraph)
+% Espaçamento: runin (sem espaço vertical antes, integrado ao texto)
+% --------------------------------------------------------------------------
+
+\titleformat{\paragraph}[runin]
+{\normalfont\small\bfseries}           % Formato: SMALL + bold (compensa ilusão)
+{}                                     % Rótulo: vazio (sem numeração)
+{0em}                                  % Espaço entre rótulo e corpo (zero, runin)
+{}                                     % Corpo do título
+
+\titlespacing{\paragraph}
+{0pt}       % Margem esquerda (sem indent)
+{8pt}       % Espaço ANTES do título do parágrafo (ADICIONADO - cria separação)
+{1em}       % Espaço DEPOIS do título (ADICIONADO - espaço após ":")
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SUBPARAGRAPH - Nível 5 (Preparação Futura)
+% --------------------------------------------------------------------------
+% Shape: runin → inline, integrado ao texto
+% Font: \small (MENOS destaque que \paragraph, sem bold)
+% Numeração: NÃO (padrão para \subparagraph)
+% Espaçamento: runin (integrado)
+% Uso: Se usado, aparecerá com destaque menor que \paragraph
+% --------------------------------------------------------------------------
+
+\titleformat{\subparagraph}[runin]
+{\normalfont\small}                    % Formato: small, SEM bold (menos destaque)
+{}                                     % Rótulo: vazio (sem numeração)
+{0em}                                  % Espaço entre rótulo e corpo (zero, runin)
+{}                                     % Corpo do título
+
+\titlespacing{\subparagraph}
+{0pt}       % Margem esquerda (sem indent)
+{8pt}       % Espaço ANTES do título (ADICIONADO)
+{1em}       % Espaço DEPOIS do título (ADICIONADO)
+[0pt]       % Margem direita
 
 %--------------------------------------------------------------------------
 % TABLES AND MACROS
@@ -375,7 +481,7 @@ Below is a list of every possible display pages currently present in Falcon BMS 
 
 \paragraph{DTC Customization in Falcon BMS:}
 
-During mission planning in Falcon BMS (2D map screen) the pilot can access the DTC configuration by pressing its corresponding button on the right side bar (see User Manual §§ 5.1 and 9.3.4.2 for extensive explanations on DTC use in-game). In the MODES tab of the DTC configuration menu (see User Manual § 5.1.4 for extensive explanations on hot to set the formats), the pilot can assign any valid format to the three available slots of all suported modes (A-A, A-G, NAV, DGFT and MSL OVRD), and define the format (not necessarily the PRIMARY one) that will be firstly displayed on the MFD in use when entering that specific Master Mode in-flight.
+During mission planning in Falcon BMS (2D map screen) the pilot can access the DTC configuration by pressing its corresponding button on the right side bar (see User Manual §§ 5.1 and 9.3.4.2 for extensive explanations on DTC use in-game). In the MODES tab of the DTC configuration menu (see User Manual § 5.1.4 for extensive explanations on hot to set the formats), the pilot can assign any valid format to the three available slots of all suported modes (A-A, A-G, NAV, DGFT and MSL OVRD), and define the format (not necessarily the PRIMARY one) that will be firstly displayed on both MFD when entering that specific Master Mode in-flight.
 
 All modifications to the DTC must be saved and loaded in the 2D map screen before taking off for any mission, as stated in the User Manual §§ 5.1.1, 5.1.9 e 9.4. These customizations are then stored in the DTC and loaded automatically when the pilot takes off. They persist for the duration of the flight, unless the pilot changes them in-flight through the OSB buttons.
 
@@ -462,58 +568,17 @@ A pilot in air-to-air mode has customized the Left MFD as FCR/HSD/TGP. Initially
 
 \label{sec:C4-S4-S3}
 
-\subsubsection{BLANK Format Skipping}
+\paragraph{BLANK Format Skipping:}
 
-\label{sec:C4-S4-S3-S1}
+If one or more format slots are configured as \texttt{BLANK} (meaning no format is assigned to that slot, either by choice or by default), DMS Left/Right pressings will automatically skip the \texttt{BLANK} format slot and advance to the next non-BLANK format slot.
 
-If one or more format slots are configured as BLANK (meaning no format is assigned to that slot, either by choice or by default), cycling automatically skips over BLANK slots and advances to the next non-BLANK slot.
+\paragraph{Non-SOI-Candidate Formats:}
 
-\paragraph*{Example:}
+Some format pages are \textit{not valid} candidates for SOI designation. For example, the SMS (Stores Management System) format is not a valid SOI candidate. If a pilot customizes an MFD to include SMS in one of the three slots, and that specific MFD was SOI before cycling formats, SOI will automaticaly transfered to the ohter MFD.
 
-Configuration: PRIMARY = FCR, SECONDARY = BLANK, TERTIARY = HSD.
+\paragraph{Format Persistence Across Master Mode Change:}
 
-Cycling sequence:
-\begin{itemize}
-
-\item Press DMS Left (once): FCR → [skips BLANK] → HSD
-
-\item Press DMS Left (again): HSD → [skips BLANK] → FCR [wrap-around]
-
-\item Result: Only two visible formats cycle; BLANK is transparent.
-
-\end{itemize}
-
-This automatic skipping means that BLANK slots do \textit{not} create ``pauses'' or ``dead stops'' in cycling. The pilot never sees a BLANK page; cycling flows smoothly from one occupied slot to the next.
-
----
-
-\subsubsection{Non-SOI-Candidate Formats (Edge Case)}
-
-\label{sec:C4-S4-S3-S2}
-
-In certain Master Modes, some format pages are \textit{not valid} candidates for SOI designation. For example, SMS (Stores Management System) is not a valid SOI candidate in air-to-air mode. If a pilot customizes the air-to-air configuration to include SMS in one of the three slots, cycling can advance to SMS. The MFD will display SMS, but the page will show ``NOT SOI'' text, indicating that HOTAS commands routed to this MFD will not affect the SMS page.
-
-\paragraph*{Operational Implication:}
-
-This is an edge case that arises from unusual customizations. For normal operations, pilots should configure the three slots with formats that are valid SOI candidates in the intended Master Mode (e.g., in A-A: FCR, HSD, TGP; in A-G: FCR, TGP, WPN). If a non-candidate format is encountered, the pilot simply cycles to another slot; the behavior is well-defined, and no malfunction occurs.
-
-\textit{Note:} This section flags the edge case for completeness. Detailed behavior (e.g., whether SOI is automatically removed, whether HOTAS inputs are blocked) is beyond the scope of this guide and depends on implementation details documented in \dashref{2.1.1.2.3}.
-
----
-
-\subsubsection{Format Persistence Across Master Mode Change}
-
-\label{sec:C4-S4-S3-S3}
-
-When the pilot changes Master Mode, the displayed format resets to the PRIMARY slot of the new mode. There is \textit{no carryover} of the previously viewed slot.
-
-\paragraph*{Example:}
-
-Pilot is in A-A mode, Left MFD is cycling through FCR/HSD/TGP, and the pilot has advanced to TERTIARY (TGP). The pilot then presses the A-G button to switch to air-to-ground mode. Immediately, the Left MFD resets to PRIMARY of the A-G configuration (let's say it's FCR or SMS, depending on customization). The fact that the pilot was viewing TERTIARY in A-A is not remembered in A-G.
-
-\paragraph*{Why This Design:}
-
-Each Master Mode has a distinct operational context and a distinct three-slot configuration. Automatically resetting to PRIMARY ensures the pilot starts from a known, predictable state in the new mode. This prevents confusion and aligns with the principle that Master Mode transitions should reset the pilot's display focus to the primary sensor of that mode.
+When the pilot changes Master Mode, the displayed formats on both MFD reset to the preferred formats of the actual chosen mode. There is \textit{no carryover} of the previously viewed slot.
 
 %--------------------------------------------------------------------------
 
