@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Main Page -->
+  <url>
+    <loc>https://carlos-nader.github.io/tms-dms-cms-usage-guide/</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Project Management Documentation -->
+  <url>
+    <loc>https://carlos-nader.github.io/tms-dms-cms-usage-guide/briefing-v0.2.0.1.html</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://carlos-nader.github.io/tms-dms-cms-usage-guide/project-tracking-v5.0.0.html</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://carlos-nader.github.io/tms-dms-cms-usage-guide/INTEGRATED-FILES.html</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Development Standards -->
+  <url>
+    <loc>https://carlos-nader.github.io/tms-dms-cms-usage-guide/wip-naming-v1.4.html</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://carlos-nader.github.io/tms-dms-cms-usage-guide/version-system-v4.2.1.html</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Workflow Diagrams -->
+  <url>
+    <loc>https://carlos-nader.github.io/tms-dms-cms-usage-guide/WIP-creation-workflow.png</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://carlos-nader.github.io/tms-dms-cms-usage-guide/WIP-integration-flow-chart.png</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://carlos-nader.github.io/tms-dms-cms-usage-guide/WIP-life-cycle.png</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+</urlset>
