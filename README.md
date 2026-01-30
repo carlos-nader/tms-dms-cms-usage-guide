@@ -1,8 +1,9 @@
-![Forum Views](https://img.shields.io/badge/Forum%20Views-656%20views-brightgreen)
-
-![Forum Views](https://img.shields.io/badge/Forum%20Views-656%20views-brightgreen)
 =======
 # TMS/DMS/CMS Usage Guide for Falcon BMS F-16 Flight Simulator
+
+[![Website](https://img.shields.io/badge/website-online-brightgreen)](https://carlos-nader.github.io/tms-dms-cms-usage-guide/)
+[![GitHub stars](https://img.shields.io/github/stars/carlos-nader/tms-dms-cms-usage-guide?style=social)](https://github.com/carlos-nader/tms-dms-cms-usage-guide)
+[![GitHub forks](https://img.shields.io/github/forks/carlos-nader/tms-dms-cms-usage-guide?style=social)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/fork)
 
 A comprehensive **LaTeX-based technical guide** documenting F-16 HOTAS switch systems (Throttle Management Switch, Data Management Switch, and Countermeasures Management Switch) for Falcon BMS F-16 Flight Simulator.
 
@@ -30,6 +31,19 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 This project develops a structured guide explaining HOTAS functionality across multiple F-16 blocks and international variants. The guide serves both novice and experienced pilots, covering conceptual frameworks, switch actuation, system interactions, and operational nuances grounded in Falcon BMS manuals (Dash-34, Dash-1) and training materials. 
 
 **Current Status:** Pre-publication phase (v0.x.x.x) — Chapter scaffolding and narrative consolidation underway.
+
+---
+
+## 🚀 Quick Start
+
+**New to this guide?** Here's how to get started:
+
+1. **📕 Read the Guide:** [Download PDF](guide.pdf) or [view online](https://carlos-nader.github.io/tms-dms-cms-usage-guide/)
+2. **🌐 Explore the Website:** [Project documentation site](https://carlos-nader.github.io/tms-dms-cms-usage-guide/)
+3. **💬 Join Discussion:** [BMS Forum Thread](https://forum.falcon-bms.com/topic/32541)
+4. **⭐ Star this repo** if you find it useful!
+
+5. **👇Keep browsing this README for more *detailed* information**
 
 ---
 
@@ -293,7 +307,7 @@ For questions, suggestions, or feedback about this guide, please:
 - Open an issue in the repository
 - Review the **Project Tracking** document (in `/docs/`) for current status
 - Check the other **Governance Documents** (in `/docs/`) for workflow details
-- Falcon BMS forum: https://forum.falcon-bms.com/topic/32541/in-development-tms-dms-cms-usage-guide-public-project
+- Falcon BMS Forum: [Thread](https://forum.falcon-bms.com/topic/32541)
 
 ![Gmail](https://img.shields.io/badge/Gmail-D14836?style=plastic=gmail&logoColor=white&logoSize=auto) carlos.snm@gmail.com
 
