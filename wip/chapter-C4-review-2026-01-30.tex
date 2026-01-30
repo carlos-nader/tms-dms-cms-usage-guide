@@ -496,25 +496,21 @@ Below is a list of every possible display pages currently present in Falcon BMS 
 
 During mission planning in Falcon BMS (2D map screen) the pilot can access the DTC configuration by pressing its corresponding button on the right side bar (see User Manual §§ 5.1 and 9.3.4.2 for extensive explanations on DTC use in-game). In the MODES tab of the DTC configuration menu (see User Manual § 5.1.4 for extensive explanations on hot to set the formats), the pilot can assign any valid format to the three available slots of all suported modes (A-A, A-G, NAV, DGFT and MSL OVRD), and define the format (not necessarily the PRIMARY one) that will be firstly displayed on both MFD when entering that specific Master Mode in-flight.
 
-All modifications to the DTC must be saved and loaded in the 2D map screen before taking off for any mission, as stated in the User Manual §§ 5.1.1, 5.1.9 e 9.4. These customizations are then stored in the DTC and loaded automatically when the pilot takes off. They persist for the duration of the flight, unless the pilot changes them in-flight through the OSB buttons.
+All modifications to the DTC must be saved and loaded in the 2D map screen before taking off for any mission, as stated in the User Manual §§ 5.1.1, 5.1.9 e 9.4. These customizations are then stored in the DTC and loaded either manually or automatically when the pilot enters the 3D. They persist for the duration of the flight, unless the pilot changes them in-flight through the OSB buttons.
 
 \subsubsection{Primary, Secondary, and Tertiary format pages}
 
 \label{sec:C4-S4-S2-S3}
 
-\hl{The PRIMARY, SECONDARY, and TERTIARY format pages configured by the pilot are accessed by pressing the corresponding button on the bottom row of each MFD. Each format page corresponds to one of the three central buttons in the lower OSB row of each MFD}:
+The PRIMARY, SECONDARY, and TERTIARY format pages configured by the pilot are accessed by pressing the corresponding button on the bottom row of each MFD. Each format page corresponds to one of the three central buttons in the lower OSB row of each MFD:
 
 \begin{itemize}
-
-\item \textbf{OSB 14 (left button):} PRIMARY slot
-
-\item \textbf{OSB 13 (center button):} SECONDARY slot
-
-\item \textbf{OSB 12 (right button):} TERTIARY slot
-
+    \item \textbf{OSB 14:} PRIMARY slot
+    \item \textbf{OSB 13:} SECONDARY slot
+    \item \textbf{OSB 12:} TERTIARY slot
 \end{itemize}
 
-\hl{The diagram below illustrates the OSB layout in the F-16 MFD}:
+The diagram below illustrates the OSB layout in the F-16 MFD:
 
 \begin{figure}[H]
 	\centering
@@ -523,67 +519,22 @@ All modifications to the DTC must be saved and loaded in the 2D map screen befor
 	\label{fig:f16_MFD}
 \end{figure}
 
-\hl{The three-slot architecture provides mission planning flexibility. During mission planning in the BMS Briefing, the pilot pre-configures which format pages are most useful for a given Master Mode. For instance, in air-to-air mode, the pilot might configure}:
+Pressing the OSB corresponding to each format page is \textit{equivalent} to pressing DMS Left for the Left MDF and DMS Right for the Right MFD. When using DMS Left/Right, the formats will cycle from the inside to the outside of the MFD, in a constant sequencing, allowing pilots to develop muscle memory:
 
 \begin{itemize}
-
-\item PRIMARY (OSB 14) = FCR (Fire Control Radar page)
-
-\item SECONDARY (OSB 13) = HSD (Horizontal Situation Display)
-
-\item TERTIARY (OSB 12) = TGP (Targeting Pod page, for auxiliary visual cues)
-
+	\item \textbf{Left MFD:} OSB 12 → OSB 13 → OSB 14
+	\item \textbf{Right MFD:} OSB 14 → OSB 13 → OSB 12	
 \end{itemize}
 
-\hl{With three slots, the pilot can quickly access the most relevant pages via DMS Left/Right presses. This is especially important in time-critical engagements}.
+The three-slot architecture provides mission planning flexibility. During mission planning in the BMS 2D map screen, the pilot pre-configures which format pages are most useful for a given Master Mode.
 
-\subsubsection{Format Cycling Mechanism: The Wrap-Around Sequence}
+\subsubsection{Cycling Constraints and Edge Cases}
 
 \label{sec:C4-S4-S2-S4}
 
-\paragraph*{Cycling Direction:}
-
-DMS Left and DMS Right advance through format slots in an anti-clockwise direction relative to the OSB button layout. For the Left MFD:
-
-\begin{itemize}
-
-\item DMS Left press 1: PRIMARY (OSB 14) → SECONDARY (OSB 13)
-
-\item DMS Left press 2: SECONDARY (OSB 13) → TERTIARY (OSB 12)
-
-\item DMS Left press 3: TERTIARY (OSB 12) → PRIMARY (OSB 14) [wrap-around]
-
-\item DMS Left press 4: PRIMARY → SECONDARY again [cycle repeats]
-
-\end{itemize}
-
-The same cyclic sequence applies to DMS Right for the Right MFD. The direction is consistent and predictable, allowing pilots to develop muscle memory.
-
-\paragraph*{Wrap-Around Behavior:}
-
-After cycling through TERTIARY, the next DMS press returns to PRIMARY, creating an infinite loop. There is no ``off'' state or ``hold'' position. The cycling is continuous and wrap-around is instantaneous. If a slot is configured as BLANK (unused), cycling skips it automatically and advances to the next occupied slot (see Section~\ref{sec:C4-S4-S3-S1}).
-
-\paragraph*{Press Type: Short Press (Tap Only):}
-
-DMS Left/Right respond to \textbf{short press only} (tap). There is no long-press or continuous-hold variant. A single tap advances to the next format; holding the button does \textit{not} cycle continuously. This behavior is consistent across all Master Modes and all configurations. If the pilot needs to cycle through multiple slots, separate taps are required.
-
-\paragraph*{Example Scenario:}
-
-A pilot in air-to-air mode has customized the Left MFD as FCR/HSD/TGP. Initially, the Left MFD displays FCR (PRIMARY). The pilot wants to check the tactical picture on HSD. The pilot presses DMS Left once. The Left MFD now displays HSD (SECONDARY). The pilot presses DMS Left again. The Left MFD now displays TGP (TERTIARY). The pilot decides to return to FCR. The pilot presses DMS Left once more. The Left MFD displays FCR again (wrap-around from TERTIARY back to PRIMARY). The SOI designation, if Left MFD was SOI, remains unchanged throughout these cycling operations.
-
-%--------------------------------------------------------------------------
-
-% SECTION 4.4.3: CYCLING CONSTRAINTS AND EDGE CASES
-
-%--------------------------------------------------------------------------
-
-\subsection{Cycling Constraints and Edge Cases}
-
-\label{sec:C4-S4-S3}
-
 \paragraph{BLANK Format Skipping:}
 
-If one or more format slots are configured as \texttt{BLANK} (meaning no format is assigned to that slot, either by choice or by default), DMS Left/Right pressings will automatically skip the \texttt{BLANK} format slot and advance to the next non-BLANK format slot.
+If one or more format slots are configured as \texttt{BLANK} (meaning no format is assigned to that slot, either by choice or by default), DMS Left/Right pressings will automatically skip the BLANK format slot and advance to the next non-BLANK format slot.
 
 \paragraph{Non-SOI-Candidate Formats:}
 
@@ -591,17 +542,17 @@ Some format pages are \textit{not valid} candidates for SOI designation. For exa
 
 \paragraph{Format Persistence Across Master Mode Change:}
 
-When the pilot changes Master Mode, the displayed formats on both MFD reset to the preferred formats of the actual chosen mode. There is \textit{no carryover} of the previously viewed slot.
+When the pilot changes Master Mode, the displayed formats on both MFD reset to the preferred formats of the actual chosen mode. There is \textit{no carryover} of the previously displayed slot.
 
 %--------------------------------------------------------------------------
 
-% SECTION 4.4.4: USAGE TABLE
+% SECTION 4.4.3: USAGE TABLE
 
 %--------------------------------------------------------------------------
 
 \subsection{DMS Left/Right Usage Table}
 
-\label{sec:C4-S4-S4}
+\label{sec:C4-S4-S3}
 
 The table below summarizes DMS Left and DMS Right behavior across all Master Modes. Because format cycling is \textit{identical} in all modes, the table shows a single row for each DMS direction, applicable to every Master Mode: A-A (including DGFT and MSL OVRD), A-G and NAV.
 
