@@ -7,8 +7,23 @@ A comprehensive **LaTeX-based technical guide** documenting F-16 HOTAS switch sy
 The author is by no means affiliated to or endorsed by Falcon BMS or its developers. This guide is not an official Falcon BMS guide or manual. It's intended to help the Falcon BMS Community.
 
 ---
+<div align="center">
 
-## 📖 About This Project - ![Perplexity](https://img.shields.io/badge/perplexity-000000?style=for-the-badge&logo=perplexity&logoColor=088F8F)
+#  🚀 **Main Guide File (Current Content Version)** 🚀
+
+![Version](https://img.shields.io/badge/LATEST%20version-v0.3.2.1-yellow?style=for-the-badge&logo=tag&logoColor=black)
+
+---
+[![guide.tex](https://img.shields.io/badge/📄-GUIDE.tex%20(CURRENT%20source)-blue?style=for-the-badge&logo=latex&logoColor=white)](guide.tex) [![PDF Preview](https://img.shields.io/badge/📕-guide.pdf%20(Compiled)-brightgreen?style=for-the-badge&logo=pdf&logoColor=white)](guide.pdf)
+
+**👆 CLICK THE ${\color{lightblue}{BLUE}}$ BADGE ABOVE TO OPEN guide.tex (OR ${\color{lightgreen}{GREEN}}$ ONE FOR THE COMPILED guide.pdf)! 👆**
+</div>
+<br>
+
+---
+## 📖 About This Project
+
+ ![Perplexity](https://img.shields.io/badge/perplexity-000000?style=for-the-badge&logo=perplexity&logoColor=088F8F)
 
 This project develops a structured guide explaining HOTAS functionality across multiple F-16 blocks and international variants. The guide serves both novice and experienced pilots, covering conceptual frameworks, switch actuation, system interactions, and operational nuances grounded in Falcon BMS manuals (Dash-34, Dash-1) and training materials. 
 
