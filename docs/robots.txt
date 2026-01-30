@@ -1,0 +1,9 @@
+# Allow all search engines to index this site
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://carlos-nader.github.io/tms-dms-cms-usage-guide/sitemap.xml
+
+# Crawl delay (prevents aggressive crawling)
+Crawl-delay: 10
