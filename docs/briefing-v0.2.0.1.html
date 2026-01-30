@@ -3,17 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src * 'self' data: https: file:; script-src * 'unsafe-inline'; style-src * 'unsafe-inline' https: file:; font-src * https: file:;">
     <title>Markdown: Rich Preview</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="file:///c%3A%5CUsers%5Ccarlo%5C.vscode%5Cextensions%5Cnur-srijan.markdown-rich-preview-1.2.0%5Cassets%5Cvendor/highlight/styles/github-dark.min.css" onerror="console.error('Failed to load Highlight.js CSS:', this.href)">
+    <link rel="stylesheet" href="file:///c%3A%5CUsers%5Ccarlo%5C.vscode%5Cextensions%5Cnur-srijan.markdown-rich-preview-1.2.0%5Cassets%5Cvendor/katex/katex.min.css" onerror="console.error('Failed to load KaTeX CSS:', this.href)">
     <script>
-        // Initialize highlight.js
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('pre code').forEach((block) => {
-                hljs.highlightElement(block);
-            });
-        });
+        // Highlighting is done on the extension side during markdown parsing.
+        // No browser-side initialization of highlight.js is needed.
 
         // Copy to clipboard function
         function copyToClipboard(button) {
@@ -42,7 +38,6 @@
             line-height: 1.6;
             padding: 0 20px;
         }
-        /* Twemoji emoji image style for inline, text-sized emojis */
         img.emoji {
             height: 1em;
             width: 1em;
@@ -50,68 +45,56 @@
             vertical-align: -0.1em;
             display: inline;
         }
-        
         h1, h2, h3, h4, h5, h6 {
             font-weight: 600;
             margin-top: 24px;
             margin-bottom: 16px;
             line-height: 1.25;
         }
-        
         h1 { 
             font-size: 2em; 
             border-bottom: 1px solid #eaecef; 
             padding-bottom: 0.3em;
             margin-top: 0.67em 0;
         }
-        
         h2 { 
             font-size: 1.5em; 
             border-bottom: 1px solid #eaecef; 
             padding-bottom: 0.3em;
             margin-top: 1.5em;
         }
-        
         h3 { 
             font-size: 1.25em; 
             margin-top: 1.25em;
         }
-        
         h4 { 
             font-size: 1em; 
             margin-top: 1em;
         }
-        
         a { 
             color: #0366d6; 
             text-decoration: none; 
         }
-        
         a:hover { 
             text-decoration: underline; 
         }
-        
         strong { 
             font-weight: 600; 
         }
-        
         pre {
             background-color:rgb(9, 7, 10);
             overflow: auto;
             margin: 0;
         }
-        
         code {
             font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
             padding: 0.2em 0.4em;
             font-size: 90%;
         }
-        
         pre code {
             background-color: transparent;
             padding: 0;
         }
-
         .code-block {
             position: relative;
             background-color:rgb(9, 7, 10);
@@ -120,7 +103,6 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             overflow: hidden;
         }
-
         .code-header {
             display: flex;
             justify-content: space-between;
@@ -130,13 +112,11 @@
             border-top-left-radius: 6px;
             border-top-right-radius: 6px;
         }
-
         .language {
             color: #efe9e9;
             font-size: 0.9em;
             font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
         }
-
         .copy-button {
             padding: 4px 8px;
             font-size: 0.9em;
@@ -147,23 +127,19 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-
         .copy-button:hover {
             background-color: #e9e9e9;
             border-color: #ccc;
         }
-        
         blockquote {
             margin: 0;
             padding: 0 1em;
             color: #6a737d;
             border-left: 0.25em solid #dfe2e5;
         }
-        
         ul, ol {
             padding-left: 2em;
         }
-        
         table {
             border-collapse: collapse;
             border-spacing: 0;
@@ -171,36 +147,116 @@
             overflow: auto;
             margin-bottom: 16px;
         }
-        
         table th {
             font-weight: 600;
         }
-        
         table th, table td {
             padding: 6px 13px;
-            border: 1px solid #dfe2e5;
+            border: 1px solid var(--vscode-editorGroup-border, #dfe2e5);
         }
-        
         table tr {
-            background-color: #fff;
-            border-top: 1px solid #c6cbd1;
+            background-color: var(--vscode-editor-background, #fff);
+            border-top: 1px solid var(--vscode-editorGroup-border, #c6cbd1);
         }
-        
         table tr:nth-child(2n) {
-            background-color: #f6f8fa;
+            background-color: var(--vscode-list-hoverBackground, #f6f8fa);
         }
-        
         img {
             max-width: 100%;
             box-sizing: content-box;
         }
+        /* GitHub-style Alerts */
+        .markdown-alert {
+            padding: 0.25rem 1rem;
+            margin-bottom: 1rem;
+            color: inherit;
+            border-left: 0.25em solid #dfe2e5;
+            border-radius: 6px;
+        }
+        .markdown-alert-title {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            line-height: 1;
+        }
+        .markdown-alert-title svg {
+            margin-right: 8px;
+        }
+        .markdown-alert-note { border-left-color: #0969da; }
+        .markdown-alert-note .markdown-alert-title { color: #0969da; }
+        .markdown-alert-tip { border-left-color: #1a7f37; }
+        .markdown-alert-tip .markdown-alert-title { color: #1a7f37; }
+        .markdown-alert-important { border-left-color: #8250df; }
+        .markdown-alert-important .markdown-alert-title { color: #8250df; }
+        .markdown-alert-warning { border-left-color: #9a6700; }
+        .markdown-alert-warning .markdown-alert-title { color: #9a6700; }
+        .markdown-alert-caution { border-left-color: #d1242f; }
+        .markdown-alert-caution .markdown-alert-title { color: #d1242f; }
+
+        /* Footnotes */
+        .footnotes {
+            font-size: 12px;
+            color: #6a737d;
+            border-top: 1px solid #dfe2e5;
+            margin-top: 24px;
+        }
+        .footnotes ol {
+            padding-left: 16px;
+        }
+        .footnote-backref {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            margin-left: 4px;
+        }
+
+        /* Task Lists */
+        ul.contains-task-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .task-list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 4px;
+        }
+        .task-list-item input[type="checkbox"] {
+            margin: 0.25em 0.5em 0 0;
+            vertical-align: middle;
+        }
+
+        /* Front Matter */
+        .front-matter {
+            margin-bottom: 24px;
+            border: 1px solid var(--vscode-editorGroup-border, #dfe2e5);
+            border-radius: 6px;
+            padding: 12px;
+            background-color: var(--vscode-list-hoverBackground, #f6f8fa);
+        }
+        .front-matter table {
+            margin-bottom: 0;
+            border: none;
+        }
+        .front-matter table tr {
+            background-color: transparent;
+            border: none;
+        }
+        .front-matter table td {
+            border: none;
+            padding: 4px 8px;
+        }
+        .front-matter-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 12px;
+            color: var(--vscode-descriptionForeground, #6a737d);
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
-    <h1>Falcon BMS 4.38.1 — TMS, DMS and CMS Usage Guide: Project Brief</h1>
-<p><strong>Brief Version:</strong> v0.2.0.1-2026-01-18 (License &amp; Contributor Rights Section Added)</p>
-<hr>
-<h2>Repository Identification</h2>
+    <h1 id="falcon-bms-4381--tms-dms-and-cms-usage-guide-project-brief">Falcon BMS 4.38.1 — TMS, DMS and CMS Usage Guide: Project Brief</h1>
+<p><strong>Brief Version:</strong> v0.2.0.1-2026-01-29 (Preamble V1.0 Updated: titlesec Full Hierarchy + Optical Fixes)</p>
+<hr />
+<h2 id="repository-identification">Repository Identification</h2>
 <ul>
 <li>GitHub repository name: <code>carlos-nader/tms-dms-cms-usage-guide</code></li>
 <li>Primary URL: <a href="https://github.com/carlos-nader/tms-dms-cms-usage-guide">https://github.com/carlos-nader/tms-dms-cms-usage-guide</a></li>
@@ -208,8 +264,8 @@
 <li>Canonical guide file: <code>guide.tex</code> (repository root)</li>
 <li>Versioned snapshots: <code>wip/guide/guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex</code></li>
 </ul>
-<hr>
-<h2>0. Context and Working Assumptions</h2>
+<hr />
+<h2 id="0-context-and-working-assumptions">0. Context and Working Assumptions</h2>
 <p>This brief describes how the TMS/DMS/CMS Usage Guide is being built, including:</p>
 <ul>
 <li>Scope, goals and structure of the document.</li>
@@ -220,28 +276,28 @@
 </ul>
 <p>All instructions to the assistant are given in <strong>Portuguese</strong>. All content that goes into the <strong>LaTeX document</strong> (text, tables, captions, macros) is in <strong>English</strong>.</p>
 <p>The guide is currently in <strong>pre-publication regime (0.x.x.x)</strong> and under active development.</p>
-<hr>
-<h2>1. Scope and Goals</h2>
+<hr />
+<h2 id="1-scope-and-goals">1. Scope and Goals</h2>
 <ul>
 <li>The guide focuses only on three HOTAS switches: <strong>TMS, DMS and CMS</strong>.</li>
 <li>Other HOTAS controls (for example NWS/MSL STEP, MAN RNG/UNCAGE, etc.) may be mentioned only when strictly necessary to understand TMS/DMS/CMS behaviour.</li>
 <li>The document is not a full HOTAS or full avionics manual; it is a usage guide for these three switches, organised by context and supported by tables.</li>
 <li>The language of the document is English; style is clear, concise and manual-like, not chatty.</li>
 </ul>
-<h3>1.1 Main Goals</h3>
+<h3 id="11-main-goals">1.1 Main Goals</h3>
 <ul>
 <li>Reorganise information that is spread across the BMS Dash-1, Dash-34 and the BMS Training Manual into context-based tables and short explanations.</li>
-<li>Make it easy for a virtual pilot to answer: &quot;In this mode/sensor/weapon, what does each direction of TMS/DMS/CMS do?&quot;</li>
+<li>Make it easy for a virtual pilot to answer: "In this mode/sensor/weapon, what does each direction of TMS/DMS/CMS do?"</li>
 <li>Cross-reference each table line to:<ul>
 <li>The relevant Dash-34 (and sometimes Dash-1) section.</li>
 <li>One or more BMS training missions where the behaviour can be practised.</li>
 </ul>
 </li>
 </ul>
-<hr>
-<h2>2. Sources to Align With (But Never Limited To)</h2>
+<hr />
+<h2 id="2-sources-to-align-with-but-never-limited-to">2. Sources to Align With (But Never Limited To)</h2>
 <p>When generating or refining content, conceptually align with (but do not copy):</p>
-<h3>2.1 Falcon BMS Dash-34 (TO BMS 1F-16CMAM-34-1-1)</h3>
+<h3 id="21-falcon-bms-dash-34-to-bms-1f-16cmam-34-1-1">2.1 Falcon BMS Dash-34 (TO BMS 1F-16CMAM-34-1-1)</h3>
 <p>Especially, but never limited to:</p>
 <ul>
 <li>Hands-On Controls (HOTAS) section.</li>
@@ -249,19 +305,19 @@
 <li>Defensive avionics (ALE-47, ECM, CMS).</li>
 <li>Weapon-specific chapters (HARM, Maverick, IAMs, SPICE, Harpoon, etc.).</li>
 </ul>
-<h3>2.2 Falcon BMS Dash-1 (TO BMS 1F-16CMAM-1)</h3>
+<h3 id="22-falcon-bms-dash-1-to-bms-1f-16cmam-1">2.2 Falcon BMS Dash-1 (TO BMS 1F-16CMAM-1)</h3>
 <p>Where relevant (overall aircraft systems, master modes, etc.).</p>
-<h3>2.3 Falcon BMS Training Manual 4.38.1</h3>
+<h3 id="23-falcon-bms-training-manual-4381">2.3 Falcon BMS Training Manual 4.38.1</h3>
 <p>Especially, but never limited to:</p>
 <ul>
 <li>Mission descriptions and learning objectives.</li>
 <li>Missions involving SEAD/EW, HARM, IAMs, LGBs, BARCAP, IFF, etc.</li>
 </ul>
 <p><strong>Critical rule:</strong> Never reproduce copyrighted text; always paraphrase in original words.</p>
-<hr>
-<h2>3. Document Structure (LaTeX Already Prepared)</h2>
+<hr />
+<h2 id="3-document-structure-latex-already-prepared">3. Document Structure (LaTeX Already Prepared)</h2>
 <p>Assume there is already a LaTeX template with this structure. Do not change the overall structure or helper macros unless explicitly requested, but suggestions may be made when technically justified. Always generate complete LaTeX files when ordered to generate one.</p>
-<h3>3.1 Chapter Breakdown</h3>
+<h3 id="31-chapter-breakdown">3.1 Chapter Breakdown</h3>
 <p><strong>1. Introduction</strong></p>
 <ul>
 <li>1.1 Scope and purpose.</li>
@@ -288,14 +344,14 @@
 <p><strong>4. DMS — Display Management Switch</strong></p>
 <ul>
 <li>4.1 Concept and Sensor of Interest (SOI).</li>
-<li>4.2 DMS in MFDS format selection and SWAP.</li>
-<li>4.3 DMS in sensor and weapon context.</li>
-<li>4.4 DMS — Block and variant notes.</li>
+<li>4.2 DMS Up: HDU Designation as SOI.</li>
+<li>4.3 DMS Down: Toggle SOI Among Displays.</li>
+<li>4.4 DMS Left/Right.</li>
 </ul>
 <p><strong>5. CMS — Countermeasures Management Switch</strong></p>
 <ul>
-<li>5.1 Concept and interaction with CMDS / ECM.</li>
-<li>5.2 CMS Switch Actuation — main table in subsections using <code>hotastable</code>.</li>
+<li>5.1 Concept and interaction with CMDS / ECM / RWR.</li>
+<li>5.2 CMS Switch Actuation.</li>
 <li>5.3 CMS — Block and variant notes.</li>
 </ul>
 <p><strong>6. Training References and Practical Flows</strong></p>
@@ -309,14 +365,14 @@
 <li>7.1 F-16 HOTAS overview.</li>
 <li>7.2 TMS, DMS, CMS diagrams with arrows and labels.</li>
 </ul>
-<h3>3.2 Appendices</h3>
+<h3 id="32-appendices">3.2 Appendices</h3>
 <ul>
 <li>Block / variant overview.</li>
 <li>Tables index.</li>
 </ul>
-<hr>
-<h2>4. Layout Parameters</h2>
-<h3>4.1 Geometry Configuration (Guide Standard)</h3>
+<hr />
+<h2 id="4-layout-parameters">4. Layout Parameters</h2>
+<h3 id="41-geometry-configuration-guide-standard">4.1 Geometry Configuration (Guide Standard)</h3>
 <ul>
 <li>Page: A4 paper.</li>
 <li>Left margin: 2.0 cm.</li>
@@ -327,24 +383,34 @@
 <li>Standard HOTAS table width: 15.6 cm.</li>
 <li>Line spacing: 1.5× (via <code>\\onehalfspacing</code>).</li>
 </ul>
-<h3>4.2 Table Formatting Standard (hotastable)</h3>
+<h3 id="42-table-formatting-standard-hotastable">4.2 Table Formatting Standard (hotastable)</h3>
 <ul>
 <li>Font size: <code>\\small</code> (10 pt).</li>
 <li>Row height multiplier: <code>\\arraystretch = 1.25</code>.</li>
-<li>Column widths (locked): <code>L{1.6cm}</code>, <code>L{1.0cm}</code>, <code>L{1.0cm}</code>, <code>L{3.4cm}</code>, <code>L{5.8cm}</code>, <code>L{1.4cm}</code>, <code>L{1.4cm}</code>.</li>
+<li>Column widths (locked per updated preamble): <code>L{1.00cm}</code>, <code>L{0.90cm}</code>, <code>L{0.90cm}</code>, <code>L{3.30cm}</code>, <code>L{6.40cm}</code>, <code>L{1.40cm}</code>, <code>L{2.10cm}</code>.</li>
 </ul>
-<hr>
-<h2>5. Style and Content Rules</h2>
-<h3>5.1 General Style</h3>
+<p><strong>Column Layout:</strong></p>
+<ul>
+<li><strong>Mode</strong> (1.00 cm): Master mode or state abbreviation (NAV, A-A, A-G).</li>
+<li><strong>Dir.</strong> (0.90 cm): Direction (Up, Down, Left, Right).</li>
+<li><strong>Act.</strong> (0.90 cm): Actuation type (Short, Long).</li>
+<li><strong>Function</strong> (3.30 cm): Concise function name (e.g., "Cycle SOI between MFDs").</li>
+<li><strong>Effect / Nuance</strong> (6.40 cm): Brief explanation (1-3 sentences) of what happens, interactions, exceptions.</li>
+<li><strong>Dash34</strong> (1.40 cm): Dash-34 section references using <code>\\dashref{}</code>.</li>
+<li><strong>Train.</strong> (2.10 cm): BMS training mission references using <code>\\trnref{}</code> with standardized abbreviations.</li>
+</ul>
+<hr />
+<h2 id="5-style-and-content-rules">5. Style and Content Rules</h2>
+<h3 id="51-general-style">5.1 General Style</h3>
 <ul>
 <li><strong>Language:</strong> English, neutral and technical, similar to a good community manual.</li>
 <li><strong>Length:</strong> Most sections 2–4 short paragraphs.</li>
 <li><strong>Tone:</strong> Explanatory, not conversational.</li>
 <li><strong>Terminology:</strong> Always define acronyms on first use.</li>
 </ul>
-<h3>5.2 Focus</h3>
+<h3 id="52-focus">5.2 Focus</h3>
 <p>Focus is always TMS, DMS and CMS. Mention other controls only when strictly needed.</p>
-<h3>5.3 Intro and &quot;How to Read&quot; Sections</h3>
+<h3 id="53-intro-and-how-to-read-sections">5.3 Intro and "How to Read" Sections</h3>
 <p>The Introduction should clearly explain:</p>
 <ul>
 <li>The unofficial and community-made nature.</li>
@@ -352,51 +418,51 @@
 <li>The role of tables and training-mission references.</li>
 <li>That the visual chapter is a quick reference, not the primary source of truth.</li>
 </ul>
-<hr>
-<h2>6. Column Filling Guidelines for hotastable</h2>
-<h3>6.1 Column 1: State (1.6 cm)</h3>
-<p>Describe the condition or context where this action applies. Use structured format:</p>
+<hr />
+<h2 id="6-column-filling-guidelines-for-hotastable">6. Column Filling Guidelines for hotastable</h2>
+<h3 id="61-column-1-mode-100-cm">6.1 Column 1: Mode (1.00 cm)</h3>
+<p>Describe the master mode or state where this action applies. Use structured format:</p>
 <ul>
-<li>A-A CRM — FCR RWS</li>
-<li>A-G — FCR GM</li>
-<li>NAV — HSD</li>
+<li>A-A CRM</li>
+<li>A-G PRE</li>
+<li>NAV</li>
 </ul>
-<h3>6.2 Column 2: Direction (1.0 cm)</h3>
+<h3 id="62-column-2-dir-090-cm">6.2 Column 2: Dir. (0.90 cm)</h3>
 <p>Use physical directions: Up, Down, Left, Right.</p>
-<h3>6.3 Column 3: Action (1.0 cm)</h3>
+<h3 id="63-column-3-act-090-cm">6.3 Column 3: Act. (0.90 cm)</h3>
 <p>Describe press type:</p>
 <ul>
 <li>Short — quick tap (≤0.6 s)</li>
 <li>Long — press &gt;0.6 s</li>
 </ul>
-<h3>6.4 Column 4: Function (3.4 cm)</h3>
+<h3 id="64-column-4-function-330-cm">6.4 Column 4: Function (3.30 cm)</h3>
 <p>Provide a short name for what the switch does:</p>
 <ul>
 <li>Bug / designate target</li>
 <li>Break track / CZ</li>
 <li>Cycle SOI between MFDs</li>
 </ul>
-<h3>6.5 Column 5: Effect / Nuance (5.8 cm)</h3>
+<h3 id="65-column-5-effect--nuance-640-cm">6.5 Column 5: Effect / Nuance (6.40 cm)</h3>
 <p>Brief explanation (1–3 sentences) of what happens:</p>
 <ul>
 <li>How state changes</li>
 <li>Interactions with other systems</li>
 <li>Exceptions or conditions</li>
 </ul>
-<h3>6.6 Column 6: Dash34 (1.4 cm)</h3>
+<h3 id="66-column-6-dash34-140-cm">6.6 Column 6: Dash34 (1.40 cm)</h3>
 <p>Reference relevant Dash-34 sections using macros:</p>
 <ul>
 <li><code>\\dashref{2.1.5}</code></li>
 <li><code>\\dashref{2.1.5}, \\dashref{2.7.1}</code></li>
 </ul>
-<h3>6.7 Column 7: Train (1.4 cm)</h3>
+<h3 id="67-column-7-train-210-cm">6.7 Column 7: Train. (2.10 cm)</h3>
 <p>Link behaviour to BMS training missions using standardized abbreviations (see Training Mission Reference Table v1.0):</p>
 <ul>
 <li><code>\\trnref{18 (BARCAP)}</code></li>
 <li><code>\\trnref{18 (BARCAP)}, \\trnref{28 (SEAD-EW)}</code></li>
 </ul>
-<hr>
-<h2>7. Rules for the HOTAS Visual Reference Chapter</h2>
+<hr />
+<h2 id="7-rules-for-the-hotas-visual-reference-chapter">7. Rules for the HOTAS Visual Reference Chapter</h2>
 <ul>
 <li>All figures are illustrative, not official.</li>
 <li>Style should be schematic, similar to technical drawings.</li>
@@ -404,9 +470,9 @@
 <li>Keep diagram text extremely short (a few words per arrow).</li>
 <li>Rely on tables for detailed explanations.</li>
 </ul>
-<hr>
-<h2>8. Professional Standards for AI-Assisted Content Development</h2>
-<h3>8.1 Communication Principles</h3>
+<hr />
+<h2 id="8-professional-standards-for-ai-assisted-content-development">8. Professional Standards for AI-Assisted Content Development</h2>
+<h3 id="81-communication-principles">8.1 Communication Principles</h3>
 <ol>
 <li><strong>Professional rigour</strong> — All analysis must be grounded in primary sources and technical accuracy.</li>
 <li><strong>No condescension</strong> — Treat the human author as the subject-matter expert and decision-maker.</li>
@@ -415,8 +481,8 @@
 <li><strong>Structural integrity</strong> — Analyze organizational changes against actual use cases and operational contexts.</li>
 <li><strong>Explicit scope boundaries</strong> — Clearly distinguish between what applies to all blocks/variants vs. specific ones, and what is in scope vs. out of scope.</li>
 </ol>
-<hr>
-<h2>9. How to Work With This Brief</h2>
+<hr />
+<h2 id="9-how-to-work-with-this-brief">9. How to Work With This Brief</h2>
 <ul>
 <li>The human author will issue instructions in Portuguese.</li>
 <li>The assistant should generate or modify LaTeX snippets that fit cleanly into the existing template.</li>
@@ -425,16 +491,16 @@
 <li>Provide rigorous analysis grounded in primary sources.</li>
 <li>Suggest structural improvements only when grounded in technical analysis and with explicit approval.</li>
 </ul>
-<hr>
-<h2>10. Version Control System</h2>
+<hr />
+<h2 id="10-version-control-system">10. Version Control System</h2>
 <p>This section provides a high-level overview of versioning. The authoritative rules are defined in <strong>VERSION-SYSTEM-v4.2.1</strong>. In case of discrepancy between this brief and that document, Version System v4.2.1 is the single source of truth.</p>
-<h3>10.1 Purpose and Scope</h3>
+<h3 id="101-purpose-and-scope">10.1 Purpose and Scope</h3>
 <ul>
 <li>Ensure the guide and its LaTeX sources use a consistent versioning scheme.</li>
 <li>Provide a quick reference so AI-assisted and human edits do not invent ad-hoc version numbers.</li>
 <li>Clarify how version macros in the LaTeX preamble relate to file names, snapshots, and the project tracking document.</li>
 </ul>
-<h3>10.2 Repository Structure for the Guide</h3>
+<h3 id="102-repository-structure-for-the-guide">10.2 Repository Structure for the Guide</h3>
 <ul>
 <li><p><strong>Canonical file in repository root:</strong> <code>guide.tex</code></p>
 <ul>
@@ -462,7 +528,7 @@
 </ul>
 </li>
 </ul>
-<h3>10.3 LaTeX Version Macros</h3>
+<h3 id="103-latex-version-macros">10.3 LaTeX Version Macros</h3>
 <p>The LaTeX preamble must contain:</p>
 <ul>
 <li><code>\\newcommand{\\docversion}{...}</code></li>
@@ -474,7 +540,7 @@
 <li>The version in the snapshot file name</li>
 <li>The entry in PROJECT-TRACKING document</li>
 </ul>
-<h3>10.4 Two Regimes: Pre-publication (0.x.x.x) and Post-publication (≥ 1.0)</h3>
+<h3 id="104-two-regimes-pre-publication-0xxx-and-post-publication--10">10.4 Two Regimes: Pre-publication (0.x.x.x) and Post-publication (≥ 1.0)</h3>
 <ul>
 <li><p><strong>Pre-publication (0.x.x.x):</strong></p>
 <ul>
@@ -492,42 +558,42 @@
 </ul>
 </li>
 </ul>
-<hr>
-<h2>11. License &amp; Contributor Rights</h2>
-<h3>11.1 Project License</h3>
+<hr />
+<h2 id="11-license--contributor-rights">11. License &amp; Contributor Rights</h2>
+<h3 id="111-project-license">11.1 Project License</h3>
 <p>This project and all work contributed to it (guide.tex, WIP files, templates, governance documents) is released under:</p>
 <p><strong>Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</strong></p>
 <p><strong>Full license:</strong> <a href="https://creativecommons.org/licenses/by-nc/4.0/">https://creativecommons.org/licenses/by-nc/4.0/</a></p>
-<h3>11.2 What This Means for Contributors</h3>
-<h4>You Can Do:</h4>
+<h3 id="112-what-this-means-for-contributors">11.2 What This Means for Contributors</h3>
+<h4 id="you-can-do">You Can Do:</h4>
 <ul>
 <li><strong>Use and Share:</strong> Copy, distribute, print, and share this guide freely</li>
 <li><strong>Translate:</strong> Translate into other languages (translations also CC BY-NC)</li>
 <li><strong>Adapt &amp; Integrate:</strong> Use sections within your own works (e.g., include TMS explanation in your tactical guide)</li>
 <li><strong>Improve:</strong> Create enhanced versions with corrections, additional tables, or new sections</li>
 </ul>
-<h4>You Cannot Do:</h4>
+<h4 id="you-cannot-do">You Cannot Do:</h4>
 <ul>
 <li><strong>Monetize:</strong> You cannot sell this guide or any derivative work</li>
 <li><strong>Claim Ownership:</strong> Derivatives cannot claim official status; must indicate source and original author</li>
 </ul>
-<h4>Attribution Required:</h4>
+<h4 id="attribution-required">Attribution Required:</h4>
 <p>All contributions and derivatives must include:</p>
 <ol>
-<li>Title: &quot;TMS, DMS, CMS Usage Guide for Falcon BMS&quot;</li>
-<li>Author: &quot;Carlos &#39;Metal&#39; Nader&quot;</li>
+<li>Title: "TMS, DMS, CMS Usage Guide for Falcon BMS"</li>
+<li>Author: "Carlos 'Metal' Nader"</li>
 <li>Source: <a href="https://github.com/carlos-nader/tms-dms-cms-usage-guide">https://github.com/carlos-nader/tms-dms-cms-usage-guide</a></li>
-<li>License: &quot;CC BY-NC 4.0&quot; with link to creativecommons.org/licenses/by-nc/4.0/</li>
+<li>License: "CC BY-NC 4.0" with link to creativecommons.org/licenses/by-nc/4.0/</li>
 </ol>
-<h3>11.3 Contributing Work to This Project</h3>
+<h3 id="113-contributing-work-to-this-project">11.3 Contributing Work to This Project</h3>
 <p>When you create WIP files (sections, tables, visuals, notes) that are integrated into this guide:</p>
 <ul>
 <li>Your contribution becomes part of a CC BY-NC 4.0 work</li>
 <li>You retain authorship credit (metadata blocks capture author/AI indication)</li>
-<li>The project author (Carlos &quot;Metal&quot; Nader) retains responsibility for final accuracy and presentation</li>
+<li>The project author (Carlos "Metal" Nader) retains responsibility for final accuracy and presentation</li>
 <li>Your work will be accessible and free to the Falcon BMS community</li>
 </ul>
-<h3>11.4 Governance &amp; Tracking</h3>
+<h3 id="114-governance--tracking">11.4 Governance &amp; Tracking</h3>
 <p>License status and contributor rights are documented in:</p>
 <ul>
 <li><strong>LICENSE file:</strong> Full CC BY-NC 4.0 legal text (repository root)</li>
@@ -536,11 +602,11 @@
 <li><strong>WIP files metadata:</strong> Author/AI indication in all WIP files</li>
 <li><strong>PROJECT-TRACKING:</strong> Attribution and copyright notes in session logs</li>
 </ul>
-<h3>11.5 Special Case: Official Versions</h3>
-<p>The project author (Carlos &quot;Metal&quot; Nader) publishes <strong>official versions</strong> (v1.0.0, v2.0.0, etc.) on GitHub. While the CC BY-NC license permits community members to create enhanced versions, the <strong>official repository</strong> remains the canonical source for the community.</p>
-<hr>
-<h2>12. WIP File Template and LaTeX Preamble Architecture</h2>
-<h3>12.1 Purpose and Location</h3>
+<h3 id="115-special-case-official-versions">11.5 Special Case: Official Versions</h3>
+<p>The project author (Carlos "Metal" Nader) publishes <strong>official versions</strong> (v1.0.0, v2.0.0, etc.) on GitHub. While the CC BY-NC license permits community members to create enhanced versions, the <strong>official repository</strong> remains the canonical source for the community.</p>
+<hr />
+<h2 id="12-wip-file-template-and-latex-preamble-architecture">12. WIP File Template and LaTeX Preamble Architecture</h2>
+<h3 id="121-purpose-and-location">12.1 Purpose and Location</h3>
 <p>All work-in-progress files <strong>MUST</strong> be created by copying and adapting:</p>
 
                 <div class="code-block">
@@ -562,27 +628,448 @@
 <li>Content structures aligned with brief expectations</li>
 <li>Automated or semi-automated integration into guide.tex</li>
 </ul>
-<h3>12.2 What the Template Provides</h3>
+<p><strong>Status:</strong> Template V1.0 updated (29 January 2026) with enhanced preamble architecture (titlesec full hierarchy, optical fixes, professional two-sided layout).</p>
+<h3 id="122-what-the-template-provides">12.2 What the Template Provides</h3>
 <ol>
 <li><strong>Standard preamble</strong> (packages, geometry, macros) identical to <code>guide.tex</code></li>
 <li><strong>Metadata block</strong> (non-rendered comments for tracking)</li>
 <li><strong>Section/subsection skeleton</strong> with proper hierarchy</li>
 <li><strong>Configured hotastable environment</strong> with 7-column HOTAS layout</li>
 </ol>
-<h3>12.3 Preamble Highlights</h3>
-<ul>
-<li>Document class: <code>report</code> with <code>twoside</code> option (double-sided layout)</li>
-<li>Geometry: A4, 2.0 cm left/right, 2.5 cm top/bottom, 1.5× line spacing</li>
-<li>Headers/footers: Professional two-sided configuration</li>
-<li>Chapter formatting: <code>titlesec</code> for consistent styling</li>
-<li>Tables: <code>booktabs</code>, <code>longtable</code>, <code>tabularx</code> with custom columns</li>
-<li>Graphics: <code>graphicx</code> with <code>fig/</code> path, <code>float</code> for position control</li>
-<li>Colors: Professional palette with <code>xcolor[table]</code></li>
-<li>Hyperlinks: Clickable PDF with <code>hyperref</code></li>
-<li>Reference macros: <code>\\dashref{}</code>, <code>\\trnref{}</code>, <code>\\bmsver</code>, etc.</li>
-<li>Version macros: <code>\\docversion</code>, <code>\\docbuild</code>, <code>\\fulldocversion</code></li>
+<h3 id="123-preamble-architecture-updated-v10">12.3 Preamble Architecture (Updated V1.0)</h3>
+<p>The preamble in <code>TEMPLATES/template-wip-V1.0.tex</code> and <code>guide.tex</code> is now organized into the following sections:</p>
+<h4 id="1231-document-class">12.3.1 Document Class</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\documentclass</span>[11pt, a4paper, twoside]{report}</code></pre>
+                </div>
+            <ul>
+<li><strong><code>report</code> class:</strong> Professional multi-chapter documents with chapter-level hierarchy</li>
+<li><strong><code>twoside</code> option:</strong> Optimized for double-sided printing (alternating header/footer layout)</li>
+<li><strong>Font size:</strong> 11pt base (readable on screen and print)</li>
 </ul>
-<h3>12.4 Metadata Block Format</h3>
+<h4 id="1232-basic-encoding-and-language">12.3.2 Basic Encoding and Language</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\usepackage</span>[utf8]{inputenc}
+<span class="hljs-keyword">\usepackage</span>[T1]{fontenc}
+<span class="hljs-keyword">\usepackage</span>[english]{babel}</code></pre>
+                </div>
+            <ul>
+<li><strong>UTF-8 encoding:</strong> Full Unicode support for international characters</li>
+<li><strong>T1 font encoding:</strong> Proper hyphenation and accented characters</li>
+<li><strong>English language:</strong> Hyphenation rules and babel localization</li>
+</ul>
+<h4 id="1233-fonts-and-microtypography">12.3.3 Fonts and Microtypography</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\usepackage</span>{lmodern}
+<span class="hljs-keyword">\usepackage</span>{microtype}</code></pre>
+                </div>
+            <ul>
+<li><strong>Latin Modern fonts:</strong> High-quality, scalable fonts for screen and print</li>
+<li><strong>Microtype:</strong> Subtle typographic refinements (character protrusion, font expansion)</li>
+</ul>
+<h4 id="1234-page-geometry-and-layout">12.3.4 Page Geometry and Layout</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\usepackage</span>{geometry}
+<span class="hljs-keyword">\geometry</span>{a4paper, left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
+<span class="hljs-keyword">\usepackage</span>{setspace}
+<span class="hljs-keyword">\onehalfspacing</span></code></pre>
+                </div>
+            <ul>
+<li><strong>A4 paper:</strong> International standard (210 × 297 mm)</li>
+<li><strong>Margins:</strong> Symmetric 2.0 cm left/right, 2.5 cm top/bottom</li>
+<li><strong>Text width:</strong> 17.0 cm (calculated)</li>
+<li><strong>Line spacing:</strong> 1.5× for readability</li>
+</ul>
+<h4 id="1235-colors-and-links">12.3.5 Colors and Links</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\usepackage</span>[table]{xcolor}
+<span class="hljs-keyword">\definecolor</span>{linkblue}{HTML}{004488}
+<span class="hljs-keyword">\definecolor</span>{linkred}{HTML}{882222}
+<span class="hljs-keyword">\definecolor</span>{headerblue}{HTML}{003366}
+<span class="hljs-keyword">\definecolor</span>{rowgray}{HTML}{F5F5F5}
+<span class="hljs-keyword">\definecolor</span>{subheadgray}{HTML}{E0E0E0}
+
+<span class="hljs-keyword">\usepackage</span>{soul}
+<span class="hljs-keyword">\usepackage</span>[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, 
+            citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+<span class="hljs-keyword">\usepackage</span>{bookmark}
+<span class="hljs-keyword">\usepackage</span>{caption}
+<span class="hljs-keyword">\captionsetup</span>{font=small, labelfont=bf, justification=centering, singlelinecheck=true}</code></pre>
+                </div>
+            <ul>
+<li><strong>xcolor[table]:</strong> Color support with table row coloring</li>
+<li><strong>Custom colors:</strong> Professional palette (linkblue, linkred, headerblue, rowgray, subheadgray)</li>
+<li><strong>soul:</strong> Text highlighting and underlining</li>
+<li><strong>hyperref:</strong> Clickable PDF links with custom colors, line-breaking support</li>
+<li><strong>bookmark:</strong> Enhanced PDF bookmarks</li>
+<li><strong>caption:</strong> Professional figure/table captions (small font, bold labels, centered)</li>
+</ul>
+<h4 id="1236-headers-and-footers-improved-for-two-sided-layout">12.3.6 Headers and Footers (Improved for Two-Sided Layout)</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\usepackage</span>{fancyhdr}
+<span class="hljs-keyword">\setlength</span>{<span class="hljs-keyword">\headheight</span>}{25pt} <span class="hljs-comment">% Increased from 15pt for long chapter names</span>
+<span class="hljs-keyword">\pagestyle</span>{fancy}
+<span class="hljs-keyword">\fancyhf</span>{} <span class="hljs-comment">% Clear all</span>
+<span class="hljs-keyword">\fancyhead</span>[LO,RE]{<span class="hljs-keyword">\small</span><span class="hljs-keyword">\textit</span>{<span class="hljs-keyword">\leftmark</span>}} <span class="hljs-comment">% Outer edge: chapter name</span>
+<span class="hljs-keyword">\fancyhead</span>[RO,LE]{<span class="hljs-keyword">\small</span><span class="hljs-keyword">\thepage</span>}           <span class="hljs-comment">% Inner edge: page number</span>
+<span class="hljs-keyword">\fancyfoot</span>{}                                <span class="hljs-comment">% No footer</span>
+<span class="hljs-keyword">\renewcommand</span>{<span class="hljs-keyword">\headrulewidth</span>}{0.4pt}
+<span class="hljs-keyword">\renewcommand</span>{<span class="hljs-keyword">\footrulewidth</span>}{0pt}</code></pre>
+                </div>
+            <ul>
+<li><strong>fancyhdr:</strong> Custom header/footer control</li>
+<li><strong>headheight:</strong> Increased to 25pt (accommodates long chapter names without warnings)</li>
+<li><strong>Two-sided layout:</strong><ul>
+<li><strong>Odd pages (recto):</strong> Chapter name left, page number right</li>
+<li><strong>Even pages (verso):</strong> Page number left, chapter name right</li>
+</ul>
+</li>
+<li><strong>Header rule:</strong> 0.4pt line separating header from content</li>
+<li><strong>No footer:</strong> All pagination in header</li>
+</ul>
+<h4 id="1237-chapter-formatting-and-spacing-via-titlesec">12.3.7 Chapter Formatting and Spacing (via titlesec)</h4>
+<p>Complete hierarchy with optical refinements:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\usepackage</span>{titlesec}</code></pre>
+                </div>
+            <table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Shape</th>
+<th>Font</th>
+<th>Spacing (Before/After)</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>chapter</strong></td>
+<td>display</td>
+<td><code>\Large\bfseries</code></td>
+<td>15pt / 28pt</td>
+<td>Maximum prominence; standalone on new line; increased spacing after for visual separation</td>
+</tr>
+<tr>
+<td><strong>section</strong></td>
+<td>hang</td>
+<td><code>\large\bfseries</code></td>
+<td>15pt / 8pt</td>
+<td>Compact; label left, body indented; reduced spacing for density</td>
+</tr>
+<tr>
+<td><strong>subsection</strong></td>
+<td>hang</td>
+<td><code>\normalsize\bfseries</code></td>
+<td>12pt / 6pt</td>
+<td>Reduced visual weight; still bold for hierarchy clarity</td>
+</tr>
+<tr>
+<td><strong>subsubsection</strong></td>
+<td>hang</td>
+<td><code>\normalsize\bfseries</code></td>
+<td>10pt / 4pt</td>
+<td>Compressed spacing for maximum compactness</td>
+</tr>
+<tr>
+<td><strong>paragraph</strong></td>
+<td>runin</td>
+<td><code>\small\bfseries</code></td>
+<td>8pt / 1em</td>
+<td><strong>Optical fix:</strong> Small font compensates for bold's "optical illusion" (appears larger); inline with text; added vertical separation (8pt before, 1em after)</td>
+</tr>
+<tr>
+<td><strong>subparagraph</strong></td>
+<td>runin</td>
+<td><code>\small</code> (no bold)</td>
+<td>8pt / 1em</td>
+<td>Less prominence than paragraph; prepared for future use</td>
+</tr>
+</tbody></table>
+<p><strong>Key innovation:</strong> The <code>\paragraph</code> level uses <code>\small\bfseries</code> to resolve the "optical illusion" where bold text at normal size appears disproportionately large when inline. Reduced font size + bold achieves visual balance.</p>
+<p><strong>Code example (paragraph level):</strong></p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\titleformat</span>{<span class="hljs-keyword">\paragraph</span>}[runin]
+  {<span class="hljs-keyword">\normalfont</span><span class="hljs-keyword">\small</span><span class="hljs-keyword">\bfseries</span>} <span class="hljs-comment">% Format: SMALL + bold (optical compensation)</span>
+  {}                            <span class="hljs-comment">% Label: empty (no numbering)</span>
+  {0em}                         <span class="hljs-comment">% Space between label and body (zero, runin)</span>
+  {}                            <span class="hljs-comment">% Body title (inherits format)</span>
+<span class="hljs-keyword">\titlespacing</span>{<span class="hljs-keyword">\paragraph</span>}
+  {0pt}  <span class="hljs-comment">% Left margin (no indent)</span>
+  {8pt}  <span class="hljs-comment">% Space BEFORE title (vertical separation added)</span>
+  {1em}  <span class="hljs-comment">% Space AFTER title (horizontal space after ":")</span>
+  [0pt]  <span class="hljs-comment">% Right margin</span></code></pre>
+                </div>
+            <h4 id="1238-tables-and-macros">12.3.8 Tables and Macros</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\usepackage</span>{booktabs}
+<span class="hljs-keyword">\usepackage</span>{array}
+<span class="hljs-keyword">\usepackage</span>{longtable}
+<span class="hljs-keyword">\usepackage</span>{tabularx}
+
+<span class="hljs-comment">% Custom Columns</span>
+<span class="hljs-keyword">\newcolumntype</span>{L}[1]{&gt;{<span class="hljs-keyword">\raggedright</span><span class="hljs-keyword">\arraybackslash</span>}p{<span class="hljs-params">#1</span>}}
+<span class="hljs-keyword">\newcolumntype</span>{C}[1]{&gt;{<span class="hljs-keyword">\centering</span><span class="hljs-keyword">\arraybackslash</span>}p{<span class="hljs-params">#1</span>}}
+<span class="hljs-keyword">\newcolumntype</span>{R}[1]{&gt;{<span class="hljs-keyword">\raggedleft</span><span class="hljs-keyword">\arraybackslash</span>}p{<span class="hljs-params">#1</span>}}
+
+<span class="hljs-comment">% Macro for Visual Reference Links</span>
+<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\imglink</span>}[1]{<span class="hljs-keyword">\hspace</span>{2pt}<span class="hljs-keyword">\hyperref</span>[<span class="hljs-params">#1</span>]{<span class="hljs-keyword">\scriptsize</span><span class="hljs-keyword">\textbf</span>{[Fig]}}}</code></pre>
+                </div>
+            <ul>
+<li><strong>booktabs:</strong> Professional table rules (toprule, midrule, bottomrule)</li>
+<li><strong>array:</strong> Enhanced column definitions</li>
+<li><strong>longtable:</strong> Multi-page tables with repeating headers</li>
+<li><strong>tabularx:</strong> Auto-width columns</li>
+<li><strong>Custom columns:</strong> <code>L{width}</code> (left), <code>C{width}</code> (center), <code>R{width}</code> (right)</li>
+<li><strong>imglink macro:</strong> Inline figure references in tables</li>
+</ul>
+<h4 id="1239-hotas-table-environment-hotastable">12.3.9 HOTAS Table Environment (hotastable)</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\newenvironment</span>{hotastable}[1]{<span class="hljs-comment">%</span>
+  <span class="hljs-keyword">\small</span>
+  <span class="hljs-keyword">\setlength</span>{<span class="hljs-keyword">\tabcolsep</span>}{2pt}
+  <span class="hljs-keyword">\renewcommand</span>{<span class="hljs-keyword">\arraystretch</span>}{1.25}
+  <span class="hljs-keyword">\begin</span>{longtable}{L{1.00cm} L{0.90cm} L{0.90cm} L{3.30cm} L{6.40cm} L{1.40cm} L{2.10cm}}
+  <span class="hljs-keyword">\caption</span>{<span class="hljs-params">#1</span>}<span class="hljs-keyword">\\</span>
+  <span class="hljs-keyword">\rowcolor</span>{headerblue}
+  <span class="hljs-keyword">\multicolumn</span>{1}{&gt;{<span class="hljs-keyword">\centering</span><span class="hljs-keyword">\arraybackslash</span>}p{1.00cm}}{<span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Mode}} <span class="hljs-built_in">&amp;</span>
+  <span class="hljs-keyword">\multicolumn</span>{1}{&gt;{<span class="hljs-keyword">\centering</span><span class="hljs-keyword">\arraybackslash</span>}p{0.90cm}}{<span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Dir.}} <span class="hljs-built_in">&amp;</span>
+  <span class="hljs-keyword">\multicolumn</span>{1}{&gt;{<span class="hljs-keyword">\centering</span><span class="hljs-keyword">\arraybackslash</span>}p{0.90cm}}{<span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Act.}} <span class="hljs-built_in">&amp;</span>
+  <span class="hljs-keyword">\multicolumn</span>{1}{&gt;{<span class="hljs-keyword">\centering</span><span class="hljs-keyword">\arraybackslash</span>}p{3.30cm}}{<span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Function}} <span class="hljs-built_in">&amp;</span>
+  <span class="hljs-keyword">\multicolumn</span>{1}{&gt;{<span class="hljs-keyword">\centering</span><span class="hljs-keyword">\arraybackslash</span>}p{6.40cm}}{<span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Effect / Nuance}} <span class="hljs-built_in">&amp;</span>
+  <span class="hljs-keyword">\multicolumn</span>{1}{&gt;{<span class="hljs-keyword">\centering</span><span class="hljs-keyword">\arraybackslash</span>}p{1.40cm}}{<span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Dash34}} <span class="hljs-built_in">&amp;</span>
+  <span class="hljs-keyword">\multicolumn</span>{1}{&gt;{<span class="hljs-keyword">\centering</span><span class="hljs-keyword">\arraybackslash</span>}p{2.10cm}}{<span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Train.}} <span class="hljs-keyword">\\</span>
+  <span class="hljs-keyword">\endfirsthead</span>
+  <span class="hljs-keyword">\rowcolor</span>{headerblue}
+  <span class="hljs-keyword">\multicolumn</span>{1}{&gt;{<span class="hljs-keyword">\centering</span><span class="hljs-keyword">\arraybackslash</span>}p{1.00cm}}{<span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Mode}} <span class="hljs-built_in">&amp;</span>
+  <span class="hljs-keyword">\multicolumn</span>{1}{&gt;{<span class="hljs-keyword">\centering</span><span class="hljs-keyword">\arraybackslash</span>}p{0.90cm}}{<span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Dir.}} <span class="hljs-built_in">&amp;</span>
+  <span class="hljs-keyword">\multicolumn</span>{1}{&gt;{<span class="hljs-keyword">\centering</span><span class="hljs-keyword">\arraybackslash</span>}p{0.90cm}}{<span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Act.}} <span class="hljs-built_in">&amp;</span>
+  <span class="hljs-keyword">\multicolumn</span>{1}{&gt;{<span class="hljs-keyword">\centering</span><span class="hljs-keyword">\arraybackslash</span>}p{3.30cm}}{<span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Function}} <span class="hljs-built_in">&amp;</span>
+  <span class="hljs-keyword">\multicolumn</span>{1}{&gt;{<span class="hljs-keyword">\centering</span><span class="hljs-keyword">\arraybackslash</span>}p{6.40cm}}{<span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Effect / Nuance}} <span class="hljs-built_in">&amp;</span>
+  <span class="hljs-keyword">\multicolumn</span>{1}{&gt;{<span class="hljs-keyword">\centering</span><span class="hljs-keyword">\arraybackslash</span>}p{1.40cm}}{<span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Dash34}} <span class="hljs-built_in">&amp;</span>
+  <span class="hljs-keyword">\multicolumn</span>{1}{&gt;{<span class="hljs-keyword">\centering</span><span class="hljs-keyword">\arraybackslash</span>}p{2.10cm}}{<span class="hljs-keyword">\textbf</span>{<span class="hljs-keyword">\color</span>{white}Train.}} <span class="hljs-keyword">\\</span>
+  <span class="hljs-keyword">\endhead</span>
+  <span class="hljs-keyword">\multicolumn</span>{7}{r}{<span class="hljs-keyword">\small</span><span class="hljs-keyword">\emph</span>{Continued on next page}}<span class="hljs-keyword">\\</span>
+  <span class="hljs-keyword">\endfoot</span>
+  <span class="hljs-keyword">\endlastfoot</span>
+}{<span class="hljs-comment">%</span>
+  <span class="hljs-keyword">\end</span>{longtable}
+}</code></pre>
+                </div>
+            <ul>
+<li><strong>Column widths:</strong> Optimized for 15.6 cm total width (Mode 1.00, Dir. 0.90, Act. 0.90, Function 3.30, Effect/Nuance 6.40, Dash34 1.40, Train. 2.10)</li>
+<li><strong>Header repeat:</strong> Blue header row repeats on every page (<code>\endfirsthead</code>, <code>\endhead</code>)</li>
+<li><strong>Footer:</strong> "Continued on next page" on all but last page</li>
+<li><strong>Compact spacing:</strong> <code>\tabcolsep{2pt}</code>, <code>\arraystretch{1.25}</code></li>
+</ul>
+<h4 id="12310-simple-reference-macros-for-bms-docs">12.3.10 Simple Reference Macros for BMS Docs</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\providecommand</span>{<span class="hljs-keyword">\dashref</span>}[1]{Dash-34~<span class="hljs-keyword">\S</span>~<span class="hljs-params">#1</span>}
+<span class="hljs-keyword">\providecommand</span>{<span class="hljs-keyword">\dashone</span>}[1]{Dash-1~<span class="hljs-keyword">\S</span>~<span class="hljs-params">#1</span>}
+<span class="hljs-keyword">\providecommand</span>{<span class="hljs-keyword">\trnref</span>}[1]{TRN~<span class="hljs-params">#1</span>}
+<span class="hljs-keyword">\providecommand</span>{<span class="hljs-keyword">\trnman</span>}{BMS Training Manual 4.38.1}
+<span class="hljs-keyword">\providecommand</span>{<span class="hljs-keyword">\bmsver</span>}{Falcon BMS~4.38.1}
+<span class="hljs-keyword">\providecommand</span>{<span class="hljs-keyword">\dashrefs</span>}[1]{<span class="hljs-keyword">\textit</span>{TO 1F-16CMAM-34-1-1}, Dash-34, sections <span class="hljs-keyword">\texttt</span>{<span class="hljs-params">#1</span>}}</code></pre>
+                </div>
+            <ul>
+<li><strong>dashref:</strong> Dash-34 section references (<code>\dashref{2.1.5}</code> → "Dash-34 § 2.1.5")</li>
+<li><strong>dashone:</strong> Dash-1 section references</li>
+<li><strong>trnref:</strong> Training mission references (<code>\trnref{18 (BARCAP)}</code> → "TRN 18 (BARCAP)")</li>
+<li><strong>trnman:</strong> Full training manual title</li>
+<li><strong>bmsver:</strong> BMS version string</li>
+<li><strong>dashrefs:</strong> Extended Dash-34 citation</li>
+</ul>
+<h4 id="12311-version-control-macros">12.3.11 Version Control Macros</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\docversion</span>}{0.3.2.0}
+<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\docbuild</span>}{20260119}
+<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\docstartdate</span>}{05 January 2026}
+<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\docenddate</span>}{19 January 2026}
+<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\chapterscompletedof</span>}{3/7}
+<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\tablesfilledpct</span>}{Chapter 5 and Chapter 4 - 4.1, 4.2 and 4.3}
+<span class="hljs-keyword">\newcommand</span>{<span class="hljs-keyword">\fulldocversion</span>}{<span class="hljs-keyword">\docversion</span>+<span class="hljs-keyword">\docbuild</span>}</code></pre>
+                </div>
+            <ul>
+<li><strong>docversion:</strong> Semantic version (MAJOR.MINOR.PATCH.SUBPATCH)</li>
+<li><strong>docbuild:</strong> Build date (YYYYMMDD)</li>
+<li><strong>fulldocversion:</strong> Combined version string</li>
+<li><strong>Progress tracking:</strong> Chapters completed, tables filled status</li>
+</ul>
+<h4 id="12312-graphics">12.3.12 Graphics</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\usepackage</span>{graphicx}
+<span class="hljs-keyword">\graphicspath</span>{{fig/}}
+<span class="hljs-keyword">\usepackage</span>{float}</code></pre>
+                </div>
+            <ul>
+<li><strong>graphicx:</strong> Image inclusion (<code>\includegraphics</code>)</li>
+<li><strong>graphicspath:</strong> Default directory for figures</li>
+<li><strong>float:</strong> Enhanced float positioning control (<code>[H]</code> for "exactly here")</li>
+</ul>
+<h4 id="12313-title-and-toc-configuration">12.3.13 Title and TOC Configuration</h4>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="language">latex</span>
+                        <button class="copy-button" onclick="copyToClipboard(this)" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <pre><code class="hljs language-latex"><span class="hljs-keyword">\title</span>{TMS, DMS and CMS Usage Guide for <span class="hljs-keyword">\bmsver</span>}
+<span class="hljs-keyword">\author</span>{Carlos ``Metal'' Nader}
+<span class="hljs-keyword">\date</span>{Version <span class="hljs-keyword">\fulldocversion</span>{} | Progress: Chapters <span class="hljs-keyword">\chapterscompletedof</span>{} | 
+      Tables <span class="hljs-keyword">\tablesfilledpct</span>{} | January 2026}
+
+<span class="hljs-keyword">\begin</span>{document}
+<span class="hljs-keyword">\maketitle</span>
+<span class="hljs-keyword">\pagenumbering</span>{roman}
+<span class="hljs-keyword">\setcounter</span>{tocdepth}{3}    <span class="hljs-comment">% Show up to \subsubsection in TOC</span>
+<span class="hljs-keyword">\setcounter</span>{secnumdepth}{3} <span class="hljs-comment">% Number up to \subsubsection</span>
+<span class="hljs-keyword">\newpage</span>
+<span class="hljs-keyword">\tableofcontents</span>
+<span class="hljs-keyword">\newpage</span>
+<span class="hljs-keyword">\pagenumbering</span>{arabic}</code></pre>
+                </div>
+            <ul>
+<li><strong>Title page:</strong> Auto-generated with version and progress info</li>
+<li><strong>Roman numerals:</strong> Front matter (title, TOC)</li>
+<li><strong>TOC depth:</strong> Include up to subsubsection level</li>
+<li><strong>Numbering:</strong> Up to subsubsection level (1.2.3)</li>
+<li><strong>Arabic numerals:</strong> Main content chapters</li>
+</ul>
+<h3 id="124-metadata-block-format">12.4 Metadata Block Format</h3>
 
                 <div class="code-block">
                     <div class="code-header">
@@ -612,9 +1099,9 @@
 <li><strong>Date:</strong> Creation or last-edit date (YYYY-MM-DD)</li>
 <li><strong>Author:</strong> AI (Session #) or Human Name</li>
 </ul>
-<hr>
-<h2>13. How to Create and Integrate WIP Files</h2>
-<h3>Step 1: Create from Template</h3>
+<hr />
+<h2 id="13-how-to-create-and-integrate-wip-files">13. How to Create and Integrate WIP Files</h2>
+<h3 id="step-1-create-from-template">Step 1: Create from Template</h3>
 
                 <div class="code-block">
                     <div class="code-header">
@@ -626,20 +1113,20 @@
                             </svg>
                         </button>
                     </div>
-                    <pre><code class="hljs language-bash"><span class="hljs-built_in">cp</span> TEMPLATES/template-wip-V1.0.tex wip/section-C5-S2-cms-new-dev-2026-01-20.tex</code></pre>
+                    <pre><code class="hljs language-bash"><span class="hljs-built_in">cp</span> TEMPLATES/template-wip-V1.0.tex wip/section-C5-S2-cms-new-dev-2026-01-29.tex</code></pre>
                 </div>
-            <h3>Step 2: Update Metadata Block</h3>
+            <h3 id="step-2-update-metadata-block">Step 2: Update Metadata Block</h3>
 <ul>
 <li>Set Target, Status (dev), Date, Author</li>
 <li>Add development notes</li>
 </ul>
-<h3>Step 3: Develop Content</h3>
+<h3 id="step-3-develop-content">Step 3: Develop Content</h3>
 <ul>
 <li>Replace skeleton sections with actual narrative, tables, etc.</li>
 <li>Use <code>hotastable</code> environment for HOTAS tables</li>
-<li>Use reference macros: <code>\\dashref{}</code>, <code>\\trnref{}</code>, etc.</li>
+<li>Use reference macros: <code>\dashref{}</code>, <code>\trnref{}</code>, etc.</li>
 </ul>
-<h3>Step 4: Test Compilation</h3>
+<h3 id="step-4-test-compilation">Step 4: Test Compilation</h3>
 
                 <div class="code-block">
                     <div class="code-header">
@@ -651,17 +1138,17 @@
                             </svg>
                         </button>
                     </div>
-                    <pre><code class="hljs language-bash">pdflatex section-C5-S2-cms-new-dev-2026-01-20.tex</code></pre>
+                    <pre><code class="hljs language-bash">pdflatex section-C5-S2-cms-new-dev-2026-01-29.tex</code></pre>
                 </div>
-            <h3>Step 5: Workflow</h3>
+            <h3 id="step-5-workflow">Step 5: Workflow</h3>
 <ul>
 <li><strong>dev</strong>: Author working</li>
 <li><strong>review</strong>: Human review</li>
 <li><strong>final</strong>: Ready for integration</li>
 <li><strong>approved</strong>: Integrated into guide, moved to ARCHIVE</li>
 </ul>
-<hr>
-<h2>14. Quick Reference: File Naming Convention</h2>
+<hr />
+<h2 id="14-quick-reference-file-naming-convention">14. Quick Reference: File Naming Convention</h2>
 <p><strong>Pattern:</strong> <code>prefix-C#-S#-title-STATUS-YYYYMMDD.ext</code></p>
 <p><strong>Examples:</strong></p>
 <ul>
@@ -678,22 +1165,22 @@
 <li><code>approved</code> — Integrated and archived</li>
 <li><code>deprecated</code> — Intentionally retired</li>
 </ul>
-<hr>
-<h2>15. Checklist for Contributors</h2>
+<hr />
+<h2 id="15-checklist-for-contributors">15. Checklist for Contributors</h2>
 <ul>
-<li><input disabled="" type="checkbox"> Copy template from TEMPLATES/</li>
-<li><input disabled="" type="checkbox"> Follow naming convention</li>
-<li><input disabled="" type="checkbox"> Complete metadata block</li>
-<li><input disabled="" type="checkbox"> Update Status as work progresses</li>
-<li><input disabled="" type="checkbox"> Test LaTeX compilation</li>
-<li><input disabled="" type="checkbox"> Provide Dash-34 and training mission references</li>
-<li><input disabled="" type="checkbox"> Request review when ready (Status: review)</li>
-<li><input disabled="" type="checkbox"> Incorporate feedback</li>
-<li><input disabled="" type="checkbox"> Mark final when complete (Status: final)</li>
-<li><input disabled="" type="checkbox"> Author integrates and archives</li>
+<li> Copy template from TEMPLATES/template-wip-V1.0.tex</li>
+<li> Follow naming convention</li>
+<li> Complete metadata block</li>
+<li> Update Status as work progresses</li>
+<li> Test LaTeX compilation</li>
+<li> Provide Dash-34 and training mission references</li>
+<li> Request review when ready (Status: review)</li>
+<li> Incorporate feedback</li>
+<li> Mark final when complete (Status: final)</li>
+<li> Author integrates and archives</li>
 </ul>
-<hr>
-<p><strong>Last Updated:</strong> 2026-01-18, 01:54 AM -03<br><strong>Status:</strong> Ready for use and contribution<br><strong>License:</strong> CC BY-NC 4.0<br><strong>Next Update:</strong> After project phase transitions</p>
+<hr />
+<p><strong>Last Updated:</strong> 2026-01-29, 04:30 PM -03<br /><strong>Status:</strong> Ready for use and contribution<br /><strong>License:</strong> CC BY-NC 4.0<br /><strong>Next Update:</strong> After project phase transitions</p>
 
 </body>
 </html>

@@ -272,7 +272,7 @@
 % VERSION CONTROL MACROS
 % --------------------------------------------------------------------------
 
-\newcommand{\docversion}{0.3.2.1}
+\newcommand{\docversion}{0.3.2.0}
 \newcommand{\docbuild}{20260119}
 \newcommand{\docstartdate}{05 January 2026}
 \newcommand{\docenddate}{29 January 2026}
@@ -571,7 +571,7 @@ The functionality of the DMS --- SOI selection, MFD format cycling and all assoc
 %--------------------------------------------------------------------------
 % CHAPTER 4: SECTION 4.1.1
 %--------------------------------------------------------------------------
-\subsection{SOI Definition}
+\subsection{SOI Definition and Scope Across Displays}
 \label{sec:C4-S1-S1}
 
 The Sensor of Interest (SOI) is the display or sensor that currently receives HOTAS cursor slew commands and, where applicable, TMS actions. At any moment, only one display can be the SOI. Valid SOI displays include any of the F-16's displays: the HUD, the right MFD, and the left MFD. However, some MFD formats are not valid SOI because they provide information or control but do not accept sensor-like slew or targeting inputs. The table below summarizes valid and invalid MFD formats.
@@ -658,7 +658,7 @@ For visual air-to-ground delivery (VIS modes), practical SOI control --- HUD in 
 %--------------------------------------------------------------------------
 % CHAPTER 4: SECTION 4.1.2
 %--------------------------------------------------------------------------
-\subsection{Role of DMS in SOI Selection}
+\subsection{Role of the DMS in SOI Selection}
 \label{sec:C4-S1-S2}
 
 The DMS manages SOI selection through two orthogonal axes of control:
@@ -753,10 +753,10 @@ The table below summarises DMS Up behaviour across representative master modes. 
 Each table entry specifies:
 
 \begin{itemize}
-  \item \textbf{State}: The operational context (Master Mode).
-  \item \textbf{Direction}: The physical direction for pressing the DMS hat (Up, Down, Left, Right).
+  \item \textbf{State}: The operational context (master mode, CMDS mode, sensor state).
+  \item \textbf{Direction}: The physical direction for pressing the CMS hat (Up, Down, Left, Right).
   \item \textbf{Action}: The press type (Short, Long, Long Hold).
-  \item \textbf{Function}: What the DMS command activates or controls.
+  \item \textbf{Function}: What the CMS command activates or controls.
   \item \textbf{Effect / Nuance}: The resulting system behavior, including tactics and constraints.
   \item \textbf{Dash34}: Reference section in the Dash-34 manual.
   \item \textbf{Training}: Recommended BMS training missions for hands-on practice.
@@ -838,20 +838,6 @@ In A-A contexts, this is \textbf{operationally essential}: the pilot uses DMS Do
 \subsection{DMS Down Usage Table}
 \label{sec:C4-S3-S2}
 
-The table below summarises DMS Down behaviour across representative master modes. It should be read together with Table~\ref{tab:C4-S1-SOI-by-mode}, which documents which displays are valid SOI candidates in each mode.
-
-Each table entry specifies:
-
-\begin{itemize}
-	\item \textbf{State}: The operational context (Master Mode).
-	\item \textbf{Direction}: The physical direction for pressing the DMS hat (Up, Down, Left, Right).
-	\item \textbf{Action}: The press type (Short, Long, Long Hold).
-	\item \textbf{Function}: What the DMS command activates or controls.
-	\item \textbf{Effect / Nuance}: The resulting system behavior, including tactics and constraints.
-	\item \textbf{Dash34}: Reference section in the Dash-34 manual.
-	\item \textbf{Training}: Recommended BMS training missions for hands-on practice.
-\end{itemize}
-
 \begin{hotastable}{DMS Down Usage Across NAV, A-A, and A-G Master Modes}
   NAV & Down & Short & Toggle SOI cycle through displays & 
     DMS Down toggles SOI through HUD $\rightarrow$ L/R MFD $\rightarrow$ L/R MFD $\rightarrow$ HUD. With HUD as SOI, hands-on commands (CURSOR/ENABLE, TMS) manage HUD navigation symbology. Pressing DMS Down transfers SOI to the next display; the pilot can rotate through all three displays sequentially. &
@@ -897,6 +883,12 @@ In certain special states and submodes, DMS Down may be temporarily ineffective,
 %--------------------------------------------------------------------------
 \section{Concept and Interaction with CMDS / ECM / RWR}\label{sec:C5-S1}
 
+%--------------------------------------------------------------------------
+% CHAPTER 5: SECTION 5.1.1
+%--------------------------------------------------------------------------
+\subsection{Concept}
+\label{sec:C5-S1-S1}
+
 The Countermeasures Management Switch (CMS) is a four-direction hat switch mounted on the control stick that serves as the pilot's primary control interface to the F-16's integrated electronic warfare (EW) defensive systems: the ALE-47 CMDS (automatic chaff/flare dispenser), ECM systems (external pods or internal avionics), and avionics-based threat defeat systems. The CMS supervises the aircraft's defensive response by controlling defensive program selection, managing ECM operational modes, and granting or withholding consent authority to all defensive subsystems.
 
 Its role is to grant the pilot rapid tactical control over the aircraft's defensive posture. This control is operationally critical because defensive decisions frequently occur during high-G maneuvering when hand position cannot be redirected to distant cockpit panels. A pilot executing a 6-G defensive turn cannot simultaneously reach the CMDS MODE knob on the left console or the ECM control panel without abandoning aircraft control. By placing the CMS within thumb reach during full-stick maneuver, the design ensures that no tactical scenario regardless of G-load or workload forces the pilot to choose between aircraft control and defensive system authority.
@@ -913,10 +905,10 @@ For in-depth explanations about CMDS, ECM and RWR operation, see \dashrefs{2.7.1
 \end{figure}
 
 %--------------------------------------------------------------------------
-% CHAPTER 5: SECTION 5.1.1
+% CHAPTER 5: SECTION 5.1.2
 %--------------------------------------------------------------------------
 \subsection{Interaction with CMDS / ECM}
-\label{sec:C5-S1-S1}
+\label{sec:C5-S1-S2}
 
 Operationally, the CMS manages two distinct defensive layers: \textbf{CMDS} and \textbf{ECM} in both configurations: internal avionics and external ECM pod. The way this management is performed and all the corresponding button pressings will be detailed in the next Section~\ref{sec:C4-S2}.
 
@@ -1066,23 +1058,33 @@ Single CMS Down command grants consent to \textit{both} the ALE-47 CMDS (AUTO/SE
 
 The CMS provides rapid, tactile access to CMDS program selection and ECM transmit authority without requiring the pilot to manipulate distant panels during high-G maneuvering. Mastery of CMS actuation across all CMDS modes (MAN, SEMI, AUTO) and ECM configurations (external pod, IDIAS) is essential for effective defensive operations. Pilots must understand the consent state model, RF switch interactions, and inventory management to avoid unintended dispensing or system saturation.
 
-\paragraph{State Tracking:}
+% 5.2.4.1
+\subsubsection{State Tracking}
+\label{sec:C5-S2-S4-S1}
 
 In AUTO and SEMI modes, the CMDS tracks the consent state even if the pilot temporarily switches to MAN mode. If the pilot gives CMS Down consent in AUTO, then switches the CMDS MODE knob to MAN, the consent state is retained. Upon re-engaging AUTO without issuing CMS Down again, the CMDS will immediately begin dispensing if a threat is detected. This behavior can be exploited for rapid mode switching during combat but may also lead to unintended dispensing if not carefully managed.
 
-\paragraph{Bingo Quantity Behavior:}
+% 5.2.4.2
+\subsubsection{Bingo Quantity Behavior}
+\label{sec:C5-S2-S4-S2}
 
 If expendables (chaff or flare) fall to or below the bingo quantity, the CMDS will still request consent (CMS Down) and continue dispensing. The ``LOW'' and ``OUT'' voice messages alert the pilot to low or exhausted inventory, but dispensing does not automatically stop. Pilot must monitor EWS upfront pages and manually manage inventory via CMDS MAN or by pressing CMS Right to inhibit AUTO.
 
-\paragraph{RF Switch Override:}
+% 5.2.4.3
+\subsubsection{RF Switch Override}
+\label{sec:C5-S2-S4-S3}
 
 The RF switch on the throttle is a master control for ECM transmission. Moving the RF switch away from NORM (e.g., to QUIET or SILENT) overrides any previous CMS Down command and places both the external ECM pod and internal IDIAS in Standby. Returning RF to NORM does \textit{not} automatically restore transmission; the pilot must re-issue CMS Down.
 
-\paragraph{Consent vs. CMDS Consent:}
+% 5.2.4.4
+\subsubsection{Consent vs. CMDS Consent}
+\label{sec:C5-S2-S4-S4}
 
 A single CMS Down press grants consent to both the ALE-47 CMDS and the external ECM pod. The pilot does not issue separate commands; the CMS Down action is unified. However, internal IDIAS uses CMS Left for mode cycling, not CMS Down. This distinction is critical for aircraft configured with IDIAS.
 
-\paragraph{Operations Safety:}
+% 5.2.4.5
+\subsubsection{Operations Safety}
+\label{sec:C5-S2-S4-S5}
 
 On the ground, ECM pods are held in Standby for safety reasons. Pilots must not hold CMS Down while on the ground in the vicinity of personnel, as the ECM pod may radiate and pose a hazard. Ground personnel must be clear before the pilot engages ECM for pre-flight high-level BIT (Built-In Test). Once airborne, ECM consent (CMS Down) can be issued and maintained as tactically required.
 

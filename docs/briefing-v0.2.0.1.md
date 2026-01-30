@@ -1,6 +1,6 @@
 # Falcon BMS 4.38.1 — TMS, DMS and CMS Usage Guide: Project Brief
 
-**Brief Version:** v0.2.0.1-2026-01-18 (License & Contributor Rights Section Added)
+**Brief Version:** v0.2.0.1-2026-01-29 (Preamble V1.0 Updated: titlesec Full Hierarchy + Optical Fixes)
 
 ---
 
@@ -107,14 +107,14 @@ Assume there is already a LaTeX template with this structure. Do not change the 
 **4. DMS — Display Management Switch**
 
 - 4.1 Concept and Sensor of Interest (SOI).
-- 4.2 DMS in MFDS format selection and SWAP.
-- 4.3 DMS in sensor and weapon context.
-- 4.4 DMS — Block and variant notes.
+- 4.2 DMS Up: HDU Designation as SOI.
+- 4.3 DMS Down: Toggle SOI Among Displays.
+- 4.4 DMS Left/Right.
 
 **5. CMS — Countermeasures Management Switch**
 
-- 5.1 Concept and interaction with CMDS / ECM.
-- 5.2 CMS Switch Actuation — main table in subsections using `hotastable`.
+- 5.1 Concept and interaction with CMDS / ECM / RWR.
+- 5.2 CMS Switch Actuation.
 - 5.3 CMS — Block and variant notes.
 
 **6. Training References and Practical Flows**
@@ -152,7 +152,16 @@ Assume there is already a LaTeX template with this structure. Do not change the 
 
 - Font size: `\\small` (10 pt).
 - Row height multiplier: `\\arraystretch = 1.25`.
-- Column widths (locked): `L{1.6cm}`, `L{1.0cm}`, `L{1.0cm}`, `L{3.4cm}`, `L{5.8cm}`, `L{1.4cm}`, `L{1.4cm}`.
+- Column widths (locked per updated preamble): `L{1.00cm}`, `L{0.90cm}`, `L{0.90cm}`, `L{3.30cm}`, `L{6.40cm}`, `L{1.40cm}`, `L{2.10cm}`.
+
+**Column Layout:**
+- **Mode** (1.00 cm): Master mode or state abbreviation (NAV, A-A, A-G).
+- **Dir.** (0.90 cm): Direction (Up, Down, Left, Right).
+- **Act.** (0.90 cm): Actuation type (Short, Long).
+- **Function** (3.30 cm): Concise function name (e.g., "Cycle SOI between MFDs").
+- **Effect / Nuance** (6.40 cm): Brief explanation (1-3 sentences) of what happens, interactions, exceptions.
+- **Dash34** (1.40 cm): Dash-34 section references using `\\dashref{}`.
+- **Train.** (2.10 cm): BMS training mission references using `\\trnref{}` with standardized abbreviations.
 
 ---
 
@@ -182,44 +191,44 @@ The Introduction should clearly explain:
 
 ## 6. Column Filling Guidelines for hotastable
 
-### 6.1 Column 1: State (1.6 cm)
+### 6.1 Column 1: Mode (1.00 cm)
 
-Describe the condition or context where this action applies. Use structured format:
-- A-A CRM — FCR RWS
-- A-G — FCR GM
-- NAV — HSD
+Describe the master mode or state where this action applies. Use structured format:
+- A-A CRM
+- A-G PRE
+- NAV
 
-### 6.2 Column 2: Direction (1.0 cm)
+### 6.2 Column 2: Dir. (0.90 cm)
 
 Use physical directions: Up, Down, Left, Right.
 
-### 6.3 Column 3: Action (1.0 cm)
+### 6.3 Column 3: Act. (0.90 cm)
 
 Describe press type:
 - Short — quick tap (≤0.6 s)
 - Long — press >0.6 s
 
-### 6.4 Column 4: Function (3.4 cm)
+### 6.4 Column 4: Function (3.30 cm)
 
 Provide a short name for what the switch does:
 - Bug / designate target
 - Break track / CZ
 - Cycle SOI between MFDs
 
-### 6.5 Column 5: Effect / Nuance (5.8 cm)
+### 6.5 Column 5: Effect / Nuance (6.40 cm)
 
 Brief explanation (1–3 sentences) of what happens:
 - How state changes
 - Interactions with other systems
 - Exceptions or conditions
 
-### 6.6 Column 6: Dash34 (1.4 cm)
+### 6.6 Column 6: Dash34 (1.40 cm)
 
 Reference relevant Dash-34 sections using macros:
 - `\\dashref{2.1.5}`
 - `\\dashref{2.1.5}, \\dashref{2.7.1}`
 
-### 6.7 Column 7: Train (1.4 cm)
+### 6.7 Column 7: Train. (2.10 cm)
 
 Link behaviour to BMS training missions using standardized abbreviations (see Training Mission Reference Table v1.0):
 - `\\trnref{18 (BARCAP)}`
@@ -383,6 +392,8 @@ This ensures:
 - Content structures aligned with brief expectations
 - Automated or semi-automated integration into guide.tex
 
+**Status:** Template V1.0 updated (29 January 2026) with enhanced preamble architecture (titlesec full hierarchy, optical fixes, professional two-sided layout).
+
 ### 12.2 What the Template Provides
 
 1. **Standard preamble** (packages, geometry, macros) identical to `guide.tex`
@@ -390,18 +401,272 @@ This ensures:
 3. **Section/subsection skeleton** with proper hierarchy
 4. **Configured hotastable environment** with 7-column HOTAS layout
 
-### 12.3 Preamble Highlights
+### 12.3 Preamble Architecture (Updated V1.0)
 
-- Document class: `report` with `twoside` option (double-sided layout)
-- Geometry: A4, 2.0 cm left/right, 2.5 cm top/bottom, 1.5× line spacing
-- Headers/footers: Professional two-sided configuration
-- Chapter formatting: `titlesec` for consistent styling
-- Tables: `booktabs`, `longtable`, `tabularx` with custom columns
-- Graphics: `graphicx` with `fig/` path, `float` for position control
-- Colors: Professional palette with `xcolor[table]`
-- Hyperlinks: Clickable PDF with `hyperref`
-- Reference macros: `\\dashref{}`, `\\trnref{}`, `\\bmsver`, etc.
-- Version macros: `\\docversion`, `\\docbuild`, `\\fulldocversion`
+The preamble in `TEMPLATES/template-wip-V1.0.tex` and `guide.tex` is now organized into the following sections:
+
+#### 12.3.1 Document Class
+
+```latex
+\documentclass[11pt, a4paper, twoside]{report}
+```
+
+- **`report` class:** Professional multi-chapter documents with chapter-level hierarchy
+- **`twoside` option:** Optimized for double-sided printing (alternating header/footer layout)
+- **Font size:** 11pt base (readable on screen and print)
+
+#### 12.3.2 Basic Encoding and Language
+
+```latex
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+```
+
+- **UTF-8 encoding:** Full Unicode support for international characters
+- **T1 font encoding:** Proper hyphenation and accented characters
+- **English language:** Hyphenation rules and babel localization
+
+#### 12.3.3 Fonts and Microtypography
+
+```latex
+\usepackage{lmodern}
+\usepackage{microtype}
+```
+
+- **Latin Modern fonts:** High-quality, scalable fonts for screen and print
+- **Microtype:** Subtle typographic refinements (character protrusion, font expansion)
+
+#### 12.3.4 Page Geometry and Layout
+
+```latex
+\usepackage{geometry}
+\geometry{a4paper, left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
+\usepackage{setspace}
+\onehalfspacing
+```
+
+- **A4 paper:** International standard (210 × 297 mm)
+- **Margins:** Symmetric 2.0 cm left/right, 2.5 cm top/bottom
+- **Text width:** 17.0 cm (calculated)
+- **Line spacing:** 1.5× for readability
+
+#### 12.3.5 Colors and Links
+
+```latex
+\usepackage[table]{xcolor}
+\definecolor{linkblue}{HTML}{004488}
+\definecolor{linkred}{HTML}{882222}
+\definecolor{headerblue}{HTML}{003366}
+\definecolor{rowgray}{HTML}{F5F5F5}
+\definecolor{subheadgray}{HTML}{E0E0E0}
+
+\usepackage{soul}
+\usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, 
+            citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\usepackage{bookmark}
+\usepackage{caption}
+\captionsetup{font=small, labelfont=bf, justification=centering, singlelinecheck=true}
+```
+
+- **xcolor[table]:** Color support with table row coloring
+- **Custom colors:** Professional palette (linkblue, linkred, headerblue, rowgray, subheadgray)
+- **soul:** Text highlighting and underlining
+- **hyperref:** Clickable PDF links with custom colors, line-breaking support
+- **bookmark:** Enhanced PDF bookmarks
+- **caption:** Professional figure/table captions (small font, bold labels, centered)
+
+#### 12.3.6 Headers and Footers (Improved for Two-Sided Layout)
+
+```latex
+\usepackage{fancyhdr}
+\setlength{\headheight}{25pt} % Increased from 15pt for long chapter names
+\pagestyle{fancy}
+\fancyhf{} % Clear all
+\fancyhead[LO,RE]{\small\textit{\leftmark}} % Outer edge: chapter name
+\fancyhead[RO,LE]{\small\thepage}           % Inner edge: page number
+\fancyfoot{}                                % No footer
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+```
+
+- **fancyhdr:** Custom header/footer control
+- **headheight:** Increased to 25pt (accommodates long chapter names without warnings)
+- **Two-sided layout:**
+  - **Odd pages (recto):** Chapter name left, page number right
+  - **Even pages (verso):** Page number left, chapter name right
+- **Header rule:** 0.4pt line separating header from content
+- **No footer:** All pagination in header
+
+#### 12.3.7 Chapter Formatting and Spacing (via titlesec)
+
+Complete hierarchy with optical refinements:
+
+```latex
+\usepackage{titlesec}
+```
+
+| Level | Shape | Font | Spacing (Before/After) | Rationale |
+|-------|-------|------|------------------------|-----------|
+| **chapter** | display | `\Large\bfseries` | 15pt / 28pt | Maximum prominence; standalone on new line; increased spacing after for visual separation |
+| **section** | hang | `\large\bfseries` | 15pt / 8pt | Compact; label left, body indented; reduced spacing for density |
+| **subsection** | hang | `\normalsize\bfseries` | 12pt / 6pt | Reduced visual weight; still bold for hierarchy clarity |
+| **subsubsection** | hang | `\normalsize\bfseries` | 10pt / 4pt | Compressed spacing for maximum compactness |
+| **paragraph** | runin | `\small\bfseries` | 8pt / 1em | **Optical fix:** Small font compensates for bold's "optical illusion" (appears larger); inline with text; added vertical separation (8pt before, 1em after) |
+| **subparagraph** | runin | `\small` (no bold) | 8pt / 1em | Less prominence than paragraph; prepared for future use |
+
+**Key innovation:** The `\paragraph` level uses `\small\bfseries` to resolve the "optical illusion" where bold text at normal size appears disproportionately large when inline. Reduced font size + bold achieves visual balance.
+
+**Code example (paragraph level):**
+
+```latex
+\titleformat{\paragraph}[runin]
+  {\normalfont\small\bfseries} % Format: SMALL + bold (optical compensation)
+  {}                            % Label: empty (no numbering)
+  {0em}                         % Space between label and body (zero, runin)
+  {}                            % Body title (inherits format)
+\titlespacing{\paragraph}
+  {0pt}  % Left margin (no indent)
+  {8pt}  % Space BEFORE title (vertical separation added)
+  {1em}  % Space AFTER title (horizontal space after ":")
+  [0pt]  % Right margin
+```
+
+#### 12.3.8 Tables and Macros
+
+```latex
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+% Custom Columns
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% Macro for Visual Reference Links
+\newcommand{\imglink}[1]{\hspace{2pt}\hyperref[#1]{\scriptsize\textbf{[Fig]}}}
+```
+
+- **booktabs:** Professional table rules (toprule, midrule, bottomrule)
+- **array:** Enhanced column definitions
+- **longtable:** Multi-page tables with repeating headers
+- **tabularx:** Auto-width columns
+- **Custom columns:** `L{width}` (left), `C{width}` (center), `R{width}` (right)
+- **imglink macro:** Inline figure references in tables
+
+#### 12.3.9 HOTAS Table Environment (hotastable)
+
+```latex
+\newenvironment{hotastable}[1]{%
+  \small
+  \setlength{\tabcolsep}{2pt}
+  \renewcommand{\arraystretch}{1.25}
+  \begin{longtable}{L{1.00cm} L{0.90cm} L{0.90cm} L{3.30cm} L{6.40cm} L{1.40cm} L{2.10cm}}
+  \caption{#1}\\
+  \rowcolor{headerblue}
+  \multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
+  \multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
+  \multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
+  \multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
+  \multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
+  \multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
+  \multicolumn{1}{>{\centering\arraybackslash}p{2.10cm}}{\textbf{\color{white}Train.}} \\
+  \endfirsthead
+  \rowcolor{headerblue}
+  \multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
+  \multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
+  \multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
+  \multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
+  \multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
+  \multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
+  \multicolumn{1}{>{\centering\arraybackslash}p{2.10cm}}{\textbf{\color{white}Train.}} \\
+  \endhead
+  \multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+  \endfoot
+  \endlastfoot
+}{%
+  \end{longtable}
+}
+```
+
+- **Column widths:** Optimized for 15.6 cm total width (Mode 1.00, Dir. 0.90, Act. 0.90, Function 3.30, Effect/Nuance 6.40, Dash34 1.40, Train. 2.10)
+- **Header repeat:** Blue header row repeats on every page (`\endfirsthead`, `\endhead`)
+- **Footer:** "Continued on next page" on all but last page
+- **Compact spacing:** `\tabcolsep{2pt}`, `\arraystretch{1.25}`
+
+#### 12.3.10 Simple Reference Macros for BMS Docs
+
+```latex
+\providecommand{\dashref}[1]{Dash-34~\S~#1}
+\providecommand{\dashone}[1]{Dash-1~\S~#1}
+\providecommand{\trnref}[1]{TRN~#1}
+\providecommand{\trnman}{BMS Training Manual 4.38.1}
+\providecommand{\bmsver}{Falcon BMS~4.38.1}
+\providecommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+```
+
+- **dashref:** Dash-34 section references (`\dashref{2.1.5}` → "Dash-34 § 2.1.5")
+- **dashone:** Dash-1 section references
+- **trnref:** Training mission references (`\trnref{18 (BARCAP)}` → "TRN 18 (BARCAP)")
+- **trnman:** Full training manual title
+- **bmsver:** BMS version string
+- **dashrefs:** Extended Dash-34 citation
+
+#### 12.3.11 Version Control Macros
+
+```latex
+\newcommand{\docversion}{0.3.2.0}
+\newcommand{\docbuild}{20260119}
+\newcommand{\docstartdate}{05 January 2026}
+\newcommand{\docenddate}{19 January 2026}
+\newcommand{\chapterscompletedof}{3/7}
+\newcommand{\tablesfilledpct}{Chapter 5 and Chapter 4 - 4.1, 4.2 and 4.3}
+\newcommand{\fulldocversion}{\docversion+\docbuild}
+```
+
+- **docversion:** Semantic version (MAJOR.MINOR.PATCH.SUBPATCH)
+- **docbuild:** Build date (YYYYMMDD)
+- **fulldocversion:** Combined version string
+- **Progress tracking:** Chapters completed, tables filled status
+
+#### 12.3.12 Graphics
+
+```latex
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+\usepackage{float}
+```
+
+- **graphicx:** Image inclusion (`\includegraphics`)
+- **graphicspath:** Default directory for figures
+- **float:** Enhanced float positioning control (`[H]` for "exactly here")
+
+#### 12.3.13 Title and TOC Configuration
+
+```latex
+\title{TMS, DMS and CMS Usage Guide for \bmsver}
+\author{Carlos ``Metal'' Nader}
+\date{Version \fulldocversion{} | Progress: Chapters \chapterscompletedof{} | 
+      Tables \tablesfilledpct{} | January 2026}
+
+\begin{document}
+\maketitle
+\pagenumbering{roman}
+\setcounter{tocdepth}{3}    % Show up to \subsubsection in TOC
+\setcounter{secnumdepth}{3} % Number up to \subsubsection
+\newpage
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+```
+
+- **Title page:** Auto-generated with version and progress info
+- **Roman numerals:** Front matter (title, TOC)
+- **TOC depth:** Include up to subsubsection level
+- **Numbering:** Up to subsubsection level (1.2.3)
+- **Arabic numerals:** Main content chapters
 
 ### 12.4 Metadata Block Format
 
@@ -431,7 +696,7 @@ This ensures:
 ### Step 1: Create from Template
 
 ```bash
-cp TEMPLATES/template-wip-V1.0.tex wip/section-C5-S2-cms-new-dev-2026-01-20.tex
+cp TEMPLATES/template-wip-V1.0.tex wip/section-C5-S2-cms-new-dev-2026-01-29.tex
 ```
 
 ### Step 2: Update Metadata Block
@@ -443,12 +708,12 @@ cp TEMPLATES/template-wip-V1.0.tex wip/section-C5-S2-cms-new-dev-2026-01-20.tex
 
 - Replace skeleton sections with actual narrative, tables, etc.
 - Use `hotastable` environment for HOTAS tables
-- Use reference macros: `\\dashref{}`, `\\trnref{}`, etc.
+- Use reference macros: `\dashref{}`, `\trnref{}`, etc.
 
 ### Step 4: Test Compilation
 
 ```bash
-pdflatex section-C5-S2-cms-new-dev-2026-01-20.tex
+pdflatex section-C5-S2-cms-new-dev-2026-01-29.tex
 ```
 
 ### Step 5: Workflow
@@ -481,7 +746,7 @@ pdflatex section-C5-S2-cms-new-dev-2026-01-20.tex
 
 ## 15. Checklist for Contributors
 
-- [ ] Copy template from TEMPLATES/
+- [ ] Copy template from TEMPLATES/template-wip-V1.0.tex
 - [ ] Follow naming convention
 - [ ] Complete metadata block
 - [ ] Update Status as work progresses
@@ -494,7 +759,7 @@ pdflatex section-C5-S2-cms-new-dev-2026-01-20.tex
 
 ---
 
-**Last Updated:** 2026-01-18, 01:54 AM -03  
+**Last Updated:** 2026-01-29, 04:30 PM -03  
 **Status:** Ready for use and contribution  
 **License:** CC BY-NC 4.0  
 **Next Update:** After project phase transitions

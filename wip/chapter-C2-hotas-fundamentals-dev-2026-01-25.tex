@@ -54,9 +54,9 @@
 \usepackage{setspace}
 \onehalfspacing
 
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 % COLORS AND LINKS
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 
 \usepackage[table]{xcolor}
 \definecolor{linkblue}{HTML}{004488}
@@ -68,8 +68,19 @@
 \usepackage{soul}
 \usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
 \usepackage{bookmark}
+
+% ============================================================================
+% CAPTION SETUP BY TYPE
+% ============================================================================
+
 \usepackage{caption}
-\captionsetup{font=footnotesize, labelfont=bf, justification=raggedright, singlelinecheck=false}
+
+% GLOBAL PATTERN
+\captionsetup{font=small, labelfont=bf, justification=centering, singlelinecheck=true}
+% FIGURES
+\captionsetup[figure]{font=footnotesize, labelfont=bf, justification=centering, singlelinecheck=true}
+% % TABLE/LONGTABLE/hotastable:
+\captionsetup[table]{font=small, labelfont=bf, justification=centering, singlelinecheck=true}
 
 %--------------------------------------------------------------------------
 % HEADERS AND FOOTERS (IMPROVED for report + twoside)
@@ -241,33 +252,34 @@
 
 \newenvironment{hotastable}[1]{%
   \small
+  \setlength{\tabcolsep}{2pt}
   \renewcommand{\arraystretch}{1.25}
-  \begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
-  \caption{#1}\\
-  \rowcolor{headerblue}
-  \textbf{\color{white}State} &
-  \textbf{\color{white}Dir} &
-  \textbf{\color{white}Act} &
-  \textbf{\color{white}Function} &
-  \textbf{\color{white}Effect / Nuance} &
-  \textbf{\color{white}Dash34} &
-  \textbf{\color{white}Train} \\
-  \endfirsthead
-  \rowcolor{headerblue}
-  \textbf{\color{white}State} &
-  \textbf{\color{white}Dir} &
-  \textbf{\color{white}Act} &
-  \textbf{\color{white}Function} &
-  \textbf{\color{white}Effect / Nuance} &
-  \textbf{\color{white}Dash34} &
-  \textbf{\color{white}Train} \\
-  \endhead
-  \multicolumn{7}{r}{\small\emph{Continued on next page}}\\
-  \endfoot
-  \endlastfoot
-}{%
+  \begin{longtable}{L{1.00cm} L{0.90cm} L{0.90cm} L{3.30cm} L{6.40cm} L{1.40cm} L{2.10cm}}
+  	\caption{#1}\\
+  	\rowcolor{headerblue}
+  	\multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
+  	\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
+  	\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
+  	\multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
+  	\multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
+  	\multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
+  	\multicolumn{1}{>{\centering\arraybackslash}p{2.10cm}}{\textbf{\color{white}Train.}} \\
+  	\endfirsthead
+  	\rowcolor{headerblue}
+  	\multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
+  	\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
+  	\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
+  	\multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
+  	\multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
+  	\multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
+  	\multicolumn{1}{>{\centering\arraybackslash}p{2.10cm}}{\textbf{\color{white}Train.}} \\
+  	\endhead
+  	\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+  	\endfoot
+  	\endlastfoot
+  }{%
   \end{longtable}
-}
+  }
 
 %--------------------------------------------------------------------------
 % SIMPLE REFERENCE MACROS FOR BMS DOCS
