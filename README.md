@@ -115,11 +115,11 @@ All governance documents are available in **Markdown** (for editing) and **html*
 
 ## 📊 Current Project State 
 
-[![v0.3.2.0](https://img.shields.io/badge/Release-v0.3.2.0-blue)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/guide.pdf)
+[![v0.3.2.1](https://img.shields.io/badge/Release-v0.3.2.1-blue)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/guide.pdf)
 
 | Metric | Value |
 |--------|-------|
-| **Guide Version** | v0.3.2.0 | 
+| **Guide Version** | v0.3.2.1 | 
 | **Total Chapters Planned** | 7 |
 | **Chapters with Narrative** | 3/7 |
 | **Chapters Scaffolded** | 4/7 |
