@@ -1,103 +1,117 @@
-%============================================================================
-% PROJECT TRACKING - Falcon BMS TMS/DMS/CMS HOTAS Guide
-% Version: v5.1.0
-% Last Updated: 2026-01-26, 0014 AM -03
-% Status: Updated with Chapter 2 WIP progress (Session 23)
-%============================================================================
-
-# PROJECT TRACKING v5.1.0
+# PROJECT TRACKING
 ## Falcon BMS TMS/DMS/CMS HOTAS Guide
 
-**Document Version**: v5.1.0  
-**Regime**: Pre-publication 0.x.x.x  
-**Project Start**: 2026-01-05  
-**Last Updated**: 2026-01-26, 0014 AM -03  
-**Repository**: carlos-nader/tms-dms-cms-usage-guide
+**Document Version:** PROJECT-TRACKING-v5.0.0  
+**Regime:** Pre-publication (0.x.x.x)  
+**Project Start:** 2026-01-05  
+**Last Updated:** 2026-01-29, 22:55 PM -03  
+**Repository:** carlos-nader/tms-dms-cms-usage-guide
+
+This document tracks how governance rules, WIP files and guide versions evolve during the development of the Falcon BMS TMS/DMS/CMS HOTAS Guide.
 
 ---
 
 ## 1. GOVERNANCE LAYER
 
-Reference documents that define project structure:
+Reference documents that define the project structure:
 
 | Document | Version | Purpose | Scope | Notes |
-|----------|---------|---------|-------|-------|
-| VERSION-SYSTEM-v4.2.1 | v4.2.1 | Versioning rules for guide-v | Defines 0.x.x.x vs x.y.z regimes, MAJOR/MINOR/PATCH/SUBPATCH semantics, build date rules | Updated Session 9 refs v1.4, BRIEFING-v0.2.0.1 alignment documented |
-| BRIEFING-v0.2.0.1 | v0.2.0.1 | Content and layout brief, template specification | Scope, style, layout standard. Geometry Option D, hotastable 15.6 cm, arraystretch 1.25, high-level roadmap | Section 11 EXPANDED 18 Jan 2026 — Complete preamble architecture documentation 11.3.1–11.3.11 (document class report, twoside, encoding/fonts, geometry/spacing, colors/hyperlinks, headers/footers, chapter formatting titlesec, tables/columns, graphics/floats package float, hotastable environment, reference macros, version control). Preamble code VERIFIED and TESTED per 18 January 2026 (guidetest.tex compilation ✓, PDF generation ✓). Supersedes v0.1.4.1. Section 11 expanded to 8,000 words (was 2,500). All 11 subsections documented with rationale and code examples. New preamble deployed to guide.tex and template-wip-V1.0.tex |
-| WIP-FILE-NAMING-v1.4 | v1.4 | Naming and status for WIP files | Prefixes section-, table-, visual-, notes-, chapter- with dev/review/final/approved/deprecated status codes | NEW Section 0.5 How to Create WIP File (3-step workflow). Updated Session 9. All sections reference mandatory template usage. Supersedes v1.3 |
-| TEMPLATES/template-wip-V1.0.tex | V1.0 | Canonical WIP template | Per BRIEFING-v0.2.0.1 Section 11. Preamble/metadata/hotastable locked. Independent versioning V1.0 | UPDATED 18 Jan 2026: New preamble deployed (report class, twoside, titlesec, improved headers/footers, float support). All future WIP files MUST copy from this updated template. Established Session 9. Updated Session 17 with new preamble infrastructure |
-| TRAINING-MISSION-ABBREV-TABLE-v1.0 | v1.0 | Official source for mission abbreviations | Standardized abbreviations for all 33 BMS 4.38.1 training missions, for use when building Tables | For reference when incorporating mission names |
+|---|---|---|---|---|
+| VERSION-SYSTEM-v4.2.1 | v4.2.1 | Versioning rules for guide-v | Defines 0.x.x.x vs x.y.z regimes, MAJOR/MINOR/PATCH/SUBPATCH semantics, build date rules. | Updated Session 9; refs v1.4, BRIEFING-v0.2.0.1 alignment documented. |
+| BRIEFING-v0.2.0.1 | v0.2.0.1 | Content and layout brief; template specification | Scope, style, layout standard (Geometry Option D, hotastable 15.6 cm, arraystretch 1.25), high-level roadmap. Section 11: EXPANDED (18 Jan 2026) - Complete preamble architecture documentation (11.3.1–11.3.11): document class (report, twoside), encoding/fonts, geometry/spacing, colors/hyperlinks, headers/footers (improved for two-sided layout), chapter formatting (titlesec), tables/columns, graphics/floats (package float), hotastable environment (code corrected for longtable header ordering), reference macros, version control. Preamble code VERIFIED and TESTED per 18 January 2026 (guidetest.tex compilation ✅, PDF generation ✅). | Supersedes v0.1.4.1. Section 11 expanded to ~8,000 words (was ~2,500). All 11 subsections documented with rationale and code examples. New preamble deployed to guide.tex and template-wip-V1.0.tex. |
+| WIP-FILE-NAMING-v1.4 | v1.4 | Naming and status for WIP files | Prefixes: section-, table-, visual-, notes-, chapter- with dev/review/final/approved/deprecated status codes. NEW Section 0.5: How to Create WIP File (3-step workflow). | Updated Session 9. All sections reference mandatory template usage. Supersedes v1.3. |
+| TEMPLATES/template-wip-V1.0.tex | V1.0 | Canonical WIP template | Per BRIEFING-v0.2.0.1 Section 11. Preamble/metadata/hotastable locked. Independent versioning (V1.0). **UPDATED 18 Jan 2026:** New preamble deployed (report class, twoside, titlesec, improved headers/footers, float support). All future WIP files MUST copy from this updated template. | Established Session 9; Updated Session 17 with new preamble infrastructure. |
+| TRAINING-MISSION-ABBREV-TABLE-v1.0 | v1.0 | Official source for mission abbreviations | Standardized abbreviations for all 33 BMS 4.38.1 training missions, for use when building Tables. | For reference when incorporating mission names. |
 
-**Consequence**: All new WIP files going forward MUST follow BRIEFING-v0.2.0.1 Section 11 template specification with updated preamble per 18 Jan 2026 and WIP-FILE-NAMING-v1.4 conventions.
-
----
-
-## 2. PROJECT SNAPSHOT (Updated Session 23)
-
-- **Active Regime**: Pre-publication 0.x.x.x
-- **Phase**: Phase 0 – Chapter Scaffolding
-- **Current Guide Version**: guide-v0.3.2.0-20260119 (Chapter 4.3 DMS Down integrated, redaction corrections in 4.1/4.2, enhanced semantic clarity)
-- **Chapters Planned**: 7
-- **Chapters with narrative in development**: 4/7
-  - **Chapter 1** — Introduction: narrative complete
-  - **Chapter 2** — HOTAS Fundamentals: **WIP review, narrative progress Session 2** (2 sections 2.1 Overview/2.2 Master Modes) [NEW]
-  - **Chapter 4** — DMS: Sections 4.1, 4.2, 4.3 FINAL INTEGRATED, Sections 4.4 LEFTRIGHT (review).
-  - **Chapter 5** — CMS: Sections 5.1, 5.2, 5.3 narrative and tables complete
-- **Chapters with structure scaffolded**: 5/7
-  - Chapters 2 HOTAS Fundamentals, 3 TMS, 4 DMS with 4.1, 4.2, 4.3 direction-based structure locked by blueprint v1.1, plus outlines for 6 Training References and 7 HOTAS Visual Reference
-- **Tables filled**: 4 major HOTAS tables
-  - CMS (integrated Sections 5.2–5.3)
-  - 3 DMS tables (C4-S1 SOI-by-mode, C4-S2 DMS Up usage, C4-S3 DMS Down usage) all INTEGRATED with enhanced documentation
-  - Remaining DMS tables (DMS LeftRight, DMS summary) pending per unified Chapter 4 DMS blueprint v1.1
+**Consequence:** All new WIP files going forward MUST follow BRIEFING-v0.2.0.1 Section 11 template specification (with updated preamble per 18 Jan 2026) and WIP-FILE-NAMING-v1.4 conventions.
 
 ---
 
-### 2.1 High-Level Overview (Updated)
+## 2. PROJECT SNAPSHOT
 
-Since v0.2.2.0:
-- **Geometry Option D**: A4, 2.0 cm side margins, 2.5 cm top/bottom; text width 17.0 cm; HOTAS table width 15.6 cm; arraystretch 1.25
-- **Document class**: report with twoside option (upgraded Session 17)
-- **Chapter formatting**: Enhanced via titlesec package (upgraded Session 17)
-- **Headers/Footers**: Professional two-sided layout with improved page numbers and chapter markers (upgraded Session 17)
-- **Additional packages**: float (graphics control), booktabs/tabularx (advanced table formatting) (upgraded Session 17)
+Current state as of 2026-01-29, 22:55 PM -03 (Session 23 - Project Tracking Update):
 
----
+### 2.1 High-Level Overview
+
+- **Active Regime:** Pre-publication (0.x.x.x)
+- **Phase:** Phase 0 -- Chapter Scaffolding
+- **Current Guide Version:** guide-v0.3.2.0-20260119 (Section 4.3 DMS Down integrated, redaction corrections in 4.1 and 4.2, enhanced semantic clarity) — stored in wip/guide/, synchronized to guide.tex root
+- **Chapters Planned:** 7
+- **Chapters with narrative complete in development:** 3/7
+  - Chapter 1 -- Introduction (narrative complete)
+  - Chapter 5 -- CMS Sections 5.1, 5.2, 5.3 (narrative and tables complete)
+  - **Chapter 4 -- DMS Sections 4.1, 4.2, 4.3, and 4.4 (LEFT/RIGHT - WIP IN REVIEW)**
+    - Section 4.1 (Concept and SOI) - FINAL & INTEGRATED (with redaction corrections)
+    - Section 4.2 (DMS Up: HUD Designation as SOI) - FINAL & INTEGRATED (with redaction corrections)
+    - Section 4.3 (DMS Down: Toggle SOI Between Displays) - **FINAL & INTEGRATED (v0.3.2.0)** (promoted review→final 2026-01-18, integrated 2026-01-19)
+    - Section 4.4 (DMS Left/Right: Format Selection) - **WIP REVIEW IN PROGRESS** (review status, 2026-01-21)
+    - Section 4.5 (Master Mode Summary) - pending per unified Chapter 4 DMS blueprint v1.1
+- **Chapters with structure scaffolded:** 4/7
+  - Chapters 2 (HOTAS Fundamentals), 3 (TMS), 4 (DMS with 4.1, 4.2, 4.3 direction-based structure locked by blueprint v1.1), plus outlines for 6 (Training References) and 7 (HOTAS Visual Reference)
+- **Tables filled:** 1 major HOTAS table (CMS, integrated Sections 5.2–5.3), 3 DMS tables (C4-S1 SOI-by-mode, C4-S2 DMS Up usage, C4-S3 DMS Down usage) all INTEGRATED with enhanced documentation (column explanations); remaining DMS tables (DMS Left/Right, DMS summary) pending per unified Chapter 4 DMS blueprint v1.1.
 
 ### 2.2 Layout Standard
 
-- **Version Control**: GitHub repository tms-dms-cms-usage-guide
-- **Local project root**: projeto-bms (normalized structure)
-- **Core folders**:
-  - `wip/` — active work-in-progress LaTeX sections/tables/visuals (contains wipguide/ subfolder for versioned snapshots)
-  - `archive/` — approved/deprecated WIP and historical guide snapshots (subfolders: archiveGUIDE, archiveWIP)
-  - `fig/` — images and figures used in guide.tex
-  - `docs/` — governance and tracking documents (Markdown, exported to DOCX via md-to-docx script)
-- **Editor**: VS Code (default for Markdown and Git-related edits)
-- **LaTeX toolchain**: MiKTeX (local compilation)
-- **Total Commits**: 198 (GitHub tracked)
-- **Latest Release**: v0.3.2.0 (tagged 2026-01-19)
+Since v0.2.2.0 (geometry and table settings); v0.3.1.0 (preamble upgraded); v0.3.2.0 (semantic refinements):
+- **Geometry:** Option D (A4, 2.0 cm side margins, 2.5 cm top/bottom)
+- **Text width:** 17.0 cm
+- **HOTAS table width:** 15.6 cm
+- **Table arraystretch:** 1.25 (for readability)
+- **Column definitions:** L{width}, C{width}, R{width} (raggedright, centering, raggedleft with explicit width)
+- **Document class:** `report` with `twoside` option (upgraded Session 17)
+- **Chapter formatting:** Enhanced via `titlesec` package (upgraded Session 17)
+- **Headers/Footers:** Professional two-sided layout with improved page numbers and chapter markers (upgraded Session 17)
+- **Additional packages:** `float` for graphics control, `booktabs` + `tabularx` for advanced table formatting (upgraded Session 17)
+
+### 2.3 Tooling & Repository
+
+- **Version Control:** Git/GitHub (repository: tms-dms-cms-usage-guide)
+- **Local project root:** projeto-bms (normalized structure)
+- **Core folders:**
+  - wip/ -- active work-in-progress (LaTeX sections/tables/visuals); contains wip/guide/ subfolder for versioned snapshots
+  - archive/ -- approved or deprecated WIP and historical guide snapshots (subfolders: archive/GUIDE/, archive/WIP/)
+  - Fig -- images and figures used in guide.tex
+  - docs -- governance and tracking documents (Markdown), exported to DOCX via md-to-docx script
+- **Editor:** VS Code (default for Markdown and Git-related edits)
+- **LaTeX toolchain:** MiKTeX (local compilation)
+- **Total Commits:** 198 (GitHub tracked)
+- **Releases:** v0.3.2.0 (active, tagged on GitHub 2026-01-19), v0.3.1.0 (released 2026-01-18), v0.3.0.1 (archived), v0.3.0.0 (archived)
 
 ---
 
-## 3. VERSION ROADMAP (Updated Session 23)
+## 3. VERSION ROADMAP
 
 ### 3.1 Past and Current Versions (0.x.x.x)
 
 | Target Version | Expected Area | Phase | Status | Notes |
 |---|---|---|---|---|
-| v0.3.1.0 | Preamble Infrastructure Upgrade | 0 | COMPLETED RELEASED | SESSION 17 Update 18 Jan 2026. Major preamble infrastructure upgrade deployed. Migration: article → report class with twoside option. New features: titlesec chapter formatting, improved headers/footers for two-sided layout, float package for graphics control, enhanced table packages (booktabs, tabularx). BRIEFING-v0.2.0.1 Section 11 expanded to 8,000 words with complete preamble documentation (11.3.1–11.3.11). guide.tex migrated and tested ✓. LaTeX compilation verified ✓. PDF output guidetest.pdf generated and approved by author ✓. template-wip-V1.0.tex updated with new preamble — all future WIP files compliant. Snapshot guide-v0.3.1.0-20260117.tex created, deployed to wipguide, and synchronized to guide.tex root. Previous snapshot v0.3.0.1 moved to ARCHIVE/GUIDE. GitHub Release tag 0.3.1.0 created and pushed to repository. Version bump: v0.3.0.1 → v0.3.1.0 (PATCH). Next phase: Continue DMS content Section 4.3 integration, Sections 4.4, 4.5 and TMS coverage per roadmap |
-| v0.3.2.0 | Chapter 4 – DMS Section 4.3 integration + redaction corrections | 0 | COMPLETED RELEASED | SESSION 20 Update 19 Jan 2026. Section 4.3 DMS Down integrated into guide after final semantic refinements and redaction corrections applied to Sections 4.1 and 4.2. Changes: (1) Redaction corrections (grammar, clarity) applied throughout 4.1 and 4.2; (2) Section 4.3 integrated with enhanced semantic clarity (new intro paragraph separating display toggling from format transitions; replaced "valid SOI candidates are HUD, FCR, TGP, WPN..." with "HUD and both MFD" for clarity); HOTAS table Effect/Nuance column optimized (NAV, A-A, A-G refined; picture evaluation situational awareness A-A row). Validation: Dash-34 alignment confirmed ✓. LaTeX structure verified ✓. Cross-references checked ✓. File size: 71935 bytes (guide-v0.3.2.0-20260119.tex in wipguide). GitHub Release tag 0.3.2.0 created and pushed. Version bump: v0.3.1.0 → v0.3.2.0 (MINOR bump). Next phase: Sections 4.4 DMS LeftRight and 4.5 Master Mode Summary WIP development per unified Chapter 4 DMS blueprint v1.1 |
-| **v0.x.0.0** | **Chapter 2 – HOTAS Fundamentals** | **0** | **WIP dev (AI Session 23)** | **NEW SESSION 23 Progress 2026-01-26, 0014 AM**. Chapter 2 narrative developed: 2 sections (2.1 Overview of TMS/DMS/CMS + 2.2 Master Modes and Context Principles). Text-puro (no figures/tables/SOI-detail/press-timing). Dash-34-aligned (refs 2.1, 2.1.5, 2.1.1.2.1, 2.1.1.2.3, 2.1.1.11, 2.1.1.13, 2.1.6.3). Fwd to Chapters 3 (TMS), 4 (DMS), 5 (CMS) detailed tables. File: chapter-C2-hotas-fundamentals-dev-20260125.tex (status dev). WIP metadata complete. Template-wip-V1.0.tex used (preamble V1.0 intact per governance). Next: Author review + optional refinement, promote to final, integrate into v0.5.0.0. PATCH or MINOR bump TBD |
-| v0.x.0.0 | Chapter 3 – TMS all sections (3.1–3.6) | 0 | Planned | Full TMS coverage after DMS completion. MINOR bump |
-| v0.7.0.0 | All 7 chapters scaffolded | 0 | Target | Transition to Phase 1. All chapters with structure and basic narrative. MINOR bump. Phase 1 – Table population; Phase 2 – Community review and release |
+| v0.1.0.0 | Initial scaffold | 0 | **✅ COMPLETED** | Basic structure laid. Chapter/Section skeleton. Integrated Introduction (Chapter 1). Canonical nomenclature: TMS, DMS, CMS (not ICP buttons). |
+| v0.1.4.0 | Template adoption | 0 | **✅ COMPLETED** | guide.tex using geometry, columns, and arraystretch per BRIEFING requirements. Layout standard deployed. |
+| v0.2.0.1 | Chapter 5 -- CMS (Section 5.1) | 0 | **✅ COMPLETED** | Integrated Section 5.1 (Concept and Interactions -- CMDS/ECM/RWR). Chapter metric 17 → 27. |
+| v0.2.1.0 | Chapter 5 -- CMS (Internal structure) | 0 | **✅ COMPLETED** | Refined Chapter 5 internal structure (5.1, 5.2, 5.3 splits). |
+| v0.2.2.0 | Chapter 5 -- CMS (Section 5.2) | 0 | **✅ COMPLETED** | Integrated Section 5.2 (Switch Actuation and HOTAS Table). Geometry Option D locked. |
+| v0.2.3.0 | Chapter 5 -- CMS (Section 5.2 tables) | 0 | **✅ COMPLETED** | Added tables to Section 5.2 (CMS HOTAS table). |
+| v0.2.3.1 | Chapter 5 -- CMS (Table columns documented) | 0 | **✅ COMPLETED** | CMS table (Section 5.2) with documented column explanations (SUBPATCH). |
+| v0.2.4.0 | Chapter 5 -- CMS (Section 5.3) | 0 | **✅ COMPLETED** | Integrated Section 5.3 (Block and Variant Notes). Chapter 5 structurally complete (all 3 sections). |
+| v0.3.0.0 | Chapter 4 -- DMS (Sections 4.1, 4.2) | 0 | **✅ COMPLETED** | Integrated DMS Sections 4.1 (Concept and SOI) and 4.2 (DMS Up). HOTAS tables: SOI-by-mode (6 rows), DMS Up usage (3 rows). GitHub Release tag 0.3.0.0 created. |
+| v0.3.0.1 | Chapter 4 -- DMS (Section 4.2 table docs) | 0 | **✅ COMPLETED** | Section 4.2 (DMS Up) table with documented column explanations. PATCH-level refinement. GitHub Release tag 0.3.0.1 created. |
+| v0.3.1.0 | Preamble Infrastructure Upgrade | 0 | **✅ COMPLETED & RELEASED** | **SESSION 17 Update (18 Jan 2026):** Major preamble infrastructure upgrade deployed. Migration: article class → report class with twoside option. New features: titlesec chapter formatting, improved headers/footers for two-sided layout, float package for graphics control, enhanced table packages (booktabs, tabularx). BRIEFING-v0.2.0.1 Section 11 expanded to ~8,000 words with complete preamble documentation (11.3.1–11.3.11). guide.tex migrated and tested ✅. LaTeX compilation verified ✅. PDF output (guidetest.pdf) generated and approved by author ✅. template-wip-V1.0.tex updated with new preamble (all future WIP files compliant). Snapshot guide-v0.3.1.0-20260117.tex created, deployed to wip/guide/, and synchronized to guide.tex root. Previous snapshot (v0.3.0.1) moved to ARCHIVE/GUIDE/. GitHub Release tag 0.3.1.0 created and pushed to repository. Version bump: v0.3.0.1 → v0.3.1.0 (PATCH). Next phase: Continue DMS content (Section 4.3 integration, Sections 4.4, 4.5) and TMS coverage per roadmap. |
+| v0.3.2.0 | Chapter 4 -- DMS (Section 4.3 integrated, redaction corrections in 4.1-4.2) | 0 | **✅ COMPLETED & RELEASED** | **SESSION 20 Update (19 Jan 2026):** Section 4.3 (DMS Down) integrated into guide after final semantic refinements and redaction corrections applied to Sections 4.1 and 4.2. Changes: (1) Redaction corrections (grammar, clarity) applied throughout 4.1 and 4.2. (2) Section 4.3 integrated with enhanced semantic clarity: new intro paragraph separating display toggling from format transitions; replaced "valid SOI candidates are HUD, FCR, TGP, WPN..." with "HUD and both MFD" for clarity; HOTAS table Effect/Nuance column optimized (NAV, A-A, A-G refined; "picture evaluation" → "situational awareness"). Validation: Dash-34 alignment confirmed; LaTeX structure verified; cross-references checked. File size: 71935 bytes (guide-v0.3.2.0-20260119.tex in wip/guide/). GitHub Release tag 0.3.2.0 created and pushed. Version bump: v0.3.1.0 → v0.3.2.0 (MINOR bump). Next phase: Sections 4.4 (DMS Left/Right) and 4.5 (Master Mode Summary) WIP development per unified Chapter 4 DMS blueprint v1.1. |
+| v0.4.0.0 | Chapter 4 -- DMS (Sections 4.4 Left/Right + 4.5 Summary) OR Chapter 2 -- HOTAS Fundamentals | 0 | **WIP IN REVIEW** | DMS Section 4.4 (Left/Right) promoted to review status (2026-01-21). File: section-C4-S4-dms-left-right-review-2026-01-21.tex. PDF generated for visual validation. Chapter 2 (HOTAS Fundamentals) also in dev status (2026-01-25). Next: Author final review cycle and integration decision. MINOR bump expected. |
+| v0.5.0.0 | Chapter 3 -- TMS (all sections) OR Chapter 2 -- HOTAS Fundamentals | 0 | Planned | Full TMS coverage OR foundational HOTAS content. MINOR bump. |
+| v0.7.0.0 | All 7 chapters scaffolded | 0 | Target | All chapters with structure and basic narrative. Transition point from Phase 0 to Phase 1. MINOR bump. |
 
-**Post-Phase-0**: v1.0.0 and above will follow VERSION-SYSTEM-v4.2.1 rules for post-publication regimes.
+**Post-Phase-0:** v1.0.0 and above will follow VERSION-SYSTEM-v4.2.1 rules for post-publication regimes.
+- Phase 1 -- Table population
+- Phase 2 -- Community review and release
 
 ---
 
 ## 4. WIP LAYER
 
-### 4.1 WIP File Naming Quick Reference (Per WIP-FILE-NAMING-v1.4)
+### 4.1 WIP File Naming Quick Reference
+
+Per WIP-FILE-NAMING-v1.4:
 
 | Category | Pattern | Example | Status Codes |
 |---|---|---|---|
@@ -107,64 +121,255 @@ Since v0.2.2.0:
 | Notes | notes-CN-TOPIC-TYPE-DATE.md | notes-C4-dms-research-questions-2026-01-19.md | no formal status |
 | Visuals | visual-CN-DESC-TYPE-STATUS-DATE.ext | visual-C7-hotas-layout-diagram-dev-2026-01-18.svg | dev, review, final, approved, deprecated |
 
-**Key rules**:
-- WIP status transitions (dev → review → final → approved) do not directly affect guide version numbers
-- Only integration into guide-v.tex triggers version bumps per VERSION-SYSTEM-v4.2.1
-- Active WIP lives in `wip/`; integrated or deprecated WIP moves to `archive/`
-- **UPDATED Session 17**: All new WIP files MUST copy from `TEMPLATES/template-wip-V1.0.tex` per BRIEFING-v0.2.0.1 Section 11 (updated preamble with report class, twoside, titlesec, float support)
+**Key rules:**
+- WIP status transitions (dev → review → final → approved) do not directly affect guide version numbers.
+- Only integration into guide-v.tex triggers version bumps per VERSION-SYSTEM-v4.2.1.
+- Active WIP lives in wip/; integrated or deprecated WIP moves to archive/.
+- **UPDATED (Session 17):** All new WIP files MUST copy from TEMPLATES/template-wip-V1.0.tex per BRIEFING-v0.2.0.1 Section 11 (updated preamble, now with report class, twoside, titlesec, float support).
 
 ---
 
-### 4.2 Active WIP Snapshot (Updated Session 23)
+### 4.2 Active WIP Snapshot (as of 2026-01-29, 22:55 PM -03)
+
+| WIP File | Status | Last Updated | Target Guide Version | Description |
+|---|---|---|---|---|
+| **chapter-C2-hotas-fundamentals-dev-2026-01-25.tex** | **dev** | 2026-01-25 | v0.4.0.0 OR v0.5.0.0 | Chapter 2 (HOTAS Fundamentals). Covers SOI concept, short/long press timing, master modes, HOTAS switch categories (TMS/DMS/CMS). Foundational content for entire guide. WIP file generated from template-wip-V1.0.tex. Status: dev. Preamble: V1.0 (Session 17 compatible). Next: Author review cycle and integration decision (C2 vs C4-S4 priority). |
+| **section-C4-S4-dms-left-right-review-2026-01-29.tex** | **review** | 2026-01-29 | v0.4.0.0 | DMS Chapter 4 Section 4.4 (DMS Left/Right: Format Selection). Promoted dev → review (2026-01-21). **SESSION 23 UPDATE (29 Jan 2026):** PDF compiled and validated. Content structure: Overview, Functional Modes (Radar/NAV/Weapons), Button Logic, Integration, Summary. LaTeX structure verified. File size: 21 KB. Status: review. Preamble: V1.0. Next: Author final review → transition to final status → integration into v0.4.0.0 per Chapter 4 DMS blueprint v1.1. |
+
+**Status codes:**
+- dev -- Draft, author working
+- review -- Under human review, not yet final or integrated
+- final -- Author approved, ready for integration
+- approved -- Integrated into guide-v and archived
+- deprecated -- Intentionally retired (superseded or abandoned)
+
+---
+
+### 4.3 Integrated Files (Session-by-Session Log)
+
+Complete chronological log of all WIP files that have been integrated into guide-v snapshots.
 
 | Date | WIP Reference File | From Version | To Version | Status | Category | Notes |
 |---|---|---|---|---|---|---|
-| 2026-01-07 | section-C5-S1-concept-and-interactions-cmds-ecm-rwr-final-2026-01-07.tex | v0.1.4.0 | v0.2.0.1 | INTEGRATED | section | CMS 5.1 integrated as new section. Chapters metric: 1/7 → 2/7 |
-| 2026-01-08 | (guide-v0.2.1.0-20260108) | v0.2.0.1 | v0.2.1.0 | INTEGRATED | guide | Human-driven refinement of Chapter 5 internal structure (5.1–5.3 splits, headings) |
-| 2026-01-10 | section-C5-S2-cms-actuation-hotas-tables-final-2026-01-09.tex | v0.2.1.0 | v0.2.3.1 | INTEGRATED | section | CMS 5.2 narrative and main HOTAS table integrated |
-| 2026-01-11 | section-C5-S3-blocks-and-variants-final-2026-01-11.tex | v0.2.3.1 | v0.2.4.0 | INTEGRATED | section | CMS 5.3 narrative and reference tables. Chapter 5 now structurally complete (all 3 sections) |
-| 2026-01-15 | section-C4-S1-concept-soi-approved-2026-01-15.tex | v0.2.4.0 | v0.3.0.0 | INTEGRATED | section | DMS Chapter 4 Section 4.1. SOI-by-mode table. File moved to ARCHIVE (approved) |
-| 2026-01-15 | section-C4-S2-dms-up-approved-2026-01-15.tex | v0.2.4.0 | v0.3.0.0 | INTEGRATED | section | DMS Chapter 4 Section 4.2. File moved to ARCHIVE (approved) |
-| 2026-01-16 | (guide-v0.3.0.1-20260116.tex) | v0.3.0.0 | v0.3.0.1 | INTEGRATED | guide | Section 4.2 column explanations added (PATCH refinement) |
-| 2026-01-17 | (guide-v0.3.1.0-20260117.tex) | v0.3.0.1 | v0.3.1.0 | INTEGRATED | guide-infrastructure | SESSION 17 – PREAMBLE INFRASTRUCTURE UPGRADE (PATCH). Migration article → report with twoside, titlesec, float, booktabs/tabularx. Headers/footers enhanced. BRIEFING-v0.2.0.1 Section 11 expanded (8,000 words). template-wip-V1.0.tex updated. LaTeX compilation ✓, PDF ✓. GitHub Release tag 0.3.1.0 |
-| 2026-01-18 | section-C4-S3-dms-down-approved-2026-01-18.tex | v0.3.1.0 | v0.3.2.0 | FINAL INTEGRATED | section | DMS Chapter 4 Section 4.3. Promoted review → final on 2026-01-18. Integrated into guide-v0.3.2.0 on 2026-01-19. Refined intro. Semantic refinement "HUD and both MFD". File moved to ARCHIVE (approved) |
-| 2026-01-19 | (guide-v0.3.2.0-20260119.tex) | v0.3.1.0 | v0.3.2.0 | INTEGRATED | guide | SESSION 20 – DMS SECTION 4.3 INTEGRATION + REDACTION CORRECTIONS. Sections 4.1, 4.2 grammar/clarity refined. Section 4.3 integrated. Version bump MINOR. Chapter 4 now contains integrated Sections 4.1, 4.2, 4.3 with enhanced semantic clarity. Next: DMS Sections 4.4 LeftRight and 4.5 Master Mode Summary WIP development |
-| 2026-01-20 | section-C4-S4-dms-left-right-dev-2026-01-20.tex | v0.3.2.0 | pending | WIP – IN DEVELOPMENT | section | DMS Chapter 4 Section 4.4. SESSION 21 WIP GENERATION. Substantive research completed on DMS LeftRight architecture, OSB mapping, functional modes. Content structure: Overview, Functional Modes, Button Logic, Integration, Summary. Status dev. Preamble V1.0. Next: Author review + integration into v0.4.0.0 |
-| 2026-01-21 | section-C4-S4-dms-left-right-review-2026-01-21.tex | v0.3.2.0 | pending | WIP – REVIEW | section | DMS Chapter 4 Section 4.4. SESSION 22 UPDATE. Promoted dev → review. PDF generated. Content complete. Status review. Preamble V1.0. Next: Author final review + final status + integration into v0.4.0.0 |
-| **2026-01-26** | **chapter-C2-hotas-fundamentals-review-2026-01-25.tex** | **v0.3.2.0 unchanged** | **pending** | **WIP – IN DEVELOPMENT** | **chapter** | **SESSION 23 – CHAPTER 2 NARRATIVE PROGRESS (NEW)**. 2 sections developed: 2.1 Overview of TMS/DMS/CMS (3 subsections, full TMS/DMS/CMS intro, fwd Chapters 3–5) + 2.2 Master Modes and Context Principles (2 subsections, mode fundamentals, SOI coupling, timing defer to Chapters 3–5). Text-puro (no figures/tables/detailed SOI/press-timing). Dash-34-aligned (2.1, 2.1.5, 2.1.1.2.1, 2.1.1.2.3, 2.1.1.11, 2.1.1.13, 2.1.6.3). Template-wip-V1.0.tex used (preamble V1.0 intact). Metadata: Target=C2, Status=dev, Date=2026-01-25, Author=AI Session 23. Notes: "Text-puro overview for Cap.2; fwd 3-5; Dash-34-aligned; no SOI-detail/presses; fwd tabled to chapters 3-5". Next: Author review + optional refinement, promote to final, integrate into v0.5.0.0 |
+| 2026-01-07 | section-C5-S1-concept-and-interactions-cmds-ecm-rwr-final-2026-01-07.tex | v0.1.4.0 | v0.2.0.1 | INTEGRATED | section | CMS 5.1 integrated as new section. Chapters metric 17 → 27. |
+| 2026-01-08 | section-C5-S1-concept-and-interactions-cmds-ecm-rwr-final-2026-01-07.tex | v0.2.0.1 | v0.2.1.0 | INTEGRATED | section | Human-driven refinement of Chapter 5 internal structure (5.1–5.3 splits, headings). |
+| 2026-01-10 | section-C5-S2-cms-actuation-hotas-tables-final-2026-01-09.tex | v0.2.1.0 | v0.2.3.1 | INTEGRATED | section | Integrated CMS 5.2 (CMS Switch Actuation) narrative and main HOTAS table. |
+| 2026-01-11 | section-C5-S3-blocks-and-variants-final-2026-01-11.tex | v0.2.3.1 | v0.2.4.0 | INTEGRATED | section | Integrated CMS 5.3 (Block and Variant Notes) narrative and reference tables (External ECM Pod, Internal IDIAS). Chapter 5 now structurally complete (all 3 sections). |
+| 2026-01-15 | section-C4-S1-concept-soi-approved-2026-01-15.tex | v0.2.4.0 | v0.3.0.0 | **INTEGRATED** | section | DMS Chapter 4 Section 4.1 (Concept and SOI) with SOI-by-mode table. Promoted to FINAL and **INTEGRATED into guide-v0.3.0.0-20260115**. HOTAS table: Valid SOI Displays by Master Mode (6 rows: NAV, A-A, A-G PRE, A-G VIS, DGFT, MSL OVRD) + clarification of HUD/HMCS SOI constraints in A-A. File moved to ARCHIVE with approved status. |
+| 2026-01-15 | section-C4-S2-dms-up-approved-2026-01-15.tex | v0.2.4.0 | v0.3.0.0 | **INTEGRATED** | section | DMS Chapter 4 Section 4.2 (DMS Up: HUD Designation as SOI). Extracted from combined DMS Up/Down WIP, promoted to FINAL, and **INTEGRATED into guide-v0.3.0.0-20260115**. HOTAS table: DMS Up Usage Across NAV, A-A and A-G Master Modes (3 rows) + exception states (Snowplow, MARK/OFLY). File moved to ARCHIVE with approved status. |
+| 2026-01-16 | guide-v0.3.0.1-20260116.tex | v0.3.0.0 | v0.3.0.1 | **INTEGRATED (PATCH)** | guide | Section 4.2 (DMS Up) table column explanations added, matching Section 5.2 documentation pattern. No structural changes; PATCH-level refinement only. LaTeX compiled ✅, PDF generated ✅. Snapshot deployed to guide.tex root. Previous snapshot (v0.3.0.0) moved to ARCHIVE/GUIDE/. |
+| 2026-01-17 | guide-v0.3.1.0-20260117.tex | v0.3.0.1 | v0.3.1.0 | **INTEGRATED (PATCH - Infrastructure)** | guide | **SESSION 17 - PREAMBLE INFRASTRUCTURE UPGRADE:** Major preamble upgrade deployed. Migration: article class → report class with twoside option. New packages: titlesec (chapter formatting), float (graphics control), booktabs/tabularx (advanced tables). Headers/footers enhanced for two-sided professional layout. BRIEFING-v0.2.0.1 Section 11 expanded to ~8,000 words with complete documentation (11.3.1–11.3.11) covering all preamble components. guide.tex tested via guidetest.tex ✅ (LaTeX compilation verified, PDF generated and approved by author). template-wip-V1.0.tex updated with new preamble (all future WIP files compliant). Snapshot guide-v0.3.1.0-20260117.tex created in wip/guide/ and synchronized to guide.tex root. Previous snapshot (v0.3.0.1) moved to ARCHIVE/GUIDE/. GitHub Release tag 0.3.1.0 created. Version bump: v0.3.0.1 → v0.3.1.0 (PATCH). Infrastructure now production-ready for continued content development. |
+| 2026-01-18 | section-C4-S3-dms-down-approved-2026-01-18.tex | v0.3.1.0 | v0.3.2.0 | **FINAL & INTEGRATED** | section | DMS Chapter 4 Section 4.3 (DMS Down: Toggle SOI Between Displays). Promoted review→final on 2026-01-18. **INTEGRATED into guide-v0.3.2.0-20260119** on 2026-01-19. Refined intro separating display toggling from format transitions. Semantic refinement: "HUD and both MFD" replaces format listing for clarity. HOTAS table Effect/Nuance column (col 5) optimized: NAV, A-A, A-G all updated; "picture evaluation" → "situational awareness" (A-A row). Full subsection structure verified: 4.3.1 (DMS Down Effectiveness), 4.3.2 HOTAS table (3 rows + mission refs), 4.3.3 Exception States (Snowplow, MARK/OFLY). File size: 15,094 bytes (archived approved version). Preamble compatibility: V1.0 (updated Session 17). File moved to ARCHIVE with approved status. |
+| 2026-01-19 | guide-v0.3.2.0-20260119.tex | v0.3.1.0 | v0.3.2.0 | **INTEGRATED (MINOR)** | guide | **SESSION 20 - DMS SECTION 4.3 INTEGRATION + REDACTION CORRECTIONS:** Section 4.3 (DMS Down) integrated into guide. Additionally, redaction corrections applied to Sections 4.1 and 4.2 (grammar, clarity, semantic refinements). Version bump: v0.3.1.0 → v0.3.2.0 (MINOR bump reflecting integration of Section 4.3). Snapshot guide-v0.3.2.0-20260119.tex created in wip/guide/ (71935 bytes) and synchronized to guide.tex root. Previous snapshot (v0.3.1.0) moved to ARCHIVE/GUIDE/. GitHub Release tag 0.3.2.0 created. Chapter 4 now contains integrated Sections 4.1, 4.2, 4.3 with enhanced semantic clarity and redaction corrections. Next phase: DMS Sections 4.4 (Left/Right) and 4.5 (Master Mode Summary) WIP development per unified Chapter 4 DMS blueprint v1.1. |
+| 2026-01-20 | section-C4-S4-dms-left-right-dev-2026-01-20.tex | v0.3.2.0 | (pending) | WIP - IN DEVELOPMENT | section | DMS Chapter 4 Section 4.4 (DMS Left/Right: Format Selection). **SESSION 21 WIP GENERATION (20 Jan 2026):** Substantive research completed on DMS Left/Right architecture, OSB mapping, functional modes (radar, nav, weapons). WIP file generated from updated template-wip-V1.0.tex per BRIEFING-v0.2.0.1. Content structure: Overview, Functional Modes, Button Logic, Integration, Summary. Status: dev. Preamble: V1.0 (Session 17 compatible). Next: Author review cycle and integration into v0.4.0.0 per unified Chapter 4 DMS blueprint v1.1. |
+| 2026-01-21 | section-C4-S4-dms-left-right-review-2026-01-21.tex | v0.3.2.0 | (pending) | WIP - REVIEW | section | DMS Chapter 4 Section 4.4 (DMS Left/Right: Format Selection). **SESSION 22 UPDATE (21 Jan 2026):** C4-S4 promoted dev → review. File renamed to reflect status change (dev-2026-01-20.tex → review-2026-01-21.tex). Content complete and ready for technical review cycle. PDF generated for visual validation. Status: review. Preamble: V1.0 (Session 17 compatible). Next: Author final review and transition to final status prior to integration into v0.4.0.0 per unified Chapter 4 DMS blueprint v1.1. |
+| 2026-01-25 | chapter-C2-hotas-fundamentals-dev-2026-01-25.tex | v0.3.2.0 | (pending) | WIP - IN DEVELOPMENT | chapter | Chapter 2 (HOTAS Fundamentals). Covers SOI concept, short/long press timing, master modes, HOTAS switch categories (TMS/DMS/CMS). Foundational content for entire guide. WIP file generated from template-wip-V1.0.tex. Status: dev. Preamble: V1.0 (Session 17 compatible). Next: Author review cycle and integration decision (C2 vs C4-S4 priority). |
+| 2026-01-29 | section-C4-S4-dms-left-right-review-2026-01-29.tex | v0.3.2.0 | (pending) | WIP - REVIEW | section | DMS Chapter 4 Section 4.4 (DMS Left/Right: Format Selection). **SESSION 23 UPDATE (29 Jan 2026):** PDF compiled and validated. LaTeX structure verified. File size: 21 KB. Status: review. Preamble: V1.0. Next: Author final review → transition to final → integration into v0.4.0.0. |
 
 ---
 
-## 5. SESSION LOG (Updated Session 23)
+## 5. SESSION LOG
 
-| Session | Date | Guide Version | Tracking Version | Key Changes |
+High-level summary of each working session and resulting guide state.
+
+| Session | Date | Guide Version after | Tracking Version | Key Changes |
 |---|---|---|---|---|
-| Session 20 | 2026-01-19 | v0.3.2.0 | v5.0.0 | v0.3.2.0 INTEGRATION COMPLETE. Section 4.3 integrated. Redaction corrections in 4.1 and 4.2. MINOR version bump. GitHub Release 0.3.2.0 tagged. Chapter 4 now FINAL INTEGRATED (Sections 4.1, 4.2, 4.3). Next: DMS 4.4 and 4.5 WIP development. Total commits: 144 |
-| Session 21 | 2026-01-20 | v0.3.2.0 unchanged | v5.0.0 | DMS LEFTRIGHT WIP DEVELOPMENT. Substantive research on DMS LeftRight architecture completed. WIP section-C4-S4-dms-left-right-dev-2026-01-20.tex generated from canonical template. Status dev. Content sections: Overview, Functional Modes, Button Logic, Integration, Summary. Preamble V1.0. Awaiting author review and MFD image integration. Next: Integration into v0.4.0.0 per Chapter 4 DMS blueprint v1.1 |
-| Session 22 | 2026-01-21 | v0.3.2.0 unchanged | v5.0.0 | DMS LEFTRIGHT WIP PROMOTED TO REVIEW. C4-S4 promoted dev → review status. File renamed (dev → review). PDF generated for visual validation. Content structure complete (Overview, Functional Modes, Button Logic, Integration, Summary). Status review. Preamble V1.0. Next: Author final review cycle + transition to final status prior to integration into v0.4.0.0. Total commits: 198 |
-| **Session 23** | **2026-01-26** | **v0.3.2.0 unchanged** | **vx.x.x** | **CHAPTER 2 NARRATIVE PROGRESS (NEW).** Text-puro narrative developed for Chapter 2 HOTAS Fundamentals: 2 sections (2.1 Overview + 2.2 Master Modes). Dash-34-aligned, no figures/tables/SOI-detail/press-timing. Fwd Chapters 3–5. WIP file: chapter-C2-hotas-fundamentals-dev-20260125.tex (status dev). Template-wip-V1.0.tex used (preamble V1.0 intact per governance). Metadata complete. Next: Author review + optional refinement, promote to final, integrate into v0.5.0.0. PROJECT-TRACKING updated to v5.1.0 reflecting new Chapter 2 status and pending v0.5.0.0 integration |
+| 1 | 2026-01-05 | v0.1.0.0 | v1.0.0 | Initial project setup. Chapter scaffolding (TMS/DMS/CMS nomenclature locked). Introduction chapter integrated. VERSION-SYSTEM-v1.0.0 established. |
+| 2 | 2026-01-06 | v0.1.1.0 | v1.1.0 | Placeholder subsections added. MINOR bump rules documented. |
+| 3 | 2026-01-07 | v0.1.4.0 | v2.0.0 | Layout standard adopted. BRIEFING created. Geometry locked. |
+| 4 | 2026-01-07 | v0.2.0.1 | v2.1.0 | CMS Section 5.1 integrated. Chapter metric 17 → 27. |
+| 5 | 2026-01-08 | v0.2.1.0 | v3.0.0 | Chapter 5 structure refined (5.1–5.3). WIP-FILE-NAMING created. |
+| 6 | 2026-01-09 | v0.2.2.0 | v3.1.0 | CMS Section 5.2 integrated. Geometry Option D locked. |
+| 7 | 2026-01-10 | v0.2.3.0 | v3.2.0 | CMS HOTAS table integrated into Section 5.2. |
+| 8 | 2026-01-10 | v0.2.3.1 | v3.3.0 | CMS table column explanations added. SUBPATCH bump. |
+| 9 | 2026-01-11 | v0.2.4.0 | v4.0.0 | CMS Section 5.3 integrated. Chapter 5 complete. Template-wip-V1.0.tex established. VERSION-SYSTEM and WIP-FILE-NAMING updated. |
+| 10 | 2026-01-13 | v0.2.4.0 (unchanged) | v4.1.0 | DMS blueprint v1.0 created. Project structure analysis. |
+| 11 | 2026-01-14 | v0.2.4.0 (unchanged) | v4.1.1 | DMS blueprint v1.1 finalized (direction-based structure). |
+| 12 | 2026-01-14 | v0.3.0.0 | v4.2.0 | **v0.3.0.0 RELEASE:** DMS Sections 4.1 and 4.2 integrated. HOTAS tables: SOI-by-mode (6 rows), DMS Up usage (3 rows). MINOR bump. GitHub Release tag 0.3.0.0 created. Total commits: 77. |
+| 13 | 2026-01-16 | v0.3.0.1 | v4.2.0 | Section 4.2 (DMS Up) table column explanations added. PATCH bump. LaTeX verified ✅. GitHub Release tag 0.3.0.1 created. |
+| 14 | 2026-01-17 | v0.3.0.1 (unchanged) | v4.2.0 | DMS Down WIP promoted to review status. |
+| 15 | 2026-01-18 | v0.3.0.1 (unchanged) | v4.2.0 | DMS Down WIP promoted to final status after semantic refinements. Ready for integration. |
+| 16 | 2026-01-18 | v0.3.0.1 (unchanged) | v4.2.0 | BRIEFING-v0.2.0.1 Section 11 expanded (~8,000 words). Preamble architecture documented. New preamble prepared (report class, twoside, titlesec, float). guidetest.tex compilation verified ✅. PDF generated ✅. |
+| 17 | 2026-01-18 | v0.3.1.0 | v4.2.1 | **v0.3.1.0 RELEASE - PREAMBLE INFRASTRUCTURE UPGRADE:** Major preamble upgrade deployed (article → report class with twoside, titlesec chapter formatting, improved headers/footers, float package). guide.tex migrated and tested ✅. template-wip-V1.0.tex updated. PATCH bump. GitHub Release tag 0.3.1.0 created. Total commits: 107. |
+| 18 | 2026-01-18 | v0.3.2.0 (pending) | v4.2.1 | DMS Down Section 4.3 promoted to final status after enhanced semantic refinements (intro paragraph refined, "HUD and both MFD" clarity, HOTAS table Effect/Nuance optimized). Ready for integration into v0.3.2.0. |
+| 19 | 2026-01-19 | v0.3.2.0 | v4.2.1 | **v0.3.2.0 INTEGRATION COMPLETE:** Section 4.3 integrated. Redaction corrections in 4.1 and 4.2. MINOR version bump. GitHub Release 0.3.2.0 tagged. Chapter 4 now FINAL & INTEGRATED (Sections 4.1, 4.2, 4.3). Next: DMS 4.4 and 4.5 WIP development. Total commits: 144. |
+| 20 | 2026-01-19 | v0.3.2.0 | v5.0.0 | **TRACKING UPDATE:** PROJECT-TRACKING-v5.0.0 released. Complete restructure: new Section 2 (Project Snapshot with 3 subsections), Section 4 (WIP Layer with 3 subsections including chronological integrated files log), Session Log (Section 5), Near-Term Roadmap (Section 6), Key Metrics (Section 7). Enhanced navigation, comprehensive documentation, production-ready tracking. |
+| 21 | 2026-01-20 | v0.3.2.0 (unchanged) | v5.0.0 | **DMS LEFT/RIGHT WIP DEVELOPMENT:** Substantive research on DMS Left/Right architecture completed. WIP section-C4-S4-dms-left-right-dev-2026-01-20.tex generated from canonical template. Status: dev. Content sections: Overview, Functional Modes, Button Logic, Integration, Summary. Preamble: V1.0. Awaiting author review and MFD image integration. Next: Integration into v0.4.0.0 per Chapter 4 DMS blueprint v1.1. |
+| 22 | 2026-01-21 | v0.3.2.0 (unchanged) | v5.0.0 | **DMS LEFT/RIGHT WIP PROMOTED TO REVIEW:** C4-S4 promoted dev → review status. File renamed: section-C4-S4-dms-left-right-dev-2026-01-20.tex → section-C4-S4-dms-left-right-review-2026-01-21.tex. PDF generated for visual validation. Content structure complete: Overview, Functional Modes, Button Logic, Integration, Summary. Status: review. Preamble: V1.0. Next: Author final review cycle and transition to final status prior to integration into v0.4.0.0. Total commits: 198. |
+| 23 | 2026-01-29 | v0.3.2.0 (unchanged) | v5.0.0 | **PROJECT TRACKING UPDATE:** Section 9 (NEXT TARGET) added. Tracks active development priorities: C2 (HOTAS Fundamentals - dev status), C4:S4 (DMS Left/Right - review status), guide version v0.4.0.0 target. Active WIP snapshot updated with both WIP files. Integrated files log updated with C2 and C4-S4 entries. Complete tracking refresh with all mapped changes. |
 
 ---
 
-## 6. NEAR-TERM ROADMAP (Updated Session 23)
+## 6. NEAR-TERM ROADMAP (Next Target Versions)
 
-**Next Target Versions**:
-- **v0.4.0.0**: DMS Sections 4.4 LeftRight + 4.5 Master Mode Summary (WIP 4.4 in review; 4.5 pending)
-- **v0.5.0.0**: Chapter 2 HOTAS Fundamentals (WIP dev, Session 23, ready for author review + integration)
-- **v0.6.0.0**: Chapter 3 TMS (all sections 3.1–3.6, planned after DMS completion)
-- **v0.7.0.0**: All 7 chapters scaffolded (transition to Phase 1)
+| Version | Area | Status | Notes |
+|---|---|---|---|
+| **v0.3.2.0** | Chapter 4 -- DMS (Sections 4.1–4.3 final→integrated, Sections 4.4–4.5 pending) | **✅ COMPLETED & RELEASED** | Section 4.3 integrated. Redaction corrections in 4.1 and 4.2. Total commits: 198. Next: DMS Section 4.4 (Left/Right) final review + Section 4.5 (Summary) OR Chapter 2 integration decision. |
+| **v0.4.0.0** | Chapter 4 -- DMS (Section 4.4 Left/Right) OR Chapter 2 -- HOTAS Fundamentals | **WIP IN REVIEW** | Two integration candidates: (1) Section 4.4 (DMS Left/Right) - review status (2026-01-29), PDF validated ✅. (2) Chapter 2 (HOTAS Fundamentals) - dev status (2026-01-25). Author decision: C4-S4 vs C2 priority. MINOR bump expected after integration. |
+| **v0.5.0.0** | Chapter 3 -- TMS (all sections) OR remaining Chapter 4/2 content | Planned | Full TMS coverage OR foundational HOTAS/DMS content completion. MINOR bump. |
+| **v0.6.0.0** | Additional chapter completion | Target | Continue chapter scaffolding per roadmap. |
+| **v0.7.0.0** | All 7 chapters scaffolded | Target | Transition to Phase 1 (Table Population). |
 
 ---
 
 ## 7. KEY METRICS
 
-- **Total Commits**: 200 (GitHub tracked)
-- **Latest Version**: v0.3.2.0 (released 2026-01-19)
-- **Current Phase**: Phase 0 – Chapter Scaffolding
-- **C4-S4 Status**: WIP – REVIEW (as of 2026-01-21)
-- **C2 Status**: WIP – IN DEVELOPMENT (Session 23, 2026-01-26, ready for review)
-- **Last Updated**: 2026-01-26, 0014 AM -03
+- **Total Commits:** 198 (GitHub tracked)
+- **Latest Version:** v0.3.2.0 (released 2026-01-19)
+- **Current Phase:** Phase 0 -- Chapter Scaffolding
+- **Active WIP Files:** 2
+  - chapter-C2-hotas-fundamentals-dev-2026-01-25.tex (dev)
+  - section-C4-S4-dms-left-right-review-2026-01-29.tex (review)
+- **Next Integration Target:** v0.4.0.0 (C4-S4 OR C2 decision pending)
+- **Last Updated:** 2026-01-29, 22:55 PM -03
 
 ---
 
-**END OF PROJECT TRACKING v5.1.0 – UPDATED SESSION 23**
+## 8. GITHUB ISSUE TRACKING INTEGRATION
+
+### 8.1 Issue-to-WIP Mapping
+
+GitHub Issues are tracked to monitor review and approval workflows for WIP files before integration into guide versions.
+
+| Issue # | Type | Title | Status | Linked WIP File | Target Version | Milestone | Notes |
+|---|---|---|---|---|---|---|---|
+| **#16** | Documentation | C4:S4 DMS Left/Right - REVIEW | REVIEW | section-C4-S4-dms-left-right-review-2026-01-29.tex | v0.4.0.0 | v0.4.0.0 (Due: 2026-01-23) | PDF compiled ✅. LaTeX structure verified ✅. Awaiting author final review. 21 KB file. |
+| **#17** | Documentation | C4:S4 DMS Left/Right - FINAL | OPEN | (TBD - after #16 closure) | v0.4.0.0 | v0.4.0.0 (Due: 2026-01-23) | Tracks transition from review → final status. |
+| **#18** | Documentation | C4:S4 DMS Left/Right - APPROVED | OPEN | (TBD - after #17 closure) | v0.4.0.0 | v0.4.0.0 (Due: 2026-01-23) | Tracks final → approved status (post-integration). |
+| **#19** | Documentation | C4:S4 DMS Left/Right - INTEGRATION COMPLETE | OPEN | (TBD - after #18 closure) | v0.4.0.0 | v0.4.0.0 (Due: 2026-01-23) | Confirms Section 4.4 integrated into guide-v0.4.0.0. |
+| **#20** | Documentation | C2 HOTAS Fundamentals - REVIEW | REVIEW | chapter-C2-hotas-fundamentals-dev-2026-01-25.tex | v0.4.0.0 OR v0.5.0.0 | C2 HOTAS Integration (Due: 2026-02-15) | Chapter 2 in dev status. Covers SOI, timing, master modes, switch categories. Awaiting promotion to review. |
+| **#21** | Documentation | C2 HOTAS Fundamentals - FINAL | OPEN | (TBD - after #20 closure) | v0.4.0.0 OR v0.5.0.0 | C2 HOTAS Integration (Due: 2026-02-15) | Tracks transition from review → final status. |
+| **#22** | Documentation | C2 HOTAS Fundamentals - APPROVED | OPEN | (TBD - after #21 closure) | v0.4.0.0 OR v0.5.0.0 | C2 HOTAS Integration (Due: 2026-02-15) | Tracks final → approved status (post-integration). |
+
+### 8.2 Milestone Overview
+
+| Milestone | Due Date | Completion | Open Issues | Closed Issues | Description |
+|---|---|---|---|---|---|
+| **v0.4.0.0** | 2026-01-23 | 1/4 (25%) | 3 | 0 | DMS Section 4.4 (Left/Right) integration into guide. Issues: #16 (REVIEW - current), #17 (FINAL), #18 (APPROVED), #19 (INTEGRATION). |
+| **C2 HOTAS Integration** | 2026-02-15 | 0/3 (0%) | 3 | 0 | Chapter 2 (HOTAS Fundamentals) review, approval, integration. Issues: #20 (REVIEW), #21 (FINAL), #22 (APPROVED). |
+
+### 8.3 Issue Workflow
+
+Standard workflow for WIP progression through GitHub Issues:
+
+1. **REVIEW Issue** (e.g., #16, #20) - WIP file promoted from dev → review status. Author conducts technical review.
+2. **FINAL Issue** (e.g., #17, #21) - After REVIEW closure, WIP promoted review → final. Content approved, ready for integration.
+3. **APPROVED Issue** (e.g., #18, #22) - After FINAL closure and integration into guide-v, WIP marked approved and archived.
+4. **INTEGRATION COMPLETE Issue** (e.g., #19) - Confirms successful integration, version bump, and GitHub Release tag creation.
+
+**Notes:**
+- Issues linked to Milestones for version tracking (e.g., v0.4.0.0, C2 HOTAS Integration).
+- REVIEW issues remain OPEN until author confirms transition to FINAL.
+- Milestone completion percentage reflects progress toward guide version release.
+
+---
+
+## 9. PRÓXIMAS METAS (NEXT TARGET)
+
+Esta seção rastreia as prioridades ativas de desenvolvimento e os próximos marcos de integração.
+
+### 🎯 **Target 1: Chapter 2 — HOTAS Fundamentals**
+
+**Objetivo:** Integração do conteúdo fundamental sobre HOTAS (SOI, timing, modos mestres, categorias de switches).
+
+**Status:**
+- **WIP File:** `chapter-C2-hotas-fundamentals-dev-2026-01-25.tex`
+- **Situação Atual:** dev (em desenvolvimento desde 2026-01-25)
+- **Issues Relacionadas:**
+  - #20: C2 HOTAS Fundamentals - REVIEW (aberta)
+  - #21: C2 HOTAS Fundamentals - FINAL (aberta)
+  - #22: C2 HOTAS Fundamentals - APPROVED (aberta)
+- **Milestone:** C2 HOTAS Integration (Due: 2026-02-15, 0/3 complete)
+
+**Conteúdo:**
+- SOI concept (Sensor of Interest)
+- Short/long press timing mechanics
+- Master modes (NAV, A-A, A-G, DGFT, MSL OVRD)
+- HOTAS switch categories (TMS/DMS/CMS)
+- Foundational material para todo o guide
+
+**Próximos Passos:**
+1. dev → review: Promoção após revisão técnica do autor
+2. review → final: Aprovação final de conteúdo
+3. final → approved: Integração no guide (v0.4.0.0 OR v0.5.0.0)
+
+---
+
+### 🎯 **Target 2: Chapter 4, Section 4.4 — DMS Right/Left Format Selection**
+
+**Objetivo:** Conclusão da sequência de seções DMS com integração de DMS Left/Right (seleção de formato MFD).
+
+**Status:**
+- **WIP File:** `section-C4-S4-dms-left-right-review-2026-01-29.tex`
+- **Situação Atual:** review (em revisão desde 2026-01-21, atualizado 2026-01-29)
+- **Issues Relacionadas:**
+  - #16: C4:S4 DMS Left/Right - REVIEW (aberta) ✅ PDF compilado
+  - #17: C4:S4 DMS Left/Right - FINAL (aberta)
+  - #18: C4:S4 DMS Left/Right - APPROVED (aberta)
+  - #19: C4:S4 DMS Left/Right - INTEGRATION COMPLETE (aberta)
+- **Milestone:** v0.4.0.0 (Due: 2026-01-23, 1/4 complete)
+
+**Conteúdo:**
+- Overview da funcionalidade DMS Left/Right
+- Functional Modes: Radar, NAV, Weapons
+- Button Logic: OSB mapping e context switching
+- Integration com SOI system
+- Summary e referências de missão
+
+**Validação:**
+- ✅ LaTeX structure verified
+- ✅ PDF compiled and generated (21 KB file)
+- ⏳ Aguardando revisão final do autor
+
+**Próximos Passos:**
+1. review → final: Transição após aprovação do autor (#17)
+2. final → integration: Merge no guide-v0.4.0.0 (#18)
+3. Integration complete: GitHub Release tag 0.4.0.0 (#19)
+
+---
+
+### 🎯 **Target 3: Guide Version v0.4.0.0**
+
+**Objetivo:** Consolidação da próxima versão MINOR do guide com integração de C4:S4 OU C2.
+
+**Status:**
+- **Versão Atual do Guide:** v0.3.2.0 (released 2026-01-19)
+- **Próxima Versão:** v0.4.0.0 (MINOR bump)
+- **Candidatos para Integração:**
+  1. **Section 4.4 (DMS Left/Right)** - review status, pronto para final
+  2. **Chapter 2 (HOTAS Fundamentals)** - dev status, revisão pendente
+
+**Decisão Pendente:**
+- Autor define prioridade: C4:S4 (completar sequência DMS) OU C2 (fundamentos primeiro)
+- Ambos podem ser integrados em versões separadas (v0.4.0.0 e v0.5.0.0)
+
+**Critérios de Release:**
+- WIP file em status final ✅
+- LaTeX compilation validated ✅
+- PDF generation successful ✅
+- Cross-references verified ✅
+- Dash-34 alignment confirmed ✅
+- GitHub Release tag created ✅
+
+**Próximos Passos:**
+1. Definir prioridade de integração (C4:S4 vs C2)
+2. Completar revisão final do WIP selecionado
+3. Integrar no guide.tex
+4. Version bump (v0.3.2.0 → v0.4.0.0)
+5. Create GitHub Release tag 0.4.0.0
+6. Archive previous snapshot (v0.3.2.0) em ARCHIVE/GUIDE/
+7. Deploy new snapshot to wip/guide/ e guide.tex root
+
+---
+
+**Resumo das Metas:**
+
+| Target | Tipo | Status | Milestone | Próximo Passo Crítico |
+|---|---|---|---|---|
+| **C2 - HOTAS Fundamentals** | Chapter | dev | Due 2026-02-15 (0/3) | dev → review (Issue #20) |
+| **C4:S4 - DMS Left/Right** | Section | review | Due 2026-01-23 (1/4) | review → final (Issue #17) |
+| **Guide v0.4.0.0** | Version | Planned | Dependent on C2/C4:S4 | Definir prioridade de integração |
+
+---
+
+**END OF PROJECT TRACKING v5.0.0 - UPDATED SESSION 23 (2026-01-29)**
