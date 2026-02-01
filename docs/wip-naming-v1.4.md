@@ -1,3 +1,8 @@
+---
+layout: default
+---
+{% raw %}
+
 # Falcon BMS TMS/DMS/CMS Guide — WIP File Naming Convention v1.4
 
 ## Work-in-Progress File Organization and Nomenclature
@@ -1219,3 +1224,4 @@ This WIP File Naming Convention is **complementary** to both VERSION-SYSTEM-v4.2
 **Effective Date:** 09 January 2026  
 **Last Updated:** 09 January 2026, 05:52 -03  
 **Version:** v1.4
+{% endraw %}
