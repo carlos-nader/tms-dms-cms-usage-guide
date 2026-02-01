@@ -1,3 +1,8 @@
+---
+layout: default
+---
+{% raw %}
+
 # Falcon BMS 4.38.1 — TMS, DMS and CMS Usage Guide: Project Brief
 
 **Brief Version:** v0.2.0.1-2026-01-29 (Preamble V1.0 Updated: titlesec Full Hierarchy + Optical Fixes)
@@ -763,3 +768,4 @@ pdflatex section-C5-S2-cms-new-dev-2026-01-29.tex
 **Status:** Ready for use and contribution  
 **License:** CC BY-NC 4.0  
 **Next Update:** After project phase transitions
+{% endraw %}

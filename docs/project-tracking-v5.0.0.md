@@ -1,3 +1,8 @@
+---
+layout: default
+---
+{% raw %}
+
 # PROJECT TRACKING
 ## Falcon BMS TMS/DMS/CMS HOTAS Guide
 
@@ -361,3 +366,4 @@ Esta seção rastreia as prioridades ativas de desenvolvimento e os próximos ma
 ---
 
 **END OF PROJECT TRACKING v5.0.0 - UPDATED SESSION 24 (2026-01-31)**
+{% endraw %}

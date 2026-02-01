@@ -1,3 +1,8 @@
+---
+layout: default
+---
+{% raw %}
+
 # Falcon BMS TMS/DMS/CMS Guide Version System v4.2.1
 
 **Latest Update:** 10 January 2026, 18:00 -03  
@@ -617,3 +622,4 @@ Single workflow for 0.x.x.x and x.x.x:
 **Document Status:** Production-Ready (v4.2.1)  
 **Effective Date:** 09 January 2026  
 **Last Updated:** 09 January 2026, 18:00 -03
+{% endraw %}

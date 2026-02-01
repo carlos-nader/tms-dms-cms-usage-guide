@@ -1,3 +1,8 @@
+---
+layout: default
+---
+{% raw %}
+
 Preamble Completo (Pronto para Colar)
 
 ```latex
@@ -330,3 +335,4 @@ Preamble Completo (Pronto para Colar)
 
 ---
 
+{% endraw %}

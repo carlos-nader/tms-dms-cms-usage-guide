@@ -1,3 +1,8 @@
+---
+layout: default
+---
+{% raw %}
+
 # TRAINING MISSION REFERENCE TABLE v1.0
 ## TMS/DMS/CMS Usage Guide — Standardized Abbreviations
 
@@ -199,3 +204,4 @@ All future WIP files (section-C*-S*.tex) that populate HOTAS tables must conform
 **Document Reference:** training-mission-abbrev-table.md  
 **Project:** TMS/DMS/CMS Usage Guide  
 **Author:** Carlos "Metal" Nader (Project Author)
+{% endraw %}
