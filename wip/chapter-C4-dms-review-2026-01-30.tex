@@ -355,7 +355,7 @@
 %
 % WIP Status: review --- dev | review | final | approved | deprecated
 % Created: 2026-01-30
-% Last Modified: 2026-01-30
+% Last Modified: 2026-01-31
 % Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.3.3.0
 %
 % Narrative Completion: 0-100%
@@ -405,13 +405,61 @@ The functionality of the DMS --- SOI selection, MFD format cycling and all assoc
 %--------------------------------------------------------------------------
 % CHAPTER 4: SECTION 4.1.1
 %--------------------------------------------------------------------------
-\subsection{SOI Definition}
+\subsection{SOI Definition and Master Mode Availability}
 \label{sec:C4-S1-S1}
 
-The Sensor of Interest (SOI) is the display or sensor that currently receives HOTAS cursor slew commands and, where applicable, TMS actions. At any moment, only one display can be the SOI. Valid SOI displays include any of the F-16's displays: the HUD, the right MFD, and the left MFD. However, some MFD formats are not valid SOI because they provide information or control but do not accept sensor-like slew or targeting inputs. The table below summarizes valid and invalid SOI MFD formats.
+The Sensor of Interest (SOI) is the display or sensor that currently receives HOTAS cursor slew commands and, where applicable, TMS actions. \textbf{At any moment, only one display can be the SOI}. Visually, The currently active SOI is easily recognized:
+
+\begin{itemize}
+	\item On the \textbf{HUD}: an asterisk (\texttt{*}) appears in the upper left corner when HUD is SOI.
+	\item On an \textbf{MFD}: a border outline appears around the edges of the display when it is SOI. When an MFD format is \textit{not} SOI, the text \texttt{NOT SOI} may appear on the format.
+\end{itemize}
+
+The availability of displays as valid SOI varies by master mode. Table~\ref{tab:C4-S1-SOI-by-mode} below shows which displays can serve as SOI in the primary operational contexts. Note that in air-to-air employment modes (A-A, DGFT, MSL OVRD), the HUD is \textbf{never} available as SOI; A-A modes \textit{restrict} the pilot to left and right MFD as the SOI. This constraint ensures that radar and tactical displays remain the primary source of truth in air-to-air engagements.
+
+\small
+\renewcommand{\arraystretch}{1.2}
+
+\begin{longtable}{L{2.5cm} L{6.5cm} L{6.0cm}}
+	\caption{SOI Availabity by Master Mode\label{tab:C4-S1-SOI-by-mode}}\\
+	
+	\rowcolor{headerblue}
+	\textbf{\color{white}Master Mode} & \textbf{\color{white}Valid SOI Displays} & \textbf{\color{white}Constraints \& Notes} \\
+	\endfirsthead
+	
+	\rowcolor{headerblue}
+	\textbf{\color{white}Master Mode} & \textbf{\color{white}Valid SOI Displays} & \textbf{\color{white}Constraints \& Notes} \\
+	\endhead
+	
+	\multicolumn{3}{r}{\emph{Continues on next page}}\\
+	\endfoot
+	
+	\endlastfoot
+	
+	NAV (Navigation) & HUD and MFD (FCR, TGP, HSD, WPN, HAD formats) & All displays available. HUD is primary choice for situational awareness and NAV-specific tasks. \\
+	A-A (Air-to-Air) & MDF only (FCR, HSD, TGP formats) & \textbf{HUD cannot be SOI.} SOI limited to radar and tactical displays. \\	
+	A-G (PRE) & HUD and MFD (FCR, TGP, WPN, HAD, HSD formats) & All displays available. \\	
+	A-G (VIS) & HUD and MFD (FCR, TGP, WPN formats) & Restricted to visual-capable displays. HUD used for target acquisition (e.g., AGM-65 VIS EO, DTOS, CCIP). \\	
+	DGFT (Dogfight) & MFD (FCR, HSD, TGP formats) & \textbf{HUD cannot be SOI}. \\	
+	MSL OVRD (Missile Override) & MFD (FCR, HSD, TGP formats) & \textbf{HUD cannot be SOI}. \\
+\end{longtable}
+
+As shown in Table~\ref{tab:C4-S1-SOI-by-mode}, the availability of SOI displays is strategically constrained by master mode to align pilot attention with the operational context. Navigation and air-to-ground modes offer maximum display flexibility, allowing the pilot to transition between HUD and MFD as needed.
+
+Conversely, air-to-air and associated override modes eliminate HUD as a selectable SOI. This design reflects the fundamental principle that air-to-air engagements must be driven by primary sensor information rather than HUD-derived or symbology-based cues. However, HMCS provides an independent off-boresight capability (see Section~\ref{sec:C4-S1-S3} for details), independent of HUD not being a valid SOI.
+
+For visual air-to-ground delivery (VIS modes), practical SOI control --- HUD in conjunction with MFD --- focuses on visual-capable sensors: the HUD for target designation and the MFD for optical tracking (TGP format page) and weapon-specific control (WPN format page), for instance. Although the radar and optical trackings may continue to provide ranging data in the background, HUD and sensor-video-driven symbology drive the attack in VIS delivery. See Section~\ref{sec:C4-S2-S1} for specific weapon examples (CCIP, DTOS, AGM-65 VIS EO, IAM VIS).
+
+%--------------------------------------------------------------------------
+%CHAPTER 4: SECTION 4.1.1.1
+%--------------------------------------------------------------------------
+\subsubsection{Valid SOI Formats}
+\label{sec:C4-S1-S1-S1}
+
+Although the MFD are capable of being SOI in any Master Mode, some MFD formats are not valid SOI because they provide information or control but do not accept sensor-like slew or targeting inputs. The table below summarizes valid and invalid SOI MFD formats.
 
 \begin{longtable}{C{4.5cm} C{4.5cm}}
-	\caption{Valid and Invalid SOI MFD Format \label{tab:C4-S1-MFD-format}}\\
+	\caption{Valid and Invalid SOI MFD Formats \label{tab:C4-S1-MFD-format}}\\
 	
 	\rowcolor{headerblue}
 	\textbf{\color{white}Valid} & \textbf{\color{white}Invalid}\\
@@ -428,58 +476,6 @@ The Sensor of Interest (SOI) is the display or sensor that currently receives HO
 	
 	Fire Control Radar (FCR); Targeting Pod (TGP); Horizontal Situation Display (HSD); HARM (HAD); Weapon (WPN) & Stores Management (SMS); Data Transfer Equipment (DTE); TEST; Blank/Inactive formats; Digital Flight Control System (FLCS); TACAN (TCN); Forward Looking Infrared (FLIR); Terrain Following Radar (TFR)
 \end{longtable}
-
-Visually, The currently active SOI is easily recognized:
-\begin{itemize}
-	\item On the \textbf{HUD}: an asterisk (\texttt{*}) appears in the upper left corner when HUD is SOI.
-	\item On an \textbf{MFD}: a border outline appears around the edges of the display when it is SOI. When an MFD format is \textit{not} SOI, the text \texttt{NOT SOI} may appear on the format.
-\end{itemize}
-
-%--------------------------------------------------------------------------
-%CHAPTER 4: SECTION 4.1.1.1
-%--------------------------------------------------------------------------
-\subsubsection{Valid SOI Displays by Master Mode}
-\label{sec:C4-S1-S1-S1}
-
-The availability of displays as valid SOI varies by master mode. Table~\ref{tab:C4-S1-SOI-by-mode} shows which displays can serve as SOI in the primary operational contexts. Note that in air-to-air employment modes (A-A, DGFT, MSL OVRD), the HUD is \textbf{never} available as SOI; A-A modes restrict the pilot to left and right MFD (FCR, HSD, or TGP formats) as the SOI. This constraint ensures that radar and tactical displays remain the primary source of truth in air-to-air engagements.
-
-\small
-\renewcommand{\arraystretch}{1.2}
-
-\begin{longtable}{L{2.5cm} L{6.5cm} L{6.0cm}}
-	\caption{Valid SOI Displays by Master Mode\label{tab:C4-S1-SOI-by-mode}}\\
-	
-	\rowcolor{headerblue}
-	\textbf{\color{white}Master Mode} & \textbf{\color{white}Valid SOI Displays} & \textbf{\color{white}Constraints \& Notes} \\
-	\endfirsthead
-	
-	\rowcolor{headerblue}
-	\textbf{\color{white}Master Mode} & \textbf{\color{white}Valid SOI Displays} & \textbf{\color{white}Constraints \& Notes} \\
-	\endhead
-	
-	\multicolumn{3}{r}{\emph{Continues on next page}}\\
-	\endfoot
-	
-	\endlastfoot
-	
-	NAV (Navigation) & HUD and MFD (FCR, TGP, HSD, WPN, HAD formats) & All displays available. HUD is primary choice for situational awareness and NAV-specific tasks. \\
-	\midrule
-	A-A (Air-to-Air) & MDF only (FCR, HSD, TGP formats) & \textbf{HUD cannot be SOI.} SOI limited to radar and tactical displays. \\
-	\midrule
-	A-G (PRE) & HUD and MFD (FCR, TGP, WPN, HAD, HSD formats) & All displays available. \\
-	\midrule
-	A-G (VIS) & HUD and MFD (FCR, TGP, WPN formats) & Restricted to visual-capable displays. HUD used for target acquisition (e.g., AGM-65 VIS EO, DTOS, CCIP). \\
-	\midrule
-	DGFT (Dogfight) & MFD (FCR, HSD, TGP formats) & \textbf{HUD cannot be SOI}. \\
-	\midrule
-	MSL OVRD (Missile Override) & MFD (FCR, HSD, TGP formats) & \textbf{HUD cannot be SOI}. \\
-\end{longtable}
-
-As shown in Table~\ref{tab:C4-S1-SOI-by-mode}, the availability of SOI displays is strategically constrained by master mode to align pilot attention with the operational context. Navigation and air-to-ground modes offer maximum display flexibility, allowing the pilot to transition between HUD and MFD with radar, targeting pod, and weapon pages formats as needed.
-
-Conversely, air-to-air and associated override modes eliminate HUD as a selectable SOI. This design reflects the fundamental principle that air-to-air engagements must be driven by primary sensor information rather than HUD-derived or symbology-based cues. However, HMCS provides an independent off-boresight capability (see Section~\ref{sec:C4-S1-S3} for details), independent of HUD not being a valid SOI.
-
-For visual air-to-ground delivery (VIS modes), practical SOI control --- HUD in conjunction with MFD --- focuses on visual-capable sensors: the HUD for target designation and the MFD for optical tracking (TGP page) and weapon-specific control (WPN page), for instance. Although the radar and optical trackings may continue to provide ranging data in the background, HUD and sensor-video-driven symbology drive the attack in VIS delivery. See Section~\ref{sec:C4-S2-S1} for specific weapon examples (CCIP, DTOS, AGM-65 VIS EO, IAM VIS).
 
 %--------------------------------------------------------------------------
 % CHAPTER 4: SECTION 4.1.2
@@ -776,20 +772,17 @@ Below is a list of every possible display pages currently present in Falcon BMS 
 	\caption{Falcon BMS Possible MFD Formats\label{table:C4-S4-S2-S1}}\\
 	
 	\rowcolor{headerblue}
-	\textbf{\color{white}Acronym} & \textbf{\color{white}Full Name} & \textbf{\color{white}Definition} & \textbf{\color{white}Can be SOI} \\
-	\midrule
+	\textbf{\color{white}Acronym} & \textbf{\color{white}Full Name} & \textbf{\color{white}Definition} & \textbf{\color{white}Can be SOI} \\	
 	\endfirsthead
 	
 	\rowcolor{headerblue}
-	\textbf{\color{white}Acronym} & \textbf{\color{white}Full Name} & \textbf{\color{white}Definition} & \textbf{\color{white}Can be SOI} \\
-	\midrule
+	\textbf{\color{white}Acronym} & \textbf{\color{white}Full Name} & \textbf{\color{white}Definition} & \textbf{\color{white}Can be SOI} \\	
 	\endhead
 	
 	\midrule
 	\multicolumn{4}{r}{\emph{Continues on next page}}\\
 	\endfoot
 	
-	\bottomrule
 	\endlastfoot
 	
 	FCR & Fire Control Radar & Provides air-to-air and air-to-ground radar detection, tracking, and targeting data with multiple search and track modes for weapons employment & YES \\
@@ -905,9 +898,6 @@ Notwithstanding the decision to present only three representative training missi
 \begin{hotastable}{DMS Left/Right Format Cycling Across All Master Modes}
 
 A-A, A-G, NAV & Left & Short & Cycle Left MFD format & DMS Left cycles the Left MFD through its configured 3-slot sequence: PRIMARY → SECONDARY → TERTIARY → PRIMARY (wrap-around). If BLANK slots are present, they are skipped automatically. Each press advances one step; no continuous cycling on hold. SOI designation of any valid display is unaffected. & 2.1.1.2.1, 2.1.6.3 & \trnref{8 (TFR/FLIR)}, \trnref{28 (SEAD-EW)}, \trnref{18 (BARCAP)} \\
-
-\hline
-
 A-A, A-G, NAV & Right & Short & Cycle Right MFD format & DMS Right cycles the Right MFD through its configured 3-slot sequence: PRIMARY → SECONDARY → TERTIARY → PRIMARY (wrap-around). If BLANK slots are present, they are skipped automatically. Each press advances one step; no continuous cycling on hold. SOI designation of any valid display is unaffected. & 2.1.1.2.1, 2.1.6.3 & \trnref{8 (TFR/FLIR)}, \trnref{28 (SEAD-EW)}, \trnref{18 (BARCAP)} \\
 
 \end{hotastable}
