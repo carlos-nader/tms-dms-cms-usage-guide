@@ -22,7 +22,7 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 
 ## 📄 Main Guide Files
 
-[![Version](https://img.shields.io/badge/LATEST%20version-v0.3.2.1-yellow?style=for-the-badge&logo=tag&logoColor=black)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases)
+[![Version](https://img.shields.io/badge/LATEST%20version-v0.3.3.0-yellow?style=for-the-badge&logo=tag&logoColor=black)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases)
 
 | Format | Link | Description |
 |:------:|:----:|:------------|
@@ -39,11 +39,11 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 
 | Metric | Value |
 |--------|-------|
-| **Guide Version** | v0.3.2.1 |
+| **Guide Version** | v0.3.3.0 |
 | **Phase** | Pre-publication (0.x.x.x) |
 | **Chapters Planned** | 7 |
 | **Chapters with Content** | 3 (C1, C4, C5) |
-| **Next Target** | v0.3.3.0 — DMS Left/Right (C4:S4) |
+| **Next Target** | v0.4.0.0 — HOTAS Fundamentals (C2) |
 
 ---
 
@@ -181,7 +181,6 @@ All technical claims are cross-referenced to these sources.
 | [**Tags**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/tags) | Version history |
 
 **Next milestones:**
-* **v0.3.3.0** — DMS Left/Right section (C4:S4)
 * **v0.4.0.0** — HOTAS Fundamentals chapter (C2)
 
 ---
@@ -241,4 +240,4 @@ For questions, suggestions, or feedback:
 
 ---
 
-**License:** CC BY-NC 4.0 | **Guide Status:** Pre-publication v0.3.2.1
+**License:** CC BY-NC 4.0 | **Guide Status:** Pre-publication v0.3.3.0
