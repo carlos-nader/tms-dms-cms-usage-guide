@@ -347,15 +347,15 @@
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 %============================================================================
 
-% File Name: chapter-C4-dms-review-2026-02-01.tex
+% File Name: chapter-C4-dms-final-2026-02-01.tex
 % WIP Naming Convention: v1.4
 % Target Chapter: C{N} (Chapter Title)
 % Target Section: S{M} (Section Title)
 % [Target Subsection: S{K} (Subsection Title) — OPTIONAL]
 %
-% WIP Status: review --- dev | review | final | approved | deprecated
+% WIP Status: final --- dev | review | final | approved | deprecated
 % Created: 2026-01-30
-% Last Modified: 2026-02-01
+% Last Modified: 2026-02-02
 % Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.3.3.0
 %
 % Narrative Completion: 0-100%
@@ -404,7 +404,7 @@ The functionality of the DMS --- SOI selection, MFD format cycling and all assoc
 
 \paragraph*{DMS Switch Response Characteristics:}
 
-The DMS switch responds to short presses for all standard SOI designation and MFD format cycling functions. Sustained or long-duration holds have no effect on SOI selection or format page cycling. The sole exception is the HMCS symbology blanking toggle, which requires a DMS Down hold of approximately 0.5 seconds and does not affect standard SOI designation or format cycling operations (see Section~\ref{sec:C4-S3-S3} for details).
+The DMS switch responds to short presses for all standard SOI designation and MFD format cycling functions. Sustained or long-duration holds have no effect on SOI selection or format page cycling. The sole exception is the HMCS symbology blanking toggle, which requires a DMS Down hold of approximately 0.5 second and does not affect standard SOI designation or format cycling operations (see Section~\ref{sec:C4-S3-S3} for details).
 
 %--------------------------------------------------------------------------
 % CHAPTER 4: SECTION 4.1.1
@@ -595,12 +595,11 @@ Each table entry specifies:
 
 \paragraph{Training Mission Selection Rationale:} The Training column in Table~\ref{tab:C4-S2-DMS-Up-Usage} reflects the operational effectiveness of DMS Up in each Master Mode. The A-A row has no training missions listed, not because DMS Up is omitted from training, but because DMS Up is \textbf{ineffective} in A-A master mode. Consequently, there is no hands-on training context where DMS Up produces a meaningful result in A-A. The empty Training cell reflects this architectural constraint rather than an oversight.
 
-\begin{hotastable}{DMS Up Usage Across NAV, A-A and A-G Master Modes}
+\begin{hotastable}{DMS Up Usage Across NAV, A-A and A-G Master Modes}\label{tab:C4-S2-DMS-Up-Usage}
 	NAV & Up & Short & Designate HUD as SOI & DMS Up is fully effective in NAV master mode. Pressing DMS Up immediately designates the HUD as SOI, placing the SOI asterisk on the HUD. With HUD/HMCS as SOI, CURSOR/ENABLE slews the HUD/HMCS cursor or designator, and in functions such as HUD or HMCS MARK, TMS Up is used to stabilise the line of sight and create markpoints. MFDs remain available for background navigation and systems information. & 2.1.1.2.3, 2.1.7.5.1, 2.1.7.5.4, 2.5.6.1 & \trnref{8 (TFR/FLIR)}, \trnref{21 (Nav1)}, \trnref{22 (Nav2)} \\
 	A-A & Up & Short & Designate HUD as SOI & DMS Up is \textbf{ineffective} in A-A master mode. The avionics architecture restricts SOI to FCR, HSD, or TGP only. HUD cannot be SOI in this mode and functions purely as a passive display. & 2.1.1.2.3 & \\
 	A-G & Up & Short & Designate HUD as SOI & DMS Up is fully effective in A-G master modes. Pressing DMS Up immediately designates HUD as SOI, and an asterisk appears in the upper left corner of the HUD. \textbf{In A-G visual modes (VIS)}, HUD is the operationally critical command interface for visual target designation and rejection via CURSOR and TMS inputs. If HUD loses SOI, visual cueing control is lost and must be recovered with DMS Up. & 2.1.1.2.3, 4.2.2.1, 4.2.2.1.1 & \trnref{10 (GP Bombs)}, \trnref{11 (LGB)}, \trnref{13 (Maverick)}, \trnref{14 (Maverick Adv)}, \trnref{15 (IAM)} \\
 \end{hotastable}
-\label{tab:C4-S2-DMS-Up-Usage}
 
 %--------------------------------------------------------------------------
 % CHAPTER 4: SECTION 4.2.3
@@ -683,7 +682,7 @@ Each table entry specifies:
 	\item \textbf{Training}: Recommended BMS training missions for hands-on practice.
 \end{itemize}
 
-\begin{hotastable}{DMS Down Usage Across NAV, A-A, and A-G Master Modes}
+\begin{hotastable}{DMS Down Usage Across NAV, A-A, and A-G Master Modes}\label{tab:C4-S3-DMS-Down-Usage}
 	NAV & Down & Short & Toggle SOI between HUD and MFD sensor pages & 
 	DMS Down transitions SOI from HUD to L-MFD (HUD $\rightarrow$ L-MFD). Repeated presses toggle between MFDs (L-MFD $\leftrightarrow$ R-MFD). To restore HUD as SOI, press DMS Up. With HUD as SOI, hands-on commands (CURSOR/ENABLE, TMS) manage HUD navigation symbology, allowing the pilot to cycle through all available displays by alternating DMS Up/Down commands. &
 	2.1.1.2.3, 2.1.6.3 &
@@ -699,7 +698,6 @@ Each table entry specifies:
 	2.1.1.2.3, 2.1.6.3 & 
 	\trnref{10 GP Bombs}, \trnref{11 LGB}, \trnref{13 Maverick}, \trnref{14 Maverick Adv}, \trnref{15 IAM} \\
 \end{hotastable}
-\label{tab:C4-S3-DMS-Down-Usage}
 
 % CHAPTER 4: SECTION 4.3.3
 \subsection{DMS Down Exception States}
@@ -711,16 +709,13 @@ In certain special states and submodes, DMS Down may: (i) be temporarily ineffec
 	\item \textbf{Snowplow (SP) PRE State (not stabilised):} When the pilot enters Snowplow mode (a specialised A-G ground-stabilisation mode for slewing to arbitrary ground positions) and the SP position has not yet been stabilised with TMS Up, the SOI is effectively ``nowhere.'' Both the A-G radar and TGP MFD displays show \texttt{NOT SOI}, and neither display is designated as SOI. As a result, \textbf{DMS Down has no effect} in this state: the toggle mechanism has nowhere to advance SOI to. Once the SP position is stabilised with TMS Up (pressing TMS Up on the HUD), SOI returns to its previous designated display, and DMS Down resumes normal toggling behaviour.
 	
 	\item \textbf{MARK/OFLY Submode:} In the MARK/OFLY submode (a specialised target-acquisition context documented in \dashref{2.1.1.2.3}), the SOI cannot be designated or changed at all. Consequently, \textbf{DMS Down has no effect} in MARK/OFLY: you cannot toggle SOI when SOI designation itself is locked. This submode is rare in normal operations but is important to recognise if you encounter it during unusual procedures or system states.
-	
-	\item \textbf{HMCS Symbology Blanking Toggle (DMS Down Hold):} 
-	A sustained DMS Down press held for approximately 0.5 seconds toggles the 	Helmet Mounted Cueing System (HMCS) between displaying symbology and blanked state. A second 0.5-second DMS Down hold restores HMCS symbology display. This feature is independent of HUD or cockpit blanking states and overrides all other blanking mechanisms.
 \end{itemize}
 
 Additionally, DMS Down performs a specialized function independent of SOI toggling:
 
 \begin{itemize}
 	\item \textbf{HMCS Symbology Blanking Toggle (DMS Down Hold):} 
-	A sustained DMS Down press held for approximately 0.5 second toggles the HMCS between displaying symbology and blanked state. A second 0.5 second DMS Down hold restores HMCS symbology display. This feature is independent of HUD or cockpit blanking states and overrides all other blanking mechanisms. It functions only in aircraft equipped with HMCS and does not affect normal SOI designation or format cycling. See Section~\ref{sec:C4-S1-S3} for mre HMCS architectural details.
+	A sustained DMS Down press held for approximately 0.5 second toggles the HMCS between displaying symbology and blanked state. A second 0.5 second DMS Down hold restores HMCS symbology display. This feature is independent of HUD or cockpit blanking states and overrides all other blanking mechanisms. It functions only in aircraft equipped with HMCS and does not affect normal SOI designation or format cycling. See Section~\ref{sec:C4-S1-S3} for more HMCS architectural details.
 \end{itemize}
 
 %--------------------------------------------------------------------------
