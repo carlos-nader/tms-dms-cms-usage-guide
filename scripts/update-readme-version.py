@@ -6,6 +6,11 @@ Supports both:
   - Automatic: Triggered by tag push (extracts version from latest tag)
   - Manual: Triggered via workflow_dispatch (uses OVERRIDE_VERSION env var)
 
+Updates version in THREE locations:
+  1. Badge: LATEST%20version-v0.3.2.1
+  2. Table: | **Guide Version** | v0.3.2.1 |
+  3. Footer: Pre-publication v0.3.2.1
+
 Usage:
   python update-readme-version.py
 
@@ -121,13 +126,10 @@ def update_readme_content(content, new_version):
     """
     Update version in README content.
     
-    Replaces patterns like:
-      **Status:** Pre-publication v0.3.1.0 (Preamble Infrastructure Upgrade)
-      with:
-      **Status:** Pre-publication v{new_version} (...)
-    
-    Also updates:
-      **Last Updated:** YYYY-MM-DD
+    Replaces version in THREE locations:
+      1. Badge: LATEST%20version-v0.3.2.1
+      2. Table: | **Guide Version** | v0.3.2.1 |
+      3. Footer: Pre-publication v0.3.2.1
     
     Args:
         content (str): Original README content
@@ -139,35 +141,44 @@ def update_readme_content(content, new_version):
     updated = content
     replacements = 0
     
-    # Pattern 1: Update version in "Pre-publication v..." line
-    # Matches: **Status:** Pre-publication v0.3.1.0 (optional description)
-    version_pattern = r'(Pre-publication\s+v)[\d.]+'
-    replacement = rf'\g<1>{new_version}'
-    new_content, count = re.subn(version_pattern, replacement, updated)
+    # Pattern 1: Update version badge in Main Guide Files section
+    # Matches: LATEST%20version-v0.3.2.1
+    badge_pattern = r'(LATEST%20version-v)[\d.]+'
+    badge_replacement = rf'\g<1>{new_version}'
+    new_content, count = re.subn(badge_pattern, badge_replacement, updated)
     
     if count > 0:
-        print(f"✓ Updated Guide Version references: {count} occurrence(s)")
+        print(f"✓ Updated version badge: {count} occurrence(s)")
+        replacements += count
+        updated = new_content
+    else:
+        print("⚠ No 'LATEST%20version-v...' badge found in README")
+    
+    # Pattern 2: Update version in Current Status table
+    # Matches: | **Guide Version** | v0.3.2.1 |
+    table_pattern = r'(\|\s*\*\*Guide Version\*\*\s*\|\s*v)[\d.]+'
+    table_replacement = rf'\g<1>{new_version}'
+    new_content, count = re.subn(table_pattern, table_replacement, updated)
+    
+    if count > 0:
+        print(f"✓ Updated Guide Version in table: {count} occurrence(s)")
+        replacements += count
+        updated = new_content
+    else:
+        print("⚠ No '| **Guide Version** | v...' pattern found in README")
+    
+    # Pattern 3: Update version in footer
+    # Matches: Pre-publication v0.3.2.1
+    footer_pattern = r'(Pre-publication\s+v)[\d.]+'
+    footer_replacement = rf'\g<1>{new_version}'
+    new_content, count = re.subn(footer_pattern, footer_replacement, updated)
+    
+    if count > 0:
+        print(f"✓ Updated footer version: {count} occurrence(s)")
         replacements += count
         updated = new_content
     else:
         print("⚠ No 'Pre-publication v...' pattern found in README")
-    
-    # Pattern 2: Update "Last Updated" timestamp (simple date format)
-    now = datetime.now()
-    # Format: 2026-01-19 (simple date)
-    timestamp = now.strftime("%Y-%m-%d")
-    
-    # Match: **Last Updated:** YYYY-MM-DD
-    timestamp_pattern = r'(\*\*Last Updated:\*\*\s+)\d{4}-\d{2}-\d{2}'
-    timestamp_replacement = rf'\g<1>{timestamp}'
-    new_content, count = re.subn(timestamp_pattern, timestamp_replacement, updated)
-    
-    if count > 0:
-        print(f"✓ Updated timestamp: {timestamp}")
-        replacements += count
-        updated = new_content
-    else:
-        print("⚠ No 'Last Updated' line found in README (timestamp not updated)")
     
     return updated, replacements
 
@@ -228,7 +239,7 @@ def main():
     """Main execution logic."""
     
     print("=" * 60)
-    print("📝 README Version Updater v2.0")
+    print("📝 README Version Updater v3.0")
     print("=" * 60)
     
     # Step 1: Determine version source
@@ -261,8 +272,8 @@ def main():
     
     readme_path = "README.md"
     if not Path(readme_path).exists():
-        # Fallback to docs/ if exists
-        readme_path = "docs/PROJECT-TRACKING-v5.0.0.md"
+        print(f"✗ FAILED: {readme_path} not found")
+        sys.exit(1)
     
     content = read_readme(readme_path)
     if content is None:
@@ -278,7 +289,10 @@ def main():
     
     if num_changes == 0:
         print("⚠ WARNING: No version updates were made")
-        print("  Check that README contains proper version markers")
+        print("  Check that README contains proper version markers:")
+        print("  - Badge: LATEST%20version-v...")
+        print("  - Table: | **Guide Version** | v... |")
+        print("  - Footer: Pre-publication v...")
     else:
         print(f"✓ Made {num_changes} update(s)")
     
@@ -298,9 +312,10 @@ def main():
     print("✅ SUCCESS")
     print("=" * 60)
     print(f"📝 Updated: {readme_path}")
-    print(f"🔢 Version: {version}")
+    print(f"📢 Version: {version}")
     print(f"📌 Source: {source.upper()}")
-    print(f"📅 Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S -03')}")
+    print(f"🔄 Patterns updated: {num_changes}")
+    print(f"📅 Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
     
     sys.exit(0)
