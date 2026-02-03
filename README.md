@@ -92,12 +92,11 @@ tms-dms-cms-usage-guide/
 ├── misc/                             # Miscellaneous resources
 │   └── fontes/                       # Source PDFs (Dash-34, etc.)
 ├── scripts/                          # Automation scripts
-├── .github/                          # GitHub Actions workflows
+├── .github/                          # Issues, Actions, PR templates, community files
 ├── .vscode/                          # VSCode workspace settings
 │
 ├── LICENSE                           # CC BY-NC 4.0
-├── README.md                         # This file
-└── CONTRIBUTING.md                   # Contribution guidelines
+└── README.md                         # This file
 ```
 
 ---
