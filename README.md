@@ -68,6 +68,7 @@ tms-dms-cms-usage-guide/
 ├── WIP-Snapshot-Generator-v3.1.html  # Interactive WIP naming tool
 │
 ├── docs/                             # Governance & tracking
+│   ├── guide-web.pdf                 # guide.pdf copy for online visualization
 │   ├── briefing-v0.2.0.1.md
 │   ├── wip-file-naming-v1.4.md
 │   ├── version-system-v4.2.1.md
