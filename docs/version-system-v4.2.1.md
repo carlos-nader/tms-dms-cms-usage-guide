@@ -5,19 +5,19 @@ layout: default
 
 # Falcon BMS TMS/DMS/CMS Guide Version System v4.2.1
 
-**Latest Update:** 10 January 2026, 18:00 -03  
+**Latest Update:** 02 February 2026, 23:00 -03  
 **Effective Date:** 10 January 2026  
-**Replaces:** v4.2 (updates references to WIP-FILE-NAMING-v1.4 and clarifies relationship with BRIEFING-v0.2.0.1)
 
 ---
 
 ## Repository Identification
 
-- GitHub repository name: `carlos-nader/falcon-bms-hotas-tms-dms-cms-guide`
-- Primary URL: https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide
+- GitHub repository name: `carlos-nader/tms-dms-cms-usage-guide`
+- Primary URL: https://github.com/carlos-nader/tms-dms-cms-usage-guide
 - Default branch: `main`
 - Canonical guide file: `guide.tex` (repository root)
-- Versioned snapshots: `WIP/GUIDE/guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex`
+- Versioned snapshots: `wip/guide/guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex`
+- Archived snapshots: `archive/GUIDE/guide-v*.tex`
 
 ---
 
@@ -44,16 +44,17 @@ Before any version change, answer:
 
 3. **Apply the File Naming and Snapshot Workflow:**
    - Update the **version and date macros** in the guide's LaTeX preamble.
-   - Save an updated **snapshot file** under `WIP/GUIDE/` with the new number and date.
+   - Save an updated **snapshot file** under `wip/guide/` with the new number and date.
    - Copy this snapshot over `guide.tex` in the repository root so both files are identical.
    - Update **PROJECT-TRACKING** with the new entry.
-   - Keep the previous snapshot in the archive structure.
+   - Move the previous snapshot to `archive/GUIDE/`.
+   - Create a **GitHub tag and release** for the new version.
 
 ### 0.3 Scenario-Based Examples
 
 - **"I finished the narrative of a new chapter, tables still incomplete."**
   - Regime: 0.x.x.x.  
-  - Trend: **MINOR** goes up (new chapter in development), PATCH/SUBPATCH at 0.  
+  - Trend: **MINOR** goes up (new chapter with substantive content integrated), PATCH/SUBPATCH reset to 0.  
 
 - **"I filled part of an important table in an existing chapter, changing how the reader uses that chapter."**
   - Regime: 0.x.x.x.  
@@ -67,8 +68,7 @@ Before any version change, answer:
   - Regime: 0.x.x.x.  
   - Trend: **PATCH/SUBPATCH** depending on scope:  
     - If the change significantly modifies how that chapter is used (for example, first major HOTAS table for that chapter), increment **PATCH** (for example, `0.2.2.0 → 0.2.3.0`).  
-    - If the change is a local refinement on top of an already planned structure, or if you want to keep the change clearly marked as internal polish, increment **SUBPATCH** (for example, `0.2.2.0 → 0.2.3.1` for the first integration of CMS 5.2 into Chapter 5).  
-  - Concrete example: integration of CMS 5.2 "CMS Switch Actuation" narrative and its main HOTAS table in `v0.2.3.1`.
+    - If the change is a local refinement on top of an already planned structure, or if you want to keep the change clearly marked as internal polish, increment **SUBPATCH** (for example, `0.2.2.0 → 0.2.2.1`).  
 
 ---
 
@@ -96,22 +96,22 @@ Before any version change, answer:
 
 - Applies to:
   - Canonical main guide source file in the repository root: `guide.tex`.
-  - Versioned guide **snapshots** in `WIP/GUIDE/` following the `guide-v*.tex` pattern.
-  - Derived artefacts: versioned PDFs, section files (`section-*.tex`), tracking documents (`PROJECT-TRACKING-*.md`), briefings.  
-  - Individual preparation file names follow their own rules defined in the separate `WIP-FILE-NAMING-v1.4` document (`section-`, `table-`, `visual-`, `notes-`).
+  - Versioned guide **snapshots** in `wip/guide/` following the `guide-v*.tex` pattern.
+  - Archived snapshots in `archive/GUIDE/`.
+  - Derived artefacts: versioned PDFs, tracking documents (`PROJECT-TRACKING-*.md`), briefings.  
+  - Individual preparation file names follow their own rules defined in the separate `WIP-FILE-NAMING-v1.4` document (`section-`, `chapter-`, `table-`, `visual-`, `notes-`).
 
 - Does not apply to other projects outside the TMS/DMS/CMS Guide unless explicitly stated.
 
 ### 1.4 Version Fields in the Guide's LaTeX
 
 The guide contains version and date macros in the preamble, for example:
-
 ```latex
-\newcommand{\docversion}{0.1.4.0}     % Document version number
-\newcommand{\docbuild}{20260106}      % Build date YYYYMMDD
+\newcommand{\docversion}{0.3.3.0}     % Document version number
+\newcommand{\docbuild}{20260202}      % Build date YYYYMMDD
 \newcommand{\docstartdate}{05 January 2026}
 \newcommand{\docenddate}{DD MMM 2026}
-\newcommand{\chapterscompletedof}{1/7}
+\newcommand{\chapterscompletedof}{3/7}
 \newcommand{\tablesfilledpct}{0\%}
 \newcommand{\fulldocversion}{\docversion+\docbuild}
 ```
@@ -125,21 +125,25 @@ On every version change:
 
 The version number stored in these macros must always match:
 
-- The number encoded in the **snapshot file name** under `WIP/GUIDE/`.  
+- The number encoded in the **snapshot file name** under `wip/guide/`.  
 - The number recorded in **PROJECT-TRACKING**.  
+- The **GitHub tag** for that release.
 
 ### 1.5 Repository Structure and GitHub Workflow
 
 To align the version system with GitHub branch protection and readable diffs, the repository follows these rules:
 
 - The repository root contains a **single canonical main file**: `guide.tex`.
-- The directory `WIP/GUIDE/` contains the **current snapshot** and archived snapshots named with the full version pattern, for example:
-  - `WIP/GUIDE/guide-v0.2.2.0-20260108.tex`.
+- The directory `wip/guide/` contains the **current snapshot** named with the full version pattern, for example:
+  - `wip/guide/guide-v0.3.3.0-20260202.tex`.
+- The directory `archive/GUIDE/` contains **previous snapshots** for historical reference.
 - Editing rule:
-  - All substantive editing of the guide is done in the **current snapshot** inside `WIP/GUIDE/`.
-  - When a snapshot is ready (compiles and passes checks), an identical copy is saved as `guide.tex` in the repository root, overwriting the previous version.
-  - `guide.tex` must not be edited directly; any change to its content must originate from a snapshot in `WIP/GUIDE/`.
-- Git and GitHub treat `guide.tex` as the canonical history of the document, providing line-by-line diffs across commits. Snapshots in `WIP/GUIDE/` provide additional safety and traceability but do not replace Git history.
+  - All substantive editing of the guide is done via **WIP files** (`chapter-*.tex`, `section-*.tex`) that follow the workflow defined in `WIP-FILE-NAMING-v1.4`.
+  - When WIP content is integrated into the guide, an updated **snapshot** is created in `wip/guide/`.
+  - The snapshot is then copied to `guide.tex` in the repository root, overwriting the previous version.
+  - The previous snapshot is moved to `archive/GUIDE/`.
+  - `guide.tex` must not be edited directly; any change to its content must originate from WIP files or the current snapshot in `wip/guide/`.
+- Git and GitHub treat `guide.tex` as the canonical history of the document, providing line-by-line diffs across commits.
 
 ---
 
@@ -147,8 +151,7 @@ To align the version system with GitHub branch protection and readable diffs, th
 
 ### 2.1 Snapshot File Name Rule
 
-Every **snapshot** of the main guide stored in `WIP/GUIDE/` must follow this pattern:
-
+Every **snapshot** of the main guide stored in `wip/guide/` must follow this pattern:
 ```text
 guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex
 ```
@@ -160,22 +163,22 @@ The root file `guide.tex` keeps a **stable name** and is always a byte-identical
 
 ### 2.2 Date Format
 
-- The date always uses the format `YYYYMMDD` (for example, `20260106` for 06 January 2026).
+- The date always uses the format `YYYYMMDD` (for example, `20260202` for 02 February 2026).
 - The build date is updated whenever:
   - A new version number is created (bump in any digit).
   - A relevant snapshot is compiled, even without content change, when the artefact is to be archived.
 
 ### 2.3 Examples
 
-- Pre-publication (0.x.x.x regime) snapshots in `WIP/GUIDE/`:
-  - `WIP/GUIDE/guide-v0.1.0.0-20260105.tex`.
-  - `WIP/GUIDE/guide-v0.1.4.0-20260106.tex`.
+- Pre-publication (0.x.x.x regime) snapshots:
+  - Active: `wip/guide/guide-v0.3.3.0-20260202.tex`
+  - Archived: `archive/GUIDE/guide-v0.3.2.1-20260129.tex`
 
 - First published edition (≥ 1.0 regime, after promotion):
-  - `WIP/GUIDE/guide-v1.0.0-2026XXXX.tex`.
+  - `wip/guide/guide-v1.0.0-2026XXXX.tex`
 
 - Major revision in a new edition:
-  - `WIP/GUIDE/guide-v2.0.0-2026XXXX.tex`.
+  - `wip/guide/guide-v2.0.0-2026XXXX.tex`
 
 ---
 
@@ -184,7 +187,6 @@ The root file `guide.tex` keeps a **stable name** and is always a byte-identical
 ### 3.1 Semantics of Digits in 0.x.x.x
 
 During pre-publication, the version number has four digits:
-
 ```text
 0.MINOR.PATCH.SUBPATCH
 ```
@@ -194,11 +196,14 @@ During pre-publication, the version number has four digits:
   - Structure can change significantly (chapters entering, leaving, being reordered) with no stability commitment to the reader.  
 
 - **MINOR (2nd digit)**  
-  - Represents which nth chapter is being worked on in the guide (order of entry into the main file, not chapter number).
+  - Represents each chapter with **substantive content integrated** into the guide.
+  - Increments when a new chapter gains real narrative content (not just scaffolding/placeholders).
+  - The order of MINOR increments reflects the order chapters were developed, not their chapter number.
   - Examples:
-    - `0.1.x.x` → 1st chapter in development (could be Chapter 1, 3, 5, etc.).
-    - `0.2.x.x` → 2nd chapter in development (independent of being "Chapter 2").
-    - ... up to `0.7.x.x` when the 7 planned chapters have entered.
+    - `0.1.x.x` → 1st chapter with content (C1 Introduction).
+    - `0.2.x.x` → 2nd chapter with content (C5 CMS).
+    - `0.3.x.x` → 3rd chapter with content (C4 DMS).
+    - ... up to `0.7.x.x` when all 7 planned chapters have substantive content.
 
 - **PATCH (3rd digit)**  
   - Marks relevant structural changes inside the chapter(s) active under that MINOR:
@@ -218,22 +223,22 @@ Only MAJOR is fixed (0); the other digits vary according to change type.
 
 #### 3.2.1 Central Rule
 
-- Only content that reaches the **guide snapshot in `WIP/GUIDE/` and the corresponding `guide.tex` copy in the repository root** can trigger MINOR/PATCH/SUBPATCH bumps.  
-  - Work left only in other WIP files (`section-...tex`, `table-...tex`, `visual-...{svg,pdf,png,tex}`, `notes-...md`, drafts) does not change the version number until integrated into the snapshot and propagated to `guide.tex`.
+- Only content that reaches the **guide snapshot in `wip/guide/` and the corresponding `guide.tex` copy in the repository root** can trigger MINOR/PATCH/SUBPATCH bumps.  
+  - Work left only in other WIP files (`chapter-...tex`, `section-...tex`, `table-...tex`, `visual-...{svg,pdf,png,tex}`, `notes-...md`, drafts) does not change the version number until integrated into the snapshot and propagated to `guide.tex`.
 
 #### 3.2.2 "When to Increment (Pre-Publication)" Table
 
 | Situation | Increment | Note |
 |----------|-----------|------| 
-| Start working on a new chapter in the main file | **MINOR** | Example: `0.1.x.x → 0.2.0.1`. |
-| Add a new relevant section in an already active chapter | **PATCH** | Example: `0.1.1.0 → 0.1.2.0`. |
+| Integrate a new chapter with substantive content | **MINOR** | Example: `0.2.x.x → 0.3.0.0`. |
+| Add a new relevant section in an already active chapter | **PATCH** | Example: `0.3.1.0 → 0.3.2.0`. |
 | Restructure chapter sections/subsections | **PATCH** | Keeps MINOR; changes internal architecture. |
 | Fill/modify tables in a way that changes how the chapter is used | **PATCH** | Example: new HOTAS table that reorganises reading. |
 | Fix LaTeX syntax errors that prevented compilation | **PATCH** | Structural "major bugfix". |
-| Fix typos, punctuation, small wording adjustments | **SUBPATCH** | Example: `0.1.4.0 → 0.1.4.1`. |
+| Fix typos, punctuation, small wording adjustments | **SUBPATCH** | Example: `0.3.2.0 → 0.3.2.1`. |
 | Adjust few table cells without changing logic/structure | **SUBPATCH** | Local refinement. |
 | Only compile/save, with no content change | **Date** | Update `YYYYMMDD`, not version number. |
-| Work in non-integrated WIP (`section-...tex`, `table-...tex`, `visual-...{svg,pdf,png,tex}`, `notes-...md`) | **None** | Version only goes up when content enters the snapshot and `guide.tex`. |
+| Work in non-integrated WIP (`chapter-...tex`, `section-...tex`, etc.) | **None** | Version only goes up when content enters the snapshot and `guide.tex`. |
 
 #### 3.2.3 Internal Phases as Metadata
 
@@ -266,33 +271,45 @@ Only MAJOR is fixed (0); the other digits vary according to change type.
 
 ### 3.4 Practical Examples (0.x.x.x)
 
-#### 3.4.1 Pre-Publication Evolution Line
+#### 3.4.1 Actual Pre-Publication Evolution
 
-- `v0.1.0.0` — Introduction structured and included in guide (1st chapter in development).  
-- `v0.1.3.0` — TMS chapter structured, with main sections defined.  
-- `v0.1.4.0` — DMS chapter restructured; geometry fixes; new table layout adopted.  
-- `v0.2.0.1` — 2nd chapter in development enters guide (for example, HOTAS fundamentals).  
-- `v0.3.0.0` — 3rd chapter in development enters guide (for example, CMS), and so on, until:  
-- `v0.7.0.0` — All 7 planned chapters have entered the guide (scaffolding complete).  
+The following reflects the actual progression of the guide:
+
+| Version | Date | Content Integrated |
+|---------|------|-------------------|
+| `v0.1.0.0` | 2026-01-05 | C1 Introduction — initial structure |
+| `v0.2.0.1` | 2026-01-07 | C5 CMS Section 5.1 integrated (2nd chapter with content) |
+| `v0.2.4.0` | 2026-01-12 | C5 CMS complete (§5.1, §5.2, §5.3) |
+| `v0.3.0.0` | 2026-01-15 | C4 DMS Sections 4.1 and 4.2 integrated (3rd chapter with content) |
+| `v0.3.1.0` | 2026-01-18 | Preamble infrastructure upgrade (article → report class) |
+| `v0.3.2.0` | 2026-01-19 | C4 DMS Section 4.3 integrated |
+| `v0.3.2.1` | 2026-01-29 | Hotastable environment upgrade, C4/C5 corrections |
+| `v0.3.3.0` | 2026-02-02 | C4 DMS complete (§4.4), C1 Introduction revised |
+
+**Projected future:**
+- `v0.4.0.0` — C2 HOTAS Fundamentals integrated (4th chapter with content)
+- `v0.5.0.0` — C3 TMS integrated (5th chapter with content)
+- `v0.6.0.0` — C6 Training References integrated
+- `v0.7.0.0` — C7 Visual Reference integrated (all 7 chapters complete)
 
 #### 3.4.2 Mini-Cases by Scenario
 
-- **Case A — New chapter (Ch. 2) enters the guide:**
-  - Situation: until now, only Introduction was included as a developed chapter.
-  - Action: integrate Ch. 2 structure into the main file snapshot and propagate to `guide.tex`.
-  - Version: `0.1.4.0 → 0.2.0.1`.  
+- **Case A — New chapter with content enters the guide:**
+  - Situation: C4 DMS gains its first substantive sections (4.1 and 4.2).
+  - Action: integrate content into snapshot and propagate to `guide.tex`.
+  - Version: `0.2.4.0 → 0.3.0.0` (MINOR bump).  
 
-- **Case B — DMS restructuring in Ch. 4:**
-  - Situation: sections reordered, subsections regrouped, narrative adjusted.
-  - Version: `0.1.3.0 → 0.1.4.0` (PATCH).  
+- **Case B — New section integrated in existing chapter:**
+  - Situation: C4 DMS Section 4.3 added to already-active Chapter 4.
+  - Version: `0.3.1.0 → 0.3.2.0` (PATCH).  
 
-- **Case C — Partial filling of TMS `hotastable` in Ch. 3:**
-  - Situation: first table version that reorganises how the chapter is understood.
-  - Version: PATCH within the corresponding MINOR, for example `0.1.4.0 → 0.1.5.0`.  
+- **Case C — Infrastructure/preamble change:**
+  - Situation: document class changed from article to report, affecting entire guide.
+  - Version: `0.3.0.1 → 0.3.1.0` (PATCH — structural change).  
 
-- **Case D — Typo fixes in Introduction and TMS:**
-  - Situation: only typos and micro wording adjustments.
-  - Version: `0.2.3.0 → 0.2.3.1` (SUBPATCH).  
+- **Case D — Typo fixes and minor corrections:**
+  - Situation: only typos and micro wording adjustments across chapters.
+  - Version: `0.3.2.0 → 0.3.2.1` (SUBPATCH).  
 
 ---
 
@@ -322,35 +339,28 @@ A `0.a.b.c` version can be promoted to `1.0.0` when all criteria below are met:
 
 2. **Create version 1.0.0.**  
    - Update macros in the guide LaTeX snapshot:
-
-   ```latex
+```latex
    \newcommand{\docversion}{1.0.0}
    \newcommand{\docbuild}{YYYYMMDD}  % Date when 1st edition is frozen
-   ```
+```
 
-   - Save the snapshot with the new name under `WIP/GUIDE/`:
-
-   ```text
-   WIP/GUIDE/guide-v1.0.0-YYYYMMDD.tex
-   ```
+   - Save the snapshot with the new name under `wip/guide/`:
+```text
+   wip/guide/guide-v1.0.0-YYYYMMDD.tex
+```
 
    - Copy this snapshot over `guide.tex` in the repository root so both files are identical.
 
 3. **Freeze the 0.x.x.x line.**  
-   - Move or group all `WIP/GUIDE/guide-v0.*.tex` files into a history area, for example:
-
-   ```text
-   WIP/GUIDE/prepub/guide-v0.*.tex
-   ```
-
+   - Ensure all `guide-v0.*.tex` files are in `archive/GUIDE/`.
    - Do not create new 0.* versions after 1.0.0 is born.
    - The 0.x.x.x line becomes pre-publication history only.
 
-4. **Update tracking.**  
+4. **Update tracking and GitHub.**  
    - In PROJECT-TRACKING, record:
      - Which `0.a.b.c` version was promoted to `1.0.0`.
      - A short editorial justification for promotion (why this is the 1st edition).
-     - The path/identifier of the archived PDF `guide-v1.0.0-YYYYMMDD.pdf`.
+   - Create GitHub tag `v1.0.0` and corresponding release with changelog.
 
 ### 4.3 Cutover between Regimes
 
@@ -362,7 +372,7 @@ A `0.a.b.c` version can be promoted to `1.0.0` when all criteria below are met:
 
 Before performing the transition, validate:
 
-- `\chapterscompletedof` and the chapter index correctly reflect the 1st edition's state (for example, they do not advertise chapters that do not yet exist).
+- `\chapterscompletedof` and the chapter index correctly reflect the 1st edition's state.
 - There are no obvious internal markers (like "TODO", "FIXME", temporary comments) in the main sections.
 - Partial tables are clearly identified as such and do not look like errors.
 - PROJECT-TRACKING is consistent with the state to be frozen as 1.0.0 (dates, versions, change descriptions).
@@ -376,7 +386,6 @@ Before performing the transition, validate:
 ### 5.1 Semantics of Digits in x.x.x
 
 After the first published edition, the guide uses:
-
 ```text
 MAJOR.MINOR.PATCH
 ```
@@ -527,46 +536,85 @@ Single workflow for 0.x.x.x and x.x.x:
 3. **Compile and check for errors.**  
    - Generate the PDF and check LaTeX warnings/errors.
 
-4. **Save the snapshot under `WIP/GUIDE/`.**  
+4. **Save the snapshot under `wip/guide/`.**  
    - Apply the pattern:
-
-   ```text
-   WIP/GUIDE/guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex
-   ```
+```text
+   wip/guide/guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex
+```
 
 5. **Propagate to the canonical file.**  
    - Copy the new snapshot over `guide.tex` in the repository root so that Git/GitHub see the change as an update of the same file.
 
-6. **Update PROJECT-TRACKING.**  
+6. **Archive previous snapshot.**  
+   - Move the previous `guide-v*.tex` from `wip/guide/` to `archive/GUIDE/`.
+
+7. **Update PROJECT-TRACKING.**  
    - Add a line with version, date, affected chapter(s), and a concise description of the change.
 
-7. **Archive previous snapshots.**  
-   - Keep the earlier `guide-v*.tex` files in `WIP/GUIDE/` (optionally grouped under `/prepub/` or `/published/`), and keep or generate the matching PDFs.
+8. **Create GitHub tag and release.**  
+   - See Section 6.5 for details.
 
 ### 6.3 Archival Strategy
 
-- Organisation by regime (inside `WIP/GUIDE/` or subfolders):
-  - `prepub/guide-v0.*.tex` — internal development history.  
-  - `published/guide-v1.*.tex`, `published/guide-v2.*.tex`, etc. — published editions and revisions.  
-
-- Git (optional but recommended):
-  - Version `guide.tex` and other text files.
-  - Exclude heavy artefacts via `.gitignore`, for example:
-
-  ```text
-  *.pdf
-  *.docx
-  *.aux
-  *.log
-  *.synctex.gz
-  ```
+- **Active snapshot:** `wip/guide/guide-v{current}.tex`
+- **Archived snapshots:** `archive/GUIDE/guide-v{previous}.tex`
+- Only one snapshot should be in `wip/guide/` at a time (the current version).
+- All previous versions are preserved in `archive/GUIDE/` for historical reference.
 
 ### 6.4 Relationship with WIP File Naming and BRIEFING
 
-- This document (Version System v4.2.1) governs the versioning and naming of the **guide snapshots** (`WIP/GUIDE/guide-v*.tex`) and their relationship with the canonical `guide.tex` in the repository root.  
-- Individual preparation files (`section-`, `table-`, `visual-`, `notes-`) follow their own rules defined in the separate `WIP-FILE-NAMING-v1.4` document.  
+- This document (Version System v4.2.1) governs the versioning and naming of the **guide snapshots** (`wip/guide/guide-v*.tex`) and their relationship with the canonical `guide.tex` in the repository root.  
+- Individual preparation files (`chapter-`, `section-`, `table-`, `visual-`, `notes-`) follow their own rules defined in the separate `WIP-FILE-NAMING-v1.4` document.  
 - The structural specification and template governance for WIP files is defined in `BRIEFING-v0.2.0.1` (Section 11).
 - These WIP files only impact the guide version when their content is integrated into the current snapshot and propagated to `guide.tex`.
+
+### 6.5 GitHub Integration: Tags, Releases, and Milestones
+
+The version system integrates with GitHub's release management features:
+
+#### 6.5.1 Tags
+
+- **Every version bump** must have a corresponding Git tag.
+- Tag format: `vMAJOR.MINOR.PATCH.SUBPATCH` (e.g., `v0.3.3.0`)
+- Tags are created after the snapshot is propagated to `guide.tex` and committed.
+- Tags provide permanent markers in Git history for each version.
+
+#### 6.5.2 Releases
+
+- **Every tag** should have a corresponding GitHub Release.
+- Release content includes:
+  - **Title:** Version number (e.g., "v0.3.3.0")
+  - **Description:** Summary of changes (chapters/sections integrated, fixes applied)
+  - **Assets:** Compiled PDF (`guide.pdf`)
+  - **Link to previous release** for comparison
+- Releases provide user-friendly access to each version with changelog.
+
+#### 6.5.3 Milestones
+
+- **Milestones group issues** that contribute to a specific version release.
+- Milestone naming: matches target version (e.g., "v0.3.3.0", "v0.4.0.0")
+- Milestone description includes:
+  - Overview of planned content
+  - Issue workflow (DEV → REVIEW → FINAL → APPROVED)
+  - Technical requirements
+  - Version bump rationale
+- Milestones provide project planning and progress tracking.
+
+#### 6.5.4 Workflow Integration
+```
+Issues (in Milestone) → WIP files → Integration → Snapshot → guide.tex → Tag → Release
+                                                                    ↓
+                                                          Close Milestone
+```
+
+- Issues track individual work items (sections, fixes, improvements)
+- Milestones aggregate issues toward a release target
+- When all milestone issues are closed and content is integrated:
+  1. Create snapshot and propagate to `guide.tex`
+  2. Commit with descriptive message
+  3. Create Git tag
+  4. Create GitHub Release
+  5. Close milestone (if 100% complete)
 
 ---
 
@@ -575,16 +623,16 @@ Single workflow for 0.x.x.x and x.x.x:
 ### 7.1 Quick Reference (0.x.x.x — Pre-Publication)
 
 - **MAJOR = 0** always.  
-- **MINOR:** new chapter enters guide.  
+- **MINOR:** new chapter with substantive content enters guide.  
 - **PATCH:** structural change in chapter (sections/tables altering flow).  
 - **SUBPATCH:** fine-tuning (typos, wording, small table tweaks).  
 
 | Key Situation | Pre Version (ex.) | Post Version (ex.) |
 |---------------|-------------------|--------------------| 
-| New chapter enters guide | `0.1.4.0 → 0.2.0.1` | — |
-| Restructure chapter sections | `0.2.1.0 → 0.2.2.0` | — |
-| Important table changes chapter usage | `0.2.2.0 → 0.2.3.0` | — |
-| Typos and micro wording fixes | `0.2.3.0 → 0.2.3.1` | — |
+| New chapter with content enters guide | `0.2.4.0 → 0.3.0.0` | — |
+| New section in existing chapter | `0.3.1.0 → 0.3.2.0` | — |
+| Important table changes chapter usage | `0.3.2.0 → 0.3.3.0` | — |
+| Typos and micro wording fixes | `0.3.2.0 → 0.3.2.1` | — |
 
 ### 7.2 Quick Reference (x.x.x — Post-Publication)
 
@@ -602,24 +650,14 @@ Single workflow for 0.x.x.x and x.x.x:
 
 - Tables are always part of chapters; they never define MAJOR alone.  
 - 0.x.x.x is never a published edition; it is always an internal development regime.  
-- `1.0` marks the first published edition; `2.0`, `3.0`, etc., are successive editions, consistent with good technical documentation practice.  
-
----
-
-## 8. Version History
-
-| Version | Date & Time (UTC-3) | Type | Changes |
-|---------|---------------------|------|---------| 
-| **v4.0** | 07 Jan 2026, 00:00 | Initial release | Defines 0.x.x.x and x.x.x regimes; explains snapshot workflow; establishes repository structure. |
-| **v4.1** | 08 Jan 2026, 14:30 | MINOR UPDATE | Added explicit reference to `WIP-FILE-NAMING v*` in scope (Section 1.3); clarified that individual WIP files do not trigger version bumps until integrated into guide snapshot; updated Section 6.4 to mention WIP-FILE-NAMING document; emphasized that `guide.tex` is canonical and must not be edited directly. |
-| **v4.2** | 09 Jan 2026, 09:34 | MINOR UPDATE | Enhanced Section 0.3 Scenario-Based Examples; clarified date format (YYYYMMDD vs YYYY-MM-DD context); expanded Section 4.2 Transition Procedure with detailed checklist; reorganized Section 5 Post-Publication with clearer structure and decision examples; added Section 7 Consolidated Quick Reference for rapid lookup; updated archival strategy in Section 6.3 with examples of folder organization. |
-| **v4.2.1** | 09 Jan 2026, 18:00 | PATCH UPDATE | Updated reference in Section 1.3 from `WIP-FILE-NAMING v*` to `WIP-FILE-NAMING-v1.4`; Updated reference in Section 6.4 from `WIP-FILE-NAMING v*` to `WIP-FILE-NAMING-v1.4`; Added explicit mention of `BRIEFING-v0.2.0.1` in Section 6.4 to establish three-way integration between VERSION-SYSTEM, WIP-NAMING, and BRIEFING; PATCH bump (not MINOR) as these are clarifications and reference updates, not structural changes. |
+- `1.0` marks the first published edition; `2.0`, `3.0`, etc., are successive editions, consistent with good technical documentation practice.
+- Every version must have a corresponding GitHub tag and release.
 
 ---
 
 **End of document — Version System v4.2.1**
 
 **Document Status:** Production-Ready (v4.2.1)  
-**Effective Date:** 09 January 2026  
-**Last Updated:** 09 January 2026, 18:00 -03
+**Effective Date:** 10 January 2026  
+**Last Updated:** 02 February 2026, 23:00 -03
 {% endraw %}
