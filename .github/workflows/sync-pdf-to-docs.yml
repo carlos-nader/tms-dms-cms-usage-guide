@@ -1,6 +1,7 @@
 name: Sync PDF to docs
 
 on:
+  workflow_dispatch:  # ← permite rodar manualmente
   push:
     branches:
       - main
