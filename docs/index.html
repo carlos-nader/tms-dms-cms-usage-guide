@@ -29,7 +29,7 @@
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://carlos-nader.github.io/tms-dms-cms-usage-guide/">
-    
+
     <!-- Sitemap Reference -->
     <link rel="sitemap" type="application/xml" href="https://carlos-nader.github.io/tms-dms-cms-usage-guide/sitemap.xml" />
     
@@ -60,164 +60,145 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            background-color: #f5f5f5;
             padding: 20px;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
         }
         
         header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 40px;
-            text-align: center;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
         }
         
-        header h1 {
+        h1 {
+            color: #0066cc;
             font-size: 2.5em;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
-        header p {
+        .subtitle {
+            color: #666;
             font-size: 1.2em;
-            opacity: 0.9;
+            font-style: italic;
         }
         
-        .content {
-            padding: 40px;
-        }
-        
-        .intro {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            border-left: 5px solid #667eea;
-        }
-        
-        .intro h2 {
-            color: #1e3c72;
+        h2 {
+            color: #0066cc;
+            margin-top: 30px;
             margin-bottom: 15px;
+            font-size: 1.8em;
+            border-left: 4px solid #0066cc;
+            padding-left: 15px;
         }
         
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .card {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 25px;
-            transition: all 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-color: #667eea;
-        }
-        
-        .card h3 {
-            color: #1e3c72;
-            margin-bottom: 15px;
+        h3 {
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 10px;
             font-size: 1.3em;
         }
         
-        .card ul {
-            list-style: none;
-            padding-left: 0;
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
         }
         
-        .card ul li {
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .card ul li:last-child {
-            border-bottom: none;
-        }
-        
-        .card a {
-            color: #667eea;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .card a:hover {
-            color: #764ba2;
-            text-decoration: underline;
-        }
-        
-        .cta {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            margin-top: 30px;
-        }
-        
-        .cta h2 {
+        ul {
+            margin-left: 20px;
             margin-bottom: 20px;
         }
         
-        .button {
-            display: inline-block;
-            background: white;
-            color: #667eea;
-            padding: 15px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 10px;
-            transition: all 0.3s ease;
+        li {
+            margin-bottom: 10px;
         }
         
-        .button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+            color: #004499;
+        }
+        
+        .intro-section {
+            background-color: #f0f7ff;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            border-left: 4px solid #0066cc;
+        }
+        
+        .doc-category {
+            background-color: #fafafa;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .doc-category h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        
+        .chart-section {
+            background-color: #fff9e6;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #ffcc00;
+        }
+        
+        .main-files {
+            background-color: #e8f5e9;  /* Verde suave */
+            border-left: 4px solid #4caf50;  /* Verde médio */
         }
         
         footer {
-            background: #1e3c72;
-            color: white;
-            padding: 20px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
             text-align: center;
+            color: #666;
+            font-size: 0.9em;
         }
         
-        footer a {
-            color: #667eea;
-            text-decoration: none;
+        .badge {
+            display: inline-block;
+            background-color: #0066cc;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            margin-left: 10px;
         }
         
-        footer a:hover {
-            text-decoration: underline;
+        .version {
+            background-color: #28a745;
         }
         
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.8em;
-            }
-            
-            .content {
+            .container {
                 padding: 20px;
             }
             
-            .grid {
-                grid-template-columns: 1fr;
+            h1 {
+                font-size: 2em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
             }
         }
     </style>
@@ -225,67 +206,95 @@
 <body>
     <div class="container">
         <header>
-            <h1>🎮 TMS/DMS/CMS HOTAS Usage Guide</h1>
-            <p>Complete Reference for Falcon BMS 4.38.1 Flight Simulator</p>
+            <h1>TMS/DMS/CMS Usage Guide</h1>
+            <p class="subtitle">F-16 HOTAS Switches Reference for Falcon BMS 4.38.1</p>
         </header>
         
-        <div class="content">
-            <div class="intro">
-                <h2>📖 About This Guide</h2>
-                <p>This comprehensive guide covers the <strong>Target Management Switch (TMS)</strong>, <strong>Display Management Switch (DMS)</strong>, and <strong>Countermeasures Management Switch (CMS)</strong> functions in the F-16 Fighting Falcon combat flight simulator (Falcon BMS 4.38.1 and previous versions).</p>
-                <p>These HOTAS (Hands On Throttle And Stick) switches are essential for sensor management, targeting, navigation, and defensive systems control during realistic combat missions.</p>
-                <p><strong>Current Version:</strong> v0.3.3.0 | <strong>Author:</strong> Carlos "Metal" Nader | <strong>License:</strong> CC BY-NC 4.0</p>
-            </div>
+        <div class="intro-section">
+            <h2>About This Guide</h2>
+            <p>This comprehensive guide covers the Target Management Switch (TMS), Display Management Switch (DMS), and Countermeasures Management Switch (CMS) functions in the F-16 Fighting Falcon combat flight simulator (Falcon BMS 4.38.1 and previous versions). These HOTAS (Hands On Throttle And Stick) switches are essential for sensor management, targeting, navigation, and defensive systems control during realistic combat missions.</p>
             
-            <div class="grid">
-                <div class="card">
-                    <h3>📄 Main Guide</h3>
-                    <ul>
-                        <li>📕 <a href="guide.pdf" target="_blank">Download PDF Guide</a></li>
-                        <li>📝 <a href="guide.tex" target="_blank">View LaTeX Source</a></li>
-                        <li>🌐 <a href="guide.html" target="_blank">Read Online (HTML)</a></li>
-                    </ul>
-                </div>
-                
-                <div class="card">
-                    <h3>📋 Project Documentation</h3>
-                    <ul>
-                        <li>📊 <a href="project-tracking-v5.0.0.html" target="_blank">Project Tracking</a></li>
-                        <li>📝 <a href="briefing-v0.2.0.1.html" target="_blank">Project Briefing</a></li>
-                        <li>🔗 <a href="INTEGRATED-FILES.html" target="_blank">Integrated Files List</a></li>
-                    </ul>
-                </div>
-                
-                <div class="card">
-                    <h3>📐 Development Standards</h3>
-                    <ul>
-                        <li>🏷️ <a href="wip-naming-v1.4.html" target="_blank">WIP Naming Convention</a></li>
-                        <li>🔢 <a href="version-system-v4.2.1.html" target="_blank">Version System</a></li>
-                    </ul>
-                </div>
-                
-                <div class="card">
-                    <h3>📊 Workflow Diagrams</h3>
-                    <ul>
-                        <li>🔄 <a href="WIP-creation-workflow.png" target="_blank">WIP Creation Workflow</a></li>
-                        <li>📈 <a href="WIP-integration-flow-chart.png" target="_blank">Integration Flow Chart</a></li>
-                        <li>♻️ <a href="WIP-life-cycle.png" target="_blank">WIP Life Cycle</a></li>
-                    </ul>
-                </div>
-            </div>
+            <p>The guide provides detailed tables and explanations for switch functions across all master modes (NAV, A-A, A-G, DGFT, MSL Override), sensor of interest (SOI) management, MFD interactions, radar operations, target management and countermeasures deployment. Whether you're a beginner learning basic HOTAS operations or an experienced simmer mastering advanced tactical employment, this reference will help you efficiently manage F-16 systems without taking your hands off the controls.</p>
             
-            <div class="cta">
-                <h2>🚀 Get Started</h2>
-                <p>Whether you're a beginner learning basic HOTAS operations or an experienced simmer mastering advanced tactical employment, this reference will help you efficiently manage F-16 systems without taking your hands off the controls.</p>
-                <a href="guide.pdf" class="button">📥 Download Guide</a>
-                <a href="https://github.com/carlos-nader/tms-dms-cms-usage-guide" class="button" target="_blank">🔗 View on GitHub</a>
-            </div>
+            <p><strong>Current Version:</strong> <span class="badge version">v0.3.3.0</span> | <strong>Author:</strong> Carlos "Metal" Nader | <strong>License:</strong> CC BY-NC 4.0</p>
         </div>
         
+        <h2>📘 What You'll Learn</h2>
+        <ul>
+            <li><strong>TMS Functions:</strong> Target designation, sensor cursor control, target step, acquisition modes, and SOI cycling across different master modes</li>
+            <li><strong>DMS Functions:</strong> MFD page selection, symbology control and MFD format management</li>
+            <li><strong>CMS Functions:</strong> Chaff and flare programs, manual dispense, CMDS mode selection, and ECM pod integration</li>
+            <li><strong>SOI Management:</strong> Understanding sensor of interest priority and how switches interact with HUD, FCR, SMS, HSD, and TGP</li>
+            <li><strong>Master Mode Context:</strong> How switch behavior changes in NAV, Air-to-Air, Air-to-Ground, Dogfight, and Missile Override modes</li>
+            <li><strong>Training Mission References:</strong> Which BMS training missions demonstrate specific switch functions</li>
+        </ul>
+
+        <h2>📝 Main Guide Files (Pre-Published Status)</h2>
+       
+        <div class="doc-category main-files">    
+            <ul>
+            <li><a href="https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/guide.pdf" target="_blank" rel="noopener">📕 Compiled Guide PDF</a> - Complete compiled guide (read online or download)</li>
+            <li><a href="https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/guide.tex" target="_blank" rel="noopener">📄 Current Version LaTeX Source (guide.tex)</a> - Original source file for contributors</li>
+            </ul>
+        </div>
+        
+        <h2>📚 Project Governing Documentation</h2>
+        
+        <div class="doc-category">
+            <h3>📋 Project Management</h3>
+            <ul>
+                <li><a href="briefing-v0.2.0.1.html">Project Briefing v0.2.0.1</a> - Complete project scope, structure, sources, style rules, and licensing information</li>
+                <li><a href="project-tracking-v5.0.0.html">Project Tracking v5.0.0</a> - Current development status, WIP files, version history, and roadmap</li>
+                <li><a href="INTEGRATED-FILES.html">GitHub Workflow Project Tracking</a> - Repository status report with tracked files, commits, tags, issues, and milestones</li>
+            </ul>
+        </div>
+        
+        <div class="doc-category">
+            <h3>⚙️ Development Standards</h3>
+            <ul>
+                <li><a href="wip-naming-v1.4.html">WIP File Naming Convention v1.4</a> - Standardized naming rules for work-in-progress files, status lifecycle, and automation workflows</li>
+                <li><a href="version-system-v4.2.1.html">Versioning System v4.2.1</a> - Complete version numbering scheme for pre-publication (0.x.x.x) and post-publication (x.x.x) releases</li>
+            </ul>
+        </div>
+        
+        <div class="doc-category chart-section">
+            <h3>📊 Workflow Diagrams</h3>
+            <ul>
+                <li><a href="WIP-creation-workflow.png">WIP File Creation Workflow</a> - Visual guide to creating new work-in-progress documentation files</li>
+                <li><a href="WIP-integration-flow-chart.png">WIP Integration Flow Chart</a> - Process diagram for integrating completed WIP files into main documentation</li>
+                <li><a href="WIP-life-cycle.png">WIP File Life Cycle</a> - Complete lifecycle from creation through review, integration, and archival</li>
+            </ul>
+        </div>
+        
+        <h2>🎯 Target Audience</h2>
+        <p>This guide is designed for Falcon BMS players and flight simulation enthusiasts who want to:</p>
+        <ul>
+            <li>Learn proper HOTAS switch usage for realistic F-16 operations</li>
+            <li>Understand the relationship between switches, sensors, and master modes</li>
+            <li>Develop efficient muscle memory for combat mission workflows</li>
+            <li>Reference quick-look tables during mission planning or debriefing</li>
+            <li>Study official documentation (TO 1F-16CM-34-1-1 BMS) with practical context</li>
+        </ul>
+        
+        <h2>🔗 Related Resources</h2>
+        <ul>
+            <li><a href="https://github.com/carlos-nader/tms-dms-cms-usage-guide" target="_blank" rel="noopener">GitHub Repository</a> - Source LaTeX files, issue tracking, and contribution guidelines</li>
+            <li><strong>Falcon BMS Official Documentation:</strong> User Manual, Technical Manual, Training Manual, and Avionics Manual (TO 1F-16CM-34-1-1 BMS)</li>
+            <li><strong>Community:</strong> BMS Forums, Discord servers, and YouTube tutorial channels</li>
+            <li><a href="https://www.falcon-bms.com" target="_blank" rel="noopener">Falcon BMS Official Site</a> - Download the Simulator and get official updates and information</li>
+        </ul>
+         
+        <h2>🗣️ Join the Conversation</h2>
+        <ul>
+            <li><a href="https://forum.falcon-bms.com/topic/32541/in-development-tms-dms-cms-usage-guide-public-project/14" target="_blank" rel="noopener">BMS Forum Thread</a> - For Contributions and Participation!</li> 
+        </ul>
+        
+        <h2>📄 License & Attribution</h2>
+        <p>This work is licensed under <strong>Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</strong>. You are free to share and adapt this material for non-commercial purposes with proper attribution to Carlos "Metal" Nader.</p>
+        
         <footer>
-            <p>This work is licensed under <strong>Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</strong>.</p>
-            <p>You are free to share and adapt this material for non-commercial purposes with proper attribution to Carlos "Metal" Nader.</p>
-            <p><a href="https://github.com/carlos-nader/tms-dms-cms-usage-guide" target="_blank">GitHub Repository</a></p>
+            <p><strong>TMS/DMS/CMS Usage Guide</strong> | Built with GitHub Pages | Last updated: January 30, 2026</p>
+            <p>Not affiliated with Benchmark Sims or Microprose. Community project for educational purposes.</p>
         </footer>
     </div>
 </body>
