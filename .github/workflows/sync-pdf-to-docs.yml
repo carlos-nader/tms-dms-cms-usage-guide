@@ -1,0 +1,31 @@
+name: Sync PDF to docs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'guide.pdf'
+
+jobs:
+  copy-pdf:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout repository with SSH
+        uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+          fetch-depth: 0
+
+      - name: 📄 Copy PDF to docs folder
+        run: |
+          cp guide.pdf docs/guide-web.pdf
+
+      - name: 💾 Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add docs/guide-web.pdf
+          git diff --quiet && git diff --staged --quiet || git commit -m "🔄 Auto-sync: Update guide-web.pdf from root"
+          git push
