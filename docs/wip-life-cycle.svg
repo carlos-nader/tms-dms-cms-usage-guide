@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 750">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="750" fill="#F8F9FA"/>
+  
+  <!-- Title -->
+  <text x="450" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2C3E50" text-anchor="middle">WIP File Life Cycle</text>
+  <text x="450" y="65" font-family="Arial, sans-serif" font-size="14" fill="#7F8C8D" text-anchor="middle">From creation through review, integration, and archival</text>
+  
+  <!-- Legend -->
+  <g transform="translate(30, 90)">
+    <rect x="0" y="0" width="840" height="35" rx="5" fill="#FFF" stroke="#DEE2E6" stroke-width="1"/>
+    <rect x="15" y="10" width="20" height="15" rx="3" fill="#5CB85C"/>
+    <text x="42" y="22" font-family="Arial, sans-serif" font-size="11" fill="#495057">Read-only (template)</text>
+    <rect x="170" y="10" width="20" height="15" rx="3" fill="#F0AD4E"/>
+    <text x="197" y="22" font-family="Arial, sans-serif" font-size="11" fill="#495057">Active work (wip/)</text>
+    <rect x="320" y="10" width="20" height="15" rx="3" fill="#5BC0DE"/>
+    <text x="347" y="22" font-family="Arial, sans-serif" font-size="11" fill="#495057">Guide snapshots</text>
+    <rect x="470" y="10" width="20" height="15" rx="3" fill="#D9EDF7"/>
+    <text x="497" y="22" font-family="Arial, sans-serif" font-size="11" fill="#495057">Archived (approved/deprecated)</text>
+    <rect x="680" y="10" width="20" height="15" rx="3" fill="#F5F5F5"/>
+    <text x="707" y="22" font-family="Arial, sans-serif" font-size="11" fill="#495057">Documentation</text>
+  </g>
+  
+  <!-- Project Root -->
+  <g transform="translate(30, 150)">
+    <rect x="0" y="0" width="140" height="40" rx="6" fill="#2C3E50" filter="url(#shadow)"/>
+    <text x="70" y="25" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle" font-weight="bold">project-root/</text>
+  </g>
+  
+  <!-- Connection lines from root -->
+  <path d="M 170 170 L 200 170" stroke="#6C757D" stroke-width="2"/>
+  <path d="M 200 170 L 200 580" stroke="#6C757D" stroke-width="2"/>
+  
+  <!-- templates/ -->
+  <g transform="translate(220, 145)">
+    <path d="M -20 25 L 0 25" stroke="#6C757D" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="90" rx="8" fill="#5CB85C" filter="url(#shadow)"/>
+    <text x="15" y="25" font-family="Arial, sans-serif" font-size="13" fill="#FFF" font-weight="bold">templates/</text>
+    <rect x="15" y="38" width="250" height="22" rx="4" fill="rgba(255,255,255,0.2)"/>
+    <text x="25" y="54" font-family="Arial, sans-serif" font-size="11" fill="#FFF">template-wip-V1.0.tex</text>
+    <text x="15" y="80" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)" font-style="italic">⚠ NEVER modify directly — always copy first</text>
+  </g>
+  
+  <!-- wip/ -->
+  <g transform="translate(220, 255)">
+    <path d="M -20 75 L 0 75" stroke="#6C757D" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="200" rx="8" fill="#F0AD4E" filter="url(#shadow)"/>
+    <text x="15" y="25" font-family="Arial, sans-serif" font-size="13" fill="#FFF" font-weight="bold">wip/</text>
+    
+    <!-- WIP file examples -->
+    <rect x="15" y="38" width="250" height="20" rx="3" fill="rgba(255,255,255,0.2)"/>
+    <text x="25" y="52" font-family="Arial, sans-serif" font-size="10" fill="#FFF">chapter-C4-dms-review-2026-02-01.tex</text>
+    
+    <rect x="15" y="62" width="250" height="20" rx="3" fill="rgba(255,255,255,0.2)"/>
+    <text x="25" y="76" font-family="Arial, sans-serif" font-size="10" fill="#FFF">section-C3-S2-fcr-dev-2026-01-15.tex</text>
+    
+    <rect x="15" y="86" width="250" height="20" rx="3" fill="rgba(255,255,255,0.2)"/>
+    <text x="25" y="100" font-family="Arial, sans-serif" font-size="10" fill="#FFF">table-C5-ALLM-CMS-final-2026-01-22.tex</text>
+    
+    <rect x="15" y="110" width="250" height="20" rx="3" fill="rgba(255,255,255,0.2)"/>
+    <text x="25" y="124" font-family="Arial, sans-serif" font-size="10" fill="#FFF">notes-C3-research-2026-01-12.md</text>
+    
+    <!-- wip/guide/ subfolder -->
+    <rect x="15" y="140" width="250" height="50" rx="5" fill="#5BC0DE"/>
+    <text x="25" y="158" font-family="Arial, sans-serif" font-size="11" fill="#FFF" font-weight="bold">guide/</text>
+    <text x="35" y="178" font-family="Arial, sans-serif" font-size="10" fill="#FFF">guide-v0.3.3.0-20260203.tex</text>
+  </g>
+  
+  <!-- archive/ -->
+  <g transform="translate(220, 475)">
+    <path d="M -20 65 L 0 65" stroke="#6C757D" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="170" rx="8" fill="#D9EDF7" filter="url(#shadow)"/>
+    <text x="15" y="25" font-family="Arial, sans-serif" font-size="13" fill="#31708F" font-weight="bold">archive/</text>
+    
+    <!-- GUIDE subfolder -->
+    <rect x="15" y="38" width="250" height="55" rx="5" fill="#5BC0DE"/>
+    <text x="25" y="56" font-family="Arial, sans-serif" font-size="11" fill="#FFF" font-weight="bold">GUIDE/</text>
+    <text x="35" y="74" font-family="Arial, sans-serif" font-size="10" fill="#FFF">guide-v0.3.2.1-20260129.tex</text>
+    <text x="35" y="88" font-family="Arial, sans-serif" font-size="9" fill="rgba(255,255,255,0.8)">Previous guide snapshots</text>
+    
+    <!-- WIP subfolder -->
+    <rect x="15" y="100" width="250" height="60" rx="5" fill="#DFF0D8"/>
+    <text x="25" y="118" font-family="Arial, sans-serif" font-size="11" fill="#3C763D" font-weight="bold">WIP/</text>
+    <text x="35" y="136" font-family="Arial, sans-serif" font-size="10" fill="#3C763D">section-C4-S3-approved-2026-01-19.tex</text>
+    <text x="35" y="152" font-family="Arial, sans-serif" font-size="10" fill="#A94442">table-C3-AA-TMS-deprecated-2026-01-22.tex</text>
+  </g>
+  
+  <!-- docs/ -->
+  <g transform="translate(220, 665)">
+    <path d="M -20 25 L 0 25" stroke="#6C757D" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="60" rx="8" fill="#F5F5F5" stroke="#DEE2E6" stroke-width="1"/>
+    <text x="15" y="22" font-family="Arial, sans-serif" font-size="13" fill="#495057" font-weight="bold">docs/</text>
+    <text x="25" y="42" font-family="Arial, sans-serif" font-size="10" fill="#6C757D">project-tracking-v*.md, version-system-v*.md,</text>
+    <text x="25" y="54" font-family="Arial, sans-serif" font-size="10" fill="#6C757D">wip-naming-v*.md, briefing-v*.md</text>
+  </g>
+  
+  <!-- Status Flow (right side) -->
+  <g transform="translate(560, 145)">
+    <rect x="0" y="0" width="310" height="460" rx="10" fill="#FFF" stroke="#DEE2E6" stroke-width="2" filter="url(#shadow)"/>
+    <text x="155" y="30" font-family="Arial, sans-serif" font-size="14" fill="#2C3E50" text-anchor="middle" font-weight="bold">Status Flow</text>
+    
+    <!-- dev -->
+    <rect x="30" y="55" width="250" height="50" rx="25" fill="#F1C40F"/>
+    <text x="155" y="78" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle" font-weight="bold">dev</text>
+    <text x="155" y="95" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">wip/ — Never reviewed</text>
+    
+    <!-- Arrow -->
+    <path d="M 155 110 L 155 130" stroke="#6C757D" stroke-width="2"/>
+    <polygon points="155,135 150,127 160,127" fill="#6C757D"/>
+    
+    <!-- review -->
+    <rect x="30" y="140" width="250" height="50" rx="25" fill="#E67E22"/>
+    <text x="155" y="163" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle" font-weight="bold">review</text>
+    <text x="155" y="180" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">wip/ — Under human iteration</text>
+    
+    <!-- Arrow -->
+    <path d="M 155 195 L 155 215" stroke="#6C757D" stroke-width="2"/>
+    <polygon points="155,220 150,212 160,212" fill="#6C757D"/>
+    
+    <!-- final -->
+    <rect x="30" y="225" width="250" height="50" rx="25" fill="#3498DB"/>
+    <text x="155" y="248" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle" font-weight="bold">final</text>
+    <text x="155" y="265" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">wip/ — Ready to integrate</text>
+    
+    <!-- Arrow -->
+    <path d="M 155 280 L 155 300" stroke="#6C757D" stroke-width="2"/>
+    <polygon points="155,305 150,297 160,297" fill="#6C757D"/>
+    
+    <!-- approved -->
+    <rect x="30" y="310" width="250" height="50" rx="25" fill="#27AE60"/>
+    <text x="155" y="333" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle" font-weight="bold">approved</text>
+    <text x="155" y="350" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">archive/WIP/ — Integrated (terminal)</text>
+    
+    <!-- deprecated (side path) -->
+    <rect x="30" y="385" width="250" height="50" rx="25" fill="#E74C3C"/>
+    <text x="155" y="408" font-family="Arial, sans-serif" font-size="14" fill="#FFF" text-anchor="middle" font-weight="bold">deprecated</text>
+    <text x="155" y="425" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">archive/WIP/ — Abandoned (terminal)</text>
+    
+    <!-- Deprecated arrows from dev, review, final -->
+    <path d="M 30 80 L 10 80 L 10 410 L 25 410" stroke="#E74C3C" stroke-width="1.5" fill="none" stroke-dasharray="4,2"/>
+    <path d="M 30 165 L 15 165 L 15 410 L 25 410" stroke="#E74C3C" stroke-width="1.5" fill="none" stroke-dasharray="4,2"/>
+    <path d="M 30 250 L 20 250 L 20 410 L 25 410" stroke="#E74C3C" stroke-width="1.5" fill="none" stroke-dasharray="4,2"/>
+  </g>
+  
+  <!-- guide.tex note -->
+  <g transform="translate(560, 620)">
+    <rect x="0" y="0" width="310" height="55" rx="8" fill="#2C3E50" filter="url(#shadow)"/>
+    <text x="155" y="22" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">guide.tex (repository root)</text>
+    <text x="155" y="42" font-family="Arial, sans-serif" font-size="10" fill="#BDC3C7" text-anchor="middle">Canonical file — byte-identical to current snapshot</text>
+  </g>
+  
+  <!-- Footer -->
+  <text x="450" y="730" font-family="Arial, sans-serif" font-size="11" fill="#7F8C8D" text-anchor="middle">WIP-FILE-NAMING-v1.4 | Folder structure and status lifecycle</text>
+</svg>
