@@ -56,7 +56,7 @@ jobs:
         run: |
           echo "=== Checking for changes ==="
           git status
-          git add INTEGRATED-FILES.md INTEGRATED-FILES.json
+          git add INTEGRATED-FILES.md INTEGRATED-FILES.json docs/integrated-files.html
           if ! git diff --cached --quiet; then
             echo "✓ Changes detected, committing..."
             git commit -m "chore: update integrated files report [skip ci]"
