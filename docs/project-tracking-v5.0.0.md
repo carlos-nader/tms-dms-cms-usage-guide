@@ -6,7 +6,7 @@ layout: default
 # PROJECT TRACKING
 ## Falcon BMS TMS/DMS/CMS HOTAS Guide
 
-**Document Version:** PROJECT-TRACKING-v6.0.0  
+**Document Version:** PROJECT-TRACKING-v5.0.0  
 **Regime:** Pre-publication (0.x.x.x)  
 **Project Start:** 2026-01-05  
 **Last Updated:** 2026-02-02  
@@ -32,27 +32,28 @@ This document tracks governance rules, project state, and development history. F
 
 ## 2. PROJECT SNAPSHOT
 
-**Last updated:** 2026-02-02
+**Last updated:** 2026-02-03
 
 | Metric | Value |
 |--------|-------|
-| **Guide Version** | v0.3.2.1 |
+| **Guide Version** | v0.3.3.0 |
 | **Phase** | Phase 0 — Chapter Scaffolding |
 | **Chapters Planned** | 7 |
-| **Chapters with Narrative** | 3/7 (C1, C4, C5) |
-| **Chapters Scaffolded** | 4/7 (C2, C3, C6, C7) |
-| **Total Commits** | 313 |
-| **Latest Release** | v0.3.2.1 (2026-01-29) |
+| **Chapters Integrated** | 3/7 (C1, C4, C5) |
+| **Chapters In Development** | 1/7 (C2) |
+| **Chapters Pending** | 3/7 (C3, C6, C7) |
+| **Total Commits** | 340 |
+| **Latest Release** | v0.3.3.0 (2026-02-02) |
 
 ### Chapter Status
 
 | Ch | Title | Status | Notes |
 |----|-------|--------|-------|
-| 1 | Introduction | Revision in progress | WIP: `chapter-C1-introduction-dev-2026-02-02.tex` |
+| 1 | Introduction | ✅ Integrated | Revised and integrated (v0.3.3.0) |
 | 2 | HOTAS Fundamentals | dev | WIP: `chapter-C2-hotas-fundamentals-dev-2026-01-25.tex` |
 | 3 | TMS | Scaffolded | Pending development |
-| 4 | DMS | final | WIP: `chapter-C4-dms-final-2026-02-01.tex` — ready for integration |
-| 5 | CMS | Integrated | Complete (§5.1, §5.2, §5.3) |
+| 4 | DMS | ✅ Integrated | Complete chapter integrated (v0.3.3.0) |
+| 5 | CMS | ✅ Integrated | Complete (§5.1, §5.2, §5.3) |
 | 6 | Training References | Scaffolded | Pending development |
 | 7 | Visual Reference | Scaffolded | Structure TBD |
 
@@ -64,71 +65,20 @@ Chronological record of significant changes. For detailed commit history, see IN
 
 | Date | Guide Version | Key Changes |
 |------|---------------|-------------|
-| 2026-01-05 | v0.1.0.0 | Initial project setup. Chapter scaffolding. Introduction integrated. VERSION-SYSTEM-v1.0.0 established. |
-| 2026-01-06 | v0.1.1.0 | Placeholder subsections added. |
+| 2026-01-05 | v0.1.0.0 | Initial project setup. Chapter scaffolding. Introduction integrated. |
 | 2026-01-07 | v0.1.4.0 | Layout standard adopted. BRIEFING created. Geometry locked. |
-| 2026-01-07 | v0.2.0.1 | CMS Section 5.1 integrated. |
-| 2026-01-08 | v0.2.1.0 | Chapter 5 structure refined (5.1–5.3). WIP-FILE-NAMING created. |
-| 2026-01-09 | v0.2.2.0 | CMS Section 5.2 integrated. Geometry Option D locked. |
-| 2026-01-10 | v0.2.3.0 | CMS HOTAS table integrated into Section 5.2. |
-| 2026-01-10 | v0.2.3.1 | CMS table column explanations added. SUBPATCH. |
-| 2026-01-11 | v0.2.4.0 | CMS Section 5.3 integrated. Chapter 5 complete. Template-wip-V1.0.tex established. |
-| 2026-01-13 | — | DMS blueprint v1.0 created. |
-| 2026-01-14 | — | DMS blueprint v1.1 finalized (direction-based structure). |
-| 2026-01-14 | v0.3.0.0 | **RELEASE:** DMS Sections 4.1 and 4.2 integrated. GitHub Release tag created. |
-| 2026-01-16 | v0.3.0.1 | Section 4.2 table column explanations added. PATCH. |
-| 2026-01-17 | — | DMS Down WIP promoted to review. |
-| 2026-01-18 | — | DMS Down WIP promoted to final. BRIEFING Section 11 expanded (~8,000 words). |
-| 2026-01-18 | v0.3.1.0 | **RELEASE:** Preamble infrastructure upgrade (article → report class, titlesec, twoside). |
-| 2026-01-19 | v0.3.2.0 | **RELEASE:** Section 4.3 integrated. Redaction corrections in 4.1/4.2. |
-| 2026-01-19 | — | PROJECT-TRACKING-v5.0.0 released. |
-| 2026-01-20 | — | DMS Left/Right WIP development started. |
-| 2026-01-21 | — | DMS Left/Right promoted to review. |
-| 2026-01-25 | — | C2 HOTAS Fundamentals WIP created. |
-| 2026-01-29 | v0.3.2.1 | **RELEASE:** Hotastable environment upgrade (arraystretch 1.25). Chapter 4/5 corrections. |
-| 2026-01-30 | — | C4:S4 issues closed (#16, #17, #18). C4 consolidated into full chapter WIP. |
-| 2026-02-01 | — | C4 chapter promoted to final (`chapter-C4-dms-final-2026-02-01.tex`). |
-| 2026-02-02 | — | C1 revision: structural analysis, new WIP created (`chapter-C1-introduction-dev-2026-02-02.tex`). |
+| 2026-01-11 | v0.2.4.0 | Chapter 5 (CMS) complete. Template-wip-V1.0.tex established. |
+| 2026-01-14 | v0.3.0.0 | **RELEASE:** DMS Sections 4.1 and 4.2 integrated. |
+| 2026-01-18 | v0.3.1.0 | **RELEASE:** Preamble infrastructure upgrade (article → report class). |
+| 2026-01-19 | v0.3.2.0 | **RELEASE:** Section 4.3 (DMS Down) integrated. |
+| 2026-01-29 | v0.3.2.1 | **RELEASE:** Hotastable environment upgrade (arraystretch 1.25). |
+| 2026-02-02 | v0.3.3.0 | **RELEASE:** C4 (DMS) complete chapter integrated. C1 (Introduction) revised and integrated. Milestone v0.3.3.0 completed (10/10 issues). |
 
 ---
 
 ## 4. NEXT TARGETS
 
-### Target 1: Chapter 4 Integration → v0.3.3.0 (PATCH)
-
-| Item | Value |
-|------|-------|
-| **WIP File** | `chapter-C4-dms-final-2026-02-01.tex` |
-| **Status** | final — ready for integration |
-| **Milestone** | v0.3.3.0 (Due: 2026-02-06, progress 5/7) |
-| **Open Issues** | #27 (FINAL), #28 (APPROVED) |
-| **Version Bump** | PATCH (section/content integration, not new chapter) |
-
-**Next step:** Author approval → integration into guide.tex → v0.3.3.0 release
-
----
-
-### Target 2: Chapter 1 Revision → v0.3.3.x (SUBPATCH)
-
-| Item | Value |
-|------|-------|
-| **WIP File** | `chapter-C1-introduction-dev-2026-02-02.tex` |
-| **Status** | dev |
-| **Issue** | #26 (Rewrite C1) |
-| **Version Bump** | SUBPATCH (refinement of existing chapter) |
-
-**Changes:**
-- Eliminated intro/§1.1 redundancy
-- Added Claude to AI acknowledgment (alongside Perplexity)
-- Simplified license section (summary + link)
-- New §1.4.3 (GitHub as canonical source)
-- Clear C7 explanation as visual quick reference
-
-**Next step:** dev → review → final → integration
-
----
-
-### Target 3: Chapter 2 — HOTAS Fundamentals → v0.4.0.0 (MINOR)
+### Target 1: Chapter 2 — HOTAS Fundamentals → v0.4.0.0 (MINOR)
 
 | Item | Value |
 |------|-------|
@@ -144,14 +94,25 @@ Chronological record of significant changes. For detailed commit history, see IN
 
 ---
 
+### Target 2: Chapter 3 — TMS → v0.5.0.0 (MINOR)
+
+| Item | Value |
+|------|-------|
+| **WIP File** | TBD |
+| **Status** | Scaffolded |
+| **Version Bump** | MINOR (new chapter entry) |
+
+**Next step:** Create WIP file, begin development
+
+---
+
 ### Version Roadmap
 
 | Version | Content | Bump Type | Status |
 |---------|---------|-----------|--------|
-| v0.3.3.0 | C4 complete integration + C4:S1-S3 rewrite | PATCH | In progress |
-| v0.3.3.x | C1 revision | SUBPATCH | Planned |
-| v0.4.0.0 | C2 HOTAS Fundamentals | MINOR | Planned |
-| v0.5.0.0 | C3 TMS (or additional chapter) | MINOR | Future |
+| v0.3.3.0 | C4 complete + C1 revision | PATCH | ✅ **Released** |
+| v0.4.0.0 | C2 HOTAS Fundamentals | MINOR | In progress |
+| v0.5.0.0 | C3 TMS | MINOR | Planned |
 
 ---
 
@@ -159,19 +120,12 @@ Chronological record of significant changes. For detailed commit history, see IN
 
 ### Structural Decisions
 
-**2026-01-14:** Chapter 4 (DMS) follows direction-based structure per blueprint v1.1:
-- §4.1 Concept and SOI
-- §4.2 DMS Up
-- §4.3 DMS Down
-- §4.4 DMS Left/Right
-- §4.5 Master Mode Summary (pending)
+**2026-02-02:** C1 revision completed — eliminated redundancy, added Claude to AI acknowledgment, simplified license section, added §1.4.3 (GitHub as canonical source).
 
-**2026-01-30:** C4 sections consolidated into single chapter WIP file for final review and integration.
-
-**2026-02-02:** C1 revision addresses redundancy, incomplete AI credit, and confusing structure. New organization moves version/authorship to end (§1.4) and streamlines document structure explanation (§1.3).
+**2026-02-02:** v0.3.3.0 released — C4 and C1 integrated in same release (10 issues closed).
 
 ---
 
-**END OF PROJECT TRACKING v6.0.0**
+**END OF PROJECT TRACKING v5.0.0**
 
 {% endraw %}
