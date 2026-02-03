@@ -37,12 +37,22 @@ jobs:
         run: |
           python3 scripts/generate-integrated-files.py 2>&1
 
-      - name: Configure Git
+      - name: 📄 Convert Markdown to HTML
+        uses: natescherer/markdown-to-html-with-github-style-action@v1
+        with:
+          path: INTEGRATED-FILES.md
+          outputpath: docs
+
+      - name: ✏️ Rename HTML file
+        run: |
+          mv docs/INTEGRATED-FILES.html docs/integrated-files.html
+      
+      - name: ⚙️ Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Commit and push changes
+      - name: 💾 Commit and push changes
         run: |
           echo "=== Checking for changes ==="
           git status
