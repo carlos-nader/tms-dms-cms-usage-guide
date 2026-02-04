@@ -52,6 +52,7 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 [![GitHub Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://carlos-nader.github.io/tms-dms-cms-usage-guide/)
 [![Perplexity](https://img.shields.io/badge/perplexity-000000?style=for-the-badge&logo=perplexity&logoColor=088F8F)](https://perplexity.ai)
 [![Claude](https://img.shields.io/badge/Claude-cc785c?style=for-the-badge&logo=anthropic&logoColor=white)](https://claude.ai)
+[![GitHub Copilot](https://img.shields.io/badge/GitHub%20Copilot-0969da?style=for-the-badge&logo=github&logoColor=white)](https://github.com/features/copilot)
 [![Falcon BMS](https://img.shields.io/badge/Falcon%20BMS-4.38.1-blue?style=for-the-badge)](https://www.falcon-bms.com/)
 
 This project develops a structured guide explaining HOTAS functionality across multiple F-16 blocks and international variants. The guide serves both novice and experienced pilots, covering conceptual frameworks, switch actuation, system interactions, and operational nuances grounded in Falcon BMS manuals (Dash-34, Dash-1) and training materials.
@@ -149,7 +150,7 @@ The project uses **four governance documents** in `/docs/` and an **auto-generat
 
 * **Claude Pro (Anthropic)** — Co-editor: content development, critical review, governance
 * **Perplexity Pro** — Research, early project structuring, and content creation
-* **GitHub Copilot Pro** — Code suggestions in VSCode (pending activation)
+* **GitHub Copilot Pro** — Documentation, repository management, issue/PR coordination, and collaborative development (both in GitHub web and VSCode)
 
 ### Project Utilities
 

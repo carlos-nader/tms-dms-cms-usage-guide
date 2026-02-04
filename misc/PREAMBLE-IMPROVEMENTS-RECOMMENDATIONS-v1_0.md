@@ -59,6 +59,27 @@ O preâmbulo atual está **bem estruturado** e documenta corretamente as decisõ
 
 #### 3.1 Modularização do Preâmbulo
 
+> **🔴 UNDER EVALUATION — NOT RECOMMENDED FOR THIS PROJECT**
+>
+> After discussion (2026-02-04), modularization was deemed **not beneficial** for this specific project context:
+>
+> **Reasons NOT to implement:**
+> 1. **Low edit frequency** — The preamble is stable; changes are rare
+> 2. **Template already centralizes** — `template-wip-V1.0.tex` already provides preamble consistency for WIP files
+> 3. **Public distribution impact** — `guide.tex` is shared via direct links; a modular file requires users to access multiple files to understand the code
+> 4. **Complexity not justified** — The organizational benefit doesn't outweigh the added dependency management
+>
+> **When modularization WOULD make sense:**
+> - Projects with 10+ separate .tex files
+> - Multiple authors frequently editing the preamble
+> - Preamble changing weekly or more often
+>
+> **Decision:** Keep preamble inside `guide.tex` for a self-contained, distribution-friendly document.
+
+---
+
+**Original analysis (preserved for reference):**
+
 **Problema:**
 - `guide.tex` tem ~300 linhas de preâmbulo antes de `\begin{document}`
 - Dificulta leitura, manutenção, e sincronização com `template-wip-V1.0.tex`
@@ -84,7 +105,9 @@ Criar arquivo `preamble.tex` separado e importá-lo:
 - ⚠️ Mais um arquivo para gerenciar
 - ⚠️ Precisa atualizar `template-wip-V1.0.tex` e documentar no BRIEFING
 
-**Recomendação:** **IMPLEMENTAR.** Os benefícios superam as desvantagens, especialmente considerando que você vai criar C3, C6, C7 e continuar editando.
+~~**Recomendação:** **IMPLEMENTAR.** Os benefícios superam as desvantagens, especialmente considerando que você vai criar C3, C6, C7 e continuar editando.~~
+
+**Recomendação revisada:** **NÃO IMPLEMENTAR.** Ver justificativa acima.
 
 ---
 
@@ -151,11 +174,16 @@ Adicionar ao preâmbulo:
 
 **Recomendação:** **IMPLEMENTAR AGORA.** Você vai precisar disso em C3 quando referenciar C4/C5.
 
+**⚠️ NOTA (2026-02-04):** O sistema proposto acima é **básico e insuficiente**. Expandir para incluir:
+- Macros com formatação condicional (singular/plural)
+- Macros para ranges de seções/tabelas
+- Considerar pacote `cleveref` para automação avançada
+
 ---
 
 ### 🟡 Prioridade MÉDIA — Considerar para v0.4.0.0 ou v0.5.0.0
 
-#### 3.4 Glossário e Acrônimos
+#### 3.4 Glossário e Acrônimos — ⚠️ RECLASSIFICADO PARA PRIORIDADE ALTA
 
 **Problema:**
 - Guide usa muitos acrônimos: SOI, FCR, STT, SAM, BARCAP, SEAD, etc.
@@ -188,11 +216,11 @@ Pacote `glossaries-extra` para glossário + lista de acrônimos
 - ⚠️ Requer `makeglossaries` na compilação (+ complexidade)
 - ⚠️ Precisa definir ~50-100 acrônimos inicialmente
 
-**Recomendação:** **Adiar para pós-v1.0.0.0.** É útil, mas não essencial agora. Foca em conteúdo.
+**Recomendação:** ~~Adiar para pós-v1.0.0.0.~~ **IMPLEMENTAR AGORA.** Decisão do autor: glossário é essencial para navegabilidade do documento técnico. Implementar junto com demais melhorias de preâmbulo.
 
 ---
 
-#### 3.5 Metadados do PDF
+#### 3.5 Metadados do PDF ✅ APROVADO
 
 **Problema:**
 - PDF gerado não tem metadados (título, autor, keywords)
@@ -222,7 +250,7 @@ Adicionar ao preâmbulo (depois de `\usepackage{hyperref}`):
 
 ---
 
-#### 3.6 Licença no PDF
+#### 3.6 Licença no PDF ✅ APROVADO
 
 **Problema:**
 - CC BY-NC 4.0 está no README.md e GitHub, mas **não aparece no PDF**
@@ -258,9 +286,9 @@ For the full license text, visit: \url{https://creativecommons.org/licenses/by-n
 
 ---
 
-### 🟢 Prioridade BAIXA — Nice to Have (pós-v1.0.0.0)
+### 🟢 Prioridade BAIXA — Nice to Have (pós-v1.0.0.0) → **RECLASSIFICADO PARA FASE 1**
 
-#### 3.7 Pacote `enumitem` para Listas Customizadas
+#### 3.7 Pacote `enumitem` para Listas Customizadas ✅ APROVADO
 
 **Problema atual:**
 - Listas usam formatação padrão LaTeX
@@ -277,11 +305,13 @@ For the full license text, visit: \url{https://creativecommons.org/licenses/by-n
 \end{itemize}
 ```
 
-**Recomendação:** Adicionar pacote agora, mas usar apenas quando necessário.
+~~**Recomendação:** Adicionar pacote agora, mas usar apenas quando necessário.~~
+
+**Recomendação revisada (2026-02-04):** **IMPLEMENTAR AGORA.** Decisão do autor: implementar tudo antes de C3 para evitar issues abertas.
 
 ---
 
-#### 3.8 Índice Remissivo (Index)
+#### 3.8 Índice Remissivo (Index) ✅ APROVADO
 
 **Problema:**
 - Sem índice alfabético de termos (ex: buscar "SOI" → páginas 12, 23, 45)
@@ -289,7 +319,9 @@ For the full license text, visit: \url{https://creativecommons.org/licenses/by-n
 **Solução:**
 Pacote `imakeidx` (já discutido no arquivo `latex-dual-index-guide.md` que você anexou hoje).
 
-**Recomendação:** **Adiar para pós-v1.0.0.0.** Você decidiu focar apenas em List of Tables por agora.
+~~**Recomendação:** **Adiar para pós-v1.0.0.0.** Você decidiu focar apenas em List of Tables por agora.~~
+
+**Recomendação revisada (2026-02-04):** **IMPLEMENTAR AGORA.** Decisão do autor: implementar tudo antes de C3.
 
 ---
 
@@ -301,11 +333,15 @@ Pacote `imakeidx` (já discutido no arquivo `latex-dual-index-guide.md` que voc�
 
 **Mudanças:**
 
-1. ✅ **Modularizar preâmbulo** → criar `preamble.tex`
+1. ~~✅ **Modularizar preâmbulo**~~ → **NÃO IMPLEMENTAR** (decisão 2026-02-04)
 2. ✅ **List of HOTAS Tables** (já planejado)
-3. ✅ **Macros de cross-reference** (`\secref`, `\tabref`, `\figref`)
+3. ✅ **Macros de cross-reference** (`\secref`, `\tabref`, `\figref`) — expandir com `cleveref`
 4. ✅ **Metadados PDF** (`\hypersetup`)
 5. ✅ **Atualizar BRIEFING** para documentar mudanças
+6. ✅ **Glossário e acrônimos** (`glossaries-extra`) — reclassificado de Fase 3
+7. ✅ **Pacote enumitem** — reclassificado de Fase 3
+8. ✅ **Índice Remissivo** (`imakeidx`) — reclassificado de Fase 3
+9. ✅ **Licença no PDF** (seção em C1)
 
 **Bump de versão:**
 - Combinado com hotastable v2.0 + List of Tables → **v0.3.4.0** (PATCH)
@@ -314,14 +350,16 @@ Pacote `imakeidx` (já discutido no arquivo `latex-dual-index-guide.md` que voc�
 
 ### Fase 2: Durante C3 (se necessário)
 
-6. ⚠️ **Licença no PDF** (adicionar seção em C1)
+~~6. ⚠️ **Licença no PDF** (adicionar seção em C1)~~ → **Movido para Fase 1**
 
 ---
 
 ### Fase 3: Pós-v1.0.0.0
 
-7. 🔵 **Glossário e acrônimos** (`glossaries-extra`)
-8. 🔵 **Índice remissivo** (`imakeidx`)
+**VAZIA** — Todos os itens foram reclassificados para Fase 1 por decisão do autor (2026-02-04).
+
+~~7. 🔵 **Glossário e acrônimos** (`glossaries-extra`)~~ → Movido para Fase 1
+~~8. 🔵 **Índice remissivo** (`imakeidx`)~~ → Movido para Fase 1
 
 ---
 
