@@ -40,7 +40,7 @@ A versão atual do ambiente `hotastable` apresentava overflow de conteúdo na co
 |-----------|--------------|-----------------|---------------|
 | Font size | `\small` (9pt) | `\footnotesize` (8pt) | Maior densidade, mais texto por célula |
 | `\tabcolsep` | 2pt | 3pt | Melhor espaçamento visual entre células |
-| `\arraystretch` | 1.25 | 1.30 | Compensa fonte menor, mantém legibilidade vertical |
+| `\arraystretch` | 1.25 | 1.35 | Compensa fonte menor, mantém legibilidade vertical |
 | Mode | 1.00 cm | 1.00 cm | — |
 | Dir. | 0.90 cm | 0.90 cm | — |
 | Act. | 0.90 cm | 0.90 cm | — |
@@ -82,14 +82,14 @@ A versão atual do ambiente `hotastable` apresentava overflow de conteúdo na co
 %   - Font reduced from \small to \footnotesize for better density
 %   - \tabcolsep increased from 2pt to 3pt for better visual spacing
 %   - Train. column reduced from 2.10cm to 1.60cm (content simplified to numbers only)
-%   - \arraystretch increased from 1.25 to 1.30 to compensate for smaller font
+%   - \arraystretch increased from 1.25 to 1.35 to compensate for smaller font
 % Total width: 15.50cm (columns) + 1.48cm (padding) = 16.98cm
 % ============================================================================
 
 \newenvironment{hotastable}[1]{%
   \footnotesize  % 8pt base font (down from \small 9pt)
   \setlength{\tabcolsep}{3pt}  % cell padding (up from 2pt)
-  \renewcommand{\arraystretch}{1.30}  % row height factor (up from 1.25)
+  \renewcommand{\arraystretch}{1.35}  % row height factor (up from 1.25)
   \begin{longtable}{L{1.00cm} L{0.90cm} L{0.90cm} L{3.30cm} L{6.40cm} L{1.40cm} L{1.60cm}}
   	\caption{#1}\\
   	\rowcolor{headerblue}
@@ -172,13 +172,22 @@ A versão atual do ambiente `hotastable` apresentava overflow de conteúdo na co
 
 **Nota:** Se houver múltiplas referências na mesma célula, o padrão acima captura uma de cada vez. Execute múltiplas vezes ou ajuste o regex.
 
-### 4.3 Padrão Alternativo (Mais Conservador)
+### 4.3 Alternativas de Substituição
 
-Se a busca automática for arriscada, fazer busca simples e substituir manualmente:
+**Opção A — Busca e substituição manual (VSCode Find):**
+
+1. Abrir Find (Ctrl+F) no VSCode
+2. Buscar por: `\trnref{`
+3. Revisar cada ocorrência visualmente
+4. Substituir manualmente, removendo `\trnref{` e tudo após o número até `}`
+
+**Vantagens:** Mais seguro, evita substituições indesejadas em comentários ou exemplos
+
+**Opção B — Busca simples sem regex:**
 
 **Buscar:** `\trnref{`
 
-**Ação:** Revisar cada ocorrência e simplificar manualmente.
+**Ação:** Revisar cada ocorrência e simplificar manualmente célula por célula.
 
 ---
 

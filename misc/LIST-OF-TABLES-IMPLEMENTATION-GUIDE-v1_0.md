@@ -143,6 +143,15 @@ Este documento descreve como implementar o **List of HOTAS Tables** no guide, um
 \caption{CMS Left/Right Actions}
 ```
 
+**Regra para contextos longos:**
+
+Quando o contexto for muito verboso, use abreviações padronizadas:
+
+✅ **Correto:** `\caption{TMS Actions in FCR STT/SAM Mode}`  
+❌ **Evitar:** `\caption{TMS Actions in FCR Single Target Track Search-and-Track Mode with Situational Awareness Mode Active}`
+
+**Abreviações aceitas:** FCR, STT, SAM, CRM, RWS, TWS, ACM, DGFT, A-A, A-G, NAV
+
 ### 4.3 Exemplos Incorretos
 
 ❌ `\caption{TMS Table}` — muito genérico  
