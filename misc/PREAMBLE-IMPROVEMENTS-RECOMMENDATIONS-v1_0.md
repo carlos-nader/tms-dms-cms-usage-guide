@@ -4,6 +4,7 @@
 **Autor:** Claude (Co-Editor)  
 **Contexto:** Revisão estrutural antes de desenvolver C3 (TMS)  
 **Versão do guide analisada:** v0.3.3.0
+**Related GitHub Issues:** #34
 
 ---
 
@@ -45,7 +46,6 @@ O preâmbulo atual está **bem estruturado** e documenta corretamente as decisõ
 | **Glossário/Acrônimos** | Não implementado | Leitor precisa procurar definições | MÉDIA |
 | **Cross-references** | Sistema básico | Faltam macros para seções, figuras, tabelas | MÉDIA |
 | **Metadados PDF** | Não configurado | PDF sem autor/título/keywords | BAIXA |
-| **Licença** | Não no PDF | CC BY-NC 4.0 apenas no repo | BAIXA |
 
 ### 2.3 Problemas Críticos 🔴
 
@@ -181,7 +181,7 @@ Adicionar ao preâmbulo:
 
 ---
 
-### 🟡 Prioridade MÉDIA — Considerar para v0.4.0.0 ou v0.5.0.0
+### 🟡 Prioridade MÉDIA
 
 #### 3.4 Glossário e Acrônimos — ⚠️ RECLASSIFICADO PARA PRIORIDADE ALTA
 
@@ -250,43 +250,20 @@ Adicionar ao preâmbulo (depois de `\usepackage{hyperref}`):
 
 ---
 
-#### 3.6 Licença no PDF ✅ APROVADO
+#### 3.6 Licença no PDF ✅ JÁ IMPLEMENTADO
 
-**Problema:**
-- CC BY-NC 4.0 está no README.md e GitHub, mas **não aparece no PDF**
-- Leitor que baixa PDF isolado não vê licença
-
-**Solução:**
-Adicionar seção no final do Chapter 1 (Introduction):
-
-```latex
-\section{License and Distribution}
-\label{sec:C1-license}
-
-This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).
-
-\textbf{You are free to:}
-\begin{itemize}
-    \item \textbf{Share} — copy and redistribute the material in any medium or format
-    \item \textbf{Adapt} — remix, transform, and build upon the material
-\end{itemize}
-
-\textbf{Under the following terms:}
-\begin{itemize}
-    \item \textbf{Attribution} — You must give appropriate credit, provide a link to the license, and indicate if changes were made.
-    \item \textbf{NonCommercial} — You may not use the material for commercial purposes.
-\end{itemize}
-
-For the full license text, visit: \url{https://creativecommons.org/licenses/by-nc/4.0/}
-
-\textbf{Source repository:} \url{https://github.com/carlos-nader/tms-dms-cms-usage-guide}
-```
-
-**Recomendação:** **IMPLEMENTAR EM C1 QUANDO REVISAR.** Importante para distribuição ética.
+> **Status:** ✅ JÁ IMPLEMENTADO em `guide.tex` v0.3.3.0
+>
+> O Chapter 1 (Introduction) já contém:
+> - §1.4.4 License — CC BY-NC 4.0 com link para termos completos
+> - §1.4.5 Disclaimer — Aviso legal complementar
+> - §1.4.3 GitHub as Canonical Source — Repositório como fonte oficial
+>
+> **Nenhuma ação adicional necessária.**
 
 ---
 
-### 🟢 Prioridade BAIXA — Nice to Have (pós-v1.0.0.0) → **RECLASSIFICADO PARA FASE 1**
+### 🟢 Prioridade BAIXA → **RECLASSIFICADO PARA IMPLANTAÇÃO IMEDIATA**
 
 #### 3.7 Pacote `enumitem` para Listas Customizadas ✅ APROVADO
 
@@ -341,16 +318,16 @@ Pacote `imakeidx` (já discutido no arquivo `latex-dual-index-guide.md` que voc�
 6. ✅ **Glossário e acrônimos** (`glossaries-extra`) — reclassificado de Fase 3
 7. ✅ **Pacote enumitem** — reclassificado de Fase 3
 8. ✅ **Índice Remissivo** (`imakeidx`) — reclassificado de Fase 3
-9. ✅ **Licença no PDF** (seção em C1)
+9. ✅ **Licença no PDF** — **JÁ IMPLEMENTADO** (§1.4.4 + §1.4.5 em guide.tex v0.3.3.0)
 
 **Bump de versão:**
-- Combinado com hotastable v2.0 + List of Tables → **v0.3.4.0** (PATCH)
+- Combinado com hotastable v2.0 + List of Tables
 
 ---
 
 ### Fase 2: Durante C3 (se necessário)
 
-~~6. ⚠️ **Licença no PDF** (adicionar seção em C1)~~ → **Movido para Fase 1**
+~~6. ⚠️ **Licença no PDF** (adicionar seção em C1)~~ → **JÁ IMPLEMENTADO** (v0.3.3.0)
 
 ---
 
@@ -365,38 +342,35 @@ Pacote `imakeidx` (já discutido no arquivo `latex-dual-index-guide.md` que voc�
 
 ## 5. Código LaTeX — Mudanças Propostas
 
-### 5.1 Criar `preamble.tex`
+### 5.1 ~~Criar `preamble.tex`~~
 
-**Arquivo novo:** `preamble.tex` (raiz do repositório)
+> **⚠️ OBSOLETE — Modularization not approved (see Section 3.1)**
 
-**Conteúdo:** Todo o preâmbulo atual de `guide.tex` (linhas 7-299), **EXCETO**:
-- `\documentclass{...}` (fica no `guide.tex`)
-- `\begin{document}` (fica no `guide.tex`)
+~~**Arquivo novo:** `preamble.tex` (raiz do repositório)~~
 
-### 5.2 Atualizar `guide.tex`
+~~**Conteúdo:** Todo o preâmbulo atual de `guide.tex` (linhas 7-299), **EXCETO**:~~
+- ~~`\documentclass{...}` (fica no `guide.tex`)~~
+- ~~`\begin{document}` (fica no `guide.tex`)~~
 
-**Antes:**
+### 5.2 ~~Atualizar `guide.tex` (modularização)~~
+
+> **⚠️ OBSOLETE — Modularization not approved (see Section 3.1)**
+
+~~**Antes:**~~
 ```latex
-\documentclass[11pt, a4paper, twoside]{report}
-
-% --------------------------------------------------------------------------
-% BASIC ENCODING AND LANGUAGE
-% --------------------------------------------------------------------------
-\usepackage[utf8]{inputenc}
-...
-[300 linhas de preâmbulo]
-...
-\begin{document}
+% \documentclass[11pt, a4paper, twoside]{report}
+% ... [300 linhas de preâmbulo] ...
+% \begin{document}
 ```
 
-**Depois:**
+~~**Depois:**~~
 ```latex
-\documentclass[11pt, a4paper, twoside]{report}
-\input{preamble.tex}
-\begin{document}
+% \documentclass[11pt, a4paper, twoside]{report}
+% \input{preamble.tex}
+% \begin{document}
 ```
 
-### 5.3 Adicionar a `preamble.tex` (seção nova)
+### 5.3 Adicionar ao preâmbulo de `guide.tex` (cross-reference macros)
 
 ```latex
 % --------------------------------------------------------------------------
@@ -417,7 +391,7 @@ Pacote `imakeidx` (já discutido no arquivo `latex-dual-index-guide.md` que voc�
 \newcommand{\pageref}[1]{page~\pageref{#1}}
 ```
 
-### 5.4 Adicionar a `preamble.tex` (metadados PDF)
+### 5.4 Adicionar ao preâmbulo de `guide.tex` (metadados PDF)
 
 **Inserir logo após `\usepackage{hyperref}`:**
 
@@ -434,7 +408,7 @@ Pacote `imakeidx` (já discutido no arquivo `latex-dual-index-guide.md` que voc�
 }
 ```
 
-### 5.5 Adicionar a `preamble.tex` (List of Tables)
+### 5.5 Adicionar ao preâmbulo de `guide.tex` (List of Tables)
 
 **Inserir antes dos macros de versão:**
 
@@ -458,191 +432,60 @@ Pacote `imakeidx` (já discutido no arquivo `latex-dual-index-guide.md` que voc�
 
 ---
 
-## 6. Impacto nos Documentos de Governança
+## 6. Documentos de Governança Impactados
 
-### 6.1 BRIEFING-v0.2.0.1 → BRIEFING-v0.2.1.0
+Antes de implementar, revisar os seguintes arquivos para garantir consistência:
 
-**Já planejado** para hotastable v2.0 + List of Tables.
-
-**Adicionar nova seção:**
-
-```markdown
-### 12.4 Preamble Modularization (V1.0 updated 2026-02-04)
-
-Starting with guide v0.3.4.0, the preamble is separated into an external file:
-
-- **File:** `preamble.tex` (repository root)
-- **Usage in guide.tex:** `\input{preamble.tex}` immediately after `\documentclass`
-- **Usage in WIP files:** `\input{../preamble.tex}` (adjust path if WIP is in subdirectory)
-
-**Advantages:**
-- Centralized preamble management
-- Automatic propagation of changes to all WIP files
-- Cleaner `guide.tex` main file
-
-**Do NOT edit `preamble.tex` directly unless implementing structural changes.**
-All content-related work must use WIP files following `WIP-FILE-NAMING-v1.4` rules.
-```
-
-### 6.2 template-wip-V1.0.tex
-
-**Atualizar para usar `preamble.tex`:**
-
-```latex
-\documentclass[11pt, a4paper, twoside]{report}
-\input{../preamble.tex}  % Assume WIP is in wip/ directory
-\begin{document}
-...
-```
-
-### 6.3 PROJECT-TRACKING-v5.0.0
-
-**Adicionar entrada de sessão** (quando implementar):
-
-```markdown
-### Session XX (2026-02-04)
-**Focus:** Preamble improvements v2.0
-
-**Changes:**
-- Modularized preamble into `preamble.tex`
-- Added List of HOTAS Tables (custom title)
-- Added cross-reference macros (\secref, \tabref, \figref, \chapref)
-- Added PDF metadata (\hypersetup)
-- Updated BRIEFING v0.2.0.1 → v0.2.1.0
-- Updated template-wip-V1.0.tex to use \input{preamble.tex}
-
-**Version:** v0.3.4.0 (combined with hotastable v2.0)
-```
+| Documento | Localização |
+|-----------|-------------|
+| BRIEFING | `docs/briefing-v0.2.0.1.md` |
+| PROJECT-TRACKING | `docs/project-tracking-v5.0.0.md` |
+| TEX-PREAMBLE-CONSOLIDATED | `docs/tex-preamble-consolidated.md` |
 
 ---
 
 ## 7. Checklist de Implementação
 
 ### Pré-Implementação
-- [ ] Backup de `guide.tex` e `template-wip-V1.0.tex`
-- [ ] Criar branch Git `feature/preamble-improvements-v2` (opcional)
+- [ ] Backup de `guide.tex` e `template/template-wip-V1.0.tex`
 
-### Implementação
-- [ ] Criar `preamble.tex` extraindo preâmbulo de `guide.tex`
-- [ ] Adicionar macros de cross-reference a `preamble.tex`
-- [ ] Adicionar metadados PDF a `preamble.tex`
-- [ ] Adicionar `\renewcommand{\listtablename}{...}` a `preamble.tex`
-- [ ] Atualizar `guide.tex`: `\input{preamble.tex}`
-- [ ] Adicionar `\listoftables` em `guide.tex` após `\tableofcontents`
-- [ ] Atualizar `template-wip-V1.0.tex`: `\input{../preamble.tex}`
+### Implementação no Preâmbulo (`guide.tex`)
+- [ ] Adicionar `\renewcommand{\listtablename}{List of HOTAS Tables}`
+- [ ] Adicionar macros cross-reference (`\secref`, `\tabref`, `\figref`, `\chapref`)
+- [ ] Adicionar `\hypersetup{...}` com metadados PDF
+- [ ] Adicionar `\usepackage{enumitem}`
+- [ ] Adicionar `\usepackage[acronym, toc]{glossaries-extra}` + `\makeglossaries`
+- [ ] Adicionar `\usepackage{imakeidx}` + `\makeindex`
+
+### Implementação no Corpo (`guide.tex`)
+- [ ] Adicionar `\listoftables` após `\tableofcontents`
+- [ ] Adicionar `\printglossary` no local apropriado (final ou apêndice)
+- [ ] Adicionar `\printindex` no final do documento
+
+### Implementação no Conteúdo (C1)
+- [x] ~~Adicionar seção "License and Distribution" no Chapter 1~~ — JÁ IMPLEMENTADO (§1.4.4 + §1.4.5)
+
+### Sincronização
+- [ ] Atualizar `template/template-wip-V1.0.tex` com mesmas mudanças de preâmbulo
 
 ### Documentação
-- [ ] Atualizar BRIEFING v0.2.0.1 → v0.2.1.0 (seção 12.4 nova)
-- [ ] Adicionar entrada em PROJECT-TRACKING
+- [ ] Atualizar `docs/briefing-v0.2.0.1.md` (seção 12)
+- [ ] Atualizar `docs/tex-preamble-consolidated.md`
+- [ ] Adicionar entrada em `docs/project-tracking-v5.0.0.md`
 
 ### Teste
-- [ ] Compilar `guide.tex` (verificar sem erros)
-- [ ] Compilar um WIP file de teste (verificar `\input{../preamble.tex}` funciona)
-- [ ] Verificar PDF: metadados corretos (Ctrl+D no Adobe Reader)
+- [ ] Compilar `guide.tex` sem erros
 - [ ] Verificar PDF: List of HOTAS Tables aparece após ToC
+- [ ] Verificar PDF: metadados corretos (Propriedades do documento)
 
 ### Versionamento
-- [ ] Commit: "feat: Preamble improvements v2.0 + List of HOTAS Tables"
-- [ ] Tag: `v0.3.4.0`
+- [ ] Atualizar macros `\docversion` e `\docbuild`
+- [ ] Criar snapshot em `wip/guide/`
+- [ ] Copiar para `guide.tex`
+- [ ] Mover snapshot anterior para `archive/GUIDE/`
+- [ ] Commit + Tag
 - [ ] Release no GitHub
-- [ ] Fechar milestone v0.3.4.0
-
----
-
-## 8. Riscos e Mitigação
-
-### Risco 1: `\input{preamble.tex}` falha em WIP files
-
-**Causa:** Path relativo incorreto (`../preamble.tex` vs `preamble.tex`)
-
-**Mitigação:**
-- Testar com um WIP file de cada tipo (section, table, chapter)
-- Documentar path correto no template
-
-### Risco 2: Mudanças no preâmbulo quebram compilação
-
-**Causa:** Sintaxe LaTeX incorreta em `preamble.tex`
-
-**Mitigação:**
-- Compilar `guide.tex` após cada alteração em `preamble.tex`
-- Manter backup do preâmbulo funcional
-
----
-
-## 9. Questões para Decisão
-
-### 9.1 Modularização — Aprovar?
-
-**Pergunta:** Você quer separar o preâmbulo em `preamble.tex`?
-
-**Opções:**
-- **(A) SIM** → Implementar agora
-- **(B) NÃO** → Manter tudo em `guide.tex`
-
-**Minha recomendação:** (A) SIM
-
----
-
-### 9.2 Cross-reference Macros — Aprovar?
-
-**Pergunta:** Adicionar `\secref`, `\tabref`, `\figref`, `\chapref`?
-
-**Opções:**
-- **(A) SIM** → Adicionar agora
-- **(B) DEPOIS** → Adicionar quando C3 precisar
-
-**Minha recomendação:** (A) SIM (você vai usar em C3)
-
----
-
-### 9.3 Metadados PDF — Aprovar?
-
-**Pergunta:** Adicionar `\hypersetup` com título, autor, keywords?
-
-**Opções:**
-- **(A) SIM** → Adicionar agora
-- **(B) DEPOIS** → Adicionar quando publicar v1.0.0.0
-
-**Minha recomendação:** (A) SIM (trivial, melhora qualidade)
-
----
-
-### 9.4 Glossário — Adiar?
-
-**Pergunta:** Implementar glossário/acrônimos agora ou depois?
-
-**Opções:**
-- **(A) AGORA** → Adicionar `glossaries-extra`
-- **(B) DEPOIS** → Adiar para pós-v1.0.0.0
-
-**Minha recomendação:** (B) DEPOIS (muito trabalho, baixo ROI agora)
-
----
-
-## 10. Resumo Final
-
-**Recomendações Prioritárias (AGORA):**
-
-1. ✅ **Modularizar preâmbulo** → `preamble.tex`
-2. ✅ **List of HOTAS Tables** (já planejado)
-3. ✅ **Cross-reference macros** (`\secref`, `\tabref`, etc.)
-4. ✅ **Metadados PDF** (`\hypersetup`)
-
-**Recomendações Futuras (pós-v1.0.0.0):**
-
-5. 🔵 **Glossário e acrônimos**
-6. 🔵 **Índice remissivo**
-
-**Bump de versão:**
-- v0.3.3.0 → **v0.3.4.0** (PATCH)
-- Combinado com hotastable v2.0 + List of Tables
 
 ---
 
 **Fim do Documento de Recomendações**
-
-**Aguardando suas decisões sobre:**
-1. Modularização (SIM/NÃO)?
-2. Cross-reference macros (SIM/NÃO)?
-3. Metadados PDF (SIM/NÃO)?
-4. Glossário (AGORA/DEPOIS)?
