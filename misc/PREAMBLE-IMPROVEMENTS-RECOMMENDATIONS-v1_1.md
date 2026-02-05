@@ -1,10 +1,10 @@
 # Análise Crítica e Recomendações — Preâmbulo guide.tex
 
-**Data:** 2026-02-04  
-**Autor:** Claude (Co-Editor)  
+**Data:** 2026-02-04 (Updated: 2026-02-05)  
 **Contexto:** Revisão estrutural antes de desenvolver C3 (TMS)  
-**Versão do guide analisada:** v0.3.3.0
-**Related GitHub Issues:** #34
+**Versão do guide analisada:** v0.3.3.0  
+**Related GitHub Issues:** #34  
+**Versão deste documento:** v1.1 (corrigido para estratégia `\glsaddall`)
 
 ---
 
@@ -12,7 +12,7 @@
 
 O preâmbulo atual está **bem estruturado** e documenta corretamente as decisões tomadas. No entanto, existem **oportunidades de melhoria** em:
 
-1. **Modularização** (separar preâmbulo em arquivo externo)
+1. **Modularização** (separar preâmbulo em arquivo externo) — **REJEITADO**
 2. **Gestão de índices** (implementar List of HOTAS Tables + preparar para índices futuros)
 3. **Macros de referência** (expandir sistema de cross-reference)
 4. **Pacotes faltando** (glossário, acrônimos, melhor gestão de listas)
@@ -39,13 +39,7 @@ O preâmbulo atual está **bem estruturado** e documenta corretamente as decisõ
 
 ### 2.2 Oportunidades de Melhoria 🟡
 
-| Aspecto | Problema | Impacto | Prioridade |
-|---------|----------|---------|------------|
-| **Modularização** | Todo preâmbulo em `guide.tex` | Dificulta manutenção | ALTA |
-| **Índices** | Apenas ToC, sem LoT | Navegação limitada | ALTA |
-| **Glossário/Acrônimos** | Não implementado | Leitor precisa procurar definições | MÉDIA |
-| **Cross-references** | Sistema básico | Faltam macros para seções, figuras, tabelas | MÉDIA |
-| **Metadados PDF** | Não configurado | PDF sem autor/título/keywords | BAIXA |
+SEÇÃO **ELIMINADA** - VER SUBITENS ABAIXO
 
 ### 2.3 Problemas Críticos 🔴
 
@@ -59,7 +53,7 @@ O preâmbulo atual está **bem estruturado** e documenta corretamente as decisõ
 
 #### 3.1 Modularização do Preâmbulo
 
-> **🔴 UNDER EVALUATION — NOT RECOMMENDED FOR THIS PROJECT**
+> **🔴 REJECTED — NOT RECOMMENDED FOR THIS PROJECT**
 >
 > After discussion (2026-02-04), modularization was deemed **not beneficial** for this specific project context:
 >
@@ -78,42 +72,9 @@ O preâmbulo atual está **bem estruturado** e documenta corretamente as decisõ
 
 ---
 
-**Original analysis (preserved for reference):**
-
-**Problema:**
-- `guide.tex` tem ~300 linhas de preâmbulo antes de `\begin{document}`
-- Dificulta leitura, manutenção, e sincronização com `template-wip-V1.0.tex`
-
-**Solução:**
-Criar arquivo `preamble.tex` separado e importá-lo:
-
-```latex
-% guide.tex (simplificado)
-\documentclass[11pt, a4paper, twoside]{report}
-\input{preamble.tex}  % <-- TODO PREÂMBULO AQUI
-\begin{document}
-...
-```
-
-**Vantagens:**
-- ✅ `guide.tex` fica mais limpo e legível
-- ✅ `template-wip-V1.0.tex` pode usar `\input{preamble.tex}` também
-- ✅ Mudanças no preâmbulo propagam automaticamente
-- ✅ Facilita versionamento (commits focados em preâmbulo vs. conteúdo)
-
-**Desvantagens:**
-- ⚠️ Mais um arquivo para gerenciar
-- ⚠️ Precisa atualizar `template-wip-V1.0.tex` e documentar no BRIEFING
-
-~~**Recomendação:** **IMPLEMENTAR.** Os benefícios superam as desvantagens, especialmente considerando que você vai criar C3, C6, C7 e continuar editando.~~
-
-**Recomendação revisada:** **NÃO IMPLEMENTAR.** Ver justificativa acima.
-
----
-
 #### 3.2 List of HOTAS Tables
 
-**Já planejado** (guia de implementação criado hoje).
+**Já planejado** (guia de implementação criado).
 
 **Adicionar ao preâmbulo:**
 ```latex
@@ -171,42 +132,90 @@ Adicionar ao preâmbulo:
 
 ---
 
-### 🟡 Prioridade MÉDIA
+### 🟡 Prioridade MÉDIA → **RECLASSIFICADO PARA PRIORIDADE ALTA**
 
-#### 3.4 Glossário e Acrônimos — ⚠️ RECLASSIFICADO PARA PRIORIDADE ALTA
+#### 3.4 Glossário e Acrônimos — ⚠️ ESTRATÉGIA REVISADA (v1.1)
 
 **Problema:**
-- Guide usa muitos acrônimos: SOI, FCR, STT, SAM, BARCAP, SEAD, etc.
-- Primeira ocorrência define, mas leitor pode esquecer depois
+- Guide usa 93 acrônimos: SOI, FCR, STT, SAM, BARCAP, SEAD, TMS, DMS, CMS, etc.
+- Primeira ocorrência define inline, mas leitor pode esquecer depois
+- Necessidade de **referência completa** ao final do guide
 
-**Solução:**
-Pacote `glossaries-extra` para glossário + lista de acrônimos
+**Solução Aprovada (2026-02-05):**
+Usar pacote `glossaries-extra` com estratégia `\glsaddall` para criar **lista estática de todos os acrônimos** no Appendix A, **SEM modificar o texto existente**.
 
-**Exemplo de uso:**
-```latex
-% No preâmbulo:
-\usepackage[acronym, toc]{glossaries-extra}
-\makeglossaries
+**Diferença da estratégia anterior:**
+- ❌ **NÃO usar `\gls{acronym}` no texto** — texto permanece como está
+- ✅ Definir todos os acrônimos no preâmbulo (arquivo `acronyms.tex`)
+- ✅ Usar `\glsaddall` para forçar **TODOS** aparecerem no glossário final
+- ✅ **ZERO impacto** no LaTeX existente dos capítulos
 
-% Definir acrônimos:
-\newacronym{soi}{SOI}{Sensor of Interest}
-\newacronym{fcr}{FCR}{Fire Control Radar}
-
-% No texto:
-\gls{soi}  % Primeira vez: "Sensor of Interest (SOI)"
-\gls{soi}  % Depois: "SOI"
-```
-
-**Vantagens:**
-- ✅ Lista automática de acrônimos (como ToC, mas para siglas)
-- ✅ Expansão automática na primeira ocorrência
-- ✅ Links clicáveis para definição
+**Vantagens desta abordagem:**
+- ✅ **Zero refatoração** de conteúdo existente (C1, C4, C5)
+- ✅ Lista completa de referência (não só termos usados)
+- ✅ Glossário alfabético automático no PDF
+- ✅ Fácil adicionar novos acrônimos (editar `acronyms.tex`)
+- ✅ Sustentável para colaboração futura (não requer sintaxe especial)
 
 **Desvantagens:**
-- ⚠️ Requer `makeglossaries` na compilação (+ complexidade)
-- ⚠️ Precisa definir ~50-100 acrônimos inicialmente
+- ⚠️ Requer `makeglossaries` na compilação (+ complexidade no build)
+- ⚠️ Glossário não é "vivo" (não mostra onde cada termo foi usado)
 
-**Recomendação:** ~~Adiar para pós-v1.0.0.0.~~ **IMPLEMENTAR AGORA.** Decisão do autor: glossário é essencial para navegabilidade do documento técnico. Implementar junto com demais melhorias de preâmbulo.
+**Código LaTeX — Passo 1: Adicionar ao Preâmbulo de `guide.tex`:**
+
+```latex
+% ==========================================================================
+% GLOSSARIES (ACRONYMS)
+% ==========================================================================
+\usepackage[acronym, toc, nogroupskip]{glossaries-extra}
+\setabbreviationstyle[acronym]{long-short}  % Formato: "Full Name (ACRONYM)"
+\makeglossaries
+
+% Configurações de aparência
+\renewcommand{\glossarysection}[2][]{}  % Remove título automático
+\setglossarystyle{long}  % Estilo tabular (acronym | definition)
+
+% --------------------------------------------------------------------------
+% ACRONYM DEFINITIONS (93 entries + future additions)
+% --------------------------------------------------------------------------
+\input{acronyms.tex}  % Arquivo separado com todas as definições
+```
+
+**Código LaTeX — Passo 2: Criar arquivo `acronyms.tex` na raiz do repositório**
+
+(Arquivo separado em `misc\pesoal` — ver `acronyms.tex` gerado nesta sessão)
+
+**Código LaTeX — Passo 3: Adicionar ao Final de `guide.tex` (antes de `\end{document}`):**
+
+```latex
+% ==========================================================================
+% APPENDIX A — ACRONYMS AND ABBREVIATIONS
+% ==========================================================================
+\appendix
+\chapter{Acronyms and Abbreviations}
+\label{app:acronyms}
+
+This appendix provides a complete list of acronyms and abbreviations used throughout this guide. All acronyms are listed alphabetically for quick reference.
+
+\glsaddall  % Forces ALL defined acronyms to appear (not just those used)
+
+\printglossary[type=acronym, title={}, toctitle={}]
+% title={} and toctitle={} remove automatic title (already defined above)
+```
+
+**Workflow de Compilação (TeXstudio + MiKTeX):**
+
+1. Compilar com pdflatex (F5)
+2. Rodar `makeglossaries guide` (via terminal ou comando customizado)
+3. Compilar com pdflatex novamente (F5)
+
+**TeXstudio auto-configuration:**
+- Options → Configure TeXstudio → Build → Default Compiler
+- Verificar se "Glossary" está habilitado (geralmente automático)
+
+**Recomendação:** **IMPLEMENTAR AGORA.** Decisão do autor: glossário completo é essencial para navegabilidade do documento técnico.
+
+Status: ✅ IMPLEMENTADO PARCIALMENTE (2026-02-04): **HÁ DIFERENÇAS NOS CÓDIGOS LATEX DE PREÂMBULO E FINAL DE DOCUMENTO ENTRE O DOCUMENTO DE TESTE E O PREVISO NESTE SUBITEM**
 
 ---
 
@@ -225,8 +234,8 @@ Adicionar ao preâmbulo (depois de `\usepackage{hyperref}`):
     pdfauthor={Carlos "Metal" Nader},
     pdfsubject={Flight Simulation - Falcon BMS HOTAS Reference},
     pdfkeywords={Falcon BMS, F-16, HOTAS, TMS, DMS, CMS, Flight Simulation},
-    pdfcreator={LaTeX with pdflatex}, % usar comando "pdflatex --version" no terminal para identificar versão exata
-    pdfproducer={LaTeX}, % usar comando "pdflatex --version" no terminal para identificar versão exata
+    pdfcreator={LaTeX with pdflatex},
+    pdfproducer={LaTeX},
     pdflang={en-US},
 }
 ```
@@ -272,8 +281,6 @@ Adicionar ao preâmbulo (depois de `\usepackage{hyperref}`):
 \end{itemize}
 ```
 
-~~**Recomendação:** Adicionar pacote agora, mas usar apenas quando necessário.~~
-
 **Recomendação revisada (2026-02-04):** **IMPLEMENTAR AGORA.** Decisão do autor: implementar tudo antes de C3 para evitar issues abertas.
 
 ---
@@ -284,9 +291,7 @@ Adicionar ao preâmbulo (depois de `\usepackage{hyperref}`):
 - Sem índice alfabético de termos (ex: buscar "SOI" → páginas 12, 23, 45)
 
 **Solução:**
-Pacote `imakeidx` (já discutido no arquivo `latex-dual-index-guide.md` que você anexou hoje).
-
-~~**Recomendação:** **Adiar para pós-v1.0.0.0.** Você decidiu focar apenas em List of Tables por agora.~~
+Pacote `imakeidx` (já discutido no arquivo `latex-dual-index-guide.md`).
 
 **Recomendação revisada (2026-02-04):** **IMPLEMENTAR AGORA.** Decisão do autor: implementar tudo antes de C3.
 
@@ -300,12 +305,12 @@ Pacote `imakeidx` (já discutido no arquivo `latex-dual-index-guide.md` que voc�
 
 **Mudanças:**
 
-1. ~~✅ **Modularizar preâmbulo**~~ → **NÃO IMPLEMENTAR** (decisão 2026-02-04)
+1. ❌ **Modularizar preâmbulo** → **NÃO IMPLEMENTAR** (decisão 2026-02-04)
 2. ✅ **List of HOTAS Tables** (já planejado)
 3. ✅ **Macros de cross-reference** (`\secref`, `\tabref`, `\figref`) — expandir com `cleveref`
 4. ✅ **Metadados PDF** (`\hypersetup`)
 5. ✅ **Atualizar BRIEFING** para documentar mudanças
-6. ✅ **Glossário e acrônimos** (`glossaries-extra`) — reclassificado de Fase 3
+6. ✅ **Glossário e acrônimos** (`glossaries-extra` + `acronyms.tex` + `\glsaddall`)
 7. ✅ **Pacote enumitem** — reclassificado de Fase 3
 8. ✅ **Índice Remissivo** (`imakeidx`) — reclassificado de Fase 3
 9. ✅ **Licença no PDF** — **JÁ IMPLEMENTADO** (§1.4.4 + §1.4.5 em guide.tex v0.3.3.0)
@@ -317,16 +322,13 @@ Pacote `imakeidx` (já discutido no arquivo `latex-dual-index-guide.md` que voc�
 
 ### Fase 2: Durante C3 (se necessário)
 
-~~6. ⚠️ **Licença no PDF** (adicionar seção em C1)~~ → **JÁ IMPLEMENTADO** (v0.3.3.0)
+**VAZIA** — Todos os itens foram implementados ou rejeitados.
 
 ---
 
 ### Fase 3: Pós-v1.0.0.0
 
 **VAZIA** — Todos os itens foram reclassificados para Fase 1 por decisão do autor (2026-02-04).
-
-~~7. 🔵 **Glossário e acrônimos** (`glossaries-extra`)~~ → Movido para Fase 1
-~~8. 🔵 **Índice remissivo** (`imakeidx`)~~ → Movido para Fase 1
 
 ---
 
@@ -336,29 +338,9 @@ Pacote `imakeidx` (já discutido no arquivo `latex-dual-index-guide.md` que voc�
 
 > **⚠️ OBSOLETE — Modularization not approved (see Section 3.1)**
 
-~~**Arquivo novo:** `preamble.tex` (raiz do repositório)~~
-
-~~**Conteúdo:** Todo o preâmbulo atual de `guide.tex` (linhas 7-299), **EXCETO**:~~
-- ~~`\documentclass{...}` (fica no `guide.tex`)~~
-- ~~`\begin{document}` (fica no `guide.tex`)~~
-
 ### 5.2 ~~Atualizar `guide.tex` (modularização)~~
 
 > **⚠️ OBSOLETE — Modularization not approved (see Section 3.1)**
-
-~~**Antes:**~~
-```latex
-% \documentclass[11pt, a4paper, twoside]{report}
-% ... [300 linhas de preâmbulo] ...
-% \begin{document}
-```
-
-~~**Depois:**~~
-```latex
-% \documentclass[11pt, a4paper, twoside]{report}
-% \input{preamble.tex}
-% \begin{document}
-```
 
 ### 5.3 Adicionar ao preâmbulo de `guide.tex` (cross-reference macros)
 
@@ -369,7 +351,7 @@ Pacote `imakeidx` (já discutido no arquivo `latex-dual-index-guide.md` que voc�
 
 % Section references
 \newcommand{\secref}[1]{Section~\ref{#1}}
-\newcommand{\chapref}[1]{Chapter~\ref{#1}}
+\newcommand{\chapref}[1}{Chapter~\ref{#1}}
 
 % Table references
 \newcommand{\tabref}[1]{Table~\ref{#1}}
@@ -420,6 +402,48 @@ Pacote `imakeidx` (já discutido no arquivo `latex-dual-index-guide.md` que voc�
 \pagenumbering{arabic}
 ```
 
+### 5.7 Adicionar ao preâmbulo de `guide.tex` (Glossários) — **NOVO v1.1**
+
+**Inserir na seção de pacotes:**
+
+```latex
+% ==========================================================================
+% GLOSSARIES (ACRONYMS)
+% ==========================================================================
+\usepackage[acronym, toc, nogroupskip]{glossaries-extra}
+\setabbreviationstyle[acronym]{long-short}  % Formato: "Full Name (ACRONYM)"
+\makeglossaries
+
+% Configurações de aparência
+\renewcommand{\glossarysection}[2][]{}  % Remove título automático
+\setglossarystyle{long}  % Estilo tabular (acronym | definition)
+
+% --------------------------------------------------------------------------
+% ACRONYM DEFINITIONS (93 entries + future additions)
+% --------------------------------------------------------------------------
+\input{acronyms.tex}  % Arquivo separado com todas as definições
+```
+
+### 5.8 Adicionar ao final de `guide.tex` (Appendix A — Acronyms) — **NOVO v1.1**
+
+**Antes de `\end{document}`:**
+
+```latex
+% ==========================================================================
+% APPENDIX A — ACRONYMS AND ABBREVIATIONS
+% ==========================================================================
+\appendix
+\chapter{Acronyms and Abbreviations}
+\label{app:acronyms}
+
+This appendix provides a complete list of acronyms and abbreviations used throughout this guide. All acronyms are listed alphabetically for quick reference.
+
+\glsaddall  % Forces ALL defined acronyms to appear (not just those used)
+
+\printglossary[type=acronym, title={}, toctitle={}]
+% title={} and toctitle={} remove automatic title (already defined above)
+```
+
 ---
 
 ## 6. Documentos de Governança Impactados
@@ -437,20 +461,21 @@ Antes de implementar, revisar os seguintes arquivos para garantir consistência:
 ## 7. Checklist de Implementação
 
 ### Pré-Implementação
-- [x] Backup de `guide.tex` e `template/template-wip-V1.0.tex` (ver `misc\pessoal\`)
+- [x] Backup de `guide.tex` e `template/template-wip-V1.0.tex` **(ver `misc\pessoal\`)**
 
 ### Implementação no Preâmbulo (`guide.tex`)
 - [ ] Adicionar `\renewcommand{\listtablename}{List of HOTAS Tables}` *(ver LIST-OF-TABLES-IMPLEMENTATION-GUIDE)*
 - [x] Adicionar macros cross-reference (`\secref`, `\tabref`, `\figref`, `\chapref`) ✅ (2026-02-04)
 - [x] Adicionar `\hypersetup{...}` com metadados PDF ✅ (2026-02-04)
 - [x] Adicionar `\usepackage{enumitem}` ✅ (2026-02-04)
-- [ ] Adicionar `\usepackage[acronym, toc]{glossaries-extra}` + `\makeglossaries`
-- [x] Adicionar `\usepackage{imakeidx}` + `\makeindex` - **implementação incompleta**
+- [X] Adicionar pacote `glossaries-extra` + configurações (§5.7) **(implementação incompleta)**
+- [ ] Criar arquivo `acronyms.tex` na raiz do repositório (ver arquivo separado)
+- [ ] Adicionar `\usepackage{imakeidx}` + `\makeindex` ✅
 
 ### Implementação no Corpo (`guide.tex`)
 - [ ] Adicionar `\listoftables` após `\tableofcontents`
-- [x] Adicionar `\printglossary` no local apropriado (final ou apêndice) - **implementação incompleta**
-- [ ] Adicionar `\printindex` no final do documento
+- [X] Adicionar Appendix A com `\glsaddall` + `\printglossary` (§5.8) **(implementação incompleta)**
+- [X] Adicionar `\printindex` no final do documento
 
 ### Implementação no Conteúdo (C1)
 - [x] ~~Adicionar seção "License and Distribution" no Chapter 1~~ — JÁ IMPLEMENTADO (§1.4.4 + §1.4.5)
@@ -464,9 +489,12 @@ Antes de implementar, revisar os seguintes arquivos para garantir consistência:
 - [ ] Adicionar entrada em `docs/project-tracking-v5.0.0.md`
 
 ### Teste
-- [ ] Compilar `guide.tex` sem erros
+- [ ] Compilar `guide.tex` com pdflatex - **(ver `misc\pessoal\`)**
+- [ ] Rodar `makeglossaries guide`
+- [ ] Compilar `guide.tex` novamente
 - [ ] Verificar PDF: List of HOTAS Tables aparece após ToC
-- [x] Verificar PDF: metadados corretos (Propriedades do documento)
+- [ ] Verificar PDF: Appendix A com glossário alfabético de 93 acrônimos
+- [x] Verificar PDF: metadados corretos (Propriedades do documento) ✅
 
 ### Versionamento
 - [ ] Atualizar macros `\docversion` e `\docbuild`
@@ -478,4 +506,27 @@ Antes de implementar, revisar os seguintes arquivos para garantir consistência:
 
 ---
 
-**Fim do Documento de Recomendações**
+## 8. Mudanças em Relação à Versão v1.0
+
+**Principais diferenças (v1.0 → v1.1):**
+
+1. **§3.4 — Estratégia de glossário completamente revisada**
+   - ❌ Removida estratégia de usar `\gls{}` no texto
+   - ✅ Adotada estratégia `\glsaddall` (lista estática completa)
+   - ✅ Adicionado código LaTeX completo (§5.7 e §5.8)
+
+2. **§5.7 e §5.8 — Novos blocos de código LaTeX**
+   - Passo-a-passo completo para implementação de glossários
+   - Código pronto para copiar/colar
+
+3. **§7 — Checklist atualizado**
+   - Novos itens relacionados a `acronyms.tex` e compilação com `makeglossaries`
+
+4. **§8 — Seção de changelog adicionada**
+   - Documentação das mudanças entre versões
+
+**Motivo da revisão:** Decisão do autor (2026-02-05) de usar estratégia `\glsaddall` em vez de `\gls{}` para evitar refatoração de conteúdo existente e manter workflow de escrita simples.
+
+---
+
+**Fim do Documento de Recomendações (v1.1)**
