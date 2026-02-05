@@ -152,32 +152,22 @@ Adicionar ao preâmbulo:
 % --------------------------------------------------------------------------
 % CROSS-REFERENCE MACROS (INTERNAL GUIDE)
 % --------------------------------------------------------------------------
-
-% Section references
-\newcommand{\secref}[1]{Section~\ref{#1}}
-\newcommand{\chapref}[1]{Chapter~\ref{#1}}
-
-% Table references
-\newcommand{\tabref}[1]{Table~\ref{#1}}
-
-% Figure references
-\newcommand{\figref}[1]{Figure~\ref{#1}}
-
-% Page references (for "see page X")
-\newcommand{\pageref}[1]{page~\pageref{#1}}
+\newcommand{\secref}[1]{\hyperref[#1]{Section~\ref*{#1}}}
+\newcommand{\chapref}[1]{\hyperref[#1]{Chapter~\ref*{#1}}}
+\newcommand{\tabref}[1]{\hyperref[#1]{Table~\ref*{#1}}}
+\newcommand{\figref}[1]{\hyperref[#1]{Figure~\ref*{#1}}}
 ```
+
+**Explicação técnica:**
+- `\hyperref[label]{texto}` — faz todo o texto ser link clicável
+- `\ref*{#1}` — imprime o número SEM criar link adicional (asterisco evita link duplo)
 
 **Vantagens:**
 - ✅ Consistência: "Section 4.2" sempre formatado igual
-- ✅ Clicável (hyperref transforma em links)
+- ✅ **Todo o texto é clicável** (não só o número)
 - ✅ Atualização automática de números
 
-**Recomendação:** **IMPLEMENTAR AGORA.** Você vai precisar disso em C3 quando referenciar C4/C5.
-
-**⚠️ NOTA (2026-02-04):** O sistema proposto acima é **básico e insuficiente**. Expandir para incluir:
-- Macros com formatação condicional (singular/plural)
-- Macros para ranges de seções/tabelas
-- Considerar pacote `cleveref` para automação avançada
+**Status:** ✅ IMPLEMENTADO (2026-02-04)
 
 ---
 
@@ -447,19 +437,19 @@ Antes de implementar, revisar os seguintes arquivos para garantir consistência:
 ## 7. Checklist de Implementação
 
 ### Pré-Implementação
-- [ ] Backup de `guide.tex` e `template/template-wip-V1.0.tex`
+- [x] Backup de `guide.tex` e `template/template-wip-V1.0.tex` (ver `misc\pessoal\`)
 
 ### Implementação no Preâmbulo (`guide.tex`)
-- [ ] Adicionar `\renewcommand{\listtablename}{List of HOTAS Tables}`
-- [ ] Adicionar macros cross-reference (`\secref`, `\tabref`, `\figref`, `\chapref`)
-- [ ] Adicionar `\hypersetup{...}` com metadados PDF
-- [ ] Adicionar `\usepackage{enumitem}`
+- [ ] Adicionar `\renewcommand{\listtablename}{List of HOTAS Tables}` *(ver LIST-OF-TABLES-IMPLEMENTATION-GUIDE)*
+- [x] Adicionar macros cross-reference (`\secref`, `\tabref`, `\figref`, `\chapref`) ✅ (2026-02-04)
+- [x] Adicionar `\hypersetup{...}` com metadados PDF ✅ (2026-02-04)
+- [x] Adicionar `\usepackage{enumitem}` ✅ (2026-02-04)
 - [ ] Adicionar `\usepackage[acronym, toc]{glossaries-extra}` + `\makeglossaries`
-- [ ] Adicionar `\usepackage{imakeidx}` + `\makeindex`
+- [x] Adicionar `\usepackage{imakeidx}` + `\makeindex` - **implementação incompleta**
 
 ### Implementação no Corpo (`guide.tex`)
 - [ ] Adicionar `\listoftables` após `\tableofcontents`
-- [ ] Adicionar `\printglossary` no local apropriado (final ou apêndice)
+- [x] Adicionar `\printglossary` no local apropriado (final ou apêndice) - **implementação incompleta**
 - [ ] Adicionar `\printindex` no final do documento
 
 ### Implementação no Conteúdo (C1)
@@ -476,7 +466,7 @@ Antes de implementar, revisar os seguintes arquivos para garantir consistência:
 ### Teste
 - [ ] Compilar `guide.tex` sem erros
 - [ ] Verificar PDF: List of HOTAS Tables aparece após ToC
-- [ ] Verificar PDF: metadados corretos (Propriedades do documento)
+- [x] Verificar PDF: metadados corretos (Propriedades do documento)
 
 ### Versionamento
 - [ ] Atualizar macros `\docversion` e `\docbuild`
