@@ -3,14 +3,13 @@ layout: default
 ---
 {% raw %}
 
-# Falcon BMS TMS/DMS/CMS Guide — WIP File Naming Convention v1.5
+# Falcon BMS TMS/DMS/CMS Guide — WIP File Naming Convention v1.4
 
 ## Work-in-Progress File Organization and Nomenclature
 
-**Status:** Official Rule Set (v1.5)  
+**Status:** Official Rule Set (v1.4)  
 **Effective Date:** 03 February 2026  
 **Applies to:** All isolated chapter, section, table, note, and visual files under development  
-**Supersedes:** v1.4  
 **Relationship to VERSION-SYSTEM-v4.2.1:** Complementary; does NOT affect main document versioning  
 **Relationship to BRIEFING-v0.2.0.1:** Operational rules for files described structurally in BRIEFING Section 11
 
@@ -553,7 +552,7 @@ When generating filenames, verify:
 |----------|----------------|
 | **VERSION-SYSTEM-v4.2.1** | Version numbering for `guide.tex` and snapshots |
 | **BRIEFING-v0.2.0.1** | Template structure, preamble architecture, layout standards |
-| **WIP-FILE-NAMING-v1.5** | WIP file naming, status tracking, integration workflow |
+| **WIP-FILE-NAMING-v1.4** | WIP file naming, status tracking, integration workflow |
 | **PROJECT-TRACKING** | Session log, project state, development history |
 
 **Integration points:**
@@ -564,22 +563,9 @@ When generating filenames, verify:
 
 ---
 
-## 9. Version History
-
-| Version | Date | Type | Changes |
-|---------|------|------|---------|
-| **v1.0** | 07 Jan 2026 | Initial | Five file categories, four status codes, integration workflow |
-| **v1.1** | 07 Jan 2026 | MAJOR | Added automation rules, status transitions, responsibility matrix |
-| **v1.2** | 07 Jan 2026 | MINOR | Added deprecated paths, expanded lifecycle scenarios |
-| **v1.3** | 07 Jan 2026 | PATCH | Fixed separator rule, clarified AI rename behavior |
-| **v1.4** | 09 Jan 2026 | MINOR | Added Section 0.5 template workflow, updated BRIEFING reference |
-| **v1.5** | 03 Feb 2026 | MINOR | **Structural overhaul:** (1) Corrected folder structure to match repository (`wip/`, `archive/GUIDE/`, `archive/WIP/`); (2) Clarified human responsibility for integration; (3) Updated responsibility matrix; (4) Consolidated redundant sections (merged 2.6.4 into Section 3, simplified slugification); (5) Added consolidated chapter pattern documentation; (6) Added GitHub integration section; (7) Condensed lifecycle scenarios; (8) Simplified quick reference |
-
----
-
-**Document Status:** Production-Ready (v1.5)  
+**Document Status:** Production-Ready  
 **Effective Date:** 03 February 2026  
 **Last Updated:** 03 February 2026  
-**Version:** v1.5
+**Version:** v1.4
 
 {% endraw %}
