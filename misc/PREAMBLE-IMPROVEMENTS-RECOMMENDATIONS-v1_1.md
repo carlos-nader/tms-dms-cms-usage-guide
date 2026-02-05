@@ -387,27 +387,4 @@ Antes de implementar, revisar os seguintes arquivos para garantir consistência:
 
 ---
 
-## 8. Mudanças em Relação à Versão v1.0
-
-**Principais diferenças (v1.0 → v1.1):**
-
-1. **§3.4 — Estratégia de glossário completamente revisada**
-   - ❌ Removida estratégia de usar `\gls{}` no texto
-   - ✅ Adotada estratégia `\glsaddall` (lista estática completa)
-   - ✅ Adicionado código LaTeX completo (§5.7 e §5.8)
-
-2. **§5.7 e §5.8 — Novos blocos de código LaTeX**
-   - Passo-a-passo completo para implementação de glossários
-   - Código pronto para copiar/colar
-
-3. **§7 — Checklist atualizado**
-   - Novos itens relacionados a `acronyms.tex` e compilação com `makeglossaries`
-
-4. **§8 — Seção de changelog adicionada**
-   - Documentação das mudanças entre versões
-
-**Motivo da revisão:** Decisão do autor (2026-02-05) de usar estratégia `\glsaddall` em vez de `\gls{}` para evitar refatoração de conteúdo existente e manter workflow de escrita simples.
-
----
-
 **Fim do Documento de Recomendações (v1.1)**
