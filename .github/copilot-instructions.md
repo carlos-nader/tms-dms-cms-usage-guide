@@ -159,22 +159,20 @@ python scripts/generate-integrated-files.py
 
 ### HOTAS Table Structure (Key Pattern)
 
+The `hotastable` environment uses a 7-column longtable structure (15.6cm total width):
+
 ```latex
-\begin{hotastable}
-\caption{Switch Action Table}
+\begin{hotastable}{Caption Text Here}
 \label{tab:switch-action}
-\begin{tabular}{>{\raggedright\arraybackslash}p{3.0cm}
-                >{\raggedright\arraybackslash}p{7.0cm}
-                >{\centering\arraybackslash}p{2.3cm}
-                >{\centering\arraybackslash}p{2.3cm}}
-\toprule
-\textbf{Direction} & \textbf{Function} & \textbf{Dash-34} & \textbf{Training} \\
+% Columns: Mode (1.00cm) | Dir. (0.90cm) | Act. (0.90cm) | Function (3.30cm) | Effect/Nuance (6.40cm) | Dash34 (1.40cm) | Train. (2.10cm)
 \midrule
-UP & Description \dashlnk{4.2.1} & 4.2.1 & \trglnk{TEMU-11-SAM} \\
+A-A CRM & Up & Short & Bug target & Moves cursor to designate target in FCR. & \dashref{2.1.5} & \trnref{18 (BARCAP)} \\
+A-G PRE & Down & Long & Break lock & Releases current designation and returns to search. & \dashref{2.7.1} & \trnref{28 (SEAD-EW)} \\
 \bottomrule
-\end{tabular}
 \end{hotastable}
 ```
+
+For complete column specifications, see BRIEFING Section 4.2 and Section 12.3.9.
 
 ### Version Metadata Macros
 
