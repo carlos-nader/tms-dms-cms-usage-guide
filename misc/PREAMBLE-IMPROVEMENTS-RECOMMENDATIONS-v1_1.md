@@ -132,90 +132,14 @@ Adicionar ao preâmbulo:
 
 ---
 
-### 🟡 Prioridade MÉDIA → **RECLASSIFICADO PARA PRIORIDADE ALTA**
 
-#### 3.4 Glossário e Acrônimos — ⚠️ ESTRATÉGIA REVISADA (v1.1)
+#### 3.4 Glossário e Acrônimos
 
-**Problema:**
-- Guide usa 93 acrônimos: SOI, FCR, STT, SAM, BARCAP, SEAD, TMS, DMS, CMS, etc.
-- Primeira ocorrência define inline, mas leitor pode esquecer depois
-- Necessidade de **referência completa** ao final do guide
+**Problema:** O guide utiliza muitos acrônimos e siglas técnicas, dificultando a consulta posterior pelo leitor.
 
-**Solução Aprovada (2026-02-05):**
-Usar pacote `glossaries-extra` com estratégia `\glsaddall` para criar **lista estática de todos os acrônimos** no Appendix A, **SEM modificar o texto existente**.
+**PRIORIDADE BAIXA — POSTERGADA INDEFINIDAMENTE**
 
-**Diferença da estratégia anterior:**
-- ❌ **NÃO usar `\gls{acronym}` no texto** — texto permanece como está
-- ✅ Definir todos os acrônimos no preâmbulo (arquivo `acronyms.tex`)
-- ✅ Usar `\glsaddall` para forçar **TODOS** aparecerem no glossário final
-- ✅ **ZERO impacto** no LaTeX existente dos capítulos
-
-**Vantagens desta abordagem:**
-- ✅ **Zero refatoração** de conteúdo existente (C1, C4, C5)
-- ✅ Lista completa de referência (não só termos usados)
-- ✅ Glossário alfabético automático no PDF
-- ✅ Fácil adicionar novos acrônimos (editar `acronyms.tex`)
-- ✅ Sustentável para colaboração futura (não requer sintaxe especial)
-
-**Desvantagens:**
-- ⚠️ Requer `makeglossaries` na compilação (+ complexidade no build)
-- ⚠️ Glossário não é "vivo" (não mostra onde cada termo foi usado)
-
-**Código LaTeX — Passo 1: Adicionar ao Preâmbulo de `guide.tex`:**
-
-```latex
-% ==========================================================================
-% GLOSSARIES (ACRONYMS)
-% ==========================================================================
-\usepackage[acronym, toc, nogroupskip]{glossaries-extra}
-\setabbreviationstyle[acronym]{long-short}  % Formato: "Full Name (ACRONYM)"
-\makeglossaries
-
-% Configurações de aparência
-\renewcommand{\glossarysection}[2][]{}  % Remove título automático
-\setglossarystyle{long}  % Estilo tabular (acronym | definition)
-
-% --------------------------------------------------------------------------
-% ACRONYM DEFINITIONS (93 entries + future additions)
-% --------------------------------------------------------------------------
-\input{acronyms.tex}  % Arquivo separado com todas as definições
-```
-
-**Código LaTeX — Passo 2: Criar arquivo `acronyms.tex` na raiz do repositório**
-
-(Arquivo separado em `misc\pesoal` — ver `acronyms.tex` gerado nesta sessão)
-
-**Código LaTeX — Passo 3: Adicionar ao Final de `guide.tex` (antes de `\end{document}`):**
-
-```latex
-% ==========================================================================
-% APPENDIX A — ACRONYMS AND ABBREVIATIONS
-% ==========================================================================
-\appendix
-\chapter{Acronyms and Abbreviations}
-\label{app:acronyms}
-
-This appendix provides a complete list of acronyms and abbreviations used throughout this guide. All acronyms are listed alphabetically for quick reference.
-
-\glsaddall  % Forces ALL defined acronyms to appear (not just those used)
-
-\printglossary[type=acronym, title={}, toctitle={}]
-% title={} and toctitle={} remove automatic title (already defined above)
-```
-
-**Workflow de Compilação (TeXstudio + MiKTeX):**
-
-1. Compilar com pdflatex (F5)
-2. Rodar `makeglossaries guide` (via terminal ou comando customizado)
-3. Compilar com pdflatex novamente (F5)
-
-**TeXstudio auto-configuration:**
-- Options → Configure TeXstudio → Build → Default Compiler
-- Verificar se "Glossary" está habilitado (geralmente automático)
-
-**Recomendação:** **IMPLEMENTAR AGORA.** Decisão do autor: glossário completo é essencial para navegabilidade do documento técnico.
-
-Status: ✅ IMPLEMENTADO PARCIALMENTE (2026-02-04): **HÁ DIFERENÇAS NOS CÓDIGOS LATEX DE PREÂMBULO E FINAL DE DOCUMENTO ENTRE O DOCUMENTO DE TESTE E O PREVISO NESTE SUBITEM**
+Implementação de glossário e lista de acrônimos foi postergada por decisão do autor. Nenhuma ação adicional prevista neste ciclo.
 
 ---
 
@@ -285,15 +209,14 @@ Adicionar ao preâmbulo (depois de `\usepackage{hyperref}`):
 
 ---
 
-#### 3.8 Índice Remissivo (Index) ✅ APROVADO
 
-**Problema:**
-- Sem índice alfabético de termos (ex: buscar "SOI" → páginas 12, 23, 45)
+#### 3.8 Índice Remissivo (Index)
 
-**Solução:**
-Pacote `imakeidx` (já discutido no arquivo `latex-dual-index-guide.md`).
+**Problema:** O guide não possui índice alfabético de termos para facilitar buscas rápidas.
 
-**Recomendação revisada (2026-02-04):** **IMPLEMENTAR AGORA.** Decisão do autor: implementar tudo antes de C3.
+**PRIORIDADE BAIXA — POSTERGADA INDEFINIDAMENTE**
+
+Implementação de índice remissivo foi postergada por decisão do autor. Nenhuma ação adicional prevista neste ciclo.
 
 ---
 
@@ -402,47 +325,10 @@ Pacote `imakeidx` (já discutido no arquivo `latex-dual-index-guide.md`).
 \pagenumbering{arabic}
 ```
 
-### 5.7 Adicionar ao preâmbulo de `guide.tex` (Glossários) — **NOVO v1.1**
 
-**Inserir na seção de pacotes:**
+### 5.7 (Removido — Glossário postergado)
 
-```latex
-% ==========================================================================
-% GLOSSARIES (ACRONYMS)
-% ==========================================================================
-\usepackage[acronym, toc, nogroupskip]{glossaries-extra}
-\setabbreviationstyle[acronym]{long-short}  % Formato: "Full Name (ACRONYM)"
-\makeglossaries
-
-% Configurações de aparência
-\renewcommand{\glossarysection}[2][]{}  % Remove título automático
-\setglossarystyle{long}  % Estilo tabular (acronym | definition)
-
-% --------------------------------------------------------------------------
-% ACRONYM DEFINITIONS (93 entries + future additions)
-% --------------------------------------------------------------------------
-\input{acronyms.tex}  % Arquivo separado com todas as definições
-```
-
-### 5.8 Adicionar ao final de `guide.tex` (Appendix A — Acronyms) — **NOVO v1.1**
-
-**Antes de `\end{document}`:**
-
-```latex
-% ==========================================================================
-% APPENDIX A — ACRONYMS AND ABBREVIATIONS
-% ==========================================================================
-\appendix
-\chapter{Acronyms and Abbreviations}
-\label{app:acronyms}
-
-This appendix provides a complete list of acronyms and abbreviations used throughout this guide. All acronyms are listed alphabetically for quick reference.
-
-\glsaddall  % Forces ALL defined acronyms to appear (not just those used)
-
-\printglossary[type=acronym, title={}, toctitle={}]
-% title={} and toctitle={} remove automatic title (already defined above)
-```
+### 5.8 (Removido — Glossário postergado)
 
 ---
 
@@ -463,19 +349,16 @@ Antes de implementar, revisar os seguintes arquivos para garantir consistência:
 ### Pré-Implementação
 - [x] Backup de `guide.tex` e `template/template-wip-V1.0.tex` **(ver `misc\pessoal\`)**
 
+
 ### Implementação no Preâmbulo (`guide.tex`)
 - [ ] Adicionar `\renewcommand{\listtablename}{List of HOTAS Tables}` *(ver LIST-OF-TABLES-IMPLEMENTATION-GUIDE)*
 - [x] Adicionar macros cross-reference (`\secref`, `\tabref`, `\figref`, `\chapref`) ✅ (2026-02-04)
 - [x] Adicionar `\hypersetup{...}` com metadados PDF ✅ (2026-02-04)
 - [x] Adicionar `\usepackage{enumitem}` ✅ (2026-02-04)
-- [X] Adicionar pacote `glossaries-extra` + configurações (§5.7) **(implementação incompleta)**
-- [ ] Criar arquivo `acronyms.tex` na raiz do repositório (ver arquivo separado)
-- [ ] Adicionar `\usepackage{imakeidx}` + `\makeindex` ✅
+
 
 ### Implementação no Corpo (`guide.tex`)
 - [ ] Adicionar `\listoftables` após `\tableofcontents`
-- [X] Adicionar Appendix A com `\glsaddall` + `\printglossary` (§5.8) **(implementação incompleta)**
-- [X] Adicionar `\printindex` no final do documento
 
 ### Implementação no Conteúdo (C1)
 - [x] ~~Adicionar seção "License and Distribution" no Chapter 1~~ — JÁ IMPLEMENTADO (§1.4.4 + §1.4.5)
@@ -488,12 +371,10 @@ Antes de implementar, revisar os seguintes arquivos para garantir consistência:
 - [ ] Atualizar `docs/tex-preamble-consolidated.md`
 - [ ] Adicionar entrada em `docs/project-tracking-v5.0.0.md`
 
+
 ### Teste
 - [ ] Compilar `guide.tex` com pdflatex - **(ver `misc\pessoal\`)**
-- [ ] Rodar `makeglossaries guide`
-- [ ] Compilar `guide.tex` novamente
 - [ ] Verificar PDF: List of HOTAS Tables aparece após ToC
-- [ ] Verificar PDF: Appendix A com glossário alfabético de 93 acrônimos
 - [x] Verificar PDF: metadados corretos (Propriedades do documento) ✅
 
 ### Versionamento
