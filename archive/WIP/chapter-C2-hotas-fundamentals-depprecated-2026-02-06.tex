@@ -1,0 +1,81 @@
+%============================================================================
+% LICENSING NOTICE
+%============================================================================
+% This WIP file, upon integration into guide-v.tex, becomes part of the
+% TMS/DMS/CMS Usage Guide and is released under CC BY-NC 4.0.
+% For details, see LICENSE in the repository root.
+%============================================================================
+
+%============================================================================
+% FALCON BMS TMS/DMS/CMS HOTAS GUIDE
+% WIP FILE TEMPLATE V1.0 — FINAL (Briefing v0.2.0.1 + TOC Fix)
+%============================================================================
+
+% IMPORTANTE: Este é um TEMPLATE padronizado para arquivos WIP (Work-In-Progress)
+% que serão integrados ao guide.tex.
+
+% Nomenclatura: Siga wip-naming-v1.4
+% Padrão: section-C2-hotas-fundamentals-dev-2026-02-06.tex
+
+% Status: dev
+% Locação: WIP/ (ativo)
+
+%============================================================================
+% PREAMBLE COMPLETO — TMS/DMS/CMS Usage Guide for Falcon BMS 4.38.1
+%============================================================================
+
+\documentclass[11pt, a4paper, twoside]{report}
+
+% ...existing code...
+
+%============================================================================
+% CONTENT BEGINS HERE
+%============================================================================
+
+\chapter{HOTAS Fundamentals}
+
+\section{Introduction to HOTAS Philosophy}
+The Hands On Throttle and Stick (HOTAS) concept is central to the F-16's design, enabling pilots to manage avionics, sensors, and weapons without removing their hands from the flight controls. This philosophy maximizes situational awareness and operational efficiency, especially in high-workload combat environments (see \dashref{2.1}, \dashref{2.1.5}).
+
+\section{Overview of TMS, DMS, and CMS}
+This chapter introduces the three primary HOTAS switches: the Target Management Switch (TMS), Display Management Switch (DMS), and Countermeasures Management Switch (CMS). Each switch is designed for rapid, context-sensitive control of targeting, display management, and self-protection systems. Their behaviors are tightly linked to master mode, Sensor of Interest (SOI), and sensor/weapon state.
+
+\section{Master Modes, SOI, and Context}
+The F-16 operates in several master modes—NAV, A-A, A-G, DGFT, and MSL OVRD—each defining the operational context for HOTAS switches (\dashref{2.1.1.2.1}). The SOI concept determines which sensor or display receives pilot input. Switch behavior adapts dynamically to the combination of master mode, SOI, and active sensor, ensuring that pilot actions are always contextually relevant (\dashref{2.1.5}).
+
+\section{TMS: Target Management Switch}
+The TMS is the most context-sensitive HOTAS switch, providing tactical control over target designation, sensor management, and cueing functions:
+\begin{itemize}
+  \item \textbf{A-A (Air-to-Air):} Designates, bugs/unbugs, and manages radar contacts (FCR), promotes/demotes tracks, and controls missile seeker slaving. Actions depend on SOI and sensor state.
+  \item \textbf{A-G (Air-to-Ground):} Stabilizes sensors on ground points, designates targets, toggles TGP tracking modes, and cues weapons. Behavior varies with sensor and SOI.
+  \item \textbf{NAV:} Manipulates waypoints, creates or manages markpoints, and designates steerpoints as SOI. Enables navigation point marking and preparation for tactical actions.
+\end{itemize}
+TMS actions are always determined by the current operational context, making it the core tactical interface for the F-16 pilot (see \dashref{2.1.5.1}).
+
+\section{DMS: Display Management Switch}
+The DMS manages the selection and routing of the Sensor of Interest (SOI) among the HUD and MFDs, and cycles through MFD formats. Its primary role is to allow the pilot to quickly prioritize and interact with the most relevant sensor or display:
+\begin{itemize}
+  \item Alternates SOI between HUD and MFDs, depending on master mode.
+  \item Cycles through available MFD pages and formats.
+  \item In NAV and A-G, allows flexible SOI selection; in A-A, may restrict SOI to certain displays (e.g., HUD cannot be SOI).
+\end{itemize}
+DMS actions streamline sensor and display management, supporting rapid adaptation to changing tactical needs (see \dashref{2.1.5.2}).
+
+\section{CMS: Countermeasures Management Switch}
+The CMS provides immediate access to self-protection systems, controlling the release of chaff/flares, ECM activation, and defensive program selection:
+\begin{itemize}
+  \item Executes consent logic for automatic/semi-automatic countermeasure release.
+  \item Directly commands manual dispensing and ECM activation.
+  \item Operates independently of master mode or SOI, ensuring constant access to defensive functions.
+  \item Adapts to internal/external ECM pod configurations and program logic (see \dashref{2.1.1.11}, \dashref{2.1.13}).
+\end{itemize}
+CMS actions are designed for rapid, mode-independent self-protection, prioritizing pilot survivability.
+
+\section{Integration and Situational Awareness}
+The combined use of TMS, DMS, and CMS forms the backbone of the F-16 HOTAS interface. Mastery of these switches enables the pilot to maintain situational awareness, manage targets and sensors, and respond to threats without distraction. The following chapters provide detailed, context-specific tables and explanations for each switch, with cross-references to Dash-34 sections for further study.
+
+%============================================================================
+% END OF SECTION
+%============================================================================
+
+\end{document}
