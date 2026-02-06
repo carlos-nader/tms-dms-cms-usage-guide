@@ -74,19 +74,7 @@ SEÇÃO **ELIMINADA** - VER SUBITENS ABAIXO
 
 #### 3.2 List of HOTAS Tables
 
-**Já planejado** (guia de implementação criado).
-
-**Adicionar ao preâmbulo:**
-```latex
-% LIST OF HOTAS TABLES
-\renewcommand{\listtablename}{List of HOTAS Tables}
-```
-
-**Adicionar após `\tableofcontents`:**
-```latex
-\tableofcontents
-\listoftables  % List of HOTAS Tables
-```
+**Já planejado** (guia de implementação criado - ver `wip\pessoal\LIST-OF-TABLES-IMPLEMENTATION-GUIDE-v2.0.md`).
 
 **Status:** Aguardando implementação (Issue GitHub).
 
@@ -305,26 +293,11 @@ Implementação de índice remissivo foi postergada por decisão do autor. Nenhu
 
 ### 5.5 Adicionar ao preâmbulo de `guide.tex` (List of Tables)
 
-**Inserir antes dos macros de versão:**
-
-```latex
-% --------------------------------------------------------------------------
-% LIST OF HOTAS TABLES
-% --------------------------------------------------------------------------
-\renewcommand{\listtablename}{List of HOTAS Tables}
-```
+**implementar conforme `wip\pessoal\LIST-OF-TABLES-IMPLEMENTATION-GUIDE-v2.0.md`**
 
 ### 5.6 Atualizar corpo de `guide.tex` (List of Tables)
 
-**Depois de `\tableofcontents`:**
-
-```latex
-\tableofcontents
-\listoftables  % List of HOTAS Tables
-\newpage
-\pagenumbering{arabic}
-```
-
+**implementar conforme `wip\pessoal\LIST-OF-TABLES-IMPLEMENTATION-GUIDE-v2.0.md`**
 
 ### 5.7 (Removido — Glossário postergado)
 
@@ -351,14 +324,14 @@ Antes de implementar, revisar os seguintes arquivos para garantir consistência:
 
 
 ### Implementação no Preâmbulo (`guide.tex`)
-- [ ] Adicionar `\renewcommand{\listtablename}{List of HOTAS Tables}` *(ver LIST-OF-TABLES-IMPLEMENTATION-GUIDE)*
+- [ ] Implementar List of HOTAS Tables (ver guia específico)
 - [x] Adicionar macros cross-reference (`\secref`, `\tabref`, `\figref`, `\chapref`) ✅ (2026-02-04)
 - [x] Adicionar `\hypersetup{...}` com metadados PDF ✅ (2026-02-04)
 - [x] Adicionar `\usepackage{enumitem}` ✅ (2026-02-04)
 
 
 ### Implementação no Corpo (`guide.tex`)
-- [ ] Adicionar `\listoftables` após `\tableofcontents`
+- [ ] Implementar List of HOTAS Tables (ver guia específico)
 
 ### Implementação no Conteúdo (C1)
 - [x] ~~Adicionar seção "License and Distribution" no Chapter 1~~ — JÁ IMPLEMENTADO (§1.4.4 + §1.4.5)
