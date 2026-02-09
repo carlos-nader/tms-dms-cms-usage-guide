@@ -23,7 +23,7 @@ This document tracks the implementation of the new `hotastable` v2 specification
 - [x] Specification defined
 - [x] Test file created (`guide-preamble-test.tex`)
 - [x] Preamble integrated into test environment (local machine, `.gitignore` path)
-- [ ] Compile test file and verify output
+- [x] Compile test file and verify output
 - [ ] Apply to existing WIP tables
 - [ ] Validate multi-page behavior
 - [ ] Final review and approval
@@ -154,7 +154,7 @@ Same structure as 3.1, but content extends beyond one page. The `\endhead` ensur
 - [x] Test file created (`guide-preamble-test.tex`)
 - [x] Located in `.gitignore` path (local testing only: `C:\Users\carlo\OneDrive\Documentos\projeto-bms\misc`)
 - [x] Preamble integrated
-- [ ] Compiled successfully with no errors
+- [x] Compiled successfully with no errors
 - [ ] Visual output verified
 
 ### 5.2 Content Validation
@@ -165,8 +165,8 @@ Same structure as 3.1, but content extends beyond one page. The `\endhead` ensur
 - [ ] Verify no text overflow in any column
 
 ### 5.3 Quality Gates
-- [ ] All tables compile without errors
-- [ ] Visual consistency across tables
+- [x] All tables compile without errors
+- [x] Visual consistency across tables
 - [ ] Readable at 100% zoom
 - [ ] Professional appearance
 - [ ] Consistency with narrative style
