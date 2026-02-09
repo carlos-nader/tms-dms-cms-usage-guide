@@ -347,14 +347,14 @@
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 %============================================================================
 
-% File Name: chapter-C2-hotas-fundamentals-dev-2026-02-06.tex
+% File Name: chapter-C2-hotas-fundamentals-final-2026-02-09.tex
 % WIP Naming Convention: v1.4
 % Target Chapter: C2 (HOTAS Fundamentals)
 % Target Sections: 2.1, 2.2, 2.3
 %
-% WIP Status: dev
+% WIP Status: review
 % Created: 2026-02-06
-% Last Modified: 2026-02-06
+% Last Modified: 2026-02-09
 % Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.4.0.0 (MINOR bump)
 %
 % Narrative Completion: 100% (first draft)
@@ -439,7 +439,7 @@ Similarly, not all MFD formats are SOI-capable. Sensor formats that accept targe
 
 Understanding these context dependencies is essential for effective HOTAS use. The pilot must recognize not only how to designate a display as SOI, but also whether such designation is permitted in the current operational context.
 
-For complete operational reference tables showing SOI availability by master mode and the full list of valid and invalid MFD formats, see Section~\ref{sec:C4-S1}.
+For complete operational reference tables showing SOI availability by master mode and the full list of valid and invalid MFD formats, see Section~\ref{sec:C3-S1}.
 
 %============================================================================
 % SECTION 2.2 — MASTER MODES AND CONTEXT-SENSITIVE BEHAVIOR
@@ -471,7 +471,7 @@ The F-16 provides three primary Master Modes (NAV, A-A, and A-G) and two overrid
 	\item \textbf{Dogfight (DGFT) and Missile Override (MSL OVRD):} These are override 	modes accessed via a throttle-mounted switch. Both are optimized for air-to-air engagements, similar to the A-A Master Mode, but provide immediate access to specific weapon configurations. DGFT configures the cockpit for close-range visual combat, typically defaulting to a high-off-boresight radar mode (ACM) and short-range missile (AIM-9) selection. MSL OVRD provides rapid access to medium-range missile employment (AIM-120) with optimized radar modes. Both override modes take precedence over any other master mode except Emergency Jettison.
 \end{itemize}
 
-Each master mode establishes default configurations for sensors, displays, and weapons. These defaults can be pre-programmed via the Data Transfer Cartridge (DTC) during mission planning or adjusted manually during flight, as detailed in Section~\ref{sec:C4-S4-S2}. The master mode determines not only what the pilot sees on the displays, but also how HOTAS switches function. A single HOTAS input — such as TMS Up — produces different results in NAV, A-A, and A-G modes because the underlying sensor and weapon context has changed. For complete master mode details, see \dashref{2.1.1.2.1}
+Each master mode establishes default configurations for sensors, displays, and weapons. These defaults can be pre-programmed via the Data Transfer Cartridge (DTC) during mission planning or adjusted manually during flight, as detailed in Section~\ref{sec:C3-S4-S2}. The master mode determines not only what the pilot sees on the displays, but also how HOTAS switches function. A single HOTAS input — such as TMS Up — produces different results in NAV, A-A, and A-G modes because the underlying sensor and weapon context has changed. For complete master mode details, see \dashref{2.1.1.2.1}
 
 %--------------------------------------------------------------------------
 % SUBSECTION 2.2.2 — WHY HOTAS SWITCHES BEHAVE DIFFERENTLY BY MASTER MODE
@@ -491,7 +491,9 @@ The pilot must be aware of the current master mode to predict HOTAS behavior. Th
 \section{The Three Switches: DMS, TMS, and CMS}
 \label{sec:C2-S3}
 
-The Display Management Switch (DMS), Target Management Switch (TMS), and Countermeasures Management Switch (CMS) form the core of HOTAS sensor and display management in the F-16. Each switch serves a distinct function, and understanding their roles in relation to SOI and master modes is essential before examining the detailed behaviors covered in subsequent chapters.
+With the conceptual foundation of SOI and master modes established, this section introduces the three HOTAS switches that are the focus of this guide: the Display Management Switch (DMS), Target Management Switch (TMS), and Countermeasures Management Switch (CMS).
+
+The DMS and TMS operate within the SOI framework—DMS selects which display is SOI, and TMS performs tactical functions through the display currently designated as SOI. The CMS operates independently of SOI, managing defensive systems in response to threat warnings. All three switches exhibit context-sensitive behavior governed by master mode. The following subsections provide a high-level overview of each switch; detailed functionality is covered in Chapters~\ref{chap:C3}, \ref{chap:C4}, and \ref{chap:C5}.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 2.3.1 — DISPLAY MANAGEMENT SWITCH (DMS)
@@ -502,11 +504,9 @@ The Display Management Switch (DMS), Target Management Switch (TMS), and Counter
 
 The Display Management Switch (DMS) is a four-way, spring-loaded hat switch located on the flight stick. Its primary functions are SOI selection and MFD format cycling. The DMS does not perform tactical actions such as target designation or weapon release; instead, it manages \textit{which display or sensor} receives HOTAS inputs from other controls.
 
-DMS Up attempts to designate the HUD as the Sensor of Interest, provided the current master mode permits HUD SOI designation (NAV and A-G allow this; A-A, DGFT, and MSL OVRD do not). DMS Down cycles the SOI designation between the left and right MFDs, or transitions SOI from the HUD back to an MFD. DMS Left and DMS Right cycle through the MFD format pages displayed on the left and right MFDs, respectively, independently of which display is currently SOI.
-
 The DMS is a transversal SOI manager. It controls the routing of HOTAS inputs to displays, but does not execute sensor-specific or weapon-specific functions. This distinction separates the DMS from the TMS, which operates \textit{through} the SOI to execute tactical actions such as target designation, track management, and weapon cueing.
 
-Detailed DMS functionality, including SOI selection mechanics, MFD format cycling behavior, and master mode constraints, is covered in Chapter~\ref{chap:C3}.
+Detailed DMS functionality is covered in Chapter~\ref{chap:C3}.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 2.3.2 — TARGET MANAGEMENT SWITCH (TMS)
@@ -515,13 +515,11 @@ Detailed DMS functionality, including SOI selection mechanics, MFD format cyclin
 \subsection{Target Management Switch (TMS) — Overview}
 \label{sec:C2-S3-S2}
 
-The Target Management Switch (TMS) is a four-way, spring-loaded hat switch located on the throttle grip. Its primary function is target management and designation, controlling how the pilot interacts with radar contacts, targeting pod tracks, weapon employment cues, and other sensor-derived targeting information.
+The Target Management Switch (TMS) is a four-way, spring-loaded hat switch located on the flight stick. Its primary function is target management and designation, but it also performs navigation-related functions such as markpoint creation.
 
-Unlike the DMS, which manages \textit{which} display is active, the TMS operates \textit{through} the currently active SOI to execute tactical functions. The specific behavior of each TMS direction depends on the master mode, the sensor mode, and which display holds the SOI designation. For example, when the Fire Control Radar (FCR) is SOI in Air-to-Air mode, TMS Up commands a target designation, locking the radar onto a search contact. When the Targeting Pod (TGP) is SOI in Air-to-Ground mode, TMS Up may break an existing track, establish a cursor zero point, or transition to a post-designate mode, depending on the A-G submode and weapon selected.
+Unlike the DMS, which manages \textit{which} display is active, the TMS operates \textit{through} the currently active SOI to execute tactical functions. The specific behavior of each TMS direction depends on the master mode, the sensor mode, and which display holds the SOI designation. This context-sensitivity allows a single four-way switch to perform a wide range of tactical functions across different mission profiles.
 
-The TMS is fundamentally context-dependent. The pilot must understand not only the current master mode, but also which display is SOI and what sensor mode that display is operating in. This context-sensitivity allows a single four-way switch to perform dozens of distinct functions across the range of F-16 mission profiles.
-
-Detailed TMS functionality, including target designation procedures, sensor-specific behaviors, and master mode contexts, is covered in Chapter~\ref{chap:C4}.
+Detailed TMS functionality is covered in Chapter~\ref{chap:C4}.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 2.3.3 — COUNTERMEASURES MANAGEMENT SWITCH (CMS)
@@ -530,11 +528,9 @@ Detailed TMS functionality, including target designation procedures, sensor-spec
 \subsection{Countermeasures Management Switch (CMS) — Overview}
 \label{sec:C2-S3-S3}
 
-The Countermeasures Management Switch (CMS) is a four-way, spring-loaded hat switch located on the throttle grip. Its primary function is countermeasures dispensing, controlling the release of chaff and flare from the ALE-47 Countermeasures Dispenser System (CMDS) and managing Electronic Countermeasures (ECM) pod transmissions.
+The Countermeasures Management Switch (CMS) is a four-way, spring-loaded hat switch located on the flight stick. Its primary function is countermeasures dispensing, controlling the release of chaff and flare from the ALE-47 Countermeasures Dispenser System (CMDS) and managing Electronic Countermeasures (ECM) pod transmissions.
 
-Unlike the DMS and TMS, the CMS operates largely independently of Sensor of Interest designation. CMS commands interact directly with defensive systems — the CMDS, ECM pod, and Radar Warning Receiver (RWR) — rather than routing through the SOI architecture. The pilot actuates the CMS in response to threat warnings displayed on the RWR, and the countermeasures system responds according to pre-programmed or manually configured dispense patterns.
-
-CMS Up, CMS Down, CMS Forward, and CMS Aft each trigger specific countermeasures responses. The exact chaff and flare quantities dispensed, and the enabling or disabling of ECM transmissions, depend on the CMDS programming and the CMS manual mode settings (if selected). The CMS behavior is relatively consistent across master modes, although certain operational contexts (such as air-to-ground attack profiles) may favor specific countermeasures programs.
+Unlike the DMS and TMS, the CMS operates largely independently of Sensor of Interest designation. CMS commands interact directly with defensive systems—the CMDS, ECM pod, and Radar Warning Receiver (RWR)—rather than routing through the SOI architecture. The pilot actuates the CMS in response to threat warnings displayed on the RWR, and the countermeasures system responds according to pre-programmed or manually configured dispense patterns.
 
 The CMS provides the pilot with immediate, hands-on control of defensive systems without requiring menu navigation or display interaction. This direct-access design reflects the time-critical nature of countermeasures employment in response to surface-to-air or air-to-air threats.
 
