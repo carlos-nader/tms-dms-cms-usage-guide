@@ -351,31 +351,78 @@
     </style>
 </head>
 <body>
+
     <header>
         <h1>🚀 Falcon BMS Naming Tools v3.1</h1>
         <p>WIP Files + Guide Snapshots Generator & Version System</p>
     </header>
 
-    <div class="container">
-        <div class="header-controls">
-            <button class="btn btn-secondary btn-small" onclick="toggleTheme()">
-                🌙 Dark Mode
-            </button>
-            <button class="btn btn-secondary btn-small" onclick="downloadHistory()">
-                💾 Export History
-            </button>
-            <button class="btn btn-secondary btn-small" onclick="clearHistory()">
-                🗑️ Clear All
-            </button>
-        </div>
+    <div class="container" style="display: flex; gap: 2rem; align-items: flex-start;">
+        <!-- Sidebar Navigation -->
+        <nav id="sidebar" style="min-width: 220px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.75rem; padding: 1.5rem 1rem; box-shadow: var(--shadow-sm); height: 100%; position: sticky; top: 2rem;">
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.2rem;">
+                <li><button class="tab-button active" onclick="switchTab(event, 'generator')">📄 WIP Files</button></li>
+                <li><button class="tab-button" onclick="switchTab(event, 'snapshot')">📸 Snapshots</button></li>
+                <li><button class="tab-button" onclick="switchTab(event, 'rules')">📋 Rules</button></li>
+                <li><button class="tab-button" onclick="switchTab(event, 'dashboard')">📊 Dashboard</button></li>
+                <li><button class="tab-button" onclick="switchTab(event, 'history')">📝 History</button></li>
+            </ul>
+            <div style="margin-top: 2rem;">
+                <button class="btn btn-secondary btn-small" onclick="toggleTheme()" style="width: 100%; margin-bottom: 0.5rem;">🌙 Dark Mode</button>
+                <button class="btn btn-secondary btn-small" onclick="downloadHistory()" style="width: 100%; margin-bottom: 0.5rem;">💾 Export History</button>
+                <button class="btn btn-secondary btn-small" onclick="clearHistory()" style="width: 100%;">🗑️ Clear All</button>
+            </div>
+        </nav>
 
-        <div class="tabs">
-            <button class="tab-button active" onclick="switchTab(event, 'generator')">📄 WIP Files</button>
-            <button class="tab-button" onclick="switchTab(event, 'snapshot')">📸 Snapshots</button>
-            <button class="tab-button" onclick="switchTab(event, 'rules')">📋 Rules</button>
-            <button class="tab-button" onclick="switchTab(event, 'dashboard')">📊 Dashboard</button>
-            <button class="tab-button" onclick="switchTab(event, 'history')">📝 History</button>
-        </div>
+        <main style="flex: 1 1 0; min-width: 0;">
+            <!-- Painel de ciclo de vida WIP, sugestões inteligentes e auditoria -->
+            <div id="lifecycle-suggestions-panel" style="display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                <section id="wip-lifecycle-panel" style="flex: 1 1 300px; background: var(--color-bg); border-left: 4px solid var(--color-primary); border-radius: 0.5rem; padding: 1rem 1.5rem; min-width: 260px;">
+                    <h3 style="color: var(--color-primary); margin-bottom: 0.5rem;">⏳ WIP Lifecycle</h3>
+                    <div style="font-size: 0.97rem; color: var(--color-text-secondary);">
+                        <ul style="margin-left: 1.2rem; line-height: 2;">
+                            <li><span class="status-badge status-dev">dev</span> <button class="btn btn-secondary btn-small" onclick="setLifecycleStatus('dev')">Set</button> → <span class="status-badge status-review">review</span>, <span class="status-badge status-deprecated">deprecated</span></li>
+                            <li><span class="status-badge status-review">review</span> <button class="btn btn-secondary btn-small" onclick="setLifecycleStatus('review')">Set</button> → <span class="status-badge status-final">final</span>, <span class="status-badge status-deprecated">deprecated</span></li>
+                            <li><span class="status-badge status-final">final</span> <button class="btn btn-secondary btn-small" onclick="setLifecycleStatus('final')">Set</button> → <span class="status-badge status-approved">approved</span>, <span class="status-badge status-deprecated">deprecated</span></li>
+                            <li><span class="status-badge status-approved">approved</span> <button class="btn btn-secondary btn-small" onclick="setLifecycleStatus('approved')">Set</button> → (immutable)</li>
+                        </ul>
+                        <div id="currentLifecycleStatus" style="margin-top: 1rem; font-weight: 600; color: var(--color-primary);">Current: <span class="status-badge status-dev">dev</span></div>
+                    </div>
+                </section>
+                <section id="smart-suggestions-panel" style="flex: 2 1 400px; background: var(--color-bg); border-left: 4px solid var(--color-success); border-radius: 0.5rem; padding: 1rem 1.5rem; min-width: 320px;">
+                    <h3 style="color: var(--color-success); margin-bottom: 0.5rem;">💡 Smart Suggestions</h3>
+                    <div id="smartSuggestions" style="font-size: 0.97rem; color: var(--color-text-secondary);">
+                        <em>Suggestions for best practices, naming, and next steps will appear here as you interact.</em>
+                    </div>
+                </section>
+                <section id="audit-panel" style="flex: 1 1 320px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1rem 1.5rem; min-width: 280px; box-shadow: var(--shadow-sm);">
+                    <h3 style="color: var(--color-warning); margin-bottom: 0.5rem;">🕵️ Audit Trail</h3>
+                    <div id="auditTrail" style="font-size: 0.97rem; color: var(--color-text-secondary); max-height: 180px; overflow-y: auto;"></div>
+                    <button class="btn btn-secondary btn-small" onclick="exportAuditTrail()" style="margin-top: 0.5rem;">Export Audit</button>
+                    <button class="btn btn-secondary btn-small" onclick="importAuditTrail()" style="margin-top: 0.5rem;">Import Audit</button>
+                </section>
+            </div>
+
+            <!-- Tabs and content -->
+            <div class="tabs" style="display: none;"></div>
+
+            <div id="generator" class="tab-content active">
+                <!-- ...existing code... -->
+            </div>
+            <div id="snapshot" class="tab-content">
+                <!-- ...existing code... -->
+            </div>
+            <div id="rules" class="tab-content">
+                <!-- ...existing code... -->
+            </div>
+            <div id="dashboard" class="tab-content">
+                <!-- ...existing code... -->
+            </div>
+            <div id="history" class="tab-content">
+                <!-- ...existing code... -->
+            </div>
+        </main>
+    </div>
 
         <!-- ===== WIP GENERATOR TAB ===== -->
         <div id="generator" class="tab-content active">
@@ -860,8 +907,10 @@
             const status = document.getElementById('status').value;
             const date = document.getElementById('date').value;
 
+            let smartTips = [];
             if (!fileType || !status || !date) {
                 showValidation('Please fill all required fields', 'wipValidationMessage', 'error');
+                updateSmartSuggestions(['Preencha todos os campos obrigatórios para gerar o nome do arquivo.']);
                 return;
             }
 
@@ -874,8 +923,10 @@
                     const title = document.getElementById('title').value;
                     if (!chapter || chapter < 1 || chapter > 7 || !title) {
                         errors.push('Invalid chapter or title');
+                        smartTips.push('O número do capítulo deve estar entre 1 e 7 e o título não pode estar vazio.');
                     } else {
                         filename = `chapter-C${chapter}-${slugify(title)}-${status}-${date}.tex`;
+                        smartTips.push('Nome de capítulo gerado conforme padrão. Lembre-se de usar títulos curtos e claros.');
                     }
                 } else if (fileType === 'section') {
                     const chapter = document.getElementById('chapter').value;
@@ -884,9 +935,11 @@
                     const title = document.getElementById('title').value;
                     if (!chapter || chapter < 1 || chapter > 7 || !section || section < 1 || !title) {
                         errors.push('Invalid chapter, section, or title');
+                        smartTips.push('Capítulo (1-7), seção (>0) e título são obrigatórios.');
                     } else {
                         const subPart = subsection ? `-S${subsection}` : '';
                         filename = `section-C${chapter}-S${section}${subPart}-${slugify(title)}-${status}-${date}.tex`;
+                        smartTips.push('Nome de seção gerado. Use subtítulos apenas se necessário.');
                     }
                 } else if (fileType === 'table') {
                     const chapter = document.getElementById('chapter').value;
@@ -894,8 +947,10 @@
                     const switchType = document.getElementById('switch').value;
                     if (!chapter || chapter < 1 || chapter > 7 || !context || !switchType) {
                         errors.push('Invalid chapter, context, or switch');
+                        smartTips.push('Capítulo, contexto e switch são obrigatórios para tabelas HOTAS.');
                     } else {
                         filename = `table-C${chapter}-${context}-${switchType}-${status}-${date}.tex`;
+                        smartTips.push('Nome de tabela HOTAS gerado. Certifique-se de que o contexto e switch estejam corretos.');
                     }
                 } else if (fileType === 'notes') {
                     const chapter = document.getElementById('chapter').value;
@@ -903,8 +958,10 @@
                     const noteType = document.getElementById('noteType').value;
                     if (!chapter || chapter < 1 || chapter > 7 || !topic || !noteType) {
                         errors.push('Invalid chapter, topic, or type');
+                        smartTips.push('Capítulo, tópico e tipo de nota são obrigatórios.');
                     } else {
                         filename = `notes-C${chapter}-${slugify(topic)}-${noteType}-${date}.md`;
+                        smartTips.push('Nome de nota gerado. Use tópicos descritivos e tipos padronizados.');
                     }
                 } else if (fileType === 'visual') {
                     const chapter = document.getElementById('chapter').value;
@@ -913,13 +970,21 @@
                     const extension = document.getElementById('extension').value;
                     if (!chapter || chapter < 1 || chapter > 7 || !description || !visualType || !extension) {
                         errors.push('Invalid chapter, description, type, or extension');
+                        smartTips.push('Todos os campos são obrigatórios para assets visuais.');
                     } else {
                         filename = `visual-C${chapter}-${slugify(description)}-${visualType}-${status}-${date}.${extension}`;
+                        smartTips.push('Nome de asset visual gerado. Use descrições curtas e tipo correto.');
                     }
                 }
 
-                if (errors.length > 0 || !filename || filename.length > 100) {
+                if (filename.length > 100) {
+                    errors.push('Filename too long');
+                    smartTips.push('O nome do arquivo ficou muito longo. Reduza o título ou descrição.');
+                }
+
+                if (errors.length > 0 || !filename) {
                     showValidation(errors.length > 0 ? errors.join('\n') : 'Filename too long', 'wipValidationMessage', 'error');
+                    updateSmartSuggestions(smartTips);
                     return;
                 }
 
@@ -932,10 +997,102 @@
                 updateDashboard();
                 document.getElementById('wipCopyBtn').style.display = 'inline-flex';
                 document.getElementById('wipCopyPathBtn').style.display = 'inline-flex';
+                smartTips.push('Arquivo WIP pronto para uso. Lembre-se de seguir o ciclo de vida: dev → review → final → approved.');
+                updateSmartSuggestions(smartTips);
 
             } catch (error) {
                 showValidation(`Error: ${error.message}`, 'wipValidationMessage', 'error');
+                updateSmartSuggestions(['Erro inesperado ao gerar nome.']);
             }
+        }
+
+        // ===== AUDIT TRAIL =====
+        let auditTrail = JSON.parse(localStorage.getItem('wipAuditTrail')) || [];
+
+        function logToHistory(action, detail) {
+            const entry = {
+                timestamp: new Date().toISOString(),
+                action,
+                detail
+            };
+            history.unshift(entry);
+            localStorage.setItem('wipHistory', JSON.stringify(history));
+            // Audit trail
+            auditTrail.unshift({ ...entry });
+            localStorage.setItem('wipAuditTrail', JSON.stringify(auditTrail));
+            updateHistoryDisplay();
+            updateAuditTrail();
+        }
+
+        function updateAuditTrail() {
+            const panel = document.getElementById('auditTrail');
+            if (!panel) return;
+            if (!auditTrail || auditTrail.length === 0) {
+                panel.innerHTML = '<em>No audit records yet.</em>';
+                return;
+            }
+            panel.innerHTML = auditTrail.slice(0, 20).map(entry => {
+                const time = new Date(entry.timestamp).toLocaleString();
+                return `<div style='margin-bottom:0.5rem;'><span style='color:var(--color-warning);'>${time}</span><br><span style='color:var(--color-text);font-weight:600;'>${entry.action}</span> <span style='color:var(--color-text-secondary);'><code>${entry.detail}</code></span></div>`;
+            }).join('');
+        }
+
+        function exportAuditTrail() {
+            const data = JSON.stringify(auditTrail, null, 2);
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `audit-trail-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function importAuditTrail() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json,application/json';
+            input.onchange = e => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = evt => {
+                    try {
+                        const imported = JSON.parse(evt.target.result);
+                        if (Array.isArray(imported)) {
+                            auditTrail = imported.concat(auditTrail);
+                            localStorage.setItem('wipAuditTrail', JSON.stringify(auditTrail));
+                            updateAuditTrail();
+                        }
+                    } catch (err) {
+                        alert('Invalid audit file.');
+                    }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+        }
+
+        updateAuditTrail();
+
+        // ===== CICLO DE VIDA INTERATIVO =====
+        let currentLifecycle = 'dev';
+        function setLifecycleStatus(status) {
+            currentLifecycle = status;
+            const badge = `<span class="status-badge status-${status}">${status}</span>`;
+            document.getElementById('currentLifecycleStatus').innerHTML = `Current: ${badge}`;
+            logToHistory('Lifecycle Status Changed', status);
+            updateSmartSuggestions([`Status de ciclo de vida alterado para <b>${status}</b>. Siga as regras de transição!`]);
+        }
+
+        function updateSmartSuggestions(tips) {
+            const panel = document.getElementById('smartSuggestions');
+            if (!tips || tips.length === 0) {
+                panel.innerHTML = '<em>Suggestions for best practices, naming, and next steps will appear here as you interact.</em>';
+                return;
+            }
+            // Realce dinâmico de regras e feedback visual
+            panel.innerHTML = tips.map(t => `<div style='margin-bottom:0.5rem; background:rgba(16,185,129,0.08); border-left:3px solid var(--color-success); padding:0.3rem 0.7rem;'>• ${t}</div>`).join('');
         }
 
         function copyWIPFilename() {
