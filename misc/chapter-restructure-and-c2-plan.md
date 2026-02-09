@@ -1,11 +1,10 @@
 # Chapter Structure Reorganization and C2 Integration Plan
 
 **Document Type:** Structural Change Specification  
-**Version:** 1.1  
 **Date:** 2026-02-09 (Updated from v1.0 2026-02-06)  
 **Scope:** Chapter reordering (DMS ↔ TMS) + SOI redistribution (C4 → C2) + C2 writing plan
 
-**Change Log v1.0 → v1.1:**
+**Change Log:**
 
 This version updates the specification to reflect actual implementation decisions made during C2 development (2026-02-06 to 2026-02-09). All changes documented below are based on comparison between original spec and final implemented text in `chapter-C2-hotas-fundamentals-review-2026-02-09.tex`.
 
