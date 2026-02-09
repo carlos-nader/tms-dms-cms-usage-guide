@@ -1,1323 +1,871 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Falcon BMS WIP + Snapshot Generator v3.1</title>
-    <style>
-        :root {
-            --color-primary: #2563eb;
-            --color-success: #10b981;
-            --color-warning: #f59e0b;
-            --color-danger: #ef4444;
-            --color-bg: #f8fafc;
-            --color-surface: #ffffff;
-            --color-text: #1e293b;
-            --color-text-secondary: #64748b;
-            --color-border: #e2e8f0;
-            --color-dev: #3b82f6;
-            --color-review: #f97316;
-            --color-final: #a855f7;
-            --color-approved: #10b981;
-            --color-deprecated: #9ca3af;
-            
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.15);
-        }
+  <meta charset="UTF-8" />
+  <title>WIP Filename Generator — TMS/DMS/CMS Guide</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      color-scheme: dark light;
+      --bg: #0f172a;
+      --bg-alt: #111827;
+      --card: #020617;
+      --border: #1f2937;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56,189,248,0.12);
+      --danger: #f97373;
+      --text: #e5e7eb;
+      --text-muted: #9ca3af;
+      --radius: 10px;
+      --shadow-soft: 0 20px 40px rgba(0,0,0,0.35);
+      --trans-fast: 0.16s ease-out;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%);
+      color: var(--text);
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      padding: 24px;
+    }
+    .app-shell {
+      width: 100%;
+      max-width: 1120px;
+      background: linear-gradient(145deg, rgba(15,23,42,0.96), rgba(2,6,23,0.98));
+      border-radius: 18px;
+      border: 1px solid rgba(148,163,184,0.35);
+      box-shadow: var(--shadow-soft);
+      padding: 22px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      backdrop-filter: blur(22px);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      border-bottom: 1px solid rgba(148,163,184,0.35);
+      padding-bottom: 10px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.35rem;
+      letter-spacing: 0.03em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    header h1 span.badge {
+      font-size: 0.7rem;
+      padding: 2px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(56,189,248,0.6);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    header p {
+      margin: 0;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      max-width: 420px;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+    @media (max-width: 840px) {
+      body { padding: 12px; }
+      .app-shell { padding: 16px 14px 14px; }
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    .panel {
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.95), rgba(15,23,42,0.9) 40%, rgba(3,7,18,0.96));
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 16px 14px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .panel-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    .panel-title span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(56,189,248,0.7);
+    }
+    .panel-subtitle {
+      margin: 0;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .field-group {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 640px) {
+      .field-group {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    label span.hint {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select {
+      appearance: none;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(15,23,42,0.95);
+      color: var(--text);
+      font-size: 0.84rem;
+      padding: 7px 8px;
+      outline: none;
+      transition: border-color var(--trans-fast), box-shadow var(--trans-fast), background var(--trans-fast), transform var(--trans-fast);
+    }
+    input[type="text"]::placeholder {
+      color: rgba(148,163,184,0.7);
+    }
+    input:focus,
+    select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(56,189,248,0.45);
+      background: rgba(15,23,42,0.98);
+      transform: translateY(-0.5px);
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    select {
+      cursor: pointer;
+      background-image: linear-gradient(45deg, transparent 50%, var(--accent) 50%), 
+                        linear-gradient(135deg, var(--accent) 50%, transparent 50%);
+      background-position: calc(100% - 14px) 11px, calc(100% - 9px) 11px;
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
+      padding-right: 24px;
+    }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--color-bg);
-            color: var(--color-text);
-            line-height: 1.6;
-        }
-        body.dark-mode {
-            --color-bg: #0f172a;
-            --color-surface: #1e293b;
-            --color-text: #f1f5f9;
-            --color-text-secondary: #cbd5e1;
-            --color-border: #334155;
-        }
+    .type-switcher {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .type-pill {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      font-size: 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top, rgba(15,23,42,0.9), rgba(15,23,42,0.96));
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: border-color var(--trans-fast), background var(--trans-fast), color var(--trans-fast), box-shadow var(--trans-fast), transform var(--trans-fast);
+    }
+    .type-pill input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .type-pill span.dot-sm {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(148,163,184,0.7);
+    }
+    .type-pill[data-active="true"] {
+      border-color: var(--accent);
+      background: radial-gradient(circle at top, rgba(15,23,42,1), rgba(8,47,73,0.8));
+      color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(56,189,248,0.4);
+      transform: translateY(-0.5px);
+    }
+    .type-pill[data-active="true"] span.dot-sm {
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(56,189,248,0.85);
+    }
 
-        header {
-            background: linear-gradient(135deg, var(--color-primary) 0%, #1d4ed8 100%);
-            color: white;
-            padding: 2rem;
-            box-shadow: var(--shadow-md);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        header h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
-        header p { font-size: 0.95rem; opacity: 0.95; }
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .btn {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(15,23,42,0.95);
+      color: var(--text);
+      font-size: 0.78rem;
+      padding: 6px 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--trans-fast), border-color var(--trans-fast), transform var(--trans-fast), box-shadow var(--trans-fast);
+    }
+    .btn-primary {
+      border-color: rgba(56,189,248,0.8);
+      background: radial-gradient(circle at top, rgba(8,47,73,0.95), rgba(15,23,42,1));
+      color: #e0f2fe;
+      box-shadow: 0 12px 25px rgba(15,23,42,0.6);
+    }
+    .btn:hover {
+      transform: translateY(-0.5px);
+      box-shadow: 0 10px 20px rgba(15,23,42,0.45);
+      background: rgba(15,23,42,0.98);
+    }
+    .btn-primary:hover {
+      background: radial-gradient(circle at top, rgba(8,47,73,1), rgba(15,23,42,1));
+    }
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
 
-        .container { max-width: 1400px; margin: 2rem auto; padding: 0 1rem; }
-        .header-controls {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 0.7rem 1.5rem;
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .btn-primary {
-            background: var(--color-primary);
-            color: white;
-        }
-        .btn-primary:hover {
-            background: #1d4ed8;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-        .btn-secondary {
-            background: var(--color-surface);
-            color: var(--color-text);
-            border: 1px solid var(--color-border);
-        }
-        .btn-secondary:hover { background: var(--color-bg); }
-        .btn-small { padding: 0.5rem 1rem; font-size: 0.9rem; }
-
-        .tabs {
-            display: flex;
-            gap: 0;
-            border-bottom: 2px solid var(--color-border);
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        .tab-button {
-            padding: 1rem 1.5rem;
-            border: none;
-            background: transparent;
-            color: var(--color-text-secondary);
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 500;
-            border-bottom: 3px solid transparent;
-            transition: var(--transition);
-        }
-        .tab-button.active {
-            color: var(--color-primary);
-            border-bottom-color: var(--color-primary);
-        }
-        .tab-button:hover { color: var(--color-primary); }
-
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-
-        .card {
-            background: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            margin-bottom: 1.5rem;
-        }
-        .card:hover { box-shadow: var(--shadow-md); }
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--color-text);
-        }
-
-        .form-group { margin-bottom: 1.5rem; }
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--color-text);
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--color-border);
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            background: var(--color-surface);
-            color: var(--color-text);
-            transition: var(--transition);
-        }
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        .form-row.three-col { grid-template-columns: 1fr 1fr 1fr; }
-
-        .status-badge {
-            display: inline-block;
-            padding: 0.4rem 0.8rem;
-            border-radius: 0.25rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-        .status-dev { background: rgba(59, 130, 255, 0.1); color: var(--color-dev); }
-        .status-review { background: rgba(249, 115, 22, 0.1); color: var(--color-review); }
-        .status-final { background: rgba(168, 85, 247, 0.1); color: var(--color-final); }
-        .status-approved { background: rgba(16, 185, 129, 0.1); color: var(--color-approved); }
-        .status-deprecated { background: rgba(156, 163, 175, 0.1); color: var(--color-deprecated); }
-
-        .output-box {
-            background: #1e293b;
-            color: #e2e8f0;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            font-family: 'Monaco', 'Courier New', monospace;
-            font-size: 0.95rem;
-            overflow-x: auto;
-            max-height: 300px;
-            overflow-y: auto;
-            margin-top: 1rem;
-        }
-        .output-line {
-            padding: 0.3rem 0;
-            border-bottom: 1px solid rgba(100, 116, 139, 0.2);
-        }
-        .output-line.success { color: #86efac; }
-        .output-line.error { color: #ff8a8a; }
-        .output-line.warning { color: #fbbf24; }
-        .output-line.info { color: #93c5fd; }
-
-        .validation-message {
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            margin-top: 0.5rem;
-            display: none;
-        }
-        .validation-message.success {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--color-success);
-            display: block;
-            border-left: 4px solid var(--color-success);
-        }
-        .validation-message.error {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--color-danger);
-            display: block;
-            border-left: 4px solid var(--color-danger);
-        }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .stat-card {
-            background: var(--color-surface);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--color-border);
-            text-align: center;
-        }
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--color-primary);
-            margin: 0.5rem 0;
-        }
-        .stat-label {
-            font-size: 0.95rem;
-            color: var(--color-text-secondary);
-        }
-
-        .history-item {
-            padding: 1rem;
-            border-left: 3px solid var(--color-primary);
-            background: var(--color-bg);
-            margin-bottom: 0.75rem;
-            border-radius: 0.5rem;
-        }
-        .history-time {
-            font-size: 0.85rem;
-            color: var(--color-text-secondary);
-            margin-bottom: 0.25rem;
-        }
-        .history-action {
-            font-weight: 600;
-            color: var(--color-text);
-        }
-        .history-details {
-            font-size: 0.9rem;
-            color: var(--color-text-secondary);
-            margin-top: 0.25rem;
-        }
-
-        .rules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        .rule-card {
-            background: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            transition: var(--transition);
-        }
-        .rule-card:hover {
-            border-color: var(--color-primary);
-            box-shadow: var(--shadow-md);
-        }
-        .rule-card h3 {
-            color: var(--color-primary);
-            margin-bottom: 0.75rem;
-            font-size: 1.1rem;
-        }
-        .rule-card p {
-            font-size: 0.95rem;
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-        }
-        .rule-card code {
-            background: var(--color-bg);
-            padding: 0.3rem 0.6rem;
-            border-radius: 0.3rem;
-            font-family: monospace;
-            font-size: 0.9rem;
-        }
-
-        .example-box {
-            background: var(--color-bg);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-top: 0.75rem;
-            border-left: 3px solid var(--color-success);
-        }
-        .example-label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--color-success);
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
-        .example-code {
-            font-family: monospace;
-            font-size: 0.9rem;
-            color: var(--color-text);
-            word-break: break-all;
-        }
-
-        .rule-panel {
-            background: var(--color-bg);
-            border-left: 4px solid var(--color-primary);
-            padding: 1rem;
-            margin-top: 1rem;
-            border-radius: 0.5rem;
-        }
-        .rule-title {
-            font-weight: 600;
-            color: var(--color-primary);
-            margin-bottom: 0.5rem;
-        }
-        .rule-content {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: var(--color-text-secondary);
-        }
-
-        @media (max-width: 768px) {
-            .form-row { grid-template-columns: 1fr; }
-            .form-row.three-col { grid-template-columns: 1fr; }
-            header h1 { font-size: 1.5rem; }
-            .header-controls { flex-direction: column; }
-            .btn { width: 100%; justify-content: center; }
-            .dashboard-grid { grid-template-columns: 1fr; }
-            .tabs { overflow-x: auto; }
-        }
-    </style>
+    .result-area {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .result-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .pill-path {
+      font-size: 0.72rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 2px 9px;
+      background: rgba(15,23,42,0.98);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .pill-path span.dot-sm {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(56,189,248,0.8);
+    }
+    .result-box {
+      border-radius: 10px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.96), rgba(15,23,42,0.99));
+      padding: 10px 10px 9px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .result-filename {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      word-break: break-all;
+      color: #e5e7eb;
+      flex: 1;
+    }
+    .result-meta {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .badge-soft {
+      border-radius: 999px;
+      border: 1px solid rgba(56,189,248,0.4);
+      padding: 2px 7px;
+      font-size: 0.72rem;
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .badge-danger {
+      border-radius: 999px;
+      border: 1px solid rgba(248,113,113,0.7);
+      padding: 2px 7px;
+      font-size: 0.72rem;
+      color: var(--danger);
+      background: rgba(248,113,113,0.08);
+    }
+    .rules {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      border-radius: 9px;
+      border: 1px dashed rgba(148,163,184,0.6);
+      padding: 8px 9px;
+      background: rgba(15,23,42,0.7);
+    }
+    .rules summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .rules summary::-webkit-details-marker {
+      display: none;
+    }
+    .rules ul {
+      padding-left: 18px;
+      margin: 6px 0 0;
+    }
+    .rules li {
+      margin-bottom: 2px;
+    }
+    .small-muted {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+  </style>
 </head>
 <body>
-
+  <div class="app-shell" aria-label="WIP filename generator">
     <header>
-        <h1>🚀 Falcon BMS Naming Tools v3.1</h1>
-        <p>WIP Files + Guide Snapshots Generator & Version System</p>
+      <div>
+        <h1>
+          WIP Filename Generator
+          <span class="badge">TMS/DMS/CMS Guide</span>
+        </h1>
+        <p>Gera nomes de arquivos WIP 100% aderentes ao WIP-NAMING v1.4 e VERSION-SYSTEM v4.2.1.</p>
+      </div>
+      <div class="small-muted">
+        <div>Regras: WIP-FILE-NAMING-v1.4, VERSION-SYSTEM-v4.2.1</div>
+        <div>Convenção: lowercase, hífens, ISO 8601 (YYYY-MM-DD).</div>
+      </div>
     </header>
 
-    <div class="container" style="display: flex; gap: 2rem; align-items: flex-start;">
-        <!-- Sidebar Navigation -->
-        <nav id="sidebar" style="min-width: 220px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.75rem; padding: 1.5rem 1rem; box-shadow: var(--shadow-sm); height: 100%; position: sticky; top: 2rem;">
-            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.2rem;">
-                <li><button class="tab-button active" onclick="switchTab(event, 'generator')">📄 WIP Files</button></li>
-                <li><button class="tab-button" onclick="switchTab(event, 'snapshot')">📸 Snapshots</button></li>
-                <li><button class="tab-button" onclick="switchTab(event, 'rules')">📋 Rules</button></li>
-                <li><button class="tab-button" onclick="switchTab(event, 'dashboard')">📊 Dashboard</button></li>
-                <li><button class="tab-button" onclick="switchTab(event, 'history')">📝 History</button></li>
-            </ul>
-            <div style="margin-top: 2rem;">
-                <button class="btn btn-secondary btn-small" onclick="toggleTheme()" style="width: 100%; margin-bottom: 0.5rem;">🌙 Dark Mode</button>
-                <button class="btn btn-secondary btn-small" onclick="downloadHistory()" style="width: 100%; margin-bottom: 0.5rem;">💾 Export History</button>
-                <button class="btn btn-secondary btn-small" onclick="clearHistory()" style="width: 100%;">🗑️ Clear All</button>
-            </div>
-        </nav>
+    <div class="layout">
+      <!-- Form panel -->
+      <section class="panel" aria-label="Configuração do arquivo WIP">
+        <div class="panel-title">
+          <span>Entrada</span>
+          <span class="dot" aria-hidden="true"></span>
+        </div>
+        <p class="panel-subtitle">Escolha o tipo de arquivo, preencha os campos e veja o filename em tempo real.</p>
 
-        <main style="flex: 1 1 0; min-width: 0;">
-            <!-- Painel de ciclo de vida WIP, sugestões inteligentes e auditoria -->
-            <div id="lifecycle-suggestions-panel" style="display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
-                <section id="wip-lifecycle-panel" style="flex: 1 1 300px; background: var(--color-bg); border-left: 4px solid var(--color-primary); border-radius: 0.5rem; padding: 1rem 1.5rem; min-width: 260px;">
-                    <h3 style="color: var(--color-primary); margin-bottom: 0.5rem;">⏳ WIP Lifecycle</h3>
-                    <div style="font-size: 0.97rem; color: var(--color-text-secondary);">
-                        <ul style="margin-left: 1.2rem; line-height: 2;">
-                            <li><span class="status-badge status-dev">dev</span> <button class="btn btn-secondary btn-small" onclick="setLifecycleStatus('dev')">Set</button> → <span class="status-badge status-review">review</span>, <span class="status-badge status-deprecated">deprecated</span></li>
-                            <li><span class="status-badge status-review">review</span> <button class="btn btn-secondary btn-small" onclick="setLifecycleStatus('review')">Set</button> → <span class="status-badge status-final">final</span>, <span class="status-badge status-deprecated">deprecated</span></li>
-                            <li><span class="status-badge status-final">final</span> <button class="btn btn-secondary btn-small" onclick="setLifecycleStatus('final')">Set</button> → <span class="status-badge status-approved">approved</span>, <span class="status-badge status-deprecated">deprecated</span></li>
-                            <li><span class="status-badge status-approved">approved</span> <button class="btn btn-secondary btn-small" onclick="setLifecycleStatus('approved')">Set</button> → (immutable)</li>
-                        </ul>
-                        <div id="currentLifecycleStatus" style="margin-top: 1rem; font-weight: 600; color: var(--color-primary);">Current: <span class="status-badge status-dev">dev</span></div>
-                    </div>
-                </section>
-                <section id="smart-suggestions-panel" style="flex: 2 1 400px; background: var(--color-bg); border-left: 4px solid var(--color-success); border-radius: 0.5rem; padding: 1rem 1.5rem; min-width: 320px;">
-                    <h3 style="color: var(--color-success); margin-bottom: 0.5rem;">💡 Smart Suggestions</h3>
-                    <div id="smartSuggestions" style="font-size: 0.97rem; color: var(--color-text-secondary);">
-                        <em>Suggestions for best practices, naming, and next steps will appear here as you interact.</em>
-                    </div>
-                </section>
-                <section id="audit-panel" style="flex: 1 1 320px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1rem 1.5rem; min-width: 280px; box-shadow: var(--shadow-sm);">
-                    <h3 style="color: var(--color-warning); margin-bottom: 0.5rem;">🕵️ Audit Trail</h3>
-                    <div id="auditTrail" style="font-size: 0.97rem; color: var(--color-text-secondary); max-height: 180px; overflow-y: auto;"></div>
-                    <button class="btn btn-secondary btn-small" onclick="exportAuditTrail()" style="margin-top: 0.5rem;">Export Audit</button>
-                    <button class="btn btn-secondary btn-small" onclick="importAuditTrail()" style="margin-top: 0.5rem;">Import Audit</button>
-                </section>
+        <form id="wipForm" autocomplete="off">
+          <!-- Tipo -->
+          <div class="field">
+            <label>Tipo de arquivo WIP</label>
+            <div class="type-switcher" role="radiogroup" aria-label="Tipo de arquivo">
+              <label class="type-pill" data-type="chapter">
+                <input type="radio" name="type" value="chapter" checked />
+                <span class="dot-sm" aria-hidden="true"></span>
+                <span>Chapter</span>
+              </label>
+              <label class="type-pill" data-type="section">
+                <input type="radio" name="type" value="section" />
+                <span class="dot-sm" aria-hidden="true"></span>
+                <span>Section</span>
+              </label>
+              <label class="type-pill" data-type="table">
+                <input type="radio" name="type" value="table" />
+                <span class="dot-sm" aria-hidden="true"></span>
+                <span>Table</span>
+              </label>
+              <label class="type-pill" data-type="notes">
+                <input type="radio" name="type" value="notes" />
+                <span class="dot-sm" aria-hidden="true"></span>
+                <span>Notes</span>
+              </label>
+              <label class="type-pill" data-type="visual">
+                <input type="radio" name="type" value="visual" />
+                <span class="dot-sm" aria-hidden="true"></span>
+                <span>Visual</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Campos por tipo -->
+          <div class="field-group">
+            <div class="field">
+              <label for="chapter">Capítulo (C{N}) <span class="hint">ex: 3</span></label>
+              <input type="number" id="chapter" min="1" max="99" value="1" />
             </div>
 
-            <!-- Tabs and content -->
-            <div class="tabs" style="display: none;"></div>
+            <div class="field" id="sectionWrapper">
+              <label for="section">Seção (S{M}) <span class="hint">ex: 2 (opcional para chapter/notes)</span></label>
+              <input type="number" id="section" min="1" max="99" />
+            </div>
+          </div>
 
-            <div id="generator" class="tab-content active">
-                <!-- ...existing code... -->
+          <div class="field-group" id="subSectionRow">
+            <div class="field">
+              <label for="subsection">Subseção (S{K}) <span class="hint">apenas para subseções (optional)</span></label>
+              <input type="number" id="subsection" min="1" max="99" />
             </div>
-            <div id="snapshot" class="tab-content">
-                <!-- ...existing code... -->
+            <div class="field" id="tableContextWrapper">
+              <label for="tableContext">Contexto (tables) <span class="hint">AA, AG, DGFT, NAV, MFDS, ALLM</span></label>
+              <select id="tableContext">
+                <option value="AA">AA (Air-to-Air)</option>
+                <option value="AG">AG (Air-to-Ground)</option>
+                <option value="DGFT">DGFT (Dogfight)</option>
+                <option value="NAV">NAV (Navigation)</option>
+                <option value="MFDS">MFDS (MFD/SOI)</option>
+                <option value="ALLM">ALLM (All Modes)</option>
+              </select>
             </div>
-            <div id="rules" class="tab-content">
-                <!-- ...existing code... -->
+          </div>
+
+          <div class="field-group" id="tableSwitchVisualTypeRow">
+            <div class="field" id="tableSwitchWrapper">
+              <label for="tableSwitch">Switch (tables) <span class="hint">TMS, DMS, CMS</span></label>
+              <select id="tableSwitch">
+                <option value="TMS">TMS</option>
+                <option value="DMS">DMS</option>
+                <option value="CMS">CMS</option>
+              </select>
             </div>
-            <div id="dashboard" class="tab-content">
-                <!-- ...existing code... -->
+            <div class="field" id="visualTypeWrapper">
+              <label for="visualType">Tipo (visual) <span class="hint">diagram, flowchart, …</span></label>
+              <select id="visualType">
+                <option value="diagram">diagram</option>
+                <option value="flowchart">flowchart</option>
+                <option value="schematic">schematic</option>
+                <option value="reference">reference</option>
+                <option value="illustration">illustration</option>
+              </select>
             </div>
-            <div id="history" class="tab-content">
-                <!-- ...existing code... -->
+          </div>
+
+          <div class="field-group">
+            <div class="field">
+              <label for="title">Título / descrição <span class="hint">texto livre, será slugificado</span></label>
+              <input type="text" id="title" placeholder="ex: fcr crm modes" />
             </div>
-        </main>
+            <div class="field" id="notesTypeWrapper">
+              <label for="notesType">Tipo (notes) <span class="hint">research, outline, …</span></label>
+              <select id="notesType">
+                <option value="research">research</option>
+                <option value="snippet">snippet</option>
+                <option value="outline">outline</option>
+                <option value="questions">questions</option>
+                <option value="reference">reference</option>
+                <option value="example">example</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <div class="field" id="statusWrapper">
+              <label for="status">Status</label>
+              <select id="status">
+                <option value="dev">dev (wip/)</option>
+                <option value="review">review (wip/)</option>
+                <option value="final">final (wip/)</option>
+                <option value="approved">approved (archive/WIP/)</option>
+                <option value="deprecated">deprecated (archive/WIP/)</option>
+              </select>
+            </div>
+            <div class="field" id="dateWrapper">
+              <label for="date">Data (ISO 8601) <span class="hint">YYYY-MM-DD</span></label>
+              <input type="date" id="date" />
+            </div>
+          </div>
+
+          <div class="field" id="visualExtWrapper">
+            <label for="visualExt">Extensão (visual)</label>
+            <select id="visualExt">
+              <option value="svg">.svg</option>
+              <option value="pdf">.pdf</option>
+              <option value="png">.png</option>
+              <option value="tex">.tex</option>
+            </select>
+          </div>
+
+          <div class="actions">
+            <button class="btn" type="button" id="resetBtn">Reset</button>
+            <button class="btn btn-primary" type="button" id="copyBtn">Copiar filename</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Output panel -->
+      <section class="panel" aria-label="Resultado e regras">
+        <div class="panel-title">
+          <span>Saída</span>
+          <span class="dot" aria-hidden="true"></span>
+        </div>
+
+        <div class="result-area">
+          <div class="result-label">
+            <span>Filename gerado (read-only)</span>
+            <span class="pill-path" id="pathHint">
+              <span class="dot-sm" aria-hidden="true"></span>
+              <span>wip/</span>
+            </span>
+          </div>
+          <div class="result-box">
+            <div class="result-filename" id="resultFilename">—</div>
+          </div>
+          <div class="result-meta">
+            <span id="patternHint" class="small-muted">Padrão: chapter-C{N}-{title}-{status}-{date}.tex</span>
+            <span id="lengthHint" class="small-muted"></span>
+          </div>
+          <div id="lengthBadgeContainer"></div>
+        </div>
+
+        <details class="rules">
+          <summary>
+            <span>Regras em ação</span>
+          </summary>
+          <ul>
+            <li>Somente caracteres: a–z, 0–9 e hífens; tudo minúsculo.[file:1]</li>
+            <li>Datas sempre no formato ISO 8601: YYYY-MM-DD.[file:1]</li>
+            <li>Padrões de nome: chapter-/section-/table-/notes-/visual- conforme WIP-NAMING v1.4.[file:1]</li>
+            <li>Status dev/review/final em <code>wip/</code>; approved/deprecated em <code>archive/WIP/</code>.[file:1]</li>
+            <li>Comprimento recomendado ≤ ~100 caracteres por legibilidade.[file:1]</li>
+          </ul>
+        </details>
+
+        <p class="small-muted">
+          Esta ferramenta não altera versões do guia; ela apenas gera nomes de arquivos WIP
+          consistentes com a convenção do projeto. A mudança de versão é acionada só quando
+          o conteúdo é integrado ao snapshot e propagado para <code>guide.tex</code>.[file:5]
+        </p>
+      </section>
     </div>
+  </div>
 
-        <!-- ===== WIP GENERATOR TAB ===== -->
-        <div id="generator" class="tab-content active">
-            <div class="card">
-                <div class="card-title">📄 WIP File Naming Generator</div>
-                <p style="margin-bottom: 1.5rem; color: var(--color-text-secondary);">
-                    Generate professional WIP filenames following WIP-NAMING-v1.4 rules
-                </p>
+  <script>
+    // Utilidades
+    function slugify(input) {
+      if (!input) return "";
+      let text = input.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      text = text.toLowerCase();
+      text = text.replace(/[^a-z0-9\s-]/g, " ");
+      text = text.replace(/[\s-]+/g, "-").replace(/^-+|-+$/g, "");
+      return text;
+    }
 
-                <div class="form-group">
-                    <label>File Type *</label>
-                    <select id="fileType" onchange="updateForm()">
-                        <option value="">-- Select File Type --</option>
-                        <option value="chapter">📖 Chapter</option>
-                        <option value="section">📑 Section</option>
-                        <option value="table">📊 Table (HOTAS)</option>
-                        <option value="notes">📝 Notes</option>
-                        <option value="visual">🎨 Visual Asset</option>
-                    </select>
-                </div>
+    function formatDateISO(dateStr) {
+      if (!dateStr) return "";
+      const d = new Date(dateStr);
+      if (Number.isNaN(d.getTime())) return "";
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
 
-                <div id="dynamicForm"></div>
+    function clampTitleSlug(slug) {
+      // Mantém slug como está, apenas garante no máximo ~30 caracteres (recomendação)
+      if (slug.length <= 30) return slug;
+      return slug.slice(0, 30).replace(/-+$/g, "");
+    }
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Initial Status *</label>
-                        <select id="status">
-                            <option value="dev" selected>dev (Development)</option>
-                            <option value="review">review (Under Review)</option>
-                            <option value="final">final (Ready to Integrate)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Date (YYYY-MM-DD) *</label>
-                        <input type="date" id="date">
-                    </div>
-                </div>
+    // Elementos
+    const typePills = Array.from(document.querySelectorAll(".type-pill"));
+    const form = document.getElementById("wipForm");
+    const chapterEl = document.getElementById("chapter");
+    const sectionEl = document.getElementById("section");
+    const subsectionEl = document.getElementById("subsection");
+    const tableContextEl = document.getElementById("tableContext");
+    const tableSwitchEl = document.getElementById("tableSwitch");
+    const visualTypeEl = document.getElementById("visualType");
+    const titleEl = document.getElementById("title");
+    const notesTypeEl = document.getElementById("notesType");
+    const statusEl = document.getElementById("status");
+    const dateEl = document.getElementById("date");
+    const visualExtEl = document.getElementById("visualExt");
 
-                <button class="btn btn-primary" onclick="generateWIPFilename()">
-                    ✨ Generate WIP Filename
-                </button>
+    const pathHint = document.getElementById("pathHint");
+    const resultFilenameEl = document.getElementById("resultFilename");
+    const patternHint = document.getElementById("patternHint");
+    const lengthHint = document.getElementById("lengthHint");
+    const lengthBadgeContainer = document.getElementById("lengthBadgeContainer");
+    const copyBtn = document.getElementById("copyBtn");
+    const resetBtn = document.getElementById("resetBtn");
 
-                <div id="wipValidationMessage" class="validation-message"></div>
-                <div id="wipOutput" class="output-box" style="display: none;">
-                    <div class="output-line success"><strong>═══════════════════════════════════════════════</strong></div>
-                    <div class="output-line success"><strong>✅ WIP FILENAME GENERATED</strong></div>
-                    <div class="output-line success"><strong>═══════════════════════════════════════════════</strong></div>
-                    <div class="output-line info" id="wipOutputFilename"></div>
-                    <div class="output-line info" id="wipOutputPath"></div>
-                    <div class="output-line success"><strong>═══════════════════════════════════════════════</strong></div>
-                </div>
+    // Tipo ativo
+    function getActiveType() {
+      const active = typePills.find((pill) => pill.dataset.active === "true");
+      return active ? active.dataset.type : "chapter";
+    }
 
-                <div style="margin-top: 1rem; display: flex; gap: 1rem;">
-                    <button class="btn btn-secondary btn-small" onclick="copyWIPFilename()" id="wipCopyBtn" style="display: none;">
-                        📋 Copy Filename
-                    </button>
-                    <button class="btn btn-secondary btn-small" onclick="copyWIPPath()" id="wipCopyPathBtn" style="display: none;">
-                        📂 Copy Full Path
-                    </button>
-                </div>
-            </div>
-        </div>
+    function setActiveType(type) {
+      typePills.forEach((pill) => {
+        pill.dataset.active = pill.dataset.type === type ? "true" : "false";
+      });
+      updateVisibility();
+      updateFilename();
+    }
 
-        <!-- ===== SNAPSHOT GENERATOR TAB ===== -->
-        <div id="snapshot" class="tab-content">
-            <div class="card">
-                <div class="card-title">📸 Guide Snapshot Naming Generator</div>
-                <p style="margin-bottom: 1.5rem; color: var(--color-text-secondary);">
-                    Generate professional guide snapshot filenames following VERSION-SYSTEM-v4.2.1
-                </p>
-
-                <div class="rule-panel" style="margin-bottom: 1.5rem;">
-                    <div class="rule-title">📋 Two Versioning Regimes</div>
-                    <div class="rule-content">
-                        <p><strong>Pre-Publication (0.x.x.x):</strong> During development, before first release<br/>
-                        <strong>Post-Publication (x.x.x):</strong> After v1.0.0 is released</p>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Version Regime *</label>
-                        <select id="snapshotRegime" onchange="updateSnapshotForm()">
-                            <option value="">-- Select --</option>
-                            <option value="prepub">Pre-Publication (0.x.x.x)</option>
-                            <option value="postpub">Post-Publication (x.x.x)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div id="snapshotDynamicForm"></div>
-
-                <div class="form-group">
-                    <label>Build Date (YYYYMMDD) *</label>
-                    <input type="text" id="snapshotDate" placeholder="e.g., 20260119">
-                </div>
-
-                <button class="btn btn-primary" onclick="generateSnapshot()">
-                    🔍 Generate Snapshot Filename
-                </button>
-
-                <div id="snapshotValidationMessage" class="validation-message"></div>
-                <div id="snapshotOutput" class="output-box" style="display: none;">
-                    <div class="output-line success"><strong>═══════════════════════════════════════════════</strong></div>
-                    <div class="output-line success"><strong>✅ SNAPSHOT FILENAME GENERATED</strong></div>
-                    <div class="output-line success"><strong>═══════════════════════════════════════════════</strong></div>
-                    <div class="output-line info" id="snapshotOutputFilename"></div>
-                    <div class="output-line info" id="snapshotOutputPath"></div>
-                    <div class="output-line info" id="snapshotOutputRegime"></div>
-                    <div class="output-line success"><strong>═══════════════════════════════════════════════</strong></div>
-                </div>
-
-                <div style="margin-top: 1rem; display: flex; gap: 1rem;">
-                    <button class="btn btn-secondary btn-small" onclick="copySnapshotFilename()" id="snapshotCopyBtn" style="display: none;">
-                        📋 Copy Filename
-                    </button>
-                    <button class="btn btn-secondary btn-small" onclick="copySnapshotPath()" id="snapshotCopyPathBtn" style="display: none;">
-                        📂 Copy Full Path
-                    </button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-title">📝 Snapshot Workflow</div>
-                <div class="rule-panel">
-                    <div class="rule-content">
-                        <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                            <li><strong>Determine change type</strong> - Use decision tables in Rules tab</li>
-                            <li><strong>Update \docversion</strong> in guide.tex to new version</li>
-                            <li><strong>Compile PDF</strong> and check for errors</li>
-                            <li><strong>Save snapshot</strong> using generated filename in WIP/GUIDE/</li>
-                            <li><strong>Copy to root</strong> - guide.tex becomes snapshot copy</li>
-                            <li><strong>Update PROJECT-TRACKING.md</strong> with entry</li>
-                            <li><strong>Archive previous</strong> snapshot version</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== RULES TAB ===== -->
-        <div id="rules" class="tab-content">
-            <div class="card">
-                <div class="card-title">📋 WIP File Naming Rules (v1.4)</div>
-                <p style="margin-bottom: 1.5rem; color: var(--color-text-secondary);">
-                    Official naming conventions for WIP files
-                </p>
-
-                <div class="rules-grid">
-                    <div class="rule-card">
-                        <h3>📖 Chapter Files</h3>
-                        <p><code>chapter-C{N}-{TITLE}-{STATUS}-{DATE}.tex</code></p>
-                        <div class="example-box">
-                            <div class="example-label">Example</div>
-                            <div class="example-code">chapter-C3-tms-target-management-dev-2026-01-19.tex</div>
-                        </div>
-                    </div>
-
-                    <div class="rule-card">
-                        <h3>📑 Section Files</h3>
-                        <p><code>section-C{N}-S{M}[-S{K}]-{TITLE}-{STATUS}-{DATE}.tex</code></p>
-                        <div class="example-box">
-                            <div class="example-label">Example</div>
-                            <div class="example-code">section-C3-S2-fcr-crm-modes-review-2026-01-18.tex</div>
-                        </div>
-                    </div>
-
-                    <div class="rule-card">
-                        <h3>📊 HOTAS Table Files</h3>
-                        <p><code>table-C{N}-{CONTEXT}-{SWITCH}-{STATUS}-{DATE}.tex</code></p>
-                        <div class="example-box">
-                            <div class="example-label">Example</div>
-                            <div class="example-code">table-C3-AA-TMS-dev-2026-01-15.tex</div>
-                        </div>
-                    </div>
-
-                    <div class="rule-card">
-                        <h3>📝 Notes Files</h3>
-                        <p><code>notes-C{N}-{TOPIC}-{TYPE}-{DATE}.md</code></p>
-                        <div class="example-box">
-                            <div class="example-label">Example</div>
-                            <div class="example-code">notes-C5-cms-structure-outline-2026-01-09.md</div>
-                        </div>
-                    </div>
-
-                    <div class="rule-card">
-                        <h3>🎨 Visual Asset Files</h3>
-                        <p><code>visual-C{N}-{DESC}-{TYPE}-{STATUS}-{DATE}.{ext}</code></p>
-                        <div class="example-box">
-                            <div class="example-label">Example</div>
-                            <div class="example-code">visual-C7-tms-hat-layout-diagram-dev-2026-01-28.svg</div>
-                        </div>
-                    </div>
-
-                    <div class="rule-card">
-                        <h3>⏳ Status Lifecycle</h3>
-                        <div style="margin-top: 1rem; font-size: 0.9rem; line-height: 2;">
-                            <div><span class="status-badge status-dev">dev</span> → review, deprecated</div>
-                            <div><span class="status-badge status-review">review</span> → review, final, deprecated</div>
-                            <div><span class="status-badge status-final">final</span> → approved, deprecated</div>
-                            <div><span class="status-badge status-approved">approved</span> → (immutable)</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-title">🏷️ Version System Rules (v4.2.1)</div>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                    <div>
-                        <h3 style="color: var(--color-primary); margin-bottom: 1rem;">Pre-Publication (0.x.x.x)</h3>
-                        <div class="rule-panel">
-                            <ul style="margin-left: 1.5rem; line-height: 1.8;">
-                                <li><strong>MAJOR:</strong> Always 0</li>
-                                <li><strong>MINOR:</strong> New chapter enters (increments)</li>
-                                <li><strong>PATCH:</strong> Structural changes in chapter</li>
-                                <li><strong>SUBPATCH:</strong> Fine-tuning (typos, wording)</li>
-                            </ul>
-                            <div class="example-box" style="margin-top: 1rem;">
-                                <div class="example-code">0.1.0.0 → 0.2.0.0 (new chapter)<br/>0.2.0.0 → 0.2.1.0 (structural)<br/>0.2.1.0 → 0.2.1.1 (typo fix)</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 style="color: var(--color-primary); margin-bottom: 1rem;">Post-Publication (x.x.x)</h3>
-                        <div class="rule-panel">
-                            <ul style="margin-left: 1.5rem; line-height: 1.8;">
-                                <li><strong>MAJOR:</strong> New edition (broad changes)</li>
-                                <li><strong>MINOR:</strong> Substantial expansion (compatible)</li>
-                                <li><strong>PATCH:</strong> Minor fixes &amp; clarifications</li>
-                            </ul>
-                            <div class="example-box" style="margin-top: 1rem;">
-                                <div class="example-code">1.0.0 → 1.1.0 (new chapter)<br/>1.1.0 → 2.0.0 (new edition)<br/>1.1.0 → 1.1.1 (bug fix)</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="rule-panel" style="margin-top: 2rem;">
-                    <div class="rule-title">📂 Snapshot File Naming Pattern</div>
-                    <div class="rule-content" style="margin-top: 1rem;">
-                        <p><code>guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex</code></p>
-                        <div class="example-box" style="margin-top: 1rem;">
-                            <div class="example-label">Pre-Publication Examples</div>
-                            <div class="example-code">guide-v0.1.0.0-20260105.tex<br/>guide-v0.2.3.1-20260118.tex<br/>guide-v0.7.5.8-20260210.tex</div>
-                        </div>
-                        <div class="example-box" style="margin-top: 1rem;">
-                            <div class="example-label">Post-Publication Examples</div>
-                            <div class="example-code">guide-v1.0.0-20260220.tex<br/>guide-v1.1.2-20260315.tex<br/>guide-v2.0.0-20260620.tex</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== DASHBOARD TAB ===== -->
-        <div id="dashboard" class="tab-content">
-            <div class="dashboard-grid">
-                <div class="stat-card">
-                    <div class="stat-label">Total Generated</div>
-                    <div class="stat-number" id="statTotal">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">WIP Files</div>
-                    <div class="stat-number" id="statWIP">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Snapshots</div>
-                    <div class="stat-number" id="statSnapshots">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Chapters Covered</div>
-                    <div class="stat-number" id="statChapters">0</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-title">📊 Type Distribution</div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
-                    <div style="text-align: center; padding: 1rem;">
-                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--color-dev);" id="countChapter">0</div>
-                        <div style="color: var(--color-text-secondary);">Chapter WIPs</div>
-                    </div>
-                    <div style="text-align: center; padding: 1rem;">
-                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--color-review);" id="countSection">0</div>
-                        <div style="color: var(--color-text-secondary);">Section WIPs</div>
-                    </div>
-                    <div style="text-align: center; padding: 1rem;">
-                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--color-final);" id="countTable">0</div>
-                        <div style="color: var(--color-text-secondary);">Table WIPs</div>
-                    </div>
-                    <div style="text-align: center; padding: 1rem;">
-                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--color-approved);" id="countPrepub">0</div>
-                        <div style="color: var(--color-text-secondary);">Pre-Pub Snapshots</div>
-                    </div>
-                    <div style="text-align: center; padding: 1rem;">
-                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--color-success);" id="countPostpub">0</div>
-                        <div style="color: var(--color-text-secondary);">Post-Pub Snapshots</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== HISTORY TAB ===== -->
-        <div id="history" class="tab-content">
-            <div class="card">
-                <div class="card-title">📝 Generation History</div>
-                <div id="historyList" style="min-height: 300px;">
-                    <p style="color: var(--color-text-secondary); text-align: center; padding: 2rem;">
-                        No history yet. Generate your first filename!
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        let history = JSON.parse(localStorage.getItem('wipHistory')) || [];
-        let lastWIPFilename = '';
-        let lastSnapshotFilename = '';
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('date').value = today;
-            const todayYYYYMMDD = today.replace(/-/g, '');
-            document.getElementById('snapshotDate').value = todayYYYYMMDD;
-            updateForm();
-            updateDashboard();
-        });
-
-        function switchTab(event, tabName) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
-            document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
+    typePills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        const input = pill.querySelector("input[type=radio]");
+        if (input) {
+          input.checked = true;
+          setActiveType(input.value);
         }
+      });
+    });
 
-        // ===== WIP GENERATOR =====
-        function updateForm() {
-            const fileType = document.getElementById('fileType').value;
-            const form = document.getElementById('dynamicForm');
-            form.innerHTML = '';
+    // Ajusta visibilidade de campos dependendo do tipo
+    function updateVisibility() {
+      const type = getActiveType();
+      const sectionWrapper = document.getElementById("sectionWrapper");
+      const subSectionRow = document.getElementById("subSectionRow");
+      const tableContextWrapper = document.getElementById("tableContextWrapper");
+      const tableSwitchWrapper = document.getElementById("tableSwitchWrapper");
+      const visualTypeWrapper = document.getElementById("visualTypeWrapper");
+      const notesTypeWrapper = document.getElementById("notesTypeWrapper");
+      const visualExtWrapper = document.getElementById("visualExtWrapper");
 
-            if (!fileType) return;
+      // Defaults
+      sectionWrapper.style.display = "block";
+      subSectionRow.style.display = "grid";
+      tableContextWrapper.style.display = "block";
+      tableSwitchWrapper.style.display = "block";
+      visualTypeWrapper.style.display = "block";
+      notesTypeWrapper.style.display = "block";
+      visualExtWrapper.style.display = "block";
 
-            if (fileType === 'chapter') {
-                form.innerHTML = `
-                    <div class="form-group">
-                        <label>Chapter Number (1-7) *</label>
-                        <input type="number" id="chapter" min="1" max="7" placeholder="e.g., 3">
-                    </div>
-                    <div class="form-group">
-                        <label>Chapter Title *</label>
-                        <input type="text" id="title" placeholder="e.g., TMS/DMS Overview" maxlength="30">
-                    </div>
-                `;
-            } else if (fileType === 'section') {
-                form.innerHTML = `
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Chapter (1-7) *</label>
-                            <input type="number" id="chapter" min="1" max="7">
-                        </div>
-                        <div class="form-group">
-                            <label>Section *</label>
-                            <input type="number" id="section" min="1">
-                        </div>
-                        <div class="form-group">
-                            <label>Subsection (optional)</label>
-                            <input type="number" id="subsection" min="1">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Section Title *</label>
-                        <input type="text" id="title" placeholder="e.g., FCR CRM Modes" maxlength="30">
-                    </div>
-                `;
-            } else if (fileType === 'table') {
-                form.innerHTML = `
-                    <div class="form-row three-col">
-                        <div class="form-group">
-                            <label>Chapter (1-7) *</label>
-                            <input type="number" id="chapter" min="1" max="7">
-                        </div>
-                        <div class="form-group">
-                            <label>Context *</label>
-                            <select id="context">
-                                <option value="">-- Select --</option>
-                                <option value="AA">AA (Air-to-Air)</option>
-                                <option value="AG">AG (Air-to-Ground)</option>
-                                <option value="DGFT">DGFT (Defensive)</option>
-                                <option value="NAV">NAV (Navigation)</option>
-                                <option value="MFDS">MFDS (Displays)</option>
-                                <option value="ALLM">ALLM (All Modes)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Switch *</label>
-                            <select id="switch">
-                                <option value="">-- Select --</option>
-                                <option value="TMS">TMS</option>
-                                <option value="DMS">DMS</option>
-                                <option value="CMS">CMS</option>
-                            </select>
-                        </div>
-                    </div>
-                `;
-            } else if (fileType === 'notes') {
-                form.innerHTML = `
-                    <div class="form-group">
-                        <label>Chapter (1-7) *</label>
-                        <input type="number" id="chapter" min="1" max="7">
-                    </div>
-                    <div class="form-group">
-                        <label>Topic *</label>
-                        <input type="text" id="topic" placeholder="e.g., cms-structure" maxlength="30">
-                    </div>
-                    <div class="form-group">
-                        <label>Note Type *</label>
-                        <select id="noteType">
-                            <option value="">-- Select --</option>
-                            <option value="research">research</option>
-                            <option value="snippet">snippet</option>
-                            <option value="outline">outline</option>
-                            <option value="questions">questions</option>
-                            <option value="reference">reference</option>
-                            <option value="example">example</option>
-                        </select>
-                    </div>
-                `;
-            } else if (fileType === 'visual') {
-                form.innerHTML = `
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Chapter (1-7) *</label>
-                            <input type="number" id="chapter" min="1" max="7">
-                        </div>
-                        <div class="form-group">
-                            <label>Extension *</label>
-                            <select id="extension">
-                                <option value="">-- Select --</option>
-                                <option value="svg">svg</option>
-                                <option value="pdf">pdf</option>
-                                <option value="png">png</option>
-                                <option value="tex">tex</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Description *</label>
-                        <input type="text" id="description" placeholder="e.g., tms-hat-layout" maxlength="30">
-                    </div>
-                    <div class="form-group">
-                        <label>Visual Type *</label>
-                        <select id="visualType">
-                            <option value="">-- Select --</option>
-                            <option value="diagram">diagram</option>
-                            <option value="flowchart">flowchart</option>
-                            <option value="schematic">schematic</option>
-                            <option value="reference">reference</option>
-                            <option value="illustration">illustration</option>
-                        </select>
-                    </div>
-                `;
-            }
+      if (type === "chapter") {
+        sectionWrapper.style.display = "none";
+        subSectionRow.style.display = "none";
+        tableContextWrapper.style.display = "none";
+        tableSwitchWrapper.style.display = "none";
+        visualTypeWrapper.style.display = "none";
+        notesTypeWrapper.style.display = "none";
+        visualExtWrapper.style.display = "none";
+      } else if (type === "section") {
+        subSectionRow.style.display = "grid";
+        tableContextWrapper.style.display = "none";
+        tableSwitchWrapper.style.display = "none";
+        visualTypeWrapper.style.display = "none";
+        notesTypeWrapper.style.display = "none";
+        visualExtWrapper.style.display = "none";
+      } else if (type === "table") {
+        sectionWrapper.style.display = "none";
+        subSectionRow.style.display = "none";
+        notesTypeWrapper.style.display = "none";
+        visualTypeWrapper.style.display = "none";
+        visualExtWrapper.style.display = "none";
+      } else if (type === "notes") {
+        sectionWrapper.style.display = "none";
+        subSectionRow.style.display = "none";
+        tableContextWrapper.style.display = "none";
+        tableSwitchWrapper.style.display = "none";
+        visualTypeWrapper.style.display = "none";
+        visualExtWrapper.style.display = "none";
+      } else if (type === "visual") {
+        sectionWrapper.style.display = "none";
+        subSectionRow.style.display = "none";
+        tableContextWrapper.style.display = "none";
+        tableSwitchWrapper.style.display = "none";
+        notesTypeWrapper.style.display = "none";
+      }
+    }
+
+    // Caminho (wip/ vs archive/WIP/)
+    function updatePathHint() {
+      const status = statusEl.value;
+      const span = pathHint.querySelector("span:nth-child(2)");
+      if (status === "approved" || status === "deprecated") {
+        span.textContent = "archive/WIP/";
+      } else {
+        span.textContent = "wip/";
+      }
+    }
+
+    // Padrão textual
+    function updatePatternHint() {
+      const type = getActiveType();
+      let pattern = "";
+      if (type === "chapter") {
+        pattern = "chapter-C{N}-{title}-{status}-{date}.tex";
+      } else if (type === "section") {
+        pattern = "section-C{N}-S{M}-[S{K}-]{title}-{status}-{date}.tex";
+      } else if (type === "table") {
+        pattern = "table-C{N}-{context}-{switch}-{status}-{date}.tex";
+      } else if (type === "notes") {
+        pattern = "notes-C{N}-{topic}-{type}-{date}.md";
+      } else if (type === "visual") {
+        pattern = "visual-C{N}-{desc}-{type}-{status}-{date}.{ext}";
+      }
+      patternHint.textContent = "Padrão: " + pattern;
+    }
+
+    // Geração de filename
+    function updateFilename() {
+      const type = getActiveType();
+      updatePathHint();
+      updatePatternHint();
+
+      const c = chapterEl.value ? `C${parseInt(chapterEl.value, 10)}` : "C1";
+      const s = sectionEl.value ? `S${parseInt(sectionEl.value, 10)}` : "";
+      const sk = subsectionEl.value ? `S${parseInt(subsectionEl.value, 10)}` : "";
+      const rawTitle = titleEl.value.trim();
+      let slug = slugify(rawTitle);
+      slug = clampTitleSlug(slug);
+      if (!slug && (type === "chapter" || type === "section" || type === "notes" || type === "visual")) {
+        slug = "todo";
+      }
+      const status = statusEl.value || "dev";
+      const isoDate = formatDateISO(dateEl.value) || "2026-01-01";
+
+      let filename = "";
+
+      if (type === "chapter") {
+        filename = `chapter-${c}-${slug || "untitled"}-${status}-${isoDate}.tex`;
+      } else if (type === "section") {
+        if (s && sk) {
+          filename = `section-${c}-${s}-${sk}-${slug || "untitled"}-${status}-${isoDate}.tex`;
+        } else if (s) {
+          filename = `section-${c}-${s}-${slug || "untitled"}-${status}-${isoDate}.tex`;
+        } else {
+          filename = `section-${c}-S1-${slug || "untitled"}-${status}-${isoDate}.tex`;
         }
+      } else if (type === "table") {
+        const context = tableContextEl.value || "AA";
+        const sw = tableSwitchEl.value || "TMS";
+        filename = `table-${c}-${context}-${sw}-${status}-${isoDate}.tex`;
+      } else if (type === "notes") {
+        const topicSlug = slug || "notes";
+        const notesType = notesTypeEl.value || "research";
+        filename = `notes-${c}-${topicSlug}-${notesType}-${isoDate}.md`;
+      } else if (type === "visual") {
+        const visualSlug = slug || "visual";
+        const vType = visualTypeEl.value || "diagram";
+        const ext = visualExtEl.value || "svg";
+        filename = `visual-${c}-${visualSlug}-${vType}-${status}-${isoDate}.${ext}`;
+      }
 
-        function slugify(text) {
-            if (!text) return '';
-            return text.toLowerCase()
-                .replace(/\s+/g, '-')
-                .replace(/[^a-z0-9-]/g, '')
-                .replace(/-+/g, '-')
-                .replace(/^-|-$/g, '')
-                .substring(0, 30);
-        }
+      resultFilenameEl.textContent = filename;
 
-        function generateWIPFilename() {
-            const fileType = document.getElementById('fileType').value;
-            const status = document.getElementById('status').value;
-            const date = document.getElementById('date').value;
+      // Comprimento
+      const len = filename.length;
+      lengthHint.textContent = `Comprimento: ${len} caracteres`;
+      lengthBadgeContainer.innerHTML = "";
+      if (len > 100) {
+        const badge = document.createElement("span");
+        badge.className = "badge-danger";
+        badge.textContent = "Aviso: recomende-se ≤ 100 caracteres para legibilidade.";
+        lengthBadgeContainer.appendChild(badge);
+      } else if (len > 80) {
+        const badge = document.createElement("span");
+        badge.className = "badge-soft";
+        badge.textContent = "Comprimento alto, mas ainda aceitável.";
+        lengthBadgeContainer.appendChild(badge);
+      }
+    }
 
-            let smartTips = [];
-            if (!fileType || !status || !date) {
-                showValidation('Please fill all required fields', 'wipValidationMessage', 'error');
-                updateSmartSuggestions(['Preencha todos os campos obrigatórios para gerar o nome do arquivo.']);
-                return;
-            }
+    // Eventos
+    [
+      chapterEl, sectionEl, subsectionEl, tableContextEl, tableSwitchEl,
+      visualTypeEl, titleEl, notesTypeEl, statusEl, dateEl, visualExtEl
+    ].forEach((el) => {
+      el.addEventListener("input", updateFilename);
+      el.addEventListener("change", updateFilename);
+    });
 
-            let filename = '';
-            let errors = [];
+    // Path hint reage ao status
+    statusEl.addEventListener("change", () => {
+      updatePathHint();
+      updateFilename();
+    });
 
-            try {
-                if (fileType === 'chapter') {
-                    const chapter = document.getElementById('chapter').value;
-                    const title = document.getElementById('title').value;
-                    if (!chapter || chapter < 1 || chapter > 7 || !title) {
-                        errors.push('Invalid chapter or title');
-                        smartTips.push('O número do capítulo deve estar entre 1 e 7 e o título não pode estar vazio.');
-                    } else {
-                        filename = `chapter-C${chapter}-${slugify(title)}-${status}-${date}.tex`;
-                        smartTips.push('Nome de capítulo gerado conforme padrão. Lembre-se de usar títulos curtos e claros.');
-                    }
-                } else if (fileType === 'section') {
-                    const chapter = document.getElementById('chapter').value;
-                    const section = document.getElementById('section').value;
-                    const subsection = document.getElementById('subsection').value;
-                    const title = document.getElementById('title').value;
-                    if (!chapter || chapter < 1 || chapter > 7 || !section || section < 1 || !title) {
-                        errors.push('Invalid chapter, section, or title');
-                        smartTips.push('Capítulo (1-7), seção (>0) e título são obrigatórios.');
-                    } else {
-                        const subPart = subsection ? `-S${subsection}` : '';
-                        filename = `section-C${chapter}-S${section}${subPart}-${slugify(title)}-${status}-${date}.tex`;
-                        smartTips.push('Nome de seção gerado. Use subtítulos apenas se necessário.');
-                    }
-                } else if (fileType === 'table') {
-                    const chapter = document.getElementById('chapter').value;
-                    const context = document.getElementById('context').value;
-                    const switchType = document.getElementById('switch').value;
-                    if (!chapter || chapter < 1 || chapter > 7 || !context || !switchType) {
-                        errors.push('Invalid chapter, context, or switch');
-                        smartTips.push('Capítulo, contexto e switch são obrigatórios para tabelas HOTAS.');
-                    } else {
-                        filename = `table-C${chapter}-${context}-${switchType}-${status}-${date}.tex`;
-                        smartTips.push('Nome de tabela HOTAS gerado. Certifique-se de que o contexto e switch estejam corretos.');
-                    }
-                } else if (fileType === 'notes') {
-                    const chapter = document.getElementById('chapter').value;
-                    const topic = document.getElementById('topic').value;
-                    const noteType = document.getElementById('noteType').value;
-                    if (!chapter || chapter < 1 || chapter > 7 || !topic || !noteType) {
-                        errors.push('Invalid chapter, topic, or type');
-                        smartTips.push('Capítulo, tópico e tipo de nota são obrigatórios.');
-                    } else {
-                        filename = `notes-C${chapter}-${slugify(topic)}-${noteType}-${date}.md`;
-                        smartTips.push('Nome de nota gerado. Use tópicos descritivos e tipos padronizados.');
-                    }
-                } else if (fileType === 'visual') {
-                    const chapter = document.getElementById('chapter').value;
-                    const description = document.getElementById('description').value;
-                    const visualType = document.getElementById('visualType').value;
-                    const extension = document.getElementById('extension').value;
-                    if (!chapter || chapter < 1 || chapter > 7 || !description || !visualType || !extension) {
-                        errors.push('Invalid chapter, description, type, or extension');
-                        smartTips.push('Todos os campos são obrigatórios para assets visuais.');
-                    } else {
-                        filename = `visual-C${chapter}-${slugify(description)}-${visualType}-${status}-${date}.${extension}`;
-                        smartTips.push('Nome de asset visual gerado. Use descrições curtas e tipo correto.');
-                    }
-                }
+    // Botão de copiar
+    copyBtn.addEventListener("click", async () => {
+      const filename = resultFilenameEl.textContent.trim();
+      if (!filename || filename === "—") return;
+      try {
+        await navigator.clipboard.writeText(filename);
+        copyBtn.textContent = "Copiado!";
+        setTimeout(() => {
+          copyBtn.textContent = "Copiar filename";
+        }, 1200);
+      } catch {
+        // fallback simples
+        alert("Copie manualmente: " + filename);
+      }
+    });
 
-                if (filename.length > 100) {
-                    errors.push('Filename too long');
-                    smartTips.push('O nome do arquivo ficou muito longo. Reduza o título ou descrição.');
-                }
+    // Reset
+    resetBtn.addEventListener("click", () => {
+      form.reset();
+      // Restaurar tipo chapter
+      setActiveType("chapter");
+      // Forçar data de hoje
+      const today = new Date();
+      const y = today.getFullYear();
+      const m = String(today.getMonth() + 1).padStart(2, "0");
+      const d = String(today.getDate()).padStart(2, "0");
+      dateEl.value = `${y}-${m}-${d}`;
+      updateFilename();
+    });
 
-                if (errors.length > 0 || !filename) {
-                    showValidation(errors.length > 0 ? errors.join('\n') : 'Filename too long', 'wipValidationMessage', 'error');
-                    updateSmartSuggestions(smartTips);
-                    return;
-                }
-
-                lastWIPFilename = filename;
-                document.getElementById('wipOutput').style.display = 'block';
-                document.getElementById('wipOutputFilename').textContent = `📄 Filename: ${filename}`;
-                document.getElementById('wipOutputPath').textContent = `📂 Full Path: WIP/${filename}`;
-                showValidation('✅ WIP filename generated!', 'wipValidationMessage', 'success');
-                logToHistory('WIP Generated', filename);
-                updateDashboard();
-                document.getElementById('wipCopyBtn').style.display = 'inline-flex';
-                document.getElementById('wipCopyPathBtn').style.display = 'inline-flex';
-                smartTips.push('Arquivo WIP pronto para uso. Lembre-se de seguir o ciclo de vida: dev → review → final → approved.');
-                updateSmartSuggestions(smartTips);
-
-            } catch (error) {
-                showValidation(`Error: ${error.message}`, 'wipValidationMessage', 'error');
-                updateSmartSuggestions(['Erro inesperado ao gerar nome.']);
-            }
-        }
-
-        // ===== AUDIT TRAIL =====
-        let auditTrail = JSON.parse(localStorage.getItem('wipAuditTrail')) || [];
-
-        function logToHistory(action, detail) {
-            const entry = {
-                timestamp: new Date().toISOString(),
-                action,
-                detail
-            };
-            history.unshift(entry);
-            localStorage.setItem('wipHistory', JSON.stringify(history));
-            // Audit trail
-            auditTrail.unshift({ ...entry });
-            localStorage.setItem('wipAuditTrail', JSON.stringify(auditTrail));
-            updateHistoryDisplay();
-            updateAuditTrail();
-        }
-
-        function updateAuditTrail() {
-            const panel = document.getElementById('auditTrail');
-            if (!panel) return;
-            if (!auditTrail || auditTrail.length === 0) {
-                panel.innerHTML = '<em>No audit records yet.</em>';
-                return;
-            }
-            panel.innerHTML = auditTrail.slice(0, 20).map(entry => {
-                const time = new Date(entry.timestamp).toLocaleString();
-                return `<div style='margin-bottom:0.5rem;'><span style='color:var(--color-warning);'>${time}</span><br><span style='color:var(--color-text);font-weight:600;'>${entry.action}</span> <span style='color:var(--color-text-secondary);'><code>${entry.detail}</code></span></div>`;
-            }).join('');
-        }
-
-        function exportAuditTrail() {
-            const data = JSON.stringify(auditTrail, null, 2);
-            const blob = new Blob([data], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `audit-trail-${new Date().toISOString().split('T')[0]}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        function importAuditTrail() {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json,application/json';
-            input.onchange = e => {
-                const file = e.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = evt => {
-                    try {
-                        const imported = JSON.parse(evt.target.result);
-                        if (Array.isArray(imported)) {
-                            auditTrail = imported.concat(auditTrail);
-                            localStorage.setItem('wipAuditTrail', JSON.stringify(auditTrail));
-                            updateAuditTrail();
-                        }
-                    } catch (err) {
-                        alert('Invalid audit file.');
-                    }
-                };
-                reader.readAsText(file);
-            };
-            input.click();
-        }
-
-        updateAuditTrail();
-
-        // ===== CICLO DE VIDA INTERATIVO =====
-        let currentLifecycle = 'dev';
-        function setLifecycleStatus(status) {
-            currentLifecycle = status;
-            const badge = `<span class="status-badge status-${status}">${status}</span>`;
-            document.getElementById('currentLifecycleStatus').innerHTML = `Current: ${badge}`;
-            logToHistory('Lifecycle Status Changed', status);
-            updateSmartSuggestions([`Status de ciclo de vida alterado para <b>${status}</b>. Siga as regras de transição!`]);
-        }
-
-        function updateSmartSuggestions(tips) {
-            const panel = document.getElementById('smartSuggestions');
-            if (!tips || tips.length === 0) {
-                panel.innerHTML = '<em>Suggestions for best practices, naming, and next steps will appear here as you interact.</em>';
-                return;
-            }
-            // Realce dinâmico de regras e feedback visual
-            panel.innerHTML = tips.map(t => `<div style='margin-bottom:0.5rem; background:rgba(16,185,129,0.08); border-left:3px solid var(--color-success); padding:0.3rem 0.7rem;'>• ${t}</div>`).join('');
-        }
-
-        function copyWIPFilename() {
-            navigator.clipboard.writeText(lastWIPFilename).then(() => {
-                alert('✅ Copied!');
-                logToHistory('WIP Copied', lastWIPFilename);
-            });
-        }
-
-        function copyWIPPath() {
-            navigator.clipboard.writeText(`WIP/${lastWIPFilename}`).then(() => {
-                alert('✅ Copied!');
-                logToHistory('WIP Path Copied', `WIP/${lastWIPFilename}`);
-            });
-        }
-
-        // ===== SNAPSHOT GENERATOR =====
-        function updateSnapshotForm() {
-            const regime = document.getElementById('snapshotRegime').value;
-            const form = document.getElementById('snapshotDynamicForm');
-            form.innerHTML = '';
-
-            if (!regime) return;
-
-            if (regime === 'prepub') {
-                form.innerHTML = `
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>MAJOR (always 0) *</label>
-                            <input type="number" value="0" disabled style="opacity: 0.6;">
-                        </div>
-                        <div class="form-group">
-                            <label>MINOR (1-7) *</label>
-                            <input type="number" id="snapshotMinor" min="1" max="7" placeholder="e.g., 3">
-                        </div>
-                        <div class="form-group">
-                            <label>PATCH *</label>
-                            <input type="number" id="snapshotPatch" min="0" placeholder="e.g., 0">
-                        </div>
-                        <div class="form-group">
-                            <label>SUBPATCH *</label>
-                            <input type="number" id="snapshotSubpatch" min="0" placeholder="e.g., 0">
-                        </div>
-                    </div>
-                `;
-            } else {
-                form.innerHTML = `
-                    <div class="form-row three-col">
-                        <div class="form-group">
-                            <label>MAJOR (1+) *</label>
-                            <input type="number" id="snapshotMajor" min="1" placeholder="e.g., 1">
-                        </div>
-                        <div class="form-group">
-                            <label>MINOR (0+) *</label>
-                            <input type="number" id="snapshotMinor" min="0" placeholder="e.g., 1">
-                        </div>
-                        <div class="form-group">
-                            <label>PATCH (0+) *</label>
-                            <input type="number" id="snapshotPatch" min="0" placeholder="e.g., 2">
-                        </div>
-                    </div>
-                `;
-            }
-        }
-
-        function generateSnapshot() {
-            const regime = document.getElementById('snapshotRegime').value;
-            const date = document.getElementById('snapshotDate').value;
-
-            if (!regime || !date || date.length !== 8) {
-                showValidation('Please select regime and enter valid date (YYYYMMDD)', 'snapshotValidationMessage', 'error');
-                return;
-            }
-
-            let filename = '';
-            let errors = [];
-
-            try {
-                if (regime === 'prepub') {
-                    const minor = document.getElementById('snapshotMinor').value;
-                    const patch = document.getElementById('snapshotPatch').value;
-                    const subpatch = document.getElementById('snapshotSubpatch').value;
-
-                    if (!minor || minor < 1 || minor > 7 || !patch || patch < 0 || !subpatch || subpatch < 0) {
-                        errors.push('Invalid version numbers');
-                    } else {
-                        filename = `guide-v0.${minor}.${patch}.${subpatch}-${date}.tex`;
-                    }
-                } else {
-                    const major = document.getElementById('snapshotMajor').value;
-                    const minor = document.getElementById('snapshotMinor').value;
-                    const patch = document.getElementById('snapshotPatch').value;
-
-                    if (!major || major < 1 || !minor || minor < 0 || !patch || patch < 0) {
-                        errors.push('Invalid version numbers');
-                    } else {
-                        filename = `guide-v${major}.${minor}.${patch}-${date}.tex`;
-                    }
-                }
-
-                if (errors.length > 0 || !filename) {
-                    showValidation(errors.join('\n'), 'snapshotValidationMessage', 'error');
-                    return;
-                }
-
-                lastSnapshotFilename = filename;
-                document.getElementById('snapshotOutput').style.display = 'block';
-                document.getElementById('snapshotOutputFilename').textContent = `📄 Filename: ${filename}`;
-                document.getElementById('snapshotOutputPath').textContent = `📂 Full Path: WIP/GUIDE/${filename}`;
-                document.getElementById('snapshotOutputRegime').textContent = `🏷️ Regime: ${regime === 'prepub' ? 'Pre-Publication (0.x.x.x)' : 'Post-Publication (x.x.x)'}`;
-                showValidation('✅ Snapshot filename generated!', 'snapshotValidationMessage', 'success');
-                logToHistory('Snapshot Generated', filename);
-                updateDashboard();
-                document.getElementById('snapshotCopyBtn').style.display = 'inline-flex';
-                document.getElementById('snapshotCopyPathBtn').style.display = 'inline-flex';
-
-            } catch (error) {
-                showValidation(`Error: ${error.message}`, 'snapshotValidationMessage', 'error');
-            }
-        }
-
-        function copySnapshotFilename() {
-            navigator.clipboard.writeText(lastSnapshotFilename).then(() => {
-                alert('✅ Copied!');
-                logToHistory('Snapshot Copied', lastSnapshotFilename);
-            });
-        }
-
-        function copySnapshotPath() {
-            navigator.clipboard.writeText(`WIP/GUIDE/${lastSnapshotFilename}`).then(() => {
-                alert('✅ Copied!');
-                logToHistory('Snapshot Path Copied', `WIP/GUIDE/${lastSnapshotFilename}`);
-            });
-        }
-
-        // ===== SHARED FUNCTIONS =====
-        function showValidation(message, elementId, type) {
-            const el = document.getElementById(elementId);
-            el.innerHTML = message.replace(/\n/g, '<br>');
-            el.className = `validation-message ${type}`;
-        }
-
-        function logToHistory(action, detail) {
-            const entry = {
-                timestamp: new Date().toISOString(),
-                action,
-                detail
-            };
-            history.unshift(entry);
-            localStorage.setItem('wipHistory', JSON.stringify(history));
-            updateHistoryDisplay();
-        }
-
-        function updateHistoryDisplay() {
-            const list = document.getElementById('historyList');
-            if (history.length === 0) {
-                list.innerHTML = '<p style="color: var(--color-text-secondary); text-align: center; padding: 2rem;">No history yet.</p>';
-                return;
-            }
-            list.innerHTML = history.map(entry => {
-                const time = new Date(entry.timestamp).toLocaleString();
-                return `
-                    <div class="history-item">
-                        <div class="history-time">${time}</div>
-                        <div class="history-action">${entry.action}</div>
-                        <div class="history-details"><code>${entry.detail}</code></div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function clearHistory() {
-            if (confirm('Clear all history?')) {
-                history = [];
-                localStorage.setItem('wipHistory', JSON.stringify(history));
-                updateHistoryDisplay();
-                updateDashboard();
-            }
-        }
-
-        function downloadHistory() {
-            const data = JSON.stringify(history, null, 2);
-            const blob = new Blob([data], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `naming-history-${new Date().toISOString().split('T')[0]}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        function updateDashboard() {
-            document.getElementById('statTotal').textContent = history.length;
-            
-            const wipCount = history.filter(h => h.action.includes('WIP')).length;
-            const snapshotCount = history.filter(h => h.action.includes('Snapshot')).length;
-            document.getElementById('statWIP').textContent = wipCount;
-            document.getElementById('statSnapshots').textContent = snapshotCount;
-
-            const chapters = new Set();
-            history.forEach(h => {
-                const match = h.detail.match(/C(\d)/);
-                if (match) chapters.add(match[1]);
-            });
-            document.getElementById('statChapters').textContent = chapters.size;
-
-            document.getElementById('countChapter').textContent = history.filter(h => h.detail.startsWith('chapter-')).length;
-            document.getElementById('countSection').textContent = history.filter(h => h.detail.startsWith('section-')).length;
-            document.getElementById('countTable').textContent = history.filter(h => h.detail.startsWith('table-')).length;
-            document.getElementById('countPrepub').textContent = history.filter(h => h.detail.includes('v0.')).length;
-            document.getElementById('countPostpub').textContent = history.filter(h => h.detail.match(/v[1-9]\./)).length;
-        }
-
-        function toggleTheme() {
-            const isDark = document.body.classList.toggle('dark-mode');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            document.querySelector('.header-controls button:first-child').textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
-        }
-
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark-mode');
-            document.querySelector('.header-controls button:first-child').textContent = '☀️ Light Mode';
-        }
-
-        updateHistoryDisplay();
-    </script>
+    // Inicialização
+    (function init() {
+      // marcar pill inicial
+      setActiveType("chapter");
+      // data default = hoje
+      const today = new Date();
+      const y = today.getFullYear();
+      const m = String(today.getMonth() + 1).padStart(2, "0");
+      const d = String(today.getDate()).padStart(2, "0");
+      dateEl.value = `${y}-${m}-${d}`;
+      updateFilename();
+    })();
+  </script>
 </body>
 </html>
