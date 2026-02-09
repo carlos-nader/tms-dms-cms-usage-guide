@@ -9,7 +9,7 @@ layout: default
 **Document Version:** PROJECT-TRACKING-v5.0.0  
 **Regime:** Pre-publication (0.x.x.x)  
 **Project Start:** 2026-01-05  
-**Last Updated:** 2026-02-04  
+**Last Updated:** 2026-02-06  
 **Repository:** carlos-nader/tms-dms-cms-usage-guide
 
 This document tracks governance rules, project state, and development history. For detailed file tracking, issue status, and commit history, see [INTEGRATED-FILES.md](../INTEGRATED-FILES.md) (auto-generated).
@@ -37,7 +37,7 @@ This document tracks governance rules, project state, and development history. F
 | Metric | Value |
 |--------|-------|
 | **Guide Version** | v0.3.3.0 |
-| **Phase** | Phase 0 â€” Chapter Scaffolding |
+| **Phase** | Phase 0 — Chapter Scaffolding |
 | **Chapters Planned** | 7 |
 | **Chapters Integrated** | 3/7 (C1, C4, C5) |
 | **Chapters In Development** | 2/7 (C2, C3) |
@@ -69,18 +69,18 @@ Chronological record of significant changes. For detailed commit history, see IN
 | 2026-01-07 | v0.1.4.0 | Layout standard adopted. BRIEFING created. Geometry locked. |
 | 2026-01-11 | v0.2.4.0 | Chapter 5 (CMS) complete. Template-wip-V1.0.tex established. |
 | 2026-01-14 | v0.3.0.0 | **RELEASE:** DMS Sections 4.1 and 4.2 integrated. |
-| 2026-01-18 | v0.3.1.0 | **RELEASE:** Preamble infrastructure upgrade (article â†’ report class). |
+| 2026-01-18 | v0.3.1.0 | **RELEASE:** Preamble infrastructure upgrade (article → report class). |
 | 2026-01-19 | v0.3.2.0 | **RELEASE:** Section 4.3 (DMS Down) integrated. |
 | 2026-01-29 | v0.3.2.1 | **RELEASE:** Hotastable environment upgrade (arraystretch 1.25). |
 | 2026-02-02 | v0.3.3.0 | **RELEASE:** C4 (DMS) complete chapter integrated. C1 (Introduction) revised and integrated. Milestone v0.3.3.0 completed (10/10 issues). |
-| 2026-02-04 | â€” | C3 TMS WIP created. Copilot instructions added. PreÃ¢mbulo improvements and hotastable v2.0 / List of HOTAS Tables implementation guides drafted (Issues #34 and #33). |
+| 2026-02-04 | — | C3 TMS WIP created. Copilot instructions added. Preâmbulo improvements and hotastable v2.0 / List of HOTAS Tables implementation guides drafted (Issues #34 and #33). |
 | 2026-02-06 | — | C2 WIP restarted (deprecated v2026-01-25, v2026-02-06). Issues #33 (hotastable v2 + List of Tables), #34 (preamble improvements), #36 (structural change: DMS↔TMS chapter swap) created. |
 
 ---
 
 ## 4. NEXT TARGETS
 
-### Target 1: Chapter 2 â€” HOTAS Fundamentals â†’ v0.4.0.0 (MINOR)
+### Target 1: Chapter 2 — HOTAS Fundamentals → v0.4.0.0 (MINOR)
 
 | Item | Value |
 |------|-------|
@@ -92,11 +92,11 @@ Chronological record of significant changes. For detailed commit history, see IN
 
 **Content:** SOI concept, short/long press timing, master modes, HOTAS switch categories.
 
-**Next step:** dev â†’ review (Issue #20), then #21 â†’ #22
+**Next step:** dev → review (Issue #20), then #21 → #22
 
 ---
 
-### Target 2: Chapter 4 â€” TMS â†’ v0.5.0.0 (MINOR)
+### Target 2: Chapter 4 — TMS → v0.5.0.0 (MINOR)
 
 | Item | Value |
 |------|-------|
@@ -104,7 +104,7 @@ Chronological record of significant changes. For detailed commit history, see IN
 | **Status** | dev |
 | **Version Bump** | MINOR (new chapter entry) |
 
-**Next step:** Continue development â†’ review
+**Next step:** Continue development → review
 
 ---
 
@@ -133,7 +133,7 @@ The following issues address preamble and table environment enhancements. These 
 
 | Version | Content | Bump Type | Status |
 |---------|---------|-----------|--------|
-| v0.3.3.0 | C4 complete + C1 revision | PATCH | âœ… **Released** |
+| v0.3.3.0 | C4 complete + C1 revision | PATCH | ✅ **Released** |
 | v0.4.0.0 | C2 HOTAS Fundamentals + structural change (DMS↔TMS swap, Issue #36) | MINOR | In progress |
 | v0.5.0.0 | C4 TMS (renumbered from C3) | MINOR | Planned |
 
@@ -143,11 +143,11 @@ The following issues address preamble and table environment enhancements. These 
 
 ### Structural Decisions
 
-**2026-02-02:** C1 revision completed â€” eliminated redundancy, added Claude to AI acknowledgment, simplified license section, added Â§1.4.3 (GitHub as canonical source).
+**2026-02-02:** C1 revision completed — eliminated redundancy, added Claude to AI acknowledgment, simplified license section, added §1.4.3 (GitHub as canonical source).
 
-**2026-02-02:** v0.3.3.0 released â€” C4 and C1 integrated in same release (10 issues closed).
+**2026-02-02:** v0.3.3.0 released — C4 and C1 integrated in same release (10 issues closed).
 
-**2026-02-04:** Implementation guides drafted for preÃ¢mbulo improvements and hotastable v2.0 / List of HOTAS Tables (Issues #34 and #33). Docs: PREAMBLE-IMPROVEMENTS-RECOMMENDATIONS-v1_0, HOTASTABLE-V2-IMPLEMENTATION-GUIDE-v1_0, LIST-OF-TABLES-IMPLEMENTATION-GUIDE-v1_0. C2 workflow tied to Issues #20â€“#22.
+**2026-02-04:** Implementation guides drafted for preâmbulo improvements and hotastable v2.0 / List of HOTAS Tables (Issues #34 and #33). Docs: PREAMBLE-IMPROVEMENTS-RECOMMENDATIONS-v1_0, HOTASTABLE-V2-IMPLEMENTATION-GUIDE-v1_0, LIST-OF-TABLES-IMPLEMENTATION-GUIDE-v1_0. C2 workflow tied to Issues #20–#22.
 
 **2026-02-06:** Issue #36 approved — Chapter reordering: DMS moves from C4 to C3, TMS moves from C3 to C4. Rationale: DMS controls SOI (which display is active), TMS operates through the active display. Pedagogical sequence requires teaching display selection before target manipulation. C2 WIP restarted (previous versions deprecated: 2026-01-25, 2026-02-06). Issues #33 and #34 created for infrastructure improvements (hotastable v2, List of HOTAS Tables, preamble enhancements) — implementation in testing.
 
