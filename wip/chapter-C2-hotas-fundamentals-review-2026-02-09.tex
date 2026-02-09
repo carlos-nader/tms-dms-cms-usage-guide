@@ -431,15 +431,15 @@ These visual cues allow the pilot to confirm at a glance which display is receiv
 \subsection{SOI-Capable Displays and Context Dependency}
 \label{sec:C2-S1-S3}
 
-Not all displays can be designated as SOI, and the availability of SOI designation varies by master mode and display format. The displays capable of being SOI include the HUD, HMCS, and certain MFD formats: Fire Control Radar (FCR), Targeting Pod (TGP), Weapons (WPN), HARM Attack Display (HAD), and Horizontal Situation Display (HSD). Other MFD formats — such as Stores Management System (SMS), Data Transfer Equipment (DTE), TEST, and BLANK formats — are never SOI-capable, as they provide informational or configuration functions rather than sensor control.
+Not all displays can be designated as SOI, and the availability of SOI designation varies by master mode and MFD format.
 
-The availability of SOI designation is further constrained by master mode. In Navigation (NAV) and Air-to-Ground (A-G) master modes, the HUD can be designated as SOI, allowing the pilot to manage HUD symbology and targeting cues directly through HOTAS inputs. In contrast, Air-to-Air (A-A), Dogfight (DGFT), and Missile Override (MSL OVRD) master modes restrict SOI designation to MFD formats only. The HUD cannot be designated as SOI in these air-to-air modes, ensuring that the pilot's primary sensor displays — typically the FCR or HSD — remain the focus of HOTAS control during air-to-air engagements.
+The master mode determines which displays are eligible for SOI designation. In some operational contexts, the HUD can be designated as SOI, allowing the pilot to manage HUD symbology through HOTAS inputs. In other contexts, particularly air-to-air engagements, SOI designation is restricted to MFD formats only. This restriction ensures that primary sensor displays remain the focus of HOTAS control during time-critical tactical situations.
 
-This context-dependent availability reflects a deliberate design choice: master mode determines the operational context, and SOI availability is tailored to align the pilot's attention with the mission phase. Air-to-air modes prioritize radar and tactical displays; air-to-ground and navigation modes allow broader display flexibility, including HUD designation.
+Similarly, not all MFD formats are SOI-capable. Sensor formats that accept targeting and cursor control inputs—such as radar, targeting pod, and weapon displays—can be designated as SOI. Informational or configuration formats that do not require direct sensor interaction cannot be designated as SOI. This design aligns SOI availability with operational function: only displays that benefit from HOTAS cursor and targeting control are SOI-capable.
 
-Understanding which displays can be SOI in which master modes is essential for effective HOTAS use. The pilot must know not only how to designate a display as SOI (covered in Chapter~\ref{chap:C3} on the Display Management Switch), but also whether such designation is permitted in the current operational context.
+Understanding these context dependencies is essential for effective HOTAS use. The pilot must recognize not only how to designate a display as SOI, but also whether such designation is permitted in the current operational context.
 
-For complete operational reference tables showing SOI availability by master mode and the full list of valid and invalid SOI formats, see Chapter~\ref{chap:C3}, Section~\ref{sec:C3-S1}.
+For complete operational reference tables showing SOI availability by master mode and the full list of valid and invalid MFD formats, see Section~\ref{sec:C4-S1}.
 
 %============================================================================
 % SECTION 2.2 — MASTER MODES AND CONTEXT-SENSITIVE BEHAVIOR
@@ -448,7 +448,9 @@ For complete operational reference tables showing SOI availability by master mod
 \section{Master Modes and Context-Sensitive Behavior}
 \label{sec:C2-S2}
 
-Master modes are the highest-level configuration state of the F-16 avionics system. Each master mode pre-configures the cockpit displays, sensor modes, and weapon options for a particular mission phase. The master mode determines which HOTAS functions are available, which displays can be designated as SOI, and how individual switch inputs are interpreted by the avionics suite. Understanding master modes is essential to understanding why HOTAS switches behave differently in different operational contexts.
+Section~\ref{sec:C2-S1} established that SOI designation varies by master mode—some master modes permit HUD as SOI, while others restrict SOI to MFD formats only. This variation reflects a broader principle: master mode is the highest-level configuration state of the F-16 avionics system, determining not only SOI availability but also which HOTAS functions are active and how switch inputs are interpreted.
+
+Each master mode pre-configures the cockpit displays, sensor modes, and weapon options for specific missions and purposes. The master mode determines which displays can be designated as SOI, which HOTAS functions are available, and how individual switch inputs are interpreted by the avionics suite. Understanding master modes is essential to understanding why HOTAS switches behave differently in different operational contexts.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 2.2.1 — MASTER MODE OVERVIEW
@@ -457,7 +459,7 @@ Master modes are the highest-level configuration state of the F-16 avionics syst
 \subsection{Master Mode Overview}
 \label{sec:C2-S2-S1}
 
-The F-16 provides four primary master modes, each optimized for a specific phase of flight or mission objective:
+The F-16 provides three primary Master Modes (NAV, A-A, and A-G) and two override modes (DGFT and MSL OVRD), each optimized for a specific phase of flight or mission objective:
 
 \begin{itemize}
 	\item \textbf{Navigation (NAV):} The default master mode, used for transit, fuel management, and general situational awareness. In NAV, the avionics system prioritizes navigation displays and provides access to both air-to-air and air-to-ground sensors without committing to a specific weapon employment mode.
@@ -466,81 +468,21 @@ The F-16 provides four primary master modes, each optimized for a specific phase
 	
 	\item \textbf{Air-to-Ground (A-G):} Optimizes the cockpit for air-to-ground weapon delivery. A-G mode provides access to ground attack sensors (radar ground modes, targeting pod, HARM attack display), weapon delivery submodes (CCIP, CCRP, DTOS, etc.), and stores management functions. The HUD displays air-to-ground weapon delivery symbology.
 	
-	\item \textbf{Dogfight (DGFT) and Missile Override (MSL OVRD):} These are override modes accessed via a throttle-mounted switch. DGFT immediately configures the cockpit for close-range visual combat, typically defaulting to a high-off-boresight radar mode (ACM) and short-range missile (AIM-9) selection. MSL OVRD provides rapid access to medium-range missile employment (AIM-120) with optimized radar modes. Both override modes take precedence over any other master mode except Emergency Jettison.
+	\item \textbf{Dogfight (DGFT) and Missile Override (MSL OVRD):} These are override 	modes accessed via a throttle-mounted switch. Both are optimized for air-to-air engagements, similar to the A-A Master Mode, but provide immediate access to specific weapon configurations. DGFT configures the cockpit for close-range visual combat, typically defaulting to a high-off-boresight radar mode (ACM) and short-range missile (AIM-9) selection. MSL OVRD provides rapid access to medium-range missile employment (AIM-120) with optimized radar modes. Both override modes take precedence over any other master mode except Emergency Jettison.
 \end{itemize}
 
-Each master mode establishes default configurations for sensors, displays, and weapons. These defaults can be pre-programmed via the Data Transfer Cartridge (DTC) during mission planning or adjusted manually during flight. The master mode determines not only what the pilot sees on the displays, but also how HOTAS switches function. A single HOTAS input — such as TMS Up — produces different results in NAV, A-A, and A-G modes because the underlying sensor and weapon context has changed.
+Each master mode establishes default configurations for sensors, displays, and weapons. These defaults can be pre-programmed via the Data Transfer Cartridge (DTC) during mission planning or adjusted manually during flight, as detailed in Section~\ref{sec:C4-S4-S2}. The master mode determines not only what the pilot sees on the displays, but also how HOTAS switches function. A single HOTAS input — such as TMS Up — produces different results in NAV, A-A, and A-G modes because the underlying sensor and weapon context has changed. For complete master mode details, see \dashref{2.1.1.2.1}
 
 %--------------------------------------------------------------------------
-% SUBSECTION 2.2.2 — MASTER MODE SELECTION
-%--------------------------------------------------------------------------
-
-\subsection{Master Mode Selection}
-\label{sec:C2-S2-S2}
-
-Master mode selection is designed for rapid reconfiguration with minimal pilot workload. The pilot can transition between master modes using dedicated switches on the Integrated Control Panel (ICP) or the throttle grip.
-
-\textbf{Navigation (NAV)} is the default master mode and requires no explicit selection. If no other master mode is active, the avionics system operates in NAV. The pilot can return to NAV from A-A or A-G by ensuring the DGFT/MSL OVRD switch on the throttle is in the center (neutral) position and that no other master mode button is pressed.
-
-\textbf{Air-to-Air (A-A)} is selected by pressing the \textbf{A-A button} on the ICP. Once selected, A-A mode remains active until the pilot selects a different master mode or returns the DGFT/MSL OVRD switch to center after an override mode engagement.
-
-\textbf{Air-to-Ground (A-G)} is selected by pressing the \textbf{A-G button} on the ICP. As with A-A, the mode persists until changed by the pilot.
-
-\textbf{Dogfight (DGFT)} is selected by moving the \textbf{DGFT/MSL OVRD switch} on the throttle grip to the \textit{left (outward)} position. This immediately overrides the current master mode and reconfigures the cockpit for visual combat. When the switch is returned to the center position, the avionics system reverts to the previously selected master mode (A-A, A-G, or NAV).
-
-\textbf{Missile Override (MSL OVRD)} is selected by moving the \textbf{DGFT/MSL OVRD switch} to the \textit{right (inward)} position. This provides immediate access to medium-range missile employment. Returning the switch to center restores the previous master mode.
-
-Table~\ref{tab:C2-master-mode-selection} summarizes the master mode selection controls.
-
-\small
-\renewcommand{\arraystretch}{1.2}
-
-\begin{longtable}{L{4.5cm} L{4.0cm} L{5.5cm}}
-	\caption{Master Mode Selection\label{tab:C2-master-mode-selection}}\\
-	
-	\rowcolor{headerblue}
-	\textbf{\color{white}Master Mode} & \textbf{\color{white}Switch Location} & \textbf{\color{white}Switch Position / Action} \\
-	\endfirsthead
-	
-	\rowcolor{headerblue}
-	\textbf{\color{white}Master Mode} & \textbf{\color{white}Switch Location} & \textbf{\color{white}Switch Position / Action} \\
-	\endhead
-	
-	\multicolumn{3}{r}{\emph{Continues on next page}}\\
-	\endfoot
-	
-	\endlastfoot
-	
-	NAV (Navigation) & Default & No explicit selection required \\
-	A-A (Air-to-Air) & ICP & Press A-A button \\
-	A-G (Air-to-Ground) & ICP & Press A-G button \\
-	DGFT (Dogfight) & Throttle & DGFT/MSL OVRD switch left (outward) \\
-	MSL OVRD (Missile Override) & Throttle & DGFT/MSL OVRD switch right (inward) \\
-\end{longtable}
-
-\normalsize
-\renewcommand{\arraystretch}{1.0}
-
-The DGFT and MSL OVRD modes take precedence over A-A, A-G, and NAV, but do not override Emergency Jettison. This priority structure ensures that time-critical defensive or offensive actions can be executed immediately without navigating through multiple menu selections or button presses.
-
-%--------------------------------------------------------------------------
-% SUBSECTION 2.2.3 — WHY HOTAS SWITCHES BEHAVE DIFFERENTLY BY MASTER MODE
+% SUBSECTION 2.2.2 — WHY HOTAS SWITCHES BEHAVE DIFFERENTLY BY MASTER MODE
 %--------------------------------------------------------------------------
 
 \subsection{Why HOTAS Switches Behave Differently by Master Mode}
-\label{sec:C2-S2-S3}
+\label{sec:C2-S2-S2}
 
-The context-sensitive design of HOTAS switches is a fundamental characteristic of the F-16 cockpit architecture. The same physical switch action produces different results depending on the master mode, the sensor mode, and the weapon selected. This design philosophy prioritizes pilot workload reduction: rather than requiring the pilot to select different switches for different tasks, the same switches adapt their behavior based on the current operational context.
+HOTAS switches behave differently by master mode because the master mode determines the operational context. A single physical switch action—such as TMS Up—must support different tactical functions depending on whether the pilot is navigating, engaging an air target, or delivering ordnance to ground. Rather than require separate switches for each function, the F-16 design uses master mode to reinterpret the same switch input based on the current mission phase. This context-sensitive architecture enables a limited number of HOTAS controls to perform a wide range of mission-critical tasks.
 
-Consider the Display Management Switch (DMS) Up command. In Navigation or Air-to-Ground master modes, pressing DMS Up designates the HUD as the Sensor of Interest, allowing the pilot to manage HUD symbology and targeting cues through HOTAS inputs. In Air-to-Air master modes, however, DMS Up has no effect — the HUD cannot be designated as SOI in A-A operations. The master mode determines whether the command is valid.
-
-Similarly, the Target Management Switch (TMS) behavior varies by both master mode and which display is SOI. When the Fire Control Radar (FCR) is SOI in Air-to-Air mode, TMS Up commands a target designation, locking the radar onto a search contact. When the Targeting Pod (TGP) is SOI in Air-to-Ground mode, TMS Up may break an existing track or establish a cursor zero point, depending on the A-G submode. The physical switch action is identical, but the operational context — master mode, sensor mode, and SOI designation — determines the function executed.
-
-This context-sensitivity extends to all three primary HOTAS switches covered in this guide. The DMS manages SOI selection and MFD format cycling, but the availability of certain SOI designations and format options depends on master mode. The TMS executes target management and designation functions, but those functions are interpreted differently by the FCR, TGP, WPN page, and other sensors. The Countermeasures Management Switch (CMS) operates relatively independently of SOI, but its interaction with the Countermeasures Dispenser System (CMDS) and Electronic Countermeasures (ECM) pod still varies by operational context and threat environment.
-
-The pilot must be aware of the current master mode to predict HOTAS behavior. This awareness is not an additional cognitive burden — the master mode is a natural reflection of the mission phase. A pilot in Air-to-Air mode expects air-to-air HOTAS functions; a pilot in Air-to-Ground mode expects air-to-ground HOTAS functions. The master mode provides the contextual framework within which HOTAS inputs are interpreted, enabling a small number of switches to perform a wide range of mission-critical tasks.
-
-Understanding this principle is essential for effective use of the detailed HOTAS tables and procedures in Chapters~\ref{chap:C3}, \ref{chap:C4}, and \ref{chap:C5}. Those chapters document the specific functions of DMS, TMS, and CMS in various master modes, sensor modes, and weapon configurations. The conceptual foundation established here — that master mode determines context, and context determines function — is the organizing principle behind those detailed references.
+The pilot must be aware of the current master mode to predict HOTAS behavior. This awareness is not an additional cognitive burden—the master mode is a natural reflection of the mission phase. The principle that master mode determines context, and context determines function, is the organizing principle behind the detailed HOTAS tables and procedures in Chapters~\ref{chap:C3}, \ref{chap:C4}, and \ref{chap:C5}. Those chapters document the specific functions of DMS, TMS, and CMS in various master modes, sensor modes, and weapon configurations.
 
 %============================================================================
 % SECTION 2.3 — THE THREE SWITCHES: DMS, TMS, AND CMS

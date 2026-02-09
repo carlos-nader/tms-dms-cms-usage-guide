@@ -1,9 +1,57 @@
 # Chapter Structure Reorganization and C2 Integration Plan
 
 **Document Type:** Structural Change Specification  
-**Version:** 1.0  
-**Date:** 2026-02-06  
+**Version:** 1.1  
+**Date:** 2026-02-09 (Updated from v1.0 2026-02-06)  
 **Scope:** Chapter reordering (DMS ↔ TMS) + SOI redistribution (C4 → C2) + C2 writing plan
+
+**Change Log v1.0 → v1.1:**
+
+This version updates the specification to reflect actual implementation decisions made during C2 development (2026-02-06 to 2026-02-09). All changes documented below are based on comparison between original spec and final implemented text in `chapter-C2-hotas-fundamentals-review-2026-02-09.tex`.
+
+**Major Structural Changes:**
+- Section 2.2.2 "Master Mode Selection" was REMOVED (out of scope)
+- Section 2.2.3 renumbered to 2.2.2
+- Section 2.2 gained introductory paragraphs linking to Section 2.1
+
+**Section 3.2 — C3:S1 Refactoring:**
+- Updated NEW opening text to preserve "at any moment, only one display" (operationally relevant)
+- Updated visual indicators handling (condense to one sentence with C2 forward ref, not complete removal)
+- Updated lines to CUT (extended rationale lines 665-669 → forward ref to C2:S1.3)
+- Updated estimated length (~90-100 lines, cutting ~35-40 instead of ~25-30)
+
+**Section 4.2 — C2:S1 (SOI Concept):**
+- 2.1.1: Updated length estimate (~20 lines, not ~15-20) and implementation notes
+- 2.1.2: Confirmed itemized list format (not pure paragraph text)
+- 2.1.3: Changed approach from "explicit acronym lists" to "generic categories"
+  - Removed: "FCR, TGP, WPN, HAD, HSD, HUD/HMCS" explicit listing
+  - Added: "sensor formats vs informational formats" conceptual categories
+  - Updated length (~15-20 lines, not ~25-30)
+  - Added implementation approach (4 paragraphs structure)
+  - Updated forward reference wording
+
+**Section 4.3 — C2:S2 (Master Modes):**
+- Added Section 2.2 introduction specification (NEW, ~10 lines, 2 paragraphs)
+- 2.2.1: Changed "four primary modes" to "three primary + two override"
+- 2.2.1: Added content (DTC programming, priority hierarchy, Dash-34 ref)
+- 2.2.1: Updated length (~30-35 lines, not ~20-25)
+- 2.2.1: Changed format (itemized list with paragraphs, not pure text)
+- 2.2.2: Marked as REMOVED with rationale
+- 2.2.3 → 2.2.2: Renumbered due to 2.2.2 removal
+- 2.2.2 (ex-2.2.3): Simplified from example-driven to principle-driven
+- 2.2.2 (ex-2.2.3): Updated length (~15 lines, not ~30-40)
+- 2.2.2 (ex-2.2.3): Removed specific DMS/TMS examples (moved to C3/C4)
+
+**Section 4.5 — Total C2 Length:**
+- Updated total estimate (150-185 lines, down from 165-210)
+- Updated Section 2.2 estimate (55-65 lines, down from 70-90)
+- Added note explaining reduction (2.2.2 removal + 2.2.3 simplification)
+
+**Section 6 — Style Guidelines:**
+- Added "Avoid exhaustive acronym lists in conceptual sections"
+
+**Section 7 — Implementation Checklist:**
+- Phase 2: Updated status (C2 generated, reviewed, revised; integration pending)
 
 ---
 
@@ -24,21 +72,21 @@ This document specifies:
 ### 2.1 Current Structure (Before Change)
 
 ```
-Chapter 1 — Introduction
-Chapter 2 — HOTAS Fundamentals (NOT YET WRITTEN)
-Chapter 3 — TMS (Target Management Switch) (NOT YET WRITTEN)
-Chapter 4 — DMS (Display Management Switch) (INTEGRATED)
-Chapter 5 — CMS (Countermeasures Management Switch) (INTEGRATED)
+Chapter 1 – Introduction
+Chapter 2 – HOTAS Fundamentals (NOT YET WRITTEN)
+Chapter 3 – TMS (Target Management Switch) (NOT YET WRITTEN)
+Chapter 4 – DMS (Display Management Switch) (INTEGRATED)
+Chapter 5 – CMS (Countermeasures Management Switch) (INTEGRATED)
 ```
 
 ### 2.2 New Structure (After Change)
 
 ```
-Chapter 1 — Introduction
-Chapter 2 — HOTAS Fundamentals (TO BE WRITTEN)
-Chapter 3 — DMS (Display Management Switch) (RENUMBERED FROM C4)
-Chapter 4 — TMS (Target Management Switch) (TO BE WRITTEN)
-Chapter 5 — CMS (Countermeasures Management Switch) (NO CHANGE)
+Chapter 1 – Introduction
+Chapter 2 – HOTAS Fundamentals (TO BE WRITTEN)
+Chapter 3 – DMS (Display Management Switch) (RENUMBERED FROM C4)
+Chapter 4 – TMS (Target Management Switch) (TO BE WRITTEN)
+Chapter 5 – CMS (Countermeasures Management Switch) (NO CHANGE)
 ```
 
 ### 2.3 Renumbering Tasks (Manual Execution by Carlos)
@@ -94,16 +142,16 @@ Chapter 5 — CMS (Countermeasures Management Switch) (NO CHANGE)
 
 ### 3.2 New Distribution
 
-#### C2:S1 (New — Conceptual Foundation Only)
+#### C2:S1 (New – Conceptual Foundation Only)
 
-**Section:** 2.1 Sensor of Interest (SOI) — Concept and Architecture
+**Section:** 2.1 Sensor of Interest (SOI) – Concept and Architecture
 
 **What goes in C2:S1:**
 - SOI definition (HOTAS input routing)
 - Why SOI exists (single control point)
 - Visual indicators (asterisk, box, NOT SOI text)
-- Which displays can be SOI (conceptual list)
-- Context dependency concept (varies by master mode)
+- Which displays can be SOI (conceptual categories, not exhaustive lists)
+- Context dependency concept (varies by master mode and MFD format)
 - Forward reference to C3 for tables and operational details
 
 **Format:** Pure text, NO tables, NO diagrams
@@ -112,7 +160,7 @@ Chapter 5 — CMS (Countermeasures Management Switch) (NO CHANGE)
 
 ---
 
-#### New C3:S1 (Refactored — Operational Reference)
+#### New C3:S1 (Refactored – Operational Reference)
 
 **Refactoring needed in C3:S1.1 (subsection "SOI Definition and Master Mode Availability"):**
 
@@ -131,14 +179,16 @@ The availability of displays as valid SOI varies by master mode...
 
 **NEW opening (REPLACE above text with this):**
 ```latex
-As introduced in Chapter~\ref{chap:C2}, the Sensor of Interest (SOI) is the 
-display that currently receives HOTAS cursor slew commands and TMS actions. 
-The availability of displays as valid SOI varies by master mode (see 
-Section~\ref{sec:C2-S1} for conceptual overview). 
+As introduced in Chapter~\ref{chap:C2}, the Sensor of Interest (SOI) is the display 
+that currently receives HOTAS cursor slew commands and TMS actions. At any moment, 
+only one display can be the SOI. The SOI is indicated visually by an asterisk on the 
+HUD or a border outline on the MFD (see Section~\ref{sec:C2-S1-S2} for complete details).
 
-Table~\ref{tab:C3-S1-SOI-by-mode} below provides the complete operational 
-reference for DMS selection, showing precisely which displays can be designated 
-as SOI in each master mode.
+The availability of displays as valid SOI varies by master mode (see 
+Section~\ref{sec:C2-S1-S3} for the conceptual rationale behind these restrictions). 
+Table~\ref{tab:C3-S1-SOI-by-mode} below provides the complete operational reference 
+for DMS selection, showing precisely which displays can be designated as SOI in each 
+master mode.
 ```
 
 **What to KEEP in C3:S1:**
@@ -148,10 +198,19 @@ as SOI in each master mode.
 - ✅ Subsection 4.1.3 "HUD as SOI in A-A and HMCS" (unchanged)
 
 **What to CUT/CONDENSE:**
-- ❌ Lines 629-634: Full definition of SOI → replace with C2 reference (see NEW opening above)
-- ❌ Lines 665-669: Extended "why SOI varies" discussion → condense to 1-2 sentences
+- ❌ Lines 629: Full definition of SOI → replace with C2 reference (see NEW opening above)
+- ✅ Lines 629-630: "At any moment, only one display" → KEEP (operationally relevant)
+- ⚠️ Lines 631-634: Visual indicators → CONDENSE to one sentence with C2 forward reference
+- ❌ Lines 665-669: Extended "why SOI varies" discussion → condense to forward reference
 
-**Estimated new length:** ~100-110 lines (cut ~25-30 lines)
+**NEW condensed rationale (replace lines 665-669):**
+```latex
+Table~\ref{tab:C4-S1-SOI-by-mode} shows which displays can be designated as SOI in 
+each master mode. For the conceptual rationale behind these restrictions, see 
+Section~\ref{sec:C2-S1-S3}.
+```
+
+**Estimated new length:** ~90-100 lines (cut ~35-40 lines)
 
 ---
 
@@ -160,29 +219,31 @@ as SOI in each master mode.
 ### 4.1 Approved Structure
 
 ```
-Chapter 2 — HOTAS Fundamentals
+Chapter 2 – HOTAS Fundamentals
 
-2.1 Sensor of Interest (SOI) — Concept and Architecture
+2.1 Sensor of Interest (SOI) – Concept and Architecture
     2.1.1 The SOI Concept
     2.1.2 SOI Indicators and Visual Feedback
     2.1.3 SOI-Capable Displays and Context Dependency
 
 2.2 Master Modes and Context-Sensitive Behavior
     2.2.1 Master Mode Overview
-    2.2.2 Master Mode Selection
-    2.2.3 Why HOTAS Switches Behave Differently by Master Mode
+    2.2.2 Why HOTAS Switches Behave Differently by Master Mode
 
 2.3 The Three Switches: DMS, TMS, and CMS
-    2.3.1 Display Management Switch (DMS) — Overview
-    2.3.2 Target Management Switch (TMS) — Overview
-    2.3.3 Countermeasures Management Switch (CMS) — Overview
+    2.3.1 Display Management Switch (DMS) – Overview
+    2.3.2 Target Management Switch (TMS) – Overview
+    2.3.3 Countermeasures Management Switch (CMS) – Overview
 ```
 
-**Note:** Section 2.3 presents switches in NEW chapter order (DMS → TMS → CMS)
+**Note:** 
+- Section 2.2.2 "Master Mode Selection" was REMOVED (out of scope for TMS/DMS/CMS guide)
+- Section 2.2.3 renumbered to 2.2.2
+- Section 2.3 presents switches in NEW chapter order (DMS → TMS → CMS)
 
 ---
 
-### 4.2 Section 2.1 — SOI Concept and Architecture
+### 4.2 Section 2.1 – SOI Concept and Architecture
 
 #### 2.1.1 The SOI Concept
 
@@ -193,15 +254,21 @@ Chapter 2 — HOTAS Fundamentals
 - Architectural principle: SOI manages WHERE inputs go, not WHAT they do
 
 **Key points:**
-- SOI is routing mechanism, not a sensor itself
+- SOI is designation/routing mechanism, not a sensor itself
 - Enables one set of controls to manage multiple sensors
 - Essential for understanding DMS and TMS behavior
 
 **Source:** Dash-34 Section 2.1.1.2.3
 
-**Length:** ~15-20 lines
+**Length:** ~20 lines (4 paragraphs)
 
 **Format:** Pure text
+
+**Implementation notes:**
+- First paragraph introduces HUD and two MFDs explicitly
+- Second paragraph defines SOI and "only one display" rule
+- Third paragraph explains WHERE vs WHAT principle
+- Fourth paragraph states HOTAS philosophy
 
 ---
 
@@ -210,7 +277,7 @@ Chapter 2 — HOTAS Fundamentals
 **Content:**
 - **HUD as SOI:** Asterisk (*) in upper left corner
 - **MFD as SOI:** Border outline around display edges
-- **NOT SOI:** Text appears on capable formats that aren't currently SOI
+- **NOT SOI:** Text appears on SOI-capable sensor formats
 
 **Key points:**
 - Visual feedback is immediate and unambiguous
@@ -218,115 +285,165 @@ Chapter 2 — HOTAS Fundamentals
 
 **Source:** Dash-34 Sections 2.1.1.2.3, 2.1.6.3
 
-**Length:** ~10-15 lines
+**Length:** ~12 lines
 
-**Format:** Pure text
+**Format:** Itemized list with introductory/closing paragraphs
 
 ---
 
 #### 2.1.3 SOI-Capable Displays and Context Dependency
 
 **Content:**
-- SOI-capable displays: FCR, TGP, WPN, HAD, HSD, HUD/HMCS
+- SOI-capable displays: Conceptual categories (sensor formats vs informational formats)
 - Context dependency: not all displays valid in all master modes
-  - Example: HUD can be SOI in NAV/A-G, NOT in A-A/DGFT
-  - Example: Some formats (SMS, DTE, TEST) never SOI-capable
-- Rationale: restrictions align pilot attention with operational context
+  - Rationale: Master mode restrictions align pilot attention with mission phase
+  - Rationale: Format restrictions align SOI with operational function
+- Forward reference to C3 for complete tables
 
 **Key points:**
 - Provide conceptual understanding, not exhaustive tables
-- Explain restrictions exist and why
-- Forward reference to C3 for complete tables
+- Explain restrictions exist and why (master mode AND MFD format dependencies)
+- No explicit acroyms lists (FCR, TGP, etc.) — use generic categories instead
 
 **Source:** Dash-34 Sections 2.1.1.2.3, 2.1.6.3
 
-**Length:** ~25-30 lines
+**Length:** ~15-20 lines (4 paragraphs)
 
-**Format:** Pure text, NO tables
+**Format:** Pure text, NO tables, NO exhaustive acronym lists
 
-**Example forward reference:**
-```
-For complete tables showing SOI availability by master mode and valid SOI 
-formats, see Chapter~\ref{chap:C3}, Section~\ref{sec:C3-S1}.
+**Implementation approach:**
+- First paragraph: States two dependencies (master mode, MFD format)
+- Second paragraph: Master mode dependency (HUD allowed in some contexts, not others)
+- Third paragraph: MFD format dependency (sensor formats vs informational formats)
+- Fourth paragraph: Forward reference to C3
+
+**Forward reference:**
+```latex
+For complete operational reference tables showing SOI availability by master mode 
+and the full list of valid and invalid MFD formats, see Chapter~\ref{chap:C3}, 
+Section~\ref{sec:C3-S1}.
 ```
 
 ---
 
-### 4.3 Section 2.2 — Master Modes and Context-Sensitive Behavior
+### 4.3 Section 2.2 – Master Modes and Context-Sensitive Behavior
+
+#### Section 2.2 Introduction (NEW)
+
+**Content:**
+- Link to Section 2.1 (SOI varies by master mode)
+- Establish master mode as broader principle
+- Master mode determines SOI availability, HOTAS functions, switch interpretation
+- Pre-configures displays, sensors, weapons for mission phases
+
+**Length:** ~10 lines (2 paragraphs)
+
+**Format:** Pure text
+
+**Implementation text:**
+```latex
+\section{Master Modes and Context-Sensitive Behavior}
+\label{sec:C2-S2}
+
+Section~\ref{sec:C2-S1} established that SOI designation varies by master mode—some 
+master modes permit HUD as SOI, while others restrict SOI to MFD formats only. This 
+variation reflects a broader principle: master mode is the highest-level configuration 
+state of the F-16 avionics system, determining not only SOI availability but also which 
+HOTAS functions are active and how switch inputs are interpreted.
+
+Each master mode pre-configures the cockpit displays, sensor modes, and weapon options 
+for specific mission phases. The master mode determines which displays can be designated 
+as SOI, which HOTAS functions are available, and how individual switch inputs are 
+interpreted by the avionics suite. Understanding master modes is essential to understanding 
+why HOTAS switches behave differently in different operational contexts.
+```
+
+---
 
 #### 2.2.1 Master Mode Overview
 
 **Content:**
-- Four primary modes: NAV, A-A, A-G, DGFT/MSL OVRD
+- Three primary Master Modes: NAV, A-A, A-G
+- Two override modes: DGFT, MSL OVRD
 - Purpose: pre-configure avionics for mission phase
 - Each mode sets default sensors, displays, weapons
 - Master mode = highest-level context for HOTAS behavior
+- DTC programming and manual adjustment
+- Priority hierarchy (DGFT/MSL OVRD > NAV/A-A/A-G; Emergency Jettison > all)
+- Reversion behavior (switch to center → previous mode)
+- Dash-34 reference for complete details
 
 **Source:** Dash-34 Section 2.1.1.2.1
 
-**Length:** ~20-25 lines
+**Length:** ~30-35 lines
 
-**Format:** Pure text
+**Format:** Itemized list with introductory/closing paragraphs
+
+**Additions implemented:**
+- DGFT/MSL OVRD described as "similar to A-A Master Mode" with specific weapon configs
+- Default configurations via DTC
+- Priority hierarchy explanation
+- Reversion behavior (switch to center → previous mode)
+- Forward reference: `\dashref{2.1.1.2.1}`
+
+**Implementation notes:**
+- Opening sentence distinguishes "three primary" vs "two override"
+- Each mode described in itemized list
+- DGFT/MSL OVRD item includes "similar to A-A Master Mode" language
+- Closing paragraph mentions DTC, context-sensitivity, example (TMS Up varies by mode)
 
 ---
 
 #### 2.2.2 Master Mode Selection
 
-**Content:**
-- NAV: Default (no explicit selection)
-- A-A: ICP A-A button
-- A-G: ICP A-G button
-- DGFT: Throttle switch left/outward
-- MSL OVRD: Throttle switch right/inward
+**Status:** REMOVED — out of scope for TMS/DMS/CMS guide.
 
-**Key points:**
-- Single switch action for rapid reconfiguration
-- DGFT/MSL OVRD override other modes (except Emergency Jettison)
-- Returning switch to center restores previous mode
+**Rationale:** Master mode selection uses ICP buttons (not HOTAS switches). This guide 
+focuses exclusively on TMS, DMS, and CMS behavior. Selection mechanics are covered in 
+BMS User Manual.
 
-**Source:** Dash-34 Section 2.1.1.2.1 (table)
-
-**Length:** ~20-25 lines
-
-**Format:** Text with optional small table
-
-**Optional table:**
-| Master Mode | Switch Location | Switch Position |
-|-------------|-----------------|-----------------|
-| NAV | Default | — |
-| A-A | ICP | A-A button |
-| A-G | ICP | A-G button |
-| DGFT | Throttle | Left/outward |
-| MSL OVRD | Throttle | Right/inward |
+**Content incorporated into 2.2.1:** Priority hierarchy and reversion behavior mentioned 
+briefly in final paragraph of Master Mode Overview.
 
 ---
 
-#### 2.2.3 Why HOTAS Switches Behave Differently by Master Mode
+#### 2.2.2 Why HOTAS Switches Behave Differently by Master Mode (renumbered from 2.2.3)
 
 **Content:**
 - HOTAS switches (TMS, DMS, CMS) are context-sensitive
-- Same switch action → different results in different modes
-- Examples:
-  - DMS Up in NAV/A-G: designates HUD as SOI
-  - DMS Up in A-A: no effect (HUD can't be SOI in A-A)
-  - TMS Up varies by SOI and mode
+- Rationale: Single switch supports different tactical functions
+- Design choice: Master mode reinterprets same input based on mission phase
+- Benefit: Limited HOTAS controls perform wide range of tasks
+- Pilot awareness requirement (not cognitive burden)
+- Forward reference to C3/C4/C5 for detailed tables
 
 **Key points:**
 - Context-sensitivity is by design
 - Master mode determines context → context determines function
 - Pilot must know current mode to predict HOTAS behavior
+- Awareness is not cognitive burden (natural reflection of mission phase)
 
 **Source:** Dash-34 Section 2.1.5, various sensor sections
 
-**Length:** ~30-40 lines
+**Length:** ~15 lines (2 paragraphs)
 
-**Format:** Pure text
+**Format:** Two paragraphs (principle explanation + forward reference)
+
+**Approach:** Principle-driven (conceptual foundation only)
+
+**Rationale for simplification:** Detailed examples belong in C3/C4/C5. C2 establishes 
+conceptual foundation only.
+
+**Implementation notes:**
+- First paragraph: WHY switches behave differently (master mode = operational context)
+- Second paragraph: Pilot awareness + forward reference to detailed chapters
+- No specific examples (DMS Up, TMS Up variations) — those go in C3/C4
 
 ---
 
-### 4.4 Section 2.3 — The Three Switches
+### 4.4 Section 2.3 – The Three Switches
 
-#### 2.3.1 Display Management Switch (DMS) — Overview
+#### 2.3.1 Display Management Switch (DMS) – Overview
 
 **Content:**
 - Four-way spring-loaded switch on stick
@@ -347,7 +464,7 @@ actions itself. Detailed DMS functionality is in Chapter~\ref{chap:C3}.
 
 ---
 
-#### 2.3.2 Target Management Switch (TMS) — Overview
+#### 2.3.2 Target Management Switch (TMS) – Overview
 
 **Content:**
 - Four-way spring-loaded switch on throttle
@@ -369,7 +486,7 @@ A-G submode. Detailed TMS functionality is in Chapter~\ref{chap:C4}.
 
 ---
 
-#### 2.3.3 Countermeasures Management Switch (CMS) — Overview
+#### 2.3.3 Countermeasures Management Switch (CMS) – Overview
 
 **Content:**
 - Four-way spring-loaded switch on throttle
@@ -391,14 +508,18 @@ warnings. Detailed CMS functionality is in Chapter~\ref{chap:C5}.
 
 ---
 
-### 4.5 Total C2 Estimated Length
+### 4.5 Total C2 Estimated Length (Updated)
 
 | Section | Lines | Compiled Pages |
 |---------|-------|----------------|
 | 2.1 SOI | 50-60 | ~1.5-2 |
-| 2.2 Master Modes | 70-90 | ~2-2.5 |
+| 2.2 Master Modes | 55-65 (reduced from 70-90) | ~2 |
 | 2.3 Three Switches | 45-60 | ~1.5-2 |
-| **Total** | **165-210** | **~5-6.5** |
+| **Total** | **150-185** | **~5-6** |
+
+**Note:** Total reduced from original estimate (165-210 lines) due to:
+- Removal of 2.2.2 Master Mode Selection (~20-25 lines)
+- Simplification of 2.2.3 → 2.2.2 (~30-40 lines → ~15 lines)
 
 ---
 
@@ -448,6 +569,7 @@ how to designate FCR as SOI via DMS), TMS Up commands target designation...
 - Precise, consistent terminology
 - Acronyms defined on first use
 - Dash-34 references where appropriate
+- Avoid exhaustive acronym lists in conceptual sections
 
 ### LaTeX Formatting
 - `\textbf{}` for key terms/labels
@@ -467,11 +589,11 @@ how to designate FCR as SOI via DMS), TMS Up commands target designation...
 - [ ] Compile and verify all refs work
 - [ ] Update PROJECT-TRACKING if needed
 
-### Phase 2: C2 Writing (AI)
-- [ ] Generate C2 LaTeX following this spec
-- [ ] Carlos reviews C2 content
-- [ ] Revisions if needed
-- [ ] Integration into guide.tex
+### Phase 2: C2 Writing (AI + Carlos)
+- [x] Generate C2 LaTeX following this spec
+- [x] Carlos reviews C2 content
+- [x] Revisions applied
+- [ ] Integration into guide.tex (pending)
 
 ### Phase 3: C3 Refactoring (AI + Carlos)
 - [ ] AI generates refactored C3:S1 opening text
