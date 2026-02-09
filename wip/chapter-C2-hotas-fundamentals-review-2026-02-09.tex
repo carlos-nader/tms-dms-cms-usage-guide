@@ -390,7 +390,7 @@ behavior covered in Chapters~\ref{chap:C3}, \ref{chap:C4}, and \ref{chap:C5}.
 \section{Sensor of Interest (SOI) — Concept and Architecture}
 \label{sec:C2-S1}
 
-The Sensor of Interest (SOI) is the architectural mechanism that routes HOTAS cursor slew commands and certain switch inputs to a specific display or sensor. At any moment, only one display can hold SOI designation. This single-point control architecture allows one set of physical switches to manage multiple displays and sensors without requiring the pilot to select different controls for different tasks.
+The Sensor of Interest (SOI) is a designation that identifies which display currently receives HOTAS cursor slew commands and Target Management Switch (TMS) inputs. At any moment, only one display can hold SOI designation. This single-point control architecture enables the pilot to interact with multiple sensors and displays using HOTAS controls without manually selecting different switches for different sensors.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 2.1.1 — THE SOI CONCEPT
@@ -399,13 +399,13 @@ The Sensor of Interest (SOI) is the architectural mechanism that routes HOTAS cu
 \subsection{The SOI Concept}
 \label{sec:C2-S1-S1}
 
-The F-16 cockpit contains multiple displays capable of presenting sensor video, tactical information, and weapon data: the Head-Up Display (HUD), Helmet Mounted Cueing System (HMCS), and two Multifunction Displays (MFDs). Each MFD can show various formats such as Fire Control Radar (FCR), Targeting Pod (TGP), Weapons (WPN), HARM Attack Display (HAD), and Horizontal Situation Display (HSD). The pilot interacts with these displays using HOTAS controls, particularly the cursor slew control (CURSOR/ENABLE) and the Target Management Switch (TMS).
+The F-16 cockpit contains three basic displays: the Head-Up Display (HUD) and two Multifunction Displays (MFD). The MFD can present various formats or pages, including radar, targeting pod, weapon management and tactical information. The pilot interacts with these displays through HOTAS controls, particularly the cursor slew control (CURSOR/ENABLE) and the Target Management Switch (TMS).
 
-The SOI designation determines \textit{which display or sensor} currently receives these HOTAS inputs. When the pilot slews the cursor or presses TMS Up, the command is routed to whichever display is designated as SOI. This routing architecture serves a critical function: it enables a single set of controls to manage multiple sensors without requiring the pilot to physically reach for different switches or buttons depending on which sensor is in use.
+The Sensor of Interest (SOI) is the designation that identifies which display currently receives HOTAS inputs. At any moment, only one display holds SOI designation. When the pilot slews the cursor or presses TMS Up, the command is directed to whichever display is designated as SOI.
 
-The SOI mechanism manages \textit{where} HOTAS inputs are directed, not \textit{what} those inputs do. The specific function of a HOTAS input — for example, whether TMS Up designates a target, breaks a track, or cycles through a mode — depends on the sensor mode, master mode, and weapon selected. The SOI simply ensures that the input reaches the correct display.
+The SOI mechanism manages \textit{where} HOTAS inputs are directed, not \textit{what} those inputs do. The specific function of a HOTAS input — for example, whether TMS Up designates a target, breaks a track, or cycles through a mode — depends on the sensor mode, current Master Mode, and weapon selected. The SOI ensures that the input reaches the intended sensor; the sensor determines how the input is interpreted.
 
-This design reflects the HOTAS philosophy: minimize pilot workload by consolidating control inputs through a limited number of switches while preserving the flexibility to interact with any sensor or display as needed.
+This design reflects the HOTAS philosophy: minimize pilot workload by consolidating control inputs through a limited number of switches while preserving the flexibility to interact with any sensor as needed.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 2.1.2 — SOI INDICATORS AND VISUAL FEEDBACK
@@ -414,12 +414,12 @@ This design reflects the HOTAS philosophy: minimize pilot workload by consolidat
 \subsection{SOI Indicators and Visual Feedback}
 \label{sec:C2-S1-S2}
 
-The pilot can immediately identify which display is the current SOI through unambiguous visual indicators:
+The pilot can immediately identify which display holds SOI designation through unambiguous visual indicators:
 
 \begin{itemize}
 	\item \textbf{HUD as SOI:} An asterisk symbol (\texttt{*}) appears in the upper left corner of the HUD, above the airspeed scale.
 	\item \textbf{MFD as SOI:} A border outline is drawn around the edges of the MFD display, forming a box that clearly distinguishes the SOI display from the non-SOI display.
-	\item \textbf{NOT SOI indication:} When a display format is capable of being SOI but is not currently designated as such, the text \texttt{NOT SOI} may appear on the format. This text appears only on SOI-capable formats (such as FCR, TGP, WPN, HAD, and HSD), not on formats that are inherently unable to be SOI.
+	\item \textbf{NOT SOI indication:} When a display format is capable of being SOI but is not currently designated as such, the text \texttt{NOT SOI} may appear on the format. This text appears only on SOI-capable sensor formats, not on formats that are inherently unable to be SOI.
 \end{itemize}
 
 These visual cues allow the pilot to confirm at a glance which display is receiving HOTAS inputs. This immediate feedback is essential during dynamic operations, where the pilot may rapidly transition SOI between displays to manage multiple sensors or respond to tactical developments.
