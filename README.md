@@ -66,7 +66,7 @@ tms-dms-cms-usage-guide/
 ├── guide.tex                         # Current production version (.tex)
 ├── guide.pdf                         # Compiled PDF
 ├── INTEGRATED-FILES.md               # Auto-generated tracking report
-├── WIP-Snapshot-Generator-v3.1.html  # Interactive WIP naming tool
+  
 │
 ├── docs/                             # Governance & tracking
 │   ├── guide-web.pdf                 # guide.pdf copy for online visualization
@@ -74,6 +74,7 @@ tms-dms-cms-usage-guide/
 │   ├── wip-file-naming-v1.4.md
 │   ├── version-system-v4.2.1.md
 │   ├── project-tracking-v5.0.0.md
+│   ├── WIP-Snapshot-Generator-v3.1.html       
 │   └── training-mission-abbrev-table-v1.0.md
 │
 ├── wip/                              # Active work-in-progress files
@@ -154,7 +155,7 @@ The project uses **four governance documents** in `/docs/` and an **auto-generat
 
 ### Project Utilities
 
-* **WIP Snapshot Generator** — Interactive HTML tool (`WIP-Snapshot-Generator-v3.1.html`) for generating compliant WIP file names
+* **WIP Snapshot Generator** — Interactive HTML tool ([WIP Generator v3.1](https://carlos-nader.github.io/tms-dms-cms-usage-guide/WIP-Snapshot-Generator-v3.1.html)) for generating compliant WIP file names
 
 ---
 
