@@ -348,24 +348,23 @@
 	% WIP FILE METADATA (NOT RENDERED IN PDF)
 	%============================================================================
 	
-	% File Name: section-C{N}-S{M}-{slug}-{status}-{date}.tex
-	% WIP Naming Convention: v1.3
-	% Target Chapter: C{N} (Chapter Title)
-	% Target Section: S{M} (Section Title)
+	% File Name: chapter-C4-tms-structure-dev-2026-02-04.tex
+	% WIP Naming Convention: v1.4
+	% Target Chapter: C3 (TMS)
+	% Target Section: all sections
 	% [Target Subsection: S{K} (Subsection Title) — OPTIONAL]
 	%
 	% WIP Status: dev | review | final | approved | deprecated
-	% Created: YYYY-MM-DD
-	% Last Modified: YYYY-MM-DD
-	% Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.{MINOR}.{PATCH}
+	% Created: 2026-02-04
+	% Last Modified: 2026-02-09
+	% Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.5.0.0
 	%
-	% Narrative Completion: 0-100%
-	% Table Fill Status: 0-100%
+	% Narrative Completion: 0%
+	% Table Fill Status: 0%
 	%
 	% Notes:
-	% - [Describe what's done, what's pending, open questions]
-	% - [Cross-references to other WIP files or guide.tex sections]
-	% - [Any divergences from briefing or validation issues]
+	% - Onlye the structure
+	% - Needs full review
 	
 	%============================================================================
 	%============================================================================
@@ -377,10 +376,10 @@
 	%============================================================================
 
 \chapter{TMS -- Target Management Switch}
-\label{chap:C3}
+\label{chap:C4}
 
 %--------------------------------------------------------------------------
-% CHAPTER 3 INTRODUCTION (Narrative)
+% CHAPTER 4 INTRODUCTION (Narrative)
 %--------------------------------------------------------------------------
 
 The \textbf{Target Management Switch (TMS)} is a four-direction spring-loaded hat switch located on the control stick's right side. It serves as the pilot's primary hands-on interface for target acquisition, designation, tracking management, and rejection across both air-to-air and air-to-ground employment. Unlike the DMS, which manages \textit{which display receives control inputs} (Sensor of Interest), the TMS manages \textit{what the sensors are doing with targets}.
@@ -396,32 +395,32 @@ TMS behavior is \textbf{highly context-sensitive}. The same physical input---for
 
 This chapter systematically documents TMS behavior across all operational contexts, organized by:
 \begin{enumerate}
-    \item \textbf{General TMS concept and timing} (Section~\ref{sec:C3-S1})
-    \item \textbf{TMS with SA displays} (HSD, FCR non-tracking modes) (Section~\ref{sec:C3-S2})
-    \item \textbf{TMS in Air-to-Air} (FCR tracking, ACM, TWS, IFF) (Section~\ref{sec:C3-S3})
-    \item \textbf{TMS in Air-to-Ground} (FCR GM/GMT/SEA, TGP, MARK) (Section~\ref{sec:C3-S4})
-    \item \textbf{TMS in weapon employment} (AGM-65, HARM, DTOS, IAM-VIS, CCIP/CCRP) (Section~\ref{sec:C3-S5})
-    \item \textbf{Block/variant notes} (Section~\ref{sec:C3-S6})
+    \item \textbf{General TMS concept and timing} (Section~\ref{sec:C4-S1})
+    \item \textbf{TMS with SA displays} (HSD, FCR non-tracking modes) (Section~\ref{sec:C4-S2})
+    \item \textbf{TMS in Air-to-Air} (FCR tracking, ACM, TWS, IFF) (Section~\ref{sec:C4-S3})
+    \item \textbf{TMS in Air-to-Ground} (FCR GM/GMT/SEA, TGP, MARK) (Section~\ref{sec:C4-S4})
+    \item \textbf{TMS in weapon employment} (AGM-65, HARM, DTOS, IAM-VIS, CCIP/CCRP) (Section~\ref{sec:C4-S5})
+    \item \textbf{Block/variant notes} (Section~\ref{sec:C4-S6})
 \end{enumerate}
 
 The guide follows the same structure established in Chapters 4 (DMS) and 5 (CMS): narrative explanations provide context and rationale, while \texttt{hotastable} environments present mode-specific actions in tabular format with cross-references to Dash-34 sections and BMS training missions.
 
-\textbf{Critical reminder:} TMS commands are routed to whichever sensor or display is currently SOI (Sensor of Interest). If the pilot intends to designate a target on the FCR but SOI is on the HSD, TMS Up will act on the HSD cursor instead. Understanding SOI logic (Chapter 2, Section~\ref{sec:C2-S1} and Chapter 4, Section~\ref{sec:C4-S1}) is essential to mastering TMS usage.
+\textbf{Critical reminder:} TMS commands are routed to whichever sensor or display is currently SOI (Sensor of Interest). If the pilot intends to designate a target on the FCR but SOI is on the HSD, TMS Up will act on the HSD cursor instead. Understanding SOI logic (Chapter 2, Section~\ref{sec:C2-S1} and Chapter 3, Section~\ref{sec:C3-S1}) is essential to mastering TMS usage.
 
 \newpage
 %--------------------------------------------------------------------------
-% SECTION 3.1: CONCEPT AND GENERAL BEHAVIOUR
+% SECTION 4.1: CONCEPT AND GENERAL BEHAVIOUR
 %--------------------------------------------------------------------------
 \section{Concept and general behaviour}
-\label{sec:C3-S1}
+\label{sec:C4-S1}
 
 The Target Management Switch (TMS) is the pilot's primary tool for hands-on target handling. Its four directions---Up, Down, Left, Right---control different aspects of target acquisition, tracking, and management depending on the current master mode, sensor configuration, and SOI (Sensor of Interest).
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.1.1: PHYSICAL LOCATION AND ACTUATION
+% SUBSECTION 4.1.1: PHYSICAL LOCATION AND ACTUATION
 %--------------------------------------------------------------------------
 \subsection{Physical location and actuation}
-\label{sec:C3-S1-S1}
+\label{sec:C4-S1-S1}
 
 TMS is a spring-loaded four-way hat switch on the control stick, positioned on the right side of the stick grip. The switch returns to center when released. Two actuation types are recognized by the avionics:
 
@@ -438,10 +437,10 @@ The distinction between short and long press is critical: the same direction can
 \end{itemize}
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.1.2: DIRECTIONAL FUNCTIONS (GENERAL OVERVIEW)
+% SUBSECTION 4.1.2: DIRECTIONAL FUNCTIONS (GENERAL OVERVIEW)
 %--------------------------------------------------------------------------
 \subsection{Directional functions (general overview)}
-\label{sec:C3-S1-S2}
+\label{sec:C4-S1-S2}
 
 Each TMS direction has context-dependent functions:
 
@@ -474,10 +473,10 @@ Target stepping and mode transitions:
 \end{itemize}
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.1.3: TMS AND SENSOR OF INTEREST (SOI)
+% SUBSECTION 4.1.3: TMS AND SENSOR OF INTEREST (SOI)
 %--------------------------------------------------------------------------
 \subsection{TMS and Sensor of Interest (SOI)}
-\label{sec:C3-S1-S3}
+\label{sec:C4-S1-S3}
 
 TMS commands are \textbf{always routed to the current SOI}. If SOI is on the FCR, TMS commands act on FCR targets and radar modes. If SOI is on the HSD, TMS commands act on HSD cursor and datalink targets. If SOI is on the HUD (A-G visual modes), TMS commands act on HUD/HMCS symbology (TD box, MARK cue, etc.).
 
@@ -494,10 +493,10 @@ Pilot is in A-G master mode, DTOS submode, HUD as SOI. TD box is slewed over tar
 If the pilot loses track of which display is SOI, TMS commands may not produce the expected result. For instance, attempting to designate an FCR target while SOI is on the HSD will result in HSD cursor action instead of FCR designation. Understanding and controlling SOI (via DMS Up/Down, see Chapter~\ref{chap:C4}) is prerequisite to effective TMS usage.
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.1.4: TMS TIMING AND PRESS DURATION LOGIC
+% SUBSECTION 4.1.4: TMS TIMING AND PRESS DURATION LOGIC
 %--------------------------------------------------------------------------
 \subsection{TMS timing and press duration logic}
-\label{sec:C3-S1-S4}
+\label{sec:C4-S1-S4}
 
 Press duration thresholds:
 \begin{itemize}
@@ -518,18 +517,18 @@ Practice timing in BMS Training Mission 18 (BARCAP) for A-A spotlight search, an
 
 \newpage
 %--------------------------------------------------------------------------
-% SECTION 3.2: TMS AND SITUATIONAL AWARENESS DISPLAYS
+% SECTION 4.2: TMS AND SITUATIONAL AWARENESS DISPLAYS
 %--------------------------------------------------------------------------
 \section{TMS and Situational Awareness displays}
-\label{sec:C3-S2}
+\label{sec:C4-S2}
 
 This section covers TMS behavior when SOI is on displays primarily used for situational awareness rather than direct target engagement: the Horizontal Situation Display (HSD) and the FCR in non-tracking search modes (before target designation).
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.2.1: TMS WITH HSD AS SOI
+% SUBSECTION 4.2.1: TMS WITH HSD AS SOI
 %--------------------------------------------------------------------------
 \subsection{TMS with HSD as SOI}
-\label{sec:C3-S2-S1}
+\label{sec:C4-S2-S1}
 
 When the HSD is SOI (typically via DMS Down in A-A or NAV modes), TMS commands interact with:
 \begin{itemize}
@@ -555,13 +554,13 @@ HSD as SOI is most common in:
     \item \textbf{NAV master mode:} HSD provides navigation context; TMS commands allow hands-on steerpoint management.
 \end{itemize}
 
-See Table~\ref{tab:C3-S2-HSD} for detailed HSD TMS actions.
+See Table~\ref{tab:C4-S2-HSD} for detailed HSD TMS actions.
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.2.2: TMS WITH FCR IN SEARCH MODES (PRE-DESIGNATION)
+% SUBSECTION 4.2.2: TMS WITH FCR IN SEARCH MODES (PRE-DESIGNATION)
 %--------------------------------------------------------------------------
 \subsection{TMS with FCR in search modes (pre-designation)}
-\label{sec:C3-S2-S2}
+\label{sec:C4-S2-S2}
 
 Before target designation, the FCR operates in search modes: RWS (Range-While-Search), ULS (Up-Look Search), or VSR (Velocity Search with Ranging). In these modes, TMS commands are used to:
 \begin{itemize}
@@ -582,13 +581,13 @@ Transitions FCR from RWS/ULS → TWS (Track-While-Scan). Any currently bugged ta
 \paragraph{Operational note:}
 These TMS functions are available only when FCR is SOI. If SOI has migrated to HSD or TGP, TMS commands will not affect FCR search modes. Use DMS Down to toggle SOI back to FCR if needed.
 
-See Table~\ref{tab:C3-S2-FCR-search} for FCR search mode TMS actions.
+See Table~\ref{tab:C4-S2-FCR-search} for FCR search mode TMS actions.
 
 %--------------------------------------------------------------------------
-% PLACEHOLDER: TABLE 3.2.1 — TMS Actions with HSD as SOI
+% PLACEHOLDER: TABLE 4.2.1 — TMS Actions with HSD as SOI
 %--------------------------------------------------------------------------
 \subsection{TMS actions with HSD as SOI (Table)}
-\label{sec:C3-S2-S3}
+\label{sec:C4-S2-S3}
 
 [PLACEHOLDER: Table to be developed showing TMS Up/Down/Left/Right actions with HSD as SOI, covering PDLT designation, steerpoint selection, threat ring management. Reference Dash-34 HSD chapter and relevant training missions.]
 
@@ -596,14 +595,14 @@ See Table~\ref{tab:C3-S2-FCR-search} for FCR search mode TMS actions.
 % \begin{hotastable}{TMS Actions with HSD as SOI}
 % [Content to be developed: Mode | Dir. | Act. | Function | Effect/Nuance | Dash34 | Train.]
 % \end{hotastable}
-% \label{tab:C3-S2-HSD}
+% \label{tab:C4-S2-HSD}
 % \end{table}
 
 %--------------------------------------------------------------------------
-% PLACEHOLDER: TABLE 3.2.2 — TMS Actions in FCR Search Modes
+% PLACEHOLDER: TABLE 4.2.2 — TMS Actions in FCR Search Modes
 %--------------------------------------------------------------------------
 \subsection{TMS actions in FCR search modes (Table)}
-\label{sec:C3-S2-S4}
+\label{sec:C4-S2-S4}
 
 [PLACEHOLDER: Table to be developed showing TMS actions in RWS, ULS, VSR before target designation. Include spotlight search, designation to SAM, TWS transition. Reference Dash-34 §2.3.1.5.3.3, §2.3.1.5.4, §2.3.1.5.6. Training: Mission 18 (BARCAP).]
 
@@ -611,23 +610,23 @@ See Table~\ref{tab:C3-S2-FCR-search} for FCR search mode TMS actions.
 % \begin{hotastable}{TMS Actions in FCR Search Modes (RWS/ULS/VSR)}
 % [Content to be developed: Mode | Dir. | Act. | Function | Effect/Nuance | Dash34 | Train.]
 % \end{hotastable}
-% \label{tab:C3-S2-FCR-search}
+% \label{tab:C4-S2-FCR-search}
 % \end{table}
 
 \newpage
 %--------------------------------------------------------------------------
-% SECTION 3.3: TMS IN AIR-TO-AIR
+% SECTION 4.3: TMS IN AIR-TO-AIR
 %--------------------------------------------------------------------------
 \section{TMS in Air-to-Air}
-\label{sec:C3-S3}
+\label{sec:C4-S3}
 
 This section documents TMS behavior in air-to-air employment contexts: FCR tracking modes (SAM, STT, TWS), Air Combat Maneuvering (ACM) modes, and IFF (Identification Friend or Foe) interrogation.
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.3.1: TMS IN SAM (SITUATION AWARENESS MODE)
+% SUBSECTION 4.3.1: TMS IN SAM (SITUATION AWARENESS MODE)
 %--------------------------------------------------------------------------
 \subsection{TMS in SAM (Situation Awareness Mode)}
-\label{sec:C3-S3-S1}
+\label{sec:C4-S3-S1}
 
 Situation Awareness Mode (SAM) tracks one or two targets (ST SAM or DT SAM) while maintaining search coverage. TMS commands in SAM manage track transitions and target prioritization.
 
@@ -654,13 +653,13 @@ Transitions SAM → TWS. Bugged target becomes TWS primary target. Radar begins 
 \paragraph{Operational context:}
 SAM is ideal for Beyond Visual Range (BVR) engagements where the pilot needs track data on one or two targets while maintaining search awareness. TMS Up/Down provides rapid transitions between search, SAM, and STT as the tactical picture evolves.
 
-See Table~\ref{tab:C3-S3-SAM} for detailed SAM TMS actions.
+See Table~\ref{tab:C4-S3-SAM} for detailed SAM TMS actions.
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.3.2: TMS IN STT (SINGLE TARGET TRACK)
+% SUBSECTION 4.3.2: TMS IN STT (SINGLE TARGET TRACK)
 %--------------------------------------------------------------------------
 \subsection{TMS in STT (Single Target Track)}
-\label{sec:C3-S3-S2}
+\label{sec:C4-S3-S2}
 
 Single Target Track (STT) dedicates the FCR to tracking a single airborne target with maximum accuracy. All search processing ceases. TMS commands in STT are limited to breaking lock and returning to previous modes.
 
@@ -679,13 +678,13 @@ Single Target Track (STT) dedicates the FCR to tracking a single airborne target
 \paragraph{Operational note:}
 STT reveals the F-16's position to any target with RWR (Radar Warning Receiver) due to continuous radar emissions. Use STT only when weapon parameters are achieved and giving away position is acceptable. For covert BVR engagements, SAM or TWS is preferable.
 
-See Table~\ref{tab:C3-S3-STT} for STT TMS actions.
+See Table~\ref{tab:C4-S3-STT} for STT TMS actions.
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.3.3: TMS IN TWS (TRACK-WHILE-SCAN)
+% SUBSECTION 4.3.3: TMS IN TWS (TRACK-WHILE-SCAN)
 %--------------------------------------------------------------------------
 \subsection{TMS in TWS (Track-While-Scan)}
-\label{sec:C3-S3-S3}
+\label{sec:C4-S3-S3}
 
 Track-While-Scan (TWS) automatically builds and maintains track files on up to 10 targets while continuing to search. TMS commands manage target prioritization (bugging) and transitions to STT for weapons employment.
 
@@ -717,13 +716,13 @@ Initiates spotlight search (same as RWS). Spotlight scan centered on ACQ cursor;
 \paragraph{Operational context:}
 TWS excels in multi-target environments (BARCAP, HAVCAP, large force engagements). Pilot can maintain SA on 8-10 threats while bugging and prosecuting the highest-priority target. TMS Right stepping allows rapid target prioritization without MFD interaction.
 
-See Table~\ref{tab:C3-S3-TWS} for TWS TMS actions.
+See Table~\ref{tab:C4-S3-TWS} for TWS TMS actions.
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.3.4: TMS IN ACM (AIR COMBAT MANEUVERING) MODES
+% SUBSECTION 4.3.4: TMS IN ACM (AIR COMBAT MANEUVERING) MODES
 %--------------------------------------------------------------------------
 \subsection{TMS in ACM (Air Combat Maneuvering) modes}
-\label{sec:C3-S3-S4}
+\label{sec:C4-S3-S4}
 
 Air Combat Maneuvering (ACM) modes provide automated close-range target acquisition: BORE, 10x60, 30x20, SLEW. TMS commands in ACM manage mode transitions, target rejection, and HMCS integration.
 
@@ -748,13 +747,13 @@ Cycles through ACM scan patterns (implementation varies by ACM mode; typically 3
 \paragraph{Operational context:}
 ACM modes are designed for visual merge/dogfight scenarios where automation reduces pilot workload. TMS Up/Down provide rapid lock/break-lock cycles essential in turning fights. HMCS integration (TMS Up hold in BORE) allows high off-boresight acquisition without pointing the nose.
 
-See Table~\ref{tab:C3-S3-ACM} for ACM TMS actions.
+See Table~\ref{tab:C4-S3-ACM} for ACM TMS actions.
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.3.5: TMS AND IFF INTERROGATION
+% SUBSECTION 4.3.5: TMS AND IFF INTERROGATION
 %--------------------------------------------------------------------------
 \subsection{TMS and IFF interrogation}
-\label{sec:C3-S3-S5}
+\label{sec:C4-S3-S5}
 
 TMS Left activates IFF (Identification Friend or Foe) interrogation when the AIFF (Advanced Interrogator Friend or Foe) system is available and configured.
 
@@ -767,10 +766,10 @@ Activates \textbf{LOS (Line of Sight) interrogation mode}. AIFF interrogates onl
 \paragraph{Operational context:}
 IFF interrogation is critical in BVR engagements to distinguish friendly from hostile contacts before weapons employment. Dash-34 and BMS Training Manual emphasize proper IFF procedures before AIM-120 launches in training missions (e.g., Mission 18 BARCAP).
 
-See Table~\ref{tab:C3-S3-IFF} for IFF TMS actions.
+See Table~\ref{tab:C4-S3-IFF} for IFF TMS actions.
 
 %--------------------------------------------------------------------------
-% PLACEHOLDER: TABLES FOR SECTION 3.3
+% PLACEHOLDER: TABLES FOR SECTION 4.3
 %--------------------------------------------------------------------------
 
 [PLACEHOLDER: The following tables will be developed with full hotastable format:]
@@ -780,7 +779,7 @@ See Table~\ref{tab:C3-S3-IFF} for IFF TMS actions.
 % \begin{hotastable}{TMS Actions in SAM (Situation Awareness Mode)}
 % [Content: ST SAM, DT SAM | TMS Up/Down/Right | Designate, RTS, bug toggle | Dash-34 §2.3.1.5.9 | TRN 18]
 % \end{hotastable}
-% \label{tab:C3-S3-SAM}
+% \label{tab:C4-S3-SAM}
 % \end{table}
 
 % \subsection{TMS actions in STT (Table)}
@@ -788,7 +787,7 @@ See Table~\ref{tab:C3-S3-IFF} for IFF TMS actions.
 % \begin{hotastable}{TMS Actions in STT (Single Target Track)}
 % [Content: STT, ACM STT | TMS Down RTS | Dash-34 §2.3.1.5.8 | TRN 18]
 % \end{hotastable}
-% \label{tab:C3-S3-STT}
+% \label{tab:C4-S3-STT}
 % \end{table}
 
 % \subsection{TMS actions in TWS (Table)}
@@ -796,7 +795,7 @@ See Table~\ref{tab:C3-S3-IFF} for IFF TMS actions.
 % \begin{hotastable}{TMS Actions in TWS (Track-While-Scan)}
 % [Content: TWS | TMS Up/Down/Right | Bug, RTS, step, spotlight | Dash-34 §2.3.1.5.7 | TRN 18]
 % \end{hotastable}
-% \label{tab:C3-S3-TWS}
+% \label{tab:C4-S3-TWS}
 % \end{table}
 
 % \subsection{TMS actions in ACM modes (Table)}
@@ -804,7 +803,7 @@ See Table~\ref{tab:C3-S3-IFF} for IFF TMS actions.
 % \begin{hotastable}{TMS Actions in ACM Modes}
 % [Content: ACM BORE, 10x60, 30x20, SLEW | TMS Up/Down/Right | HMCS slave, RTS, mode cycle | Dash-34 §2.3.1.5.10-12 | TRN 20]
 % \end{hotastable}
-% \label{tab:C3-S3-ACM}
+% \label{tab:C4-S3-ACM}
 % \end{table}
 
 % \subsection{TMS actions for IFF interrogation (Table)}
@@ -812,23 +811,23 @@ See Table~\ref{tab:C3-S3-IFF} for IFF TMS actions.
 % \begin{hotastable}{TMS Left — IFF Interrogation}
 % [Content: A-A | TMS Left short/long | SCAN/LOS interrogation | Dash-34 IFF chapter | TRN 18]
 % \end{hotastable}
-% \label{tab:C3-S3-IFF}
+% \label{tab:C4-S3-IFF}
 % \end{table}
 
 \newpage
 %--------------------------------------------------------------------------
-% SECTION 3.4: TMS IN AIR-TO-GROUND (SENSORS AND TARGETING)
+% SECTION 4.4: TMS IN AIR-TO-GROUND (SENSORS AND TARGETING)
 %--------------------------------------------------------------------------
 \section{TMS in Air-to-Ground}
-\label{sec:C3-S4}
+\label{sec:C4-S4}
 
 This section covers TMS behavior when employing A-G sensors for target acquisition and designation: FCR in GM/GMT/SEA modes, Targeting Pod (TGP), and HUD/HMCS MARK function.
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.4.1: TMS WITH FCR IN A-G RADAR MODES (GM/GMT/SEA)
+% SUBSECTION 4.4.1: TMS WITH FCR IN A-G RADAR MODES (GM/GMT/SEA)
 %--------------------------------------------------------------------------
 \subsection{TMS with FCR in A-G radar modes (GM/GMT/SEA)}
-\label{sec:C3-S4-S1}
+\label{sec:C4-S4-S1}
 
 When FCR is in Ground Moving Target (GMT), Ground Mapping (GM), or Sea modes, TMS commands control target designation, Fixed Target Track (FTT), and sighting point management.
 
@@ -856,13 +855,13 @@ When FCR is in Ground Moving Target (GMT), Ground Mapping (GM), or Sea modes, TM
 \paragraph{Operational context:}
 FCR A-G modes are critical in IMC (Instrument Meteorological Conditions), night ops, or pre-planned CCRP deliveries. TMS Up designates radar-significant targets (buildings, bridges, vehicles in GMT) for weapons employment. FTT provides continuous ranging for accurate CCRP solutions.
 
-See Table~\ref{tab:C3-S4-FCR-AG} for FCR A-G TMS actions.
+See Table~\ref{tab:C4-S4-FCR-AG} for FCR A-G TMS actions.
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.4.2: TMS WITH TARGETING POD (TGP) AS SOI
+% SUBSECTION 4.4.2: TMS WITH TARGETING POD (TGP) AS SOI
 %--------------------------------------------------------------------------
 \subsection{TMS with Targeting Pod (TGP) as SOI}
-\label{sec:C3-S4-S2}
+\label{sec:C4-S4-S2}
 
 When the Targeting Pod (TGP) is SOI, TMS commands manage target designation, track mode transitions, and handoff to weapons (AGM-65, LGBs).
 
@@ -890,13 +889,13 @@ When the Targeting Pod (TGP) is SOI, TMS commands manage target designation, tra
 \paragraph{Operational context:}
 TGP provides visual/IR target identification and designation in A-G. TMS Up to POINT track is prerequisite for LGB lasing and AGM-65 handoff. TGP SOI is typical in PRE (pre-planned) weapon deliveries and target confirmation before VIS (visual) attack.
 
-See Table~\ref{tab:C3-S4-TGP} for TGP TMS actions.
+See Table~\ref{tab:C4-S4-TGP} for TGP TMS actions.
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.4.3: TMS WITH HUD/HMCS MARK FUNCTION
+% SUBSECTION 4.4.3: TMS WITH HUD/HMCS MARK FUNCTION
 %--------------------------------------------------------------------------
 \subsection{TMS with HUD/HMCS MARK function}
-\label{sec:C3-S4-S3}
+\label{sec:C4-S4-S3}
 
 The MARK function creates markpoints (latitude/longitude coordinates) for navigation or target reference. TMS commands slave MARK cue to HMCS, ground-stabilize, and store markpoints.
 
@@ -923,10 +922,10 @@ MARK is used for:
 
 HMCS MARK (TMS Up >0.5s) allows marking targets outside HUD FOV, critical in dynamic CAS or visual recon.
 
-See Table~\ref{tab:C3-S4-MARK} for MARK TMS actions.
+See Table~\ref{tab:C4-S4-MARK} for MARK TMS actions.
 
 %--------------------------------------------------------------------------
-% PLACEHOLDER: TABLES FOR SECTION 3.4
+% PLACEHOLDER: TABLES FOR SECTION 4.4
 %--------------------------------------------------------------------------
 
 [PLACEHOLDER: The following tables will be developed:]
@@ -936,7 +935,7 @@ See Table~\ref{tab:C3-S4-MARK} for MARK TMS actions.
 % \begin{hotastable}{TMS Actions in FCR A-G Modes (GM/GMT/SEA)}
 % [Content: GM, GMT, SEA | TMS Up/Down/Right/Left | FTT, RTS, sighting point cycle | Dash-34 §2.3.1.6 | TRN 24, 29]
 % \end{hotastable}
-% \label{tab:C3-S4-FCR-AG}
+% \label{tab:C4-S4-FCR-AG}
 % \end{table}
 
 % \subsection{TMS actions with TGP as SOI (Table)}
@@ -944,7 +943,7 @@ See Table~\ref{tab:C3-S4-MARK} for MARK TMS actions.
 % \begin{hotastable}{TMS Actions with TGP as SOI}
 % [Content: TGP AREA, TGP POINT | TMS Up/Down/Right/Left | Track, break track, FOV cycle | Dash-34 TGP chapter | TRN 26]
 % \end{hotastable}
-% \label{tab:C3-S4-TGP}
+% \label{tab:C4-S4-TGP}
 % \end{table}
 
 % \subsection{TMS actions with HUD/HMCS MARK (Table)}
@@ -952,23 +951,23 @@ See Table~\ref{tab:C3-S4-MARK} for MARK TMS actions.
 % \begin{hotastable}{TMS Actions with HUD/HMCS MARK}
 % [Content: MARK | TMS Up/Down (timing) | HMCS slave, ground-stabilize, store | Dash-34 §2.5.6.2 | TRN 23]
 % \end{hotastable}
-% \label{tab:C3-S4-MARK}
+% \label{tab:C4-S4-MARK}
 % \end{table}
 
 \newpage
 %--------------------------------------------------------------------------
-% SECTION 3.5: TMS IN WEAPON EMPLOYMENT
+% SECTION 4.5: TMS IN WEAPON EMPLOYMENT
 %--------------------------------------------------------------------------
 \section{TMS in weapon employment}
-\label{sec:C3-S5}
+\label{sec:C4-S5}
 
 This section documents TMS behavior during active weapon employment: AGM-65 Maverick, DTOS (Dive Toss), IAM-VIS (JSOW/JDAM visual), CCIP/CCRP, and HARM.
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.5.1: TMS IN AGM-65 MAVERICK EMPLOYMENT
+% SUBSECTION 4.5.1: TMS IN AGM-65 MAVERICK EMPLOYMENT
 %--------------------------------------------------------------------------
 \subsection{TMS in AGM-65 Maverick employment}
-\label{sec:C3-S5-S1}
+\label{sec:C4-S5-S1}
 
 AGM-65 Maverick (D/G/L variants) uses TMS for seeker designation, HMCS slaving, and handoff coordination.
 
@@ -994,13 +993,13 @@ AGM-65 Maverick (D/G/L variants) uses TMS for seeker designation, HMCS slaving, 
 \paragraph{Operational context:}
 AGM-65 employment requires precise seeker designation. VIS mode (TMS Up sequence) is used when target is visually identifiable. PRE mode (FTT) is used for pre-planned targets with poor visual signature but good radar return (e.g., buildings, bridges).
 
-See Table~\ref{tab:C3-S5-AGM65} for AGM-65 TMS actions.
+See Table~\ref{tab:C4-S5-AGM65} for AGM-65 TMS actions.
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.5.2: TMS IN DTOS (DIVE TOSS) DELIVERIES
+% SUBSECTION 4.5.2: TMS IN DTOS (DIVE TOSS) DELIVERIES
 %--------------------------------------------------------------------------
 \subsection{TMS in DTOS (Dive Toss) deliveries}
-\label{sec:C3-S5-S2}
+\label{sec:C4-S5-S2}
 
 DTOS (Dive Toss) combines visual target designation with automatic ballistic computation. TMS commands manage TD box slaving, ground-stabilization, and HMCS integration.
 
@@ -1020,13 +1019,13 @@ DTOS (Dive Toss) combines visual target designation with automatic ballistic com
 \paragraph{Operational context:}
 DTOS is used for visual dive or toss deliveries of Mk-82/84, CBU, IAMs in DTOS mode. HMCS slaving (TMS Up >0.5s) allows designation of targets outside HUD FOV, critical in high-angle attacks or mountainous terrain.
 
-See Table~\ref{tab:C3-S5-DTOS} for DTOS TMS actions.
+See Table~\ref{tab:C4-S5-DTOS} for DTOS TMS actions.
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.5.3: TMS IN IAM-VIS (JSOW/JDAM VISUAL)
+% SUBSECTION 4.5.3: TMS IN IAM-VIS (JSOW/JDAM VISUAL)
 %--------------------------------------------------------------------------
 \subsection{TMS in IAM-VIS (JSOW/JDAM visual)}
-\label{sec:C3-S5-S3}
+\label{sec:C4-S5-S3}
 
 IAM-VIS (Improved Air Munitions Visual) uses similar TD box logic to DTOS but for JSOW/JDAM visual deliveries.
 
@@ -1039,10 +1038,10 @@ Rejects target, returns to pre-designate. TD box returns to FPM.
 \paragraph{Operational context:}
 IAM-VIS is used when JSOW/JDAM target is visually identifiable but not suitable for GPS-only delivery (e.g., moving target, last-minute target change). TMS Up designates visual aimpoint; weapon guides to TD box position.
 
-See Table~\ref{tab:C3-S5-IAMVIS} for IAM-VIS TMS actions.
+See Table~\ref{tab:C4-S5-IAMVIS} for IAM-VIS TMS actions.
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.5.4: TMS IN CCIP/CCRP DELIVERIES
+% SUBSECTION 4.5.4: TMS IN CCIP/CCRP DELIVERIES
 %--------------------------------------------------------------------------
 \subsection{TMS in CCIP/CCRP deliveries}
 \label{sec:C3-S5-S4}
@@ -1065,13 +1064,13 @@ CCIP (Continuously Computed Impact Point) and CCRP (Continuously Computed Releas
 \paragraph{Operational context:}
 CCIP/CCRP are primarily avionics-computed modes; pilot maneuvers aircraft to meet release parameters rather than manipulating TMS cues. TMS Right (sighting point cycle) is the primary hands-on input.
 
-See Table~\ref{tab:C3-S5-CCIP-CCRP} for CCIP/CCRP TMS actions.
+See Table~\ref{tab:C4-S5-CCIP-CCRP} for CCIP/CCRP TMS actions.
 
 %--------------------------------------------------------------------------
-% SUBSECTION 3.5.5: TMS IN HARM EMPLOYMENT
+% SUBSECTION 4.5.5: TMS IN HARM EMPLOYMENT
 %--------------------------------------------------------------------------
 \subsection{TMS in HARM employment}
-\label{sec:C3-S5-S5}
+\label{sec:C4-S5-S5}
 
 HARM (AGM-88) targeting uses HTS (HARM Targeting System) pod and HAD (HARM Attack Display). TMS interaction is via HTS/HAD SOI.
 
@@ -1085,10 +1084,10 @@ HARM (AGM-88) targeting uses HTS (HARM Targeting System) pod and HAD (HARM Attac
 \paragraph{Operational context:}
 HARM employment is highly specialized (SEAD/DEAD missions). TMS Up designates enemy radar emitters detected by HTS pod. Accurate emitter identification (via ELINT data loaded to HTS) is critical before TMS designation.
 
-See Table~\ref{tab:C3-S5-HARM} for HARM TMS actions.
+See Table~\ref{tab:C4-S5-HARM} for HARM TMS actions.
 
 %--------------------------------------------------------------------------
-% PLACEHOLDER: TABLES FOR SECTION 3.5
+% PLACEHOLDER: TABLES FOR SECTION 4.5
 %--------------------------------------------------------------------------
 
 [PLACEHOLDER: The following tables will be developed:]
@@ -1098,7 +1097,7 @@ See Table~\ref{tab:C3-S5-HARM} for HARM TMS actions.
 % \begin{hotastable}{TMS Actions in AGM-65 Maverick Employment}
 % [Content: AGM-65 VIS, AGM-65 PRE | TMS Up timing, TMS Down | Seeker designation, HMCS slave, handoff | Dash-34 §4.2.4.1 | TRN 27]
 % \end{hotastable}
-% \label{tab:C3-S5-AGM65}
+% \label{tab:C4-S5-AGM65}
 % \end{table}
 
 % \subsection{TMS actions in DTOS deliveries (Table)}
@@ -1106,7 +1105,7 @@ See Table~\ref{tab:C3-S5-HARM} for HARM TMS actions.
 % \begin{hotastable}{TMS Actions in DTOS (Dive Toss) Deliveries}
 % [Content: DTOS | TMS Up/Down timing | TD box slave, ground-stabilize, HMCS integration | Dash-34 §4.2.2.1.3 | TRN 25]
 % \end{hotastable}
-% \label{tab:C3-S5-DTOS}
+% \label{tab:C4-S5-DTOS}
 % \end{table}
 
 % \subsection{TMS actions in IAM-VIS (Table)}
@@ -1114,7 +1113,7 @@ See Table~\ref{tab:C3-S5-HARM} for HARM TMS actions.
 % \begin{hotastable}{TMS Actions in IAM-VIS (JSOW/JDAM Visual)}
 % [Content: IAM-VIS | TMS Up/Down | TD box designation | Dash-34 §4.2.2.1.4 | TRN 30]
 % \end{hotastable}
-% \label{tab:C3-S5-IAMVIS}
+% \label{tab:C4-S5-IAMVIS}
 % \end{table}
 
 % \subsection{TMS actions in CCIP/CCRP (Table)}
@@ -1122,7 +1121,7 @@ See Table~\ref{tab:C3-S5-HARM} for HARM TMS actions.
 % \begin{hotastable}{TMS Actions in CCIP/CCRP Deliveries}
 % [Content: CCIP, CCRP | TMS Right | Sighting point cycle | Dash-34 §4.2.2.1.1-2 | TRN 24]
 % \end{hotastable}
-% \label{tab:C3-S5-CCIP-CCRP}
+% \label{tab:C4-S5-CCIP-CCRP}
 % \end{table}
 
 % \subsection{TMS actions in HARM employment (Table)}
@@ -1130,20 +1129,20 @@ See Table~\ref{tab:C3-S5-HARM} for HARM TMS actions.
 % \begin{hotastable}{TMS Actions in HARM (AGM-88) Employment}
 % [Content: HARM HTS/HAD | TMS Up/Down/Right | Emitter designation, rejection, stepping | Dash-34 HARM chapter | TRN 28]
 % \end{hotastable}
-% \label{tab:C3-S5-HARM}
+% \label{tab:C4-S5-HARM}
 % \end{table}
 
 \newpage
 %--------------------------------------------------------------------------
-% SECTION 3.6: TMS -- BLOCK AND VARIANT NOTES
+% SECTION 4.6: TMS -- BLOCK AND VARIANT NOTES
 %--------------------------------------------------------------------------
 \section{TMS -- Block and variant notes}
-\label{sec:C3-S6}
+\label{sec:C4-S6}
 
 TMS functionality is largely consistent across F-16 blocks simulated in Falcon BMS 4.38.1 (Block 40/42/50/52). However, specific subsystems and weapon integrations introduce minor variations.
 
 \subsection{Block-specific TMS differences}
-\label{sec:C3-S6-S1}
+\label{sec:C4-S6-S1}
 
 \paragraph{HMCS availability:}
 \begin{itemize}
@@ -1164,7 +1163,7 @@ TMS functionality is largely consistent across F-16 blocks simulated in Falcon B
 \end{itemize}
 
 \subsection{IFF (AIFF) configuration}
-\label{sec:C3-S6-S2}
+\label{sec:C4-S6-S2}
 
 \begin{itemize}
     \item \textbf{AIFF-equipped:} TMS Left activates SCAN/LOS interrogation in A-A and A-G.
@@ -1172,7 +1171,7 @@ TMS functionality is largely consistent across F-16 blocks simulated in Falcon B
 \end{itemize}
 
 \subsection{AGM-65L (Laser Maverick) specifics}
-\label{sec:C3-S6-S3}
+\label{sec:C4-S6-S3}
 
 AGM-65L uses semi-active laser guidance. TMS Up sequence similar to AGM-65D/G, but requires:
 \begin{itemize}
@@ -1183,7 +1182,7 @@ AGM-65L uses semi-active laser guidance. TMS Up sequence similar to AGM-65D/G, b
 See Dash-34 AGM-65L chapter and BMS Training Mission 27 for AGM-65L-specific procedures.
 
 \subsection{Training mission recommendations by block}
-\label{sec:C3-S6-S4}
+\label{sec:C4-S6-S4}
 
 \begin{itemize}
     \item \textbf{Block 50/52 (JHMCS):} Missions 25 (DTOS with HMCS), 27 (AGM-65 VIS with HMCS).
@@ -1192,6 +1191,6 @@ See Dash-34 AGM-65L chapter and BMS Training Mission 27 for AGM-65L-specific pro
 \end{itemize}
 
 %--------------------------------------------------------------------------
-% END OF CHAPTER 3 STRUCTURE
+% END OF CHAPTER 4 STRUCTURE
 %--------------------------------------------------------------------------
 \end{document}
