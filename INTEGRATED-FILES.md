@@ -2,7 +2,7 @@
 
 **Repository:** tms-dms-cms-usage-guide
 
-**Generated:** 2026-02-10 03:29:31 UTC-3
+**Generated:** 2026-02-10 03:42:43 UTC-3
 
 **Trigger:** [push | workflow_dispatch]
 
@@ -17,8 +17,8 @@
 | Name | tms-dms-cms-usage-guide |
 | URL | [git@github.com:carlos-nader/tms-dms-cms-usage-guide](git@github.com:carlos-nader/tms-dms-cms-usage-guide) |
 | Created | 2026-01-09 |
-| Last Push | 2026-02-10 03:29:30 UTC-3 |
-| Total Commits | 439 |
+| Last Push | 2026-02-10 03:42:41 UTC-3 |
+| Total Commits | 441 |
 | Releases | v0.4.0.0, v0.3.3.0, v0.3.2.1, v0.3.2.0, v0.3.1.0 |
 | Languages | LaTeX: 63%, Markdown: 36% |
 
@@ -30,62 +30,62 @@
 
 | File Path | Status | Last Modified | Size |
 |-----------|--------|---------------|------|
-| wip/chapter-C3-tms-structure-dev-2026-02-04.tex | tracked | 2026-02-10 03:29:29 | 61093 bytes |
+| wip/chapter-C4-tms-structure-dev-2026-02-04.tex | tracked | 2026-02-10 03:42:40 | 60919 bytes |
 
 ### 2. archive/GUIDE/
 
 | File Path | Status | Last Modified | Size |
 |-----------|--------|---------------|------|
-| archive/GUIDE/guide-v0.1.1.0-20260105.tex | tracked | 2026-02-10 03:29:28 | 21966 bytes |
-| archive/GUIDE/guide-v0.3.2.1-20260129.tex | tracked | 2026-02-10 03:29:28 | 79395 bytes |
-| archive/GUIDE/guide-v0.2.2.0-20260108.tex | tracked | 2026-02-10 03:29:28 | 25606 bytes |
-| archive/GUIDE/guide-v0.3.0.1-20260116.tex | tracked | 2026-02-10 03:29:28 | 58416 bytes |
-| archive/GUIDE/guide-v0.1.0.0-20260105.tex | tracked | 2026-02-10 03:29:28 | 22094 bytes |
-| archive/GUIDE/guide-v0.1.3.0-20260105.tex | tracked | 2026-02-10 03:29:28 | 22112 bytes |
-| archive/GUIDE/guide-v0.2.2.0-20260110.tex | tracked | 2026-02-10 03:29:28 | 24914 bytes |
-| archive/GUIDE/guide-v0.2.4.0-20260112.tex | tracked | 2026-02-10 03:29:28 | 39632 bytes |
-| archive/GUIDE/guide-v0.2.3.1-20260110.tex | tracked | 2026-02-10 03:29:28 | 35744 bytes |
-| archive/GUIDE/guide-v0.3.0.0-20260115.tex | tracked | 2026-02-10 03:29:28 | 56360 bytes |
-| archive/GUIDE/guide-v0.3.1.0-20260117.tex | tracked | 2026-02-10 03:29:28 | 63459 bytes |
-| archive/GUIDE/guide-v0.1.2.0-20260105.tex | tracked | 2026-02-10 03:29:28 | 21826 bytes |
-| archive/GUIDE/guide-v0.3.3.0-20260202.tex | tracked | 2026-02-10 03:29:28 | 98023 bytes |
-| archive/GUIDE/guide-v0.3.2.0-20260119.tex | tracked | 2026-02-10 03:29:28 | 79033 bytes |
+| archive/GUIDE/guide-v0.1.1.0-20260105.tex | tracked | 2026-02-10 03:42:39 | 21966 bytes |
+| archive/GUIDE/guide-v0.3.2.1-20260129.tex | tracked | 2026-02-10 03:42:39 | 79395 bytes |
+| archive/GUIDE/guide-v0.2.2.0-20260108.tex | tracked | 2026-02-10 03:42:39 | 25606 bytes |
+| archive/GUIDE/guide-v0.3.0.1-20260116.tex | tracked | 2026-02-10 03:42:39 | 58416 bytes |
+| archive/GUIDE/guide-v0.1.0.0-20260105.tex | tracked | 2026-02-10 03:42:39 | 22094 bytes |
+| archive/GUIDE/guide-v0.1.3.0-20260105.tex | tracked | 2026-02-10 03:42:39 | 22112 bytes |
+| archive/GUIDE/guide-v0.2.2.0-20260110.tex | tracked | 2026-02-10 03:42:39 | 24914 bytes |
+| archive/GUIDE/guide-v0.2.4.0-20260112.tex | tracked | 2026-02-10 03:42:39 | 39632 bytes |
+| archive/GUIDE/guide-v0.2.3.1-20260110.tex | tracked | 2026-02-10 03:42:39 | 35744 bytes |
+| archive/GUIDE/guide-v0.3.0.0-20260115.tex | tracked | 2026-02-10 03:42:39 | 56360 bytes |
+| archive/GUIDE/guide-v0.3.1.0-20260117.tex | tracked | 2026-02-10 03:42:39 | 63459 bytes |
+| archive/GUIDE/guide-v0.1.2.0-20260105.tex | tracked | 2026-02-10 03:42:39 | 21826 bytes |
+| archive/GUIDE/guide-v0.3.3.0-20260202.tex | tracked | 2026-02-10 03:42:39 | 98023 bytes |
+| archive/GUIDE/guide-v0.3.2.0-20260119.tex | tracked | 2026-02-10 03:42:39 | 79033 bytes |
 
 ### 3. archive/WIP/
 
 | File Path | Status | Last Modified | Size |
 |-----------|--------|---------------|------|
-| archive/WIP/section-C4-S2-dms-up-down-deprecated-2026-01-14.tex | tracked | 2026-02-10 03:29:28 | 25505 bytes |
-| archive/WIP/section-C5-S1-concept-and-interactions-cmds-ecm-rwr-approved-2026-01-07.tex | tracked | 2026-02-10 03:29:28 | 5771 bytes |
-| archive/WIP/section-C4-S3-dms-format-cycling-deprecated-2026-01-13.tex | tracked | 2026-02-10 03:29:28 | 18811 bytes |
-| archive/WIP/chapter-C2-hotas-fundamentals-deprecated-2026-01-25.tex | tracked | 2026-02-10 03:29:28 | 21278 bytes |
-| archive/WIP/section-C4-S2-dms-up-down-deprecated-2026-01-13.tex | tracked | 2026-02-10 03:29:28 | 27406 bytes |
-| archive/WIP/chapter-C2-hotas-fundamentals-approved-2026-02-09.tex | tracked | 2026-02-10 03:29:28 | 32546 bytes |
-| archive/WIP/chapter-C1-introduction-approved-2026-02-02.tex | tracked | 2026-02-10 03:29:28 | 24548 bytes |
-| archive/WIP/section-C4-S3-dms-down-approved-2026-01-18.tex | tracked | 2026-02-10 03:29:28 | 15094 bytes |
-| archive/WIP/chapter-C4-dms-approved-2026-02-02.tex | tracked | 2026-02-10 03:29:28 | 63272 bytes |
-| archive/WIP/chapter-C2-hotas-fundamentals-deprecated-2026-02-06.tex | tracked | 2026-02-10 03:29:28 | 5726 bytes |
-| archive/WIP/section-C5-S3-blocks-and-variants-approved-2026-01-11.tex | tracked | 2026-02-10 03:29:28 | 8031 bytes |
-| archive/WIP/section-C4-S2-dms-up-approved-2026-01-14.tex | tracked | 2026-02-10 03:29:28 | 16022 bytes |
-| archive/WIP/section-C5-S2-cms-actuation-hotas-table-approved-2026-01-10.tex | tracked | 2026-02-10 03:29:28 | 20948 bytes |
-| archive/WIP/section-C4-S1-concept-soi-approved-2026-01-15.tex | tracked | 2026-02-10 03:29:28 | 15571 bytes |
+| archive/WIP/section-C4-S2-dms-up-down-deprecated-2026-01-14.tex | tracked | 2026-02-10 03:42:39 | 25505 bytes |
+| archive/WIP/section-C5-S1-concept-and-interactions-cmds-ecm-rwr-approved-2026-01-07.tex | tracked | 2026-02-10 03:42:39 | 5771 bytes |
+| archive/WIP/section-C4-S3-dms-format-cycling-deprecated-2026-01-13.tex | tracked | 2026-02-10 03:42:39 | 18811 bytes |
+| archive/WIP/chapter-C2-hotas-fundamentals-deprecated-2026-01-25.tex | tracked | 2026-02-10 03:42:39 | 21278 bytes |
+| archive/WIP/section-C4-S2-dms-up-down-deprecated-2026-01-13.tex | tracked | 2026-02-10 03:42:39 | 27406 bytes |
+| archive/WIP/chapter-C2-hotas-fundamentals-approved-2026-02-09.tex | tracked | 2026-02-10 03:42:39 | 32546 bytes |
+| archive/WIP/chapter-C1-introduction-approved-2026-02-02.tex | tracked | 2026-02-10 03:42:39 | 24548 bytes |
+| archive/WIP/section-C4-S3-dms-down-approved-2026-01-18.tex | tracked | 2026-02-10 03:42:39 | 15094 bytes |
+| archive/WIP/chapter-C4-dms-approved-2026-02-02.tex | tracked | 2026-02-10 03:42:39 | 63272 bytes |
+| archive/WIP/chapter-C2-hotas-fundamentals-deprecated-2026-02-06.tex | tracked | 2026-02-10 03:42:39 | 5726 bytes |
+| archive/WIP/section-C5-S3-blocks-and-variants-approved-2026-01-11.tex | tracked | 2026-02-10 03:42:39 | 8031 bytes |
+| archive/WIP/section-C4-S2-dms-up-approved-2026-01-14.tex | tracked | 2026-02-10 03:42:39 | 16022 bytes |
+| archive/WIP/section-C5-S2-cms-actuation-hotas-table-approved-2026-01-10.tex | tracked | 2026-02-10 03:42:39 | 20948 bytes |
+| archive/WIP/section-C4-S1-concept-soi-approved-2026-01-15.tex | tracked | 2026-02-10 03:42:39 | 15571 bytes |
 
 ### 4. docs/
 
 | File Path | Status | Last Modified | Size |
 |-----------|--------|---------------|------|
-| docs/project-tracking-v5.0.0.md | tracked | 2026-02-10 03:29:28 | 7666 bytes |
-| docs/briefing-v0.2.0.1.md | tracked | 2026-02-10 03:29:28 | 27417 bytes |
-| docs/version-system-v4.2.1.md | tracked | 2026-02-10 03:29:28 | 29456 bytes |
-| docs/training-mission-abbrev-table-v1.0.md | tracked | 2026-02-10 03:29:28 | 9715 bytes |
-| docs/wip-naming-v1.4.md | tracked | 2026-02-10 03:29:28 | 19871 bytes |
-| docs/tex-preamble-consolidated.md | tracked | 2026-02-10 03:29:28 | 14455 bytes |
+| docs/project-tracking-v5.0.0.md | tracked | 2026-02-10 03:42:39 | 7666 bytes |
+| docs/briefing-v0.2.0.1.md | tracked | 2026-02-10 03:42:39 | 27417 bytes |
+| docs/version-system-v4.2.1.md | tracked | 2026-02-10 03:42:39 | 29456 bytes |
+| docs/training-mission-abbrev-table-v1.0.md | tracked | 2026-02-10 03:42:39 | 9715 bytes |
+| docs/wip-naming-v1.4.md | tracked | 2026-02-10 03:42:39 | 19871 bytes |
+| docs/tex-preamble-consolidated.md | tracked | 2026-02-10 03:42:39 | 14455 bytes |
 
 ### 5. guide.tex (Repository Root)
 
 | File Path | Status | Last Modified | Size |
 |-----------|--------|---------------|------|
-| guide.tex | tracked | 2026-02-10 03:29:28 | 113534 bytes |
+| guide.tex | tracked | 2026-02-10 03:42:39 | 113534 bytes |
 
 ---
 
@@ -95,6 +95,8 @@ Commits that modified tracked files (last 10 commits):
 
 | Date/Time | Author | Modified Tracked Files |
 |-----------|--------|------------------------|
+| 2026-02-10 00:41:50 | carlos-nader | wip/chapter-C3-tms-structure-dev-2026-02-04.pdf, wip/chapter-C3-tms-structure-dev-2026-02-04.tex, wip/chapter-C4-tms-structure-dev-2026-02-04.pdf |
+| 2026-02-10 03:29:40 | github-actions[bot] | INTEGRATED-FILES.json, INTEGRATED-FILES.md, docs/integrated-files.html |
 | 2026-02-10 03:09:04 | github-actions[bot] | INTEGRATED-FILES.json, INTEGRATED-FILES.md, docs/integrated-files.html |
 | 2026-02-10 03:07:58 | GitHub Action | README.md |
 | 2026-02-10 02:51:01 | github-actions[bot] | docs/guide-web.pdf |
@@ -103,8 +105,6 @@ Commits that modified tracked files (last 10 commits):
 | 2026-02-09 22:11:42 | github-actions[bot] | INTEGRATED-FILES.json, INTEGRATED-FILES.md, docs/integrated-files.html |
 | 2026-02-09 19:10:36 | carlos-nader | docs/project-tracking-v5.0.0.md |
 | 2026-02-09 22:04:04 | github-actions[bot] | INTEGRATED-FILES.json, INTEGRATED-FILES.md, docs/integrated-files.html |
-| 2026-02-09 21:58:01 | github-actions[bot] | INTEGRATED-FILES.json, INTEGRATED-FILES.md, docs/integrated-files.html |
-| 2026-02-09 18:56:58 | carlos-nader | wip/chapter-C2-hotas-fundamentals-final-2026-02-09.pdf, wip/chapter-C2-hotas-fundamentals-final-2026-02-09.tex, wip/chapter-C2-hotas-fundamentals-review-2026-02-09.pdf |
 
 ---
 
