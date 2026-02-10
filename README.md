@@ -27,7 +27,7 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 | Format | Link | Description |
 |:------:|:----:|:------------|
 | 📄 **LaTeX Source** | [`guide.tex`](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/guide.tex) | Editable source file |
-| 📕 **Compiled PDF** | [`guide.pdf`](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/guide.pdf) | Ready-to-read document |
+| 📕 **Compiled PDF** | [`guide.pdf`]([https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/guide.pdf](https://carlos-nader.github.io/tms-dms-cms-usage-guide/guide-web.pdf)) | Ready-to-read document |
 
 **👆 Click the links above to access the guide! 👆**
 
