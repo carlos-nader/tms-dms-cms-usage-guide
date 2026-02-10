@@ -42,8 +42,9 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 | **Guide Version** | v0.4.0.0 |
 | **Phase** | Pre-publication (0.x.x.x) |
 | **Chapters Planned** | 7 |
-| **Chapters with Content** | 3 (C1, C4, C5) |
-| **Next Target** | v0.4.0.0 — HOTAS Fundamentals (C2) |
+| **Chapters with Content** | 4 (C1, C2, C3, C5) |
+| **Next Target** | v0.5.0.0 — LaTex infrastructure Improvements |
+| **Following Target** | v0.6.0.0 — TMS Chapter (C4) |
 
 ---
 
