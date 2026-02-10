@@ -272,11 +272,11 @@
 % VERSION CONTROL MACROS
 % --------------------------------------------------------------------------
 
-\newcommand{\docversion}{0.4.0.0}
-\newcommand{\docbuild}{20260209}
+\newcommand{\docversion}{0.3.3.0}
+\newcommand{\docbuild}{20260202}
 \newcommand{\docstartdate}{05 January 2026}
-\newcommand{\docenddate}{09 February 2026}
-\newcommand{\chapterscompletedof}{4/7}
+\newcommand{\docenddate}{02 February 2026}
+\newcommand{\chapterscompletedof}{3/7}
 \newcommand{\tablesfilledpct}{Chapter 5 and Chapter 4}
 \newcommand{\fulldocversion}{\docversion+\docbuild}
 
@@ -294,7 +294,7 @@
 
 \title{TMS, DMS and CMS Usage Guide for \bmsver}
 \author{Carlos ``Metal'' Nader}
-\date{Version \fulldocversion{} | Progress: Chapters \chapterscompletedof{} | Tables \tablesfilledpct{} | February 2026}
+\date{Version \fulldocversion{} | Progress: Chapters \chapterscompletedof{} | Tables \tablesfilledpct{} | January 2026}
 
 % ============================================================================
 % DOCUMENT BEGIN
@@ -530,158 +530,27 @@ When sharing, translating, or adapting, include: title, author (Carlos ``Metal''
 This is an \textbf{unofficial}, community-made document. It is not affiliated with, endorsed by, or associated with Benchmark Sims, MicroProse, any military organization, or any aircraft or weapons manufacturer. No copyrighted material is reproduced directly. The guide is provided ``as-is'' for \textbf{educational and simulation training} purposes only.
 
 \newpage
-%============================================================================
-% CHAPTER 2 — HOTAS FUNDAMENTALS
-%============================================================================
-\chapter{HOTAS Fundamentals}
+%--------------------------------------------------------------------------
+% CHAPTER 2: HOTAS FUNDAMENTALS (PLACEHOLDER)
+%--------------------------------------------------------------------------
+\chapter{HOTAS fundamentals}
 \label{chap:C2}
 
-The F-16's HOTAS controls enable the pilot to execute critical flight, sensor, and weapon functions without removing hands from the throttle and stick grips. Within this architecture, three switches — the Display Management Switch (DMS), Target Management Switch (TMS), and Countermeasures Management Switch (CMS) — provide the primary interface for display management, sensor control, and defensive systems and form the core of the HOTAS architecture.
-
-Effective use of these switches requires familiarity with two foundational concepts. The first is the Sensor of Interest (SOI), the mechanism that determines which display receives HOTAS inputs. The second is Master Modes (NAV, A-A, A-G), the operational contexts that govern available weapon systems and sensor configurations. This chapter establishes the conceptual framework necessary for the detailed switch 
-behavior covered in Chapters~\ref{chap:C3}, \ref{chap:C4}, and \ref{chap:C5}.
-
-%============================================================================
-% SECTION 2.1 — SOI CONCEPT AND ARCHITECTURE
-%============================================================================
-\section{Sensor of Interest (SOI) — Concept and Architecture}
+\section{Sensor of Interest (SOI) and display logic}
 \label{sec:C2-S1}
+[Content to be developed in next phase]
 
-The Sensor of Interest (SOI) is a designation that identifies which display currently receives HOTAS cursor slew commands and Target Management Switch (TMS) inputs. At any moment, only one display can hold SOI designation. This single-point control architecture enables the pilot to interact with multiple sensors and displays using HOTAS controls without manually selecting different switches for different sensors.
-
-%--------------------------------------------------------------------------
-% SUBSECTION 2.1.1 — THE SOI CONCEPT
-%--------------------------------------------------------------------------
-\subsection{The SOI Concept}
-\label{sec:C2-S1-S1}
-
-The F-16 cockpit contains three basic displays: the Head-Up Display (HUD) and two Multifunction Displays (MFD). The MFD can present various formats or pages, including radar, targeting pod, weapon management and tactical information. The pilot interacts with these displays through HOTAS controls, particularly the cursor slew control (CURSOR/ENABLE) and the Target Management Switch (TMS).
-
-The Sensor of Interest (SOI) is the designation that identifies which display currently receives HOTAS inputs. At any moment, only one display holds SOI designation. When the pilot slews the cursor or presses TMS Up, the command is directed to whichever display is designated as SOI.
-
-The SOI mechanism manages \textit{where} HOTAS inputs are directed, not \textit{what} those inputs do. The specific function of a HOTAS input — for example, whether TMS Up designates a target, breaks a track, or cycles through a mode — depends on the sensor mode, current Master Mode, and weapon selected. The SOI ensures that the input reaches the intended sensor; the sensor determines how the input is interpreted.
-
-This design reflects the HOTAS philosophy: minimize pilot workload by consolidating control inputs through a limited number of switches while preserving the flexibility to interact with any sensor as needed.
-
-%--------------------------------------------------------------------------
-% SUBSECTION 2.1.2 — SOI INDICATORS AND VISUAL FEEDBACK
-%--------------------------------------------------------------------------
-\subsection{SOI Indicators and Visual Feedback}
-\label{sec:C2-S1-S2}
-
-The pilot can immediately identify which display holds SOI designation through unambiguous visual indicators:
-
-\begin{itemize}
-	\item \textbf{HUD as SOI:} An asterisk symbol (\texttt{*}) appears in the upper left corner of the HUD, above the airspeed scale.
-	\item \textbf{MFD as SOI:} A border outline is drawn around the edges of the MFD display, forming a box that clearly distinguishes the SOI display from the non-SOI display.
-	\item \textbf{NOT SOI indication:} When a display format is capable of being SOI but is not currently designated as such, the text \texttt{NOT SOI} may appear on the format. This text appears only on SOI-capable sensor formats, not on formats that are inherently unable to be SOI.
-\end{itemize}
-
-These visual cues allow the pilot to confirm at a glance which display is receiving HOTAS inputs. This immediate feedback is essential during dynamic operations, where the pilot may rapidly transition SOI between displays to manage multiple sensors or respond to tactical developments.
-
-%--------------------------------------------------------------------------
-% SUBSECTION 2.1.3 — SOI-CAPABLE DISPLAYS AND CONTEXT DEPENDENCY
-%--------------------------------------------------------------------------
-\subsection{SOI-Capable Displays and Context Dependency}
-\label{sec:C2-S1-S3}
-
-Not all displays can be designated as SOI, and the availability of SOI designation varies by master mode and MFD format.
-
-The master mode determines which displays are eligible for SOI designation. In some operational contexts, the HUD can be designated as SOI, allowing the pilot to manage HUD symbology through HOTAS inputs. In other contexts, particularly air-to-air engagements, SOI designation is restricted to MFD formats only. This restriction ensures that primary sensor displays remain the focus of HOTAS control during time-critical tactical situations.
-
-Similarly, not all MFD formats are SOI-capable. Sensor formats that accept targeting and cursor control inputs—such as radar, targeting pod, and weapon displays—can be designated as SOI. Informational or configuration formats that do not require direct sensor interaction cannot be designated as SOI. This design aligns SOI availability with operational function: only displays that benefit from HOTAS cursor and targeting control are SOI-capable.
-
-Understanding these context dependencies is essential for effective HOTAS use. The pilot must recognize not only how to designate a display as SOI, but also whether such designation is permitted in the current operational context.
-
-For complete operational reference tables showing SOI availability by master mode and the full list of valid and invalid MFD formats, see Section~\ref{sec:C3-S1}.
-
-%============================================================================
-% SECTION 2.2 — MASTER MODES AND CONTEXT-SENSITIVE BEHAVIOR
-%============================================================================
-\section{Master Modes and Context-Sensitive Behavior}
+\section{Short vs long presses and timing}
 \label{sec:C2-S2}
+[Content to be developed in next phase]
 
-Section~\ref{sec:C2-S1} established that SOI designation varies by master mode—some master modes permit HUD as SOI, while others restrict SOI to MFD formats only. This variation reflects a broader principle: master mode is the highest-level configuration state of the F-16 avionics system, determining not only SOI availability but also which HOTAS functions are active and how switch inputs are interpreted.
-
-Each master mode pre-configures the cockpit displays, sensor modes, and weapon options for specific missions and purposes. The master mode determines which displays can be designated as SOI, which HOTAS functions are available, and how individual switch inputs are interpreted by the avionics suite. Understanding master modes is essential to understanding why HOTAS switches behave differently in different operational contexts.
-
-%--------------------------------------------------------------------------
-% SUBSECTION 2.2.1 — MASTER MODE OVERVIEW
-%--------------------------------------------------------------------------
-\subsection{Master Mode Overview}
-\label{sec:C2-S2-S1}
-
-The F-16 provides three primary Master Modes (NAV, A-A, and A-G) and two override modes (DGFT and MSL OVRD), each optimized for a specific phase of flight or mission objective:
-
-\begin{itemize}
-	\item \textbf{Navigation (NAV):} The default master mode, used for transit, fuel management, and general situational awareness. In NAV, the avionics system prioritizes navigation displays and provides access to both air-to-air and air-to-ground sensors without committing to a specific weapon employment mode.
-	
-	\item \textbf{Air-to-Air (A-A):} Configures the avionics suite for beyond-visual-range (BVR) and within-visual-range (WVR) air-to-air engagements. A-A mode enables radar search and track modes, datalink integration, and air-to-air weapon selection. HUD symbology shifts to air-to-air cues, and the MFD formats default to radar and tactical displays.
-	
-	\item \textbf{Air-to-Ground (A-G):} Optimizes the cockpit for air-to-ground weapon delivery. A-G mode provides access to ground attack sensors (radar ground modes, targeting pod, HARM attack display), weapon delivery submodes (CCIP, CCRP, DTOS, etc.), and stores management functions. The HUD displays air-to-ground weapon delivery symbology.
-	
-	\item \textbf{Dogfight (DGFT) and Missile Override (MSL OVRD):} These are override 	modes accessed via a throttle-mounted switch. Both are optimized for air-to-air engagements, similar to the A-A Master Mode, but provide immediate access to specific weapon configurations. DGFT configures the cockpit for close-range visual combat, typically defaulting to a high-off-boresight radar mode (ACM) and short-range missile (AIM-9) selection. MSL OVRD provides rapid access to medium-range missile employment (AIM-120) with optimized radar modes. Both override modes take precedence over any other master mode except Emergency Jettison.
-\end{itemize}
-
-Each master mode establishes default configurations for sensors, displays, and weapons. These defaults can be pre-programmed via the Data Transfer Cartridge (DTC) during mission planning or adjusted manually during flight, as detailed in Section~\ref{sec:C3-S4-S2}. The master mode determines not only what the pilot sees on the displays, but also how HOTAS switches function. A single HOTAS input — such as TMS Up — produces different results in NAV, A-A, and A-G modes because the underlying sensor and weapon context has changed. For complete master mode details, see \dashref{2.1.1.2.1}
-
-%--------------------------------------------------------------------------
-% SUBSECTION 2.2.2 — WHY HOTAS SWITCHES BEHAVE DIFFERENTLY BY MASTER MODE
-%--------------------------------------------------------------------------
-\subsection{Why HOTAS Switches Behave Differently by Master Mode}
-\label{sec:C2-S2-S2}
-
-HOTAS switches behave differently by master mode because the master mode determines the operational context. A single physical switch action—such as TMS Up—must support different tactical functions depending on whether the pilot is navigating, engaging an air target, or delivering ordnance to ground. Rather than require separate switches for each function, the F-16 design uses master mode to reinterpret the same switch input based on the current mission phase. This context-sensitive architecture enables a limited number of HOTAS controls to perform a wide range of mission-critical tasks.
-
-The pilot must be aware of the current master mode to predict HOTAS behavior. This awareness is not an additional cognitive burden—the master mode is a natural reflection of the mission phase. The principle that master mode determines context, and context determines function, is the organizing principle behind the detailed HOTAS tables and procedures in Chapters~\ref{chap:C3}, \ref{chap:C4}, and \ref{chap:C5}. Those chapters document the specific functions of DMS, TMS, and CMS in various master modes, sensor modes, and weapon configurations.
-
-%============================================================================
-% SECTION 2.3 — THE THREE SWITCHES: DMS, TMS, AND CMS
-%============================================================================
-\section{The Three Switches: DMS, TMS, and CMS}
+\section{Master modes and context-sensitive behaviour}
 \label{sec:C2-S3}
+[Content to be developed in next phase]
 
-With the conceptual foundation of SOI and master modes established, this section introduces the three HOTAS switches that are the focus of this guide: the Display Management Switch (DMS), Target Management Switch (TMS), and Countermeasures Management Switch (CMS).
-
-The DMS and TMS operate within the SOI framework—DMS selects which display is SOI, and TMS performs tactical functions through the display currently designated as SOI. The CMS operates independently of SOI, managing defensive systems in response to threat warnings. All three switches exhibit context-sensitive behavior governed by master mode. The following subsections provide a high-level overview of each switch; detailed functionality is covered in Chapters~\ref{chap:C3}, \ref{chap:C4}, and \ref{chap:C5}.
-
-%--------------------------------------------------------------------------
-% SUBSECTION 2.3.1 — DISPLAY MANAGEMENT SWITCH (DMS)
-%--------------------------------------------------------------------------
-\subsection{Display Management Switch (DMS) — Overview}
-\label{sec:C2-S3-S1}
-
-The Display Management Switch (DMS) is a four-way, spring-loaded hat switch located on the flight stick. Its primary functions are SOI selection and MFD format cycling. The DMS does not perform tactical actions such as target designation or weapon release; instead, it manages \textit{which display or sensor} receives HOTAS inputs from other controls.
-
-The DMS is a transversal SOI manager. It controls the routing of HOTAS inputs to displays, but does not execute sensor-specific or weapon-specific functions. This distinction separates the DMS from the TMS, which operates \textit{through} the SOI to execute tactical actions such as target designation, track management, and weapon cueing.
-
-Detailed DMS functionality is covered in Chapter~\ref{chap:C3}.
-
-%--------------------------------------------------------------------------
-% SUBSECTION 2.3.2 — TARGET MANAGEMENT SWITCH (TMS)
-%--------------------------------------------------------------------------
-\subsection{Target Management Switch (TMS) — Overview}
-\label{sec:C2-S3-S2}
-
-The Target Management Switch (TMS) is a four-way, spring-loaded hat switch located on the flight stick. Its primary function is target management and designation, but it also performs navigation-related functions such as markpoint creation.
-
-Unlike the DMS, which manages \textit{which} display is active, the TMS operates \textit{through} the currently active SOI to execute tactical functions. The specific behavior of each TMS direction depends on the master mode, the sensor mode, and which display holds the SOI designation. This context-sensitivity allows a single four-way switch to perform a wide range of tactical functions across different mission profiles.
-
-Detailed TMS functionality is covered in Chapter~\ref{chap:C4}.
-
-%--------------------------------------------------------------------------
-% SUBSECTION 2.3.3 — COUNTERMEASURES MANAGEMENT SWITCH (CMS)
-%--------------------------------------------------------------------------
-\subsection{Countermeasures Management Switch (CMS) — Overview}
-\label{sec:C2-S3-S3}
-
-The Countermeasures Management Switch (CMS) is a four-way, spring-loaded hat switch located on the flight stick. Its primary function is countermeasures dispensing, controlling the release of chaff and flare from the ALE-47 Countermeasures Dispenser System (CMDS) and managing Electronic Countermeasures (ECM) pod transmissions.
-
-Unlike the DMS and TMS, the CMS operates largely independently of Sensor of Interest designation. CMS commands interact directly with defensive systems—the CMDS, ECM pod, and Radar Warning Receiver (RWR)—rather than routing through the SOI architecture. The pilot actuates the CMS in response to threat warnings displayed on the RWR, and the countermeasures system responds according to pre-programmed or manually configured dispense patterns.
-
-The CMS provides the pilot with immediate, hands-on control of defensive systems without requiring menu navigation or display interaction. This direct-access design reflects the time-critical nature of countermeasures employment in response to surface-to-air or air-to-air threats.
-
-Detailed CMS functionality, including CMDS program interaction, ECM pod control, and manual mode operation, is covered in Chapter~\ref{chap:C5}.
+\section{Overview of TMS, DMS and CMS}
+\label{sec:C2-S4}
+[Content to be developed in next phase]
 \newpage
 
 %--------------------------------------------------------------------------
@@ -723,7 +592,12 @@ The DMS switch responds to short presses for all standard SOI designation and MF
 \subsection{SOI Definition and Master Mode Availability}
 \label{sec:C3-S1-S1}
 
-As introduced in Chapter~\ref{sec:C2-S1}, the Sensor of Interest (SOI) is the display that currently receives HOTAS cursor slew commands and TMS actions. At any moment, only one display can be the SOI. The SOI is indicated visually by an asterisk on the HUD or a border outline on the MFD (see Section~\ref{sec:C2-S1-S2} for complete details).
+The Sensor of Interest (SOI) is the display or sensor that currently receives HOTAS cursor slew commands and, where applicable, TMS actions. \textbf{At any moment, only one display can be the SOI}. Visually, The currently active SOI is easily recognized:
+
+\begin{itemize}
+	\item On the \textbf{HUD}: an asterisk (\texttt{*}) appears in the upper left corner when HUD is SOI.
+	\item On an \textbf{MFD}: a border outline appears around the edges of the display when it is SOI. When an MFD format is \textit{not} SOI, the text \texttt{NOT SOI} may appear on the format.
+\end{itemize}
 
 The availability of displays as valid SOI varies by master mode. Table~\ref{tab:C3-S1-SOI-by-mode} below shows which displays can serve as SOI in the primary operational contexts. Note that in air-to-air employment modes (A-A, DGFT, MSL OVRD), the HUD is \textbf{never} available as SOI; A-A modes \textit{restrict} the pilot to left and right MFD as the SOI. This constraint ensures that radar and tactical displays remain the primary source of truth in air-to-air engagements.
 
@@ -1218,7 +1092,7 @@ Each table entry specifies:
 
 Notwithstanding the decision to present only three representative training missions, any complex mission involving A-A and A-G weapons employment will benefit from the application of DMS Left/Right.
 
-\begin{hotastable}{DMS Left/Right Format Cycling Across All Master Modes}\label{table:dms-left-right}
+\begin{hotastable}{DMS Left/Right Format Cycling Across All Master Modes}
 	
 	A-A, A-G, NAV & Left & Short & Cycle Left MFD format & DMS Left cycles the Left MFD through its configured 3-slot sequence: PRIMARY → SECONDARY → TERTIARY → PRIMARY (wrap-around). If BLANK slots are present, they are skipped automatically. Each press advances one step; no continuous cycling on hold. SOI designation of any valid display is unaffected. & 2.1.1.2.1, 2.1.6.3 & \trnref{8 (TFR/FLIR)}, \trnref{28 (SEAD-EW)}, \trnref{18 (BARCAP)} \\
 	A-A, A-G, NAV & Right & Short & Cycle Right MFD format & DMS Right cycles the Right MFD through its configured 3-slot sequence: PRIMARY → SECONDARY → TERTIARY → PRIMARY (wrap-around). If BLANK slots are present, they are skipped automatically. Each press advances one step; no continuous cycling on hold. SOI designation of any valid display is unaffected. & 2.1.1.2.1, 2.1.6.3 & \trnref{8 (TFR/FLIR)}, \trnref{28 (SEAD-EW)}, \trnref{18 (BARCAP)} \\
