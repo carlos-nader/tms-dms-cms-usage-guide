@@ -22,7 +22,7 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 
 ## 📄 Main Guide Files
 
-[![Version](https://img.shields.io/badge/LATEST%20version-v0.3.3.0-yellow?style=for-the-badge&logo=tag&logoColor=black)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases)
+[![Version](https://img.shields.io/badge/LATEST%20version-v0.4.0.0-yellow?style=for-the-badge&logo=tag&logoColor=black)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases)
 
 | Format | Link | Description |
 |:------:|:----:|:------------|
@@ -39,7 +39,7 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 
 | Metric | Value |
 |--------|-------|
-| **Guide Version** | v0.3.3.0 |
+| **Guide Version** | v0.4.0.0 |
 | **Phase** | Pre-publication (0.x.x.x) |
 | **Chapters Planned** | 7 |
 | **Chapters with Content** | 3 (C1, C4, C5) |
@@ -242,4 +242,4 @@ For questions, suggestions, or feedback:
 
 ---
 
-**License:** CC BY-NC 4.0 | **Guide Status:** Pre-publication v0.3.3.0
+**License:** CC BY-NC 4.0 | **Guide Status:** Pre-publication v0.4.0.0
