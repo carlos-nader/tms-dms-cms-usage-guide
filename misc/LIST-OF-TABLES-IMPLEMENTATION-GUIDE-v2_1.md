@@ -22,12 +22,6 @@ This guide serves as:
 - **Documentation of governance impacts** (BRIEFING, WIP-NAMING)
 - **Record of architectural decisions** and rationale
 
-### 1.2 Authority
-
-**The preamble of `guide.tex` is the authoritative source.**
-
-All code specifications in this document reflect the current implementation in the guide's preamble. Any discrepancies between this document and the preamble should be resolved in favor of the preamble.
-
 ---
 
 ## 2. Theme 1: `hotastable` Environment v2.1
@@ -784,8 +778,6 @@ latexmk -pdf guide.tex   # Automatically handles multiple passes
 |---------|------|---------|
 | v2.1 | 2026-02-11 | Complete rewrite based on preamble authority. Added List of HOTAS Tables implementation, detailed BRIEFING and WIP-NAMING impact documentation, comprehensive examples and troubleshooting. |
 | v2.0 | 2026-02-05 | Initial specification (superseded) |
-| v1.1 | 2026-02-05 | Draft with `\dashref` analysis (superseded) |
-| v1.0 | 2026-02-04 | Original draft (superseded) |
 
 ---
 
