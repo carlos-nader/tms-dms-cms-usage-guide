@@ -3,14 +3,14 @@ layout: default
 ---
 {% raw %}
 
-Preamble Completo (Pronto para Colar)
+Complete Preamble (Ready to copy and paste to any LaTex editor, with all improvements from GitHub Issues #34 and #33 implemented):
 
 ```latex
-% ============================================================================
+%============================================================================
 % PREAMBLE COMPLETO — TMS/DMS/CMS Usage Guide for Falcon BMS 4.38.1
-% Gerado: 29 January 2026
-% Status: Novo preâmbulo (report + twoside + titlesec + fancyhdr melhorado + new hotastable ambient)
-% ============================================================================
+% Gerado: 11 February 2026
+% Status: Improvements as per GitHub Issues #34 and #33
+%============================================================================
 
 \documentclass[11pt, a4paper, twoside]{report}
 
@@ -39,7 +39,7 @@ Preamble Completo (Pronto para Colar)
 \onehalfspacing
 
 % --------------------------------------------------------------------------
-% COLORS AND LINKS
+% COLORS AND LINKS AND PDF SETTINGS
 % --------------------------------------------------------------------------
 
 \usepackage[table]{xcolor}
@@ -48,14 +48,22 @@ Preamble Completo (Pronto para Colar)
 \definecolor{headerblue}{HTML}{003366}
 \definecolor{rowgray}{HTML}{F5F5F5}
 \definecolor{subheadgray}{HTML}{E0E0E0}
-
 \usepackage{soul}
 \usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\hypersetup{
+	pdftitle={TMS, DMS and CMS Usage Guide for Falcon BMS},
+	pdfauthor={Carlos "Metal" Nader},
+	pdfsubject={Flight Simulation - Falcon BMS HOTAS Reference},
+	pdfkeywords={Falcon BMS, F-16, HOTAS, TMS, DMS, CMS, Flight Simulation},
+	pdfcreator={pdfLaTeX (MiKTeX)},
+	pdfproducer={MiKTeX},
+	pdflang={en-US},
+}
 \usepackage{bookmark}
 
-% ============================================================================
+% --------------------------------------------------------------------------
 % CAPTION SETUP BY TYPE
-% ============================================================================
+% --------------------------------------------------------------------------
 
 \usepackage{caption}
 
@@ -71,12 +79,12 @@ Preamble Completo (Pronto para Colar)
 % --------------------------------------------------------------------------
 
 \usepackage{fancyhdr}
-\setlength{\headheight}{25pt}                    % Increased (was 15pt) for long names
+\setlength{\headheight}{25pt}                    
 \pagestyle{fancy}
-\fancyhf{}                                        % Clear all
-\fancyhead[LO,RE]{\small\textit{\leftmark}}     % Outer edge (odd left, even right): chapter name
-\fancyhead[RO,LE]{\small\thepage}               % Inner edge (odd right, even left): page number
-\fancyfoot{}                                      % No footer (page number in header)
+\fancyhf{}                                        
+\fancyhead[LO,RE]{\small\textit{\leftmark}}     
+\fancyhead[RO,LE]{\small\thepage}               
+\fancyfoot{}                                      
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
 
@@ -230,62 +238,84 @@ Preamble Completo (Pronto para Colar)
 % Macro for Visual Reference Links
 \newcommand{\imglink}[1]{\hspace{2pt}\hyperref[#1]{\scriptsize\textbf{[Fig]}}}
 
-% ============================================================================
-% HOTAS table environment (per Briefing v0.2.0.1)
-% ============================================================================
+% --------------------------------------------------------------------------
+% HOTAS LOT FILE HANDLE 
+% --------------------------------------------------------------------------
+\makeatletter
+\newcommand{\listofhotastables}{%
+	\section*{List of HOTAS Tables}%
+	\addcontentsline{toc}{section}{List of HOTAS Tables}%
+	\@starttoc{hotas}%
+}
+\makeatother
+
+% --------------------------------------------------------------------------
+% HOTAS table environment
+% Version: 2.1 (2026-02-10)
+% --------------------------------------------------------------------------
 
 \newenvironment{hotastable}[1]{%
-  \small
-  \setlength{\tabcolsep}{2pt}
-  \renewcommand{\arraystretch}{1.25}
-  \begin{longtable}{L{1.00cm} L{0.90cm} L{0.90cm} L{3.30cm} L{6.40cm} L{1.40cm} L{2.10cm}}
-  \caption{#1}\\
-  \rowcolor{headerblue}
-  \multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{2.10cm}}{\textbf{\color{white}Train.}} \\
-  \endfirsthead
-  \rowcolor{headerblue}
-  \multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{2.10cm}}{\textbf{\color{white}Train.}} \\
-  \endhead
-  \multicolumn{7}{r}{\small\emph{Continued on next page}}\\
-  \endfoot
-  \endlastfoot
-}{%
-  \end{longtable}
+	\footnotesize
+	\setlength{\tabcolsep}{3pt}
+	\renewcommand{\arraystretch}{1.35}
+	\begin{longtable}{L{1.00cm} L{0.90cm} L{0.90cm} L{3.30cm} L{6.40cm} L{1.40cm} L{1.60cm}}
+		\caption{#1}\label{table.\thetable}\\
+		\addtocontents{hotas}{\protect\contentsline{table}{\protect\numberline{\thetable}#1}{\thepage}{table.\thetable}}%
+		\rowcolor{headerblue}
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
+		\endfirsthead
+		\rowcolor{headerblue}
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
+		\endhead
+		\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+		\endfoot
+		\endlastfoot
+	}{%
+	\end{longtable}
 }
 
 % --------------------------------------------------------------------------
 % SIMPLE REFERENCE MACROS FOR BMS DOCS
 % --------------------------------------------------------------------------
 
-\providecommand{\dashref}[1]{Dash-34~\S~#1}
-\providecommand{\dashone}[1]{Dash-1~\S~#1}
-\providecommand{\trnref}[1]{TRN~#1}
-\providecommand{\trnman}{BMS Training Manual 4.38.1}
-\providecommand{\bmsver}{Falcon BMS~4.38.1}
-\providecommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+\newcommand{\dashref}[1]{Dash-34~\S~#1}
+\newcommand{\dashone}[1]{Dash-1~\S~#1}
+\newcommand{\trnref}[1]{TRN~#1}
+\newcommand{\trnman}{BMS Training Manual 4.38.1}
+\newcommand{\bmsver}{Falcon BMS~4.38.1}
+\newcommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+
+% --------------------------------------------------------------------------
+% CROSS-REFERENCE MACROS (INTERNAL GUIDE)
+% --------------------------------------------------------------------------
+
+\newcommand{\secref}[1]{\hyperref[#1]{Section~\ref*{#1}}}
+\newcommand{\chapref}[1]{\hyperref[#1]{Chapter~\ref*{#1}}}
+\newcommand{\tabref}[1]{\hyperref[#1]{Table~\ref*{#1}}}
+\newcommand{\figref}[1]{\hyperref[#1]{Figure~\ref*{#1}}}
 
 % --------------------------------------------------------------------------
 % VERSION CONTROL MACROS
 % --------------------------------------------------------------------------
 
-\newcommand{\docversion}{0.3.0.1}
-\newcommand{\docbuild}{20260117}
+\newcommand{\docversion}{0.4.1.0}
+\newcommand{\docbuild}{20260211}
 \newcommand{\docstartdate}{05 January 2026}
-\newcommand{\docenddate}{17 January 2026}
-\newcommand{\chapterscompletedof}{3/7}
-\newcommand{\tablesfilledpct}{Chapter 5 and Chapter 4 - 4.2}
+\newcommand{\docenddate}{11 February 2026}
+\newcommand{\chapterscompletedof}{4/7}
+\newcommand{\tablesfilledpct}{Chapter 5 and Chapter 4}
 \newcommand{\fulldocversion}{\docversion+\docbuild}
 
 % --------------------------------------------------------------------------
@@ -295,6 +325,7 @@ Preamble Completo (Pronto para Colar)
 \usepackage{graphicx}
 \graphicspath{{fig/}}
 \usepackage{float}
+\usepackage{enumitem}
 
 % --------------------------------------------------------------------------
 % TITLE
@@ -309,24 +340,29 @@ Preamble Completo (Pronto para Colar)
 % ============================================================================
 
 \begin{document}
-
-\maketitle
-
-\pagenumbering{roman}
-
-% ============================================================================
-% TOC DEPTH CONFIGURATION (CRITICAL for report)
-% ============================================================================
-\setcounter{tocdepth}{3}       % Show up to \subsubsection in TOC
-\setcounter{secnumdepth}{3}    % Number up to \subsubsection
-
-\newpage
-
-\tableofcontents
-
-\newpage
-
-\pagenumbering{arabic}
+	
+	\maketitle
+	
+	\pagenumbering{roman}
+	
+	% --------------------------------------------------------------------------
+	% TOC DEPTH CONFIGURATION
+	% --------------------------------------------------------------------------
+	\setcounter{tocdepth}{3}       % Show up to \subsubsection in TOC
+	\setcounter{secnumdepth}{3}    % Number up to \subsubsection
+	
+	\newpage
+	\tableofcontents
+	\newpage
+	
+	% --------------------------------------------------------------------------
+	% LIST OF HOTAS TABLES
+	% --------------------------------------------------------------------------
+	\phantomsection
+	\listofhotastables
+	\newpage
+	
+	\pagenumbering{arabic}
 
 % ============================================================================
 % CONTENT BEGINS HERE (use \chapter{}, \section{}, \subsection{}, etc.)
