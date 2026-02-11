@@ -29,5 +29,8 @@
   },
   "latex-workshop.intellisense.citation.label": "bibtex key",
   "latex-workshop.message.error.show": true,
-  "latex-workshop.message.warning.show": true
+  "latex-workshop.message.warning.show": true,
+  "latex-workshop.latex.clean.fileTypes": [
+  "*.aux", "*.bbl", "*.blg", "*.fls", "*.log", "*.out", "*.toc", "*.lot", "*.lof", "*.hotas"
+]
 }
