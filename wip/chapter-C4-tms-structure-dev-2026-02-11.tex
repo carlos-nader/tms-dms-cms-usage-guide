@@ -8,7 +8,7 @@
 
 %============================================================================
 % FALCON BMS TMS/DMS/CMS HOTAS GUIDE
-% WIP FILE TEMPLATE V1.0 — FINAL (Briefing v0.2.0.1 + TOC Fix)
+% WIP FILE TEMPLATE V1.0 — FINAL (Briefing v0.2.0.1)
 %============================================================================
 
 % IMPORTANTE: Este é um TEMPLATE padronizado para arquivos WIP (Work-In-Progress)
@@ -23,31 +23,30 @@
 
 %============================================================================
 % PREAMBLE COMPLETO — TMS/DMS/CMS Usage Guide for Falcon BMS 4.38.1
-% Gerado: 29 January 2026
-% Status: Novo preâmbulo (report + twoside + titlesec + fancyhdr melhorado +
-%soul + caption + new hotastable environment)
+% Gerado: 11 February 2026
+% Status: GitHub Issue #34 - \misc\old\PREAMBLE-IMPROVEMENTS-RECOMMENDATIONS-v1_1.md
 %============================================================================
 
 \documentclass[11pt, a4paper, twoside]{report}
 
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 % BASIC ENCODING AND LANGUAGE
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
 
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 % FONTS AND MICROTYPOGRAPHY
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 
 \usepackage{lmodern}
 \usepackage{microtype}
 
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 % PAGE GEOMETRY AND LAYOUT
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 
 \usepackage{geometry}
 \geometry{a4paper, left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
@@ -55,7 +54,7 @@
 \onehalfspacing
 
 % --------------------------------------------------------------------------
-% COLORS AND LINKS
+% COLORS AND LINKS AND PDF SETTINGS
 % --------------------------------------------------------------------------
 
 \usepackage[table]{xcolor}
@@ -64,14 +63,22 @@
 \definecolor{headerblue}{HTML}{003366}
 \definecolor{rowgray}{HTML}{F5F5F5}
 \definecolor{subheadgray}{HTML}{E0E0E0}
-
 \usepackage{soul}
 \usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\hypersetup{
+	pdftitle={TMS, DMS and CMS Usage Guide for Falcon BMS},
+	pdfauthor={Carlos "Metal" Nader},
+	pdfsubject={Flight Simulation - Falcon BMS HOTAS Reference},
+	pdfkeywords={Falcon BMS, F-16, HOTAS, TMS, DMS, CMS, Flight Simulation},
+	pdfcreator={pdfLaTeX (MiKTeX)},
+	pdfproducer={MiKTeX},
+	pdflang={en-US},
+}
 \usepackage{bookmark}
 
-% ============================================================================
+% --------------------------------------------------------------------------
 % CAPTION SETUP BY TYPE
-% ============================================================================
+% --------------------------------------------------------------------------
 
 \usepackage{caption}
 
@@ -82,23 +89,23 @@
 % % TABLE/LONGTABLE/hotastable:
 \captionsetup[table]{font=small, labelfont=bf, justification=centering, singlelinecheck=true}
 
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 % HEADERS AND FOOTERS (IMPROVED for report + twoside)
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 
 \usepackage{fancyhdr}
-\setlength{\headheight}{25pt}                    % Increased (was 15pt) for long names
+\setlength{\headheight}{25pt}                    
 \pagestyle{fancy}
-\fancyhf{}                                        % Clear all
-\fancyhead[LO,RE]{\small\textit{\leftmark}}     % Outer edge (odd left, even right): chapter name
-\fancyhead[RO,LE]{\small\thepage}               % Inner edge (odd right, even left): page number
-\fancyfoot{}                                      % No footer (page number in header)
+\fancyhf{}                                        
+\fancyhead[LO,RE]{\small\textit{\leftmark}}     
+\fancyhead[RO,LE]{\small\thepage}               
+\fancyfoot{}                                      
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
 
-%-------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 % CHAPTER FORMATTING AND SPACING (via titlesec)
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 
 \usepackage{titlesec}
 
@@ -229,9 +236,9 @@
 {1em}       % Espaço DEPOIS do título (ADICIONADO)
 [0pt]       % Margem direita
 
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 % TABLES AND MACROS
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 
 \usepackage{booktabs}
 \usepackage{array}
@@ -246,16 +253,29 @@
 % Macro for Visual Reference Links
 \newcommand{\imglink}[1]{\hspace{2pt}\hyperref[#1]{\scriptsize\textbf{[Fig]}}}
 
-%============================================================================
-% HOTAS table environment (per Briefing v0.2.0.1)
-%============================================================================
+% --------------------------------------------------------------------------
+% HOTAS LOT FILE HANDLE 
+% --------------------------------------------------------------------------
+\makeatletter
+\newcommand{\listofhotastables}{%
+	\section*{List of HOTAS Tables}%
+	\addcontentsline{toc}{section}{List of HOTAS Tables}%
+	\@starttoc{hotas}%
+}
+\makeatother
+
+% --------------------------------------------------------------------------
+% HOTAS table environment
+% Version: 2.1 (2026-02-10)
+% --------------------------------------------------------------------------
 
 \newenvironment{hotastable}[1]{%
-	\small
-	\setlength{\tabcolsep}{2pt}
-	\renewcommand{\arraystretch}{1.25}
-	\begin{longtable}{L{1.00cm} L{0.90cm} L{0.90cm} L{3.30cm} L{6.40cm} L{1.40cm} L{2.10cm}}
-		\caption{#1}\\
+	\footnotesize
+	\setlength{\tabcolsep}{3pt}
+	\renewcommand{\arraystretch}{1.35}
+	\begin{longtable}{L{1.00cm} L{0.90cm} L{0.90cm} L{3.30cm} L{6.40cm} L{1.40cm} L{1.60cm}}
+		\caption{#1}\label{table.\thetable}\\
+		\addtocontents{hotas}{\protect\contentsline{table}{\protect\numberline{\thetable}#1}{\thepage}{table.\thetable}}%
 		\rowcolor{headerblue}
 		\multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
 		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
@@ -263,7 +283,7 @@
 		\multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
 		\multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
 		\multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
-		\multicolumn{1}{>{\centering\arraybackslash}p{2.10cm}}{\textbf{\color{white}Train.}} \\
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
 		\endfirsthead
 		\rowcolor{headerblue}
 		\multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
@@ -272,7 +292,7 @@
 		\multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
 		\multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
 		\multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
-		\multicolumn{1}{>{\centering\arraybackslash}p{2.10cm}}{\textbf{\color{white}Train.}} \\
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
 		\endhead
 		\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
 		\endfoot
@@ -281,48 +301,58 @@
 	\end{longtable}
 }
 
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 % SIMPLE REFERENCE MACROS FOR BMS DOCS
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 
-\providecommand{\dashref}[1]{Dash-34~\S~#1}
-\providecommand{\dashone}[1]{Dash-1~\S~#1}
-\providecommand{\trnref}[1]{TRN~#1}
-\providecommand{\trnman}{BMS Training Manual 4.38.1}
-\providecommand{\bmsver}{Falcon BMS~4.38.1}
-\providecommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+\newcommand{\dashref}[1]{Dash-34~\S~#1}
+\newcommand{\dashone}[1]{Dash-1~\S~#1}
+\newcommand{\trnref}[1]{TRN~#1}
+\newcommand{\trnman}{BMS Training Manual 4.38.1}
+\newcommand{\bmsver}{Falcon BMS~4.38.1}
+\newcommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
 
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
+% CROSS-REFERENCE MACROS (INTERNAL GUIDE)
+% --------------------------------------------------------------------------
+
+\newcommand{\secref}[1]{\hyperref[#1]{Section~\ref*{#1}}}
+\newcommand{\chapref}[1]{\hyperref[#1]{Chapter~\ref*{#1}}}
+\newcommand{\tabref}[1]{\hyperref[#1]{Table~\ref*{#1}}}
+\newcommand{\figref}[1]{\hyperref[#1]{Figure~\ref*{#1}}}
+
+% --------------------------------------------------------------------------
 % VERSION CONTROL MACROS
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 
-\newcommand{\docversion}{INSERT VERSION NUMBER}
-\newcommand{\docbuild}{INSERT DOCUMENT DATE}
+\newcommand{\docversion}{0.3.3.0}
+\newcommand{\docbuild}{20260202}
 \newcommand{\docstartdate}{05 January 2026}
-\newcommand{\docenddate}{xx xxx 2026}
-\newcommand{\chapterscompletedof}{x/7}
-\newcommand{\tablesfilledpct}{DESCRIBE}
+\newcommand{\docenddate}{02 February 2026}
+\newcommand{\chapterscompletedof}{3/7}
+\newcommand{\tablesfilledpct}{Chapter 5 and Chapter 4}
 \newcommand{\fulldocversion}{\docversion+\docbuild}
 
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 % GRAPHICS
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 
 \usepackage{graphicx}
 \graphicspath{{fig/}}
 \usepackage{float}
+\usepackage{enumitem}
 
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 % TITLE
-%--------------------------------------------------------------------------
+% --------------------------------------------------------------------------
 
 \title{TMS, DMS and CMS Usage Guide for \bmsver}
 \author{Carlos ``Metal'' Nader}
 \date{Version \fulldocversion{} | Progress: Chapters \chapterscompletedof{} | Tables \tablesfilledpct{} | January 2026}
 
-%============================================================================
+% ============================================================================
 % DOCUMENT BEGIN
-%============================================================================
+% ============================================================================
 
 \begin{document}
 	
@@ -330,16 +360,20 @@
 	
 	\pagenumbering{roman}
 	
-	%============================================================================
-	% TOC DEPTH CONFIGURATION (CRITICAL for report)
-	%============================================================================
+	% --------------------------------------------------------------------------
+	% TOC DEPTH CONFIGURATION
+	% --------------------------------------------------------------------------
 	\setcounter{tocdepth}{3}       % Show up to \subsubsection in TOC
 	\setcounter{secnumdepth}{3}    % Number up to \subsubsection
 	
 	\newpage
-	
 	\tableofcontents
+	\newpage
 	
+	% --------------------------------------------------------------------------
+	% LIST OF HOTAS TABLES
+	% --------------------------------------------------------------------------
+	\listofhotastables
 	\newpage
 	
 	\pagenumbering{arabic}
@@ -356,14 +390,14 @@
 	%
 	% WIP Status: dev | review | final | approved | deprecated
 	% Created: 2026-02-04
-	% Last Modified: 2026-02-09
+	% Last Modified: 2026-02-11 - new preamble integrated
 	% Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.5.0.0
 	%
 	% Narrative Completion: 0%
 	% Table Fill Status: 0%
 	%
 	% Notes:
-	% - Onlye the structure
+	% - Only the structure
 	% - Needs full review
 	
 	%============================================================================
@@ -395,17 +429,17 @@ TMS behavior is \textbf{highly context-sensitive}. The same physical input---for
 
 This chapter systematically documents TMS behavior across all operational contexts, organized by:
 \begin{enumerate}
-    \item \textbf{General TMS concept and timing} (Section~\ref{sec:C4-S1})
-    \item \textbf{TMS with SA displays} (HSD, FCR non-tracking modes) (Section~\ref{sec:C4-S2})
-    \item \textbf{TMS in Air-to-Air} (FCR tracking, ACM, TWS, IFF) (Section~\ref{sec:C4-S3})
-    \item \textbf{TMS in Air-to-Ground} (FCR GM/GMT/SEA, TGP, MARK) (Section~\ref{sec:C4-S4})
-    \item \textbf{TMS in weapon employment} (AGM-65, HARM, DTOS, IAM-VIS, CCIP/CCRP) (Section~\ref{sec:C4-S5})
-    \item \textbf{Block/variant notes} (Section~\ref{sec:C4-S6})
+    \item \textbf{General TMS concept and timing} (\secref{sec:C4-S1})
+    \item \textbf{TMS with SA displays} (HSD, FCR non-tracking modes) (\secref{sec:C4-S2})
+    \item \textbf{TMS in Air-to-Air} (FCR tracking, ACM, TWS, IFF) (\secref{sec:C4-S3})
+    \item \textbf{TMS in Air-to-Ground} (FCR GM/GMT/SEA, TGP, MARK) (\secref{sec:C4-S4})
+    \item \textbf{TMS in weapon employment} (AGM-65, HARM, DTOS, IAM-VIS, CCIP/CCRP) (\secref{sec:C4-S5})
+    \item \textbf{Block/variant notes} (\secref{sec:C4-S6})
 \end{enumerate}
 
 The guide follows the same structure established in Chapters 4 (DMS) and 5 (CMS): narrative explanations provide context and rationale, while \texttt{hotastable} environments present mode-specific actions in tabular format with cross-references to Dash-34 sections and BMS training missions.
 
-\textbf{Critical reminder:} TMS commands are routed to whichever sensor or display is currently SOI (Sensor of Interest). If the pilot intends to designate a target on the FCR but SOI is on the HSD, TMS Up will act on the HSD cursor instead. Understanding SOI logic (Chapter 2, Section~\ref{sec:C2-S1} and Chapter 3, Section~\ref{sec:C3-S1}) is essential to mastering TMS usage.
+\textbf{Critical reminder:} TMS commands are routed to whichever sensor or display is currently SOI (Sensor of Interest). If the pilot intends to designate a target on the FCR but SOI is on the HSD, TMS Up will act on the HSD cursor instead. Understanding SOI logic (Chapter 2, \secref{sec:C2-S1} and Chapter 3, \secref{sec:C3-S1}) is essential to mastering TMS usage.
 
 \newpage
 %--------------------------------------------------------------------------
@@ -490,7 +524,7 @@ Pilot is in A-A master mode with HSD as SOI (DMS Down toggled SOI to HSD). ACQ c
 Pilot is in A-G master mode, DTOS submode, HUD as SOI. TD box is slewed over target. TMS Up (short) → TD box ground-stabilizes on target. SOI auto-transitions to TGP or WPN MFD page if available.
 
 \paragraph{Critical implication:}
-If the pilot loses track of which display is SOI, TMS commands may not produce the expected result. For instance, attempting to designate an FCR target while SOI is on the HSD will result in HSD cursor action instead of FCR designation. Understanding and controlling SOI (via DMS Up/Down, see Chapter~\ref{chap:C4}) is prerequisite to effective TMS usage.
+If the pilot loses track of which display is SOI, TMS commands may not produce the expected result. For instance, attempting to designate an FCR target while SOI is on the HSD will result in HSD cursor action instead of FCR designation. Understanding and controlling SOI (via DMS Up/Down, see \secref{chap:C4}) is prerequisite to effective TMS usage.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 4.1.4: TMS TIMING AND PRESS DURATION LOGIC
@@ -513,7 +547,7 @@ The avionics distinguish these thresholds automatically. Pilots must develop mus
 \end{itemize}
 
 \paragraph{Training recommendation:}
-Practice timing in BMS Training Mission 18 (BARCAP) for A-A spotlight search, and Mission 25 (DTOS) for A-G HMCS slaving. See Section~\ref{sec:C3-S3} and \ref{sec:C3-S5} for mode-specific tables.
+Practice timing in BMS Training Mission 18 (BARCAP) for A-A spotlight search, and Mission 25 (DTOS) for A-G HMCS slaving. See \secref{sec:C3-S3} and \secref{sec:C3-S5} for mode-specific tables.
 
 \newpage
 %--------------------------------------------------------------------------
@@ -554,7 +588,7 @@ HSD as SOI is most common in:
     \item \textbf{NAV master mode:} HSD provides navigation context; TMS commands allow hands-on steerpoint management.
 \end{itemize}
 
-See Table~\ref{tab:C4-S2-HSD} for detailed HSD TMS actions.
+See \tabref{tab:C4-S2-HSD} for detailed HSD TMS actions.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 4.2.2: TMS WITH FCR IN SEARCH MODES (PRE-DESIGNATION)
@@ -581,7 +615,7 @@ Transitions FCR from RWS/ULS → TWS (Track-While-Scan). Any currently bugged ta
 \paragraph{Operational note:}
 These TMS functions are available only when FCR is SOI. If SOI has migrated to HSD or TGP, TMS commands will not affect FCR search modes. Use DMS Down to toggle SOI back to FCR if needed.
 
-See Table~\ref{tab:C4-S2-FCR-search} for FCR search mode TMS actions.
+See \tabref{tab:C4-S2-FCR-search} for FCR search mode TMS actions.
 
 %--------------------------------------------------------------------------
 % PLACEHOLDER: TABLE 4.2.1 — TMS Actions with HSD as SOI
@@ -653,7 +687,7 @@ Transitions SAM → TWS. Bugged target becomes TWS primary target. Radar begins 
 \paragraph{Operational context:}
 SAM is ideal for Beyond Visual Range (BVR) engagements where the pilot needs track data on one or two targets while maintaining search awareness. TMS Up/Down provides rapid transitions between search, SAM, and STT as the tactical picture evolves.
 
-See Table~\ref{tab:C4-S3-SAM} for detailed SAM TMS actions.
+See \tabref{tab:C4-S3-SAM} for detailed SAM TMS actions.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 4.3.2: TMS IN STT (SINGLE TARGET TRACK)
@@ -678,7 +712,7 @@ Single Target Track (STT) dedicates the FCR to tracking a single airborne target
 \paragraph{Operational note:}
 STT reveals the F-16's position to any target with RWR (Radar Warning Receiver) due to continuous radar emissions. Use STT only when weapon parameters are achieved and giving away position is acceptable. For covert BVR engagements, SAM or TWS is preferable.
 
-See Table~\ref{tab:C4-S3-STT} for STT TMS actions.
+See \tabref{tab:C4-S3-STT} for STT TMS actions.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 4.3.3: TMS IN TWS (TRACK-WHILE-SCAN)
@@ -716,7 +750,7 @@ Initiates spotlight search (same as RWS). Spotlight scan centered on ACQ cursor;
 \paragraph{Operational context:}
 TWS excels in multi-target environments (BARCAP, HAVCAP, large force engagements). Pilot can maintain SA on 8-10 threats while bugging and prosecuting the highest-priority target. TMS Right stepping allows rapid target prioritization without MFD interaction.
 
-See Table~\ref{tab:C4-S3-TWS} for TWS TMS actions.
+See \tabref{tab:C4-S3-TWS} for TWS TMS actions.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 4.3.4: TMS IN ACM (AIR COMBAT MANEUVERING) MODES
@@ -747,7 +781,7 @@ Cycles through ACM scan patterns (implementation varies by ACM mode; typically 3
 \paragraph{Operational context:}
 ACM modes are designed for visual merge/dogfight scenarios where automation reduces pilot workload. TMS Up/Down provide rapid lock/break-lock cycles essential in turning fights. HMCS integration (TMS Up hold in BORE) allows high off-boresight acquisition without pointing the nose.
 
-See Table~\ref{tab:C4-S3-ACM} for ACM TMS actions.
+See \tabref{tab:C4-S3-ACM} for ACM TMS actions.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 4.3.5: TMS AND IFF INTERROGATION
@@ -766,7 +800,7 @@ Activates \textbf{LOS (Line of Sight) interrogation mode}. AIFF interrogates onl
 \paragraph{Operational context:}
 IFF interrogation is critical in BVR engagements to distinguish friendly from hostile contacts before weapons employment. Dash-34 and BMS Training Manual emphasize proper IFF procedures before AIM-120 launches in training missions (e.g., Mission 18 BARCAP).
 
-See Table~\ref{tab:C4-S3-IFF} for IFF TMS actions.
+See \tabref{tab:C4-S3-IFF} for IFF TMS actions.
 
 %--------------------------------------------------------------------------
 % PLACEHOLDER: TABLES FOR SECTION 4.3
@@ -855,7 +889,7 @@ When FCR is in Ground Moving Target (GMT), Ground Mapping (GM), or Sea modes, TM
 \paragraph{Operational context:}
 FCR A-G modes are critical in IMC (Instrument Meteorological Conditions), night ops, or pre-planned CCRP deliveries. TMS Up designates radar-significant targets (buildings, bridges, vehicles in GMT) for weapons employment. FTT provides continuous ranging for accurate CCRP solutions.
 
-See Table~\ref{tab:C4-S4-FCR-AG} for FCR A-G TMS actions.
+See \tabref{tab:C4-S4-FCR-AG} for FCR A-G TMS actions.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 4.4.2: TMS WITH TARGETING POD (TGP) AS SOI
@@ -889,7 +923,7 @@ When the Targeting Pod (TGP) is SOI, TMS commands manage target designation, tra
 \paragraph{Operational context:}
 TGP provides visual/IR target identification and designation in A-G. TMS Up to POINT track is prerequisite for LGB lasing and AGM-65 handoff. TGP SOI is typical in PRE (pre-planned) weapon deliveries and target confirmation before VIS (visual) attack.
 
-See Table~\ref{tab:C4-S4-TGP} for TGP TMS actions.
+See \tabref{tab:C4-S4-TGP} for TGP TMS actions.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 4.4.3: TMS WITH HUD/HMCS MARK FUNCTION
@@ -922,7 +956,7 @@ MARK is used for:
 
 HMCS MARK (TMS Up >0.5s) allows marking targets outside HUD FOV, critical in dynamic CAS or visual recon.
 
-See Table~\ref{tab:C4-S4-MARK} for MARK TMS actions.
+See \tabref{tab:C4-S4-MARK} for MARK TMS actions.
 
 %--------------------------------------------------------------------------
 % PLACEHOLDER: TABLES FOR SECTION 4.4
@@ -993,7 +1027,7 @@ AGM-65 Maverick (D/G/L variants) uses TMS for seeker designation, HMCS slaving, 
 \paragraph{Operational context:}
 AGM-65 employment requires precise seeker designation. VIS mode (TMS Up sequence) is used when target is visually identifiable. PRE mode (FTT) is used for pre-planned targets with poor visual signature but good radar return (e.g., buildings, bridges).
 
-See Table~\ref{tab:C4-S5-AGM65} for AGM-65 TMS actions.
+See \tabref{tab:C4-S5-AGM65} for AGM-65 TMS actions.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 4.5.2: TMS IN DTOS (DIVE TOSS) DELIVERIES
@@ -1019,7 +1053,7 @@ DTOS (Dive Toss) combines visual target designation with automatic ballistic com
 \paragraph{Operational context:}
 DTOS is used for visual dive or toss deliveries of Mk-82/84, CBU, IAMs in DTOS mode. HMCS slaving (TMS Up >0.5s) allows designation of targets outside HUD FOV, critical in high-angle attacks or mountainous terrain.
 
-See Table~\ref{tab:C4-S5-DTOS} for DTOS TMS actions.
+See \tabref{tab:C4-S5-DTOS} for DTOS TMS actions.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 4.5.3: TMS IN IAM-VIS (JSOW/JDAM VISUAL)
@@ -1038,7 +1072,7 @@ Rejects target, returns to pre-designate. TD box returns to FPM.
 \paragraph{Operational context:}
 IAM-VIS is used when JSOW/JDAM target is visually identifiable but not suitable for GPS-only delivery (e.g., moving target, last-minute target change). TMS Up designates visual aimpoint; weapon guides to TD box position.
 
-See Table~\ref{tab:C4-S5-IAMVIS} for IAM-VIS TMS actions.
+See \tabref{tab:C4-S5-IAMVIS} for IAM-VIS TMS actions.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 4.5.4: TMS IN CCIP/CCRP DELIVERIES
@@ -1064,7 +1098,7 @@ CCIP (Continuously Computed Impact Point) and CCRP (Continuously Computed Releas
 \paragraph{Operational context:}
 CCIP/CCRP are primarily avionics-computed modes; pilot maneuvers aircraft to meet release parameters rather than manipulating TMS cues. TMS Right (sighting point cycle) is the primary hands-on input.
 
-See Table~\ref{tab:C4-S5-CCIP-CCRP} for CCIP/CCRP TMS actions.
+See \tabref{tab:C4-S5-CCIP-CCRP} for CCIP/CCRP TMS actions.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 4.5.5: TMS IN HARM EMPLOYMENT
@@ -1084,7 +1118,7 @@ HARM (AGM-88) targeting uses HTS (HARM Targeting System) pod and HAD (HARM Attac
 \paragraph{Operational context:}
 HARM employment is highly specialized (SEAD/DEAD missions). TMS Up designates enemy radar emitters detected by HTS pod. Accurate emitter identification (via ELINT data loaded to HTS) is critical before TMS designation.
 
-See Table~\ref{tab:C4-S5-HARM} for HARM TMS actions.
+See \tabref{tab:C4-S5-HARM} for HARM TMS actions.
 
 %--------------------------------------------------------------------------
 % PLACEHOLDER: TABLES FOR SECTION 4.5
