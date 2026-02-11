@@ -281,6 +281,7 @@ Each `hotastable` environment automatically registers itself via this line:
 % --------------------------------------------------------------------------
 % LIST OF HOTAS TABLES
 % --------------------------------------------------------------------------
+\phantomsection
 \listofhotastables
 \newpage
 
@@ -515,6 +516,7 @@ as noted in the table introduction text within each chapter.
 ```latex
 \tableofcontents
 \newpage
+\phantomsection
 \listofhotastables
 \newpage
 ```
@@ -668,7 +670,7 @@ with the List of HOTAS Tables. No additional macros are needed when creating new
 
 ### 6.4 Document Integration
 
-- [ ] Add `\listofhotastables` to front matter (after TOC)
+- [ ] Add `\listofhotastables` and `\phantomsection` to front matter (after TOC)
 - [ ] Verify `\newpage` separates TOC, List of Tables, and main content
 - [ ] Test compilation: `pdflatex guide.tex` (run twice for index generation)
 - [ ] Verify no "Overfull \hbox" warnings for tables
@@ -765,6 +767,7 @@ latexmk -pdf guide.tex   # Automatically handles multiple passes
 ```diff
  \tableofcontents
  \newpage
++\phantomsection
 +\listofhotastables
 +\newpage
  \pagenumbering{arabic}
