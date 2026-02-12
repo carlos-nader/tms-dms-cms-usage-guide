@@ -5,7 +5,7 @@ layout: default
 
 # Falcon BMS 4.38.1 — TMS, DMS and CMS Usage Guide: Project Brief
 
-**Brief Version:** v0.2.0.1-2026-01-29 (Preamble V1.0 Updated: titlesec Full Hierarchy + Optical Fixes)
+**Brief Version:** v0.2.0.1-2026-02-11 (Preamble V2.1: hotastable v2.1, List of HOTAS Tables, Cross-Reference Macros, PDF Metadata)
 
 ---
 
@@ -100,21 +100,21 @@ Assume there is already a LaTeX template with this structure. Do not change the 
 - 2.3 Master modes and context-sensitive behaviour.
 - 2.4 Overview of TMS, DMS and CMS.
 
-**3. TMS — Target Management Switch**
+**3. DMS — Display Management Switch**
 
-- 3.1 Concept and general behaviour.
-- 3.2 TMS and Situational Awareness displays.
-- 3.3 TMS in Air-to-Air.
-- 3.4 TMS in Air-to-Ground.
-- 3.5 TMS in A-G weapon employment.
-- 3.6 TMS — Block / variant notes.
+- 3.1 Concept and Sensor of Interest (SOI).
+- 3.2 DMS Up: HDU Designation as SOI.
+- 3.3 DMS Down: Toggle SOI Among Displays.
+- 3.4 DMS Left/Right: Format Cycling.
 
-**4. DMS — Display Management Switch**
+**4. TMS — Target Management Switch**
 
-- 4.1 Concept and Sensor of Interest (SOI).
-- 4.2 DMS Up: HDU Designation as SOI.
-- 4.3 DMS Down: Toggle SOI Among Displays.
-- 4.4 DMS Left/Right.
+- 4.1 Concept and general behaviour.
+- 4.2 TMS and Situational Awareness displays.
+- 4.3 TMS in Air-to-Air.
+- 4.4 TMS in Air-to-Ground.
+- 4.5 TMS in A-G weapon employment.
+- 4.6 TMS — Block / variant notes.
 
 **5. CMS — Countermeasures Management Switch**
 
@@ -136,7 +136,7 @@ Assume there is already a LaTeX template with this structure. Do not change the 
 ### 3.2 Appendices
 
 - Block / variant overview.
-- Tables index.
+- Tables index (automated via List of HOTAS Tables).
 
 ---
 
@@ -150,23 +150,34 @@ Assume there is already a LaTeX template with this structure. Do not change the 
 - Top margin: 2.5 cm.
 - Bottom margin: 2.5 cm.
 - Available text width: 17.0 cm.
-- Standard HOTAS table width: 15.6 cm.
-- Line spacing: 1.5× (via `\\onehalfspacing`).
+- Standard HOTAS table width: 15.50 cm (v2.1).
+- Line spacing: 1.5× (via `\onehalfspacing`).
 
-### 4.2 Table Formatting Standard (hotastable)
+### 4.2 Table Formatting Standard (hotastable v2.1)
 
-- Font size: `\\small` (10 pt).
-- Row height multiplier: `\\arraystretch = 1.25`.
-- Column widths (locked per updated preamble): `L{1.00cm}`, `L{0.90cm}`, `L{0.90cm}`, `L{3.30cm}`, `L{6.40cm}`, `L{1.40cm}`, `L{2.10cm}`.
+**Updated:** 2026-02-11 (Guide v0.4.1.0)
+
+- Font size: `\footnotesize` (8 pt) — *Changed from `\small` (10 pt)*.
+- Row height multiplier: `\arraystretch = 1.35` — *Changed from 1.25*.
+- Cell padding: `\tabcolsep = 3pt` — *Changed from 2pt*.
+- Column widths (updated): `L{1.00cm}`, `L{0.90cm}`, `L{0.90cm}`, `L{3.30cm}`, `L{6.40cm}`, `L{1.40cm}`, `L{1.60cm}`.
+- Total table width: 15.50 cm + padding (~16.98 cm within 17.0 cm text width).
 
 **Column Layout:**
 - **Mode** (1.00 cm): Master mode or state abbreviation (NAV, A-A, A-G).
 - **Dir.** (0.90 cm): Direction (Up, Down, Left, Right).
-- **Act.** (0.90 cm): Actuation type (Short, Long).
+- **Act.** (0.90 cm): Actuation type (S=Short, M=Medium, L=Long, LH=Long Hold).
 - **Function** (3.30 cm): Concise function name (e.g., "Cycle SOI between MFDs").
 - **Effect / Nuance** (6.40 cm): Brief explanation (1-3 sentences) of what happens, interactions, exceptions.
-- **Dash34** (1.40 cm): Dash-34 section references using `\\dashref{}`.
-- **Train.** (2.10 cm): BMS training mission references using `\\trnref{}` with standardized abbreviations.
+- **Dash34** (1.40 cm): Dash-34 section references (plain text, e.g., "3-48").
+- **Train.** (1.60 cm) — **SIMPLIFIED:** Training mission numbers only (e.g., "18, 28") — *Changed from 2.10 cm with full descriptions*.
+
+**Rationale for v2.1 changes:**
+- Smaller font (`\footnotesize`) increases density without sacrificing readability.
+- Increased `\arraystretch` (1.35) compensates for smaller font, maintaining vertical breathing room.
+- Increased `\tabcolsep` (3pt) improves visual separation between cells.
+- Reduced Train. column width (1.60 cm) eliminates overflow caused by long mission descriptions.
+- Simplified Train. content (numbers only) improves scannability; full mission descriptions remain in BMS Training Manual 4.38.1.
 
 ---
 
@@ -210,8 +221,10 @@ Use physical directions: Up, Down, Left, Right.
 ### 6.3 Column 3: Act. (0.90 cm)
 
 Describe press type:
-- Short — quick tap (≤0.6 s)
-- Long — press >0.6 s
+- S — Short press (quick tap, ≤0.6 s)
+- M — Medium press (0.6–1.5 s)
+- L — Long press (>1.5 s)
+- LH — Long Hold (sustained press)
 
 ### 6.4 Column 4: Function (3.30 cm)
 
@@ -229,155 +242,119 @@ Brief explanation (1–3 sentences) of what happens:
 
 ### 6.6 Column 6: Dash34 (1.40 cm)
 
-Reference relevant Dash-34 sections using macros:
-- `\\dashref{2.1.5}`
-- `\\dashref{2.1.5}, \\dashref{2.7.1}`
+Reference relevant Dash-34 sections as plain text (no macros inside tables):
+- `3-48`
+- `3-48, 2.7.1`
 
-### 6.7 Column 7: Train. (2.10 cm)
+**Note:** Macros like `\dashref{...}` are used in narrative text, not inside table cells.
 
-Link behaviour to BMS training missions using standardized abbreviations (see Training Mission Reference Table v1.0):
-- `\\trnref{18 (BARCAP)}`
-- `\\trnref{18 (BARCAP)}, \\trnref{28 (SEAD-EW)}`
+### 6.7 Column 7: Train. (1.60 cm) — **SIMPLIFIED FORMAT**
+
+**NEW (v2.1):** Training mission numbers only, separated by commas:
+- `18`
+- `18, 28`
+- `10, 11, 13`
+
+**OLD (v1.0):** Used `\trnref{18 (BARCAP)}` with full mission names — this format is **deprecated** as of v0.4.1.0.
+
+**Rationale:** Mission numbers are more compact, eliminate overflow, and maintain traceability. Full mission descriptions are documented in BMS Training Manual 4.38.1, not duplicated in this guide.
 
 ---
 
 ## 7. Rules for the HOTAS Visual Reference Chapter
 
-- All figures are illustrative, not official.
-- Style should be schematic, similar to technical drawings.
-- Only label TMS, DMS and CMS positions; do not label other buttons.
-- Keep diagram text extremely short (a few words per arrow).
-- Rely on tables for detailed explanations.
+- The visual chapter (Chapter 7) provides quick reference diagrams for TMS, DMS and CMS positions.
+- Diagrams should clearly show:
+  - Physical position on stick/throttle
+  - Switch directions (arrows)
+  - Context labels (mode-specific)
+- The visual chapter is **not** the primary source of truth — tables are authoritative.
 
 ---
 
-## 8. Professional Standards for AI-Assisted Content Development
+## 8. Copyright and Licensing
 
-### 8.1 Communication Principles
-
-1. **Professional rigour** — All analysis must be grounded in primary sources and technical accuracy.
-2. **No condescension** — Treat the human author as the subject-matter expert and decision-maker.
-3. **Error identification** — When corrected, acknowledge the correction explicitly and explain the flawed reasoning.
-4. **Primary source grounding** — All TMS/DMS/CMS claims must be traceable to Dash-34, Dash-1, BMS Training Manual, or BMS User Manual.
-5. **Structural integrity** — Analyze organizational changes against actual use cases and operational contexts.
-6. **Explicit scope boundaries** — Clearly distinguish between what applies to all blocks/variants vs. specific ones, and what is in scope vs. out of scope.
+- **License:** CC BY-NC 4.0
+- **Copyright Notice:** Document must include license declaration in Introduction (Section 1.4.4 and 1.4.5)
+- **Canonical Source:** GitHub repository (`carlos-nader/tms-dms-cms-usage-guide`)
+- **Content Rule:** Never reproduce copyrighted text from Dash-1, Dash-34, or Training Manual; always paraphrase in original words.
 
 ---
 
-## 9. How to Work With This Brief
+## 9. Version and Contribution Attribution
 
-- The human author will issue instructions in Portuguese.
-- The assistant should generate or modify LaTeX snippets that fit cleanly into the existing template.
-- Keep sections, labels and references consistent with this brief.
-- Use helper macros and the `hotastable` environment as defined.
-- Provide rigorous analysis grounded in primary sources.
-- Suggest structural improvements only when grounded in technical analysis and with explicit approval.
+### 9.1 Document Version Display
 
----
+- **Version format:** `MAJOR.MINOR.PATCH.SUBPATCH+YYYYMMDD`
+- **Example:** `0.4.1.0+20260211`
+- **Location:** Title page, PDF metadata
 
-## 10. Version Control System
+### 9.2 Authorship Attribution
 
-This section provides a high-level overview of versioning. The authoritative rules are defined in **VERSION-SYSTEM-v4.2.1**. In case of discrepancy between this brief and that document, Version System v4.2.1 is the single source of truth.
-
-### 10.1 Purpose and Scope
-
-- Ensure the guide and its LaTeX sources use a consistent versioning scheme.
-- Provide a quick reference so AI-assisted and human edits do not invent ad-hoc version numbers.
-- Clarify how version macros in the LaTeX preamble relate to file names, snapshots, and the project tracking document.
-
-### 10.2 Repository Structure for the Guide
-
-- **Canonical file in repository root:** `guide.tex`
-  - This is the file Git/GitHub track as the main history.
-  - Always contains the latest accepted version.
-
-- **Versioned snapshots in `wip/guide/`:**
-  - For each version, there is a snapshot named:
-    ```
-    wip/guide/guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex
-    ```
-  - The snapshot for the active version must be byte-identical to `guide.tex`.
-
-### 10.3 LaTeX Version Macros
-
-The LaTeX preamble must contain:
-
-- `\\newcommand{\\docversion}{...}`
-- `\\newcommand{\\docbuild}{YYYYMMDD}`
-- `\\newcommand{\\fulldocversion}{\\docversion+\\docbuild}`
-
-These must always match:
-- The version in the snapshot file name
-- The entry in PROJECT-TRACKING document
-
-### 10.4 Two Regimes: Pre-publication (0.x.x.x) and Post-publication (≥ 1.0)
-
-- **Pre-publication (0.x.x.x):**
-  - `MAJOR = 0` always
-  - `MINOR` tracks order of chapter integration
-  - `PATCH` marks structural changes within chapters
-  - `SUBPATCH` records small refinements (typos, wording)
-
-- **Post-publication (≥ 1.0):**
-  - `MAJOR` = edition number
-  - `MINOR` = significant compatible revisions
-  - `PATCH` = local corrections and polish
+- **Primary author:** Carlos "Metal" Nader
+- **AI assistance:** Claude (Anthropic) — credited in Section 1.2 (Version, authorship and AI assistance)
 
 ---
 
-## 11. License & Contributor Rights
+## 10. GitHub and Publication Workflow
 
-### 11.1 Project License
+### 10.1 Canonical File
 
-This project and all work contributed to it (guide.tex, WIP files, templates, governance documents) is released under:
+- **File:** `guide.tex` (repository root)
+- **Purpose:** The authoritative, byte-identical copy of the latest approved snapshot
+- **Update rule:** Only updated after full validation of snapshot in `wip/guide/`
 
-**Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**
+### 10.2 Snapshot Workflow
 
-**Full license:** https://creativecommons.org/licenses/by-nc/4.0/
+1. Create snapshot: `wip/guide/guide-vMAJOR.MINOR.PATCH.SUBPATCH-YYYYMMDD.tex`
+2. Test compilation (multiple passes for indices)
+3. Validate PDF output
+4. Copy snapshot → `guide.tex` (byte-identical)
+5. Archive previous snapshot → `archive/GUIDE/`
+6. Commit and tag (`vMAJOR.MINOR.PATCH.SUBPATCH`)
+7. Create GitHub Release with compiled PDF
 
-### 11.2 What This Means for Contributors
+### 10.3 Version Tags
 
-#### You Can Do:
+- **Pre-publication:** `v0.x.x.x` (semantic versioning in 0.x regime)
+- **First public release:** `v1.0.0.0`
+- **Subsequent releases:** Standard semantic versioning
 
-- **Use and Share:** Copy, distribute, print, and share this guide freely
-- **Translate:** Translate into other languages (translations also CC BY-NC)
-- **Adapt & Integrate:** Use sections within your own works (e.g., include TMS explanation in your tactical guide)
-- **Improve:** Create enhanced versions with corrections, additional tables, or new sections
+---
 
-#### You Cannot Do:
+## 11. File Organization
 
-- **Monetize:** You cannot sell this guide or any derivative work
-- **Claim Ownership:** Derivatives cannot claim official status; must indicate source and original author
+### 11.1 Directory Structure
 
-#### Attribution Required:
+```
+/
+├── guide.tex                   # Canonical guide (byte-identical to latest snapshot)
+├── wip/
+│   ├── guide/
+│   │   └── guide-vX.X.X.X-YYYYMMDD.tex  # Active snapshot
+│   ├── chapter-C#-...tex       # Chapter WIP files
+│   └── section-C#-S#-...tex    # Section WIP files
+├── archive/
+│   ├── GUIDE/
+│   │   └── guide-vX.X.X.X-YYYYMMDD.tex  # Historical snapshots
+│   └── WIP/
+│       └── [approved/deprecated WIP files]
+├── TEMPLATES/
+│   ├── template-wip-V1.0.tex  # WIP file template (preamble reference)
+│   └── guide-structure-only-v0.4.0.0.tex  # Skeleton template
+├── docs/
+│   ├── BRIEFING-v0.2.0.1.md   # This document
+│   ├── VERSION-SYSTEM-v4.2.1.md
+│   ├── PROJECT-TRACKING-v5.0.0.md
+│   └── WIP-FILE-NAMING-v1.4.md
+└── fig/                        # Graphics and diagrams
+```
 
-All contributions and derivatives must include:
-1. Title: "TMS, DMS, CMS Usage Guide for Falcon BMS"
-2. Author: "Carlos 'Metal' Nader"
-3. Source: https://github.com/carlos-nader/tms-dms-cms-usage-guide
-4. License: "CC BY-NC 4.0" with link to creativecommons.org/licenses/by-nc/4.0/
+### 11.2 Archive Policy
 
-### 11.3 Contributing Work to This Project
-
-When you create WIP files (sections, tables, visuals, notes) that are integrated into this guide:
-
-- Your contribution becomes part of a CC BY-NC 4.0 work
-- You retain authorship credit (metadata blocks capture author/AI indication)
-- The project author (Carlos "Metal" Nader) retains responsibility for final accuracy and presentation
-- Your work will be accessible and free to the Falcon BMS community
-
-### 11.4 Governance & Tracking
-
-License status and contributor rights are documented in:
-- **LICENSE file:** Full CC BY-NC 4.0 legal text (repository root)
-- **README.md:** License summary and usage details
-- **Guide Section 1.3:** License statement in published guide
-- **WIP files metadata:** Author/AI indication in all WIP files
-- **PROJECT-TRACKING:** Attribution and copyright notes in session logs
-
-### 11.5 Special Case: Official Versions
-
-The project author (Carlos "Metal" Nader) publishes **official versions** (v1.0.0, v2.0.0, etc.) on GitHub. While the CC BY-NC license permits community members to create enhanced versions, the **official repository** remains the canonical source for the community.
+- Approved WIP files → `archive/WIP/`
+- Old guide snapshots → `archive/GUIDE/`
+- Only latest snapshot remains in `wip/guide/`
 
 ---
 
@@ -397,16 +374,16 @@ This ensures:
 - Content structures aligned with brief expectations
 - Automated or semi-automated integration into guide.tex
 
-**Status:** Template V1.0 updated (29 January 2026) with enhanced preamble architecture (titlesec full hierarchy, optical fixes, professional two-sided layout).
+**Status:** Template V1.0 updated (11 February 2026) with enhanced preamble architecture (hotastable v2.1, List of HOTAS Tables, cross-reference macros, PDF metadata, enumitem).
 
 ### 12.2 What the Template Provides
 
 1. **Standard preamble** (packages, geometry, macros) identical to `guide.tex`
 2. **Metadata block** (non-rendered comments for tracking)
 3. **Section/subsection skeleton** with proper hierarchy
-4. **Configured hotastable environment** with 7-column HOTAS layout
+4. **Configured hotastable environment v2.1** with 7-column HOTAS layout
 
-### 12.3 Preamble Architecture (Updated V1.0)
+### 12.3 Preamble Architecture (Updated V2.1)
 
 The preamble in `TEMPLATES/template-wip-V1.0.tex` and `guide.tex` is now organized into the following sections:
 
@@ -470,8 +447,6 @@ The preamble in `TEMPLATES/template-wip-V1.0.tex` and `guide.tex` is now organiz
 \usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, 
             citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
 \usepackage{bookmark}
-\usepackage{caption}
-\captionsetup{font=small, labelfont=bf, justification=centering, singlelinecheck=true}
 ```
 
 - **xcolor[table]:** Color support with table row coloring
@@ -479,9 +454,52 @@ The preamble in `TEMPLATES/template-wip-V1.0.tex` and `guide.tex` is now organiz
 - **soul:** Text highlighting and underlining
 - **hyperref:** Clickable PDF links with custom colors, line-breaking support
 - **bookmark:** Enhanced PDF bookmarks
-- **caption:** Professional figure/table captions (small font, bold labels, centered)
 
-#### 12.3.6 Headers and Footers (Improved for Two-Sided Layout)
+#### 12.3.6 PDF Metadata (NEW in v2.1)
+
+```latex
+\hypersetup{
+    pdftitle={TMS, DMS and CMS Usage Guide for Falcon BMS},
+    pdfauthor={Carlos "Metal" Nader},
+    pdfsubject={Flight Simulation - Falcon BMS HOTAS Reference},
+    pdfkeywords={Falcon BMS, F-16, HOTAS, TMS, DMS, CMS, Flight Simulation},
+    pdfcreator={pdfLaTeX (MiKTeX)},
+    pdfproducer={MiKTeX},
+    pdflang={en-US},
+}
+```
+
+**Purpose:** Embeds metadata in generated PDF for proper indexing, citation, and document properties.
+
+**Fields:**
+- **pdftitle:** Full document title
+- **pdfauthor:** Primary author name
+- **pdfsubject:** Document category/topic
+- **pdfkeywords:** Searchable keywords (comma-separated)
+- **pdfcreator/pdfproducer:** LaTeX engine information
+- **pdflang:** Document language (ISO 639-1 + ISO 3166-1)
+
+#### 12.3.7 Captions
+
+```latex
+\usepackage{caption}
+
+% GLOBAL PATTERN
+\captionsetup{font=small, labelfont=bf, justification=centering, singlelinecheck=true}
+
+% FIGURES
+\captionsetup[figure]{font=footnotesize, labelfont=bf, justification=centering, singlelinecheck=true}
+
+% TABLES/LONGTABLE/hotastable
+\captionsetup[table]{font=small, labelfont=bf, justification=centering, singlelinecheck=true}
+```
+
+- **caption:** Professional figure/table captions
+- **Global:** Small font, bold labels, centered
+- **Figures:** Footnotesize (slightly smaller than tables)
+- **Tables:** Small font (consistent with body text)
+
+#### 12.3.8 Headers and Footers (Improved for Two-Sided Layout)
 
 ```latex
 \usepackage{fancyhdr}
@@ -498,46 +516,46 @@ The preamble in `TEMPLATES/template-wip-V1.0.tex` and `guide.tex` is now organiz
 - **fancyhdr:** Custom header/footer control
 - **headheight:** Increased to 25pt (accommodates long chapter names without warnings)
 - **Two-sided layout:**
-  - **Odd pages (recto):** Chapter name left, page number right
-  - **Even pages (verso):** Page number left, chapter name right
-- **Header rule:** 0.4pt line separating header from content
-- **No footer:** All pagination in header
+  - **Odd pages (right):** Chapter name (left), page number (right)
+  - **Even pages (left):** Page number (left), chapter name (right)
+- **Headers:** 0.4pt rule under chapter name
+- **Footers:** Empty (page numbers in header)
 
-#### 12.3.7 Chapter Formatting and Spacing (via titlesec)
+#### 12.3.9 Title Hierarchy (titlesec Full Configuration)
 
-Complete hierarchy with optical refinements:
+Comprehensive 5-level hierarchy with optical adjustments:
 
+**Chapter:**
 ```latex
-\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}
+  {20pt}
+  {\Huge}
+\titlespacing*{\chapter}{0pt}{50pt}{40pt}
 ```
 
-| Level | Shape | Font | Spacing (Before/After) | Rationale |
-|-------|-------|------|------------------------|-----------|
-| **chapter** | display | `\Large\bfseries` | 15pt / 28pt | Maximum prominence; standalone on new line; increased spacing after for visual separation |
-| **section** | hang | `\large\bfseries` | 15pt / 8pt | Compact; label left, body indented; reduced spacing for density |
-| **subsection** | hang | `\normalsize\bfseries` | 12pt / 6pt | Reduced visual weight; still bold for hierarchy clarity |
-| **subsubsection** | hang | `\normalsize\bfseries` | 10pt / 4pt | Compressed spacing for maximum compactness |
-| **paragraph** | runin | `\small\bfseries` | 8pt / 1em | **Optical fix:** Small font compensates for bold's "optical illusion" (appears larger); inline with text; added vertical separation (8pt before, 1em after) |
-| **subparagraph** | runin | `\small` (no bold) | 8pt / 1em | Less prominence than paragraph; prepared for future use |
+**Section, Subsection, Subsubsection:**
+- Professional spacing and size hierarchy
+- Consistent numbering
+- Clear visual distinction
 
-**Key innovation:** The `\paragraph` level uses `\small\bfseries` to resolve the "optical illusion" where bold text at normal size appears disproportionately large when inline. Reduced font size + bold achieves visual balance.
-
-**Code example (paragraph level):**
-
+**Paragraph (Level 4):**
 ```latex
 \titleformat{\paragraph}[runin]
-  {\normalfont\small\bfseries} % Format: SMALL + bold (optical compensation)
-  {}                            % Label: empty (no numbering)
-  {0em}                         % Space between label and body (zero, runin)
-  {}                            % Body title (inherits format)
-\titlespacing{\paragraph}
-  {0pt}  % Left margin (no indent)
-  {8pt}  % Space BEFORE title (vertical separation added)
-  {1em}  % Space AFTER title (horizontal space after ":")
-  [0pt]  % Right margin
+  {\normalfont\small\bfseries} % SMALL + bold (optical compensation)
+  {}
+  {0em}
+  {}
+\titlespacing{\paragraph}{0pt}{8pt}{1em}[0pt]
 ```
 
-#### 12.3.8 Tables and Macros
+**Subparagraph (Level 5):**
+- Prepared for future use
+- Less prominent than paragraph
+- Inline formatting
+
+#### 12.3.10 Tables and Macros
 
 ```latex
 \usepackage{booktabs}
@@ -561,15 +579,59 @@ Complete hierarchy with optical refinements:
 - **Custom columns:** `L{width}` (left), `C{width}` (center), `R{width}` (right)
 - **imglink macro:** Inline figure references in tables
 
-#### 12.3.9 HOTAS Table Environment (hotastable)
+#### 12.3.11 List of HOTAS Tables (NEW in v2.1)
+
+```latex
+\makeatletter
+\newcommand{\listofhotastables}{%
+    \section*{List of HOTAS Tables}%
+    \addcontentsline{toc}{section}{List of HOTAS Tables}%
+    \@starttoc{hotas}%
+}
+\makeatother
+```
+
+**Purpose:** Generates an automated index of all HOTAS tables in the guide, similar to List of Figures or List of Tables.
+
+**Usage in front matter:**
+```latex
+\newpage
+\tableofcontents
+\newpage
+
+% --------------------------------------------------------------------------
+% LIST OF HOTAS TABLES
+% --------------------------------------------------------------------------
+\phantomsection    % CRITICAL: Creates anchor for PDF bookmark
+\listofhotastables
+\newpage
+
+\pagenumbering{arabic}
+```
+
+**CRITICAL:** Always use `\phantomsection` immediately before `\listofhotastables` to ensure PDF bookmarks point to the correct page. Without it, the bookmark will incorrectly point to the Table of Contents page instead of the List of HOTAS Tables page.
+
+**Automatic registration:** Each `hotastable` environment automatically registers itself in the `.hotas` auxiliary file via:
+```latex
+\addtocontents{hotas}{\protect\contentsline{table}{\protect\numberline{\thetable}#1}{\thepage}{table.\thetable}}
+```
+
+**Compilation requirement:** Run `pdflatex` **twice** to generate and populate the List of HOTAS Tables:
+1. First pass: Creates `.hotas` file with table entries
+2. Second pass: Reads `.hotas` file and typesets the index
+
+#### 12.3.12 HOTAS Table Environment (hotastable v2.1)
+
+**Updated:** 2026-02-11 (Guide v0.4.1.0)
 
 ```latex
 \newenvironment{hotastable}[1]{%
-  \small
-  \setlength{\tabcolsep}{2pt}
-  \renewcommand{\arraystretch}{1.25}
-  \begin{longtable}{L{1.00cm} L{0.90cm} L{0.90cm} L{3.30cm} L{6.40cm} L{1.40cm} L{2.10cm}}
-  \caption{#1}\\
+  \footnotesize                              % Font size (8pt) — NEW
+  \setlength{\tabcolsep}{3pt}               % Cell padding — CHANGED from 2pt
+  \renewcommand{\arraystretch}{1.35}        % Row height — CHANGED from 1.25
+  \begin{longtable}{L{1.00cm} L{0.90cm} L{0.90cm} L{3.30cm} L{6.40cm} L{1.40cm} L{1.60cm}}
+  \caption{#1}\label{table.\thetable}\\
+  \addtocontents{hotas}{\protect\contentsline{table}{\protect\numberline{\thetable}#1}{\thepage}{table.\thetable}}%
   \rowcolor{headerblue}
   \multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
   \multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
@@ -577,7 +639,7 @@ Complete hierarchy with optical refinements:
   \multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
   \multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
   \multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{2.10cm}}{\textbf{\color{white}Train.}} \\
+  \multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
   \endfirsthead
   \rowcolor{headerblue}
   \multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
@@ -586,7 +648,7 @@ Complete hierarchy with optical refinements:
   \multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
   \multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
   \multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{2.10cm}}{\textbf{\color{white}Train.}} \\
+  \multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
   \endhead
   \multicolumn{7}{r}{\small\emph{Continued on next page}}\\
   \endfoot
@@ -596,47 +658,98 @@ Complete hierarchy with optical refinements:
 }
 ```
 
-- **Column widths:** Optimized for 15.6 cm total width (Mode 1.00, Dir. 0.90, Act. 0.90, Function 3.30, Effect/Nuance 6.40, Dash34 1.40, Train. 2.10)
+**Changes from v1.0 to v2.1:**
+- Font size: `\small` → `\footnotesize` (10pt → 8pt)
+- `\tabcolsep`: 2pt → 3pt
+- `\arraystretch`: 1.25 → 1.35
+- Train. column: 2.10cm → 1.60cm
+- Total width: 15.6cm → 15.50cm
+- **NEW:** Automatic registration in `.hotas` index file
+
+**Key features:**
+- **Column widths:** Optimized for 15.50 cm total width (Mode 1.00, Dir. 0.90, Act. 0.90, Function 3.30, Effect/Nuance 6.40, Dash34 1.40, Train. 1.60)
 - **Header repeat:** Blue header row repeats on every page (`\endfirsthead`, `\endhead`)
 - **Footer:** "Continued on next page" on all but last page
-- **Compact spacing:** `\tabcolsep{2pt}`, `\arraystretch{1.25}`
+- **Compact spacing:** `\tabcolsep{3pt}`, `\arraystretch{1.35}`
+- **Automatic indexing:** Self-registers in List of HOTAS Tables
 
-#### 12.3.10 Simple Reference Macros for BMS Docs
+#### 12.3.13 Simple Reference Macros for BMS Docs
 
 ```latex
-\providecommand{\dashref}[1]{Dash-34~\S~#1}
-\providecommand{\dashone}[1]{Dash-1~\S~#1}
-\providecommand{\trnref}[1]{TRN~#1}
-\providecommand{\trnman}{BMS Training Manual 4.38.1}
-\providecommand{\bmsver}{Falcon BMS~4.38.1}
-\providecommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+\newcommand{\dashref}[1]{Dash-34~\S~#1}
+\newcommand{\dashone}[1]{Dash-1~\S~#1}
+\newcommand{\trnref}[1]{TRN~#1}
+\newcommand{\trnman}{BMS Training Manual 4.38.1}
+\newcommand{\bmsver}{Falcon BMS~4.38.1}
+\newcommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
 ```
 
-- **dashref:** Dash-34 section references (`\dashref{2.1.5}` → "Dash-34 § 2.1.5")
-- **dashone:** Dash-1 section references
-- **trnref:** Training mission references (`\trnref{18 (BARCAP)}` → "TRN 18 (BARCAP)")
-- **trnman:** Full training manual title
-- **bmsver:** BMS version string
+**Usage:**
+- **dashref:** Dash-34 section references in narrative text — `\dashref{2.1.5}` → "Dash-34 § 2.1.5"
+- **dashone:** Dash-1 section references — `\dashone{3.4.2}` → "Dash-1 § 3.4.2"
+- **trnref:** Training mission references in narrative text — `\trnref{18}` → "TRN 18"
+- **trnman:** Full training manual title — "BMS Training Manual 4.38.1"
+- **bmsver:** BMS version string — "Falcon BMS 4.38.1"
 - **dashrefs:** Extended Dash-34 citation
 
-#### 12.3.11 Version Control Macros
+**Note:** In hotastable cells, use plain text (e.g., "3-48") instead of macros to avoid formatting issues.
+
+**Deprecation notice:** The previous practice of using `\trnref{18 (BARCAP)}` with full mission names in table cells is **deprecated** as of v0.4.1.0. Use mission numbers only in tables; full descriptions are in the BMS Training Manual.
+
+#### 12.3.14 Cross-Reference Macros (NEW in v2.1)
 
 ```latex
-\newcommand{\docversion}{0.3.2.0}
-\newcommand{\docbuild}{20260119}
+\newcommand{\secref}[1]{\hyperref[#1]{Section~\ref*{#1}}}
+\newcommand{\chapref}[1]{\hyperref[#1]{Chapter~\ref*{#1}}}
+\newcommand{\tabref}[1]{\hyperref[#1]{Table~\ref*{#1}}}
+\newcommand{\figref}[1]{\hyperref[#1]{Figure~\ref*{#1}}}
+```
+
+**Purpose:** Standardized, fully-clickable cross-references to internal guide elements.
+
+**Usage in narrative text:**
+```latex
+% OLD (inconsistent, partial clickability):
+See Section \ref{sec:C2-S1} for details.
+As shown in Table \ref{tab:dms-soi}.
+
+% NEW (consistent, fully clickable):
+See \secref{sec:C2-S1} for details.
+As shown in \tabref{tab:dms-soi}.
+```
+
+**Advantages:**
+- **Full clickability:** Entire phrase ("Section 2.1") is clickable, not just the number
+- **Consistency:** Standardized format across document
+- **Auto-updating:** Reference numbers update automatically with document changes
+- **No double-linking:** Uses `\ref*{...}` (asterisk) to prevent nested hyperlinks
+
+**Available macros:**
+- `\secref{label}` → "Section X.Y" (clickable)
+- `\chapref{label}` → "Chapter N" (clickable)
+- `\tabref{label}` → "Table N.M" (clickable)
+- `\figref{label}` → "Figure N.M" (clickable)
+
+#### 12.3.15 Version Control Macros
+
+```latex
+\newcommand{\docversion}{0.4.1.0}
+\newcommand{\docbuild}{20260211}
 \newcommand{\docstartdate}{05 January 2026}
-\newcommand{\docenddate}{19 January 2026}
-\newcommand{\chapterscompletedof}{3/7}
-\newcommand{\tablesfilledpct}{Chapter 5 and Chapter 4 - 4.1, 4.2 and 4.3}
+\newcommand{\docenddate}{11 February 2026}
+\newcommand{\chapterscompletedof}{4/7}
+\newcommand{\tablesfilledpct}{Chapter 3 (DMS) and Chapter 5 (CMS)}
 \newcommand{\fulldocversion}{\docversion+\docbuild}
 ```
 
 - **docversion:** Semantic version (MAJOR.MINOR.PATCH.SUBPATCH)
 - **docbuild:** Build date (YYYYMMDD)
-- **fulldocversion:** Combined version string
+- **fulldocversion:** Combined version string (displayed on title page)
 - **Progress tracking:** Chapters completed, tables filled status
 
-#### 12.3.12 Graphics
+**Update rule:** These macros MUST be updated in sync when creating new snapshots.
+
+#### 12.3.16 Graphics
 
 ```latex
 \usepackage{graphicx}
@@ -648,30 +761,74 @@ Complete hierarchy with optical refinements:
 - **graphicspath:** Default directory for figures
 - **float:** Enhanced float positioning control (`[H]` for "exactly here")
 
-#### 12.3.13 Title and TOC Configuration
+#### 12.3.17 List Customization (NEW in v2.1)
+
+```latex
+\usepackage{enumitem}
+```
+
+**Purpose:** Provides enhanced control over itemize, enumerate, and description lists.
+
+**Example usage:**
+```latex
+% Compact list (no vertical spacing between items)
+\begin{itemize}[nosep]
+    \item First item
+    \item Second item
+\end{itemize}
+
+% Custom spacing
+\begin{enumerate}[itemsep=2pt]
+    \item Step one
+    \item Step two
+\end{enumerate}
+```
+
+**Features:**
+- `nosep` — Removes all spacing (compact lists)
+- `noitemsep` — Removes spacing between items only
+- `itemsep=<length>` — Custom spacing between items
+- `topsep=<length>` — Spacing before/after list
+
+#### 12.3.18 Title and TOC Configuration
 
 ```latex
 \title{TMS, DMS and CMS Usage Guide for \bmsver}
 \author{Carlos ``Metal'' Nader}
 \date{Version \fulldocversion{} | Progress: Chapters \chapterscompletedof{} | 
-      Tables \tablesfilledpct{} | January 2026}
+      Tables \tablesfilledpct{} | February 2026}
 
 \begin{document}
 \maketitle
 \pagenumbering{roman}
-\setcounter{tocdepth}{3}    % Show up to \subsubsection in TOC
-\setcounter{secnumdepth}{3} % Number up to \subsubsection
+
+% --------------------------------------------------------------------------
+% TOC DEPTH CONFIGURATION
+% --------------------------------------------------------------------------
+\setcounter{tocdepth}{3}       % Show up to \subsubsection in TOC
+\setcounter{secnumdepth}{3}    % Number up to \subsubsection
+
 \newpage
 \tableofcontents
 \newpage
+
+% --------------------------------------------------------------------------
+% LIST OF HOTAS TABLES
+% --------------------------------------------------------------------------
+\phantomsection    % CRITICAL: Anchor for PDF bookmark
+\listofhotastables
+\newpage
+
 \pagenumbering{arabic}
 ```
 
 - **Title page:** Auto-generated with version and progress info
-- **Roman numerals:** Front matter (title, TOC)
-- **TOC depth:** Include up to subsubsection level
-- **Numbering:** Up to subsubsection level (1.2.3)
+- **Roman numerals:** Front matter (title, TOC, List of HOTAS Tables)
+- **TOC depth:** Include up to subsubsection level (1.2.3)
+- **Numbering:** Up to subsubsection level
+- **List of HOTAS Tables:** NEW navigational feature in v2.1
 - **Arabic numerals:** Main content chapters
+- **`\phantomsection`:** Creates proper anchor for PDF bookmark navigation
 
 ### 12.4 Metadata Block Format
 
@@ -684,7 +841,7 @@ Complete hierarchy with optical refinements:
 % Date: YYYY-MM-DD
 % Author: AI / Human Name
 % Notes: TBD: Table population. Known issues: None.
-% Cross-ref: Guide v0.2.2.0, related-section-*.tex
+% Cross-ref: Guide v0.4.1.0, related-section-*.tex
 % ============================================================================
 ```
 
@@ -701,7 +858,7 @@ Complete hierarchy with optical refinements:
 ### Step 1: Create from Template
 
 ```bash
-cp TEMPLATES/template-wip-V1.0.tex wip/section-C5-S2-cms-new-dev-2026-01-29.tex
+cp TEMPLATES/template-wip-V1.0.tex wip/section-C5-S2-cms-new-dev-2026-02-11.tex
 ```
 
 ### Step 2: Update Metadata Block
@@ -713,13 +870,17 @@ cp TEMPLATES/template-wip-V1.0.tex wip/section-C5-S2-cms-new-dev-2026-01-29.tex
 
 - Replace skeleton sections with actual narrative, tables, etc.
 - Use `hotastable` environment for HOTAS tables
-- Use reference macros: `\dashref{}`, `\trnref{}`, etc.
+- Use reference macros: `\dashref{}`, `\trnref{}`, `\secref{}`, `\tabref{}`, etc.
+- In table cells, use plain text for references (e.g., "3-48" instead of `\dashref{3-48}`)
+- In Train. column, use mission numbers only (e.g., "18, 28")
 
 ### Step 4: Test Compilation
 
 ```bash
-pdflatex section-C5-S2-cms-new-dev-2026-01-29.tex
+pdflatex section-C5-S2-cms-new-dev-2026-02-11.tex
 ```
+
+**For files with HOTAS tables:** Compile **twice** to generate List of HOTAS Tables.
 
 ### Step 5: Workflow
 
@@ -735,10 +896,10 @@ pdflatex section-C5-S2-cms-new-dev-2026-01-29.tex
 **Pattern:** `prefix-C#-S#-title-STATUS-YYYYMMDD.ext`
 
 **Examples:**
-- `section-C4-S3-dms-down-review-2026-01-17.tex`
-- `table-C5-S2-cms-table-final-2026-01-15.tex`
-- `visual-C7-hotas-diagram-dev-2026-01-18.svg`
-- `notes-C3-research-questions-2026-01-19.md`
+- `section-C3-S3-dms-down-review-2026-02-11.tex`
+- `table-C5-S2-cms-table-final-2026-02-11.tex`
+- `chapter-C4-tms-structure-dev-2026-02-11.tex`
+- `notes-C3-research-questions-2026-02-11.md`
 
 **Status codes:**
 - `dev` — Draft
@@ -755,8 +916,10 @@ pdflatex section-C5-S2-cms-new-dev-2026-01-29.tex
 - [ ] Follow naming convention
 - [ ] Complete metadata block
 - [ ] Update Status as work progresses
-- [ ] Test LaTeX compilation
+- [ ] Test LaTeX compilation (run pdflatex **twice** for tables)
 - [ ] Provide Dash-34 and training mission references
+- [ ] Use mission numbers only in Train. column (e.g., "18, 28")
+- [ ] Use cross-reference macros (`\secref`, `\tabref`, etc.) in narrative text
 - [ ] Request review when ready (Status: review)
 - [ ] Incorporate feedback
 - [ ] Mark final when complete (Status: final)
@@ -764,8 +927,37 @@ pdflatex section-C5-S2-cms-new-dev-2026-01-29.tex
 
 ---
 
-**Last Updated:** 2026-01-29, 04:30 PM -03  
+## 16. Changelog — BRIEFING Updates
+
+### v0.2.0.1 (2026-02-11)
+
+**Major updates:**
+- Updated hotastable environment specification to v2.1
+- Documented List of HOTAS Tables feature and `\phantomsection` requirement
+- Documented cross-reference macros (`\secref`, `\chapref`, `\tabref`, `\figref`)
+- Documented PDF metadata (`\hypersetup`) configuration
+- Documented enumitem package for list customization
+- Updated Train. column specification (simplified to numbers only, 1.60 cm width)
+- Updated table formatting parameters (`\footnotesize`, `\tabcolsep{3pt}`, `\arraystretch{1.35}`)
+- Updated chapter structure (DMS now Chapter 3, TMS now Chapter 4)
+- Deprecated `\trnref{XX (NAME)}` format in table cells
+
+**Related guide version:** v0.4.1.0 (2026-02-11)
+
+### v0.2.0.1 (2026-01-29)
+
+**Updates:**
+- Enhanced preamble architecture with titlesec full hierarchy
+- Optical fixes for paragraph formatting
+- Professional two-sided layout improvements
+
+**Related guide version:** v0.3.2.1
+
+---
+
+**Last Updated:** 2026-02-11, 08:30 PM -03  
 **Status:** Ready for use and contribution  
 **License:** CC BY-NC 4.0  
-**Next Update:** After project phase transitions
+**Next Update:** After significant preamble or structure changes
+
 {% endraw %}
