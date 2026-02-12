@@ -310,17 +310,25 @@ def main():
     if Path(index_path).exists():
         with open(index_path, 'r', encoding='utf-8') as f:
             index_content = f.read()
-        new_index_content, index_changes = re.subn(
-            r'(<span class="badge version">)v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+(</span>)',
-            r'\1v' + version + r'\2',
+        # Atualiza o badge visual (ex: 📦 v0.4.1.0 • ...)
+        new_index_content, badge_changes = re.subn(
+            r'(📦 v)([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)( • [^<]+)',
+            r'\1' + version + r'\3',
             index_content
         )
-        if index_changes > 0:
+        # Atualiza o atributo title (ex: title="v0.4.1.0 Changelog: ...")
+        new_index_content, title_changes = re.subn(
+            r'(title=")v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+( Changelog: )',
+            r'\1v' + version + r'\2',
+            new_index_content
+        )
+        total_changes = badge_changes + title_changes
+        if total_changes > 0:
             with open(index_path, 'w', encoding='utf-8') as f:
                 f.write(new_index_content)
-            print(f"✓ Updated version badge in {index_path} ({index_changes} occurrence(s))")
+            print(f"✓ Updated version badge and title in {index_path} ({total_changes} occurrence(s))")
         else:
-            print(f"⚠ No version badge update needed in {index_path}")
+            print(f"⚠ No version badge or title update needed in {index_path}")
     else:
         print(f"⚠ {index_path} not found, skipping index.html update.")
 
