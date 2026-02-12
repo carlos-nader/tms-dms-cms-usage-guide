@@ -119,10 +119,122 @@ Define **content structure** for each page:
 ## 📝 Open Questions
 
 - [x] Should technical docs be converted to Markdown or keep as HTML? → **ALREADY IN MARKDOWN** (Jekyll converting)
-- [ ] Exact content structure for index.html hero section
-- [ ] Exact content structure for contributing.html organization
+- [x] Exact content structure for index.html hero section → **DEFINED BELOW**
+- [x] Exact content structure for contributing.html organization → **DEFINED BELOW**
 - [ ] Design/styling for contributing.html (match index.html style?)
 - [ ] Add frontmatter YAML to existing Markdown docs for sitemap control?
+
+---
+
+## 📐 Page Structure (Content Organization)
+
+### **index.html (End Users) - Structure**
+
+**1. HEADER**
+- Title: "TMS/DMS/CMS Usage Guide"
+- Subtitle: "F-16 HOTAS Switches Reference for Falcon BMS 4.38.1"
+
+**2. HERO SECTION (Maximum Emphasis)**
+- Giant CTA button: "📕 DOWNLOAD PDF GUIDE"
+- Version badge: v0.4.1.0
+- File info: Size ~650KB | 50+ pages
+- Optional: Preview thumbnail or icon
+
+**3. ABOUT THIS GUIDE**
+- What this guide covers
+- Target simulator: Falcon BMS 4.38.1 (and previous versions)
+- Current version, author, license displayed
+
+**4. 📘 WHAT YOU'LL LEARN**
+- TMS Functions: Target designation, sensor cursor control, SOI cycling
+- DMS Functions: MFD page selection, symbology control
+- CMS Functions: Chaff/flare programs, CMDS mode selection
+- SOI Management: Sensor of interest priority and interactions
+- Master Mode Context: NAV, A-A, A-G, DGFT, MSL Override behaviors
+- Training Mission References: Which BMS training missions demonstrate each function
+
+**5. 🎯 TARGET AUDIENCE**
+- BMS players learning basic HOTAS operations
+- Experienced simmers mastering advanced tactical employment
+- Anyone wanting to understand F-16 HOTAS switches in realistic simulation
+
+**6. 🔗 RELATED RESOURCES**
+- Falcon BMS Official Site
+- BMS Forum Thread (participation/discussion)
+- Community resources (Discord, YouTube, etc.)
+- Official BMS documentation references
+
+**7. 📄 LICENSE & ATTRIBUTION**
+- CC BY-NC 4.0 license explanation
+- Author credits: Carlos "Metal" Nader
+- Not affiliated with Benchmark Sims or Microprose disclaimer
+
+**8. FOOTER**
+- Discreet link: "Want to contribute? See our contribution guide →"
+- Last updated date
+- Built with GitHub Pages notice
+
+---
+
+### **contributing.html (Contributors) - Structure**
+
+**1. HEADER**
+- Title: "Contributing to the TMS/DMS/CMS Guide"
+- Breadcrumb navigation: "← Back to Main Guide"
+
+**2. 🤝 WELCOME CONTRIBUTORS**
+- Purpose: This page is for developers/contributors who want to help develop the guide
+- How to contribute: Overview of contribution workflow
+- Quick links:
+  - GitHub Repository
+  - GitHub Issues
+  - Environment Setup Guide
+
+**3. 📋 PROJECT MANAGEMENT**
+- **Project Briefing v0.2.0.1** - Complete project scope, structure, sources, style rules
+- **Project Tracking v5.0.0** - Current development status, WIP files, roadmap
+- **Integrated Files** (GitHub Workflow Tracking) - Repository status with commits, tags, issues
+- **Changelog** - Complete history of releases and notable changes
+- **Environment Setup Guide** - Step-by-step instructions for local LaTeX environment
+
+**4. ⚙️ DEVELOPMENT STANDARDS**
+- **WIP File Naming Convention v1.4** - Standardized naming rules, status lifecycle
+- **Versioning System v4.2.1** - Complete version numbering scheme (pre/post-publication)
+- **LaTeX Preamble Documentation** - Technical specifications for document structure
+
+**5. 🛠️ TOOLS & UTILITIES**
+- **WIP Filename Generator** - Interactive tool for generating compliant WIP file names
+
+**6. 📊 WORKFLOW DIAGRAMS**
+- WIP File Creation Workflow (SVG)
+- WIP Integration Flow Chart (SVG)
+- WIP File Life Cycle (SVG)
+
+**7. 🗣️ JOIN THE CONVERSATION**
+- BMS Forum Thread - Community discussion
+- GitHub Discussions - Technical collaboration
+
+**8. FOOTER**
+- Navigation: "← Back to Main Guide"
+- License: CC BY-NC 4.0
+- Last updated date
+
+---
+
+### **Design Philosophy**
+
+**Visual Style:**
+- **Option 1 (Recommended):** Maintain same CSS/visual style for consistency
+  - Both pages use identical typography, colors, spacing
+  - Only difference: contributing.html has breadcrumb navigation
+  - User immediately recognizes this is part of the same project
+
+- **Option 2:** Differentiated style for contributing.html
+  - Different accent color (e.g., blue → green/orange)
+  - More "technical/developer" aesthetic
+  - Clearly signals "this is the dev section"
+
+**Recommendation:** Option 1 (same style) for professional consistency and brand coherence
 
 ---
 
