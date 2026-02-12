@@ -119,4 +119,176 @@ Define **content structure** for each page:
 
 ---
 
+## 🏷️ Optimized Meta Tags Template
+
+### **For index.html (End Users)**
+
+```html
+<!-- Basic Meta Tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="duQPGEnWdeO5YMMiWJfS_FUKrUdE0vO7XlDLI_bzMFM" />
+
+<!-- SEO Meta Tags -->
+<title>TMS/DMS/CMS HOTAS Guide for Falcon BMS 4.38 | F-16 Flight Simulator</title>
+<meta name="description" content="Comprehensive guide for F-16 HOTAS switches (TMS, DMS, CMS) in Falcon BMS 4.38.1 flight simulator. Learn sensor of interest management, master modes, and switch functions for realistic F-16 combat simulation.">
+<meta name="author" content="Carlos 'Metal' Nader">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook / LinkedIn -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TMS/DMS/CMS HOTAS Guide">
+<meta property="og:title" content="TMS/DMS/CMS HOTAS Guide - Falcon BMS 4.38.1">
+<meta property="og:description" content="F-16 HOTAS reference for all master modes. Free PDF guide for realistic combat simulation.">
+<meta property="og:url" content="https://carlos-nader.github.io/tms-dms-cms-usage-guide/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://carlos-nader.github.io/tms-dms-cms-usage-guide/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="TMS/DMS/CMS HOTAS Guide for Falcon BMS - F-16 Switch Reference">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TMS/DMS/CMS HOTAS Guide - Falcon BMS 4.38.1">
+<meta name="twitter:description" content="F-16 HOTAS reference for all master modes. Free PDF guide for realistic combat simulation.">
+<meta name="twitter:image" content="https://carlos-nader.github.io/tms-dms-cms-usage-guide/social-preview.png">
+<meta name="twitter:image:alt" content="TMS/DMS/CMS HOTAS Guide for Falcon BMS - F-16 Switch Reference">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://carlos-nader.github.io/tms-dms-cms-usage-guide/">
+
+<!-- Sitemap Reference -->
+<link rel="sitemap" type="application/xml" href="https://carlos-nader.github.io/tms-dms-cms-usage-guide/sitemap.xml" />
+
+<!-- Main Guide Files (SEO) -->
+<link rel="alternate" type="application/pdf" title="TMS/DMS/CMS Guide PDF"
+      href="https://carlos-nader.github.io/tms-dms-cms-usage-guide/guide-web.pdf" />
+<link rel="alternate" type="text/plain" title="TMS/DMS/CMS Guide LaTeX Source"
+      href="https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/guide.tex" />
+
+<!-- Schema.org Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "name": "TMS/DMS/CMS HOTAS Guide for Falcon BMS 4.38",
+  "headline": "F-16 HOTAS Switches Reference Guide",
+  "description": "Comprehensive guide for F-16 HOTAS switches (TMS, DMS, CMS) in Falcon BMS 4.38.1 flight simulator. Learn sensor of interest management, master modes, and switch functions for realistic F-16 combat simulation.",
+  "image": "https://carlos-nader.github.io/tms-dms-cms-usage-guide/social-preview.png",
+  "author": {
+    "@type": "Person",
+    "name": "Carlos Metal Nader",
+    "alternateName": "Carlos 'Metal' Nader"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Carlos Metal Nader"
+  },
+  "datePublished": "2026-01-12",
+  "dateModified": "2026-02-12",
+  "inLanguage": "en-US",
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+  "educationalUse": "instruction",
+  "isAccessibleForFree": true,
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Flight simulation enthusiasts, Falcon BMS players"
+  }
+}
+</script>
+
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HKWKRZYZVG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-HKWKRZYZVG');
+</script>
+```
+
+---
+
+### **For contributing.html (Contributors)**
+
+```html
+<!-- Basic Meta Tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO Meta Tags -->
+<title>Contributing to TMS/DMS/CMS HOTAS Guide | Development Documentation</title>
+<meta name="description" content="Development documentation for contributors to the TMS/DMS/CMS HOTAS Guide project. Learn about WIP workflows, versioning system, LaTeX standards, and how to contribute.">
+<meta name="author" content="Carlos 'Metal' Nader">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook / LinkedIn -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TMS/DMS/CMS HOTAS Guide">
+<meta property="og:title" content="Contributing to TMS/DMS/CMS HOTAS Guide">
+<meta property="og:description" content="Development documentation and contribution guidelines for the F-16 HOTAS guide project.">
+<meta property="og:url" content="https://carlos-nader.github.io/tms-dms-cms-usage-guide/contributing.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://carlos-nader.github.io/tms-dms-cms-usage-guide/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="TMS/DMS/CMS HOTAS Guide - Contributing Documentation">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contributing to TMS/DMS/CMS HOTAS Guide">
+<meta name="twitter:description" content="Development documentation and contribution guidelines for the F-16 HOTAS guide project.">
+<meta name="twitter:image" content="https://carlos-nader.github.io/tms-dms-cms-usage-guide/social-preview.png">
+<meta name="twitter:image:alt" content="TMS/DMS/CMS HOTAS Guide - Contributing Documentation">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://carlos-nader.github.io/tms-dms-cms-usage-guide/contributing.html">
+
+<!-- Schema.org Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Contributing to TMS/DMS/CMS HOTAS Guide",
+  "description": "Development documentation for contributors to the TMS/DMS/CMS HOTAS Guide project. Learn about WIP workflows, versioning system, LaTeX standards, and how to contribute.",
+  "url": "https://carlos-nader.github.io/tms-dms-cms-usage-guide/contributing.html",
+  "author": {
+    "@type": "Person",
+    "name": "Carlos Metal Nader"
+  },
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "TMS/DMS/CMS HOTAS Guide",
+    "url": "https://carlos-nader.github.io/tms-dms-cms-usage-guide/"
+  }
+}
+</script>
+
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HKWKRZYZVG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-HKWKRZYZVG');
+</script>
+```
+
+---
+
+### **Key Improvements Made:**
+
+1. ✅ **Removed Open Graph duplication** (single set of tags)
+2. ✅ **Added missing OG tags**: `og:site_name`, `og:locale`, image metadata (width, height, type, alt)
+3. ✅ **Completed Twitter Card**: Added `twitter:title`, `twitter:description`, `twitter:image:alt`
+4. ✅ **Added Schema.org JSON-LD**: Rich structured data for Google
+5. ✅ **Removed `meta keywords`**: Google ignores it since 2009
+6. ✅ **Fixed image URLs**: Using GitHub Pages URL instead of raw.githubusercontent.com
+7. ✅ **Different content for each audience**: index.html focuses on users, contributing.html on developers
+
+---
+
 **Status:** Architectural decisions finalized, ready to proceed with implementation
