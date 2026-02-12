@@ -1,0 +1,31 @@
+# Probot auto-label configuration for Falcon BMS Guide
+# Applies labels to PRs/issues based on files, paths, and keywords
+
+files:
+  'wip/**/*.tex': ['wip', 'latex', 'documentation']
+  'archive/**/*.tex': ['approved', 'latex', 'documentation']
+  'guide.tex': ['latex', 'documentation']
+  'fig/**/*.{svg,png,pdf}': ['image']
+  'docs/BRIEFING*': ['governance']
+  'docs/VERSION-SYSTEM*': ['governance']
+  'docs/WIP-FILE-NAMING*': ['governance']
+  'docs/PROJECT-TRACKING*': ['governance']
+  '.github/workflows/*.yml': ['infrastructure', 'automation']
+  'scripts/*.py': ['automation', 'scripts']
+  'scripts/*.ps1': ['automation', 'scripts']
+
+keywords:
+  bug: ['bug']
+  enhancement: ['enhancement']
+  improve: ['enhancement']
+  governance: ['governance']
+  latex: ['latex']
+  image: ['image']
+  automation: ['automation']
+  script: ['scripts']
+  wip: ['wip']
+  approved: ['approved']
+  review: ['review']
+  final: ['final']
+
+# You can add more rules for authors, titles, or custom patterns as needed.
