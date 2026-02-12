@@ -5,6 +5,8 @@
 [![GitHub stars](https://img.shields.io/github/stars/carlos-nader/tms-dms-cms-usage-guide?style=social)](https://github.com/carlos-nader/tms-dms-cms-usage-guide)
 [![GitHub forks](https://img.shields.io/github/forks/carlos-nader/tms-dms-cms-usage-guide?style=social)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/fork)
 
+[Changelog](CHANGELOG.md) | [Issues](https://github.com/carlos-nader/tms-dms-cms-usage-guide/issues)
+
 A comprehensive **LaTeX-based technical guide** documenting F-16 HOTAS switch systems (Target Management Switch, Display Management Switch, and Countermeasures Management Switch) for Falcon BMS 4.38.1 Flight Simulator.
 
 The author is by no means affiliated to or endorsed by Falcon BMS or its developers. This guide is not an official Falcon BMS guide or manual. It's intended to help the Falcon BMS Community.
