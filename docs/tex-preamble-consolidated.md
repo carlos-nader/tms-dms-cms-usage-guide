@@ -1,5 +1,9 @@
 ---
 layout: default
+title: "LaTeX Preamble Documentation"
+sitemap:
+  priority: 0.2
+  changefreq: monthly
 ---
 {% raw %}
 

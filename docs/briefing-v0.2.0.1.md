@@ -1,5 +1,9 @@
 ---
 layout: default
+title: "Project Briefing"
+sitemap:
+  priority: 0.3
+  changefreq: monthly
 ---
 {% raw %}
 

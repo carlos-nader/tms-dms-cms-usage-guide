@@ -1,5 +1,9 @@
 ---
 layout: default
+title: "WIP File Naming Convention"
+sitemap:
+  priority: 0.2
+  changefreq: monthly
 ---
 {% raw %}
 

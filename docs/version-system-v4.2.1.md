@@ -1,5 +1,9 @@
 ---
 layout: default
+title: "Versioning System"
+sitemap:
+  priority: 0.2
+  changefreq: monthly
 ---
 {% raw %}
 
