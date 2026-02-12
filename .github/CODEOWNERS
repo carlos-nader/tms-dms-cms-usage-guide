@@ -1,0 +1,7 @@
+# This file designates code owners for automatic review assignment on PRs
+# For this project, all files are owned by carlos-nader
+* @carlos-nader
+
+# Example for specific folders/files (uncomment to use):
+# /wip/ @carlos-nader
+# /guide.tex @carlos-nader
