@@ -303,6 +303,27 @@ def main():
         print("✗ FAILED: Could not write README")
         sys.exit(1)
     
+    # Step 6: Update version in docs/index.html
+    print("\n[6/6] Updating version in docs/index.html...")
+
+    index_path = "docs/index.html"
+    if Path(index_path).exists():
+        with open(index_path, 'r', encoding='utf-8') as f:
+            index_content = f.read()
+        new_index_content, index_changes = re.subn(
+            r'(<span class="badge version">)v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+(</span>)',
+            r'\1v' + version + r'\2',
+            index_content
+        )
+        if index_changes > 0:
+            with open(index_path, 'w', encoding='utf-8') as f:
+                f.write(new_index_content)
+            print(f"✓ Updated version badge in {index_path} ({index_changes} occurrence(s))")
+        else:
+            print(f"⚠ No version badge update needed in {index_path}")
+    else:
+        print(f"⚠ {index_path} not found, skipping index.html update.")
+
     # Bonus: Output to GitHub Actions
     print("\n[BONUS] Setting GitHub Actions output variables...")
     output_to_github_actions(version, source)
@@ -311,7 +332,7 @@ def main():
     print("\n" + "=" * 60)
     print("✅ SUCCESS")
     print("=" * 60)
-    print(f"📝 Updated: {readme_path}")
+    print(f"📝 Updated: {readme_path} and docs/index.html")
     print(f"📢 Version: {version}")
     print(f"📌 Source: {source.upper()}")
     print(f"🔄 Patterns updated: {num_changes}")
