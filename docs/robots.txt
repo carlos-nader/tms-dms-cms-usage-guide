@@ -1,9 +1,27 @@
-# Allow all search engines to index this site
+# TMS/DMS/CMS Usage Guide - Falcon BMS
+# GitHub Pages + Jekyll (jekyll-sitemap, jekyll-seo-tag)
+# Generated: 2026-02-12 | v0.4.1.0
+
 User-agent: *
 Allow: /
+Allow: /docs/
+Crawl-delay: 10
 
-# Sitemap location
+# Prioritize key pages (SEO alignment)
+# High priority: index.html (1.0), contributing.html (0.5)
+# Docs: briefing/tracking (0.3), technical (0.2)
+
 Sitemap: https://carlos-nader.github.io/tms-dms-cms-usage-guide/sitemap.xml
 
-# Crawl delay (prevents aggressive crawling)
-Crawl-delay: 10
+# Block private/raw GitHub noise
+User-agent: *
+Disallow: /tms-dms-cms-usage-guide/?*  # Query params
+Disallow: *.git
+Disallow: /wip/     # Dev files
+Disallow: /archive/ # Históricos
+
+# AI scrapers (opcional, se quiser bloquear)
+# User-agent: GPTBot
+# Disallow: /
+# User-agent: Google-Extended
+# Disallow: /

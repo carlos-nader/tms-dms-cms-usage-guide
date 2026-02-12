@@ -121,8 +121,8 @@ Define **content structure** for each page:
 - [x] Should technical docs be converted to Markdown or keep as HTML? → **ALREADY IN MARKDOWN** (Jekyll converting)
 - [x] Exact content structure for index.html hero section → **DEFINED BELOW**
 - [x] Exact content structure for contributing.html organization → **DEFINED BELOW**
-- [ ] Design/styling for contributing.html (match index.html style?)
-- [ ] Add frontmatter YAML to existing Markdown docs for sitemap control?
+- [x] Design/styling for contributing.html (match index.html style?)
+- [x] Add frontmatter YAML to existing Markdown docs for sitemap control?
 
 ---
 
@@ -370,7 +370,7 @@ gtag('config', 'G-HKWKRZYZVG');
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Contributing to TMS/DMS/CMS HOTAS Guide",
+  "name": "Contributing to the F-16 TMS/DMS/CMS HOTAS Guide",
   "description": "Development documentation for contributors to the TMS/DMS/CMS HOTAS Guide project. Learn about WIP workflows, versioning system, LaTeX standards, and how to contribute.",
   "url": "https://carlos-nader.github.io/tms-dms-cms-usage-guide/contributing.html",
   "author": {
