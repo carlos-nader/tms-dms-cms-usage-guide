@@ -1,1 +1,23 @@
 theme: jekyll-theme-slate
+
+# GitHub Pages configuration
+url: "https://carlos-nader.github.io"
+baseurl: "/tms-dms-cms-usage-guide"
+
+# Markdown processing
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# Build settings
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Include/Exclude
+include:
+  - _config.yml
+exclude:
+  - README.md
+  - SETUP.md
