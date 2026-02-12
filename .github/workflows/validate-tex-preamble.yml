@@ -1,0 +1,30 @@
+name: Validate LaTeX Preamble
+
+on:
+  workflow_dispatch:  
+  push:
+    paths:
+      - 'wip/**/*.tex'
+      - 'guide.tex'
+      - 'template/template-wip-V1.0.tex'
+      - 'scripts/validate-tex-preamble.py'
+  pull_request:
+    paths:
+      - 'wip/**/*.tex'
+      - 'guide.tex'
+      - 'template/template-wip-V1.0.tex'
+      - 'scripts/validate-tex-preamble.py'
+
+jobs:
+  validate-preamble:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Run LaTeX preamble validator
+        run: |
+          python scripts/validate-tex-preamble.py
