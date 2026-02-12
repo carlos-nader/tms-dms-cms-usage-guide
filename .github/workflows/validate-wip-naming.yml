@@ -6,7 +6,6 @@ on:
       - main
       - develop
   workflow_dispatch:
-    description: 'Manually validate all WIP/ARCHIVE files'
 
 jobs:
   validate-filenames:
