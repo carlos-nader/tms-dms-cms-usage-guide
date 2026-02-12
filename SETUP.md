@@ -9,15 +9,16 @@
 ## 📋 Table of Contents
 
 1. [Prerequisites](#-prerequisites)
-2. [Installing LaTeX Distribution (MiKTeX)](#-installing-latex-distribution-miktex)
-3. [Setting Up TeXstudio IDE](#-setting-up-texstudio-ide)
-4. [Setting Up Visual Studio Code](#-setting-up-visual-studio-code)
-5. [Cloning the Repository](#-cloning-the-repository)
-6. [Building the PDF Locally](#-building-the-pdf-locally)
-7. [Creating WIP Files](#-creating-wip-files)
-8. [Git Workflow for Editing](#-git-workflow-for-editing)
-9. [Running Automation Scripts](#-running-automation-scripts)
-10. [Troubleshooting](#-troubleshooting)
+2. [Installing Git](#-installing-git)
+3. [Installing LaTeX Distribution (MiKTeX)](#-installing-latex-distribution-miktex)
+4. [Setting Up TeXstudio IDE](#-setting-up-texstudio-ide)
+5. [Setting Up Visual Studio Code](#-setting-up-visual-studio-code)
+6. [Cloning the Repository](#-cloning-the-repository)
+7. [Building the PDF Locally](#-building-the-pdf-locally)
+8. [Creating WIP Files](#-creating-wip-files)
+9. [Git Workflow for Editing](#-git-workflow-for-editing)
+10. [Running Automation Scripts](#-running-automation-scripts)
+11. [Troubleshooting](#-troubleshooting)
 
 ---
 
@@ -29,15 +30,117 @@ Before setting up the project, ensure you have:
 |------------|----------------|---------|
 | **Windows 10/11** or **macOS/Linux** | Latest stable | Operating system |
 | **Git** | 2.30+ | Version control |
-| **Python** | 3.8+ | Running automation scripts |
+| **Python** | 3.8+ | Automation scripts (optional) |
 | **MiKTeX** (Windows) or **TeX Live** (Linux/macOS) | Latest | LaTeX distribution |
 | **4 GB RAM** | — | LaTeX compilation |
 | **500 MB free disk space** | — | MiKTeX packages + repo |
+
+> **Note:** Python is only required if you want to run automation scripts in `/scripts/`. The main workflow (editing LaTeX, building PDFs, Git operations) works perfectly without Python.
 
 ### Optional (Recommended)
 - **GitHub Desktop** — GUI for Git operations
 - **GitHub account** — For contributing via pull requests
 - **VS Code** or **TeXstudio** — IDEs for editing
+
+---
+
+## 🔧 Installing Git
+
+Git is essential for version control and contributing to the project.
+
+### Windows Installation
+
+1. **Download Git for Windows**
+   - Visit: https://git-scm.com/download/win
+   - Download **64-bit Git for Windows Setup**
+
+2. **Run the Installer**
+   - Use recommended settings for most options
+   - **Important selections:**
+     - **Editor:** Choose your preferred editor (VS Code recommended)
+     - **PATH environment:** Select **"Git from the command line and also from 3rd-party software"**
+     - **HTTPS transport backend:** Use **OpenSSL library**
+     - **Line ending conversions:** Choose **"Checkout Windows-style, commit Unix-style"**
+
+3. **Verify Installation**
+   ```powershell
+   # Open PowerShell and run:
+   git --version
+   ```
+   Expected output:
+   ```
+   git version 2.x.x
+   ```
+
+4. **Configure Git Identity** (Required for commits)
+   ```bash
+   git config --global user.name "Your Name"
+   git config --global user.email "your.email@example.com"
+   ```
+
+### macOS Installation
+
+**Option 1: Using Homebrew (Recommended)**
+```bash
+brew install git
+```
+
+**Option 2: Xcode Command Line Tools**
+```bash
+xcode-select --install
+```
+
+**Verify:**
+```bash
+git --version
+```
+
+### Linux Installation
+
+```bash
+# Ubuntu/Debian
+sudo apt-get update
+sudo apt-get install git
+
+# Fedora
+sudo dnf install git
+
+# Arch Linux
+sudo pacman -S git
+```
+
+### Post-Installation Configuration
+
+```bash
+# Set your identity
+git config --global user.name "Carlos Nader"
+git config --global user.email "your.email@example.com"
+
+# Set default branch name
+git config --global init.defaultBranch main
+
+# Enable credential caching (optional, saves passwords)
+git config --global credential.helper cache
+
+# Verify configuration
+git config --list
+```
+
+### Optional: GitHub Desktop (GUI Alternative)
+
+If you prefer a graphical interface:
+
+1. **Download GitHub Desktop**
+   - https://desktop.github.com/
+   - Available for Windows and macOS
+
+2. **Sign in with GitHub account**
+   - Automatically configures Git credentials
+
+3. **Benefits:**
+   - Visual diff viewer
+   - Simplified branching and merging
+   - Integrated pull request creation
 
 ---
 
@@ -187,9 +290,10 @@ Install these extensions via **Extensions panel (Ctrl+Shift+X)**:
 | Extension | ID | Purpose |
 |-----------|----|---------|
 | **LaTeX Workshop** | `James-Yu.latex-workshop` | LaTeX editing, compilation, PDF preview |
-| **Python** | `ms-python.python` | Python scripting support |
-| **GitLens** | `eamodio.gitlens` | Advanced Git integration |
+| **Python** | `ms-python.python` | Python scripting support (optional) |
 | **Markdown All in One** | `yzhang.markdown-all-in-one` | Markdown editing in `/docs/` |
+
+> **Note:** VS Code has excellent built-in Git integration (Source Control panel, `Ctrl+Shift+G`). No additional Git extensions are required. The native integration handles commits, diffs, branches, and sync operations.
 
 ### Configuration
 
