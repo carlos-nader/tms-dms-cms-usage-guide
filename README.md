@@ -1,5 +1,7 @@
 # TMS/DMS/CMS Usage Guide for Falcon BMS F-16 Flight Simulator
 
+[![Generate Integrated Files Report](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/generate-integrated-files.yml/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/generate-integrated-files.yml) [![pages-build-deployment](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/pages/pages-build-deployment) [![Sync PDF to docs](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/sync-pdf-to-docs.yml/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/sync-pdf-to-docs.yml)
+
 [![GitHub stars](https://img.shields.io/github/stars/carlos-nader/tms-dms-cms-usage-guide?style=social)](https://github.com/carlos-nader/tms-dms-cms-usage-guide)
 [![GitHub forks](https://img.shields.io/github/forks/carlos-nader/tms-dms-cms-usage-guide?style=social)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/fork)
 
