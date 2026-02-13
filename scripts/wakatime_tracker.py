@@ -7,6 +7,12 @@ from dotenv import load_dotenv
 # Carrega variáveis do arquivo .env
 load_dotenv()
 
+from pathlib import Path
+
+# Carrega .env da mesma pasta do script
+env_path = Path(__file__).parent / ".env"
+load_dotenv(dotenv_path=env_path)
+
 # ===== CONFIGURAÇÃO =====
 WAKATIME_API_KEY = os.getenv("WAKATIME_API_KEY")
 PROJECT_NAME = "projeto-bms"
