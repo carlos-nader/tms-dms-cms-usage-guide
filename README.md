@@ -51,6 +51,14 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 
 ---
 
+## 📈 Development Activity (tracked since february 13th, 2026)
+
+[![wakatime](https://wakatime.com/badge/user/a7867e5c-aed5-4764-9e32-54ff6e08eaa8/project/22723c4f-b262-4526-a7ed-bff46e9902ff.svg)](https://wakatime.com/badge/user/a7867e5c-aed5-4764-9e32-54ff6e08eaa8/project/22723c4f-b262-4526-a7ed-bff46e9902ff)
+
+> Transparent time tracking via WakaTime, showing cumulative development time specifically for this repository.
+
+---
+
 ## 📖 About This Project
 
 [![GitHub Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://carlos-nader.github.io/tms-dms-cms-usage-guide/)
