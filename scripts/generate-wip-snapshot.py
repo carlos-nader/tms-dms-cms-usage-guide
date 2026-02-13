@@ -68,7 +68,7 @@ def update_readme():
     table = (
         '\n## 🗄️ WIP Snapshot — Active Work-in-Progress Files\n\n'
         + generate_table()
-        + '\n\n**Legend:**  ⚪ dev\t🟡 review\t⚪ final\n\n'
+        + '\n\n**Legend:**  🟠 dev\t🟡 review\t⚪ final\n\n'
         + '> For integrated files, see the `archive/WIP/` folder.'
     )
     new_content = before + '\n' + table + '\n' + after
