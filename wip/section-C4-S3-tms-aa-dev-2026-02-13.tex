@@ -1,0 +1,748 @@
+%============================================================================
+% LICENSING NOTICE
+%============================================================================
+% This WIP file, upon integration into guide-v.tex, becomes part of the
+% TMS/DMS/CMS Usage Guide and is released under CC BY-NC 4.0.
+% For details, see LICENSE in the repository root.
+%============================================================================
+
+%============================================================================
+% FALCON BMS TMS/DMS/CMS HOTAS GUIDE
+% WIP FILE TEMPLATE V1.0 — FINAL (Briefing v0.2.0.1)
+%============================================================================
+
+% IMPORTANTE: Este é um TEMPLATE padronizado para arquivos WIP (Work-In-Progress)
+% que serão integrados ao guide.tex.
+
+% Nomenclatura: Siga wip-naming-v1.4
+% Padrão: section-C{N}-S{M}[-S{K}]-{titulo}-{status}-{data}.tex
+% Exemplo: section-C5-S2-cms-actuation-hotas-tables-final-2026-01-10.tex
+
+% Status: dev | review | final | approved | deprecated
+% Locação: WIP/ (ativo) | ARCHIVE/ (aprovado/descartado)
+
+%============================================================================
+% PREAMBLE COMPLETO — TMS/DMS/CMS Usage Guide for Falcon BMS 4.38.1
+% Gerado: 11 February 2026
+% Status: Improvements as per GitHub Issues #34 and #33
+%============================================================================
+
+\documentclass[11pt, a4paper, twoside]{report}
+
+% --------------------------------------------------------------------------
+% BASIC ENCODING AND LANGUAGE
+% --------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% --------------------------------------------------------------------------
+% FONTS AND MICROTYPOGRAPHY
+% --------------------------------------------------------------------------
+
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --------------------------------------------------------------------------
+% PAGE GEOMETRY AND LAYOUT
+% --------------------------------------------------------------------------
+
+\usepackage{geometry}
+\geometry{a4paper, left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
+\usepackage{setspace}
+\onehalfspacing
+
+% --------------------------------------------------------------------------
+% COLORS AND LINKS AND PDF SETTINGS
+% --------------------------------------------------------------------------
+
+\usepackage[table]{xcolor}
+\definecolor{linkblue}{HTML}{004488}
+\definecolor{linkred}{HTML}{882222}
+\definecolor{headerblue}{HTML}{003366}
+\definecolor{rowgray}{HTML}{F5F5F5}
+\definecolor{subheadgray}{HTML}{E0E0E0}
+\usepackage{soul}
+\usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\hypersetup{
+	pdftitle={TMS, DMS and CMS Usage Guide for Falcon BMS},
+	pdfauthor={Carlos "Metal" Nader},
+	pdfsubject={Flight Simulation - Falcon BMS HOTAS Reference},
+	pdfkeywords={Falcon BMS, F-16, HOTAS, TMS, DMS, CMS, Flight Simulation},
+	pdfcreator={pdfLaTeX (MiKTeX)},
+	pdfproducer={MiKTeX},
+	pdflang={en-US},
+}
+\usepackage{bookmark}
+
+% --------------------------------------------------------------------------
+% CAPTION SETUP BY TYPE
+% --------------------------------------------------------------------------
+
+\usepackage{caption}
+
+% GLOBAL PATTERN
+\captionsetup{font=small, labelfont=bf, justification=centering, singlelinecheck=true}
+% FIGURES
+\captionsetup[figure]{font=footnotesize, labelfont=bf, justification=centering, singlelinecheck=true}
+% % TABLE/LONGTABLE/hotastable:
+\captionsetup[table]{font=small, labelfont=bf, justification=centering, singlelinecheck=true}
+
+% --------------------------------------------------------------------------
+% HEADERS AND FOOTERS (IMPROVED for report + twoside)
+% --------------------------------------------------------------------------
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{25pt}                    
+\pagestyle{fancy}
+\fancyhf{}                                        
+\fancyhead[LO,RE]{\small\textit{\leftmark}}     
+\fancyhead[RO,LE]{\small\thepage}               
+\fancyfoot{}                                      
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --------------------------------------------------------------------------
+% CHAPTER FORMATTING AND SPACING (via titlesec)
+% --------------------------------------------------------------------------
+
+\usepackage{titlesec}
+
+% --------------------------------------------------------------------------
+% CHAPTER - Nível 0 (Destaque Máximo)
+% --------------------------------------------------------------------------
+% Shape: display → standalone em nova linha
+% Font: \Large\bfseries --- label e título ambos em bold para destaque máximo
+% Numeração: SIM
+% Espaçamento: 15pt antes, 28pt depois
+% --------------------------------------------------------------------------
+
+\titleformat{\chapter}[display]
+{\normalfont\Large\bfseries}           % Formato: LARGE + bold (label)
+{\chaptertitlename~\thechapter}        % Rótulo: "Chapter 1" (bold também)
+{20pt}                                 % Espaço vertical antes do corpo
+{\Large\bfseries}                      % Corpo do título: LARGE + bold
+
+\titlespacing{\chapter}
+{0pt}       % Margem esquerda (sem indent)
+{15pt}      % Espaço ANTES do título do capítulo
+{28pt}      % Espaço DEPOIS do título do capítulo (AUMENTADO)
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SECTION - Nível 1
+% --------------------------------------------------------------------------
+% Shape: hang → label à esquerda, corpo indentado (compacto)
+% Font: \large\bfseries (mesmo destaque que chapter para coerência)
+% Numeração: SIM
+% Espaçamento: 15pt antes, 8pt depois (REDUZIDO de 15pt/10pt anteriores)
+% --------------------------------------------------------------------------
+
+\titleformat{\section}[hang]
+{\normalfont\large\bfseries}           % Formato: large + bold
+{\thesection}                          % Rótulo: "1", "2", etc
+{1em}                                  % Espaço entre rótulo e corpo
+{}                                     % Corpo do título (herda do format)
+
+\titlespacing{\section}
+{0pt}       % Margem esquerda (sem indent)
+{15pt}      % Espaço ANTES do título da seção (REDUZIDO)
+{8pt}       % Espaço DEPOIS do título da seção (REDUZIDO)
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SUBSECTION - Nível 2
+% --------------------------------------------------------------------------
+% Shape: hang → label esquerda, corpo indentado
+% Font: \normalsize\bfseries (redução visual, ainda robusto)
+% Numeração: SIM
+% Espaçamento: 12pt antes, 6pt depois (compacto)
+% --------------------------------------------------------------------------
+
+\titleformat{\subsection}[hang]
+{\normalfont\normalsize\bfseries}      % Formato: tamanho normal + bold
+{\thesubsection}                       % Rótulo: "1.1", "1.2", etc
+{1em}                                  % Espaço entre rótulo e corpo
+{}                                     % Corpo do título
+
+\titlespacing{\subsection}
+{0pt}       % Margem esquerda (sem indent)
+{12pt}      % Espaço ANTES do título da subseção
+{6pt}       % Espaço DEPOIS do título da subseção
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SUBSUBSECTION - Nível 3
+% --------------------------------------------------------------------------
+% Shape: hang → label esquerda, máximo recuo (bem compacto)
+% Font: \normalsize\bfseries (mesmo tamanho que subsection, padrão)
+% Numeração: SIM (configurable com secnumdepth)
+% Espaçamento: 10pt antes, 4pt depois (bem comprimido)
+% --------------------------------------------------------------------------
+
+\titleformat{\subsubsection}[hang]
+{\normalfont\normalsize\bfseries}      % Formato: tamanho normal + bold
+{\thesubsubsection}                    % Rótulo: "1.1.1", "1.1.2", etc
+{1em}                                  % Espaço entre rótulo e corpo
+{}                                     % Corpo do título
+
+\titlespacing{\subsubsection}
+{0pt}       % Margem esquerda (sem indent)
+{10pt}       % Espaço ANTES do título
+{4pt}       % Espaço DEPOIS do título (bem comprimido)
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% PARAGRAPH - Nível 4 (CRÍTICO: Ilusão Óptica Resolvida)
+% --------------------------------------------------------------------------
+% Shape: runin → inline, integrado ao texto (seu requisito)
+% Font: \small\bfseries (SOLUÇÃO PARA ILUSÃO ÓPTICA DO NEGRITO)%       
+% Numeração: NÃO (padrão para \paragraph)
+% Espaçamento: runin (sem espaço vertical antes, integrado ao texto)
+% --------------------------------------------------------------------------
+
+\titleformat{\paragraph}[runin]
+{\normalfont\small\bfseries}           % Formato: SMALL + bold (compensa ilusão)
+{}                                     % Rótulo: vazio (sem numeração)
+{0em}                                  % Espaço entre rótulo e corpo (zero, runin)
+{}                                     % Corpo do título
+
+\titlespacing{\paragraph}
+{0pt}       % Margem esquerda (sem indent)
+{8pt}       % Espaço ANTES do título do parágrafo (ADICIONADO - cria separação)
+{1em}       % Espaço DEPOIS do título (ADICIONADO - espaço após ":")
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SUBPARAGRAPH - Nível 5 (Preparação Futura)
+% --------------------------------------------------------------------------
+% Shape: runin → inline, integrado ao texto
+% Font: \small (MENOS destaque que \paragraph, sem bold)
+% Numeração: NÃO (padrão para \subparagraph)
+% Espaçamento: runin (integrado)
+% Uso: Se usado, aparecerá com destaque menor que \paragraph
+% --------------------------------------------------------------------------
+
+\titleformat{\subparagraph}[runin]
+{\normalfont\small}                    % Formato: small, SEM bold (menos destaque)
+{}                                     % Rótulo: vazio (sem numeração)
+{0em}                                  % Espaço entre rótulo e corpo (zero, runin)
+{}                                     % Corpo do título
+
+\titlespacing{\subparagraph}
+{0pt}       % Margem esquerda (sem indent)
+{8pt}       % Espaço ANTES do título (ADICIONADO)
+{1em}       % Espaço DEPOIS do título (ADICIONADO)
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% TABLES AND MACROS
+% --------------------------------------------------------------------------
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+% Custom Columns
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% Macro for Visual Reference Links
+\newcommand{\imglink}[1]{\hspace{2pt}\hyperref[#1]{\scriptsize\textbf{[Fig]}}}
+
+% --------------------------------------------------------------------------
+% HOTAS LOT FILE HANDLE 
+% --------------------------------------------------------------------------
+\makeatletter
+\newcommand{\listofhotastables}{%
+	\section*{List of HOTAS Tables}%
+	\addcontentsline{toc}{section}{List of HOTAS Tables}%
+	\@starttoc{hotas}%
+}
+\makeatother
+
+% --------------------------------------------------------------------------
+% HOTAS table environment
+% Version: 2.1 (2026-02-10)
+% --------------------------------------------------------------------------
+
+\newenvironment{hotastable}[1]{%
+	\footnotesize
+	\setlength{\tabcolsep}{3pt}
+	\renewcommand{\arraystretch}{1.35}
+	\begin{longtable}{L{1.00cm} L{0.90cm} L{0.90cm} L{3.30cm} L{6.40cm} L{1.40cm} L{1.60cm}}
+		\caption{#1}\label{table.\thetable}\\
+		\addtocontents{hotas}{\protect\contentsline{table}{\protect\numberline{\thetable}#1}{\thepage}{table.\thetable}}%
+		\rowcolor{headerblue}
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
+		\endfirsthead
+		\rowcolor{headerblue}
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
+		\endhead
+		\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+		\endfoot
+		\endlastfoot
+	}{%
+	\end{longtable}
+}
+
+% --------------------------------------------------------------------------
+% SIMPLE REFERENCE MACROS FOR BMS DOCS
+% --------------------------------------------------------------------------
+
+\newcommand{\dashref}[1]{Dash-34~\S~#1}
+\newcommand{\dashone}[1]{Dash-1~\S~#1}
+\newcommand{\trnref}[1]{TRN~#1}
+\newcommand{\trnman}{BMS Training Manual 4.38.1}
+\newcommand{\bmsver}{Falcon BMS~4.38.1}
+\newcommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+
+% --------------------------------------------------------------------------
+% CROSS-REFERENCE MACROS (INTERNAL GUIDE)
+% --------------------------------------------------------------------------
+
+\newcommand{\secref}[1]{\hyperref[#1]{Section~\ref*{#1}}}
+\newcommand{\chapref}[1]{\hyperref[#1]{Chapter~\ref*{#1}}}
+\newcommand{\tabref}[1]{\hyperref[#1]{Table~\ref*{#1}}}
+\newcommand{\figref}[1]{\hyperref[#1]{Figure~\ref*{#1}}}
+
+% --------------------------------------------------------------------------
+% VERSION CONTROL MACROS
+% --------------------------------------------------------------------------
+
+\newcommand{\docversion}{VERSION}
+\newcommand{\docbuild}{DATE}
+\newcommand{\docstartdate}{05 January 2026}
+\newcommand{\docenddate}{DATE}
+\newcommand{\chapterscompletedof}{X/7}
+\newcommand{\tablesfilledpct}{Chapter X}
+\newcommand{\fulldocversion}{\docversion+\docbuild}
+
+% --------------------------------------------------------------------------
+% GRAPHICS
+% --------------------------------------------------------------------------
+
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+\usepackage{float}
+\usepackage{enumitem}
+
+% --------------------------------------------------------------------------
+% TITLE
+% --------------------------------------------------------------------------
+
+\title{TMS, DMS and CMS Usage Guide for \bmsver}
+\author{Carlos ``Metal'' Nader}
+\date{Version \fulldocversion{} | Progress: Chapters \chapterscompletedof{} | Tables \tablesfilledpct{} | January 2026}
+
+% ============================================================================
+% DOCUMENT BEGIN
+% ============================================================================
+
+\begin{document}
+	
+	\maketitle
+	
+	\pagenumbering{roman}
+	
+	% --------------------------------------------------------------------------
+	% TOC DEPTH CONFIGURATION
+	% --------------------------------------------------------------------------
+	\setcounter{tocdepth}{3}       % Show up to \subsubsection in TOC
+	\setcounter{secnumdepth}{3}    % Number up to \subsubsection
+	
+	\newpage
+	\tableofcontents
+	\newpage
+	
+	% --------------------------------------------------------------------------
+	% LIST OF HOTAS TABLES
+	% --------------------------------------------------------------------------
+	\phantomsection
+	\listofhotastables
+	\newpage
+	
+	\pagenumbering{arabic}
+
+%============================================================================
+% WIP FILE METADATA (NOT RENDERED IN PDF)
+%============================================================================
+
+% File Name: section-C4-S3-tms-aa-dev-2026-02-13.tex
+% WIP Naming Convention: v1.4
+% Target Chapter: C4 (TMS)
+% Target Section: S3 (A-A Mode)
+% [Target Subsection: S{K} (Subsection Title) — OPTIONAL]
+%
+% WIP Status: dev | review | final | approved | deprecated
+% Created: 2026-02-13
+% Last Modified: 2026-02-13
+% Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.{MINOR}.{PATCH}
+%
+% Narrative Completion: 0%
+% Table Fill Status: 0%
+%
+% Notes: only markdowns for future content
+% - [Describe what's done, what's pending, open questions]
+% - [Cross-references to other WIP files or guide.tex sections]
+% - [Any divergences from briefing or validation issues]
+
+%============================================================================
+% TEMPLATE STRUCTURE — Replace section/subsection headers with your content
+%============================================================================
+
+%============================================================================
+% CONTENT BEGINS HERE (use \chapter{}, \section{}, \subsection{}, etc.)
+%============================================================================
+%--------------------------------------------------------------------------
+% SECTION 4.3: TMS IN AIR-TO-AIR
+%--------------------------------------------------------------------------
+\section{TMS in Air-to-Air}
+\label{sec:C4-S3}
+
+This section documents TMS behavior in air-to-air tracking and engagement contexts: FCR tracking modes (SAM, STT, TWS), Air Combat Maneuvering (ACM), Targeting Pod A-A mode, and IFF interrogation.
+
+\textbf{Note:} TMS with HSD for datalink target management (PDLT designation) is covered in \secref{sec:C4-S2-S1}. While PDLT is an A-A function, HSD is primarily a situational awareness display rather than a direct targeting sensor. 
+For HSD PDLT procedures in A-A contexts, see \secref{sec:C4-S2-S1} and \tabref{tab:hsd-tms}.
+
+%--------------------------------------------------------------------------
+% SUBSECTION 4.3.1: TMS IN SAM (SITUATION AWARENESS MODE)
+%--------------------------------------------------------------------------
+\subsection{TMS in SAM (Situation Awareness Mode)}
+\label{sec:C4-S3-S1}
+
+Situation Awareness Mode (SAM) tracks one or two targets (ST SAM or DT SAM) while maintaining search coverage. TMS commands in SAM manage track transitions and target prioritization.
+
+\paragraph{TMS Up in SAM:}
+\begin{itemize}
+    \item \textbf{On bugged target:} Transition SAM → STT (Single Target Track). Search coverage ceases; FCR dedicates all resources to tracking the bugged target.
+    \item \textbf{On search target (DT SAM):} Designate second target as secondary SAM target, entering Dual Target SAM (DT SAM). Radar tracks both targets while searching.
+\end{itemize}
+
+\paragraph{TMS Down in SAM (Return-to-Search):}
+\begin{itemize}
+    \item \textbf{ST SAM:} Drops bugged target, returns to RWS search mode. Target becomes untracked search symbol.
+    \item \textbf{DT SAM:} Drops secondary target, returns to ST SAM with primary target still bugged.
+\end{itemize}
+
+\paragraph{TMS Right in SAM (short press <1s):}
+\begin{itemize}
+    \item \textbf{DT SAM:} Toggles bug between primary and secondary targets. Allows pilot to prioritize which target is primary without re-designation.
+\end{itemize}
+
+\paragraph{TMS Right in SAM (held >1s):}
+Transitions SAM → TWS. Bugged target becomes TWS primary target. Radar begins building track files on other search targets.
+
+\paragraph{Operational context:}
+SAM is ideal for Beyond Visual Range (BVR) engagements where the pilot needs track data on one or two targets while maintaining search awareness. TMS Up/Down provides rapid transitions between search, SAM, and STT as the tactical picture evolves.
+
+See \tabref{tab:C4-S3-SAM} for detailed SAM TMS actions.
+
+%--------------------------------------------------------------------------
+% SUBSECTION 4.3.2: TMS IN STT (SINGLE TARGET TRACK)
+%--------------------------------------------------------------------------
+\subsection{TMS in STT (Single Target Track)}
+\label{sec:C4-S3-S2}
+
+Single Target Track (STT) dedicates the FCR to tracking a single airborne target with maximum accuracy. All search processing ceases. TMS commands in STT are limited to breaking lock and returning to previous modes.
+
+\paragraph{TMS Down in STT (Return-to-Search):}
+\begin{itemize}
+    \item \textbf{First press:} STT → SAM (or DT SAM if secondary target was being extrapolated). STT target becomes SAM primary target.
+    \item \textbf{Second press:} SAM → RWS. Bugged target becomes untracked search symbol.
+\end{itemize}
+
+\paragraph{TMS Up, TMS Right, TMS Left in STT:}
+\begin{itemize}
+    \item \textbf{ACM STT:} TMS Up, TMS Right, or CURSOR slew do NOT break lock. This allows pilot to slew scan volume or step targets without losing track (ACM-specific behavior).
+    \item \textbf{Non-ACM STT:} TMS Up/Right/Left have no effect. Only TMS Down breaks lock.
+\end{itemize}
+
+\paragraph{Operational note:}
+STT reveals the F-16's position to any target with RWR (Radar Warning Receiver) due to continuous radar emissions. Use STT only when weapon parameters are achieved and giving away position is acceptable. For covert BVR engagements, SAM or TWS is preferable.
+
+See \tabref{tab:C4-S3-STT} for STT TMS actions.
+
+%--------------------------------------------------------------------------
+% SUBSECTION 4.3.3: TMS IN TWS (TRACK-WHILE-SCAN)
+%--------------------------------------------------------------------------
+\subsection{TMS in TWS (Track-While-Scan)}
+\label{sec:C4-S3-S3}
+
+Track-While-Scan (TWS) automatically builds and maintains track files on up to 10 targets while continuing to search. TMS commands manage target prioritization (bugging) and transitions to STT for weapons employment.
+
+\paragraph{TMS Up in TWS:}
+\begin{itemize}
+    \item \textbf{Cursor over track file:} Bug that target (make it primary/TOI). If already bugged, transition TWS → STT on bugged target.
+    \item \textbf{Cursor over search target:} Designate search target, build track file, and bug it.
+\end{itemize}
+
+\paragraph{TMS Down in TWS (Return-to-Search):}
+\begin{itemize}
+    \item \textbf{First press:} Drop bug (if bugged target exists). Radar continues TWS with all track files.
+    \item \textbf{Second press:} Dump all track files, return to RWS search mode.
+    \item \textbf{Third press:} (from RWS after two presses) Radar rebuilds tracks automatically.
+\end{itemize}
+
+\paragraph{TMS Right in TWS (short press <1s):}
+Steps bug to next highest-priority track file. Priority is determined by range and track file order.
+
+\paragraph{TMS Right in TWS (held >1s):}
+\begin{itemize}
+    \item \textbf{With bugged target:} TWS → DT SAM. Bugged target becomes SAM primary; highest-priority track file becomes SAM secondary.
+    \item \textbf{Without bugged target:} TWS → RWS (last exited CRM search mode).
+\end{itemize}
+
+\paragraph{TMS Up (held >1s) in TWS:}
+Initiates spotlight search (same as RWS). Spotlight scan centered on ACQ cursor; track updates on TOI and AIM-120 in-flight targets occur only if spotlight volume includes them.
+
+\paragraph{Operational context:}
+TWS excels in multi-target environments (BARCAP, HAVCAP, large force engagements). Pilot can maintain SA on 8-10 threats while bugging and prosecuting the highest-priority target. TMS Right stepping allows rapid target prioritization without MFD interaction.
+
+See \tabref{tab:C4-S3-TWS} for TWS TMS actions.
+
+%--------------------------------------------------------------------------
+% SUBSECTION 4.3.4: TMS IN ACM (AIR COMBAT MANEUVERING) MODES
+%--------------------------------------------------------------------------
+\subsection{TMS in ACM (Air Combat Maneuvering) modes}
+\label{sec:C4-S3-S4}
+
+Air Combat Maneuvering (ACM) modes provide automated close-range target 
+acquisition (BORE, 10$\times$60, 30$\times$20, SLEW). TMS commands manage 
+mode transitions, target rejection, and HMCS integration.
+
+\subsubsection*{TMS Up in ACM}
+\label{sec:C4-S3-S4-S1}
+
+\paragraph{ACM BORE with HMCS (TMS Up held):}
+\begin{itemize}[nosep]
+    \item \textbf{Hold phase (TMS Up depressed):}
+    \begin{itemize}[nosep]
+        \item FCR scan slaves to HMCS aiming cross position.
+        \item Radar in NO RAD state (non-radiating) --- pilot aims scan volume with head movement.
+        \item ACQ cursor tracks HMCS aiming cross.
+        \item No minimum hold duration --- pilot controls timing.
+    \end{itemize}
+    
+    \item \textbf{Release phase (TMS Up released):}
+    \begin{itemize}[nosep]
+        \item FCR radiates at HMCS-designated position.
+        \item Auto-acquisition attempts on target under aiming cross.
+        \item If successful: Enters STT, solid TD box displayed on HUD.
+        \item If unsuccessful: Remains in ACM BORE, radiating.
+    \end{itemize}
+    
+    \item \textbf{Tactical use:}
+    \begin{itemize}[nosep]
+        \item High off-boresight (HOBS) acquisition: Lock target 60--90$^\circ$ off nose without 
+              pointing aircraft.
+        \item Visual merge: Identify bandit visually, slave radar via HMCS, acquire without 
+              nose alignment (critical in scissors/rolling fights).
+        \item Target sorting: Acquire specific bandit in multi-bogey merge without broad 
+              scan hitting wrong target.
+    \end{itemize}
+\end{itemize}
+
+\paragraph{ACM BORE without HMCS (TMS Up held):}
+\begin{itemize}[nosep]
+    \item Holding TMS Up inhibits auto-acquisition until released.
+    \item Allows pilot to position boresight cross over desired target in clustered 
+          group before commanding acquisition (manual target sorting).
+    \item No HMCS slaving --- radar remains boresight-aligned.
+\end{itemize}
+
+\paragraph{ACM STT:}
+\begin{itemize}[nosep]
+    \item TMS Up, TMS Right, or CURSOR slew does NOT break lock (ACM-specific behavior).
+    \item Allows pilot to reposition scan or step targets without losing track.
+\end{itemize}
+
+\subsubsection*{TMS Down in ACM}
+\label{sec:C4-S3-S4-S2}
+
+\paragraph{Return-to-Search (any radiating ACM mode):}
+\begin{itemize}[nosep]
+    \item First press: Drops radar track (if any), commands 30$\times$20 \texttt{NO RAD}.
+    \item Second press: Switches to 10$\times$60 radiating.
+    \item Third press: Returns to 30$\times$20 \texttt{NO RAD}.
+\end{itemize}
+
+\paragraph{HUD as SOI with FCR slaved to HMCS:}
+\begin{itemize}[nosep]
+    \item TMS Down commands ACM BORE NO RAD.
+\end{itemize}
+
+\subsubsection*{TMS Right in ACM}
+\label{sec:C4-S3-S4-S3}
+
+\begin{itemize}[nosep]
+    \item Cycles through ACM scan patterns (implementation varies by mode).
+    \item Typical sequence: 30$\times$20 $\rightarrow$ SLEW $\rightarrow$ 10$\times$60 $\rightarrow$ BORE.
+\end{itemize}
+
+\subsubsection*{Operational context}
+\label{sec:C4-S3-S4-S4}
+
+ACM modes automate acquisition in visual merge/dogfight. TMS Up/Down provide 
+rapid lock/break-lock cycles essential in turning fights. HMCS integration 
+enables HOBS acquisition without pointing aircraft nose.
+
+\textbf{Reference:} ACM modes details in \dashref{2.3.1.5.10}. HMCS 
+integration in \dashref{2.5}.
+
+See \tabref{tab:aa-acm-tms} for ACM TMS actions.
+
+%--------------------------------------------------------------------------
+% SUBSECTION 4.3.5: TMS AND IFF INTERROGATION
+%--------------------------------------------------------------------------
+\subsection{TMS and IFF interrogation}
+\label{sec:C4-S3-S5}
+
+TMS Left activates IFF (Identification Friend or Foe) interrogation when the AIFF (Advanced Interrogator Friend or Foe) system is available and configured.
+
+\paragraph{TMS Left (short press <0.6s):}
+Activates \textbf{SCAN interrogation mode}. AIFF antenna scans ±60° in azimuth, interrogating all targets within coverage. Responses displayed on FCR with IFF symbology.
+
+\paragraph{TMS Left (long press$\geq$0.6s):}
+Activates \textbf{LOS (Line of Sight) interrogation mode}. AIFF interrogates only the target along the FCR LOS (bugged target in SAM/STT, or ACQ cursor position in RWS). Provides precise interrogation of single target.
+
+\paragraph{Operational context:}
+IFF interrogation is critical in BVR engagements to distinguish friendly from hostile contacts before weapons employment. Dash-34 and BMS Training Manual emphasize proper IFF procedures before AIM-120 launches in training missions (e.g., Mission 18 BARCAP).
+
+See \tabref{tab:C4-S3-IFF} for IFF TMS actions.
+
+%--------------------------------------------------------------------------
+% SUBSECTION 4.3.6: TMS with Targeting Pod in Air-to-Air Mode
+%--------------------------------------------------------------------------
+\subsection{TMS with Targeting Pod in Air-to-Air Mode}
+\label{sec:C4-S3-S6}
+
+The Targeting Pod (TGP) operates in Air-to-Air mode for visual/IR target 
+identification and tracking independent of FCR. TMS commands with TGP as 
+SOI manage POINT track designation and track rejection.
+
+\subsubsection*{TMS Up (TGP SOI, A-A mode)}
+\label{sec:C4-S3-S6-S1}
+
+\begin{itemize}[nosep]
+    \item Commands POINT track on center of TGP field-of-view (crosshair position).
+    \item TGP locks onto visual/IR target at designated position.
+    \item After track command, TGP LOS becomes independent of FCR LOS.
+    \item HUD displays:
+    \begin{itemize}[nosep]
+        \item Dotted 50-mr TD box (TGP track position).
+        \item Solid 50-mr TD box (FCR track position) if FCR also tracking.
+        \item Dotted TLL (Target Locator Line) with ``T'' + angle if TGP track outside HUD FOV.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{TMS Down (TGP SOI, A-A mode)}
+\label{sec:C4-S3-S6-S2}
+
+\begin{itemize}[nosep]
+    \item Breaks TGP POINT track.
+    \item Returns TGP to slave mode --- TGP re-slaves to FCR LOS.
+    \item Dotted TD box/TLL removed from HUD.
+\end{itemize}
+
+\subsubsection*{Operational context}
+\label{sec:C4-S3-S6-S3}
+
+TGP A-A mode provides:
+\begin{enumerate}[nosep]
+    \item \textbf{Visual ID (VID):} Identify bandits before BVR shot (ROE compliance).
+    \item \textbf{Dual tracking:} FCR tracks primary threat, TGP tracks secondary (2v1 scenarios).
+    \item \textbf{Backup tracking:} If FCR loses lock (chaff/jamming), TGP maintains visual track.
+    \item \textbf{High-aspect targets:} TGP may track targets FCR cannot resolve (low RCS, 
+          beam aspect).
+\end{enumerate}
+
+\subsubsection*{Limitations}
+\label{sec:C4-S3-S6-S4}
+
+\begin{itemize}[nosep]
+    \item TGP A-A track is passive (no ranging) --- uses triangulation for range estimate.
+    \item Track quality degrades at long range ($>$10~NM) or high closure rates.
+    \item TGP slew rate slower than FCR --- not suitable for high-G dogfight tracking.
+\end{itemize}
+
+\subsubsection*{Procedure (VID example)}
+\label{sec:C4-S3-S6-S5}
+
+\begin{enumerate}[nosep]
+    \item FCR in RWS/SAM with unknown contact.
+    \item Select A-A master mode, TGP powered.
+    \item DMS Down to make TGP SOI.
+    \item Slew TGP crosshair over bandit (TGP initially slaved to FCR LOS).
+    \item TMS Up --- TGP commands POINT track, dotted TD box appears on HUD.
+    \item Visually identify via TGP video (MFD TGP page).
+    \item TMS Down --- break TGP track after ID complete.
+\end{enumerate}
+
+\textbf{Reference:} TGP A-A mode in \dashref{2.6.1.7.5}. SRM procedures 
+with TGP in \dashref{4.3.2.4.3.12}.
+
+See \tabref{tab:aa-tgp-tms} for TGP A-A TMS actions.
+
+%--------------------------------------------------------------------------
+% PLACEHOLDER: TABLES FOR SECTION 4.3
+%--------------------------------------------------------------------------
+
+[PLACEHOLDER: The following tables will be developed with full hotastable format:]
+
+% \subsection{TMS actions in SAM (Table)}
+% \begin{table}[H]
+% \begin{hotastable}{TMS Actions in SAM (Situation Awareness Mode)}
+% [Content: ST SAM, DT SAM | TMS Up/Down/Right | Designate, RTS, bug toggle | Dash-34 §2.3.1.5.9 | TRN 18]
+% \end{hotastable}
+% \label{tab:C4-S3-SAM}
+% \end{table}
+
+% \subsection{TMS actions in STT (Table)}
+% \begin{table}[H]
+% \begin{hotastable}{TMS Actions in STT (Single Target Track)}
+% [Content: STT, ACM STT | TMS Down RTS | Dash-34 §2.3.1.5.8 | TRN 18]
+% \end{hotastable}
+% \label{tab:C4-S3-STT}
+% \end{table}
+
+% \subsection{TMS actions in TWS (Table)}
+% \begin{table}[H]
+% \begin{hotastable}{TMS Actions in TWS (Track-While-Scan)}
+% [Content: TWS | TMS Up/Down/Right | Bug, RTS, step, spotlight | Dash-34 §2.3.1.5.7 | TRN 18]
+% \end{hotastable}
+% \label{tab:C4-S3-TWS}
+% \end{table}
+
+% \subsection{TMS actions in ACM modes (Table)}
+% \begin{table}[H]
+% \begin{hotastable}{TMS Actions in ACM Modes}
+% [Content: ACM BORE, 10x60, 30x20, SLEW | TMS Up/Down/Right | HMCS slave, RTS, mode cycle | Dash-34 §2.3.1.5.10-12 | TRN 20]
+% \end{hotastable}
+% \label{tab:C4-S3-ACM}
+% \end{table}
+
+% \subsection{TMS actions for IFF interrogation (Table)}
+% \begin{table}[H]
+% \begin{hotastable}{TMS Left — IFF Interrogation}
+% [Content: A-A | TMS Left short/long | SCAN/LOS interrogation | Dash-34 IFF chapter | TRN 18]
+% \end{hotastable}
+% \label{tab:C4-S3-IFF}
+% \end{table}
+
+\end{document}
