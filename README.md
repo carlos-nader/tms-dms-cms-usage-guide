@@ -51,6 +51,21 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 
 ---
 
+<!-- WIP-SNAPSHOT-START -->
+## 📂 WIP Snapshot — Active Work-in-Progress Files
+
+| Status | File Name | Last Modified |
+|:------:|-----------|:-------------|
+|        |           |              |
+
+**Legend:**  
+🟠 dev  🟡 review  ⚪ final
+
+> For integrated files, see the `archive/WIP/` folder.
+<!-- WIP-SNAPSHOT-END -->
+
+---
+
 ## 📈 Development Activity (tracked since February 13th, 2026)
 
 [![wakatime](https://wakatime.com/badge/user/a7867e5c-aed5-4764-9e32-54ff6e08eaa8/project/22723c4f-b262-4526-a7ed-bff46e9902ff.svg)](https://wakatime.com/badge/user/a7867e5c-aed5-4764-9e32-54ff6e08eaa8/project/22723c4f-b262-4526-a7ed-bff46e9902ff)
