@@ -1,0 +1,41 @@
+name: Generate WIP Snapshot
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  generate-wip-snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Run WIP snapshot generator
+        run: python scripts/generate-wip-snapshot.py
+
+      - name: Configure Git
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - name: Commit and push changes
+        run: |
+          if git diff --quiet README.md; then
+            echo "ℹ️  No changes to README"
+            exit 0
+          fi
+          git add README.md
+          git commit -m "chore: update WIP snapshot table ⬆️"
+          git push origin main
+          echo "✅ README updated and pushed"
