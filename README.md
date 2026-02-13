@@ -52,14 +52,15 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 ---
 
 <!-- WIP-SNAPSHOT-START -->
-## 📂 WIP Snapshot — Active Work-in-Progress Files
+
+## 🗄️ WIP Snapshot — Active Work-in-Progress Files
 
 | Status | File Name | Last Modified |
 |:------:|-----------|:-------------|
-|        |           |              |
+| 🟠 dev | chapter-C4-tms-structure-dev-2026-02-13.tex | 2026-02-13 |
+| 🟠 dev | section-C4-S3-tms-aa-dev-2026-02-13.tex | 2026-02-13 |
 
-**Legend:**  
-🟠 dev  🟡 review  ⚪ final
+**Legend:**  🗒️ dev	🗑️ review	⚪ final
 
 > For integrated files, see the `archive/WIP/` folder.
 <!-- WIP-SNAPSHOT-END -->
