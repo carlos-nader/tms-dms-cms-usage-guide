@@ -65,7 +65,12 @@ def update_readme():
         return
     before = content[:start + len(DELIM_START)]
     after = content[end:]
-    table = '\n## \ud83d\udcbe WIP Snapshot — Active Work-in-Progress Files\n\n' + generate_table() + '\n\n**Legend:**  '\n'\ud83d\uddf2 dev\t\ud83d\uddf1 review\t\u26aa final\n\n> For integrated files, see the `archive/WIP/` folder.'
+    table = (
+        '\n## 🗄️ WIP Snapshot — Active Work-in-Progress Files\n\n'
+        + generate_table()
+        + '\n\n**Legend:**  🗒️ dev\t🗑️ review\t⚪ final\n\n'
+        + '> For integrated files, see the `archive/WIP/` folder.'
+    )
     new_content = before + '\n' + table + '\n' + after
     with open(README_PATH, 'w', encoding='utf-8') as f:
         f.write(new_content)
