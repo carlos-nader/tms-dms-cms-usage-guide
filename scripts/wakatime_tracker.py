@@ -1,3 +1,4 @@
+import base64
 import requests
 from datetime import datetime
 import sys
@@ -111,8 +112,12 @@ def send_to_wakatime(start_time, end_time, category, language, file_entity):
     }
     
     # Headers da requisição
+    # Basic Auth: base64(api_key:) - note o ":" no final
+    credentials = f"{WAKATIME_API_KEY}:".encode('ascii')
+    base64_credentials = base64.b64encode(credentials).decode('ascii')
+    
     headers = {
-        "Authorization": f"Bearer {WAKATIME_API_KEY}",
+        "Authorization": f"Basic {base64_credentials}",
         "Content-Type": "application/json"
     }
     
