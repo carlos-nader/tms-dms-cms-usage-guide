@@ -380,27 +380,30 @@
 	\pagenumbering{arabic}
 
 %============================================================================
-% WIP FILE METADATA (NOT RENDERED IN PDF)
+% WIP FILE METADATA
 %============================================================================
-
-% File Name: section-C4-S3-tms-aa-dev-2026-02-13.tex
+% File Name: section-C2-S1-S3-soi-context-dependency-final-2026-02-15.tex
 % WIP Naming Convention: v1.4
-% Target Chapter: C4 (TMS)
-% Target Section: S3 (A-A Mode)
-% [Target Subsection: S{K} (Subsection Title) — OPTIONAL]
+% Target Chapter: C2 (HOTAS Fundamentals)
+% Target Section: S1 (Sensor of Interest — Concept and Architecture)
+% Target Subsection: S3 (SOI-Capable Displays and Context Dependency)
 %
-% WIP Status: dev | review | final | approved | deprecated
-% Created: 2026-02-13
-% Last Modified: 2026-02-13
-% Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.{MINOR}.{PATCH}
+% WIP Status: final
+% Created: 2026-02-15
+% Last Modified: 2026-02-15
+% Integration Status: READY FOR INTEGRATION | TARGET: v0.5.0.0 (with C4-S3)
 %
-% Narrative Completion: 0%
-% Table Fill Status: 0%
+% Change Summary:
+% - Added TGP (Targeting Pod) introduction paragraph
+% - Establishes TGP as equipment-dependent (Sniper XR ATP, LANTIRN)
+% - Cross-references to C4:S3:S6 (TGP A-A) and Dash-34 §2.6
+% - Rationale: First mention of TGP in guide should be in C2 fundamentals
 %
-% Notes: only markdowns for future content
-% - [Describe what's done, what's pending, open questions]
-% - [Cross-references to other WIP files or guide.tex sections]
-% - [Any divergences from briefing or validation issues]
+% Notes:
+% - Base text (original C2:S1:S3) was already approved/integrated
+% - This WIP adds one paragraph (TGP equipment dependency)
+% - Author pre-approved change; marked FINAL for immediate integration
+% - Will be integrated simultaneously with C4:S3 TMS Air-to-Air section
 
 %============================================================================
 % TEMPLATE STRUCTURE — Replace section/subsection headers with your content
@@ -409,340 +412,22 @@
 %============================================================================
 % CONTENT BEGINS HERE (use \chapter{}, \section{}, \subsection{}, etc.)
 %============================================================================
-%--------------------------------------------------------------------------
-% SECTION 4.3: TMS IN AIR-TO-AIR
-%--------------------------------------------------------------------------
-\section{TMS in Air-to-Air}
-\label{sec:C4-S3}
 
-This section documents TMS behavior in air-to-air tracking and engagement contexts: FCR tracking modes (SAM, STT, TWS), Air Combat Maneuvering (ACM), Targeting Pod A-A mode, and IFF interrogation.
+\subsection{SOI-Capable Displays and Context Dependency}
+\label{sec:C2-S1-S3}
 
-\textbf{Note:} TMS with HSD for datalink target management (PDLT designation) is covered in \secref{sec:C4-S2-S1}. While PDLT is an A-A function, HSD is primarily a situational awareness display rather than a direct targeting sensor. 
-For HSD PDLT procedures in A-A contexts, see \secref{sec:C4-S2-S1} and \tabref{tab:hsd-tms}.
+Not all displays can be designated as SOI, and the availability of SOI designation varies by master mode and MFD format.
 
-%--------------------------------------------------------------------------
-% SUBSECTION 4.3.1: TMS IN SAM (SITUATION AWARENESS MODE)
-%--------------------------------------------------------------------------
-\subsection{TMS in SAM (Situation Awareness Mode)}
-\label{sec:C4-S3-S1}
+The master mode determines which displays are eligible for SOI designation. In some operational contexts, the HUD can be designated as SOI, allowing the pilot to manage HUD symbology through HOTAS inputs. In other contexts, particularly air-to-air engagements, SOI designation is restricted to MFD formats only. This restriction ensures that primary sensor displays remain the focus of HOTAS control during time-critical tactical situations.
 
-Situation Awareness Mode (SAM) tracks one or two targets (ST SAM or DT SAM) while maintaining search coverage. TMS commands in SAM manage track transitions and target prioritization.
+Similarly, not all MFD formats are SOI-capable. Sensor formats that accept targeting and cursor control inputs—such as radar, targeting pod, and weapon displays—can be designated as SOI. Informational or configuration formats that do not require direct sensor interaction cannot be designated as SOI. This design aligns SOI availability with operational function: only displays that benefit from HOTAS cursor and targeting control are SOI-capable.
 
-\paragraph{TMS Up in SAM:}
-\begin{itemize}
-    \item \textbf{On bugged target:} Transition SAM → STT (Single Target Track). Search coverage ceases; FCR dedicates all resources to tracking the bugged target.
-    \item \textbf{On search target (DT SAM):} Designate second target as secondary SAM target, entering Dual Target SAM (DT SAM). Radar tracks both targets while searching.
-\end{itemize}
+The Targeting Pod (TGP) is a representative example of an SOI-capable sensor format. In Falcon BMS, TGP functionality is provided by external pods such as the AN/AAQ-33 Sniper XR ATP or AN/AAQ-14 LANTIRN, which must be loaded on the aircraft before flight. When equipped and powered, the TGP MFD format accepts cursor slew, TMS designation commands, and sensor cueing inputs across multiple master modes (NAV, A-A, A-G). If no TGP is present or the pod is off, the TGP format cannot be displayed or designated as SOI. Detailed TGP operational procedures and TMS command structures are covered in \secref{sec:C4-S3-S6} (TGP air-to-air tracking) and Section~4.4 (TGP air-to-ground employment); comprehensive pod system details are documented in \dashref{2.6}.
 
-\paragraph{TMS Down in SAM (Return-to-Search):}
-\begin{itemize}
-    \item \textbf{ST SAM:} Drops bugged target, returns to RWS search mode. Target becomes untracked search symbol.
-    \item \textbf{DT SAM:} Drops secondary target, returns to ST SAM with primary target still bugged.
-\end{itemize}
+Understanding these context dependencies is essential for effective HOTAS use. The pilot must recognize not only how to designate a display as SOI, but also whether such designation is permitted in the current operational context. For complete operational reference tables showing SOI availability by master mode and the full list of valid and invalid MFD formats, see \secref{sec:C3-S1-S1}.
 
-\paragraph{TMS Right in SAM (short press <1s):}
-\begin{itemize}
-    \item \textbf{DT SAM:} Toggles bug between primary and secondary targets. Allows pilot to prioritize which target is primary without re-designation.
-\end{itemize}
-
-\paragraph{TMS Right in SAM (held >1s):}
-Transitions SAM → TWS. Bugged target becomes TWS primary target. Radar begins building track files on other search targets.
-
-\paragraph{Operational context:}
-SAM is ideal for Beyond Visual Range (BVR) engagements where the pilot needs track data on one or two targets while maintaining search awareness. TMS Up/Down provides rapid transitions between search, SAM, and STT as the tactical picture evolves.
-
-See \tabref{tab:C4-S3-SAM} for detailed SAM TMS actions.
-
-%--------------------------------------------------------------------------
-% SUBSECTION 4.3.2: TMS IN STT (SINGLE TARGET TRACK)
-%--------------------------------------------------------------------------
-\subsection{TMS in STT (Single Target Track)}
-\label{sec:C4-S3-S2}
-
-Single Target Track (STT) dedicates the FCR to tracking a single airborne target with maximum accuracy. All search processing ceases. TMS commands in STT are limited to breaking lock and returning to previous modes.
-
-\paragraph{TMS Down in STT (Return-to-Search):}
-\begin{itemize}
-    \item \textbf{First press:} STT → SAM (or DT SAM if secondary target was being extrapolated). STT target becomes SAM primary target.
-    \item \textbf{Second press:} SAM → RWS. Bugged target becomes untracked search symbol.
-\end{itemize}
-
-\paragraph{TMS Up, TMS Right, TMS Left in STT:}
-\begin{itemize}
-    \item \textbf{ACM STT:} TMS Up, TMS Right, or CURSOR slew do NOT break lock. This allows pilot to slew scan volume or step targets without losing track (ACM-specific behavior).
-    \item \textbf{Non-ACM STT:} TMS Up/Right/Left have no effect. Only TMS Down breaks lock.
-\end{itemize}
-
-\paragraph{Operational note:}
-STT reveals the F-16's position to any target with RWR (Radar Warning Receiver) due to continuous radar emissions. Use STT only when weapon parameters are achieved and giving away position is acceptable. For covert BVR engagements, SAM or TWS is preferable.
-
-See \tabref{tab:C4-S3-STT} for STT TMS actions.
-
-%--------------------------------------------------------------------------
-% SUBSECTION 4.3.3: TMS IN TWS (TRACK-WHILE-SCAN)
-%--------------------------------------------------------------------------
-\subsection{TMS in TWS (Track-While-Scan)}
-\label{sec:C4-S3-S3}
-
-Track-While-Scan (TWS) automatically builds and maintains track files on up to 10 targets while continuing to search. TMS commands manage target prioritization (bugging) and transitions to STT for weapons employment.
-
-\paragraph{TMS Up in TWS:}
-\begin{itemize}
-    \item \textbf{Cursor over track file:} Bug that target (make it primary/TOI). If already bugged, transition TWS → STT on bugged target.
-    \item \textbf{Cursor over search target:} Designate search target, build track file, and bug it.
-\end{itemize}
-
-\paragraph{TMS Down in TWS (Return-to-Search):}
-\begin{itemize}
-    \item \textbf{First press:} Drop bug (if bugged target exists). Radar continues TWS with all track files.
-    \item \textbf{Second press:} Dump all track files, return to RWS search mode.
-    \item \textbf{Third press:} (from RWS after two presses) Radar rebuilds tracks automatically.
-\end{itemize}
-
-\paragraph{TMS Right in TWS (short press <1s):}
-Steps bug to next highest-priority track file. Priority is determined by range and track file order.
-
-\paragraph{TMS Right in TWS (held >1s):}
-\begin{itemize}
-    \item \textbf{With bugged target:} TWS → DT SAM. Bugged target becomes SAM primary; highest-priority track file becomes SAM secondary.
-    \item \textbf{Without bugged target:} TWS → RWS (last exited CRM search mode).
-\end{itemize}
-
-\paragraph{TMS Up (held >1s) in TWS:}
-Initiates spotlight search (same as RWS). Spotlight scan centered on ACQ cursor; track updates on TOI and AIM-120 in-flight targets occur only if spotlight volume includes them.
-
-\paragraph{Operational context:}
-TWS excels in multi-target environments (BARCAP, HAVCAP, large force engagements). Pilot can maintain SA on 8-10 threats while bugging and prosecuting the highest-priority target. TMS Right stepping allows rapid target prioritization without MFD interaction.
-
-See \tabref{tab:C4-S3-TWS} for TWS TMS actions.
-
-%--------------------------------------------------------------------------
-% SUBSECTION 4.3.4: TMS IN ACM (AIR COMBAT MANEUVERING) MODES
-%--------------------------------------------------------------------------
-\subsection{TMS in ACM (Air Combat Maneuvering) modes}
-\label{sec:C4-S3-S4}
-
-Air Combat Maneuvering (ACM) modes provide automated close-range target 
-acquisition (BORE, 10$\times$60, 30$\times$20, SLEW). TMS commands manage 
-mode transitions, target rejection, and HMCS integration.
-
-\subsubsection*{TMS Up in ACM}
-\label{sec:C4-S3-S4-S1}
-
-\paragraph{ACM BORE with HMCS (TMS Up held):}
-\begin{itemize}[nosep]
-    \item \textbf{Hold phase (TMS Up depressed):}
-    \begin{itemize}[nosep]
-        \item FCR scan slaves to HMCS aiming cross position.
-        \item Radar in NO RAD state (non-radiating) --- pilot aims scan volume with head movement.
-        \item ACQ cursor tracks HMCS aiming cross.
-        \item No minimum hold duration --- pilot controls timing.
-    \end{itemize}
-    
-    \item \textbf{Release phase (TMS Up released):}
-    \begin{itemize}[nosep]
-        \item FCR radiates at HMCS-designated position.
-        \item Auto-acquisition attempts on target under aiming cross.
-        \item If successful: Enters STT, solid TD box displayed on HUD.
-        \item If unsuccessful: Remains in ACM BORE, radiating.
-    \end{itemize}
-    
-    \item \textbf{Tactical use:}
-    \begin{itemize}[nosep]
-        \item High off-boresight (HOBS) acquisition: Lock target 60--90$^\circ$ off nose without 
-              pointing aircraft.
-        \item Visual merge: Identify bandit visually, slave radar via HMCS, acquire without 
-              nose alignment (critical in scissors/rolling fights).
-        \item Target sorting: Acquire specific bandit in multi-bogey merge without broad 
-              scan hitting wrong target.
-    \end{itemize}
-\end{itemize}
-
-\paragraph{ACM BORE without HMCS (TMS Up held):}
-\begin{itemize}[nosep]
-    \item Holding TMS Up inhibits auto-acquisition until released.
-    \item Allows pilot to position boresight cross over desired target in clustered 
-          group before commanding acquisition (manual target sorting).
-    \item No HMCS slaving --- radar remains boresight-aligned.
-\end{itemize}
-
-\paragraph{ACM STT:}
-\begin{itemize}[nosep]
-    \item TMS Up, TMS Right, or CURSOR slew does NOT break lock (ACM-specific behavior).
-    \item Allows pilot to reposition scan or step targets without losing track.
-\end{itemize}
-
-\subsubsection*{TMS Down in ACM}
-\label{sec:C4-S3-S4-S2}
-
-\paragraph{Return-to-Search (any radiating ACM mode):}
-\begin{itemize}[nosep]
-    \item First press: Drops radar track (if any), commands 30$\times$20 \texttt{NO RAD}.
-    \item Second press: Switches to 10$\times$60 radiating.
-    \item Third press: Returns to 30$\times$20 \texttt{NO RAD}.
-\end{itemize}
-
-\paragraph{HUD as SOI with FCR slaved to HMCS:}
-\begin{itemize}[nosep]
-    \item TMS Down commands ACM BORE NO RAD.
-\end{itemize}
-
-\subsubsection*{TMS Right in ACM}
-\label{sec:C4-S3-S4-S3}
-
-\begin{itemize}[nosep]
-    \item Cycles through ACM scan patterns (implementation varies by mode).
-    \item Typical sequence: 30$\times$20 $\rightarrow$ SLEW $\rightarrow$ 10$\times$60 $\rightarrow$ BORE.
-\end{itemize}
-
-\subsubsection*{Operational context}
-\label{sec:C4-S3-S4-S4}
-
-ACM modes automate acquisition in visual merge/dogfight. TMS Up/Down provide 
-rapid lock/break-lock cycles essential in turning fights. HMCS integration 
-enables HOBS acquisition without pointing aircraft nose.
-
-\textbf{Reference:} ACM modes details in \dashref{2.3.1.5.10}. HMCS 
-integration in \dashref{2.5}.
-
-See \tabref{tab:aa-acm-tms} for ACM TMS actions.
-
-%--------------------------------------------------------------------------
-% SUBSECTION 4.3.5: TMS AND IFF INTERROGATION
-%--------------------------------------------------------------------------
-\subsection{TMS and IFF interrogation}
-\label{sec:C4-S3-S5}
-
-TMS Left activates IFF (Identification Friend or Foe) interrogation when the AIFF (Advanced Interrogator Friend or Foe) system is available and configured.
-
-\paragraph{TMS Left (short press <0.6s):}
-Activates \textbf{SCAN interrogation mode}. AIFF antenna scans ±60° in azimuth, interrogating all targets within coverage. Responses displayed on FCR with IFF symbology.
-
-\paragraph{TMS Left (long press$\geq$0.6s):}
-Activates \textbf{LOS (Line of Sight) interrogation mode}. AIFF interrogates only the target along the FCR LOS (bugged target in SAM/STT, or ACQ cursor position in RWS). Provides precise interrogation of single target.
-
-\paragraph{Operational context:}
-IFF interrogation is critical in BVR engagements to distinguish friendly from hostile contacts before weapons employment. Dash-34 and BMS Training Manual emphasize proper IFF procedures before AIM-120 launches in training missions (e.g., Mission 18 BARCAP).
-
-See \tabref{tab:C4-S3-IFF} for IFF TMS actions.
-
-%--------------------------------------------------------------------------
-% SUBSECTION 4.3.6: TMS with Targeting Pod in Air-to-Air Mode
-%--------------------------------------------------------------------------
-\subsection{TMS with Targeting Pod in Air-to-Air Mode}
-\label{sec:C4-S3-S6}
-
-The Targeting Pod (TGP) operates in Air-to-Air mode for visual/IR target 
-identification and tracking independent of FCR. TMS commands with TGP as 
-SOI manage POINT track designation and track rejection.
-
-\subsubsection*{TMS Up (TGP SOI, A-A mode)}
-\label{sec:C4-S3-S6-S1}
-
-\begin{itemize}[nosep]
-    \item Commands POINT track on center of TGP field-of-view (crosshair position).
-    \item TGP locks onto visual/IR target at designated position.
-    \item After track command, TGP LOS becomes independent of FCR LOS.
-    \item HUD displays:
-    \begin{itemize}[nosep]
-        \item Dotted 50-mr TD box (TGP track position).
-        \item Solid 50-mr TD box (FCR track position) if FCR also tracking.
-        \item Dotted TLL (Target Locator Line) with ``T'' + angle if TGP track outside HUD FOV.
-    \end{itemize}
-\end{itemize}
-
-\subsubsection*{TMS Down (TGP SOI, A-A mode)}
-\label{sec:C4-S3-S6-S2}
-
-\begin{itemize}[nosep]
-    \item Breaks TGP POINT track.
-    \item Returns TGP to slave mode --- TGP re-slaves to FCR LOS.
-    \item Dotted TD box/TLL removed from HUD.
-\end{itemize}
-
-\subsubsection*{Operational context}
-\label{sec:C4-S3-S6-S3}
-
-TGP A-A mode provides:
-\begin{enumerate}[nosep]
-    \item \textbf{Visual ID (VID):} Identify bandits before BVR shot (ROE compliance).
-    \item \textbf{Dual tracking:} FCR tracks primary threat, TGP tracks secondary (2v1 scenarios).
-    \item \textbf{Backup tracking:} If FCR loses lock (chaff/jamming), TGP maintains visual track.
-    \item \textbf{High-aspect targets:} TGP may track targets FCR cannot resolve (low RCS, 
-          beam aspect).
-\end{enumerate}
-
-\subsubsection*{Limitations}
-\label{sec:C4-S3-S6-S4}
-
-\begin{itemize}[nosep]
-    \item TGP A-A track is passive (no ranging) --- uses triangulation for range estimate.
-    \item Track quality degrades at long range ($>$10~NM) or high closure rates.
-    \item TGP slew rate slower than FCR --- not suitable for high-G dogfight tracking.
-\end{itemize}
-
-\subsubsection*{Procedure (VID example)}
-\label{sec:C4-S3-S6-S5}
-
-\begin{enumerate}[nosep]
-    \item FCR in RWS/SAM with unknown contact.
-    \item Select A-A master mode, TGP powered.
-    \item DMS Down to make TGP SOI.
-    \item Slew TGP crosshair over bandit (TGP initially slaved to FCR LOS).
-    \item TMS Up --- TGP commands POINT track, dotted TD box appears on HUD.
-    \item Visually identify via TGP video (MFD TGP page).
-    \item TMS Down --- break TGP track after ID complete.
-\end{enumerate}
-
-\textbf{Reference:} TGP A-A mode in \dashref{2.6.1.7.5}. SRM procedures 
-with TGP in \dashref{4.3.2.4.3.12}.
-
-See \tabref{tab:aa-tgp-tms} for TGP A-A TMS actions.
-
-%--------------------------------------------------------------------------
-% PLACEHOLDER: TABLES FOR SECTION 4.3
-%--------------------------------------------------------------------------
-
-[PLACEHOLDER: The following tables will be developed with full hotastable format:]
-
-% \subsection{TMS actions in SAM (Table)}
-% \begin{table}[H]
-% \begin{hotastable}{TMS Actions in SAM (Situation Awareness Mode)}
-% [Content: ST SAM, DT SAM | TMS Up/Down/Right | Designate, RTS, bug toggle | Dash-34 §2.3.1.5.9 | TRN 18]
-% \end{hotastable}
-% \label{tab:C4-S3-SAM}
-% \end{table}
-
-% \subsection{TMS actions in STT (Table)}
-% \begin{table}[H]
-% \begin{hotastable}{TMS Actions in STT (Single Target Track)}
-% [Content: STT, ACM STT | TMS Down RTS | Dash-34 §2.3.1.5.8 | TRN 18]
-% \end{hotastable}
-% \label{tab:C4-S3-STT}
-% \end{table}
-
-% \subsection{TMS actions in TWS (Table)}
-% \begin{table}[H]
-% \begin{hotastable}{TMS Actions in TWS (Track-While-Scan)}
-% [Content: TWS | TMS Up/Down/Right | Bug, RTS, step, spotlight | Dash-34 §2.3.1.5.7 | TRN 18]
-% \end{hotastable}
-% \label{tab:C4-S3-TWS}
-% \end{table}
-
-% \subsection{TMS actions in ACM modes (Table)}
-% \begin{table}[H]
-% \begin{hotastable}{TMS Actions in ACM Modes}
-% [Content: ACM BORE, 10x60, 30x20, SLEW | TMS Up/Down/Right | HMCS slave, RTS, mode cycle | Dash-34 §2.3.1.5.10-12 | TRN 20]
-% \end{hotastable}
-% \label{tab:C4-S3-ACM}
-% \end{table}
-
-% \subsection{TMS actions for IFF interrogation (Table)}
-% \begin{table}[H]
-% \begin{hotastable}{TMS Left — IFF Interrogation}
-% [Content: A-A | TMS Left short/long | SCAN/LOS interrogation | Dash-34 IFF chapter | TRN 18]
-% \end{hotastable}
-% \label{tab:C4-S3-IFF}
-% \end{table}
+%============================================================================
+% END OF SECTION
+%============================================================================
 
 \end{document}
