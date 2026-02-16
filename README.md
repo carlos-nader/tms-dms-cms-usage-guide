@@ -70,7 +70,7 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 
 ## 📈 Development Activity (last 7 days)
 
-[![wakatime](https://wakatime.com/badge/user/a7867e5c-aed5-4764-9e32-54ff6e08eaa8/project/22723c4f-b262-4526-a7ed-bff46e9902ff.svg)](https://wakatime.com/badge/user/a7867e5c-aed5-4764-9e32-54ff6e08eaa8/project/22723c4f-b262-4526-a7ed-bff46e9902ff)
+[![wakatime](https://wakatime.com/badge/user/a7867e5c-aed5-4764-9e32-54ff6e08eaa8/project/22723c4f-b262-4526-a7ed-bff46e9902ff.svg)](https://wakatime.com/projects/projeto-bms)
 
 > Transparent time tracking via WakaTime specifically for this repository.
 
