@@ -1,5 +1,7 @@
 ![Forum Views](https://img.shields.io/badge/Forum%20Views-987%20views-brightgreen)
 
+![Forum Views](https://img.shields.io/badge/Forum%20Views-987%20views-brightgreen)
+
 # TMS/DMS/CMS Usage Guide for Falcon BMS F-16 Flight Simulator
 
 [![Generate Integrated Files Report](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/generate-integrated-files.yml/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/generate-integrated-files.yml) [![pages-build-deployment](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/pages/pages-build-deployment) [![Sync PDF to docs](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/sync-pdf-to-docs.yml/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/sync-pdf-to-docs.yml)[![Validate LaTeX Preamble](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/validate-tex-preamble.yml/badge.svg)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/validate-tex-preamble.yml)
