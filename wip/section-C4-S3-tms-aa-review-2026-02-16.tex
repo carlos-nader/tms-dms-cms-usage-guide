@@ -326,7 +326,7 @@
 % --------------------------------------------------------------------------
 
 \newcommand{\docversion}{future v0.5.0.0}
-\newcommand{\docbuild}{15 February 2026}
+\newcommand{\docbuild}{16 February 2026}
 \newcommand{\docstartdate}{05 January 2026}
 \newcommand{\docenddate}{}
 \newcommand{\chapterscompletedof}{4/7}
@@ -379,30 +379,33 @@
 	
 	\pagenumbering{arabic}
 
+Perfeito! Então é progresso parcial na S5.
+
+tex
 %============================================================================
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 %============================================================================
-% File Name: section-C4-S3-tms-aa-review-2026-02-15.tex
+% File Name: section-C4-S3-tms-aa-review-2026-02-16.tex
 % WIP Naming Convention: v1.4
 % Target Chapter: C4 (TMS)
 % Target Section: S3 (TMS in Air-to-Air)
-% [Target Subsection: none — covers entire S3]
+% Target Subsection: S5 (TMS and IFF Interrogation)
 %
 % WIP Status: review
 % Created: 2026-02-13
-% Last Modified: 2026-02-15
+% Last Modified: 2026-02-16
 % Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.5.0.0
 %
-% Narrative Completion: 14.29% (1 of 7 subsections complete)
+% Narrative Completion: ~20% (C4:S3 intro complete, C4:S3:S5 intro complete, 5 subsections remaining)
 % Table Fill Status: 0% (0 of 6 tables populated)
 %
 % Completion Status by Subsection:
-% - C4:S3 Introduction (this section): FINAL ✓
+% - C4:S3 Introduction (main section): FINAL ✓
 % - C4:S3:S1 (SAM): Draft structure only
 % - C4:S3:S2 (STT): Draft structure only
 % - C4:S3:S3 (TWS): Draft structure only
 % - C4:S3:S4 (ACM): Draft structure only
-% - C4:S3:S5 (IFF): Draft structure only
+% - C4:S3:S5 (IFF): Introduction FINAL ✓ | Subsubsections S1-S5: Draft structure only
 % - C4:S3:S6 (TGP A-A): Draft structure only
 %
 % Table Status (0 of 6 complete):
@@ -419,30 +422,38 @@
 % - Requires: C4:S2:S1 (HSD/PDLT) for cross-reference in Note
 %   (currently placeholder, to be developed)
 %
-% Changes This Revision (2026-02-15):
-% - Fixed "exclusively" → "restricted to" in introduction para 1
-% - Added "primary" to "FCR provides four primary tracking modes"
-% - Validated all Dash-34 cross-references (§2.3.1.5.7-12)
-% - Validated internal cross-references (C2:S1:S3, C3:S1:S1, C3:S1:S3)
-% - Introduction text validated: grammar, logic, cadence, Dash-34 alignment
-% - Introduction marked FINAL, ready for integration
+% Changes This Revision (2026-02-16):
+% - C4:S3:S5 Introduction rewritten: improved flow, removed redundancy
+% - Parágrafo 1: TMS Left as protagonist, SCAN/LOS introduced, cross-refs to S1/S2
+% - Parágrafo 2: BVR/ROE context + IFF protocol + symbology (green/yellow)
+% - Parágrafo 3: AIFF availability warning + requirements + cross-refs to S5/Dash-34
+% - Removed duplicate content between paragraphs 3 and 4
+% - Corrected "block configuration" claim (Dash-34 does not provide list)
+% - Changed cross-ref S5 from "detailed availability" to "identification procedures"
+% - Fixed grammar: "across all F-16 blocks and configurations"
+% - Validated alignment with bullets from C4:S3:S5:S5 (AIFF availability)
+% - C4:S3:S5 Introduction marked FINAL, ready for integration
 %
 % Known Issues:
-% - Subsections S1-S6: Narrative structure exists, content incomplete
+% - C4:S3:S5 subsubsections S1-S5: Narrative structure exists, content incomplete
+% - Subsections C4:S3:S1-S4, S6: Narrative structure exists, content incomplete
 % - All HOTAS tables: Placeholders only, require full population
 % - TGP A-A (S6): Awaits TGP equipment note integration in C2:S1:S3
 %
 % Next Steps:
-% 1. Populate narrative for C4:S3:S1 (SAM) with Dash-34 §2.3.1.5.9 validation
-% 2. Develop Table C4-S3-SAM (hotastable format)
-% 3. Repeat for S2-S6 subsections and corresponding tables
-% 4. Final validation of all cross-references before integration
+% 1. Populate narrative for C4:S3:S5:S1 (SCAN Interrogation Mode)
+% 2. Populate narrative for C4:S3:S5:S2 (LOS Interrogation Mode)
+% 3. Develop Table C4-S3-IFF (hotastable format)
+% 4. Populate narrative for C4:S3:S5:S4 (Operational Constraints)
+% 5. Populate narrative for C4:S3:S5:S5 (AIFF Availability)
+% 6. Repeat for remaining subsections S1-S4, S6 and corresponding tables
+% 7. Final validation of all cross-references before integration
 %
 % Integration Notes:
 % - This WIP will be integrated simultaneously with:
 %   * section-C2-S1-S3-soi-context-dependency-final-2026-02-15.tex
 % - Target version: v0.5.0.0 (TMS Air-to-Air chapter)
-% - Introduction section ready; remaining subsections in development
+% - C4:S3 Introduction + C4:S3:S5 Introduction ready; remaining content in development
 
 %============================================================================
 % TEMPLATE STRUCTURE — Replace section/subsection headers with your content
@@ -670,21 +681,143 @@ See \tabref{tab:aa-acm-tms} for ACM TMS actions.
 %--------------------------------------------------------------------------
 % SUBSECTION 4.3.5: TMS AND IFF INTERROGATION
 %--------------------------------------------------------------------------
-\subsection{TMS and IFF interrogation}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 4.3.5: TMS AND IFF INTERROGATION
+%--------------------------------------------------------------------------
+
+\subsection{TMS and IFF Interrogation}
 \label{sec:C4-S3-S5}
 
-TMS Left activates IFF (Identification Friend or Foe) interrogation when the AIFF (Advanced Interrogator Friend or Foe) system is available and configured.
+Identification Friend or Foe (IFF) interrogation is an air-to-air identification function commanded by TMS Left, enabling the pilot to distinguish friendly aircraft from unknowns and bogeys without removing hands from the flight stick. The interrogation mode executed depends on press duration: a short press activates SCAN interrogation for broad area coverage, while a long press activates Line of Sight (LOS) interrogation for precise single-target queries. Both modes display interrogation responses on the Fire Control Radar (FCR) MFD with symbology overlaid on radar contacts, enabling immediate threat discrimination during multi-target engagements without requiring MFD interaction or datalink correlation (see \secref{sec:C4-S3-S5-S1} and \secref{sec:C4-S3-S5-S2} for details).
 
-\paragraph{TMS Left (short press <0.6s):}
-Activates \textbf{SCAN interrogation mode}. AIFF antenna scans ±60° in azimuth, interrogating all targets within coverage. Responses displayed on FCR with IFF symbology.
+IFF interrogation is operationally critical in beyond-visual-range (BVR) engagements, where visual identification is impossible and Rules of Engagement (ROE) require positive identification before weapons employment to prevent fratricide. The interrogation process begins when the interrogating aircraft transmits a coded query to the target aircraft, whose transponder validates the query and transmits a response back to the interrogator. The FCR then displays identification symbology based on the response received: a green circle indicates a friendly aircraft that provided a correct response, while a yellow square identifies a bogey or unknown contact that provided an incomplete response or failed to respond.
 
-\paragraph{TMS Left (long press$\geq$0.6s):}
-Activates \textbf{LOS (Line of Sight) interrogation mode}. AIFF interrogates only the target along the FCR LOS (bugged target in SAM/STT, or ACQ cursor position in RWS). Provides precise interrogation of single target.
+Not all F-16 variants are equipped with IFF interrogation capability, as the AIFF (Advanced Interrogator Friend or Foe) system is not universally installed across all F-16 blocks and configurations. When available, TMS Left IFF interrogation requires the AIFF system to be powered and configured via the Up Front Controller (UFC) or backup IFF panel controls. Pilots must verify AIFF availability via cockpit panel configuration before flight; see \secref{sec:C4-S3-S5-S5} for AIFF identification procedures and system limitations. For complete IFF system architecture, operational modes, and control panel operation, see \dashref{2.2.4}.
 
-\paragraph{Operational context:}
-IFF interrogation is critical in BVR engagements to distinguish friendly from hostile contacts before weapons employment. Dash-34 and BMS Training Manual emphasize proper IFF procedures before AIM-120 launches in training missions (e.g., Mission 18 BARCAP).
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 4.3.5.1: SCAN INTERROGATION MODE
+%--------------------------------------------------------------------------
+\subsubsection{SCAN Interrogation Mode (TMS Left Short Press)}
+\label{sec:C4-S3-S5-S1}
 
-See \tabref{tab:C4-S3-IFF} for IFF TMS actions.
+% PARÁGRAFO 1 — TMS Left short press behavior (4-5 sentenças)
+% - TMS Left short press (<0.6 seconds) activates SCAN interrogation mode
+% - SCAN behavior varies: DCPL (decoupled) or CPL (coupled) configuration
+% - DCPL mode: AIFF antenna interrogates 8 beam positions sequentially (left→right), full ±60° azimuth/elevation coverage
+% - CPL mode: AIFF FOV couples to FCR field-of-regard, activates only beams needed to cover radar scan volume
+% - SCAN displays up to 32 target replies + 8 jamming indicators; if >32 respond, AIFF reports closest 32
+
+% PARÁGRAFO 2 — Symbology and response display (3-4 sentenças)
+% - Green circle with mode indication (M1/M2/M3/M4) = friendly (correct response)
+% - Yellow square with mode indication = bogey/unknown (incomplete or no response)
+% - Current interrogation mode displayed adjacent to acquisition cursor during sequence
+% - Valid replies displayed for 2 seconds per mode on MFD
+% - See \dashref{2.2.4.4.2.2} for complete symbology details
+
+% PARÁGRAFO 3 — CPL/DCPL configuration (3-4 sentenças)
+% - SCAN CPL/DCPL configured via DED SCAN INTG page (LIST RCL button)
+% - CPL mode also controllable via FCR CNTL page OSB 10 (see \dashref{2.3.1.5.1.6.2})
+% - DCPL provides full ±60° coverage independent of FCR field-of-regard
+% - CPL saves time by focusing interrogation only within radar scan volume
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 4.3.5.2: LOS INTERROGATION MODE
+%--------------------------------------------------------------------------
+\subsubsection{LOS Interrogation Mode (TMS Left Long Press)}
+\label{sec:C4-S3-S5-S2}
+
+% PARÁGRAFO 1 — TMS Left long press behavior (4-5 sentenças)
+% - TMS Left long press (≥0.6 seconds) activates LOS (Line of Sight) interrogation mode
+% - AIFF interrogates only target along FCR line of sight (bugged target in SAM/STT, cursor position in RWS)
+% - FCR scan center sent to AIFF, which determines two optimal beams for coverage
+% - Range filtering applied: from cursor range position to max selected range on MFD
+% - No azimuth or elevation filtering (unlike SCAN CPL mode)
+
+% PARÁGRAFO 2 — LOS target sorting and display (3-4 sentenças)
+% - LOS mode displays up to 16 target replies (vs 32 in SCAN)
+% - If >16 aircraft respond, AIFF subsystem reports only closest 16 to avionics
+% - Valid replies displayed for 1.5 seconds per mode on MFD
+% - Cursor position not updated during multi-mode interrogation sequence
+
+% PARÁGRAFO 3 — LOS operational use (3-4 sentenças)
+% - LOS mode used for precise interrogation of single target without scanning full FOV
+% - Can be initiated in any A-A radar mode, including standby or off
+% - Operationally useful when pilot wants to confirm identity of specific contact
+% - Example: STT lock on unknown → TMS Left long → LOS interrogation → green circle confirms friendly
+% - Provides focused interrogation while conserving interrogation bandwidth in dense target environments
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 4.3.5.3: TMS IFF INTERROGATION USAGE TABLE
+%--------------------------------------------------------------------------
+\subsubsection{TMS IFF Interrogation Usage Table}
+\label{sec:C4-S3-S5-S3}
+
+% PARÁGRAFO — Table introduction (2-3 sentenças)
+% - The table below summarizes TMS Left behavior in IFF interrogation contexts across SCAN and LOS modes
+% - Each entry specifies press duration, interrogation mode activated, system behavior, Dash-34 references, and training missions
+
+% HOTASTABLE — tab:C4-S3-IFF
+% Colunas: Mode | Dir. | Act. | Sensor/Mode | Effect/Nuance | Dash-34 | Training
+% LINHA 1:
+% Mode: A-A
+% Dir.: Left
+% Act.: Short (<0.6s)
+% Sensor/Mode: AIFF SCAN
+% Effect/Nuance: Activates SCAN interrogation mode. In DCPL: ±60° full scan (8 beam positions, up to 32 replies). In CPL: scan volume coupled to FCR field-of-regard. Green circle = friendly (correct response), yellow square = bogey/unknown (incomplete/no response). Replies displayed 2 seconds per mode. CPL/DCPL configured via DED SCAN INTG page (LIST RCL) or FCR CNTL page OSB 10.
+% Dash-34: 2.2.4.4.2.1.1, 2.2.4.4.2.2, 2.3.1.5.1.6.2
+% Training: 18
+
+% LINHA 2:
+% Mode: A-A
+% Dir.: Left
+% Act.: Long (≥0.6s)
+% Sensor/Mode: AIFF LOS
+% Effect/Nuance: Activates LOS interrogation mode. Interrogates single target along FCR LOS (bugged target in SAM/STT, cursor position in RWS). Up to 16 replies displayed (closest 16 if >16 respond). Range filtered from cursor to max MFD range; no azimuth/elevation filtering. Precise single-target interrogation. Replies displayed 1.5 seconds per mode. Cursor position not updated during multi-mode sequence.
+% Dash-34: 2.2.4.4.2.1.2, 2.2.4.4.2.2
+% Training: 18
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 4.3.5.4: OPERATIONAL CONSTRAINTS AND NOTES
+%--------------------------------------------------------------------------
+\subsubsection{Operational Constraints and Notes}
+\label{sec:C4-S3-S5-S4}
+
+% PARÁGRAFO 1 — TMS/cursor interaction constraints (3-4 sentenças)
+% - During LOS multi-mode interrogation sequence, cursor position not updated between modes being interrogated
+% - If cursor moved significantly during interrogation, responses may not appear near currently displayed cursor position
+% - AIFF continues interrogating at initial cursor position captured at start of sequence
+% - Pilots should stabilize cursor on target before initiating LOS interrogation for accurate response correlation
+% - In SCAN mode, this constraint does not apply (SCAN interrogates predefined area, not cursor-referenced position)
+
+% PARÁGRAFO 2 — Radar mode flexibility (3-4 sentenças)
+% - LOS interrogation can be initiated in any A-A radar mode, including standby or off states
+% - SCAN in CPL mode requires active radar mode to couple AIFF FOV to FCR field-of-regard
+% - SCAN in DCPL mode operates independently of radar state, can be used with radar in standby
+% - CPL/DCPL configuration persists across radar mode changes until manually altered via DED or FCR CNTL page
+% - Pilots should verify DCPL/CPL configuration before flight (DCPL for broad area coverage, CPL for radar-focused interrogation)
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 4.3.5.5: AIFF AVAILABILITY AND BLOCK DIFFERENCES
+%--------------------------------------------------------------------------
+\subsubsection{AIFF Availability and Block Differences}
+\label{sec:C4-S3-S5-S5}
+
+% PARÁGRAFO ÚNICO — AIFF availability and variant differences (8-10 sentenças)
+% - TMS Left IFF interrogation requires aircraft equipped with AN/APX-113(V) AIFF system
+% - AIFF integrated into modern F-16 variants as internal avionics (not external pod)
+% - AIFF-equipped aircraft feature IFF control panel in cockpit with backup IFF controls
+% - Non-AIFF aircraft retain older AUX COMM panel with backup TACAN controls
+% - Not all F-16 variants possess interrogator capability
+% - All aircraft have IFF transponders (respond to interrogations from other aircraft/ground stations)
+% - Only AIFF-equipped aircraft can actively interrogate other aircraft via TMS Left
+% - In non-AIFF aircraft, TMS Left has no function — pilot cannot initiate hands-on IFF interrogation
+% - The Dash-34 does not provide a definitive list of AIFF-equipped blocks
+% - Pilots must verify cockpit panel configuration before flight to determine interrogator availability:
+%   → IFF panel = AIFF capability (interrogator + transponder)
+%   → AUX COMM panel = transponder-only configuration (no interrogator)
+% - See \dashref{2.2.4.2} for AIFF system architecture, beam forming network, antenna configuration
+% - See \dashref{2.2.4.3} for IFF control panel operation, IFF MASTER switch, backup controls
 
 %--------------------------------------------------------------------------
 % SUBSECTION 4.3.6: TMS with Targeting Pod in Air-to-Air Mode
