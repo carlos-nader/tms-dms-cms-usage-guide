@@ -382,7 +382,7 @@
 %============================================================================
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 %============================================================================
-% File Name: section-C4-S3-tms-aa-review-2026-02-16.tex
+% File Name: section-C4-S3-tms-aa-review-2026-02-17.tex
 % WIP Naming Convention: v1.4
 % Target Chapter: C4 (TMS)
 % Target Section: S3 (TMS in Air-to-Air)
@@ -393,7 +393,7 @@
 % Last Modified: 2026-02-17
 % Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.5.0.0
 %
-% Narrative Completion: ~25% (C4:S3 intro complete, C4:S3:S5 intro complete, C4:S3:S5:S1 complete, 4 subsections remaining)
+% Narrative Completion: ~28.57% (C4:S3 intro complete, C4:S3:S5 intro complete, C4:S3:S5:S1 complete, C4:S3:S5:S2 complete)
 % Table Fill Status: 0% (0 of 6 tables populated)
 %
 % Completion Status by Subsection:
@@ -402,7 +402,7 @@
 % - C4:S3:S2 (STT): Draft structure only
 % - C4:S3:S3 (TWS): Draft structure only
 % - C4:S3:S4 (ACM): Draft structure only
-% - C4:S3:S5 (IFF): Introduction FINAL ✓ | S1 FINAL ✓ | Subsubsections S2-S5: Draft structure only
+% - C4:S3:S5 (IFF): Introduction FINAL ✓ | S1 FINAL ✓ | S2 FINAL ✓ | Subsubsections S3-S5: Draft structure only
 % - C4:S3:S6 (TGP A-A): Draft structure only
 %
 % Table Status (0 of 6 complete):
@@ -420,15 +420,23 @@
 %   (currently placeholder, to be developed)
 %
 % Changes This Revision (2026-02-17):
-% - C4:S3:S5:S1 (SCAN Interrogation Mode): COMPLETE ✓
-% - Parágrafo 1: SCAN overview + TMS Left short press (<0.6s) bold + 32 reply limit
-% - \paragraph{Configuration:}: DED INTG page + FCR CNTL OSB 10 + decouple/couple logic
-% - Cross-refs added: \dashref{2.2.4.4.2.1.1} and \dashref{2.3.1.5.1.6.2}
-% - Parágrafo 2: Symbology (green circle = friendly, yellow square = bogey/unknown)
-% - Parágrafo 3: Tactical context (BVR intercepts, ROE compliance, multiple contacts)
-% - Removed "tactical picture" ambiguity, replaced with generic intro + specific config
-% - Fixed "aircrafts" → "aircraft" (singular/plural consistency)
-% - C4:S3:S5:S1 marked FINAL, ready for integration
+% - C4:S3:S5 Introduction: clarified "cockpit identification methods" (vs ambiguous "identification procedures")
+% - C4:S3:S5:S1 (SCAN Interrogation Mode): FINAL ✓
+%   * Parágrafo 1: SCAN overview + TMS Left short press (<0.6s) bold + 32 reply limit
+%   * \paragraph{Configuration:}: DED INTG page + FCR CNTL OSB 10 + decouple/couple logic
+%   * Cross-refs validated: \dashref{2.2.4.4.2.1.1}, \dashref{2.3.1.5.1.6.2}
+%   * Parágrafo 2: Symbology (green circle = friendly, yellow square = bogey/unknown)
+%   * Parágrafo 3: Tactical context (BVR intercepts, ROE compliance, multiple contacts)
+%   * Corrected tactical use paragraph (removed erroneous LOS content)
+% - C4:S3:S5:S2 (LOS Interrogation Mode): FINAL ✓
+%   * Parágrafo 1: Concept (beam coverage area, cursor-directed, 2 beams, vs SCAN comparison)
+%   * Parágrafo 2: Behavior (TMS Left ≥0.6s, 16 replies, beam geometry nuance, range filtering)
+%   * \paragraph{Configuration:}: DED INTG + DCS right (SEQ to LOS page), independent from SCAN
+%   * Cross-refs validated: \dashref{2.2.4.4.2.1}, \dashref{2.2.4.4.2.1.2}, \dashref{2.2.4.4.2.2}
+%   * Parágrafo 3: Symbology (cross-ref to S1, reduced redundancy)
+%   * Parágrafo 4: Tactical use (removed unsupported "VID passes", BVR designated target)
+%   * Beam geometry imprecision validated against Dash-34 §2.2.4.4.2.1.2
+% - File renamed: section-C4-S3-tms-aa-review-2026-02-16.tex → section-C4-S3-tms-aa-review-2026-02-17.tex
 %
 % Previous Changes (2026-02-16):
 % - C4:S3:S5 Introduction rewritten: improved flow, removed redundancy
@@ -443,25 +451,23 @@
 % - C4:S3:S5 Introduction marked FINAL, ready for integration
 %
 % Known Issues:
-% - C4:S3:S5 subsubsections S2-S5: Narrative structure exists, content incomplete
+% - C4:S3:S5 subsubsections S3-S5: Narrative structure exists, content incomplete
 % - Subsections C4:S3:S1-S4, S6: Narrative structure exists, content incomplete
 % - All HOTAS tables: Placeholders only, require full population
 % - TGP A-A (S6): Awaits TGP equipment note integration in C2:S1:S3
 %
 % Next Steps:
-% 1. Populate narrative for C4:S3:S5:S2 (LOS Interrogation Mode)
-% 2. Populate narrative for C4:S3:S5:S3 (Emergency Interrogation Mode)
-% 3. Develop Table C4-S3-IFF (hotastable format)
-% 4. Populate narrative for C4:S3:S5:S4 (Operational Constraints)
-% 5. Populate narrative for C4:S3:S5:S5 (AIFF Availability)
-% 6. Repeat for remaining subsections S1-S4, S6 and corresponding tables
-% 7. Final validation of all cross-references before integration
+% 1. Populate narrative for C4:S3:S5:S3 (TMS IFF Interrogation Usage Table) — hotastable format
+% 2. Populate narrative for C4:S3:S5:S4 (Operational Constraints)
+% 3. Populate narrative for C4:S3:S5:S5 (AIFF Availability)
+% 4. Repeat for remaining subsections S1-S4, S6 and corresponding tables
+% 5. Final validation of all cross-references before integration
 %
 % Integration Notes:
 % - This WIP will be integrated simultaneously with:
 %   * section-C2-S1-S3-soi-context-dependency-final-2026-02-15.tex
 % - Target version: v0.5.0.0 (TMS Air-to-Air chapter)
-% - C4:S3 Introduction + C4:S3:S5 Introduction + C4:S3:S5:S1 ready; remaining content in development
+% - C4:S3 Introduction + C4:S3:S5 Introduction + C4:S3:S5:S1 + C4:S3:S5:S2 ready; remaining content in development
 
 %============================================================================
 % TEMPLATE STRUCTURE — Replace section/subsection headers with your content
@@ -690,10 +696,6 @@ See \tabref{tab:aa-acm-tms} for ACM TMS actions.
 % SUBSECTION 4.3.5: TMS AND IFF INTERROGATION
 %--------------------------------------------------------------------------
 
-%--------------------------------------------------------------------------
-% SUBSECTION 4.3.5: TMS AND IFF INTERROGATION
-%--------------------------------------------------------------------------
-
 \subsection{TMS and IFF Interrogation}
 \label{sec:C4-S3-S5}
 
@@ -701,7 +703,7 @@ Identification Friend or Foe (IFF) interrogation is an air-to-air identification
 
 IFF interrogation is operationally critical in beyond-visual-range (BVR) engagements, where visual identification is impossible and Rules of Engagement (ROE) require positive identification before weapons employment to prevent fratricide. The interrogation process begins when the interrogating aircraft transmits a coded query to the target aircraft, whose transponder validates the query and transmits a response back to the interrogator. The FCR then displays identification symbology based on the response received.
 
-Not all F-16 variants are equipped with IFF interrogation capability, as the AIFF (Advanced Interrogator Friend or Foe) system is not universally installed across all F-16 blocks and configurations. When available, TMS Left IFF interrogation requires the AIFF system to be powered and configured via the Up Front Controller (UFC) or backup IFF panel controls. Pilots must verify AIFF availability via cockpit panel configuration before flight; see \secref{sec:C4-S3-S5-S5} for AIFF identification procedures and system limitations. For complete IFF system architecture, operational modes, and control panel operation, see \dashref{2.2.4}.
+Not all F-16 variants are equipped with IFF interrogation capability, as the AIFF (Advanced Interrogator Friend or Foe) system is not universally installed across all F-16 blocks and configurations. When available, TMS Left IFF interrogation requires the AIFF system to be powered and configured via the Up Front Controller (UFC) or backup IFF panel controls. Pilots must verify AIFF availability via cockpit panel configuration before flight; see \secref{sec:C4-S3-S5-S5} for cockpit identification methods and block/variant differences. For complete IFF system architecture, operational modes, and control panel operation, see \dashref{2.2.4}.
 
 %--------------------------------------------------------------------------
 % SUBSUBSECTION 4.3.5.1: SCAN INTERROGATION MODE
@@ -715,7 +717,7 @@ SCAN interrogation mode interrogates multiple radar contacts simultaneously to i
 
 The FCR displays target replies as symbology overlaid on radar contacts, enabling immediate visual discrimination without requiring MFD interaction. A green circle identifies a friendly aircraft that provided a correct response to the interrogation, while a yellow square identifies a bogey or unknown contact that failed to respond or provided an incomplete response.
 
-TMS Left short press is employed when the pilot requires identification of multiple contacts across the tactical picture. This is quite typical in beyond-visual-range (BVR) intercepts where the radar displays several unknown tracks and Rules of Engagement (ROE) require positive identification before weapons employment.
+TMS Left short press is employed when the pilot requires identification of multiple contacts across the tactical picture. This is common in beyond-visual-range (BVR) intercepts where the radar displays several unknown tracks and Rules of Engagement (ROE) require positive identification before weapons employment.
 
 %--------------------------------------------------------------------------
 % SUBSUBSECTION 4.3.5.2: LOS INTERROGATION MODE
@@ -723,25 +725,15 @@ TMS Left short press is employed when the pilot requires identification of multi
 \subsubsection{LOS Interrogation Mode (TMS Left Long Press)}
 \label{sec:C4-S3-S5-S2}
 
-% PARÁGRAFO 1 — TMS Left long press behavior (4-5 sentenças)
-% - TMS Left long press (≥0.6 seconds) activates LOS (Line of Sight) interrogation mode
-% - AIFF interrogates only target along FCR line of sight (bugged target in SAM/STT, cursor position in RWS)
-% - FCR scan center sent to AIFF, which determines two optimal beams for coverage
-% - Range filtering applied: from cursor range position to max selected range on MFD
-% - No azimuth or elevation filtering (unlike SCAN CPL mode)
+Line of Sight (LOS) interrogation mode interrogates targets within the \textit{beam coverage area centered around the acquisition cursor}, providing precise cursor-directed interrogation when the pilot requires identification of contacts at a specific cursor position rather than across the radar scan volume. Unlike SCAN mode, which interrogates multiple targets across the radar scan volume (see \secref{sec:C4-S3-S5-S1}), LOS concentrates interrogation resources on the beam area defined by the cursor placement, using two beams centered on the cursor to provide coverage while minimizing interrogation of contacts outside the cursor-designated area.
 
-% PARÁGRAFO 2 — LOS target sorting and display (3-4 sentenças)
-% - LOS mode displays up to 16 target replies (vs 32 in SCAN)
-% - If >16 aircraft respond, AIFF subsystem reports only closest 16 to avionics
-% - Valid replies displayed for 1.5 seconds per mode on MFD
-% - Cursor position not updated during multi-mode interrogation sequence
+A \textbf{long press of TMS Left (at least 0.6 second)} activates LOS mode, commanding the AIFF subsystem to interrogate the target at the acquisition cursor position. The system can display up to 16 target replies, compared to 32 in SCAN mode, reflecting the narrower interrogation focus. The interrogation beams are positioned to provide optimal coverage around the cursor, though due to fixed beam geometry the beams may not align precisely with the exact cursor position. Responses are filtered by range, starting from the cursor's current range position and extending to the maximum selected range on the MFD, ensuring that only relevant targets within the designated range bracket are displayed.
 
-% PARÁGRAFO 3 — LOS operational use (3-4 sentenças)
-% - LOS mode used for precise interrogation of single target without scanning full FOV
-% - Can be initiated in any A-A radar mode, including standby or off
-% - Operationally useful when pilot wants to confirm identity of specific contact
-% - Example: STT lock on unknown → TMS Left long → LOS interrogation → green circle confirms friendly
-% - Provides focused interrogation while conserving interrogation bandwidth in dense target environments
+\paragraph{Configuration:} LOS mode is configured via the \texttt{DED INTG} page (\texttt{LIST RCL} button, then \texttt{DCS} right to sequence to the LOS page), which operates independently from the SCAN page and allows the pilot to set different active modes and codes for each interrogation type. See \dashref{2.2.4.4.2.1} for complete \texttt{INTG} page operation.
+
+The FCR displays target replies using the same symbology as SCAN mode (see \secref{sec:C4-S3-S5-S1}): green circle for friendly, yellow square for bogey/unknown. See \dashref{2.2.4.4.2.1.2} for complete LOS interrogation behavior and \dashref{2.2.4.4.2.2} for response symbology details.
+
+TMS Left long press (LOS) is employed when the pilot requires identification at a specific cursor position rather than across the full scan volume. This is common when prosecuting a designated target in beyond-visual-range engagements.
 
 %--------------------------------------------------------------------------
 % SUBSUBSECTION 4.3.5.3: TMS IFF INTERROGATION USAGE TABLE
