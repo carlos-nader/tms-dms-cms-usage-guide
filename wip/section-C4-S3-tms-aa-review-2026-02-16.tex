@@ -379,9 +379,6 @@
 	
 	\pagenumbering{arabic}
 
-Perfeito! Então é progresso parcial na S5.
-
-tex
 %============================================================================
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 %============================================================================
@@ -393,10 +390,10 @@ tex
 %
 % WIP Status: review
 % Created: 2026-02-13
-% Last Modified: 2026-02-16
+% Last Modified: 2026-02-17
 % Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.5.0.0
 %
-% Narrative Completion: ~20% (C4:S3 intro complete, C4:S3:S5 intro complete, 5 subsections remaining)
+% Narrative Completion: ~25% (C4:S3 intro complete, C4:S3:S5 intro complete, C4:S3:S5:S1 complete, 4 subsections remaining)
 % Table Fill Status: 0% (0 of 6 tables populated)
 %
 % Completion Status by Subsection:
@@ -405,7 +402,7 @@ tex
 % - C4:S3:S2 (STT): Draft structure only
 % - C4:S3:S3 (TWS): Draft structure only
 % - C4:S3:S4 (ACM): Draft structure only
-% - C4:S3:S5 (IFF): Introduction FINAL ✓ | Subsubsections S1-S5: Draft structure only
+% - C4:S3:S5 (IFF): Introduction FINAL ✓ | S1 FINAL ✓ | Subsubsections S2-S5: Draft structure only
 % - C4:S3:S6 (TGP A-A): Draft structure only
 %
 % Table Status (0 of 6 complete):
@@ -422,7 +419,18 @@ tex
 % - Requires: C4:S2:S1 (HSD/PDLT) for cross-reference in Note
 %   (currently placeholder, to be developed)
 %
-% Changes This Revision (2026-02-16):
+% Changes This Revision (2026-02-17):
+% - C4:S3:S5:S1 (SCAN Interrogation Mode): COMPLETE ✓
+% - Parágrafo 1: SCAN overview + TMS Left short press (<0.6s) bold + 32 reply limit
+% - \paragraph{Configuration:}: DED INTG page + FCR CNTL OSB 10 + decouple/couple logic
+% - Cross-refs added: \dashref{2.2.4.4.2.1.1} and \dashref{2.3.1.5.1.6.2}
+% - Parágrafo 2: Symbology (green circle = friendly, yellow square = bogey/unknown)
+% - Parágrafo 3: Tactical context (BVR intercepts, ROE compliance, multiple contacts)
+% - Removed "tactical picture" ambiguity, replaced with generic intro + specific config
+% - Fixed "aircrafts" → "aircraft" (singular/plural consistency)
+% - C4:S3:S5:S1 marked FINAL, ready for integration
+%
+% Previous Changes (2026-02-16):
 % - C4:S3:S5 Introduction rewritten: improved flow, removed redundancy
 % - Parágrafo 1: TMS Left as protagonist, SCAN/LOS introduced, cross-refs to S1/S2
 % - Parágrafo 2: BVR/ROE context + IFF protocol + symbology (green/yellow)
@@ -435,14 +443,14 @@ tex
 % - C4:S3:S5 Introduction marked FINAL, ready for integration
 %
 % Known Issues:
-% - C4:S3:S5 subsubsections S1-S5: Narrative structure exists, content incomplete
+% - C4:S3:S5 subsubsections S2-S5: Narrative structure exists, content incomplete
 % - Subsections C4:S3:S1-S4, S6: Narrative structure exists, content incomplete
 % - All HOTAS tables: Placeholders only, require full population
 % - TGP A-A (S6): Awaits TGP equipment note integration in C2:S1:S3
 %
 % Next Steps:
-% 1. Populate narrative for C4:S3:S5:S1 (SCAN Interrogation Mode)
-% 2. Populate narrative for C4:S3:S5:S2 (LOS Interrogation Mode)
+% 1. Populate narrative for C4:S3:S5:S2 (LOS Interrogation Mode)
+% 2. Populate narrative for C4:S3:S5:S3 (Emergency Interrogation Mode)
 % 3. Develop Table C4-S3-IFF (hotastable format)
 % 4. Populate narrative for C4:S3:S5:S4 (Operational Constraints)
 % 5. Populate narrative for C4:S3:S5:S5 (AIFF Availability)
@@ -453,7 +461,7 @@ tex
 % - This WIP will be integrated simultaneously with:
 %   * section-C2-S1-S3-soi-context-dependency-final-2026-02-15.tex
 % - Target version: v0.5.0.0 (TMS Air-to-Air chapter)
-% - C4:S3 Introduction + C4:S3:S5 Introduction ready; remaining content in development
+% - C4:S3 Introduction + C4:S3:S5 Introduction + C4:S3:S5:S1 ready; remaining content in development
 
 %============================================================================
 % TEMPLATE STRUCTURE — Replace section/subsection headers with your content
@@ -708,6 +716,7 @@ SCAN interrogation mode interrogates multiple radar contacts simultaneously to i
 The FCR displays target replies as symbology overlaid on radar contacts, enabling immediate visual discrimination without requiring MFD interaction. A green circle identifies a friendly aircraft that provided a correct response to the interrogation, while a yellow square identifies a bogey or unknown contact that failed to respond or provided an incomplete response.
 
 TMS Left short press is employed when the pilot requires identification of multiple contacts across the tactical picture. This is quite typical in beyond-visual-range (BVR) intercepts where the radar displays several unknown tracks and Rules of Engagement (ROE) require positive identification before weapons employment.
+
 %--------------------------------------------------------------------------
 % SUBSUBSECTION 4.3.5.2: LOS INTERROGATION MODE
 %--------------------------------------------------------------------------
