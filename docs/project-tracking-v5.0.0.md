@@ -13,7 +13,7 @@ sitemap:
 **Document Version:** PROJECT-TRACKING-v5.0.0  
 **Regime:** Pre-publication (0.x.x.x)  
 **Project Start:** 2026-01-05  
-**Last Updated:** 2026-02-15  
+**Last Updated:** 2026-02-17  
 **Repository:** carlos-nader/tms-dms-cms-usage-guide
 
 This document tracks governance rules, project state, and development history. For detailed file tracking, issue status, and commit history, see [INTEGRATED-FILES.md](../INTEGRATED-FILES.md) (auto-generated).
@@ -36,7 +36,7 @@ This document tracks governance rules, project state, and development history. F
 
 ## 2. PROJECT SNAPSHOT
 
-**Last updated:** 2026-02-15
+**Last updated:** 2026-02-17
 
 | Metric | Value |
 |--------|-------|
@@ -46,7 +46,7 @@ This document tracks governance rules, project state, and development history. F
 | **Chapters Integrated** | 4/7 (C1, C2, C3, C5) |
 | **Chapters In Development** | 1/7 (C4) |
 | **Chapters Pending** | 2/7 (C6, C7) |
-| **Total Commits** | 558 |
+| **Total Commits** | 574 |
 | **Latest Release** | v0.4.1.0 (2026-02-11) |
 
 ### Chapter Status
@@ -56,7 +56,7 @@ This document tracks governance rules, project state, and development history. F
 | 1 | Introduction | ✅ Integrated | Revised and integrated (v0.3.3.0) |
 | 2 | HOTAS Fundamentals | ✅ Integrated | Complete (v0.4.0.0) |
 | 3 | DMS | ✅ Integrated | Complete (v0.4.0.0, renumbered from Ch 4) |
-| 4 | TMS | 🔄 **review** | WIP: Main chapter file `chapter-C4-tms-structure-dev-2026-02-13.tex`. Section files: `section-C4-S3-tms-aa-review-2026-02-15.tex` (§4.3 A-A intro: 14.29% complete) + dependency `section-C2-S1-S3-soi-context-dependency-final-2026-02-15.tex` (TGP intro for C2). Subsections §4.3.1-§4.3.6 remain in draft. |
+| 4 | TMS | 🔄 **review** | WIP: Main chapter file `chapter-C4-tms-structure-dev-2026-02-13.tex`. Section file: `section-C4-S3-tms-aa-review-2026-02-16.tex` (50,325 bytes, §4.3 A-A intro + §4.3.5 IFF intro + §4.3.5.1 SCAN Mode: **25% complete**) + dependency `section-C2-S1-S3-soi-context-dependency-final-2026-02-15.tex` (TGP intro for C2, status **final**). Subsections §4.3.1-§4.3.4, §4.3.5.2-§4.3.5.5, §4.3.6 remain in draft. |
 | 5 | CMS | ✅ Integrated | Complete (§5.1, §5.2, §5.3) |
 | 6 | Training References | Scaffolded | Pending development |
 | 7 | Visual Reference | Scaffolded | Structure TBD |
@@ -84,6 +84,7 @@ Chronological record of significant changes. For detailed commit history, see IN
 | 2026-02-11 | v0.4.1.0 | **RELEASE:** Preamble v2.1 infrastructure improvements. hotastable environment optimized (v2.1: footnotesize font, adjusted spacing, simplified Training column). List of HOTAS Tables automated indexing feature added. Cross-reference macros implemented (`\secref`, `\chapref`, `\tabref`, `\figref`). PDF metadata configuration added. Issues #33 and #34 closed. Milestone "Infrastructure Improvements" completed (2/2). Total commits: 479. |
 | 2026-02-13 | — | **C4 WIP Progress:** Main chapter file renamed to `chapter-C4-tms-structure-dev-2026-02-13.tex` (52,056 bytes). Section file `section-C4-S3-tms-aa-dev-2026-02-13.tex` (33,612 bytes) created, covering §4.3 — TMS in Air-to-Air. Covers TMS behavior in A-A contexts: FCR modes (SAM, STT, TWS), ACM modes (BORE, 10×60, 30×20, SLEW with HMCS integration), IFF interrogation, and TGP A-A mode. Structure complete: 6 subsections (§4.3.1-§4.3.6), 6 table placeholders, cross-references validated. Content state: structural outline with bullet points (not narrative prose). Pending: transform to narrative (C3/C5 style) + fill 6 hotastable tables with Dash-34/Training Manual data. Total commits: 523. |
 | 2026-02-15 | — | **C4 WIP Progress (continued):** Section file promoted from `dev` to `review`: `section-C4-S3-tms-aa-review-2026-02-15.tex` (39,095 bytes, +16.3% size increase). §4.3 introduction finalized and validated: grammar corrections, Dash-34 cross-references (§2.3.1.5.7-12) verified, internal cross-references (→C2:§2.1.3, →C3:§3.1.1, →C3:§3.1.3) confirmed, prose cadence refined. Corrections applied: "exclusively" → "restricted to" (para 2), added "primary" qualifier to "FCR provides four **primary** tracking modes" (para 3). **Dependency WIP created:** `section-C2-S1-S3-soi-context-dependency-final-2026-02-15.tex` (20,493 bytes, status `final`). Establishes TGP (Targeting Pod) introduction in C2 fundamentals (§2.1.3), defines TGP as equipment-dependent (AN/AAQ-33 Sniper XR ATP, AN/AAQ-14 LANTIRN), cross-references →C4:§4.3.6 (TGP A-A tracking) and Dash-34 §2.6. Rationale: First TGP mention should occur in C2 conceptual layer, not C4 operational layer. §4.3 subsections §4.3.1-§4.3.6 (SAM, STT, TWS, ACM, IFF, TGP A-A) remain in draft status; 6 hotastable tables (0/6 complete) pending population. Integration target: **v0.5.0.0** (simultaneous integration of C2:§2.1.3 + C4:§4.3 introduction). Issues #38 (REVIEW — in progress) and #40 (APPROVED — integration checklist) updated. Total commits: 558. |
+| 2026-02-17 | — | **C4 WIP Progress (continued):** Section file updated: `section-C4-S3-tms-aa-review-2026-02-16.tex` (50,325 bytes, +28.8% from 39,095 bytes). §4.3.5 (TMS and IFF Interrogation) introduction finalized and validated. §4.3.5.1 (SCAN Interrogation Mode) narrative completed and approved: TMS Left short press (<0.6s) behavior, SCAN configuration (DED INTG page, FCR CNTL OSB 10), symbology (green circle = friendly, yellow square = bogey/unknown), tactical context (BVR intercepts, ROE compliance). Dash-34 cross-references validated (§2.2.4.4.2.1.1, §2.3.1.5.1.6.2). §4.3.5.5 (AIFF Availability) updated with Link 16 context marking for future development. Narrative completion: 14.29% → **25%** (C4:§4.3 intro + C4:§4.3.5 intro + C4:§4.3.5.1 complete). Subsections §4.3.1-§4.3.4 (SAM, STT, TWS, ACM), §4.3.5.2-§4.3.5.5 (LOS, Emergency, Constraints, AIFF Availability), §4.3.6 (TGP A-A) remain in draft. 6 hotastable tables (0/6 complete) pending. File renamed: `section-C4-S3-tms-aa-review-2026-02-15.tex` → `section-C4-S3-tms-aa-review-2026-02-16.tex`. Total commits: 558 → **574** (+16 commits). |
 
 ---
 
@@ -93,14 +94,14 @@ Chronological record of significant changes. For detailed commit history, see IN
 
 | Item | Value |
 |------|-------|
-| **WIP Files** | `chapter-C4-tms-structure-dev-2026-02-13.tex` (main), `section-C4-S3-tms-aa-review-2026-02-15.tex` (§4.3 intro: **review**), `section-C2-S1-S3-soi-context-dependency-final-2026-02-15.tex` (dependency: **final**) |
-| **Status** | **review** (C4:§4.3 intro), dev (C4:§4.3 subsections §4.3.1-§4.3.6) |
+| **WIP Files** | `chapter-C4-tms-structure-dev-2026-02-13.tex` (main), `section-C4-S3-tms-aa-review-2026-02-16.tex` (§4.3: **review**), `section-C2-S1-S3-soi-context-dependency-final-2026-02-15.tex` (dependency: **final**) |
+| **Status** | **review** (C4:§4.3 intro, C4:§4.3.5 intro, C4:§4.3.5.1), dev (remaining subsections) |
 | **Milestone** | Integrate C4 (TMS — Target Management Switch) — Guide Version v0.5.0.0 (Due: 2026-03-10, progress 0/3) |
 | **Open Issues** | #38 (REVIEW — in progress), #39 (FINAL), #40 (APPROVED) |
 | **Version Bump** | MINOR (new chapter entry) |
 | **Content** | TMS concept, situational awareness, A-A employment, A-G employment, weapon-specific behavior, block/variant notes. Most complex HOTAS switch (13+ specialized tables). |
 | **Dependencies** | ✅ v0.4.1.0 completed (infrastructure ready) |
-| **Next step** | Continue development: finalize §4.3 subsections S1-S6 prose + populate 6 hotastable tables → review → final → approved |
+| **Next step** | Continue development: finalize §4.3.5 subsections S2-S5 (LOS, Emergency, Constraints, AIFF Availability) prose → finalize §4.3 subsections S1-S4, S6 prose → populate 6 hotastable tables → review → final → approved |
 
 **Recent Progress (2026-02-15):**
 - ✅ C4:§4.3 introduction finalized and validated (grammar, Dash-34 refs §2.3.1.5.7-12, cadence)
@@ -114,6 +115,18 @@ Chronological record of significant changes. For detailed commit history, see IN
 - 🟡 Pending: Populate 6 hotastable tables with Dash-34/Training Manual data (0/6 complete)
 - 🟡 Pending: Validate all Dash-34 refs (2.3.1.5.x, 2.5, 2.6.1.7.5, 4.3.2.4.3.12)
 - ✅ Total commits: 479 → 558 (+79 commits since last PROJECT-TRACKING update)
+
+**Recent Progress (2026-02-17):**
+- ✅ C4:§4.3.5 (TMS and IFF Interrogation) introduction finalized and validated
+- ✅ C4:§4.3.5.1 (SCAN Interrogation Mode) narrative completed: TMS Left short press behavior, configuration (DED INTG/FCR CNTL OSB 10), symbology, tactical context (BVR/ROE)
+- ✅ Dash-34 cross-references validated: §2.2.4.4.2.1.1 (SCAN behavior), §2.3.1.5.1.6.2 (FCR CNTL OSB 10)
+- ✅ File updated: `section-C4-S3-tms-aa-review-2026-02-16.tex` (50,325 bytes, +28.8% size increase)
+- ✅ Narrative completion: 14.29% → **25%** (3 of 12 subsections complete: §4.3 intro, §4.3.5 intro, §4.3.5.1)
+- ✅ §4.3.5.5 (AIFF Availability) marked with Link 16 context note for future development
+- 🟡 Pending: §4.3.5.2 (LOS Mode), §4.3.5.3 (Emergency Mode), §4.3.5.4 (Constraints), §4.3.5.5 (AIFF Availability) narrative
+- 🟡 Pending: §4.3.1-§4.3.4 (SAM, STT, TWS, ACM), §4.3.6 (TGP A-A) narrative
+- 🟡 Pending: Populate 6 hotastable tables (0/6 complete)
+- ✅ Total commits: 558 → **574** (+16 commits since last update)
 
 ---
 
@@ -138,6 +151,8 @@ Chronological record of significant changes. For detailed commit history, see IN
 **2026-02-13:** C4 WIP files updated. Main chapter file renamed to `chapter-C4-tms-structure-dev-2026-02-13.tex` (52,056 bytes). Section file `section-C4-S3-tms-aa-dev-2026-02-13.tex` (33,612 bytes) created, covering §4.3 — TMS in Air-to-Air. Structure validated: 6 subsections (§4.3.1 SAM, §4.3.2 STT, §4.3.3 TWS, §4.3.4 ACM, §4.3.5 IFF, §4.3.6 TGP A-A), labels consistent (`sec:C4-S3-S*`), cross-refs functional, 6 hotastable placeholders defined. Content state: structural outline with bullet points and technical accuracy, NOT narrative prose. Critical gap identified: current text uses itemized lists, not continuous narrative as required by C3/C5 style standard. Next phase: (1) transform to flowing prose, (2) fill tables with Dash-34 data, (3) validate all technical refs. File remains `dev` status. Total commits: 523.
 
 **2026-02-15:** C4 WIP advancement continues. Section file `section-C4-S3-tms-aa-review-2026-02-15.tex` promoted to `review` status after §4.3 introduction finalization (39,095 bytes, +16.3% from 33,612 bytes). Introduction text validated for grammar accuracy, Dash-34 cross-references (§2.3.1.5.7-12), internal cross-references (→C2:§2.1.3, →C3:§3.1.1, →C3:§3.1.3), and prose cadence. Corrections applied: replaced "exclusively" with "restricted to" (para 2, precision), added "primary" qualifier to FCR mode description (para 3, clarity). **Critical dependency identified:** TGP (Targeting Pod) first mention should occur in C2 conceptual layer, not C4 operational layer. New WIP file created: `section-C2-S1-S3-soi-context-dependency-final-2026-02-15.tex` (20,493 bytes, status `final`). Establishes §2.1.3 (TGP as equipment-dependent SOI: AN/AAQ-33 Sniper XR ATP, AN/AAQ-14 LANTIRN), cross-references Dash-34 §2.6 and →C4:§4.3.6 (TGP A-A tracking). Dependency resolution ensures architectural consistency: C2 establishes concepts, C3/C4 provide operational details. §4.3 subsections (§4.3.1-§4.3.6: SAM, STT, TWS, ACM, IFF, TGP A-A) remain in draft status with bullet-point structure; 6 hotastable tables (0/6 complete) pending data population from Dash-34 §2.3.1.5.x, §2.5, §2.6.1.7.5, §4.3.2.4.3.12 and BMS Training Manual missions. Integration target: v0.5.0.0 (simultaneous integration of C2:§2.1.3 + C4:§4.3 introduction). Issues #38 (REVIEW) and #40 (APPROVED — integration checklist) updated with progress. Total commits: 558.
+
+**2026-02-17:** C4 WIP advancement continues. Section file `section-C4-S3-tms-aa-review-2026-02-16.tex` updated (50,325 bytes, +28.8% from 39,095 bytes). §4.3.5 (TMS and IFF Interrogation) introduction finalized: TMS Left as HOTAS protagonist, SCAN/LOS mode introduction, BVR/ROE operational context, AIFF availability warning with cross-references to §4.3.5.5 and Dash-34 §2.2.4. §4.3.5.1 (SCAN Interrogation Mode) narrative completed: TMS Left short press (<0.6s) activation, SCAN configuration via DED INTG page and FCR CNTL OSB 10 (decouple/couple to radar scan volume), symbology identification (green circle = friendly, yellow square = bogey/unknown), tactical context (BVR intercepts with multiple unknown contacts requiring ROE compliance). Dash-34 cross-references validated: §2.2.4.4.2.1.1 (SCAN interrogation behavior), §2.3.1.5.1.6.2 (FCR CNTL page OSB 10). Critical discovery: AIFF/Link 16 relationship identified—AIFF enables hands-on interrogation independent of datalink, critical when Link 16 unavailable or tracks not correlated via datalink. Decision: Link 16 context will be addressed in §4.3.5.5 (AIFF Availability) as architectural note, not in operational subsections (S1-S3). §4.3.5.5 marked with Link 16 context note for future development. Narrative completion: 25% (3 of 12 subsections complete: §4.3 intro, §4.3.5 intro, §4.3.5.1). Subsections §4.3.1-§4.3.4 (SAM, STT, TWS, ACM), §4.3.5.2-§4.3.5.5 (LOS, Emergency, Constraints, AIFF Availability), §4.3.6 (TGP A-A) remain in draft. 6 hotastable tables (0/6 complete) pending. Total commits: 574.
 
 ---
 
