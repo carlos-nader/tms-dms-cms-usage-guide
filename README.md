@@ -264,6 +264,7 @@ For full legal details, see the [LICENSE](https://github.com/carlos-nader/tms-dm
 
 For questions, suggestions, or feedback:
 
+* 🕹️ Discord user name: @carlosnader
 * 📧 [carlos.snm@gmail.com](mailto:carlos.snm@gmail.com)
 * 💬 [Falcon BMS Forum Thread](https://forum.falcon-bms.com/topic/32541)
 * 🐛 [Open an Issue](https://github.com/carlos-nader/tms-dms-cms-usage-guide/issues)
