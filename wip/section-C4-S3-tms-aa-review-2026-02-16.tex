@@ -689,9 +689,9 @@ See \tabref{tab:aa-acm-tms} for ACM TMS actions.
 \subsection{TMS and IFF Interrogation}
 \label{sec:C4-S3-S5}
 
-Identification Friend or Foe (IFF) interrogation is an air-to-air identification function commanded by TMS Left, enabling the pilot to distinguish friendly aircraft from unknowns and bogeys without removing hands from the flight stick. The interrogation mode executed depends on press duration: a short press activates SCAN interrogation for broad area coverage, while a long press activates Line of Sight (LOS) interrogation for precise single-target queries. Both modes display interrogation responses on the Fire Control Radar (FCR) MFD with symbology overlaid on radar contacts, enabling immediate threat discrimination during multi-target engagements without requiring MFD interaction or datalink correlation (see \secref{sec:C4-S3-S5-S1} and \secref{sec:C4-S3-S5-S2} for details).
+Identification Friend or Foe (IFF) interrogation is an air-to-air identification function commanded by \textbf{TMS Left}, enabling the pilot to distinguish friendly aircraft from unknowns and bogeys without removing hands from the flight stick. The interrogation mode executed depends on press duration: a \textit{short press activates SCAN interrogation} for broad area coverage, while a \textit{long press activates Line of Sight (LOS) interrogation} for precise single-target queries. Both modes display interrogation responses on the Fire Control Radar (FCR) MFD with symbology overlaid on radar contacts, enabling immediate threat discrimination during multi-target engagements without requiring MFD interaction or datalink correlation (see \secref{sec:C4-S3-S5-S1} and \secref{sec:C4-S3-S5-S2} for details).
 
-IFF interrogation is operationally critical in beyond-visual-range (BVR) engagements, where visual identification is impossible and Rules of Engagement (ROE) require positive identification before weapons employment to prevent fratricide. The interrogation process begins when the interrogating aircraft transmits a coded query to the target aircraft, whose transponder validates the query and transmits a response back to the interrogator. The FCR then displays identification symbology based on the response received: a green circle indicates a friendly aircraft that provided a correct response, while a yellow square identifies a bogey or unknown contact that provided an incomplete response or failed to respond.
+IFF interrogation is operationally critical in beyond-visual-range (BVR) engagements, where visual identification is impossible and Rules of Engagement (ROE) require positive identification before weapons employment to prevent fratricide. The interrogation process begins when the interrogating aircraft transmits a coded query to the target aircraft, whose transponder validates the query and transmits a response back to the interrogator. The FCR then displays identification symbology based on the response received.
 
 Not all F-16 variants are equipped with IFF interrogation capability, as the AIFF (Advanced Interrogator Friend or Foe) system is not universally installed across all F-16 blocks and configurations. When available, TMS Left IFF interrogation requires the AIFF system to be powered and configured via the Up Front Controller (UFC) or backup IFF panel controls. Pilots must verify AIFF availability via cockpit panel configuration before flight; see \secref{sec:C4-S3-S5-S5} for AIFF identification procedures and system limitations. For complete IFF system architecture, operational modes, and control panel operation, see \dashref{2.2.4}.
 
@@ -701,26 +701,13 @@ Not all F-16 variants are equipped with IFF interrogation capability, as the AIF
 \subsubsection{SCAN Interrogation Mode (TMS Left Short Press)}
 \label{sec:C4-S3-S5-S1}
 
-% PARÁGRAFO 1 — TMS Left short press behavior (4-5 sentenças)
-% - TMS Left short press (<0.6 seconds) activates SCAN interrogation mode
-% - SCAN behavior varies: DCPL (decoupled) or CPL (coupled) configuration
-% - DCPL mode: AIFF antenna interrogates 8 beam positions sequentially (left→right), full ±60° azimuth/elevation coverage
-% - CPL mode: AIFF FOV couples to FCR field-of-regard, activates only beams needed to cover radar scan volume
-% - SCAN displays up to 32 target replies + 8 jamming indicators; if >32 respond, AIFF reports closest 32
+SCAN interrogation mode interrogates multiple radar contacts simultaneously to identify friendly and hostile aircraft. A \textbf{short press of TMS Left (less than 0.6 second)} activates SCAN mode, commanding the AIFF subsystem to transmit interrogation queries and display identification symbology on the FCR. The system can display up to 32 target replies; if more than 32 aircraft respond, only the closest 32 are reported based on range.
 
-% PARÁGRAFO 2 — Symbology and response display (3-4 sentenças)
-% - Green circle with mode indication (M1/M2/M3/M4) = friendly (correct response)
-% - Yellow square with mode indication = bogey/unknown (incomplete or no response)
-% - Current interrogation mode displayed adjacent to acquisition cursor during sequence
-% - Valid replies displayed for 2 seconds per mode on MFD
-% - See \dashref{2.2.4.4.2.2} for complete symbology details
+\paragraph{Configuration:} SCAN coverage can be configured via \texttt{DED INTG} page (\texttt{LIST RCL} button) or FCR CNTL page OSB 10 to decouple from or couple to the radar scan volume; see \dashref{2.2.4.4.2.1.1} and \dashref{2.3.1.5.1.6.2}.
 
-% PARÁGRAFO 3 — CPL/DCPL configuration (3-4 sentenças)
-% - SCAN CPL/DCPL configured via DED SCAN INTG page (LIST RCL button)
-% - CPL mode also controllable via FCR CNTL page OSB 10 (see \dashref{2.3.1.5.1.6.2})
-% - DCPL provides full ±60° coverage independent of FCR field-of-regard
-% - CPL saves time by focusing interrogation only within radar scan volume
+The FCR displays target replies as symbology overlaid on radar contacts, enabling immediate visual discrimination without requiring MFD interaction. A green circle identifies a friendly aircraft that provided a correct response to the interrogation, while a yellow square identifies a bogey or unknown contact that failed to respond or provided an incomplete response.
 
+TMS Left short press is employed when the pilot requires identification of multiple contacts across the tactical picture. This is quite typical in beyond-visual-range (BVR) intercepts where the radar displays several unknown tracks and Rules of Engagement (ROE) require positive identification before weapons employment.
 %--------------------------------------------------------------------------
 % SUBSUBSECTION 4.3.5.2: LOS INTERROGATION MODE
 %--------------------------------------------------------------------------
@@ -803,7 +790,7 @@ Not all F-16 variants are equipped with IFF interrogation capability, as the AIF
 \subsubsection{AIFF Availability and Block Differences}
 \label{sec:C4-S3-S5-S5}
 
-% PARÁGRAFO ÚNICO — AIFF availability and variant differences (8-10 sentenças)
+% PARÁGRAFO [X] — AIFF availability and variant differences (8-10 sentenças)
 % - TMS Left IFF interrogation requires aircraft equipped with AN/APX-113(V) AIFF system
 % - AIFF integrated into modern F-16 variants as internal avionics (not external pod)
 % - AIFF-equipped aircraft feature IFF control panel in cockpit with backup IFF controls
@@ -818,6 +805,13 @@ Not all F-16 variants are equipped with IFF interrogation capability, as the AIF
 %   → AUX COMM panel = transponder-only configuration (no interrogator)
 % - See \dashref{2.2.4.2} for AIFF system architecture, beam forming network, antenna configuration
 % - See \dashref{2.2.4.3} for IFF control panel operation, IFF MASTER switch, backup controls
+
+PARÁGRAFO [X]: AIFF vs Link 16 context
+- Aircraft without AIFF rely on Link 16 or AWACS for target ID
+- AIFF enables hands-on interrogation independent of datalink
+- Critical when: (a) Link 16 unavailable, (b) tracks not correlated via datalink
+- Dash-34: [identificar seção relevante se houver]
+- Rationale: Explains why AIFF matters even with modern datalink capabilities
 
 %--------------------------------------------------------------------------
 % SUBSECTION 4.3.6: TMS with Targeting Pod in Air-to-Air Mode
