@@ -41,7 +41,7 @@ Severity criteria:
 | R-05 | C3 | 3.3.1.1 NAV ↔ A-G PRE | **Alta** | DMS Down NAV and A-G PRE paragraphs are literally identical except the last sentence | ✅ Resolved |
 | R-06 | C3 | 3.2.3 ↔ 3.3.3 | **Média** | Snowplow and MARK/OFLY exception states described in full twice | Open |
 | R-07 | C3 / C5 | Before each hotastable | **Alta (structural)** | "Each table entry specifies" block of 7 bullets appears 4× identically | Aceitável |
-| R-08 | C5 | 5.2.3 table ↔ 5.2.4 "Consent vs. CMDS Consent" | **Alta** | "CMS Down grants consent to both CMDS and ECM" stated twice in consecutive subsections | Open |
+| R-08 | C5 | 5.2.3 table ↔ 5.2.4 "Consent vs. CMDS Consent" | **Alta** | "CMS Down grants consent to both CMDS and ECM" stated twice in consecutive subsections | ✅ Resolved |
 | R-09 | C5 | 5.1 ↔ 5.2.4 | **Média** | High-G rationale for CMS thumb access paraphrased in 5.2.4 after full development in 5.1 | Open |
 | R-10 | C5 | 5.2.2 intro, 5.2.2.2 intro, 5.2.4 | **Aceitável** | "IDIAS uses CMS Left, not CMS Down" — repeated three times; safety-critical distinction, likely intentional | Monitoring |
 
@@ -298,7 +298,7 @@ Note: also fix the copy-paste error on line 1359 ("DMS hat" → "CMS hat").
 
 **Location:** Section 5.2.3 table cell (line 1474) ↔ Section 5.2.4 "Consent vs. CMDS Consent" paragraph (line 1498)  
 **Severity:** Alta  
-**Status:** Open
+**Status:** Resolved as per recommendation A below
 
 **What repeats:**
 
