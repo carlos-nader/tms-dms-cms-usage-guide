@@ -594,11 +594,9 @@ The Sensor of Interest (SOI) is a designation that identifies which display curr
 \subsection{The SOI Concept}
 \label{sec:C2-S1-S1}
 
-The F-16 cockpit contains three basic displays: the Head-Up Display (HUD) and two Multifunction Displays (MFD). The MFD can present various formats or pages, including radar, targeting pod, weapon management and tactical information. The pilot interacts with these displays through HOTAS controls, particularly the cursor slew control (CURSOR/ENABLE) and the Target Management Switch (TMS).
+The F-16 cockpit contains three basic displays: the Head-Up Display (HUD) and two Multifunction Displays (MFD). The MFD can present various formats or pages, including radar, targeting pod, weapon management and tactical information. The pilot interacts with these displays through HOTAS controls, particularly the cursor slew control (CURSOR/ENABLE) and the Target Management Switch (TMS). When the pilot slews the cursor or sends a TMS input, the command is directed to whichever display is currently designated as SOI.
 
-The Sensor of Interest (SOI) is the designation that identifies which display currently receives HOTAS inputs. At any moment, only one display holds SOI designation. When the pilot slews the cursor or presses TMS Up, the command is directed to whichever display is designated as SOI.
-
-The SOI mechanism manages \textit{where} HOTAS inputs are directed, not \textit{what} those inputs do. The specific function of a HOTAS input — for example, whether TMS Up designates a target, breaks a track, or cycles through a mode — depends on the sensor mode, current Master Mode, and weapon selected. The SOI ensures that the input reaches the intended sensor; the sensor determines how the input is interpreted.
+The SOI mechanism manages \textit{where} HOTAS inputs are directed, not \textit{what} those inputs do. The specific function of a HOTAS input — for example, whether TMS Up designates a target, breaks a track, or cycles through a mode — depends on the sensor mode, current Master Mode, and weapon selected. \textit{The SOI ensures that the input reaches the intended display; the active format on the display determines how the input is interpreted}.
 
 This design reflects the HOTAS philosophy: minimize pilot workload by consolidating control inputs through a limited number of switches while preserving the flexibility to interact with any sensor as needed.
 
@@ -990,7 +988,7 @@ mode, as established in \secref{sec:C3-S1-S1}.
 In NAV, valid SOI candidates are the HUD and both MFD. If the HUD is SOI, DMS Down transitions SOI from HUD to the Left MFD on first press. Subsequent DMS Down presses toggle SOI between the two MFD (Left MFD $\leftrightarrow$ Right MFD). Once SOI leaves the HUD, it remains on the MFD cycle until DMS Up is pressed to restore HUD as SOI.
 
 \paragraph{A-G in PRE (Preplanned Air-to-Ground) Mode:}
-In A-G PRE, valid SOI candidates are the HUD and both MFD. If the HUD is SOI, DMS Down transitions SOI from HUD to the Left MFD on first press. Subsequent DMS Down presses toggle SOI between the two MFD (Left MFD $\leftrightarrow$ Right MFD). Once SOI leaves the HUD, it remains on the MFD cycle until DMS Up is pressed to restore HUD as SOI. This allows the pilot to shift hands-on control focus while examining different sensor pages.
+In A-G PRE, DMS Down follows the same toggle sequence as NAV (HUD $\rightarrow$ Left MFD $\leftrightarrow$ Right MFD). This allows the pilot to shift hands-on control focus between the HUD and MFD sensor pages during weapon pre-planning.
 
 \paragraph{A-G in VIS (Visual Air-to-Ground)---CCIP, DTOS, AGM-65 VIS, IAM-VIS:}
 In A-G VIS modes, valid SOI candidates are the HUD and both MFD. DMS Down toggles through the same pattern as in NAV and A-G PRE. However, in A-G VIS, DMS Down becomes \textbf{operationally critical} rather than merely convenient.
@@ -1356,7 +1354,7 @@ Each table entry specifies:
 
 \begin{itemize}
   \item \textbf{Mode}: The operational context (Master Mode).
-  \item \textbf{Direction}: The physical direction for pressing the DMS hat (Up, Down, Left, Right).
+  \item \textbf{Direction}: The physical direction for pressing the CMS hat (Up, Down, Left, Right).
   \item \textbf{Action}: The press type (Short, Long, Long Hold).
   \item \textbf{Function}: What the CMS command activates or controls.
   \item \textbf{Effect / Nuance}: The resulting system behavior, including tactics and constraints.
@@ -1469,7 +1467,7 @@ CMS Right forces IDIAS ECM into STBY mode, halting all jamming operations. Requi
 
 This subsection clarifies the relationship between CMDS consent (CMS Down) and ECM transmit authority (CMS Down for external pod). Understanding these interactions is critical for effective defensive posture management during high-workload combat operations.
 
-\begin{hotastable}{CMS Interaction with CMDS and ECM (Consent and Constraints)}
+\begin{hotastable}{CMS Interaction with CMDS and ECM (Consent and Constraints)}\label{tab:C5-S2-S3-CMDS-ECM}
 CMDS AUTO SEMI + ECM Pod & Down & Short & Joint Consent (CMDS + ECM) &
 Single CMS Down command grants consent to \textit{both} the ALE-47 CMDS (AUTO/SEMI) and the external ECM pod. There's no distinction between the two; both systems respond to the same CMS Down press. This unified control maximizes pilot situational awareness and frees workload during combat maneuvering.
 & 2.7.2.1, 2.7.4.2.5 & 18, 28 \\
@@ -1495,7 +1493,7 @@ The RF switch on the throttle is a master control for ECM transmission. Moving t
 
 \paragraph{Consent vs. CMDS Consent:}
 
-A single CMS Down press grants consent to both the ALE-47 CMDS and the external ECM pod. The pilot does not issue separate commands; the CMS Down action is unified. However, internal IDIAS uses CMS Left for mode cycling, not CMS Down. This distinction is critical for aircraft configured with IDIAS.
+The unified CMS Down consent described in \tabref{tab:C5-S2-S3-CMDS-ECM} does not apply to IDIAS-equipped aircraft: internal IDIAS uses CMS Left for mode cycling, not CMS Down. This distinction is critical for aircraft configured with IDIAS and must not be confused with the external ECM pod workflow.
 
 \paragraph{Operations Safety:}
 
