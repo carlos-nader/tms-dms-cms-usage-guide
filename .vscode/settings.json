@@ -1,6 +1,19 @@
 {
   "latex-workshop.latex.tools": [
     {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-pdf",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-shell-escape",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
       "name": "pdflatex",
       "command": "pdflatex",
       "args": [
@@ -14,10 +27,19 @@
   ],
   "latex-workshop.latex.recipes": [
     {
+      "name": "latexmk (pdflatex)",
+      "tools": ["latexmk"]
+    },
+    {
+      "name": "pdflatex × 2",
+      "tools": ["pdflatex", "pdflatex"]
+    },
+    {
       "name": "pdflatex",
       "tools": ["pdflatex"]
     }
   ],
+  "latex-workshop.latex.recipe.default": "latexmk (pdflatex)",
   "latex-workshop.latex.autoBuild.run": "never",
   "latex-workshop.latex.autoBuild.interval": 1000,
   "latex-workshop.view.pdf.viewer": "tab",

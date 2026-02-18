@@ -32,18 +32,18 @@ Severity criteria:
 
 ## Quick-Reference Summary Table
 
-| ID | Chapter | Sections | Severity | Summary |
-|----|---------|---------|----------|---------|
-| R-01 | C2 | 2.1 ↔ 2.1.1 | **Alta** | "Only one display holds SOI" — definition repeated almost verbatim |
-| R-02 | C2 | 2.2 intro ↔ 2.2.1 closing | **Média** | "Master mode determines..." — premise of 2.2 re-stated as conclusion of 2.2.1 |
-| R-03 | C2 / C3 | 2.3.1 ↔ C3 intro | **Baixa** | DMS physical description repeated in nearly identical wording |
-| R-04 | C2 / C5 | 2.3.3 ↔ 5.1 ↔ 5.2 | **Alta** | CMS physical description boilerplate appears three times |
-| R-05 | C3 | 3.3.1.1 NAV ↔ A-G PRE | **Alta** | DMS Down NAV and A-G PRE paragraphs are literally identical except the last sentence |
-| R-06 | C3 | 3.2.3 ↔ 3.3.3 | **Média** | Snowplow and MARK/OFLY exception states described in full twice |
-| R-07 | C3 / C5 | Before each hotastable | **Alta (structural)** | "Each table entry specifies" block of 7 bullets appears 4× identically |
-| R-08 | C5 | 5.2.3 table ↔ 5.2.4 "Consent vs. CMDS Consent" | **Alta** | "CMS Down grants consent to both CMDS and ECM" stated twice in consecutive subsections |
-| R-09 | C5 | 5.1 ↔ 5.2.4 | **Média** | High-G rationale for CMS thumb access paraphrased in 5.2.4 after full development in 5.1 |
-| R-10 | C5 | 5.2.2 intro, 5.2.2.2 intro, 5.2.4 | **Aceitável** | "IDIAS uses CMS Left, not CMS Down" — repeated three times; safety-critical distinction, likely intentional |
+| ID | Chapter | Sections | Severity | Summary | Status |
+|----|---------|---------|----------|---------|--------|
+| R-01 | C2 | 2.1 ↔ 2.1.1 | **Alta** | "Only one display holds SOI" — definition repeated almost verbatim | ✅ Resolved |
+| R-02 | C2 | 2.2 intro ↔ 2.2.1 closing | **Média** | "Master mode determines..." — premise of 2.2 re-stated as conclusion of 2.2.1 | Open |
+| R-03 | C2 / C3 | 2.3.1 ↔ C3 intro | **Baixa** | DMS physical description repeated in nearly identical wording | Open |
+| R-04 | C2 / C5 | 2.3.3 ↔ 5.1 ↔ 5.2 | **Alta** | CMS physical description boilerplate appears three times | Open |
+| R-05 | C3 | 3.3.1.1 NAV ↔ A-G PRE | **Alta** | DMS Down NAV and A-G PRE paragraphs are literally identical except the last sentence | ✅ Resolved |
+| R-06 | C3 | 3.2.3 ↔ 3.3.3 | **Média** | Snowplow and MARK/OFLY exception states described in full twice | Open |
+| R-07 | C3 / C5 | Before each hotastable | **Alta (structural)** | "Each table entry specifies" block of 7 bullets appears 4× identically | Aceitável |
+| R-08 | C5 | 5.2.3 table ↔ 5.2.4 "Consent vs. CMDS Consent" | **Alta** | "CMS Down grants consent to both CMDS and ECM" stated twice in consecutive subsections | Open |
+| R-09 | C5 | 5.1 ↔ 5.2.4 | **Média** | High-G rationale for CMS thumb access paraphrased in 5.2.4 after full development in 5.1 | Open |
+| R-10 | C5 | 5.2.2 intro, 5.2.2.2 intro, 5.2.4 | **Aceitável** | "IDIAS uses CMS Left, not CMS Down" — repeated three times; safety-critical distinction, likely intentional | Monitoring |
 
 ---
 
@@ -53,9 +53,9 @@ Severity criteria:
 
 ### R-01 — "Only one display holds SOI designation"
 
-**Location:** Section 2.1 (line 589) ↔ Section 2.1.1 (line 599)  
-**Severity:** Alta  
-**Status:** Open
+**Location:** Section 2.1 (line 589) ↔ Section 2.1.1 (line 599)
+**Severity:** Alta
+**Status:** Resolved (2026-02-18) — sentença definitória removida da abertura de 2.1.1; subsection abre diretamente com "The F-16 cockpit contains three basic displays..."
 
 **What repeats:**
 
@@ -182,9 +182,9 @@ The boilerplate ("four-direction hat switch on the flight stick") is not adding 
 
 ### R-05 — DMS Down: NAV and A-G PRE paragraphs are literally identical
 
-**Location:** Section 3.3.1.1, NAV paragraph (line 990) ↔ A-G PRE paragraph (line 993)  
-**Severity:** Alta  
-**Status:** Open
+**Location:** Section 3.3.1.1, NAV paragraph (line 990) ↔ A-G PRE paragraph (line 993)
+**Severity:** Alta
+**Status:** Resolved (2026-02-18) — parágrafo A-G PRE substituído por referência cruzada ao NAV com notação compacta da sequência (HUD $\rightarrow$ Left MFD $\leftrightarrow$ Right MFD).
 
 **What repeats:**
 
@@ -255,9 +255,9 @@ This approach preserves the section's purpose (documenting DMS Down-specific beh
 
 ### R-07 — "Each table entry specifies" block repeated 4× across the document
 
-**Location:** Before each hotastable — lines 929 (C3-S2), 1018 (C3-S3), 1244 (C3-S4), 1355 (C5-S2)  
-**Severity:** Alta (structural)  
-**Status:** Open
+**Location:** Before each hotastable — lines 929 (C3-S2), 1018 (C3-S3), 1244 (C3-S4), 1355 (C5-S2)
+**Severity:** Alta (structural)
+**Status:** Aceitável (2026-02-18) — repetição deliberada; tabelas auto-contidas permitem leitura direta sem retornar à Seção 1.3.2. Nenhuma ação necessária.
 
 **What repeats:**
 
