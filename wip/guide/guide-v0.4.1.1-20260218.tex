@@ -660,7 +660,7 @@ The F-16 provides three primary Master Modes (NAV, A-A, and A-G) and two overrid
 	\item \textbf{Dogfight (DGFT) and Missile Override (MSL OVRD):} These are override 	modes accessed via a throttle-mounted switch. Both are optimized for air-to-air engagements, similar to the A-A Master Mode, but provide immediate access to specific weapon configurations. DGFT configures the cockpit for close-range visual combat, typically defaulting to a high-off-boresight radar mode (ACM) and short-range missile (AIM-9) selection. MSL OVRD provides rapid access to medium-range missile employment (AIM-120) with optimized radar modes. Both override modes take precedence over any other master mode except Emergency Jettison.
 \end{itemize}
 
-Each master mode establishes default configurations for sensors, displays, and weapons. These defaults can be pre-programmed via the Data Transfer Cartridge (DTC) during mission planning or adjusted manually during flight, as detailed in \secref{sec:C3-S4-S2}. The master mode determines not only what the pilot sees on the displays, but also how HOTAS switches function. A single HOTAS input — such as TMS Up — produces different results in NAV, A-A, and A-G modes because the underlying sensor and weapon context has changed. For complete master mode details, see \dashref{2.1.1.2.1}
+Each master mode pre-configures default sensor, display, and weapon options, which can be set in advance via the Data Transfer Cartridge (DTC) or adjusted manually in-flight, as detailed in \secref{sec:C3-S4-S2}. The master mode determines not only what the pilot sees on the displays, but also how HOTAS switches function. The implications for HOTAS behavior are developed in \secref{sec:C2-S2-S2}. For complete master mode details, see \dashref{2.1.1.2.1}
 
 %--------------------------------------------------------------------------
 % SUBSECTION 2.2.2 — WHY HOTAS SWITCHES BEHAVE DIFFERENTLY BY MASTER MODE
@@ -1049,9 +1049,8 @@ Each table entry specifies:
 In certain special states and submodes, DMS Down may: (i) be temporarily ineffective, as a direct reflection of DMS Up (see \secref{sec:C3-S2-S3}):
 
 \begin{itemize}
-	\item \textbf{Snowplow (SP) PRE State (not stabilised):} When the pilot enters Snowplow mode (a specialised A-G ground-stabilisation mode for slewing to arbitrary ground positions) and the SP position has not yet been stabilised with TMS Up, the SOI is effectively ``nowhere.'' Both the A-G radar and TGP MFD displays show \texttt{NOT SOI}, and neither display is designated as SOI. As a result, \textbf{DMS Down has no effect} in this state: the toggle mechanism has nowhere to advance SOI to. Once the SP position is stabilised with TMS Up (pressing TMS Up on the HUD), SOI returns to its previous designated display, and DMS Down resumes normal toggling behaviour.
-	
-	\item \textbf{MARK/OFLY Submode:} In the MARK/OFLY submode (a specialised target-acquisition context documented in \dashref{2.1.1.2.3}), the SOI cannot be designated or changed at all. Consequently, \textbf{DMS Down has no effect} in MARK/OFLY: you cannot toggle SOI when SOI designation itself is locked. This submode is rare in normal operations but is important to recognise if you encounter it during unusual procedures or system states.
+	\item \textbf{Snowplow (SP) PRE State (not stabilised):} As described in \secref{sec:C3-S2-S3}, the SOI is effectively ``nowhere'' in the unstabilised SP state. Consequently, \textbf{DMS Down has no effect} — the toggle mechanism has no valid display to advance SOI to. Once the SP position is stabilised with TMS Up, SOI returns to its previous display and DMS Down resumes normal toggling.
+	\item \textbf{MARK/OFLY Submode:} As described in \secref{sec:C3-S2-S3}, SOI cannot be designated or changed in MARK/OFLY. \textbf{DMS Down has no effect} in this state. This submode is rare in normal operations.
 \end{itemize}
 
 Additionally, DMS Down performs a specialized function independent of SOI toggling:
@@ -1348,7 +1347,7 @@ Differences in F-16 Blocks or variants, especially regarding ECM, will be discus
 \section{CMS Switch Actuation}
 \label{sec:C5-S2}
 
-The Countermeasures Management Switch (CMS) is a four-direction hat switch located at the flight stick that provides pilots with rapid, direct control over the F-16's defensive systems during demanding tactical situations. This section tabulates all CMS button combinations, organized by operational layer: Counter Measures (CMDS manual/automatic/semi modes) and Defensive Avionics integration (jamming) with both external ECM pods (ALQ-131/ALQ-184) and internal avionics (IDIAS). CMS actuation is independent of the Master Mode currently selected.
+This section tabulates all CMS button combinations, organized by operational layer: Counter Measures (CMDS manual/automatic/semi modes) and Defensive Avionics integration (jamming) with both external ECM pods (ALQ-131/ALQ-184) and internal avionics (IDIAS). CMS actuation is independent of the Master Mode currently selected.
 
 Each table entry specifies:
 

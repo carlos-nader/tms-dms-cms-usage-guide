@@ -35,11 +35,11 @@ Severity criteria:
 | ID | Chapter | Sections | Severity | Summary | Status |
 |----|---------|---------|----------|---------|--------|
 | R-01 | C2 | 2.1 ↔ 2.1.1 | **Alta** | "Only one display holds SOI" — definition repeated almost verbatim | ✅ Resolved |
-| R-02 | C2 | 2.2 intro ↔ 2.2.1 closing | **Média** | "Master mode determines..." — premise of 2.2 re-stated as conclusion of 2.2.1 | Open |
+| R-02 | C2 | 2.2 intro ↔ 2.2.1 closing | **Média** | "Master mode determines..." — premise of 2.2 re-stated as conclusion of 2.2.1 | ✅ Resolved |
 | R-03 | C2 / C3 | 2.3.1 ↔ C3 intro | **Baixa** | DMS physical description repeated in nearly identical wording | Open |
-| R-04 | C2 / C5 | 2.3.3 ↔ 5.1 ↔ 5.2 | **Alta** | CMS physical description boilerplate appears three times | Open |
+| R-04 | C2 / C5 | 2.3.3 ↔ 5.1 ↔ 5.2 | **Alta** | CMS physical description boilerplate appears three times | ✅ Resolved |
 | R-05 | C3 | 3.3.1.1 NAV ↔ A-G PRE | **Alta** | DMS Down NAV and A-G PRE paragraphs are literally identical except the last sentence | ✅ Resolved |
-| R-06 | C3 | 3.2.3 ↔ 3.3.3 | **Média** | Snowplow and MARK/OFLY exception states described in full twice | Open |
+| R-06 | C3 | 3.2.3 ↔ 3.3.3 | **Média** | Snowplow and MARK/OFLY exception states described in full twice | ✅ Resolved |
 | R-07 | C3 / C5 | Before each hotastable | **Alta (structural)** | "Each table entry specifies" block of 7 bullets appears 4× identically | Aceitável |
 | R-08 | C5 | 5.2.3 table ↔ 5.2.4 "Consent vs. CMDS Consent" | **Alta** | "CMS Down grants consent to both CMDS and ECM" stated twice in consecutive subsections | ✅ Resolved |
 | R-09 | C5 | 5.1 ↔ 5.2.4 | **Média** | High-G rationale for CMS thumb access paraphrased in 5.2.4 after full development in 5.1 | Open |
@@ -85,9 +85,9 @@ Proposed new opening for 2.1.1:
 
 ### R-02 — "Master mode determines..." re-stated as conclusion of 2.2.1
 
-**Location:** Section 2.2 intro (lines 643–645) ↔ Section 2.2.1 closing paragraph (line 665)  
-**Severity:** Média  
-**Status:** Open
+**Location:** Section 2.2 intro (lines 643–645) ↔ Section 2.2.1 closing paragraph (line 665)
+**Severity:** Média
+**Status:** Resolved (2026-02-18) — parágrafo de encerramento de 2.2.1 reescrito: mantém DTC, encurta a tese, adiciona \secref{sec:C2-S2-S2} como forward reference. Exemplo de TMS Up removido.
 
 **What repeats:**
 
@@ -148,9 +148,9 @@ Revise the first sentence of Chapter 3 intro to differentiate it from 2.3.1 or t
 
 ### R-04 — CMS physical description boilerplate appears three times
 
-**Location:** Section 2.3.3 (line 717) ↔ Section 5.1 (line 1315) ↔ Section 5.2 (line 1353)  
-**Severity:** Alta  
-**Status:** Open
+**Location:** Section 2.3.3 (line 717) ↔ Section 5.1 (line 1315) ↔ Section 5.2 (line 1353)
+**Severity:** Alta
+**Status:** Resolved (2026-02-18) — sentença de re-identificação removida de 5.2; seção abre diretamente com o scope statement. 2.3.3 e 5.1 mantidas.
 
 **What repeats:**
 
@@ -219,9 +219,9 @@ Establish the toggle sequence once under NAV, then reference it for A-G PRE, add
 
 ### R-06 — Snowplow and MARK/OFLY exception states described twice in full
 
-**Location:** Section 3.2.3 "DMS Up Exception States" (lines 958–959) ↔ Section 3.3.3 "DMS Down Exception States" (lines 1054–1056)  
-**Severity:** Média  
-**Status:** Open
+**Location:** Section 3.2.3 "DMS Up Exception States" (lines 958–959) ↔ Section 3.3.3 "DMS Down Exception States" (lines 1054–1056)
+**Severity:** Média
+**Status:** Resolved (2026-02-18) — items de 3.3.3 substituídos por versões compactas com \secref{sec:C3-S2-S3} + delta específico do DMS Down. 3.2.3 mantida.
 
 **What repeats:**
 
