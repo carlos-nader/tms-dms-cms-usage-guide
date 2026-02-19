@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [0.4.1.1] - 2026-02-18
+### Changed
+- Wording: Removed 9 redundant passages across the whole document, per BMS forum feedback.
+
+### Fixed
+- HOTAS tables: Added missing `\label` tags to 5 `hotastable` environments in Chapter 5.
+
 ## [0.4.1.0] - 2026-02-11
 ### Added
 - hotastable v2.1: Optimized HOTAS table environment.
