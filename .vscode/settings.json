@@ -39,7 +39,7 @@
       "tools": ["pdflatex"]
     }
   ],
-  "latex-workshop.latex.recipe.default": "latexmk (pdflatex)",
+    "latex-workshop.latex.recipe.default": "pdflatex × 2",
   "latex-workshop.latex.autoBuild.run": "never",
   "latex-workshop.latex.autoBuild.interval": 1000,
   "latex-workshop.view.pdf.viewer": "tab",
