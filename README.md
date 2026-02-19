@@ -47,7 +47,7 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 | **Phase** | Pre-publication (0.x.x.x) |
 | **Chapters Planned** | 7 |
 | **Chapters with Content** | 4 (C1, C2, C3, C5) |
-| **Next Target** | v0.4.1.2 — Style Full Revision |
+| **Next Target** | v0.4.2.0 — Style Full Revision |
 
 ---
 
@@ -211,7 +211,7 @@ All technical claims are cross-referenced to these sources.
 | [**Tags**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/tags) | Version history |
 
 **Next milestones:**
-* **v0.4.1.2** — Style Full Revision
+* **v0.4.2.0** — Style Full Revision
 
 ---
 
