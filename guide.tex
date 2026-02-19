@@ -252,7 +252,7 @@
 	\renewcommand{\arraystretch}{1.35}
 	\begin{longtable}{L{1.00cm} L{0.90cm} L{0.90cm} L{3.30cm} L{6.40cm} L{1.40cm} L{1.60cm}}
 		\caption{#1}\label{table.\thetable}\\
-		\addtocontents{hotas}{\protect\contentsline{table}{\protect\numberline{\thetable}#1}{\thepage}{table.\thetable}}%
+		\noalign{\addtocontents{hotas}{\protect\contentsline{table}{\protect\numberline{\thetable}#1}{\thepage}{table.\thetable}}}%
 		\rowcolor{headerblue}
 		\multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
 		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
@@ -302,10 +302,10 @@
 % VERSION CONTROL MACROS
 % --------------------------------------------------------------------------
 
-\newcommand{\docversion}{0.4.1.0}
-\newcommand{\docbuild}{20260211}
+\newcommand{\docversion}{0.4.1.1}
+\newcommand{\docbuild}{20260218}
 \newcommand{\docstartdate}{05 January 2026}
-\newcommand{\docenddate}{11 February 2026}
+\newcommand{\docenddate}{18 February 2026}
 \newcommand{\chapterscompletedof}{4/7}
 \newcommand{\tablesfilledpct}{Chapter 5 and Chapter 4}
 \newcommand{\fulldocversion}{\docversion+\docbuild}
@@ -660,7 +660,7 @@ The F-16 provides three primary Master Modes (NAV, A-A, and A-G) and two overrid
 	\item \textbf{Dogfight (DGFT) and Missile Override (MSL OVRD):} These are override 	modes accessed via a throttle-mounted switch. Both are optimized for air-to-air engagements, similar to the A-A Master Mode, but provide immediate access to specific weapon configurations. DGFT configures the cockpit for close-range visual combat, typically defaulting to a high-off-boresight radar mode (ACM) and short-range missile (AIM-9) selection. MSL OVRD provides rapid access to medium-range missile employment (AIM-120) with optimized radar modes. Both override modes take precedence over any other master mode except Emergency Jettison.
 \end{itemize}
 
-Each master mode establishes default configurations for sensors, displays, and weapons. These defaults can be pre-programmed via the Data Transfer Cartridge (DTC) during mission planning or adjusted manually during flight, as detailed in \secref{sec:C3-S4-S2}. The master mode determines not only what the pilot sees on the displays, but also how HOTAS switches function. A single HOTAS input — such as TMS Up — produces different results in NAV, A-A, and A-G modes because the underlying sensor and weapon context has changed. For complete master mode details, see \dashref{2.1.1.2.1}
+Each master mode pre-configures default sensor, display, and weapon options, which can be set in advance via the Data Transfer Cartridge (DTC) or adjusted manually in-flight, as detailed in \secref{sec:C3-S4-S2}. The master mode determines not only what the pilot sees on the displays, but also how HOTAS switches function. The implications for HOTAS behavior are developed in \secref{sec:C2-S2-S2}. For complete master mode details, see \dashref{2.1.1.2.1}
 
 %--------------------------------------------------------------------------
 % SUBSECTION 2.2.2 — WHY HOTAS SWITCHES BEHAVE DIFFERENTLY BY MASTER MODE
@@ -1049,9 +1049,8 @@ Each table entry specifies:
 In certain special states and submodes, DMS Down may: (i) be temporarily ineffective, as a direct reflection of DMS Up (see \secref{sec:C3-S2-S3}):
 
 \begin{itemize}
-	\item \textbf{Snowplow (SP) PRE State (not stabilised):} When the pilot enters Snowplow mode (a specialised A-G ground-stabilisation mode for slewing to arbitrary ground positions) and the SP position has not yet been stabilised with TMS Up, the SOI is effectively ``nowhere.'' Both the A-G radar and TGP MFD displays show \texttt{NOT SOI}, and neither display is designated as SOI. As a result, \textbf{DMS Down has no effect} in this state: the toggle mechanism has nowhere to advance SOI to. Once the SP position is stabilised with TMS Up (pressing TMS Up on the HUD), SOI returns to its previous designated display, and DMS Down resumes normal toggling behaviour.
-	
-	\item \textbf{MARK/OFLY Submode:} In the MARK/OFLY submode (a specialised target-acquisition context documented in \dashref{2.1.1.2.3}), the SOI cannot be designated or changed at all. Consequently, \textbf{DMS Down has no effect} in MARK/OFLY: you cannot toggle SOI when SOI designation itself is locked. This submode is rare in normal operations but is important to recognise if you encounter it during unusual procedures or system states.
+	\item \textbf{Snowplow (SP) PRE State (not stabilised):} As described in \secref{sec:C3-S2-S3}, the SOI is effectively ``nowhere'' in the unstabilised SP state. Consequently, \textbf{DMS Down has no effect} — the toggle mechanism has no valid display to advance SOI to. Once the SP position is stabilised with TMS Up, SOI returns to its previous display and DMS Down resumes normal toggling.
+	\item \textbf{MARK/OFLY Submode:} As described in \secref{sec:C3-S2-S3}, SOI cannot be designated or changed in MARK/OFLY. \textbf{DMS Down has no effect} in this state. This submode is rare in normal operations.
 \end{itemize}
 
 Additionally, DMS Down performs a specialized function independent of SOI toggling:
@@ -1348,7 +1347,7 @@ Differences in F-16 Blocks or variants, especially regarding ECM, will be discus
 \section{CMS Switch Actuation}
 \label{sec:C5-S2}
 
-The Countermeasures Management Switch (CMS) is a four-direction hat switch located at the flight stick that provides pilots with rapid, direct control over the F-16's defensive systems during demanding tactical situations. This section tabulates all CMS button combinations, organized by operational layer: Counter Measures (CMDS manual/automatic/semi modes) and Defensive Avionics integration (jamming) with both external ECM pods (ALQ-131/ALQ-184) and internal avionics (IDIAS). CMS actuation is independent of the Master Mode currently selected.
+This section tabulates all CMS button combinations, organized by operational layer: Counter Measures (CMDS manual/automatic/semi modes) and Defensive Avionics integration (jamming) with both external ECM pods (ALQ-131/ALQ-184) and internal avionics (IDIAS). CMS actuation is independent of the Master Mode currently selected.
 
 Each table entry specifies:
 
@@ -1374,7 +1373,7 @@ The ALE-47 CMDS (Automatic Chaff and Flare Dispensing System) provides three ope
 
 The CMDS Manual (MAN) mode grants the pilot direct, program-by-program control over countermeasure expenditure. Each CMS direction selects or executes a specific program. This mode is recommended when threat types are well-known or when chaff/flare inventory must be conserved, or by pilot choice.
 
-\begin{hotastable}{CMS Actuation with CMDS Manual Mode}
+\begin{hotastable}{CMS Actuation with CMDS Manual Mode}\label{tab:C5-S2-S1-S1-CMDS-Manual}
 CMDS MAN & Up & Short & Execute Program 1--4 &
 Runs the program selected via the CMDS panel PRGM knob once per press. No threat sensing; purely pilot-commanded. Overrides any AUTO dispensing, if running.
 & 2.7.2.2 & 18, 28 \\
@@ -1389,7 +1388,7 @@ Flare-only program. Often pre-configured for close-range air-to-air engagements 
 
 The CMDS Automatic (AUTO) mode enables the ALE-47 CMDS to dispense chaff/flare programs continuously in response to RWR-detected threats, without requiring pilot consent for each event. Pilot consent is given once by pressing CMS Down; dispensing continues until CMS Right is pressed or expendables are exhausted.
 
-\begin{hotastable}{CMS Actuation with CMDS Automatic Mode}
+\begin{hotastable}{CMS Actuation with CMDS Automatic Mode}\label{tab:C5-S2-S1-S2-CMDS-Auto}
 CMDS AUTO & Up & Short & Execute Program 1--4 &
 Manual override: runs the selected program once, interrupting any ongoing AUTO dispensing. After the manual program completes, AUTO resumes if threat persists. Useful for pilot override in high-threat scenarios.
 & 2.7.2.2 & 18, 28 \\
@@ -1410,7 +1409,7 @@ CMS Right removes CMDS consent and places the ALE-47 in Standby. Automatic dispe
 
 Semi-Automatic (SEMI) mode allows the ALE-47 to prompt the pilot for consent on a per-threat basis. When the RWR detects a threat requiring countermeasures, the CMDS displays ``DISPENSE RDY'' on the control unit and sounds a ``COUNTER'' voice message, requesting pilot consent via CMS Down.
 
-\begin{hotastable}{CMS Actuation with CMDS Semi-Automatic Mode}
+\begin{hotastable}{CMS Actuation with CMDS Semi-Automatic Mode}\label{tab:C5-S2-S1-S3-CMDS-Semi}
 CMDS SEMI & Up & Short & Execute Program 1--4 &
 Manual override: runs the selected program once, independent of RWR threat state. After execution, CMDS returns to monitoring for threats and issuing ``COUNTER'' prompts.
 & 2.7.2.2 & 18, 28 \\
@@ -1437,7 +1436,7 @@ External ECM pods (ALQ-131, ALQ-184) and internal IDIAS (Improved Defensive Inte
 
 External ECM pods provide pilot-controlled jamming across five frequency-band programs. The CMS Down position grants ``ECM consent,'' enabling the pod to transmit at the XMIT switch setting (modes 1, 2, or 3). The ECM Enable light on the miscellaneous panel indicates consent state.
 
-\begin{hotastable}{CMS Actuation with External ECM Pod}
+\begin{hotastable}{CMS Actuation with External ECM Pod}\label{tab:C5-S2-S2-S1-ECM-Pod}
 ECM Pod & Down & Short & Enable ECM Transmit; Grant Consent &
 CMS Down illuminates the ECM Enable light and permits the external ECM pod to transmit in the mode set by the XMIT switch on the ECM control panel (XMIT 1: AUTO Avionics Priority; XMIT 2: AUTO ECM Priority; XMIT 3: Continuous Jam). Pod continues transmitting as long as ECM is not cancelled by the pilot or RF switch is moved away from NORM.
 & 2.7.4.2.5 & 28 \\
@@ -1452,7 +1451,7 @@ CMS Right extinguishes the ECM Enable light and places the ECM pod in Standby, h
 
 Internal avionics ECM (IDIAS: Improved Defensive Internal Avionic System) automatically selects frequency bands to jam based on RWR threat priority. CMS Left cycles through operational modes (Standby, Avionics Priority, ECM Priority). CMS Down is not used for IDIAS; mode control is via CMS Left and the XMTR button on the ECM panel.
 
-\begin{hotastable}{CMS Actuation with Internal ECM (IDIAS)}
+\begin{hotastable}{CMS Actuation with Internal ECM (IDIAS)}\label{tab:C5-S2-S2-S2-IDIAS}
 IDIAS ECM & Left & Short & Cycle ECM Operational Mode &
 Each short press of CMS Left advances the ECM mode: STBY $\rightarrow$ AVNC (Avionics Priority) $\rightarrow$ ECM (ECM Priority) $\rightarrow$ AVNC $\rightarrow$ ECM (cycles).
 & 2.7.4.1.2 & 28 \\
@@ -1477,7 +1476,7 @@ Single CMS Down command grants consent to \textit{both} the ALE-47 CMDS (AUTO/SE
 \subsection{Important Operational Notes}
 \label{sec:C5-S2-S4}
 
-The CMS provides rapid, tactile access to CMDS program selection and ECM transmit authority without requiring the pilot to manipulate distant panels during high-G maneuvering. Mastery of CMS actuation across all CMDS modes (MAN, SEMI, AUTO) and ECM configurations (external pod, IDIAS) is essential for effective defensive operations. Pilots must understand the consent state model, RF switch interactions, and inventory management to avoid unintended dispensing or system saturation.
+The following notes clarify key behavioral interactions between CMS actuation, CMDS consent states, and ECM transmit authority. Mastery of CMS actuation across all CMDS modes (MAN, SEMI, AUTO) and ECM configurations (external pod, IDIAS) is essential for effective defensive operations. Pilots must understand the consent state model, RF switch interactions, and inventory management to avoid unintended dispensing or system saturation.
 
 \paragraph{State Tracking:}
 
