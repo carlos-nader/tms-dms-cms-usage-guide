@@ -36,13 +36,13 @@ Severity criteria:
 |----|---------|---------|----------|---------|--------|
 | R-01 | C2 | 2.1 ↔ 2.1.1 | **Alta** | "Only one display holds SOI" — definition repeated almost verbatim | ✅ Resolved |
 | R-02 | C2 | 2.2 intro ↔ 2.2.1 closing | **Média** | "Master mode determines..." — premise of 2.2 re-stated as conclusion of 2.2.1 | ✅ Resolved |
-| R-03 | C2 / C3 | 2.3.1 ↔ C3 intro | **Baixa** | DMS physical description repeated in nearly identical wording | Open |
+| R-03 | C2 / C3 | 2.3.1 ↔ C3 intro | **Baixa** | DMS physical description repeated in nearly identical wording | Aceitável |
 | R-04 | C2 / C5 | 2.3.3 ↔ 5.1 ↔ 5.2 | **Alta** | CMS physical description boilerplate appears three times | ✅ Resolved |
 | R-05 | C3 | 3.3.1.1 NAV ↔ A-G PRE | **Alta** | DMS Down NAV and A-G PRE paragraphs are literally identical except the last sentence | ✅ Resolved |
 | R-06 | C3 | 3.2.3 ↔ 3.3.3 | **Média** | Snowplow and MARK/OFLY exception states described in full twice | ✅ Resolved |
 | R-07 | C3 / C5 | Before each hotastable | **Alta (structural)** | "Each table entry specifies" block of 7 bullets appears 4× identically | Aceitável |
 | R-08 | C5 | 5.2.3 table ↔ 5.2.4 "Consent vs. CMDS Consent" | **Alta** | "CMS Down grants consent to both CMDS and ECM" stated twice in consecutive subsections | ✅ Resolved |
-| R-09 | C5 | 5.1 ↔ 5.2.4 | **Média** | High-G rationale for CMS thumb access paraphrased in 5.2.4 after full development in 5.1 | Open |
+| R-09 | C5 | 5.1 ↔ 5.2.4 | **Média** | High-G rationale for CMS thumb access paraphrased in 5.2.4 after full development in 5.1 | ✅ Resolved |
 | R-10 | C5 | 5.2.2 intro, 5.2.2.2 intro, 5.2.4 | **Aceitável** | "IDIAS uses CMS Left, not CMS Down" — repeated three times; safety-critical distinction, likely intentional | Monitoring |
 
 ---
@@ -117,9 +117,9 @@ Proposed replacement closing for 2.2.1:
 
 ### R-03 — DMS physical description repeated in C3 intro
 
-**Location:** Section 2.3.1 (line 693) ↔ Chapter 3 intro (line 738)  
-**Severity:** Baixa  
-**Status:** Open
+**Location:** Section 2.3.1 (line 693) ↔ Chapter 3 intro (line 738)
+**Severity:** Baixa
+**Status:** Aceitável (2026-02-18) — repetição deliberada; capítulos são unidades independentes de leitura. Leitor que entra direto no C3 precisa da re-introdução. Mesma lógica de R-07. Nenhuma ação necessária.
 
 **What repeats:**
 
@@ -328,9 +328,9 @@ Additionally, section 5.2.3 is a single-row table labelled "CMS Interaction with
 
 ### R-09 — High-G rationale for CMS thumb access paraphrased in 5.2.4
 
-**Location:** Section 5.1, second paragraph (line 1317) ↔ Section 5.2.4, opening sentence (line 1482)  
-**Severity:** Média  
-**Status:** Open
+**Location:** Section 5.1, second paragraph (line 1317) ↔ Section 5.2.4, opening sentence (line 1482)
+**Severity:** Média
+**Status:** Resolved (2026-02-18) — primeira sentença de 5.2.4 substituída por scope statement; rationale high-G permanece exclusivamente em 5.1.
 
 **What repeats:**
 

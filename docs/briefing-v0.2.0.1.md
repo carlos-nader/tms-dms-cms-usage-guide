@@ -629,36 +629,41 @@ Comprehensive 5-level hierarchy with optical adjustments:
 **Updated:** 2026-02-11 (Guide v0.4.1.0)
 
 ```latex
+% --------------------------------------------------------------------------
+% HOTAS table environment
+% Version: 2.1 (2026-02-10)
+% --------------------------------------------------------------------------
+
 \newenvironment{hotastable}[1]{%
-  \footnotesize                              % Font size (8pt) — NEW
-  \setlength{\tabcolsep}{3pt}               % Cell padding — CHANGED from 2pt
-  \renewcommand{\arraystretch}{1.35}        % Row height — CHANGED from 1.25
-  \begin{longtable}{L{1.00cm} L{0.90cm} L{0.90cm} L{3.30cm} L{6.40cm} L{1.40cm} L{1.60cm}}
-  \caption{#1}\label{table.\thetable}\\
-  \addtocontents{hotas}{\protect\contentsline{table}{\protect\numberline{\thetable}#1}{\thepage}{table.\thetable}}%
-  \rowcolor{headerblue}
-  \multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
-  \endfirsthead
-  \rowcolor{headerblue}
-  \multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
-  \multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
-  \endhead
-  \multicolumn{7}{r}{\small\emph{Continued on next page}}\\
-  \endfoot
-  \endlastfoot
-}{%
-  \end{longtable}
+	\footnotesize
+	\setlength{\tabcolsep}{3pt}
+	\renewcommand{\arraystretch}{1.35}
+	\begin{longtable}{L{1.00cm} L{0.90cm} L{0.90cm} L{3.30cm} L{6.40cm} L{1.40cm} L{1.60cm}}
+		\caption{#1}\label{table.\thetable}\\
+		\noalign{\addtocontents{hotas}{\protect\contentsline{table}{\protect\numberline{\thetable}#1}{\thepage}{table.\thetable}}}%
+		\rowcolor{headerblue}
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
+		\endfirsthead
+		\rowcolor{headerblue}
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
+		\endhead
+		\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+		\endfoot
+		\endlastfoot
+	}{%
+	\end{longtable}
 }
 ```
 
