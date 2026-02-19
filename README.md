@@ -26,7 +26,7 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 
 ## 📄 Main Guide Files
 
-[![Version](https://img.shields.io/badge/LATEST%20version-v0.4.1.0-yellow?style=for-the-badge&logo=tag&logoColor=black)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases)
+[![Version](https://img.shields.io/badge/LATEST%20version-v0.4.1.1-yellow?style=for-the-badge&logo=tag&logoColor=black)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases)
 
 | Format | Link | Description |
 |:------:|:----:|:------------|
@@ -43,11 +43,11 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 
 | Metric | Value |
 |--------|-------|
-| **Guide Version** | v0.4.1.0 |
+| **Guide Version** | v0.4.1.1 |
 | **Phase** | Pre-publication (0.x.x.x) |
 | **Chapters Planned** | 7 |
 | **Chapters with Content** | 4 (C1, C2, C3, C5) |
-| **Next Target** | v0.5.0.0 — TMS Chapter (C4) |
+| **Next Target** | v0.4.1.2 — Style Full Revision |
 
 ---
 
@@ -211,7 +211,7 @@ All technical claims are cross-referenced to these sources.
 | [**Tags**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/tags) | Version history |
 
 **Next milestones:**
-* **v0.5.0.0** — TMS (C4)
+* **v0.4.1.2** — Style Full Revision
 
 ---
 
@@ -271,4 +271,4 @@ For questions, suggestions, or feedback:
 
 ---
 
-**License:** CC BY-NC 4.0 | **Guide Status:** Pre-publication v0.4.1.0
+**License:** CC BY-NC 4.0 | **Guide Status:** Pre-publication v0.4.1.1
