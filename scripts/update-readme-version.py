@@ -313,13 +313,13 @@ def main():
         # Atualiza o badge visual (ex: 📦 v0.4.1.0 • ...)
         new_index_content, badge_changes = re.subn(
             r'(📦 v)([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)( • [^<]+)',
-            r'\1' + version + r'\3',
+            rf'\g<1>{version}\g<3>',
             index_content
         )
         # Atualiza o atributo title (ex: title="v0.4.1.0 Changelog: ...")
         new_index_content, title_changes = re.subn(
             r'(title=")v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+( Changelog: )',
-            r'\1v' + version + r'\2',
+            rf'\g<1>v{version}\g<2>',
             new_index_content
         )
         total_changes = badge_changes + title_changes
