@@ -36,7 +36,7 @@ This document tracks governance rules, project state, and development history. F
 
 ## 2. PROJECT SNAPSHOT
 
-**Last updated:** 2026-02-19
+**Last updated:** 2026-02-20
 
 | Metric | Value |
 |--------|-------|
@@ -46,7 +46,7 @@ This document tracks governance rules, project state, and development history. F
 | **Chapters Integrated** | 4/7 (C1, C2, C3, C5) |
 | **Chapters In Development** | 1/7 (C4) |
 | **Chapters Pending** | 2/7 (C6, C7) |
-| **Total Commits** | 603 |
+| **Total Commits** | 620 |
 | **Latest Release** | v0.4.1.1 (2026-02-18) |
 
 ### Chapter Status
@@ -82,6 +82,7 @@ Chronological record of significant changes. For detailed commit history, see IN
 | 2026-02-13 | — | **C4 WIP Progress:** Main chapter file renamed to `chapter-C4-tms-structure-dev-2026-02-13.tex` (52,056 bytes). Section file `section-C4-S3-tms-aa-dev-2026-02-13.tex` (33,612 bytes) created, covering §4.3 — TMS in Air-to-Air. Covers TMS behavior in A-A contexts: FCR modes (SAM, STT, TWS), ACM modes (BORE, 10×60, 30×20, SLEW with HMCS integration), IFF interrogation, and TGP A-A mode. Structure complete: 6 subsections (§4.3.1–§4.3.6), 6 table placeholders, cross-references validated. Content state: structural outline with bullet points (not narrative prose). Pending: transform to narrative (C3/C5 style) + fill 6 hotastable tables with Dash-34/Training Manual data. Total commits: 523. |
 | 2026-02-15 | — | **C4 WIP Progress (continued):** Section file promoted from `dev` to `review`: `section-C4-S3-tms-aa-review-2026-02-15.tex` (39,095 bytes, +16.3% size increase). §4.3 introduction finalized and validated: grammar corrections, Dash-34 cross-references (§2.3.1.5.7-12) verified, internal cross-references (→C2:§2.1.3, →C3:§3.1.1, →C3:§3.1.3) confirmed, prose cadence refined. Corrections applied: "exclusively" → "restricted to" (para 2), added "primary" qualifier to "FCR provides four **primary** tracking modes" (para 3). **Dependency WIP created:** `section-C2-S1-S3-soi-context-dependency-final-2026-02-15.tex` (20,493 bytes, status `final`). Establishes TGP (Targeting Pod) introduction in C2 fundamentals (§2.1.3), defines TGP as equipment-dependent (AN/AAQ-33 Sniper XR ATP, AN/AAQ-14 LANTIRN), cross-references →C4:§4.3.6 (TGP A-A tracking) and Dash-34 §2.6. Rationale: First TGP mention should occur in C2 conceptual layer, not C4 operational layer. §4.3 subsections §4.3.1–§4.3.6 (SAM, STT, TWS, ACM, IFF, TGP A-A) remain in draft status; 6 hotastable tables (0/6 complete) pending population. Integration target: **v0.5.0.0** (simultaneous integration of C2:§2.1.3 + C4:§4.3 introduction). Issues #38 (REVIEW — in progress) and #40 (APPROVED — integration checklist) updated. Total commits: 558. |
 | 2026-02-17 | — | **C4 WIP Progress (continued):** Section file updated and renamed: `section-C4-S3-tms-aa-review-2026-02-17.tex` (51,744 bytes). §4.3.5 (TMS and IFF Interrogation) introduction refined: "cockpit identification methods" substituted "identification procedures" for precision. §4.3.5.1 (SCAN Interrogation Mode) narrative completed and approved: TMS Left short press (<0.6s) behavior, SCAN configuration (DED INTG page, FCR CNTL OSB 10), symbology (green circle = friendly, yellow square = bogey/unknown), tactical context (BVR intercepts, ROE compliance, multiple contacts). Dash-34 cross-references validated (§2.2.4.4.2.1.1, §2.3.1.5.1.6.2). **§4.3.5.2 (LOS Interrogation Mode) narrative completed and approved:** concept (beam coverage area, cursor-directed, 2 beams, comparison vs SCAN), behavior (TMS Left ≥0.6s, 16 replies, beam geometry nuance, range filtering), configuration (DED INTG + DCS right SEQ→LOS page, independent from SCAN), symbology (cross-ref to §4.3.5.1), tactical context (BVR designated target; unsupported "VID passes" claim removed). Dash-34 cross-references validated (§2.2.4.4.2.1, §2.2.4.4.2.1.2, §2.2.4.4.2.2). §4.3.5.5 (AIFF Availability) updated with Link 16 context marking for future development. Narrative completion: 25% → **~28.57%** (4 subsections complete: §4.3 intro, §4.3.5 intro, §4.3.5.1, §4.3.5.2). Subsections §4.3.1–§4.3.4 (SAM, STT, TWS, ACM), §4.3.5.3–§4.3.5.5 (Emergency, Constraints, AIFF Availability), §4.3.6 (TGP A-A) remain in draft. 6 hotastable tables (0/6 complete) pending. Total commits: 558 → **582** (+24 commits). |
+| 2026-02-20 | — | **Style revision started (C5):** WIP file opened: `wip/chapter-C5-style-rev-review-2026-02-19.tex`. Session 2026-02-19: §5.1 title revised ("Concept and Interaction with CMDS / ECM / RWR" →' "Concept"). §5.1 ¶1 rewritten and validated against Dash-34 §2.7.1. §5.1 ¶2 eliminated (benefit claims, design rationale — no technical content). §5.1 ¶3 eliminated (RWR relationship not supported by Dash-34; RWR is a separate subsystem not controlled by CMS). Stopped at §5.1.1. Issue #44 comment added with session progress. Style guide documents created: `STYLE-GUIDE-v0.1.0.md` and `STYLE-PROMPT-v0.1.0.md` (restricted, not in /docs/). Issue #44 body updated with working files strategy (one WIP per chapter, status: review). Total commits: 603 →' **620** (+17 commits). |
 | 2026-02-19 | v0.4.1.1 | **RELEASE:** Repetition cleanup and missing hotastable `\label` corrections. 9 editorial corrections applied across C1–C5 (R-01 to R-09); R-10 retained as intentional. `\label` tags added to all hotastable environments (Issue #43). Issues #42 and #43 closed. Milestone 6 completed (2/2). **Style revision decision:** Community feedback (BMS Forum — users Van and mirv) prompted decision to conduct a dedicated style revision pass to remove AI-generated phrasing. Issue #44 opened. Milestone "v0.4.2.0 — Style Revision" created (due 2026-03-20). Forum thread activity noted; v0.4.1.1 not published to forum — next forum post planned for v0.4.2.0 after style revision. C4 WIP resumed. Total commits: **603**. |
 
 ---
@@ -92,13 +93,14 @@ Chronological record of significant changes. For detailed commit history, see IN
 
 | Item | Value |
 |------|-------|
-| **Status** | Open — pending implementation |
+| **Status** | **In Progress** — C5 style revision started (session 2026-02-19) |
 | **Milestone** | "v0.4.2.0 — Style Revision" (due 2026-03-20, progress 0/1) |
 | **Open Issues** | #44 (Style revision: remove AI-speak across all integrated chapters) |
 | **Version Bump** | PATCH: style revision affects multiple chapters simultaneously; not a simple correction |
 | **Scope** | All integrated chapters: C1, C2, C3 (DMS), C5 (CMS) |
 | **Criteria** | Remove abstract/eloquent phrasing that no human technical writer would produce; prioritize clarity and directness over elegance |
-| **Next step** | Review each chapter section by section; flag and rewrite problematic passages directly |
+| **Next step** | Resume C5 from §5.1.1 → §5.3; then open WIP files for C1, C2, C3 |
+| **WIP Files** | `wip/chapter-C5-style-rev-review-2026-02-19.tex` (C5: review, ~5% complete — §5.1 done) |
 | **Forum** | Next forum post planned for v0.4.2.0 release; forum thread left to cool down after Feb 19 exchange |
 
 ---
