@@ -47,6 +47,7 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 | **Phase** | Pre-publication (0.x.x.x) |
 | **Chapters Planned** | 7 |
 | **Chapters with Content** | 4 (C1, C2, C3, C5) |
+| **Chapters with Style Revision Complete** | 0 (in progress: C5 ~65%) |
 | **Next Target** | v0.4.2.0 — Style Full Revision |
 
 ---
@@ -96,6 +97,8 @@ tms-dms-cms-usage-guide/
 ├── guide.tex                         # Current production version (.tex)
 ├── guide.pdf                         # Compiled PDF
 ├── INTEGRATED-FILES.md               # Auto-generated tracking report
+├── CHANGELOG.md                      # Releases changelog tracking
+├── SETUP.md                          # Infrastructure setup
 │
 ├── docs/                             # Governance & tracking
 │   ├── guide-web.pdf                 # guide.pdf copy for online visualization
@@ -104,7 +107,7 @@ tms-dms-cms-usage-guide/
 │   ├── version-system-v4.2.1.md
 │   ├── project-tracking-v5.0.0.md
 │   ├── WIP-Snapshot-Generator-v3.1.html       
-│   └── training-mission-abbrev-table-v1.0.md
+│   └── tex-preamble-consolidated.md
 │
 ├── wip/                              # Active work-in-progress files
 │   ├── chapter-*.tex                 # Chapter drafts
@@ -121,6 +124,7 @@ tms-dms-cms-usage-guide/
 │
 ├── fig/                              # Images used in the guide
 ├── misc/                             # Miscellaneous resources
+│   ├── STYLE-GUIDE-v0.2.0.md
 │   └── fontes/                       # Source PDFs (Dash-34, etc.)
 ├── scripts/                          # Automation scripts
 ├── .github/                          # Issues, Actions, PR templates, community files
@@ -134,11 +138,12 @@ tms-dms-cms-usage-guide/
 
 ## 📋 Documentation & Governance
 
-The project uses **four governance documents** in `/docs/` and an **auto-generated tracking report**:
+The project uses **five governance documents** and an **auto-generated tracking report**:
 
 | Document | Location | Purpose |
 |----------|----------|---------|
-| [**BRIEFING**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/briefing-v0.2.0.1.md) | `/docs/` | Project scope, content outline, style guidelines, layout standards |
+| [**BRIEFING**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/briefing-v0.2.0.1.md) | `/docs/` | Project scope, content outline, layout standards |
+| [**STYLE-GUIDE**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/misc/STYLE-GUIDE-v0.2.0.md) | `/misc/` | Prose style, voice, formatting policies, and prohibited patterns |
 | [**WIP-FILE-NAMING**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/wip-file-naming-v1.4.md) | `/docs/` | Rules for WIP file naming, status lifecycle (dev → review → final → approved) |
 | [**VERSION-SYSTEM**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/version-system-v4.2.1.md) | `/docs/` | Guide version numbering (0.x.x.x pre-publication, x.y.z post-publication) |
 | [**PROJECT-TRACKING**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/project-tracking-v5.0.0.md) | `/docs/` | Session log, WIP status snapshot, milestones, current priorities |
@@ -173,14 +178,14 @@ The project uses **four governance documents** in `/docs/` and an **auto-generat
 ### Development Environment
 
 * **TeXstudio + MiKTeX** — Primary LaTeX IDE for guide compilation and PDF generation
-* **Visual Studio Code** — Multi-purpose editor for LaTeX, Markdown, scripts, and Copilot integration
+* **Visual Studio Code** — Multi-purpose editor for LaTeX, Markdown, scripts, and Copilot/Claude AI integration
 * **Git / GitHub Desktop** — Version control and repository management
 
 ### AI Collaboration
 
-* **Claude Pro (Anthropic)** — Co-editor: content development, critical review, governance
-* **Perplexity Pro** — Research, early project structuring, and content creation
-* **GitHub Copilot Pro** — Documentation, repository management, issue/PR coordination, and collaborative development (both in GitHub web and VSCode)
+* **Claude Pro (Anthropic)** — Research, initial draft content development, critical review, and governance (web interface and VSCode via Claude Code)
+* **Perplexity Pro** — Research, early project structuring, and initial draft content development
+* **GitHub Copilot Pro** — Documentation, repository management, issue/PR coordination, and collaborative development (GitHub web and VSCode)
 
 ### Project Utilities
 
@@ -253,7 +258,8 @@ For full legal details, see the [LICENSE](https://github.com/carlos-nader/tms-dm
 
 **Project Development:**
 * Carlos "Metal" Nader — Project lead, content author
-* AI Assistants for structural guidance, governance framework, and content generation — Perplexity Pro and Claude Pro
+* AI Assistants for structural guidance, governance framework, Dash-34 research, and initial content drafting — Perplexity Pro and Claude Pro
+* AI Assistant for GitHub coding and repository maintenance — Copilot Pro
 
 **Technical References:**
 * Falcon BMS (official manuals & training materials)
