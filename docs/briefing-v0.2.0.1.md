@@ -9,7 +9,7 @@ sitemap:
 
 # Falcon BMS 4.38.1 — TMS, DMS and CMS Usage Guide: Project Brief
 
-**Brief Version:** v0.2.0.1-2026-02-11 (Preamble V2.1: hotastable v2.1, List of HOTAS Tables, Cross-Reference Macros, PDF Metadata)
+**Brief Version:** v0.2.0.1-2026-02-22
 
 ---
 
@@ -198,14 +198,9 @@ Assume there is already a LaTeX template with this structure. Do not change the 
 
 Focus is always TMS, DMS and CMS. Mention other controls only when strictly needed.
 
-### 5.3 Intro and "How to Read" Sections
+### 5.3 Style guide - mandatory adherence
 
-The Introduction should clearly explain:
-
-- The unofficial and community-made nature.
-- Scope (TMS/DMS/CMS only).
-- The role of tables and training-mission references.
-- That the visual chapter is a quick reference, not the primary source of truth.
+Consult and always adhere to to `misc/STYLE-GUIDE.md` for all **prose style, voice, formatting, and prohibited pattern rules**.
 
 ---
 
@@ -964,7 +959,7 @@ pdflatex section-C5-S2-cms-new-dev-2026-02-11.tex
 
 ---
 
-**Last Updated:** 2026-02-11, 08:30 PM -03  
+**Last Updated:** 2026-02-22  
 **Status:** Ready for use and contribution  
 **License:** CC BY-NC 4.0  
 **Next Update:** After significant preamble or structure changes
