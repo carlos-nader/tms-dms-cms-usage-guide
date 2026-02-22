@@ -476,9 +476,9 @@ Flare-only program, activated regardless of PRGM knob position. Independent of t
 \subsubsection{Automatic Mode}
 \label{sec:C5-S2-S1-S2}
 
-In Automatic (AUTO) mode, the ALE-47 CMDS dispenses the selected program (1–4) continuously in response to threats detected by the Radar Warning Receiver (RWR).
+In Automatic (AUTO) mode, the ALE-47 CMDS dispenses the selected program (1–4) \textit{continuously} in response to threats detected by the Radar Warning Receiver (RWR).
 
-Pilot consent is given once by pressing \textbf{CMS Down}; dispensing continues until \textbf{CMS Right} is pressed or expendables are exhausted.
+Pilot consent is given \textit{once} by pressing \textbf{CMS Down}; dispensing continues until \textbf{CMS Right} is pressed or expendables are exhausted.
 
 \begin{hotastable}{CMS Actuation with CMDS Automatic Mode}\label{tab:C5-S2-S1-S2-CMDS-Auto}
 CMDS AUTO & Up & Short & Execute Program 1--4 &
@@ -498,7 +498,7 @@ Removes CMDS consent and places the ALE-47 in Standby. Automatic dispensing halt
 \subsubsection{Semi-Automatic Mode}
 \label{sec:C5-S2-S1-S3}
 
-In Semi-Automatic (SEMI) mode, the ALE-47 CMDS dispenses one program per RWR-detected threat, with pilot consent required for each event.
+In Semi-Automatic (SEMI) mode, the ALE-47 CMDS dispenses \textit{one program} per RWR-detected threat, with pilot consent required for \textit{each event}.
 
 When a threat is detected, the CMDS control unit displays \texttt{DISPENSE RDY} and the system sounds a \texttt{COUNTER} voice message.
 
@@ -529,7 +529,7 @@ External ECM pods (ALQ-131, ALQ-184) and internal IDIAS (Improved Defensive Inte
 
 \begin{hotastable}{CMS Actuation with External ECM Pod}\label{tab:C5-S2-S2-S1-ECM-Pod}
 ECM Pod & Down & Short & Grant ECM Consent &
-CMS Down illuminates the ECM Enable light. The pod transmits in the mode set by the XMIT switch. Transmission continues until CMS Right is pressed or the RF switch is moved from \texttt{NORM}.
+\textbf{CMS Down} illuminates the ECM Enable light. The pod transmits in the mode set by the XMIT switch. Transmission continues until \textbf{CMS Right} is pressed or the RF switch is moved from \texttt{NORM}.
 & 2.7.4.2.5 & 28 \\
 ECM Pod & Right & Short & Remove ECM Consent &
 CMS Right removes consent and places the pod in Standby. The ECM Enable light extinguishes. Transmission does not resume until CMS Down is re-issued.
@@ -539,14 +539,14 @@ CMS Right removes consent and places the pod in Standby. The ECM Enable light ex
 \subsubsection{Internal ECM (IDIAS)}
 \label{sec:C5-S2-S2-S2}
 
-IDIAS provides three operational modes controlled via \textbf{CMS Left}: Standby (\texttt{STBY}), Avionics Priority (\texttt{AVNC}), and ECM Priority (\texttt{ECM}). Operational modes are available only when the XMTR button is set to \texttt{OPER}. The active mode is reflected on the HUD, FCR, RWR, and TFR pages.
+IDIAS provides three operational modes controlled via \textbf{CMS Left}: Standby (\texttt{STBY}), Avionics Priority (\texttt{AVNC}), and ECM Priority (\texttt{ECM}). Operational modes are available only when the XMTR button is set to OPER. The active mode is reflected on the HUD, FCR, RWR, and TFR pages.
 
 \begin{hotastable}{CMS Actuation with Internal ECM (IDIAS)}\label{tab:C5-S2-S2-S2-IDIAS}
 IDIAS ECM & Left & Short & Cycle ECM Operational Mode &
-Each short press of CMS Left advances the IDIAS mode: \texttt{STBY} $\rightarrow$ \texttt{AVNC} (Avionics Priority) $\rightarrow$ \texttt{ECM} (ECM Priority) $\rightarrow$ \texttt{AVNC} $\rightarrow$ \texttt{ECM}.
+Each short press of \textbf{CMS Left} advances the IDIAS mode: \texttt{STBY} $\rightarrow$ \texttt{AVNC} (Avionics Priority) $\rightarrow$ \texttt{ECM} (ECM Priority) $\rightarrow$ \texttt{AVNC} $\rightarrow$ \texttt{ECM}.
 & 2.7.4.1.2 & 28 \\
 IDIAS ECM & Right & Short & Remove ECM Consent &
-CMS Right sets IDIAS to \texttt{STBY}, removing consent. \texttt{AVNC} or \texttt{ECM} modes are not restored until CMS Left is re-applied.
+\textbf{CMS Right} sets IDIAS to \texttt{STBY}, removing consent. \texttt{AVNC} or \texttt{ECM} modes are not restored until CMS Left is re-applied.
 & 2.7.4.1.2 & 28 \\
 \end{hotastable}
 
