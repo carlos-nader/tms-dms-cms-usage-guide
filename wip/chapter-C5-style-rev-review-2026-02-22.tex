@@ -379,7 +379,10 @@
 	
 	\pagenumbering{arabic}
 
-% File Name: chapter-C5-style-rev-review-2026-02-20.tex
+%============================================================================
+% WIP FILE METADATA (NOT RENDERED IN PDF)
+%============================================================================
+% File Name: chapter-C5-style-rev-review-2026-02-22.tex
 % WIP Naming Convention: v1.4
 % Target Chapter: C5 (CMS — Countermeasures Management Switch)
 % Target Section: ALL (style revision pass — full chapter)
@@ -389,11 +392,11 @@
 % Last Modified: 2026-02-22
 %
 % Narrative Completion: ~65% (§5.1 completo, §5.2.1.1–§5.2.1.3 completos,
-%   §5.2.2 completo, §5.2.3 completo)
-% Table Fill Status: N/A (style revision does not modify tables)
+%   §5.2.2 completo, §5.2.3 completo, §5.2.4 completo)
+% Table Fill Status: hotastable cells revised (style pass — violations corrected)
 %
 % Notes:
-% - Contains approved revised prose for C5 only. Tables are not modified.
+% - Contains approved revised prose for C5 only.
 % - Each passage enters this file after explicit author approval.
 % - Status remains 'review' until all C5 sections are complete; then → final.
 % - Session 2026-02-19: §5.1 title revised, ¶1 rewritten, ¶2 and ¶3 eliminated.
@@ -401,8 +404,11 @@
 % - Session 2026-02-20: §5.1 finalizado (figura e cross-references). §5.2 abertura,
 %   lista de colunas, §5.2.1 (CMDS) e subseções §5.2.1.1–§5.2.1.3 completos.
 % - Session 2026-02-22: §5.2.2 (ECM) e §5.2.3 (Consent and Constraints) completos.
-%   Títulos revisados. Prosa e tabelas revisadas.
-% - Stopped at §5.2.4. Pending: §5.2.4 → §5.3.
+%   Títulos revisados. Prosa e tabelas revisadas (style violations corrected:
+%   PROHIBITED ×1, PASSIVE-MISUSE ×2, CLOSING ×1, FORMAT-ITAL ×2).
+%   §5.2.4 (Operational Notes) completo: 5 parágrafos aprovados, PASSIVE-MISUSE ×4
+%   corrigidos. Frase de encadeamento adicionada em §5.2.2 (RF switch / landing gear).
+% - Pending: §5.3 (CMS Block and Variant Notes).
 % - TODO: RWR introduced for the first time at §5.2.1.2. Consider conceptual
 %   introduction in C2 (HOTAS Fundamentals).
 % - Cross-reference: Issue #44 (v0.4.2.0 style revision).
@@ -469,7 +475,7 @@ CMDS MAN & Up & Short & Execute Program 1--4 &
 Runs the program selected via the CMDS panel PRGM knob once per press. No threat sensing; no automatic triggering. Overrides any AUTO dispensing, if running.
 & 2.7.2.2 & 18, 28 \\
 CMDS MAN & Left & Short & Execute Program 6 &
-Flare-only program, activated regardless of PRGM knob position. Independent of threat sensing.
+Flare-only program. PRGM knob position has no effect. Independent of threat sensing.
 & 2.7.2.2 & 19 \\
 \end{hotastable}
 
@@ -491,7 +497,7 @@ CMDS AUTO & Down & Short & Give Consent; Enable AUTO Dispensing &
 Grants consent for AUTO dispensing. RWR-detected threats trigger automatic execution of the program selected via the CMDS panel PRGM knob. Dispensing continues until the threat clears or CMS Right is pressed. Consent state persists if the pilot switches to MAN mode; returning to AUTO resumes auto-dispensing if a threat is detected.
 & 2.7.2.1 & 18, 28 \\
 CMDS AUTO & Right & Short & Cancel Consent; Disable AUTO &
-Removes CMDS consent and places the ALE-47 in Standby. Automatic dispensing halts immediately. CMS Down must be re-issued to resume AUTO operation.
+Removes CMDS consent and places the ALE-47 in Standby. Automatic dispensing halts immediately. Pilot must re-issue CMS Down to resume AUTO operation..
 & 2.7.2.1 & 18, 28 \\
 \end{hotastable}
 
@@ -525,14 +531,14 @@ External ECM pods (ALQ-131, ALQ-184) and internal IDIAS (Improved Defensive Inte
 \subsubsection{External ECM Pod}
 \label{sec:C5-S2-S2-S1}
 
-\textbf{CMS Down} grants consent for ECM pod transmission. The XMIT switch on the ECM control panel sets the transmission mode (XMIT 1: AUTO Avionics Priority; XMIT 2: AUTO ECM Priority; XMIT 3: Continuous Jam). The ECM Enable light on the miscellaneous panel reflects consent state.
+\textbf{CMS Down} grants consent for ECM pod transmission. The XMIT switch on the ECM control panel sets the transmission mode (XMIT 1: AUTO Avionics Priority; XMIT 2: AUTO ECM Priority; XMIT 3: Continuous Jam). The ECM Enable light on the miscellaneous panel reflects consent state. Both systems are inhibited when the pilot moves the RF switch from NORM, or when the landing gear handle is down.
 
 \begin{hotastable}{CMS Actuation with External ECM Pod}\label{tab:C5-S2-S2-S1-ECM-Pod}
 ECM Pod & Down & Short & Grant ECM Consent &
-\textbf{CMS Down} illuminates the ECM Enable light. The pod transmits in the mode set by the XMIT switch. Transmission continues until \textbf{CMS Right} is pressed or the RF switch is moved from \texttt{NORM}.
+CMS Down illuminates the ECM Enable light. The pod transmits in the mode set by the XMIT switch. Transmission continues until CMS Right is pressed or the RF switch is moved from \texttt{NORM}.
 & 2.7.4.2.5 & 28 \\
 ECM Pod & Right & Short & Remove ECM Consent &
-CMS Right removes consent and places the pod in Standby. The ECM Enable light extinguishes. Transmission does not resume until CMS Down is re-issued.
+CMS Right removes consent and places the pod in Standby. The ECM Enable light extinguishes. Transmission does not resume until the pilot re-issues CMS Down.
 & 2.7.4.2.5 & 28 \\
 \end{hotastable}
 
@@ -543,10 +549,10 @@ IDIAS provides three operational modes controlled via \textbf{CMS Left}: Standby
 
 \begin{hotastable}{CMS Actuation with Internal ECM (IDIAS)}\label{tab:C5-S2-S2-S2-IDIAS}
 IDIAS ECM & Left & Short & Cycle ECM Operational Mode &
-Each short press of \textbf{CMS Left} advances the IDIAS mode: \texttt{STBY} $\rightarrow$ \texttt{AVNC} (Avionics Priority) $\rightarrow$ \texttt{ECM} (ECM Priority) $\rightarrow$ \texttt{AVNC} $\rightarrow$ \texttt{ECM}.
+Each short press of CMS Left advances the IDIAS mode: \texttt{STBY} $\rightarrow$ \texttt{AVNC} (Avionics Priority) $\rightarrow$ \texttt{ECM} (ECM Priority) $\rightarrow$ \texttt{AVNC} $\rightarrow$ \texttt{ECM}.
 & 2.7.4.1.2 & 28 \\
 IDIAS ECM & Right & Short & Remove ECM Consent &
-\textbf{CMS Right} sets IDIAS to \texttt{STBY}, removing consent. \texttt{AVNC} or \texttt{ECM} modes are not restored until CMS Left is re-applied.
+CMS Right sets IDIAS to \texttt{STBY}, removing consent. \texttt{AVNC} or \texttt{ECM} modes are not restored until CMS Left is re-applied.
 & 2.7.4.1.2 & 28 \\
 \end{hotastable}
 
@@ -557,10 +563,32 @@ When equipped with an external ECM pod, \textbf{CMS Down} grants consent to both
 
 \begin{hotastable}{CMS Interaction with CMDS and ECM (Consent and Constraints)}\label{tab:C5-S2-S3-CMDS-ECM}
 CMDS AUTO SEMI + ECM Pod & Down & Short & Joint Consent (CMDS + ECM) &
-A single \textbf{CMS Down} press grants consent to both the ALE-47 CMDS (AUTO or SEMI mode) and the external ECM pod. \textit{Both} systems respond to the \textit{same press} with no distinction between the two.
+A \textit{single} CMS Down press grants consent to \textit{both} the ALE-47 CMDS (AUTO or SEMI mode) and the external ECM pod.
 & 2.7.2.1, 2.7.4.2.5 & 18, 28 \\
 \end{hotastable}
 
+\subsection{Operational Notes}
+\label{sec:C5-S2-S4}
+
+\paragraph{State Tracking:}
+
+In AUTO and SEMI modes, the CMDS retains consent state when the pilot switches to MAN mode. If the pilot re-engages AUTO without pressing \textbf{CMS Down}, the CMDS begins dispensing immediately on the next detected threat.
+
+\paragraph{Bingo Quantity Behavior:}
+
+If expendables fall to or below the bingo quantity, the CMDS requests consent and continues dispensing. The VMU issues a \texttt{LOW} message when an expendable reaches the bingo quantity, and an \texttt{OUT} message when an expendable is depleted. Dispensing does not stop automatically. The pilot can press \textbf{CMS Right} to inhibit AUTO dispensing, or switch to MAN mode to control expenditure directly.
+
+\paragraph{RF Switch Override:}
+
+When ECM consent is active, both the external ECM pod and internal IDIAS are placed in Standby if the RF switch is moved from NORM to QUIET or SILENT. Returning the RF switch to NORM does \textit{not} restore consent. The pilot must re-issue \textbf{CMS Down} to resume ECM transmission.
+
+\paragraph{IDIAS vs. External ECM Pod:}
+
+The joint consent described in \tabref{tab:C5-S2-S3-CMDS-ECM} applies to external ECM pod configurations \textit{only}. On IDIAS-equipped aircraft, \textbf{CMS Left} is used to cycle ECM modes; \textbf{CMS Down} has no ECM function on these variants.
+
+\paragraph{Ground Safety:}
+
+On the ground, ECM consent state is Standby. If the pilot holds \textbf{CMS Down} on the ground, the ECM pod radiates until the pilot releases \textbf{CMS Down}. Ground personnel must be clear of the radiation area if, for any reason, ECM must be enabled on the ground.
 
 %============================================================================
 % END OF SECTION
