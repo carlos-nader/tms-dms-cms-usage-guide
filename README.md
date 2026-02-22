@@ -1,4 +1,4 @@
-# TMS/DMS/CMS Usage Guide for Falcon BMS F-16 Flight Simulator
+# TMS/DMS/CMS Usage Guide for Falcon BMS and other F-16 Flight Simulators
 
 [![Generate Integrated Files Report](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/generate-integrated-files.yml/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/generate-integrated-files.yml) [![pages-build-deployment](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/pages/pages-build-deployment) [![Sync PDF to docs](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/sync-pdf-to-docs.yml/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/sync-pdf-to-docs.yml)[![Validate LaTeX Preamble](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/validate-tex-preamble.yml/badge.svg)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/validate-tex-preamble.yml)
 
@@ -7,9 +7,9 @@
 
 [**Changelog**](CHANGELOG.md) | [**Setup Guide**](SETUP.md)
 
-A comprehensive **LaTeX-based technical guide** documenting F-16 HOTAS switch systems (Target Management Switch, Display Management Switch, and Countermeasures Management Switch) for Falcon BMS 4.38.1 Flight Simulator.
+A comprehensive guide documenting F-16 HOTAS switch systems (Target Management Switch, Display Management Switch, and Countermeasures Management Switch) for Falcon BMS and other F-16 flight simulators.
 
-The author is by no means affiliated to or endorsed by Falcon BMS or its developers. This guide is not an official Falcon BMS guide or manual. It's intended to help the Falcon BMS Community.
+The author is not affiliated with or endorsed by Falcon BMS or any other flight sim developers. This is not an official guide or manual. It aims to help the flight sim community by consolidating information that is otherwise scattered across multiple manuals, training materials, and community resources into a single, structured reference.
 
 ---
 
@@ -86,7 +86,7 @@ The author is by no means affiliated to or endorsed by Falcon BMS or its develop
 [![GitHub Copilot](https://img.shields.io/badge/GitHub%20Copilot-0969da?style=for-the-badge&logo=github&logoColor=white)](https://github.com/features/copilot)
 [![Falcon BMS](https://img.shields.io/badge/Falcon%20BMS-4.38.1-blue?style=for-the-badge)](https://www.falcon-bms.com/)
 
-This project develops a structured guide explaining HOTAS functionality across multiple F-16 blocks and international variants. The guide serves both novice and experienced pilots, covering conceptual frameworks, switch actuation, system interactions, and operational nuances grounded in Falcon BMS manuals (Dash-34, Dash-1) and training materials.
+This project develops a structured guide explaining the F-16 HOTAS TMS, DMS and CMS switch functionality, grounded in Falcon BMS manuals (Dash-34, Dash-1) and training materials.
 
 ---
 
@@ -218,6 +218,7 @@ All technical claims are cross-referenced to these sources.
 
 **Next milestones:**
 * **v0.4.2.0** — Style Full Revision
+* **v0.5.0.0** — Chapter 4 (TMS) integration
 
 ---
 
