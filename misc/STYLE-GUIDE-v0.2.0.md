@@ -11,7 +11,7 @@
 
 ## 1. Purpose and Scope
 
-This document defines the writing standard for the TMS/DMS/CMS HOTAS Usage Guide. It applies to all narrative prose in the guide: section introductions, subsection text, paragraph descriptions, and table preambles.
+For the full scope of application and chapter-level exceptions, see §1.1 and §1.2 below.
 
 This document does **not** cover:
 
@@ -23,6 +23,38 @@ This document does **not** cover:
 **Note:** Inline semantic formatting commands (`\textbf{}`, `\texttt{}`, `\textit{}`) are covered in Section 8 of this document. The BRIEFING covers LaTeX environments, macros, and structural formatting only.
 
 Any AI assistant working on this project must read this document before generating or revising prose content.
+
+### 1.1 Scope of application
+
+The rules in this document apply to all prose content in the guide:
+
+- Section introductions, subsection text, and paragraph descriptions
+- Table preambles (paragraphs preceding any table)
+- Prose cells in any table — including the Function and Effect/Nuance columns
+  of HOTAS tables, and any descriptive cell content in non-HOTAS tables
+  where the author determines that prose standards apply
+
+The author may extend application to additional content at their discretion.
+
+### 1.2 Chapter scope exceptions
+
+The rules in this document apply fully to all content within the scope
+defined in §1.1, with one exception.
+
+**Chapter 1 (Introduction)** contains two distinct content types:
+
+- **Editorial sections** — the chapter opening, §1.1 (Scope and purpose), 
+  and §1.3.1 (Chapter overview) — serve an orientation function. These
+  sections declare scope, describe the guide's organisation, and position
+  the document for a first-time reader. Purpose statements are acceptable
+  if they serve reader orientation and do not constitute marketing language.
+  The prohibition on filler sentences, benefit claims, and compound
+  sentences still applies.
+- **Functional sections** — §1.2 (Sources and references), §1.3.2
+  (Table format), §1.3.3 (Reference conventions), and all of §1.4 —
+  contain reference information and are subject to the full standard.
+
+**Chapter 2 onward** are all subject to the full standard without exception.
 
 ---
 
@@ -289,6 +321,7 @@ Before submitting or approving any prose content, verify the following:
 - [ ] Technical terms are consistent throughout — no creative synonyms
 - [ ] No prohibited pattern from Section 6 is present
 - [ ] Any permitted deviation from Section 7 is intentional and appropriate
+- [ ] Prose in table cells (Function and Effect/Nuance in HOTAS table environment and any descriptive non-HOTAS cell) meets the same standard as narrative prose
 - [ ] Formatting follows the semantic rules in Section 8
 
 ---
@@ -302,6 +335,7 @@ Before submitting or approving any prose content, verify the following:
 ```
 You are writing technical documentation for the Falcon BMS TMS/DMS/CMS HOTAS Usage Guide.
 Style reference: Falcon BMS Dash-34 (community technical documentation, not a military manual).
+Scope: applies to all narrative prose AND to prose table cells (Function and Effect/Nuance in HOTAS table environment and any descriptive non-HOTAS cell). Chapter 1 editorial sections (chapter opening, §1.1, §1.3.1) permit purpose statements if they serve reader orientation — benefit claims and filler are still prohibited.
 
 RULES — apply without exception:
 
