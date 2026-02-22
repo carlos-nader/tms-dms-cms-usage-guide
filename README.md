@@ -183,9 +183,9 @@ The project uses **five governance documents** and an **auto-generated tracking 
 
 ### AI Collaboration
 
-* **Claude Pro (Anthropic)** — Research, initial draft content development, critical review, and governance (web interface and VSCode via Claude Code)
-* **Perplexity Pro** — Research, early project structuring, and initial draft content development
-* **GitHub Copilot Pro** — Documentation, repository management, issue/PR coordination, and collaborative development (GitHub web and VSCode)
+* **Perplexity Pro (Perplexity AI)** — Research organization, project structuring, governance framework design, initial draft content generation, and review
+* **Claude Pro (Anthropic)** — Research, initial draft content generation, review, and governance framework; used via web interface and VSCode (Claude Code)
+* **GitHub Copilot Pro (GitHub / Microsoft)** — Documentation, repository management, issue and pull request coordination, and collaborative development; used via GitHub web interface and VSCode
 
 ### Project Utilities
 
