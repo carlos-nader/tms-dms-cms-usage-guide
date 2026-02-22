@@ -232,6 +232,7 @@ The guide is community documentation, not a system reference manual. The followi
 - Mode names (MAN, AUTO, SEMI)
 - Physical panel components (knobs, lights, buttons)
 - System names (ALE-47, CMDS, ECM, RWR)
+- Table cell content (switch directions referenced inside Effect/Nuance or Function cells are written as plain text; the column structure provides identification context)
 
 ---
 
@@ -251,6 +252,8 @@ as system voice messages.
 - Component names (XMTR, ECM Enable)
 - System abbreviations used as prose nouns
 
+---
+
 ### 8.3 `\textit{}` — Italic
 
 **Scope:** Emphasis on technical distinctions where sentence structure alone
@@ -261,13 +264,13 @@ does not sufficiently highlight the critical information.
   would reduce precision or obscure a distinction critical to understanding
   the system behavior (e.g. \textit{one} program per event, dispatched
   \textit{simultaneously})
+- Table cell content where a critical distinction would be lost without emphasis
 
 **Does not apply to:**
 - Stylistic emphasis with no technical content ("effectively", "clearly")
 - Information already unambiguous from sentence structure alone
 
-**Guideline:** If the sentence reads correctly without the emphasis and
-loses no technical precision, remove \textit{}.
+**Guideline:** If the sentence or cell reads correctly without the emphasis and loses no technical precision, remove \textit{}.
 
 ---
 
