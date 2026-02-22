@@ -13,7 +13,7 @@ sitemap:
 **Document Version:** PROJECT-TRACKING-v5.0.0  
 **Regime:** Pre-publication (0.x.x.x)  
 **Project Start:** 2026-01-05  
-**Last Updated:** 2026-02-19  
+**Last Updated:** 2026-02-22  
 **Repository:** carlos-nader/tms-dms-cms-usage-guide
 
 This document tracks governance rules, project state, and development history. For detailed file tracking, issue status, and commit history, see [INTEGRATED-FILES.md](../INTEGRATED-FILES.md) (auto-generated).
@@ -29,6 +29,7 @@ This document tracks governance rules, project state, and development history. F
 | WIP-FILE-NAMING | v1.4 | File naming conventions, status codes (dev/review/final/approved/deprecated) |
 | TEMPLATES/template-wip-V1.0.tex | V1.0 | Canonical WIP template (preamble, metadata, hotastable) |
 | TRAINING-MISSION-ABBREV-TABLE | v1.0 | Standardized abbreviations for 33 BMS training missions |
+| STYLE-GUIDE | v0.2.0 | Style rules for prose, voice, formatting, and prohibited patterns (`misc/STYLE-GUIDE-v0.2.0.md`) |
 
 **Rule:** All WIP files must be created from `TEMPLATES/template-wip-V1.0.tex`.
 
@@ -36,7 +37,7 @@ This document tracks governance rules, project state, and development history. F
 
 ## 2. PROJECT SNAPSHOT
 
-**Last updated:** 2026-02-20
+**Last updated:** 2026-02-22
 
 | Metric | Value |
 |--------|-------|
@@ -46,7 +47,7 @@ This document tracks governance rules, project state, and development history. F
 | **Chapters Integrated** | 4/7 (C1, C2, C3, C5) |
 | **Chapters In Development** | 1/7 (C4) |
 | **Chapters Pending** | 2/7 (C6, C7) |
-| **Total Commits** | 620 |
+| **Total Commits** | 631 |
 | **Latest Release** | v0.4.1.1 (2026-02-18) |
 
 ### Chapter Status
@@ -82,8 +83,9 @@ Chronological record of significant changes. For detailed commit history, see IN
 | 2026-02-13 | — | **C4 WIP Progress:** Main chapter file renamed to `chapter-C4-tms-structure-dev-2026-02-13.tex` (52,056 bytes). Section file `section-C4-S3-tms-aa-dev-2026-02-13.tex` (33,612 bytes) created, covering §4.3 — TMS in Air-to-Air. Covers TMS behavior in A-A contexts: FCR modes (SAM, STT, TWS), ACM modes (BORE, 10×60, 30×20, SLEW with HMCS integration), IFF interrogation, and TGP A-A mode. Structure complete: 6 subsections (§4.3.1–§4.3.6), 6 table placeholders, cross-references validated. Content state: structural outline with bullet points (not narrative prose). Pending: transform to narrative (C3/C5 style) + fill 6 hotastable tables with Dash-34/Training Manual data. Total commits: 523. |
 | 2026-02-15 | — | **C4 WIP Progress (continued):** Section file promoted from `dev` to `review`: `section-C4-S3-tms-aa-review-2026-02-15.tex` (39,095 bytes, +16.3% size increase). §4.3 introduction finalized and validated: grammar corrections, Dash-34 cross-references (§2.3.1.5.7-12) verified, internal cross-references (→C2:§2.1.3, →C3:§3.1.1, →C3:§3.1.3) confirmed, prose cadence refined. Corrections applied: "exclusively" → "restricted to" (para 2), added "primary" qualifier to "FCR provides four **primary** tracking modes" (para 3). **Dependency WIP created:** `section-C2-S1-S3-soi-context-dependency-final-2026-02-15.tex` (20,493 bytes, status `final`). Establishes TGP (Targeting Pod) introduction in C2 fundamentals (§2.1.3), defines TGP as equipment-dependent (AN/AAQ-33 Sniper XR ATP, AN/AAQ-14 LANTIRN), cross-references →C4:§4.3.6 (TGP A-A tracking) and Dash-34 §2.6. Rationale: First TGP mention should occur in C2 conceptual layer, not C4 operational layer. §4.3 subsections §4.3.1–§4.3.6 (SAM, STT, TWS, ACM, IFF, TGP A-A) remain in draft status; 6 hotastable tables (0/6 complete) pending population. Integration target: **v0.5.0.0** (simultaneous integration of C2:§2.1.3 + C4:§4.3 introduction). Issues #38 (REVIEW — in progress) and #40 (APPROVED — integration checklist) updated. Total commits: 558. |
 | 2026-02-17 | — | **C4 WIP Progress (continued):** Section file updated and renamed: `section-C4-S3-tms-aa-review-2026-02-17.tex` (51,744 bytes). §4.3.5 (TMS and IFF Interrogation) introduction refined: "cockpit identification methods" substituted "identification procedures" for precision. §4.3.5.1 (SCAN Interrogation Mode) narrative completed and approved: TMS Left short press (<0.6s) behavior, SCAN configuration (DED INTG page, FCR CNTL OSB 10), symbology (green circle = friendly, yellow square = bogey/unknown), tactical context (BVR intercepts, ROE compliance, multiple contacts). Dash-34 cross-references validated (§2.2.4.4.2.1.1, §2.3.1.5.1.6.2). **§4.3.5.2 (LOS Interrogation Mode) narrative completed and approved:** concept (beam coverage area, cursor-directed, 2 beams, comparison vs SCAN), behavior (TMS Left ≥0.6s, 16 replies, beam geometry nuance, range filtering), configuration (DED INTG + DCS right SEQ→LOS page, independent from SCAN), symbology (cross-ref to §4.3.5.1), tactical context (BVR designated target; unsupported "VID passes" claim removed). Dash-34 cross-references validated (§2.2.4.4.2.1, §2.2.4.4.2.1.2, §2.2.4.4.2.2). §4.3.5.5 (AIFF Availability) updated with Link 16 context marking for future development. Narrative completion: 25% → **~28.57%** (4 subsections complete: §4.3 intro, §4.3.5 intro, §4.3.5.1, §4.3.5.2). Subsections §4.3.1–§4.3.4 (SAM, STT, TWS, ACM), §4.3.5.3–§4.3.5.5 (Emergency, Constraints, AIFF Availability), §4.3.6 (TGP A-A) remain in draft. 6 hotastable tables (0/6 complete) pending. Total commits: 558 → **582** (+24 commits). |
-| 2026-02-20 | — | **Style revision started (C5):** WIP file opened: `wip/chapter-C5-style-rev-review-2026-02-19.tex`. Session 2026-02-19: §5.1 title revised ("Concept and Interaction with CMDS / ECM / RWR" →' "Concept"). §5.1 ¶1 rewritten and validated against Dash-34 §2.7.1. §5.1 ¶2 eliminated (benefit claims, design rationale — no technical content). §5.1 ¶3 eliminated (RWR relationship not supported by Dash-34; RWR is a separate subsystem not controlled by CMS). Stopped at §5.1.1. Issue #44 comment added with session progress. Style guide documents created: `STYLE-GUIDE-v0.1.0.md` and `STYLE-PROMPT-v0.1.0.md` (restricted, not in /docs/). Issue #44 body updated with working files strategy (one WIP per chapter, status: review). Total commits: 603 →' **620** (+17 commits). |
 | 2026-02-19 | v0.4.1.1 | **RELEASE:** Repetition cleanup and missing hotastable `\label` corrections. 9 editorial corrections applied across C1–C5 (R-01 to R-09); R-10 retained as intentional. `\label` tags added to all hotastable environments (Issue #43). Issues #42 and #43 closed. Milestone 6 completed (2/2). **Style revision decision:** Community feedback (BMS Forum — users Van and mirv) prompted decision to conduct a dedicated style revision pass to remove AI-generated phrasing. Issue #44 opened. Milestone "v0.4.2.0 — Style Revision" created (due 2026-03-20). Forum thread activity noted; v0.4.1.1 not published to forum — next forum post planned for v0.4.2.0 after style revision. C4 WIP resumed. Total commits: **603**. |
+| 2026-02-20 | — | **Style revision started (C5):** WIP file opened: `wip/chapter-C5-style-rev-review-2026-02-19.tex`. Session 2026-02-19: §5.1 title revised ("Concept and Interaction with CMDS / ECM / RWR" → "Concept"). §5.1 ¶1 rewritten and validated against Dash-34 §2.7.1. §5.1 ¶2 eliminated (benefit claims, design rationale — no technical content). §5.1 ¶3 eliminated (RWR relationship not supported by Dash-34; RWR is a separate subsystem not controlled by CMS). Stopped at §5.1.1. Issue #44 comment added with session progress. Style guide documents created: `STYLE-GUIDE-v0.1.0.md` and `STYLE-PROMPT-v0.1.0.md` (restricted, not in /docs/). Issue #44 body updated with working files strategy (one WIP per chapter, status: review). Session 2026-02-20: §5.1 finalizado (figura e cross-references). §5.2 abertura, lista de colunas, §5.2.1 (CMDS) e subseções §5.2.1.1–§5.2.1.3 completos. Total commits: 603 → **620** (+17 commits). |
+| 2026-02-22 | — | **Style revision C5 continued:** Session 2026-02-22: §5.2.2 (ECM) e §5.2.3 (Consent and Constraints) completos. Títulos revisados. Prosa e tabelas revisadas. `\texttt{OPER}` removed (physical control position, not a display string — policy violation). `\textit{simultaneously}` retained (technically necessary emphasis). STYLE-GUIDE promovido de restricted para público: `misc/STYLE-GUIDE-v0.2.0.md` (v0.1.0 → v0.2.0). Formatting policies definidas e documentadas em §8: `\textbf{}` restrito a switches HOTAS e direções; `\texttt{}` restrito a strings de display e voice messages; `\textit{}` para ênfase em distinções técnicas críticas. BRIEFING §5.3 adicionado com referência obrigatória ao STYLE-GUIDE. STYLE-PROMPT continua em restricted. Stopped at §5.2.4. Total commits: 620 → **631** (+11 commits). |
 
 ---
 
@@ -93,14 +95,14 @@ Chronological record of significant changes. For detailed commit history, see IN
 
 | Item | Value |
 |------|-------|
-| **Status** | **In Progress** — C5 style revision started (session 2026-02-19) |
+| **Status** | **In Progress** — C5 style revision: §5.1, §5.2.1.1–§5.2.1.3, §5.2.2, §5.2.3 completos (session 2026-02-22) |
 | **Milestone** | "v0.4.2.0 — Style Revision" (due 2026-03-20, progress 0/1) |
 | **Open Issues** | #44 (Style revision: remove AI-speak across all integrated chapters) |
 | **Version Bump** | PATCH: style revision affects multiple chapters simultaneously; not a simple correction |
 | **Scope** | All integrated chapters: C1, C2, C3 (DMS), C5 (CMS) |
-| **Criteria** | Remove abstract/eloquent phrasing that no human technical writer would produce; prioritize clarity and directness over elegance |
-| **Next step** | Resume C5 from §5.1.1 → §5.3; then open WIP files for C1, C2, C3 |
-| **WIP Files** | `wip/chapter-C5-style-rev-review-2026-02-19.tex` (C5: review, ~5% complete — §5.1 done) |
+| **Criteria** | Remove abstract/eloquent phrasing that no human technical writer would produce; prioritize clarity and directness over elegance. Adhere to `misc/STYLE-GUIDE-v0.2.0.md`. |
+| **Next step** | Resume C5 from §5.2.4 → §5.3; then open WIP files for C1, C2, C3 |
+| **WIP Files** | `wip/chapter-C5-style-rev-review-2026-02-21.tex` (C5: review, ~65% complete — §5.1, §5.2.1.1–§5.2.1.3, §5.2.2, §5.2.3 done) |
 | **Forum** | Next forum post planned for v0.4.2.0 release; forum thread left to cool down after Feb 19 exchange |
 
 ---
@@ -154,6 +156,8 @@ Chronological record of significant changes. For detailed commit history, see IN
 **2026-02-18:** Repetition audit session. First external contribution to the project: forum user Daddyk identified content repetitions in v0.4.1.0 via [BMS forum post #450980](https://forum.falcon-bms.com/post/450980). Systematic chapter-by-chapter analysis of the full guide (C1–C5) conducted. **10 repetitions catalogued** in `misc/notes-repetition-analysis-v0_4_1_1-20260218.md`: R-01 (C2: SOI definition duplicated in 2.1/2.1.1), R-02 (C2: master mode "determines" re-stated in 2.2.1), R-03 (C2/C3: DMS physical description repeated), R-04 (C2/C5: CMS boilerplate in 3 locations), R-05 (C3: NAV/A-G PRE DMS Down paragraphs literally identical), R-06 (C3: Snowplow/MARK/OFLY exception states described twice), R-07 (C3/C5: "Each table entry specifies" block repeated 4×; includes copy-paste error line 1359 "DMS hat" in CMS table), R-08 (C5: CMS Down joint consent stated twice consecutively), R-09 (C5: high-G rationale paraphrased in 5.2.4), R-10 (C5: IDIAS/CMS Left distinction — classified Aceitável, no action). Issue #42 opened and structured with prioritized checklist. Milestone 6 active. Forum reply posted. C4 WIP (Issues #38–#40) suspended; v0.4.1.1 takes priority. Total commits: 587.
 
 **2026-02-19:** Style revision decision. Community feedback received on BMS Forum thread from users Van and mirv regarding AI-generated phrasing in the guide and forum posts. Feedback prompted decision to conduct a dedicated style revision pass (v0.4.2.0) to remove AI-speak and align the guide's voice with direct, human-authored technical writing. Issue #44 opened. Milestone "v0.4.2.0 — Style Revision" created (due 2026-03-20). v0.4.1.1 released but not published to forum — next forum announcement planned for v0.4.2.0. Milestone 5 (TMS integration) due date updated from 2026-03-10 to 2026-04-20 to accommodate style revision work. Total commits: 603.
+
+**2026-02-22:** STYLE-GUIDE promovido de restricted para público. Versão incrementada v0.1.0 → v0.2.0 (`misc/STYLE-GUIDE-v0.2.0.md`). Formatting policies definidas e documentadas em §8: `\textbf{}` restrito a switches HOTAS e direções; `\texttt{}` restrito a strings de display e voice messages do sistema; `\textit{}` para ênfase em distinções técnicas críticas onde a estrutura da frase sozinha não é suficiente. BRIEFING §5.3 adicionado com referência obrigatória ao STYLE-GUIDE. STYLE-PROMPT continua em restricted. WIP file C5 renomeado para `chapter-C5-style-rev-review-2026-02-21.tex` (27,559 bytes). Total commits: 631.
 
 ---
 
