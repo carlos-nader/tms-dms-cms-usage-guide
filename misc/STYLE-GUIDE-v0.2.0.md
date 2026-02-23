@@ -121,6 +121,8 @@ Use the same term every time for the same concept. Do not substitute synonyms to
 - Always: **dispense** (not "release", "deploy", "expend" — unless quoting a specific system state)
 - Always: **designate** (not "select", "mark", "acquire" — unless the system uses a different term)
 - Always: **press** (not "actuate", "depress", "activate" when referring to switch input)
+- Always: **block and variant** — when qualifying that a procedure, configuration, or system behavior differs across F-16 versions, use "block and variant" as the compound modifier. Do not use "block" alone, "variant" alone, "blocks and variants", "variants", "block configuration", "variant configuration", "block/variant" (with slash), "F-16 blocks and variants", "model", "models", "type", "types", "version", or "versions". Omit "F-16" when the aircraft context is already established.
+- Always: **side-stick controller** (the F-16 stick); always **throttle** (the left-hand control). Do not use "flight stick", "control stick", "stick", "joystick", "throttle controls", or "throttle grip".
 
 ### P4 — Keep sentences short and singular
 
@@ -323,6 +325,8 @@ Before submitting or approving any prose content, verify the following:
 - [ ] Any permitted deviation from Section 7 is intentional and appropriate
 - [ ] Prose in table cells (Function and Effect/Nuance in HOTAS table environment and any descriptive non-HOTAS cell) meets the same standard as narrative prose
 - [ ] Formatting follows the semantic rules in Section 8
+- [ ] "block and variant" is used as the compound modifier wherever F-16 configuration differences are qualified — not "block" alone, "variant" alone, or any prohibited synonym
+- [ ] "side-stick controller" and "throttle" are used throughout — not "flight stick", "control stick", "stick", "joystick", "throttle controls", or "throttle grip"
 
 ---
 
