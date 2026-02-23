@@ -382,10 +382,10 @@
 %============================================================================
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 %============================================================================
-% File Name: chapter-C5-style-rev-review-2026-02-22.tex
+% File Name: chapter-C5-style-rev-review-2026-02-23.tex
 % WIP Naming Convention: v1.4
 % Target Chapter: C5 (CMS — Countermeasures Management Switch)
-% Target Section: ALL (style revision pass — full chapter)
+% Target Section: ALL (author review pass — full chapter)
 %
 % WIP Status: review
 % Created: 2026-02-19
@@ -397,23 +397,9 @@
 % Notes:
 % - Contains approved revised prose for C5 only.
 % - Each passage enters this file after explicit author approval.
-% - Status remains 'review' until all C5 sections are complete; then → final.
-% - Session 2026-02-19: §5.1 title revised, ¶1 rewritten, ¶2 and ¶3 eliminated.
-%   §5.1.1 eliminated (content absorbed into §5.1).
-% - Session 2026-02-20: §5.1 finalizado (figura e cross-references). §5.2 abertura,
-%   lista de colunas, §5.2.1 (CMDS) e subseções §5.2.1.1–§5.2.1.3 completos.
-% - Session 2026-02-22: §5.2.2 (ECM) e §5.2.3 (Consent and Constraints) completos.
-%   Títulos revisados. Prosa e tabelas revisadas (style violations corrected:
-%   PROHIBITED ×1, PASSIVE-MISUSE ×2, CLOSING ×1, FORMAT-ITAL ×2).
-%   §5.2.4 (Operational Notes) completo: 5 parágrafos aprovados, PASSIVE-MISUSE ×4
-%   corrigidos. Frase de encadeamento adicionada em §5.2.2 (RF switch / landing gear).
-% - Session 2026-02-23: §5.3 completo. Dash-34 validation pass executado (C5 inteiro).
-%   Corrections applied: Program 5 mention added after §5.2.1.1 hotastable
-%   (\dashref{2.7.2.2}); §5.2.4 RF Switch Override rewritten (PASSIVE-MISUSE,
-%   "both pod and IDIAS" imprecision corrected → "the ECM system"); §5.2.2.1
-%   "Both systems" → "The ECM system"; §5.2.1.2 typo (double full stop) corrected.
-%   §5.3.1.3 eliminated (scope note absorbed into §5.3.1 opening paragraph).
-%   ECM Configuration Summary Table added to §5.3.
+% - Status remains 'review' until author review pass is complete; then → final.
+% - Session 2026-02-23 (author review): §5.1 approved. See issue #44 for
+%   full change log. §5.2–§5.3 pending.
 % - TODO: RWR introduced for the first time at §5.2.1.2. Consider conceptual
 %   introduction in C2 (HOTAS Fundamentals).
 % - TODO: BYP and STBY modes not covered in §5.2.1. See sub-issue #48 (linked
@@ -422,7 +408,7 @@
 %   §5.2.4 State Tracking, §5.1 verification.
 % - TODO: "three operational modes" in §5.2.1 opening will require update when
 %   BYP/STBY are added (sub-issue #48).
-% - Cross-reference: Issue #44 (v0.4.2.0 style revision).
+% - Cross-reference: Issue #44 (v0.4.2.0 style revision / author review).
 
 %============================================================================
 % TEMPLATE STRUCTURE — Replace section/subsection headers with your content
@@ -444,16 +430,16 @@
 \section{Concept}
 \label{sec:C5-S1}
 
-The Countermeasures Management Switch (CMS) is a four-direction hat switch mounted on the control stick. It provides single-point control of the aircraft's defensive systems: the ALE-47 CMDS (Countermeasures Dispenser Set — the automatic chaff and flare dispensing system) and ECM (Electronic Countermeasures) systems, either external pods or internal avionics, depending on block configuration.
+The Countermeasures Management Switch (CMS) is a four-direction hat switch mounted on the side-stick controller. It controls the aircraft's defensive avionics: the ALE-47 CMDS (Countermeasures Dispenser Set — the chaff and flare dispensing system) and ECM (Electronic Countermeasures), either external pods or internal avionics, depending on block and variant.
 
-CMS actuation procedures are detailed in \secref{sec:C5-S2}. F-16 blocks and variant differences are covered in \secref{sec:C5-S3}.
+CMS actuation procedures are detailed in \secref{sec:C5-S2}. Block and variant differences are covered in \secref{sec:C5-S3}.
 
-For in-depth coverage of CMDS and ECM operation, see \dashrefs{2.7.1 and 2.7.2}, respectively. Diagrams of the flight stick and throttle controls are provided in \dashref{2.1.5}. \figref{fig:f16_hotas_cms_location} shows the CMS location on the F-16 control stick.
+For CMDS and ECM operation, see \dashrefs{2.7.1 and 2.7.2}, respectively. Diagrams of the side-stick controller and throttle are provided in \dashref{2.1.5}. \figref{fig:f16_hotas_cms_location} shows the CMS location on the F-16 side-stick controller.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.65\textwidth]{F-16_Side_Stick_Controller-1.jpg}
-\caption{F-16 Throttle and Flight Stick. Image by Falconpedia (\url{falcon4.wikidot.com}), via Wikimedia Commons (\url{https://commons.wikimedia.org/wiki/File:F-16_Side_Stick_Controller.jpg}), licensed under the Creative Commons Attribution-Share Alike 3.0 Unported (CC BY-SA 3.0) license.}
+\caption{F-16 Throttle and Side-Stick Controller. Image by Falconpedia (\url{falcon4.wikidot.com}), via Wikimedia Commons (\url{https://commons.wikimedia.org/wiki/File:F-16_Side_Stick_Controller.jpg}), licensed under the Creative Commons Attribution-Share Alike 3.0 Unported (CC BY-SA 3.0) license.}
 \label{fig:f16_hotas_cms_location}
 \end{figure}
 
