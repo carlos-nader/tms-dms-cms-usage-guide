@@ -389,10 +389,9 @@
 %
 % WIP Status: review
 % Created: 2026-02-19
-% Last Modified: 2026-02-22
+% Last Modified: 2026-02-23
 %
-% Narrative Completion: ~65% (§5.1 completo, §5.2.1.1–§5.2.1.3 completos,
-%   §5.2.2 completo, §5.2.3 completo, §5.2.4 completo)
+% Narrative Completion: 100% (§5.1–§5.3 completos)
 % Table Fill Status: hotastable cells revised (style pass — violations corrected)
 %
 % Notes:
@@ -408,9 +407,21 @@
 %   PROHIBITED ×1, PASSIVE-MISUSE ×2, CLOSING ×1, FORMAT-ITAL ×2).
 %   §5.2.4 (Operational Notes) completo: 5 parágrafos aprovados, PASSIVE-MISUSE ×4
 %   corrigidos. Frase de encadeamento adicionada em §5.2.2 (RF switch / landing gear).
-% - Pending: §5.3 (CMS Block and Variant Notes).
+% - Session 2026-02-23: §5.3 completo. Dash-34 validation pass executado (C5 inteiro).
+%   Corrections applied: Program 5 mention added after §5.2.1.1 hotastable
+%   (\dashref{2.7.2.2}); §5.2.4 RF Switch Override rewritten (PASSIVE-MISUSE,
+%   "both pod and IDIAS" imprecision corrected → "the ECM system"); §5.2.2.1
+%   "Both systems" → "The ECM system"; §5.2.1.2 typo (double full stop) corrected.
+%   §5.3.1.3 eliminated (scope note absorbed into §5.3.1 opening paragraph).
+%   ECM Configuration Summary Table added to §5.3.
 % - TODO: RWR introduced for the first time at §5.2.1.2. Consider conceptual
 %   introduction in C2 (HOTAS Fundamentals).
+% - TODO: BYP and STBY modes not covered in §5.2.1. See sub-issue #48 (linked
+%   to #44). Cascade impacts mapped: §5.2.1 opening ("three modes" → five),
+%   §5.2.1.4/5 new subsubsections + hotastables, §5.2.3 hotastable Mode column,
+%   §5.2.4 State Tracking, §5.1 verification.
+% - TODO: "three operational modes" in §5.2.1 opening will require update when
+%   BYP/STBY are added (sub-issue #48).
 % - Cross-reference: Issue #44 (v0.4.2.0 style revision).
 
 %============================================================================
@@ -420,9 +431,16 @@
 %============================================================================
 % CONTENT BEGINS HERE (use \chapter{}, \section{}, \subsection{}, etc.)
 %============================================================================
+
+%============================================================================
+% CHAPTER 5: CMS — Countermeasures Management Switch
+%============================================================================
 \chapter{CMS – Countermeasures Management Switch}
 \label{chap:C5}
 
+%============================================================================
+% SECTION 5.1: Concept
+%============================================================================
 \section{Concept}
 \label{sec:C5-S1}
 
@@ -439,6 +457,9 @@ For in-depth coverage of CMDS and ECM operation, see \dashrefs{2.7.1 and 2.7.2},
 \label{fig:f16_hotas_cms_location}
 \end{figure}
 
+%============================================================================
+% SECTION 5.2: CMS Actuation
+%============================================================================
 \section{CMS Actuation}
 \label{sec:C5-S2}
 
@@ -458,6 +479,9 @@ Each table entry specifies:
   \item \textbf{Training}: Recommended BMS training mission(s) (see \trnman{} for descriptions).
 \end{itemize}
 
+%============================================================================
+% SECTION 5.2.1: CMDS
+%============================================================================
 \subsection{CMDS}
 \label{sec:C5-S2-S1}
 
@@ -465,6 +489,9 @@ The ALE-47 CMDS provides three operational modes: Manual (MAN), Automatic (AUTO)
 
 The CMS is the control interface for program execution and consent authority in all three modes.
 
+%============================================================================
+% SECTION 5.2.1.1: Manual Mode
+%============================================================================
 \subsubsection{Manual Mode}
 \label{sec:C5-S2-S1-S1}
 
@@ -479,6 +506,11 @@ Flare-only program. PRGM knob position has no effect. Independent of threat sens
 & 2.7.2.2 & 19 \\
 \end{hotastable}
 
+Program 5 is activated via the slap switch, independent of CMS. See \dashref{2.7.2.2}.
+
+%============================================================================
+% SECTION 5.2.1.2: Automatic Mode
+%============================================================================
 \subsubsection{Automatic Mode}
 \label{sec:C5-S2-S1-S2}
 
@@ -497,10 +529,13 @@ CMDS AUTO & Down & Short & Give Consent; Enable AUTO Dispensing &
 Grants consent for AUTO dispensing. RWR-detected threats trigger automatic execution of the program selected via the CMDS panel PRGM knob. Dispensing continues until the threat clears or CMS Right is pressed. Consent state persists if the pilot switches to MAN mode; returning to AUTO resumes auto-dispensing if a threat is detected.
 & 2.7.2.1 & 18, 28 \\
 CMDS AUTO & Right & Short & Cancel Consent; Disable AUTO &
-Removes CMDS consent and places the ALE-47 in Standby. Automatic dispensing halts immediately. Pilot must re-issue CMS Down to resume AUTO operation..
+Removes CMDS consent and places the ALE-47 in Standby. Automatic dispensing halts immediately. Pilot must re-issue CMS Down to resume AUTO operation.
 & 2.7.2.1 & 18, 28 \\
 \end{hotastable}
 
+%============================================================================
+% SECTION 5.2.1.3: Semi-Automatic Mode
+%============================================================================
 \subsubsection{Semi-Automatic Mode}
 \label{sec:C5-S2-S1-S3}
 
@@ -523,25 +558,34 @@ Removes SEMI consent. CMDS halts monitoring and returns to Standby. \texttt{COUN
 & 2.7.2.1 & 18, 28 \\
 \end{hotastable}
 
+%============================================================================
+% SECTION 5.2.2: ECM
+%============================================================================
 \subsection{ECM}
 \label{sec:C5-S2-S2}
 
 External ECM pods (ALQ-131, ALQ-184) and internal IDIAS (Improved Defensive Internal Avionic System) provide active jamming across radar frequency bands. \textbf{CMS Down} grants consent to external pods. \textbf{CMS Left} cycles operational modes for internal IDIAS. 
 
+%============================================================================
+% SECTION 5.2.2.1: ECM Pod
+%============================================================================
 \subsubsection{External ECM Pod}
 \label{sec:C5-S2-S2-S1}
 
-\textbf{CMS Down} grants consent for ECM pod transmission. The XMIT switch on the ECM control panel sets the transmission mode (XMIT 1: AUTO Avionics Priority; XMIT 2: AUTO ECM Priority; XMIT 3: Continuous Jam). The ECM Enable light on the miscellaneous panel reflects consent state. Both systems are inhibited when the pilot moves the RF switch from NORM, or when the landing gear handle is down.
+\textbf{CMS Down} grants consent for ECM pod transmission. The XMIT switch on the ECM control panel sets the transmission mode: XMIT 1 (Avionics Priority, AFT antenna only), XMIT 2 (ECM Priority, both FWD and AFT antennas), or XMIT 3 (Active Jam, continuous transmission). The ECM Enable light on the miscellaneous panel reflects consent state. The ECM system is \textit{inhibited} when the pilot moves the RF switch from NORM, or when the landing gear handle is down.
 
 \begin{hotastable}{CMS Actuation with External ECM Pod}\label{tab:C5-S2-S2-S1-ECM-Pod}
 ECM Pod & Down & Short & Grant ECM Consent &
 CMS Down illuminates the ECM Enable light. The pod transmits in the mode set by the XMIT switch. Transmission continues until CMS Right is pressed or the RF switch is moved from \texttt{NORM}.
-& 2.7.4.2.5 & 28 \\
+& 2.7.4.1.1, 2.7.4.2.5 & 28 \\
 ECM Pod & Right & Short & Remove ECM Consent &
 CMS Right removes consent and places the pod in Standby. The ECM Enable light extinguishes. Transmission does not resume until the pilot re-issues CMS Down.
-& 2.7.4.2.5 & 28 \\
+& 2.7.4.1.1, 2.7.4.2.5 & 28 \\
 \end{hotastable}
 
+%============================================================================
+% SECTION 5.2.2.2: Internal ECM (IDIAS)
+%============================================================================
 \subsubsection{Internal ECM (IDIAS)}
 \label{sec:C5-S2-S2-S2}
 
@@ -556,6 +600,9 @@ CMS Right sets IDIAS to \texttt{STBY}, removing consent. \texttt{AVNC} or \textt
 & 2.7.4.1.2 & 28 \\
 \end{hotastable}
 
+%============================================================================
+% SECTION 5.2.3: Consent and Constraints
+%============================================================================
 \subsection{Consent and Constraints}
 \label{sec:C5-S2-S3}
 
@@ -567,6 +614,9 @@ A \textit{single} CMS Down press grants consent to \textit{both} the ALE-47 CMDS
 & 2.7.2.1, 2.7.4.2.5 & 18, 28 \\
 \end{hotastable}
 
+%============================================================================
+% SECTION 5.2.4: Operational Notes
+%============================================================================
 \subsection{Operational Notes}
 \label{sec:C5-S2-S4}
 
@@ -580,7 +630,7 @@ If expendables fall to or below the bingo quantity, the CMDS requests consent an
 
 \paragraph{RF Switch Override:}
 
-When ECM consent is active, both the external ECM pod and internal IDIAS are placed in Standby if the RF switch is moved from NORM to QUIET or SILENT. Returning the RF switch to NORM does \textit{not} restore consent. The pilot must re-issue \textbf{CMS Down} to resume ECM transmission.
+When ECM consent is active, moving the RF switch from NORM to QUIET or SILENT places the ECM system in Standby. Returning the RF switch to NORM does \textit{not} restore consent. The pilot must re-issue \textbf{CMS Down} to resume ECM transmission.
 
 \paragraph{IDIAS vs. External ECM Pod:}
 
@@ -589,6 +639,97 @@ The joint consent described in \tabref{tab:C5-S2-S3-CMDS-ECM} applies to externa
 \paragraph{Ground Safety:}
 
 On the ground, ECM consent state is Standby. If the pilot holds \textbf{CMS Down} on the ground, the ECM pod radiates until the pilot releases \textbf{CMS Down}. Ground personnel must be clear of the radiation area if, for any reason, ECM must be enabled on the ground.
+
+%============================================================================
+% SECTION 5.3: ECM Configuration by Block and Variant
+%============================================================================
+\section{ECM Configuration by Block and Variant}
+\label{sec:C5-S3}
+
+CMS interaction with CMDS is \textit{uniform} across all F-16 blocks and variants (see \secref{sec:C5-S2-S1}). External Pod and IDIAS F-16 variants, however, use \textit{different} CMS procedures and ECM control panels (see \secref{sec:C5-S2-S2}):
+
+\begin{table}[H]
+\centering
+\caption{ECM Configuration by Variant --- CMS Interface Summary}
+\label{tab:C5-S3-ecm-config-summary}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3.6cm}|>{\raggedright\arraybackslash}p{3.6cm}|>{\raggedright\arraybackslash}p{4.6cm}|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{ECM Configuration}} & \textcolor{white}{\textbf{CMS Direction}} & \textcolor{white}{\textbf{Panel Control}} \\
+\hline
+External Pod (ALQ-131/ALQ-184) & CMS Down (consent) & XMIT knob (positions: 1, 2, 3) \\
+\hline
+Internal IDIAS & CMS Left (mode cycling) & XMTR switch (positions: STBY, OPER) \\
+\hline
+\end{tabular}
+\end{table}
+
+%============================================================================
+% SECTION 5.3.1: ECM Configurations in BMS
+%============================================================================
+\subsection{ECM Configurations in BMS}
+\label{sec:C5-S3-S1}
+
+Falcon BMS 4.38.1 implements two distinct ECM system architectures, each with different CMS actuation methods. Detailed actuation procedures are provided in \secref{sec:C5-S2}.
+
+The variants listed in the following tables reflect Dash-34 documentation; not all may be available as selectable aircraft in Falcon BMS 4.38.1.
+
+%============================================================================
+% SECTION 5.3.1.1: ECM Pods (ALQ-131 / ALQ-184)
+%============================================================================
+\subsubsection{ECM Pods (ALQ-131 / ALQ-184)}
+\label{sec:C5-S3-S1-S1}
+
+These variants use the ECM Pod Control Panel with manual jamming band selection. \textbf{CMS Down} grants consent for ECM transmission. For detailed procedures, see \secref{sec:C5-S2-S2-S1}.
+
+\begin{table}[H]
+\centering
+\caption{External ECM Pod Variants}
+\label{tab:C5-S3-external-ecm-pods}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3.0cm}|>{\raggedright\arraybackslash}p{5.8cm}|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Operator}} & \textcolor{white}{\textbf{Block/Variant}} \\
+\hline
+USAF & Blocks 40/42/50/52 (CM designation) \\
+\hline
+NATO & Block 15 operators (Belgium, Denmark, Netherlands, Norway) \\
+\hline
+International & Egypt, Korea KF-16C Block 32 \\
+\hline
+\end{tabular}
+\end{table}
+
+%============================================================================
+% SECTION 5.3.1.2: Internal ECM (IDIAS)
+%============================================================================
+\subsubsection{Internal ECM (IDIAS)}
+\label{sec:C5-S3-S1-S2}
+
+These variants use the IDIAS ECM control panel. \textbf{CMS Left} cycles the operational mode. For detailed procedures, see \secref{sec:C5-S2-S2-S2}.
+
+\begin{table}[H]
+\centering
+\caption{Internal ECM (IDIAS) Variants}
+\label{tab:C5-S3-internal-ecm}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3.0cm}|>{\raggedright\arraybackslash}p{5.8cm}|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Operator}} & \textcolor{white}{\textbf{Block/Variant}} \\
+\hline
+Israel & F-16I Sufa Block 52, Barak I Block 30, Barak II Block 40 \\
+\hline
+International & Greek HAF (Blocks 50 PXII, 52 PXIII, 52+ PXIV Advanced),
+Korea KF-16C Block 52, Singapore F-16D Block 52 \\
+\hline
+\end{tabular}
+\end{table}
 
 %============================================================================
 % END OF SECTION
