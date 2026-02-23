@@ -37,6 +37,11 @@ The author is not affiliated with or endorsed by Falcon BMS or any other flight 
 
 </div>
 
+> ⚠️ **Style Revision in Progress (v0.4.2.0)**  
+> A dedicated style revision pass is currently underway to improve clarity and
+> directness across all chapters. The guide, in its current version is fully accessible and technically
+> accurate. Expected completion: 2026-03-20.
+
 ---
 
 ## 📊 Current Status
@@ -47,7 +52,7 @@ The author is not affiliated with or endorsed by Falcon BMS or any other flight 
 | **Phase** | Pre-publication (0.x.x.x) |
 | **Chapters Planned** | 7 |
 | **Chapters with Content** | 4 (C1, C2, C3, C5) |
-| **Chapters with Style Revision Complete** | 0 (in progress: C5 ~65%) |
+| **Chapters with Style Revision Complete** | 0 (in progress: C5) |
 | **Next Target** | v0.4.2.0 — Style Full Revision |
 
 ---
