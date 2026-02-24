@@ -161,8 +161,8 @@ The project uses **five governance documents** and an **auto-generated tracking 
 ### WIP File Lifecycle
 
 1. **Create** — Copy template from `template/` to `wip/`
-2. **Develop** — Edit with status `dev`
-3. **Review** — Human review, status `review`
+2. **Develop** — First draft, status `dev`
+3. **Review** — Review work, status `review`
 4. **Finalize** — Approved content, status `final`
 5. **Integrate** — Merge into guide, move to `archive/`, status `approved`
 
