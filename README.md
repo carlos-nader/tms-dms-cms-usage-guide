@@ -171,7 +171,7 @@ The project uses **five governance documents** and an **auto-generated tracking 
 | Status | Meaning |
 |--------|---------|
 | `dev` | Draft stage, not ready for review |
-| `review` | Under human review |
+| `review` | Under review |
 | `final` | Approved, ready for integration |
 | `approved` | Integrated and archived |
 | `deprecated` | Retired or superseded |
