@@ -7,11 +7,11 @@ sitemap:
 ---
 {% raw %}
 
-# Falcon BMS TMS/DMS/CMS Guide — WIP File Naming Convention v1.4
+# Falcon BMS TMS/DMS/CMS Guide — WIP File Naming Convention
 
 ## Work-in-Progress File Organization and Nomenclature
 
-**Status:** Official Rule Set (v1.4)  
+**Status:** Official Rule Set  
 **Effective Date:** 03 February 2026  
 **Applies to:** All isolated chapter, section, table, note, and visual files under development  
 **Relationship to VERSION-SYSTEM:** Complementary; does NOT affect main document versioning  
@@ -555,7 +555,7 @@ When generating filenames, verify:
 |----------|----------------|
 | **VERSION-SYSTEM** | Version numbering for `guide.tex` and snapshots |
 | **BRIEFING** | Template structure, preamble architecture, layout standards |
-| **WIP-FILE-NAMING-v1.4** | WIP file naming, status tracking, integration workflow |
+| **WIP-FILE-NAMING** | WIP file naming, status tracking, integration workflow |
 | **PROJECT-TRACKING** | Session log, project state, development history |
 
 **Integration points:**
@@ -569,6 +569,5 @@ When generating filenames, verify:
 **Document Status:** Production-Ready  
 **Effective Date:** 03 February 2026  
 **Last Updated:** 25 February 2026  
-**Version:** v1.4
 
 {% endraw %}

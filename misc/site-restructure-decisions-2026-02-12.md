@@ -76,7 +76,7 @@ docs/
 ├── integrated-files.html          (HTML - keep)
 ├── briefing.md          (Markdown - Jekyll converts to .html)
 ├── project-tracking.md    (Markdown - Jekyll converts to .html)
-├── wip-naming-v1.4.md            (Markdown - Jekyll converts to .html)
+├── wip-naming.md            (Markdown - Jekyll converts to .html)
 ├── version-system.md      (Markdown - Jekyll converts to .html)
 ├── tex-preamble-consolidated.md  (Markdown - Jekyll converts to .html)
 ├── WIP-Snapshot-Generator-v3.1.html (HTML - tool)
@@ -198,7 +198,7 @@ Define **content structure** for each page:
 - **Environment Setup Guide** - Step-by-step instructions for local LaTeX environment
 
 **4. ⚙️ DEVELOPMENT STANDARDS**
-- **WIP File Naming Convention v1.4** - Standardized naming rules, status lifecycle
+- **WIP File Naming Convention** - Standardized naming rules, status lifecycle
 - **Versioning System** - Complete version numbering scheme (pre/post-publication)
 - **LaTeX Preamble Documentation** - Technical specifications for document structure
 
@@ -422,7 +422,7 @@ Jekyll is **already active** and converting Markdown files to HTML automatically
 ### **Existing Markdown Files (Being Converted)**
 - `briefing.md` → URL: `/briefing.html`
 - `project-tracking.md` → URL: `/project-tracking.html`
-- `wip-naming-v1.4.md` → URL: `/wip-naming-v1.4.html`
+- `wip-naming.md` → URL: `/wip-naming.html`
 - `version-system.md` → URL: `/version-system.html`
 - `tex-preamble-consolidated.md` → URL: `/tex-preamble-consolidated.html`
 

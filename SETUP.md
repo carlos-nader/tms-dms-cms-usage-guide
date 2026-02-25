@@ -511,7 +511,7 @@ grep -i error guide.log
 
 ## 📝 Creating WIP Files
 
-All work-in-progress content follows a **standardized naming convention** defined in [docs/wip-naming-v1.4.md](docs/wip-naming-v1.4.md).
+All work-in-progress content follows a **standardized naming convention** defined in [docs/wip-naming.md](docs/wip-naming.md).
 
 ### WIP File Naming Format
 
@@ -854,7 +854,7 @@ git push origin main
 **Cause:** WIP file doesn't follow naming convention.
 
 **Solution:**
-1. Check [docs/wip-naming-v1.4.md](docs/wip-naming-v1.4.md)
+1. Check [docs/wip-naming.md](docs/wip-naming.md)
 2. Rename file to match format:
    ```bash
    git mv wip/wrong-name.tex wip/chapter-C6-training-dev-2026-02-12.tex
@@ -939,7 +939,7 @@ git push origin main
 ### Documentation
 
 - [BRIEFING](docs/briefing.md) — Scope, style, layout standards
-- [WIP File Naming (v1.4)](docs/wip-naming-v1.4.md) — WIP naming conventions
+- [WIP File Naming](docs/wip-naming.md) — WIP naming conventions
 - [Version System](docs/version-system.md) — Versioning rules
 - [Project Tracking](docs/project-tracking.md) — Session logs, milestones
 - [CONTRIBUTING.md](.github/CONTRIBUTING.md) — Contribution guidelines

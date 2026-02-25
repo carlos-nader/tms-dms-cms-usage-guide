@@ -197,7 +197,7 @@ Milestone Complete ✅
 - [GitHub Issue Templates Documentation](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests)
 - [YAML Syntax Guide](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
 - Your project docs:
-  - WIP-FILE-NAMING-v1.4
+  - WIP-FILE-NAMING
   - VERSION-SYSTEM
   - PROJECT-TRACKING
 

@@ -592,9 +592,9 @@ with the List of HOTAS Tables. No additional macros are needed when creating new
 
 ---
 
-### 5.2 WIP-FILE-NAMING-v1.4
+### 5.2 WIP-FILE-NAMING
 
-**File:** `docs/WIP-FILE-NAMING-v1.4.md`
+**File:** `docs/WIP-FILE-NAMING.md`
 
 **Action:** Remove reference to deleted file
 
@@ -685,7 +685,7 @@ with the List of HOTAS Tables. No additional macros are needed when creating new
 - [ ] Update BRIEFING training column documentation
 - [ ] Add BRIEFING changelog entry
 - [ ] Document deleted file in BRIEFING
-- [ ] Remove line 78 from WIP-FILE-NAMING-v1.4
+- [ ] Remove line 78 from WIP-FILE-NAMING
 
 ### 6.6 Testing and Validation
 
@@ -788,7 +788,7 @@ latexmk -pdf guide.tex   # Automatically handles multiple passes
 
 - **Preamble:** `guide.tex` (repository root) — Authoritative source for all code
 - **BRIEFING:** `docs/briefing.md` — Project governance and specifications
-- **WIP-NAMING:** `docs/WIP-FILE-NAMING-v1.4.md` — File naming conventions
+- **WIP-NAMING:** `docs/WIP-FILE-NAMING.md` — File naming conventions
 - **VERSION-SYSTEM:** `docs/VERSION-SYSTEM.md` — Versioning rules
 - **PROJECT-TRACKING:** `docs/project-tracking.md` — Session history
 

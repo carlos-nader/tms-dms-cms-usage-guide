@@ -347,7 +347,7 @@ Reference relevant Dash-34 sections as plain text (no macros inside tables):
 │   ├── briefing.md         # This document
 │   ├── version-system.md
 │   ├── project-tracking.md
-│   └── wip-naming-v1.4.md
+│   └── wip-naming.md
 ├── misc/
 │   └── STYLE-GUIDE-v0.2.0.md        # Style rules for prose and formatting
 ├── scripts/                         # Automation scripts

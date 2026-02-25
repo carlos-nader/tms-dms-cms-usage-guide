@@ -158,7 +158,7 @@ body:
       value: |
         ## Related Documentation
         
-        - 📖 [WIP-FILE-NAMING-v1.4](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/wip-naming-v1.4.md) — Status code definitions
+        - 📖 [WIP-FILE-NAMING](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/wip-naming.md) — Status code definitions
         - 📖 [TECHNICAL-GLOSSARY](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/) — Terminology reference
         - 📖 [DASH-34](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/tree/main/source-materials) — F-16 avionics primary source
         - 📖 [BMS Training Manual](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/tree/main/source-materials) — BMS-specific reference

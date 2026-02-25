@@ -16,7 +16,7 @@
 
 ## Checklist
 
-- [ ] WIP file follows naming convention (see `docs/wip-naming-v1.4.md`)
+- [ ] WIP file follows naming convention (see `docs/wip-naming.md`)
 - [ ] No copyrighted text reproduced verbatim (paraphrased only)
 - [ ] VERSION-SYSTEM compliance verified (if version bump required)
 - [ ] LaTeX compiles without errors

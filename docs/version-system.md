@@ -103,7 +103,7 @@ Before any version change, answer:
   - Versioned guide **snapshots** in `wip/guide/` following the `guide-v*.tex` pattern.
   - Archived snapshots in `archive/GUIDE/`.
   - Derived artefacts: versioned PDFs, tracking documents (`PROJECT-TRACKING-*.md`), briefings.  
-  - Individual preparation file names follow their own rules defined in the separate `WIP-FILE-NAMING-v1.4` document (`section-`, `chapter-`, `table-`, `visual-`, `notes-`).
+  - Individual preparation file names follow their own rules defined in the separate `WIP-FILE-NAMING` document (`section-`, `chapter-`, `table-`, `visual-`, `notes-`).
 
 - Does not apply to other projects outside the TMS/DMS/CMS Guide unless explicitly stated.
 
@@ -142,7 +142,7 @@ To align the version system with GitHub branch protection and readable diffs, th
   - `wip/guide/guide-v0.3.3.0-20260202.tex`.
 - The directory `archive/GUIDE/` contains **previous snapshots** for historical reference.
 - Editing rule:
-  - All substantive editing of the guide is done via **WIP files** (`chapter-*.tex`, `section-*.tex`) that follow the workflow defined in `WIP-FILE-NAMING-v1.4`.
+  - All substantive editing of the guide is done via **WIP files** (`chapter-*.tex`, `section-*.tex`) that follow the workflow defined in `WIP-FILE-NAMING`.
   - When WIP content is integrated into the guide, an updated **snapshot** is created in `wip/guide/`.
   - The snapshot is then copied to `guide.tex` in the repository root, overwriting the previous version.
   - The previous snapshot is moved to `archive/GUIDE/`.
@@ -570,7 +570,7 @@ Single workflow for 0.x.x.x and x.x.x:
 ### 6.4 Relationship with WIP File Naming and BRIEFING
 
 - This document (Version System) governs the versioning and naming of the **guide snapshots** (`wip/guide/guide-v*.tex`) and their relationship with the canonical `guide.tex` in the repository root.  
-- Individual preparation files (`chapter-`, `section-`, `table-`, `visual-`, `notes-`) follow their own rules defined in the separate `WIP-FILE-NAMING-v1.4` document.  
+- Individual preparation files (`chapter-`, `section-`, `table-`, `visual-`, `notes-`) follow their own rules defined in the separate `WIP-FILE-NAMING` document.  
 - The structural specification and template governance for WIP files is defined in `BRIEFING` (Section 11).
 - These WIP files only impact the guide version when their content is integrated into the current snapshot and propagated to `guide.tex`.
 

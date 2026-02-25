@@ -14,7 +14,7 @@ All governance documents are in `/docs/` and are **mandatory reading** before ma
 
 1. **[briefing.md](../docs/briefing.md)** — Project scope, content outline, LaTeX style guidelines, layout standards
 2. **[version-system.md](../docs/version-system.md)** — Guide versioning (0.x.x.x pre-publication vs x.y.z post-publication)
-3. **[wip-naming-v1.4.md](../docs/wip-naming-v1.4.md)** — WIP file naming conventions and status lifecycle (dev → review → final → approved)
+3. **[wip-naming.md](../docs/wip-naming.md)** — WIP file naming conventions and status lifecycle (dev → review → final → approved)
 4. **[project-tracking.md](../docs/project-tracking.md)** — Current status, chapter progress, development log
 
 **Rule:** Never modify governance documents without explicit approval. These define the project's operational framework.
@@ -143,7 +143,7 @@ python scripts/generate-integrated-files.py
 
 ### Reviewing Existing WIP Files
 
-1. Check naming compliance with `wip-naming-v1.4.md`
+1. Check naming compliance with `wip-naming.md`
 2. Verify content follows BRIEFING style rules
 3. Check cross-references (`\dashlnk`, `\trglnk`) are valid
 4. Ensure `hotastable` environments are properly formatted
@@ -208,7 +208,7 @@ For complete column specifications, see BRIEFING Section 4.2 and Section 12.3.9.
 1. Which governance document defines the rules for this change?
 2. Is this a WIP file or the canonical `guide.tex`?
 3. Does this require a version bump? Which level (MINOR/PATCH/SUBPATCH)?
-4. Have I verified the naming convention against `wip-naming-v1.4.md`?
+4. Have I verified the naming convention against `wip-naming.md`?
 5. Is the content in English and instructions in Portuguese?
 6. Am I following the BRIEFING style guidelines?
 

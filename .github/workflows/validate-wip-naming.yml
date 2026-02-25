@@ -148,7 +148,7 @@ jobs:
             echo "❌ Found $VIOLATIONS filename violation(s)"
             echo ""
             echo "For detailed rules, see:"
-            echo "  • WIP-NAMING-v1.4.md (for WIP files)"
+            echo "  • WIP-NAMING.md (for WIP files)"
             echo "  • VERSION-SYSTEM.md (for guide snapshots)"
             exit 1
           else
@@ -165,5 +165,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '❌ **Filename Validation Failed**\n\nOne or more files in WIP/ or ARCHIVE/ do not follow naming conventions.\n\n**See workflow logs for details.**\n\nRules:\n- **WIP files**: See WIP-NAMING-v1.4.md\n  - Patterns: chapter-, section-, table-, notes-, visual-\n  - Date format: YYYY-MM-DD\n  - Status: dev, review, final, approved, deprecated\n  - Location: WIP/ (dev/review/final) or ARCHIVE/WIP/ (approved/deprecated)\n  - Formats: .tex or .pdf (for chapter/section/table/guide; .md for notes; .svg|.pdf|.png|.tex for visuals)\n\n- **Guide snapshots**: See VERSION-SYSTEM.md\n  - Pattern: guide-vMAJOR.MINOR.PATCH.SUBPATCH-YYYYMMDD.(tex|pdf)\n  - Date format: YYYYMMDD (8 digits)\n  - Location: WIP/GUIDE/ or ARCHIVE/GUIDE/'
+              body: '❌ **Filename Validation Failed**\n\nOne or more files in WIP/ or ARCHIVE/ do not follow naming conventions.\n\n**See workflow logs for details.**\n\nRules:\n- **WIP files**: See WIP-NAMING.md\n  - Patterns: chapter-, section-, table-, notes-, visual-\n  - Date format: YYYY-MM-DD\n  - Status: dev, review, final, approved, deprecated\n  - Location: WIP/ (dev/review/final) or ARCHIVE/WIP/ (approved/deprecated)\n  - Formats: .tex or .pdf (for chapter/section/table/guide; .md for notes; .svg|.pdf|.png|.tex for visuals)\n\n- **Guide snapshots**: See VERSION-SYSTEM.md\n  - Pattern: guide-vMAJOR.MINOR.PATCH.SUBPATCH-YYYYMMDD.(tex|pdf)\n  - Date format: YYYYMMDD (8 digits)\n  - Location: WIP/GUIDE/ or ARCHIVE/GUIDE/'
             })

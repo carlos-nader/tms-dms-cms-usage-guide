@@ -82,7 +82,7 @@
 | docs/briefing.md | tracked | 2026-02-25 13:55:11 | 32023 bytes |
 | docs/project-tracking.md | tracked | 2026-02-25 13:55:11 | 17880 bytes |
 | docs/version-system.md | tracked | 2026-02-25 13:55:11 | 29737 bytes |
-| docs/wip-naming-v1.4.md | tracked | 2026-02-25 13:55:11 | 19819 bytes |
+| docs/wip-naming.md | tracked | 2026-02-25 13:55:11 | 19819 bytes |
 | docs/tex-preamble-consolidated.md | tracked | 2026-02-25 13:55:11 | 16086 bytes |
 
 ### 5. guide.tex (Repository Root)
