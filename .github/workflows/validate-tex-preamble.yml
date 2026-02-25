@@ -6,13 +6,13 @@ on:
     paths:
       - 'wip/**/*.tex'
       - 'guide.tex'
-      - 'template/template-wip-V1.0.tex'
+      - 'template/template-wip.tex'
       - 'scripts/validate-tex-preamble.py'
   pull_request:
     paths:
       - 'wip/**/*.tex'
       - 'guide.tex'
-      - 'template/template-wip-V1.0.tex'
+      - 'template/template-wip.tex'
       - 'scripts/validate-tex-preamble.py'
 
 jobs:

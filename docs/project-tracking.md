@@ -27,11 +27,11 @@ This document tracks governance rules, project state, and development history. F
 | VERSION-SYSTEM | 2026-02-25 | Versioning rules (`docs/version-system.md`) |
 | BRIEFING | 2026-02-25 | Content scope, layout standard, preamble architecture (`docs/briefing.md`) |
 | WIP-FILE-NAMING | - | File naming conventions and status lifecycle (`docs/wip-naming.md`) |
-| TEMPLATES | V1.0 | Canonical WIP template (`template/template-wip-V1.0.tex`) |
+| TEMPLATES | - | Canonical WIP template (`template/template-wip.tex`) |
 | CHANGELOG | — | Release history and integration milestones (`CHANGELOG.md`) |
 | STYLE-GUIDE | 2026-02-24 | Prose style, voice, formatting, and prohibited patterns (`misc/STYLE-GUIDE.md`) |
 
-**Rule:** All WIP files must be created from `TEMPLATES/template-wip-V1.0.tex`.
+**Rule:** All WIP files must be created from `TEMPLATES/template-wip.tex`.
 
 ---
 
@@ -96,7 +96,7 @@ Chronological record of significant changes. For detailed commit history, see IN
 |------|---------------|-------------|
 | 2026-01-05 | v0.1.0.0 | Initial project setup. Chapter scaffolding. Introduction integrated. |
 | 2026-01-07 | v0.1.4.0 | Layout standard adopted. BRIEFING created. Geometry locked. |
-| 2026-01-11 | v0.2.4.0 | Chapter 5 (CMS) complete. Template-wip-V1.0.tex established. |
+| 2026-01-11 | v0.2.4.0 | Chapter 5 (CMS) complete. Template-wip.tex established. |
 | 2026-01-14 | v0.3.0.0 | **RELEASE:** DMS Sections 4.1 and 4.2 integrated. |
 | 2026-01-18 | v0.3.1.0 | **RELEASE:** Preamble infrastructure upgrade (article → report class). |
 | 2026-01-19 | v0.3.2.0 | **RELEASE:** Section 4.3 (DMS Down) integrated. |

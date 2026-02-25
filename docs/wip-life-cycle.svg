@@ -43,7 +43,7 @@
     <rect x="0" y="0" width="280" height="90" rx="8" fill="#5CB85C" filter="url(#shadow)"/>
     <text x="15" y="25" font-family="Arial, sans-serif" font-size="13" fill="#FFF" font-weight="bold">templates/</text>
     <rect x="15" y="38" width="250" height="22" rx="4" fill="rgba(255,255,255,0.2)"/>
-    <text x="25" y="54" font-family="Arial, sans-serif" font-size="11" fill="#FFF">template-wip-V1.0.tex</text>
+    <text x="25" y="54" font-family="Arial, sans-serif" font-size="11" fill="#FFF">template-wip.tex</text>
     <text x="15" y="80" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)" font-style="italic">⚠ NEVER modify directly — always copy first</text>
   </g>
   

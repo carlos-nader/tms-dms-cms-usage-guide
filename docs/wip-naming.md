@@ -40,10 +40,10 @@ Only content integrated into the main file triggers a version bump. WIP filename
 **All WIP files MUST be created from the canonical template:**
 
 ```text
-template/template-wip-V1.0.tex
+template/template-wip.tex
 ```
 
-This ensures preamble consistency, metadata structure, and integration hygiene. The template is versioned independently (currently V1.0) and governed by BRIEFING Section 11. Never modify the template directly; always copy, rename following Section 2 patterns, and then edit the copy.
+This ensures preamble consistency, metadata structure, and integration hygiene. The template is versioned independently and governed by BRIEFING Section 11. Never modify the template directly; always copy, rename following Section 2 patterns, and then edit the copy.
 
 **Human controls integration.** The human author is responsible for integrating WIP content into the guide snapshot. AI assists with content creation and review, but does not perform the actual integration.
 
@@ -64,7 +64,7 @@ This convention does **NOT** apply to:
 - Compiled PDFs or other binary outputs
 - Git commit messages or version control metadata
 - External reference materials or archived publications
-- **The canonical template file** (`template/template-wip-V1.0.tex`) — this is the **structural foundation** that WIP files derive from, not a WIP file itself
+- **The canonical template file** (`template/template-wip.tex`) — this is the **structural foundation** that WIP files derive from, not a WIP file itself
 
 ### 0.4 File Organization Structure
 
@@ -81,7 +81,7 @@ project-root/
 │   └── briefing-v*.md
 │
 ├── template/                       (Canonical templates)
-│   └── template-wip-V1.0.tex        (Mandatory starting point for all WIP files)
+│   └── template-wip.tex        (Mandatory starting point for all WIP files)
 │
 ├── wip/                             (Active work-in-progress)
 │   ├── chapter-*.tex                (Chapter WIP files)
@@ -117,7 +117,7 @@ All WIP files MUST start from the canonical template. Follow this workflow:
 Copy the template file from the templates folder to the wip folder:
 
 ```text
-Copy: template/template-wip-V1.0.tex
+Copy: template/template-wip.tex
 To:   wip/[temporary-name].tex
 ```
 
@@ -545,7 +545,7 @@ When generating filenames, verify:
 - ✅ Status is valid (`dev`, `review`, `final`, `approved`, `deprecated`)
 - ✅ Title is 2-4 key concepts (slugified)
 - ✅ Total filename ≤ 100 characters
-- ✅ File created from `template/template-wip-V1.0.tex`
+- ✅ File created from `template/template-wip.tex`
 
 ---
 

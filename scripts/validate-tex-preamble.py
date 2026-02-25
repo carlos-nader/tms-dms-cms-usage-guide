@@ -15,7 +15,7 @@ from pathlib import Path
 
 # Caminhos
 REPO_ROOT = Path(__file__).parent.parent.resolve()
-TEMPLATE = REPO_ROOT / 'template' / 'template-wip-V1.0.tex'
+TEMPLATE = REPO_ROOT / 'template' / 'template-wip.tex'
 WIP_DIR = REPO_ROOT / 'wip'
 GUIDE_TEX = REPO_ROOT / 'guide.tex'
 

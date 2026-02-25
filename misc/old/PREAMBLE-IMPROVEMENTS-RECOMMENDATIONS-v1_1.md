@@ -59,7 +59,7 @@ SEÇÃO **ELIMINADA** - VER SUBITENS ABAIXO
 >
 > **Reasons NOT to implement:**
 > 1. **Low edit frequency** — The preamble is stable; changes are rare
-> 2. **Template already centralizes** — `template-wip-V1.0.tex` already provides preamble consistency for WIP files
+> 2. **Template already centralizes** — `template-wip.tex` already provides preamble consistency for WIP files
 > 3. **Public distribution impact** — `guide.tex` is shared via direct links; a modular file requires users to access multiple files to understand the code
 > 4. **Complexity not justified** — The organizational benefit doesn't outweigh the added dependency management
 >
@@ -320,7 +320,7 @@ Antes de implementar, revisar os seguintes arquivos para garantir consistência:
 ## 7. Checklist de Implementação
 
 ### Pré-Implementação
-- [x] Backup de `guide.tex` e `template/template-wip-V1.0.tex` **(ver `misc\pessoal\`)**
+- [x] Backup de `guide.tex` e `template/template-wip.tex` **(ver `misc\pessoal\`)**
 
 
 ### Implementação no Preâmbulo (`guide.tex`)
@@ -337,7 +337,7 @@ Antes de implementar, revisar os seguintes arquivos para garantir consistência:
 - [x] ~~Adicionar seção "License and Distribution" no Chapter 1~~ — JÁ IMPLEMENTADO (§1.4.4 + §1.4.5)
 
 ### Sincronização
-- [ ] Atualizar `template/template-wip-V1.0.tex` com mesmas mudanças de preâmbulo
+- [ ] Atualizar `template/template-wip.tex` com mesmas mudanças de preâmbulo
 
 ### Documentação
 - [ ] Atualizar `docs/briefing.md` (seção 12)

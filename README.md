@@ -125,7 +125,7 @@ tms-dms-cms-usage-guide/
 │   └── GUIDE-STRUCTURE/              # Older structure-only files
 │
 ├── template/                         # Templates & blueprints
-│   └── template-wip-V1.0.tex         # Canonical WIP template
+│   └── template-wip.tex         # Canonical WIP template
 │
 ├── fig/                              # Images used in the guide
 ├── misc/                             # Miscellaneous resources

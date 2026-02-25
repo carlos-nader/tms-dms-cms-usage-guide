@@ -564,7 +564,7 @@ visual-C2-soi-concept-diagram-dev-2026-02-09.svg
 
 ```bash
 # Copy the official WIP template
-cp template/template-wip-V1.0.tex wip/chapter-C6-training-dev-2026-02-12.tex
+cp template/template-wip.tex wip/chapter-C6-training-dev-2026-02-12.tex
 ```
 
 #### Step 2: Edit Metadata

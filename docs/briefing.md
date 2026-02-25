@@ -342,7 +342,7 @@ Reference relevant Dash-34 sections as plain text (no macros inside tables):
 │   └── WIP/
 │       └── [approved/deprecated WIP files]
 ├── template/
-│   └── template-wip-V1.0.tex        # WIP file template (preamble reference)
+│   └── template-wip.tex        # WIP file template (preamble reference)
 ├── docs/
 │   ├── briefing.md                  # This document
 │   ├── version-system.md
@@ -369,7 +369,7 @@ Reference relevant Dash-34 sections as plain text (no macros inside tables):
 All work-in-progress files **MUST** be created by copying and adapting:
 
 ```text
-template/template-wip-V1.0.tex
+template/template-wip.tex
 ```
 
 This ensures:
@@ -378,7 +378,7 @@ This ensures:
 - Content structures aligned with brief expectations
 - Automated or semi-automated integration into guide.tex
 
-**Status:** Template V1.0 updated (11 February 2026) with enhanced preamble architecture (hotastable v2.1, List of HOTAS Tables, cross-reference macros, PDF metadata, enumitem).
+**Status:** Template updated (11 February 2026) with enhanced preamble architecture (hotastable v2.1, List of HOTAS Tables, cross-reference macros, PDF metadata, enumitem).
 
 ### 12.2 What the Template Provides
 
@@ -389,7 +389,7 @@ This ensures:
 
 ### 12.3 Preamble Architecture (Updated V2.1)
 
-The preamble in `template/template-wip-V1.0.tex` and `guide.tex` is now organized into the following sections:
+The preamble in `template/template-wip.tex` and `guide.tex` is now organized into the following sections:
 
 #### 12.3.1 Document Class
 
@@ -867,7 +867,7 @@ As shown in \tabref{tab:dms-soi}.
 ### Step 1: Create from Template
 
 ```bash
-cp template/template-wip-V1.0.tex wip/section-C5-S2-cms-new-dev-2026-02-11.tex
+cp template/template-wip.tex wip/section-C5-S2-cms-new-dev-2026-02-11.tex
 ```
 
 ### Step 2: Update Metadata Block
@@ -921,7 +921,7 @@ pdflatex section-C5-S2-cms-new-dev-2026-02-11.tex
 
 ## 15. Checklist for Contributors
 
-- [ ] Copy template from template/template-wip-V1.0.tex
+- [ ] Copy template from template/template-wip.tex
 - [ ] Follow naming convention
 - [ ] Complete metadata block
 - [ ] Update Status as work progresses

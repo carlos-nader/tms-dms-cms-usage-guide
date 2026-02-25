@@ -2,7 +2,7 @@
 
 **Data:** 2026-02-11  
 **Autor:** GitHub Copilot (GPT-4.1)  
-**Escopo:** Comparação detalhada entre `template/template-wip-V1.0.tex` e `misc/Pessoal/guide-preamble-test - Copia 2.tex` com validação frente às recomendações de governança.
+**Escopo:** Comparação detalhada entre `template/template-wip.tex` e `misc/Pessoal/guide-preamble-test - Copia 2.tex` com validação frente às recomendações de governança.
 
 ---
 
@@ -47,7 +47,7 @@ O ambiente `hotastable` é responsável por padronizar todas as tabelas HOTAS do
 
 **Comparação detalhada:**
 
-| Parâmetro         | template-wip-V1.0.tex | guide-preamble-test - Copia 2.tex | Especificação v2.1 | Justificativa |
+| Parâmetro         | template-wip.tex | guide-preamble-test - Copia 2.tex | Especificação v2.1 | Justificativa |
 |------------------|----------------------|-------------------------------|---------------------|---------------|
 | Font size        | \small (10pt)        | \footnotesize (8pt)           | \footnotesize (8pt) | Maior densidade de informação, melhor aproveitamento do espaço |
 | \tabcolsep       | 2pt                  | 3pt                           | 3pt                 | Espaçamento visual aprimorado entre células |
@@ -81,7 +81,7 @@ Todos os parâmetros e funcionalidades do ambiente estão em conformidade com a 
 Macro responsável por gerar automaticamente o índice de todas as tabelas HOTAS do documento, aparecendo após o sumário.
 
 **Comparação:**
-- Ausente em template-wip-V1.0.tex
+- Ausente em template-wip.tex
 - Presente e funcional em guide-preamble-test - Copia 2.tex
 
 **Código v2.1:**
@@ -105,7 +105,7 @@ Permite navegação centralizada, hiperlinks diretos e atualização automática
 **Descrição:**
 Padronização do conteúdo da coluna "Train." para conter apenas números de missões, eliminando macros e descrições.
 
-| Exemplo           | template-wip-V1.0.tex         | guide-preamble-test - Copia 2.tex | Especificação | Justificativa |
+| Exemplo           | template-wip.tex         | guide-preamble-test - Copia 2.tex | Especificação | Justificativa |
 |-------------------|------------------------------|-----------------------------------|---------------|---------------|
 | Missão única      | \trnref{18 (BARCAP)}         | 18                                | 18            | Evita overflow, facilita leitura e manutenção |
 | Múltiplas missões | \trnref{9}, \trnref{28}      | 9, 28                             | 9, 28         | Formato limpo, cabe em 1.60cm |
@@ -122,7 +122,7 @@ O formato simplificado está de acordo com a Seção 2.5 do GUIDE-v2_1. A rastre
 Inclusão de macros para referências internas automáticas e padronizadas: \secref, \tabref, \figref, \chapref.
 
 **Comparação:**
-- Ausentes em template-wip-V1.0.tex
+- Ausentes em template-wip.tex
 - Presentes em guide-preamble-test - Copia 2.tex
 
 **Exemplo de código:**
@@ -144,7 +144,7 @@ Garante consistência visual, facilita navegação e atualização automática d
 Adição de bloco \hypersetup com metadados completos do documento PDF.
 
 **Comparação:**
-- Ausentes em template-wip-V1.0.tex
+- Ausentes em template-wip.tex
 - Presentes em guide-preamble-test - Copia 2.tex
 
 **Exemplo de código:**
@@ -171,7 +171,7 @@ Melhora indexação, busca, citação e profissionalismo do PDF. Conforme PREAMB
 Inclusão do pacote \usepackage{enumitem} para listas customizadas.
 
 **Comparação:**
-- Ausente em template-wip-V1.0.tex
+- Ausente em template-wip.tex
 - Presente em guide-preamble-test - Copia 2.tex
 
 **Exemplo de uso:**
@@ -193,7 +193,7 @@ Permite controle fino de espaçamento e estilo em listas, melhorando apresentaç
 Atualização de comentários, instruções e exemplos nos arquivos para refletir as novas regras e padrões.
 
 **Comparação:**
-- template-wip-V1.0.tex: comentários antigos, exemplos com macros obsoletas
+- template-wip.tex: comentários antigos, exemplos com macros obsoletas
 - guide-preamble-test - Copia 2.tex: comentários revisados, exemplos atualizados
 
 **Justificativa:**
@@ -223,7 +223,7 @@ Facilita onboarding, reduz erros e garante que novos arquivos sigam o padrão co
 O preâmbulo mais recente (guide-preamble-test - Copia 2.tex) está em total conformidade com as recomendações técnicas e de governança. Todas as melhorias propostas foram implementadas corretamente, sem desvios ou omissões relevantes.
 
 **Recomendações detalhadas:**
-- Sincronizar o template-wip-V1.0.tex com o preâmbulo atualizado para garantir que todos os novos WIP sigam o padrão correto.
+- Sincronizar o template-wip.tex com o preâmbulo atualizado para garantir que todos os novos WIP sigam o padrão correto.
 - Atualizar a documentação de governança (BRIEFING, tex-preamble-consolidated, etc.) conforme checklist dos guias, para refletir as mudanças e evitar ambiguidades.
 - Validar o PDF final após compilação, conferindo especialmente a renderização das tabelas, funcionamento dos hiperlinks do índice de tabelas e presença dos metadados.
 

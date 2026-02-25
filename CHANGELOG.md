@@ -23,7 +23,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 - Training column format: Simplified from full mission descriptions to numbers.
-- LaTeX templates: Updated `TEMPLATES/template-wip-V1.0.tex` and `guide-structure-only-v0.4.0.0.tex` with new preamble.
+- LaTeX templates: Updated `TEMPLATES/template-wip.tex` and `guide-structure-only-v0.4.0.0.tex` with new preamble.
 - WIP files: Updated `chapter-C4-tms-structure-dev-2026-02-11.tex` with new preamble.
 - Documentation: Updated `briefing.md` with complete new preamble specifications.
 
@@ -123,7 +123,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [0.2.0.0] - 2026-01-11
 ### Added
 - Chapter 5 (CMS): Initial integration with foundational sections.
-- WIP template: Established `TEMPLATES/template-wip-V1.0.tex` as canonical template for all work-in-progress files.
+- WIP template: Established `TEMPLATES/template-wip.tex` as canonical template for all work-in-progress files.
 
 ---
 

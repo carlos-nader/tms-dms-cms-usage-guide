@@ -74,7 +74,7 @@ body:
       label: "Technical Requirements"
       description: "LaTeX and file standards"
       options:
-        - label: "File created from canonical template: TEMPLATES/template-wip-V1.0.tex"
+        - label: "File created from canonical template: TEMPLATES/template-wip.tex"
         - label: "File named correctly: Matches pattern section-C{N}-S{M}-{TITLE}-dev-DATE.tex"
         - label: "LaTeX compiles: No pdflatex errors (warnings acceptable at this stage)"
         - label: "Metadata updated in preamble (\\def\\wiptitle, \\def\\wipstatus, etc.)"

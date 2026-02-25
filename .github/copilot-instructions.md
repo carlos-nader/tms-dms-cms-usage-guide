@@ -31,7 +31,7 @@ All governance documents are in `/docs/` and are **mandatory reading** before ma
 
 ### WIP File Lifecycle
 
-All WIP files **MUST** be created from `template/template-wip-V1.0.tex` (canonical template).
+All WIP files **MUST** be created from `template/template-wip.tex` (canonical template).
 
 **Naming Pattern:** `{type}-C{N}[-S{M}]-{title}-{status}-{date}.tex`
 
@@ -39,7 +39,7 @@ All WIP files **MUST** be created from `template/template-wip-V1.0.tex` (canonic
 - **Status codes:** `dev` (draft) → `review` (under review) → `final` (approved) → `approved` (integrated & archived) → `deprecated` (retired)
 
 **Workflow:**
-1. Copy `template/template-wip-V1.0.tex` to `wip/`
+1. Copy `template/template-wip.tex` to `wip/`
 2. Rename following the pattern above
 3. Edit content (development status: `dev`)
 4. Human review (status: `review`)
@@ -135,7 +135,7 @@ python scripts/generate-integrated-files.py
 
 ### Creating New WIP Content
 
-1. Copy `template/template-wip-V1.0.tex` to `wip/`
+1. Copy `template/template-wip.tex` to `wip/`
 2. Rename: `section-C{N}-S{M}-{descriptive-title}-dev-{YYYY-MM-DD}.tex`
 3. Edit metadata section (file identification, description, status)
 4. Develop content following BRIEFING style guidelines
@@ -187,7 +187,7 @@ For complete column specifications, see BRIEFING Section 4.2 and Section 12.3.9.
 ## What NOT to Do
 
 1. ❌ **Never** integrate WIP content into `guide.tex` without human approval
-2. ❌ **Never** modify `template/template-wip-V1.0.tex` (it's the canonical template)
+2. ❌ **Never** modify `template/template-wip.tex` (it's the canonical template)
 3. ❌ **Never** create WIP files without using the template
 4. ❌ **Never** bump versions without following the decision tables
 5. ❌ **Never** modify governance documents (`docs/*.md`) without explicit approval
