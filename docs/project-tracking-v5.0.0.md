@@ -62,6 +62,30 @@ This document tracks governance rules, project state, and development history. F
 | 6 | Training References | Scaffolded | Pending development |
 | 7 | Visual Reference | Scaffolded | Structure TBD |
 
+### 2.1 Style Revision Snapshot — v0.4.2.0
+
+Style revision pass currently underway to remove AI-generated prose patterns across all integrated chapters. See issue #44 and §4 Target 1 for full details.
+
+| Metric | Value |
+|--------|-------|
+| **Target Version** | v0.4.2.0 |
+| **Milestone** | Style Revision |
+| **Chapters in Scope** | 5 (C1, C2, C3, C4, C5) |
+| **Chapters Revised** | 0/5 complete |
+| **Chapters In Progress** | 1/5 (C5) |
+| **Chapters Pending** | 4/5 (C1, C2, C3, C4) |
+| **Open Issues** | #44 (style revision), #48 (C5 — BYP/STBY modes) |
+
+### Chapter Style Revision Status
+
+| Ch | Title | Style Rev. | Notes |
+|----|-------|-----------|-------|
+| 1 | Introduction | 🟡 Pending | — |
+| 2 | HOTAS Fundamentals | 🟡 Pending | — |
+| 3 | DMS | 🟡 Pending | — |
+| 4 | TMS | 🟡 Pending | WIP: `section-C4-S3-tms-aa-review-2026-02-17.tex` — style review required before development resumes |
+| 5 | CMS | 🔄 In progress | Style revision complete. Author final review in progress. Issue #48 open. |
+
 ---
 
 ## 3. DEVELOPMENT LOG
