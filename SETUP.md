@@ -1,7 +1,7 @@
 # 🛠️ Setup Guide — TMS/DMS/CMS Usage Guide for Falcon BMS
 
 **Version:** 1.0.0
-**Last Updated:** 2026-02-12
+**Last Updated:** 2026-02-25
 **Target Audience:** Contributors, editors, and technical writers
 
 ---
@@ -113,7 +113,7 @@ sudo pacman -S git
 
 ```bash
 # Set your identity
-git config --global user.name "Carlos Nader"
+git config --global user.name "Your Name"
 git config --global user.email "your.email@example.com"
 
 # Set default branch name
@@ -456,7 +456,7 @@ git status
 
 ```bash
 # Navigate to project root
-cd c:\Users\carlo\OneDrive\Documentos\projeto-bms
+cd /path/to/tms-dms-cms-usage-guide
 
 # Compile guide.tex with pdflatex
 pdflatex -synctex=1 -interaction=nonstopmode guide.tex
@@ -624,9 +624,7 @@ git commit -m "feat(C6): add training flows for TMS employment
 
 - Add A-A training progression
 - Add A-G target sequencing exercises
-- Include practice scenarios
-
-Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
+- Include practice scenarios"
 
 # 5. Push to remote
 git push origin feature/chapter-6-training
@@ -746,7 +744,7 @@ python scripts/update-readme-version.py
 ```bash
 python scripts/scrape-forum-views-debug.py
 
-# Outputs: Forum view count (currently 909+)
+# Outputs: Forum view count
 ```
 
 ### Running Scripts on Windows (PowerShell)
@@ -755,7 +753,7 @@ If Python is not in PATH:
 
 ```powershell
 # Use full Python path
-C:\Users\carlo\AppData\Local\Programs\Python\Python312\python.exe scripts/generate-integrated-files.py
+C:\Users\[YourName]\AppData\Local\Programs\Python\Python3xx\python.exe scripts/generate-integrated-files.py
 ```
 
 ---
@@ -957,7 +955,7 @@ git push origin main
 ### Community
 
 - **GitHub Discussions:** https://github.com/carlos-nader/tms-dms-cms-usage-guide/discussions
-- **Falcon BMS Forum Thread:** https://forum.falcon-bms.com/topic/32340/
+- **Falcon BMS Forum Thread:** https://forum.falcon-bms.com/topic/32541
 - **Issue Tracker:** https://github.com/carlos-nader/tms-dms-cms-usage-guide/issues
 
 ---
@@ -997,6 +995,6 @@ If you encounter issues not covered in this guide:
 ---
 
 **Document Version:** 1.0.0
-**Last Updated:** 2026-02-12
+**Last Updated:** 2026-02-25
 **Maintained By:** Carlos "Metal" Nader
 **License:** CC BY-NC 4.0

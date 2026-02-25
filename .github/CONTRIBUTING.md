@@ -29,8 +29,8 @@ Want to submit or review complete sections, chapters or help with LaTeX/structur
 
 📂 **Check these resources:**
 - `/docs/` — Briefing Document, Naming Conventions, Style Rules
-- `/templates/` — Base LaTeX template for new content
-- `/WIP/` — Current WIP files for your reading, consultation or fixes
+- `template/` — Base LaTeX template for new content
+- `wip/` — Current WIP files for your reading, consultation or fixes
 - **GitHub Issues** — Track active work and open tasks
 
 **Submit your work:**
@@ -52,7 +52,7 @@ Want to submit or review complete sections, chapters or help with LaTeX/structur
 
 ## 📄 License
 
-All contributions are released under **CC BY 4.0** (same as the guide).
+All contributions are released under **CC BY-NC 4.0** (same as the guide).
 
 By contributing, you agree your work can be shared, adapted, and used by others with proper attribution.
 
