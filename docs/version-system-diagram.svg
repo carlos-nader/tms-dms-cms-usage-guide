@@ -1,0 +1,544 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1330">
+  <defs>
+    <filter id="sh" x="-10%" y="-10%" width="125%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6C757D"/>
+    </marker>
+    <marker id="arrB" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2980B9"/>
+    </marker>
+    <marker id="arrG" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27AE60"/>
+    </marker>
+  </defs>
+
+  <!-- ═══ BACKGROUND ═══ -->
+  <rect width="1000" height="1330" fill="#EEF1F5"/>
+
+  <!-- ═══ HEADER ═══ -->
+  <rect x="0" y="0" width="1000" height="72" fill="#1A252F"/>
+  <rect x="0" y="68" width="1000" height="4" fill="#2980B9"/>
+  <text x="500" y="32" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Version System</text>
+  <text x="500" y="55" font-family="Arial, sans-serif" font-size="13" fill="#95A5A6" text-anchor="middle">Falcon BMS TMS/DMS/CMS Guide · VERSION-SYSTEM · Effective 10 Jan 2026</text>
+
+  <!-- ═══ REGIME SELECTOR BANNER ═══ -->
+  <rect x="20" y="84" width="960" height="48" rx="5" fill="#FFFFFF" stroke="#2980B9" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="500" y="103" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1A252F" text-anchor="middle">FIRST QUESTION BEFORE ANY VERSION CHANGE:</text>
+  <text x="300" y="123" font-family="Arial, sans-serif" font-size="12" fill="#E74C3C" text-anchor="middle" font-weight="bold">guide has NO published edition (v &lt; 1.0)</text>
+  <text x="500" y="123" font-family="Arial, sans-serif" font-size="12" fill="#6C757D" text-anchor="middle">→</text>
+  <text x="300" y="136" font-family="Arial, sans-serif" font-size="11" fill="#E67E22" text-anchor="middle">▶  Apply Pre-Publication Regime  0.x.x.x</text>
+  <text x="720" y="123" font-family="Arial, sans-serif" font-size="12" fill="#27AE60" text-anchor="middle" font-weight="bold">guide HAS a published edition (v ≥ 1.0)</text>
+  <text x="720" y="136" font-family="Arial, sans-serif" font-size="11" fill="#2980B9" text-anchor="middle">▶  Apply Post-Publication Regime  x.x.x</text>
+  <line x1="500" y1="88" x2="500" y2="132" stroke="#CCD1D9" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION A: VERSION NUMBER ANATOMY — TWO REGIMES -->
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- Left panel bg: pre-pub warm tint -->
+  <rect x="20" y="146" width="472" height="350" rx="6" fill="#FDFAF3" stroke="#F39C12" stroke-width="1.5" filter="url(#sh)"/>
+  <!-- Right panel bg: post-pub cool tint -->
+  <rect x="508" y="146" width="472" height="350" rx="6" fill="#F3F8FE" stroke="#2980B9" stroke-width="1.5" filter="url(#sh)"/>
+
+  <!-- LEFT PANEL: Pre-pub 0.x.x.x -->
+  <rect x="20" y="146" width="472" height="32" rx="6" fill="#E67E22"/>
+  <text x="256" y="167" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">PRE-PUBLICATION  ·  Regime  0.x.x.x</text>
+
+  <!-- Digit boxes: 0 | MINOR | PATCH | SUBPATCH -->
+  <!-- 0 box -->
+  <rect x="36" y="192" width="80" height="64" rx="6" fill="#808B96" filter="url(#sh)"/>
+  <text x="76" y="221" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#FFFFFF" text-anchor="middle">0</text>
+  <text x="76" y="237" font-family="Arial, sans-serif" font-size="9" fill="#F2F3F4" text-anchor="middle">MAJOR</text>
+  <text x="76" y="249" font-family="Arial, sans-serif" font-size="9" fill="#F2F3F4" text-anchor="middle">always 0</text>
+
+  <!-- dot separator -->
+  <text x="122" y="228" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ABB2B9" text-anchor="middle">.</text>
+
+  <!-- MINOR box -->
+  <rect x="132" y="192" width="80" height="64" rx="6" fill="#E67E22" filter="url(#sh)"/>
+  <text x="172" y="218" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">MINOR</text>
+  <text x="172" y="232" font-family="Arial, sans-serif" font-size="9" fill="#FDEBD0" text-anchor="middle">new chapter</text>
+  <text x="172" y="244" font-family="Arial, sans-serif" font-size="9" fill="#FDEBD0" text-anchor="middle">with content</text>
+  <text x="172" y="252" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FDEBD0" text-anchor="middle">↑</text>
+
+  <!-- dot separator -->
+  <text x="218" y="228" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ABB2B9" text-anchor="middle">.</text>
+
+  <!-- PATCH box -->
+  <rect x="228" y="192" width="80" height="64" rx="6" fill="#2980B9" filter="url(#sh)"/>
+  <text x="268" y="218" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">PATCH</text>
+  <text x="268" y="232" font-family="Arial, sans-serif" font-size="9" fill="#D6EAF8" text-anchor="middle">structural</text>
+  <text x="268" y="244" font-family="Arial, sans-serif" font-size="9" fill="#D6EAF8" text-anchor="middle">change</text>
+  <text x="268" y="252" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#D6EAF8" text-anchor="middle">↑</text>
+
+  <!-- dot separator -->
+  <text x="314" y="228" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ABB2B9" text-anchor="middle">.</text>
+
+  <!-- SUBPATCH box -->
+  <rect x="324" y="192" width="80" height="64" rx="6" fill="#27AE60" filter="url(#sh)"/>
+  <text x="364" y="215" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SUB</text>
+  <text x="364" y="228" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">PATCH</text>
+  <text x="364" y="241" font-family="Arial, sans-serif" font-size="9" fill="#A9DFBF" text-anchor="middle">small fixes</text>
+  <text x="364" y="252" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#A9DFBF" text-anchor="middle">↑</text>
+
+  <!-- Snapshot filename pattern -->
+  <rect x="36" y="270" width="440" height="22" rx="3" fill="#FEF9E7" stroke="#F39C12" stroke-width="1"/>
+  <text x="256" y="285" font-family="Courier New, monospace" font-size="11" fill="#784212" text-anchor="middle">guide-v0.MINOR.PATCH.SUBPATCH-YYYYMMDD.tex</text>
+
+  <!-- Descriptions for each digit -->
+  <rect x="36" y="302" width="100" height="72" rx="4" fill="#FDFAF3" stroke="#ABB2B9" stroke-width="1"/>
+  <text x="86" y="320" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#808B96" text-anchor="middle">MAJOR = 0</text>
+  <text x="86" y="335" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">Internal dev.</text>
+  <text x="86" y="348" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">Unpublished.</text>
+  <text x="86" y="361" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">No stability</text>
+  <text x="86" y="374" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">commitment.</text>
+
+  <rect x="146" y="302" width="100" height="72" rx="4" fill="#FEF5E7" stroke="#E67E22" stroke-width="1"/>
+  <text x="196" y="320" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#E67E22" text-anchor="middle">MINOR ↑</text>
+  <text x="196" y="335" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">New chapter</text>
+  <text x="196" y="348" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">with real</text>
+  <text x="196" y="361" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">narrative</text>
+  <text x="196" y="374" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">enters guide</text>
+
+  <rect x="256" y="302" width="100" height="72" rx="4" fill="#EBF5FB" stroke="#2980B9" stroke-width="1"/>
+  <text x="306" y="320" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#2980B9" text-anchor="middle">PATCH ↑</text>
+  <text x="306" y="335" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">Structural</text>
+  <text x="306" y="348" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">change inside</text>
+  <text x="306" y="361" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">chapter; tables</text>
+  <text x="306" y="374" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">alter flow</text>
+
+  <rect x="366" y="302" width="110" height="72" rx="4" fill="#EAFAF1" stroke="#27AE60" stroke-width="1"/>
+  <text x="421" y="320" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#27AE60" text-anchor="middle">SUBPATCH ↑</text>
+  <text x="421" y="335" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">Typos, small</text>
+  <text x="421" y="348" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">wording, few</text>
+  <text x="421" y="361" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">table cells,</text>
+  <text x="421" y="374" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">formatting</text>
+
+  <!-- Pre-pub key rule -->
+  <rect x="36" y="386" width="440" height="96" rx="4" fill="#FFF3CD" stroke="#F39C12" stroke-width="1"/>
+  <text x="256" y="403" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#856404" text-anchor="middle">CENTRAL RULE: version only bumps when content enters the</text>
+  <text x="256" y="417" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#856404" text-anchor="middle">guide snapshot (wip/guide/) AND propagates to guide.tex</text>
+  <line x1="50" y1="423" x2="462" y2="423" stroke="#F39C12" stroke-width="0.8"/>
+  <text x="60" y="438" font-family="Arial, sans-serif" font-size="9.5" fill="#5D6D7E">• WIP files alone (chapter-*.tex, section-*.tex…) → NO version bump</text>
+  <text x="60" y="452" font-family="Arial, sans-serif" font-size="9.5" fill="#5D6D7E">• Compile-only, no content change → update date only (YYYYMMDD)</text>
+  <text x="60" y="466" font-family="Arial, sans-serif" font-size="9.5" fill="#5D6D7E">• Infrastructure change (preamble, class) → PATCH (structural)</text>
+  <text x="60" y="480" font-family="Arial, sans-serif" font-size="9.5" fill="#5D6D7E">• Tables integral to chapters — never define MINOR alone</text>
+
+  <!-- RIGHT PANEL: Post-pub x.x.x -->
+  <rect x="508" y="146" width="472" height="32" rx="6" fill="#2980B9"/>
+  <text x="744" y="167" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">POST-PUBLICATION  ·  Regime  x.x.x  (≥ 1.0)</text>
+
+  <!-- Digit boxes: MAJOR | MINOR | PATCH -->
+  <!-- MAJOR box -->
+  <rect x="530" y="192" width="108" height="64" rx="6" fill="#922B21" filter="url(#sh)"/>
+  <text x="584" y="215" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">MAJOR</text>
+  <text x="584" y="229" font-family="Arial, sans-serif" font-size="9" fill="#FADBD8" text-anchor="middle">new edition</text>
+  <text x="584" y="241" font-family="Arial, sans-serif" font-size="9" fill="#FADBD8" text-anchor="middle">broad changes</text>
+  <text x="584" y="252" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FADBD8" text-anchor="middle">↑</text>
+
+  <!-- dot separator -->
+  <text x="644" y="228" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ABB2B9" text-anchor="middle">.</text>
+
+  <!-- MINOR box -->
+  <rect x="656" y="192" width="108" height="64" rx="6" fill="#6C3483" filter="url(#sh)"/>
+  <text x="710" y="215" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">MINOR</text>
+  <text x="710" y="229" font-family="Arial, sans-serif" font-size="9" fill="#E8DAEF" text-anchor="middle">substantial</text>
+  <text x="710" y="241" font-family="Arial, sans-serif" font-size="9" fill="#E8DAEF" text-anchor="middle">expansion</text>
+  <text x="710" y="252" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#E8DAEF" text-anchor="middle">↑</text>
+
+  <!-- dot separator -->
+  <text x="770" y="228" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ABB2B9" text-anchor="middle">.</text>
+
+  <!-- PATCH box -->
+  <rect x="782" y="192" width="108" height="64" rx="6" fill="#16A085" filter="url(#sh)"/>
+  <text x="836" y="215" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">PATCH</text>
+  <text x="836" y="229" font-family="Arial, sans-serif" font-size="9" fill="#A2D9CE" text-anchor="middle">corrections</text>
+  <text x="836" y="241" font-family="Arial, sans-serif" font-size="9" fill="#A2D9CE" text-anchor="middle">clarifications</text>
+  <text x="836" y="252" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#A2D9CE" text-anchor="middle">↑</text>
+
+  <!-- Snapshot filename pattern -->
+  <rect x="524" y="270" width="440" height="22" rx="3" fill="#EBF5FB" stroke="#2980B9" stroke-width="1"/>
+  <text x="744" y="285" font-family="Courier New, monospace" font-size="11" fill="#1A5276" text-anchor="middle">guide-vMAJOR.MINOR.PATCH-YYYYMMDD.tex</text>
+
+  <!-- Descriptions for each digit -->
+  <rect x="524" y="302" width="118" height="72" rx="4" fill="#FDEDEC" stroke="#922B21" stroke-width="1"/>
+  <text x="583" y="320" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#922B21" text-anchor="middle">MAJOR ↑</text>
+  <text x="583" y="335" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">New edition.</text>
+  <text x="583" y="348" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">Reader must</text>
+  <text x="583" y="361" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">re-learn global</text>
+  <text x="583" y="374" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">structure. Rare.</text>
+
+  <rect x="652" y="302" width="118" height="72" rx="4" fill="#F5EEF8" stroke="#6C3483" stroke-width="1"/>
+  <text x="711" y="320" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#6C3483" text-anchor="middle">MINOR ↑</text>
+  <text x="711" y="335" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">Substantial</text>
+  <text x="711" y="348" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">but compatible.</text>
+  <text x="711" y="361" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">Index stays</text>
+  <text x="711" y="374" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">recognisable.</text>
+
+  <rect x="780" y="302" width="184" height="72" rx="4" fill="#E8F8F5" stroke="#16A085" stroke-width="1"/>
+  <text x="872" y="320" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#16A085" text-anchor="middle">PATCH ↑</text>
+  <text x="872" y="335" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">Local fine-tuning.</text>
+  <text x="872" y="348" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">Spelling, grammar,</text>
+  <text x="872" y="361" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">clarity, small table</text>
+  <text x="872" y="374" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E" text-anchor="middle">adjustments.</text>
+
+  <!-- Post-pub checklist -->
+  <rect x="524" y="386" width="440" height="96" rx="4" fill="#D6EAF8" stroke="#2980B9" stroke-width="1"/>
+  <text x="744" y="403" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1A5276" text-anchor="middle">QUICK CHECKLIST  (post-pub)</text>
+  <line x1="538" y1="409" x2="950" y2="409" stroke="#2980B9" stroke-width="0.8"/>
+  <text x="538" y="424" font-family="Arial, sans-serif" font-size="9.5" fill="#1A5276">1. Reader must re-learn global structure?  →  MAJOR  (e.g. 1.3.2 → 2.0.0)</text>
+  <text x="538" y="440" font-family="Arial, sans-serif" font-size="9.5" fill="#1A5276">2. Significant expansion, but edition stays recognisable?  →  MINOR  (e.g. 1.0.0 → 1.1.0)</text>
+  <text x="538" y="456" font-family="Arial, sans-serif" font-size="9.5" fill="#1A5276">3. Local fixes, clarity, small table adjustments?  →  PATCH  (e.g. 1.1.0 → 1.1.1)</text>
+  <text x="538" y="472" font-family="Arial, sans-serif" font-size="9" fill="#5D6D7E">MAJOR is rare (editions) · MINOR is less rare · PATCH can happen frequently</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION B: DECISION TABLES (TWO COLUMNS) -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="20" y="510" width="960" height="28" rx="4" fill="#1E2D3D"/>
+  <rect x="20" y="510" width="5" height="28" rx="2" fill="#E67E22"/>
+  <text x="38" y="529" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" letter-spacing="1">WHEN TO INCREMENT  —  QUICK REFERENCE</text>
+
+  <!-- PRE-PUB table -->
+  <rect x="20" y="542" width="472" height="26" rx="0" fill="#E67E22"/>
+  <text x="256" y="559" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Pre-Publication  0.x.x.x</text>
+
+  <!-- Situation col header -->
+  <rect x="20" y="568" width="320" height="20" fill="#D5D8DC"/>
+  <rect x="342" y="568" width="150" height="20" fill="#D5D8DC"/>
+  <text x="38" y="582" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#4D5656">Situation</text>
+  <text x="417" y="582" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#4D5656" text-anchor="middle">Increment</text>
+
+  <!-- Pre-pub rows -->
+  <!-- r1 -->
+  <rect x="20" y="588" width="472" height="22" fill="#FFFFFF"/>
+  <text x="38" y="603" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">New chapter with substantive content enters guide</text>
+  <rect x="342" y="590" width="150" height="18" rx="9" fill="#E67E22"/>
+  <text x="417" y="603" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFF" text-anchor="middle">MINOR</text>
+  <!-- r2 -->
+  <rect x="20" y="610" width="472" height="22" fill="#F2F3F4"/>
+  <text x="38" y="625" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">New relevant section in already-active chapter</text>
+  <rect x="342" y="612" width="150" height="18" rx="9" fill="#2980B9"/>
+  <text x="417" y="625" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFF" text-anchor="middle">PATCH</text>
+  <!-- r3 -->
+  <rect x="20" y="632" width="472" height="22" fill="#FFFFFF"/>
+  <text x="38" y="647" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">New/reworked table changes how chapter is used</text>
+  <rect x="342" y="634" width="150" height="18" rx="9" fill="#2980B9"/>
+  <text x="417" y="647" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFF" text-anchor="middle">PATCH</text>
+  <!-- r4 -->
+  <rect x="20" y="654" width="472" height="22" fill="#F2F3F4"/>
+  <text x="38" y="669" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">Restructure sections/subsections within chapter</text>
+  <rect x="342" y="656" width="150" height="18" rx="9" fill="#2980B9"/>
+  <text x="417" y="669" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFF" text-anchor="middle">PATCH</text>
+  <!-- r5 -->
+  <rect x="20" y="676" width="472" height="22" fill="#FFFFFF"/>
+  <text x="38" y="691" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">LaTeX compilation error fix (structural bugfix)</text>
+  <rect x="342" y="678" width="150" height="18" rx="9" fill="#2980B9"/>
+  <text x="417" y="691" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFF" text-anchor="middle">PATCH</text>
+  <!-- r6 -->
+  <rect x="20" y="698" width="472" height="22" fill="#F2F3F4"/>
+  <text x="38" y="713" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">Typos, punctuation, small wording adjustments</text>
+  <rect x="342" y="700" width="150" height="18" rx="9" fill="#27AE60"/>
+  <text x="417" y="713" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFF" text-anchor="middle">SUBPATCH</text>
+  <!-- r7 -->
+  <rect x="20" y="720" width="472" height="22" fill="#FFFFFF"/>
+  <text x="38" y="735" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">Adjust few table cells without changing logic</text>
+  <rect x="342" y="722" width="150" height="18" rx="9" fill="#27AE60"/>
+  <text x="417" y="735" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFF" text-anchor="middle">SUBPATCH</text>
+  <!-- r8 -->
+  <rect x="20" y="742" width="472" height="22" fill="#F2F3F4"/>
+  <text x="38" y="757" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">Compile/save only, no content change</text>
+  <rect x="342" y="744" width="150" height="18" rx="9" fill="#95A5A6"/>
+  <text x="417" y="757" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFF" text-anchor="middle">date only</text>
+  <!-- r9 -->
+  <rect x="20" y="764" width="472" height="22" fill="#FFFFFF"/>
+  <text x="38" y="779" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">Work only in WIP files (not yet in snapshot)</text>
+  <rect x="342" y="766" width="150" height="18" rx="9" fill="#BFC9CA"/>
+  <text x="417" y="779" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#2C3E50" text-anchor="middle">no bump</text>
+
+  <!-- Border pre-pub table -->
+  <rect x="20" y="568" width="472" height="218" fill="none" stroke="#CCD1D9" stroke-width="1"/>
+  <line x1="340" y1="568" x2="340" y2="786" stroke="#CCD1D9" stroke-width="1"/>
+
+  <!-- POST-PUB table -->
+  <rect x="508" y="542" width="472" height="26" rx="0" fill="#2980B9"/>
+  <text x="744" y="559" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Post-Publication  x.x.x  (≥ 1.0)</text>
+
+  <rect x="508" y="568" width="320" height="20" fill="#D5D8DC"/>
+  <rect x="830" y="568" width="150" height="20" fill="#D5D8DC"/>
+  <text x="526" y="582" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#4D5656">Situation</text>
+  <text x="905" y="582" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#4D5656" text-anchor="middle">Increment</text>
+
+  <!-- Post-pub rows -->
+  <!-- r1 -->
+  <rect x="508" y="588" width="472" height="22" fill="#FFFFFF"/>
+  <text x="526" y="603" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">Reorganise chapters (merges, splits, major order change)</text>
+  <rect x="830" y="590" width="150" height="18" rx="9" fill="#922B21"/>
+  <text x="905" y="603" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFF" text-anchor="middle">MAJOR</text>
+  <!-- r2 -->
+  <rect x="508" y="610" width="472" height="22" fill="#F2F3F4"/>
+  <text x="526" y="625" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">Add/remove large content blocks, change global scope</text>
+  <rect x="830" y="612" width="150" height="18" rx="9" fill="#922B21"/>
+  <text x="905" y="625" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFF" text-anchor="middle">MAJOR</text>
+  <!-- r3 -->
+  <rect x="508" y="632" width="472" height="22" fill="#FFFFFF"/>
+  <text x="526" y="647" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">New major BMS version requires substantial rewrite</text>
+  <rect x="830" y="634" width="150" height="18" rx="9" fill="#922B21"/>
+  <text x="905" y="647" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFF" text-anchor="middle">MAJOR</text>
+  <!-- r4 -->
+  <rect x="508" y="654" width="472" height="22" fill="#F2F3F4"/>
+  <text x="526" y="669" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">Add important new chapter within same edition</text>
+  <rect x="830" y="656" width="150" height="18" rx="9" fill="#6C3483"/>
+  <text x="905" y="669" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFF" text-anchor="middle">MINOR</text>
+  <!-- r5 -->
+  <rect x="508" y="676" width="472" height="22" fill="#FFFFFF"/>
+  <text x="526" y="691" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">Substantially expand chapters (new sections, key tables)</text>
+  <rect x="830" y="678" width="150" height="18" rx="9" fill="#6C3483"/>
+  <text x="905" y="691" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFF" text-anchor="middle">MINOR</text>
+  <!-- r6 -->
+  <rect x="508" y="698" width="472" height="22" fill="#F2F3F4"/>
+  <text x="526" y="713" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">Reorganise subset of chapters; index stays recognisable</text>
+  <rect x="830" y="700" width="150" height="18" rx="9" fill="#6C3483"/>
+  <text x="905" y="713" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFF" text-anchor="middle">MINOR</text>
+  <!-- r7 -->
+  <rect x="508" y="720" width="472" height="22" fill="#FFFFFF"/>
+  <text x="526" y="735" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">Correct localised errors in text/tables (no restructuring)</text>
+  <rect x="830" y="722" width="150" height="18" rx="9" fill="#16A085"/>
+  <text x="905" y="735" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFF" text-anchor="middle">PATCH</text>
+  <!-- r8 -->
+  <rect x="508" y="742" width="472" height="22" fill="#F2F3F4"/>
+  <text x="526" y="757" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">Fix typos, grammar, clarity, update references</text>
+  <rect x="830" y="744" width="150" height="18" rx="9" fill="#16A085"/>
+  <text x="905" y="757" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFF" text-anchor="middle">PATCH</text>
+  <!-- r9 -->
+  <rect x="508" y="764" width="472" height="22" fill="#FFFFFF"/>
+  <text x="526" y="779" font-family="Arial, sans-serif" font-size="9.5" fill="#2C3E50">Adjust table cells, labels, without logic changes</text>
+  <rect x="830" y="766" width="150" height="18" rx="9" fill="#16A085"/>
+  <text x="905" y="779" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#FFF" text-anchor="middle">PATCH</text>
+
+  <!-- Border post-pub table -->
+  <rect x="508" y="568" width="472" height="218" fill="none" stroke="#CCD1D9" stroke-width="1"/>
+  <line x1="828" y1="568" x2="828" y2="786" stroke="#CCD1D9" stroke-width="1"/>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION C: BRIDGE TO 1.0 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="20" y="800" width="960" height="28" rx="4" fill="#1E2D3D"/>
+  <rect x="20" y="800" width="5" height="28" rx="2" fill="#F39C12"/>
+  <text x="38" y="819" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" letter-spacing="1">BRIDGE TO PUBLICATION  ·  0.x.x.x  →  1.0.0</text>
+
+  <!-- Criteria + Procedure two-column -->
+  <rect x="20" y="832" width="466" height="136" rx="5" fill="#FFF9E6" stroke="#F39C12" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="253" y="850" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#856404" text-anchor="middle">CRITERIA TO DECLARE 1.0</text>
+  <line x1="34" y1="855" x2="472" y2="855" stroke="#F39C12" stroke-width="0.8"/>
+  <text x="38" y="870" font-family="Arial, sans-serif" font-size="10" fill="#5D4037">✓  All planned chapters have basic narrative complete</text>
+  <text x="38" y="886" font-family="Arial, sans-serif" font-size="10" fill="#5D4037">✓  Guide is practically usable by a reader</text>
+  <text x="38" y="902" font-family="Arial, sans-serif" font-size="10" fill="#5D4037">✓  Partial tables clearly marked (not appearing as errors)</text>
+  <text x="38" y="918" font-family="Arial, sans-serif" font-size="10" fill="#5D4037">✓  Unified terminology; key references checked</text>
+  <text x="38" y="934" font-family="Arial, sans-serif" font-size="10" fill="#5D4037">✓  No TODO/FIXME markers in main sections</text>
+  <text x="38" y="950" font-family="Arial, sans-serif" font-size="10" fill="#5D4037">✓  PROJECT-TRACKING consistent with frozen state</text>
+  <text x="38" y="966" font-family="Arial, sans-serif" font-size="10" fill="#5D4037">✓  Chapter index reflects structure to be "frozen" for readers</text>
+
+  <rect x="504" y="832" width="476" height="136" rx="5" fill="#EBF5FB" stroke="#2980B9" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="742" y="850" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1A5276" text-anchor="middle">TRANSITION PROCEDURE</text>
+  <line x1="518" y1="855" x2="966" y2="855" stroke="#2980B9" stroke-width="0.8"/>
+  <text x="522" y="870" font-family="Arial, sans-serif" font-size="10" fill="#1A5276">1.  Choose base  0.a.b.c  that meets all criteria above</text>
+  <text x="522" y="886" font-family="Arial, sans-serif" font-size="10" fill="#1A5276">2.  Update macros:  \docversion{1.0.0}  ·  \docbuild{YYYYMMDD}</text>
+  <text x="522" y="902" font-family="Arial, sans-serif" font-size="10" fill="#1A5276">3.  Save snapshot:  wip/guide/guide-v1.0.0-YYYYMMDD.tex</text>
+  <text x="522" y="918" font-family="Arial, sans-serif" font-size="10" fill="#1A5276">4.  Copy snapshot → guide.tex (repository root)</text>
+  <text x="522" y="934" font-family="Arial, sans-serif" font-size="10" fill="#1A5276">5.  Move all guide-v0.*.tex to archive/GUIDE/ (freeze 0.x line)</text>
+  <text x="522" y="950" font-family="Arial, sans-serif" font-size="10" fill="#1A5276">6.  Log in PROJECT-TRACKING: which 0.a.b.c + editorial rationale</text>
+  <text x="522" y="966" font-family="Arial, sans-serif" font-size="10" fill="#1A5276">7.  Create GitHub tag  v1.0.0  +  Release with changelog</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION D: VERSION BUMP WORKFLOW -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="20" y="982" width="960" height="28" rx="4" fill="#1E2D3D"/>
+  <rect x="20" y="982" width="5" height="28" rx="2" fill="#27AE60"/>
+  <text x="38" y="1001" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" letter-spacing="1">VERSION BUMP WORKFLOW  (BOTH REGIMES)</text>
+
+  <!-- Workflow steps: 8 connected boxes -->
+  <rect x="20" y="1018" width="960" height="58" rx="5" fill="#FFFFFF" filter="url(#sh)"/>
+
+  <!-- Step boxes (8 steps in a row) -->
+  <!-- Steps are: 1 Determine · 2 Update macros · 3 Compile · 4 Save snapshot · 5 Propagate · 6 Archive · 7 PROJECT-TRACKING · 8 Tag+Release -->
+  <!-- Each step box ~100px wide -->
+  <!-- Step 1 -->
+  <rect x="28" y="1024" width="96" height="44" rx="4" fill="#EBF5FB" stroke="#2980B9" stroke-width="1"/>
+  <text x="76" y="1040" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#1A5276" text-anchor="middle">1. Determine</text>
+  <text x="76" y="1052" font-family="Arial, sans-serif" font-size="8.5" fill="#1A5276" text-anchor="middle">change type</text>
+  <text x="76" y="1063" font-family="Arial, sans-serif" font-size="8.5" fill="#1A5276" text-anchor="middle">(see tables)</text>
+
+  <path d="M 124 1046 L 138 1046" stroke="#6C757D" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Step 2 -->
+  <rect x="140" y="1024" width="96" height="44" rx="4" fill="#EBF5FB" stroke="#2980B9" stroke-width="1"/>
+  <text x="188" y="1040" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#1A5276" text-anchor="middle">2. Update</text>
+  <text x="188" y="1052" font-family="Arial, sans-serif" font-size="8.5" fill="#1A5276" text-anchor="middle">\docversion</text>
+  <text x="188" y="1063" font-family="Arial, sans-serif" font-size="8.5" fill="#1A5276" text-anchor="middle">\docbuild</text>
+
+  <path d="M 236 1046 L 250 1046" stroke="#6C757D" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Step 3 -->
+  <rect x="252" y="1024" width="96" height="44" rx="4" fill="#FEF9E7" stroke="#F39C12" stroke-width="1"/>
+  <text x="300" y="1040" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#856404" text-anchor="middle">3. Compile</text>
+  <text x="300" y="1052" font-family="Arial, sans-serif" font-size="8.5" fill="#856404" text-anchor="middle">check for</text>
+  <text x="300" y="1063" font-family="Arial, sans-serif" font-size="8.5" fill="#856404" text-anchor="middle">LaTeX errors</text>
+
+  <path d="M 348 1046 L 362 1046" stroke="#6C757D" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Step 4 -->
+  <rect x="364" y="1024" width="96" height="44" rx="4" fill="#EBF5FB" stroke="#2980B9" stroke-width="1"/>
+  <text x="412" y="1040" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#1A5276" text-anchor="middle">4. Save</text>
+  <text x="412" y="1052" font-family="Arial, sans-serif" font-size="8.5" fill="#1A5276" text-anchor="middle">snapshot in</text>
+  <text x="412" y="1063" font-family="Arial, sans-serif" font-size="8.5" fill="#1A5276" text-anchor="middle">wip/guide/</text>
+
+  <path d="M 460 1046 L 474 1046" stroke="#6C757D" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Step 5 -->
+  <rect x="476" y="1024" width="96" height="44" rx="4" fill="#EBF5FB" stroke="#2980B9" stroke-width="1"/>
+  <text x="524" y="1040" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#1A5276" text-anchor="middle">5. Propagate</text>
+  <text x="524" y="1052" font-family="Arial, sans-serif" font-size="8.5" fill="#1A5276" text-anchor="middle">copy to</text>
+  <text x="524" y="1063" font-family="Arial, sans-serif" font-size="8.5" fill="#1A5276" text-anchor="middle">guide.tex</text>
+
+  <path d="M 572 1046 L 586 1046" stroke="#6C757D" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Step 6 -->
+  <rect x="588" y="1024" width="96" height="44" rx="4" fill="#EBF5FB" stroke="#2980B9" stroke-width="1"/>
+  <text x="636" y="1040" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#1A5276" text-anchor="middle">6. Archive</text>
+  <text x="636" y="1052" font-family="Arial, sans-serif" font-size="8.5" fill="#1A5276" text-anchor="middle">prev. snapshot</text>
+  <text x="636" y="1063" font-family="Arial, sans-serif" font-size="8.5" fill="#1A5276" text-anchor="middle">→ archive/GUIDE/</text>
+
+  <path d="M 684 1046 L 698 1046" stroke="#6C757D" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Step 7 -->
+  <rect x="700" y="1024" width="112" height="44" rx="4" fill="#EBF5FB" stroke="#2980B9" stroke-width="1"/>
+  <text x="756" y="1040" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#1A5276" text-anchor="middle">7. Update</text>
+  <text x="756" y="1052" font-family="Arial, sans-serif" font-size="8.5" fill="#1A5276" text-anchor="middle">PROJECT-</text>
+  <text x="756" y="1063" font-family="Arial, sans-serif" font-size="8.5" fill="#1A5276" text-anchor="middle">TRACKING</text>
+
+  <path d="M 812 1046 L 826 1046" stroke="#27AE60" stroke-width="1.5" marker-end="url(#arrG)"/>
+
+  <!-- Step 8 -->
+  <rect x="828" y="1024" width="138" height="44" rx="4" fill="#EAFAF1" stroke="#27AE60" stroke-width="1.5"/>
+  <text x="897" y="1040" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#1E8449" text-anchor="middle">8. GitHub Tag</text>
+  <text x="897" y="1052" font-family="Arial, sans-serif" font-size="8.5" fill="#1E8449" text-anchor="middle">+ Release</text>
+  <text x="897" y="1063" font-family="Arial, sans-serif" font-size="8.5" fill="#1E8449" text-anchor="middle">(every bump)</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION E: VERSION HISTORY TIMELINE -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="20" y="1090" width="960" height="28" rx="4" fill="#1E2D3D"/>
+  <rect x="20" y="1090" width="5" height="28" rx="2" fill="#8E44AD"/>
+  <text x="38" y="1109" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" letter-spacing="1">ACTUAL VERSION HISTORY  ·  Pre-Publication</text>
+
+  <!-- Timeline rail -->
+  <rect x="20" y="1128" width="960" height="148" rx="5" fill="#FFFFFF" filter="url(#sh)"/>
+  <line x1="40" y1="1175" x2="960" y2="1175" stroke="#CCD1D9" stroke-width="2"/>
+
+  <!-- Version entries: horizontal timeline -->
+  <!-- v0.1.0.0 -->
+  <circle cx="68" cy="1175" r="5" fill="#E67E22"/>
+  <rect x="38" y="1130" width="62" height="38" rx="3" fill="#FEF5E7" stroke="#E67E22" stroke-width="1"/>
+  <text x="69" y="1144" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#D35400" text-anchor="middle">v0.1.0.0</text>
+  <text x="69" y="1155" font-family="Arial, sans-serif" font-size="7.5" fill="#5D6D7E" text-anchor="middle">2026-01-05</text>
+  <text x="69" y="1165" font-family="Arial, sans-serif" font-size="7.5" fill="#5D6D7E" text-anchor="middle">C1 Intro</text>
+  <line x1="69" y1="1168" x2="69" y2="1170" stroke="#E67E22" stroke-width="1"/>
+
+  <!-- v0.2.0.1 -->
+  <circle cx="158" cy="1175" r="5" fill="#E67E22"/>
+  <rect x="128" y="1130" width="62" height="38" rx="3" fill="#FEF5E7" stroke="#E67E22" stroke-width="1"/>
+  <text x="159" y="1144" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#D35400" text-anchor="middle">v0.2.0.1</text>
+  <text x="159" y="1155" font-family="Arial, sans-serif" font-size="7.5" fill="#5D6D7E" text-anchor="middle">2026-01-07</text>
+  <text x="159" y="1165" font-family="Arial, sans-serif" font-size="7.5" fill="#5D6D7E" text-anchor="middle">C5 CMS §5.1</text>
+  <line x1="159" y1="1168" x2="159" y2="1170" stroke="#E67E22" stroke-width="1"/>
+
+  <!-- v0.2.4.0 -->
+  <circle cx="238" cy="1175" r="4" fill="#2980B9"/>
+  <rect x="208" y="1182" width="62" height="38" rx="3" fill="#EBF5FB" stroke="#2980B9" stroke-width="1"/>
+  <text x="239" y="1196" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#1A5276" text-anchor="middle">v0.2.4.0</text>
+  <text x="239" y="1207" font-family="Arial, sans-serif" font-size="7.5" fill="#5D6D7E" text-anchor="middle">2026-01-12</text>
+  <text x="239" y="1218" font-family="Arial, sans-serif" font-size="7.5" fill="#5D6D7E" text-anchor="middle">C5 complete</text>
+  <line x1="239" y1="1178" x2="239" y2="1180" stroke="#2980B9" stroke-width="1"/>
+
+  <!-- v0.3.0.0 -->
+  <circle cx="318" cy="1175" r="5" fill="#E67E22"/>
+  <rect x="288" y="1130" width="62" height="38" rx="3" fill="#FEF5E7" stroke="#E67E22" stroke-width="1"/>
+  <text x="319" y="1144" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#D35400" text-anchor="middle">v0.3.0.0</text>
+  <text x="319" y="1155" font-family="Arial, sans-serif" font-size="7.5" fill="#5D6D7E" text-anchor="middle">2026-01-15</text>
+  <text x="319" y="1165" font-family="Arial, sans-serif" font-size="7.5" fill="#5D6D7E" text-anchor="middle">C4 DMS §4.1,2</text>
+  <line x1="319" y1="1168" x2="319" y2="1170" stroke="#E67E22" stroke-width="1"/>
+
+  <!-- v0.3.2.0 -->
+  <circle cx="398" cy="1175" r="4" fill="#2980B9"/>
+  <rect x="368" y="1182" width="62" height="38" rx="3" fill="#EBF5FB" stroke="#2980B9" stroke-width="1"/>
+  <text x="399" y="1196" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#1A5276" text-anchor="middle">v0.3.2.0</text>
+  <text x="399" y="1207" font-family="Arial, sans-serif" font-size="7.5" fill="#5D6D7E" text-anchor="middle">2026-01-19</text>
+  <text x="399" y="1218" font-family="Arial, sans-serif" font-size="7.5" fill="#5D6D7E" text-anchor="middle">C4 DMS §4.3</text>
+  <line x1="399" y1="1178" x2="399" y2="1180" stroke="#2980B9" stroke-width="1"/>
+
+  <!-- v0.3.3.0 -->
+  <circle cx="478" cy="1175" r="4" fill="#2980B9"/>
+  <rect x="448" y="1130" width="62" height="38" rx="3" fill="#EBF5FB" stroke="#2980B9" stroke-width="1"/>
+  <text x="479" y="1144" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#1A5276" text-anchor="middle">v0.3.3.0</text>
+  <text x="479" y="1155" font-family="Arial, sans-serif" font-size="7.5" fill="#5D6D7E" text-anchor="middle">2026-02-02</text>
+  <text x="479" y="1165" font-family="Arial, sans-serif" font-size="7.5" fill="#5D6D7E" text-anchor="middle">C4 §4.4, C1 rev</text>
+  <line x1="479" y1="1168" x2="479" y2="1170" stroke="#2980B9" stroke-width="1"/>
+
+  <!-- v0.4.0.0 -->
+  <circle cx="578" cy="1175" r="5" fill="#E67E22"/>
+  <rect x="548" y="1182" width="62" height="38" rx="3" fill="#FEF5E7" stroke="#E67E22" stroke-width="1"/>
+  <text x="579" y="1196" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#D35400" text-anchor="middle">v0.4.0.0</text>
+  <text x="579" y="1207" font-family="Arial, sans-serif" font-size="7.5" fill="#5D6D7E" text-anchor="middle">2026-02-10</text>
+  <text x="579" y="1218" font-family="Arial, sans-serif" font-size="7.5" fill="#5D6D7E" text-anchor="middle">C2+C3 in; renumber</text>
+  <line x1="579" y1="1178" x2="579" y2="1180" stroke="#E67E22" stroke-width="1"/>
+
+  <!-- v0.4.1.0 -->
+  <circle cx="668" cy="1175" r="4" fill="#2980B9"/>
+  <rect x="638" y="1130" width="62" height="38" rx="3" fill="#EBF5FB" stroke="#2980B9" stroke-width="1"/>
+  <text x="669" y="1144" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#1A5276" text-anchor="middle">v0.4.1.0</text>
+  <text x="669" y="1155" font-family="Arial, sans-serif" font-size="7.5" fill="#5D6D7E" text-anchor="middle">2026-02-11</text>
+  <text x="669" y="1165" font-family="Arial, sans-serif" font-size="7.5" fill="#5D6D7E" text-anchor="middle">hotastable v2.1</text>
+  <line x1="669" y1="1168" x2="669" y2="1170" stroke="#2980B9" stroke-width="1"/>
+
+  <!-- v0.4.1.1 (current) -->
+  <circle cx="748" cy="1175" r="6" fill="#1E8449"/>
+  <rect x="716" y="1182" width="66" height="38" rx="3" fill="#D5F5E3" stroke="#1E8449" stroke-width="1.5"/>
+  <text x="749" y="1196" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#1E8449" text-anchor="middle">v0.4.1.1 ◀</text>
+  <text x="749" y="1207" font-family="Arial, sans-serif" font-size="7.5" fill="#1E8449" text-anchor="middle">2026-02-18</text>
+  <text x="749" y="1218" font-family="Arial, sans-serif" font-size="7.5" fill="#1E8449" text-anchor="middle">CURRENT</text>
+  <line x1="749" y1="1178" x2="749" y2="1180" stroke="#1E8449" stroke-width="1.5"/>
+
+  <!-- v0.5.0.0 (projected) -->
+  <circle cx="838" cy="1175" r="5" fill="#ABB2B9"/>
+  <rect x="808" y="1130" width="62" height="38" rx="3" fill="#F2F3F4" stroke="#ABB2B9" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="839" y="1144" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#808B96" text-anchor="middle">v0.5.0.0</text>
+  <text x="839" y="1155" font-family="Arial, sans-serif" font-size="7.5" fill="#808B96" text-anchor="middle">projected</text>
+  <text x="839" y="1165" font-family="Arial, sans-serif" font-size="7.5" fill="#808B96" text-anchor="middle">C4 TMS</text>
+  <line x1="839" y1="1168" x2="839" y2="1170" stroke="#ABB2B9" stroke-width="1" stroke-dasharray="2,2"/>
+
+  <!-- v1.0 (projected) -->
+  <circle cx="942" cy="1175" r="7" fill="#BFC9CA" stroke="#95A5A6" stroke-width="1" stroke-dasharray="3,2"/>
+  <rect x="908" y="1182" width="64" height="38" rx="3" fill="#F2F3F4" stroke="#ABB2B9" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="940" y="1196" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#808B96" text-anchor="middle">v1.0.0</text>
+  <text x="940" y="1207" font-family="Arial, sans-serif" font-size="7.5" fill="#808B96" text-anchor="middle">projected</text>
+  <text x="940" y="1218" font-family="Arial, sans-serif" font-size="7.5" fill="#808B96" text-anchor="middle">1st edition</text>
+  <line x1="940" y1="1178" x2="940" y2="1180" stroke="#ABB2B9" stroke-width="1" stroke-dasharray="2,2"/>
+
+  <!-- Dashed rail for projected -->
+  <line x1="785" y1="1175" x2="960" y2="1175" stroke="#CCD1D9" stroke-width="2" stroke-dasharray="5,4"/>
+
+  <!-- Legend for timeline -->
+  <circle cx="38" cy="1262" r="5" fill="#E67E22"/>
+  <text x="48" y="1266" font-family="Arial, sans-serif" font-size="9.5" fill="#5D6D7E">MINOR bump (new chapter)</text>
+  <circle cx="218" cy="1262" r="4" fill="#2980B9"/>
+  <text x="228" y="1266" font-family="Arial, sans-serif" font-size="9.5" fill="#5D6D7E">PATCH / SUBPATCH</text>
+  <circle cx="378" cy="1262" r="6" fill="#1E8449"/>
+  <text x="390" y="1266" font-family="Arial, sans-serif" font-size="9.5" fill="#5D6D7E">Current version</text>
+  <circle cx="528" cy="1262" r="5" fill="#BFC9CA" stroke="#ABB2B9" stroke-width="1"/>
+  <text x="538" y="1266" font-family="Arial, sans-serif" font-size="9.5" fill="#5D6D7E">Projected (not yet released)</text>
+
+  <!-- ═══ FOOTER ═══ -->
+  <rect x="0" y="1300" width="1000" height="30" fill="#1A252F"/>
+  <text x="500" y="1318" font-family="Arial, sans-serif" font-size="10.5" fill="#7F8C8D" text-anchor="middle">VERSION-SYSTEM  ·  Effective 10 Jan 2026  ·  Last Updated 25 Feb 2026  ·  Applies to guide.tex and all wip/guide/ snapshots</text>
+</svg>

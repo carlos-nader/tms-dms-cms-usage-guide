@@ -1,0 +1,341 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1370">
+  <defs>
+    <filter id="sh" x="-10%" y="-10%" width="125%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6C757D"/>
+    </marker>
+    <marker id="arrG" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27AE60"/>
+    </marker>
+    <marker id="arrR" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#C0392B"/>
+    </marker>
+    <marker id="arrO" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#E67E22"/>
+    </marker>
+  </defs>
+
+  <!-- ═══ BACKGROUND ═══ -->
+  <rect width="1000" height="1370" fill="#EEF1F5"/>
+
+  <!-- ═══ HEADER ═══ -->
+  <rect x="0" y="0" width="1000" height="72" fill="#1A252F"/>
+  <rect x="0" y="68" width="1000" height="4" fill="#F39C12"/>
+  <text x="500" y="32" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#FFFFFF" text-anchor="middle">WIP File Naming Convention</text>
+  <text x="500" y="55" font-family="Arial, sans-serif" font-size="13" fill="#95A5A6" text-anchor="middle">Falcon BMS TMS/DMS/CMS Guide · WIP-FILE-NAMING · Effective 03 Feb 2026</text>
+
+  <!-- ═══ KEY PRINCIPLE BANNER ═══ -->
+  <rect x="20" y="84" width="960" height="36" rx="5" fill="#FEF9E7" stroke="#F39C12" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="500" y="106" font-family="Arial, sans-serif" font-size="11.5" fill="#7D6608" text-anchor="middle" font-weight="bold">⚠  WIP files do NOT affect the guide version  ·  All files MUST start from template/template-wip.tex  ·  Human controls integration</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION A: FILE CATEGORIES & NAMING PATTERNS -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="20" y="132" width="960" height="28" rx="4" fill="#1E2D3D"/>
+  <rect x="20" y="132" width="5" height="28" rx="2" fill="#F39C12"/>
+  <text x="38" y="151" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" letter-spacing="1">FILE CATEGORIES  &amp;  NAMING PATTERNS</text>
+
+  <!-- Column label bar -->
+  <rect x="20" y="163" width="960" height="22" fill="#D5D8DC" rx="2"/>
+  <text x="38" y="178" font-family="Arial, sans-serif" font-size="9.5" fill="#4D5656" font-weight="bold">TYPE</text>
+  <text x="165" y="178" font-family="Arial, sans-serif" font-size="9.5" fill="#4D5656" font-weight="bold">PATTERN  (monospace)</text>
+  <text x="590" y="178" font-family="Arial, sans-serif" font-size="9.5" fill="#4D5656" font-weight="bold">EXAMPLE FILE</text>
+
+  <!-- ── chapter ── -->
+  <rect x="20" y="188" width="960" height="60" rx="4" fill="#FFFFFF" filter="url(#sh)"/>
+  <rect x="20" y="188" width="7" height="60" rx="2" fill="#2980B9"/>
+  <text x="37" y="213" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2980B9">chapter</text>
+  <text x="37" y="228" font-family="Arial, sans-serif" font-size="9" fill="#7F8C8D">.tex</text>
+  <rect x="150" y="196" width="420" height="36" rx="3" fill="#EBF5FB"/>
+  <text x="162" y="213" font-family="Courier New, monospace" font-size="11" fill="#1A5276">chapter-C{N}-{TITLE}-{STATUS}-{DATE}.tex</text>
+  <text x="162" y="228" font-family="Courier New, monospace" font-size="9" fill="#5D6D7E">consolidated chapters (multi-section); N = chapter number</text>
+  <text x="585" y="213" font-family="Courier New, monospace" font-size="11" fill="#2C3E50">chapter-C4-tms-review-2026-02-13.tex</text>
+  <text x="585" y="228" font-family="Courier New, monospace" font-size="9" fill="#7F8C8D">chapter-C5-cms-countermeasures-final-2026-02-01.tex</text>
+
+  <!-- ── section ── -->
+  <rect x="20" y="252" width="960" height="60" rx="4" fill="#FFFFFF" filter="url(#sh)"/>
+  <rect x="20" y="252" width="7" height="60" rx="2" fill="#8E44AD"/>
+  <text x="37" y="277" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#8E44AD">section</text>
+  <text x="37" y="292" font-family="Arial, sans-serif" font-size="9" fill="#7F8C8D">.tex</text>
+  <rect x="150" y="260" width="420" height="36" rx="3" fill="#F5EEF8"/>
+  <text x="162" y="277" font-family="Courier New, monospace" font-size="11" fill="#4A235A">section-C{N}-S{M}-{TITLE}-{STATUS}-{DATE}.tex</text>
+  <text x="162" y="292" font-family="Courier New, monospace" font-size="9" fill="#5D6D7E">subsection: section-C{N}-S{M}-S{K}-{TITLE}-… · max 2 levels in name</text>
+  <text x="585" y="277" font-family="Courier New, monospace" font-size="11" fill="#2C3E50">section-C4-S3-tms-aa-review-2026-02-17.tex</text>
+  <text x="585" y="292" font-family="Courier New, monospace" font-size="9" fill="#7F8C8D">section-C2-S1-S3-soi-context-final-2026-02-15.tex</text>
+
+  <!-- ── table ── -->
+  <rect x="20" y="316" width="960" height="60" rx="4" fill="#FFFFFF" filter="url(#sh)"/>
+  <rect x="20" y="316" width="7" height="60" rx="2" fill="#16A085"/>
+  <text x="37" y="341" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#16A085">table</text>
+  <text x="37" y="356" font-family="Arial, sans-serif" font-size="9" fill="#7F8C8D">.tex</text>
+  <rect x="150" y="324" width="420" height="36" rx="3" fill="#E8F8F5"/>
+  <text x="162" y="341" font-family="Courier New, monospace" font-size="11" fill="#0B5345">table-C{N}-{CONTEXT}-{SWITCH}-{STATUS}-{DATE}.tex</text>
+  <text x="162" y="356" font-family="Courier New, monospace" font-size="9" fill="#5D6D7E">contexts: AA · AG · DGFT · NAV · MFDS · ALLM</text>
+  <text x="585" y="341" font-family="Courier New, monospace" font-size="11" fill="#2C3E50">table-C5-ALLM-CMS-final-2026-01-22.tex</text>
+  <text x="585" y="356" font-family="Courier New, monospace" font-size="9" fill="#7F8C8D">table-C3-AA-TMS-dev-2026-01-15.tex</text>
+
+  <!-- ── notes ── -->
+  <rect x="20" y="380" width="960" height="60" rx="4" fill="#FFFFFF" filter="url(#sh)"/>
+  <rect x="20" y="380" width="7" height="60" rx="2" fill="#D35400"/>
+  <text x="37" y="405" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#D35400">notes</text>
+  <text x="37" y="420" font-family="Arial, sans-serif" font-size="9" fill="#7F8C8D">.md</text>
+  <rect x="150" y="388" width="420" height="36" rx="3" fill="#FEF5E7"/>
+  <text x="162" y="405" font-family="Courier New, monospace" font-size="11" fill="#784212">notes-C{N}-{TOPIC}-{TYPE}-{DATE}.md</text>
+  <text x="162" y="420" font-family="Courier New, monospace" font-size="9" fill="#5D6D7E">no status code · types: research · outline · snippet · reference · questions</text>
+  <text x="585" y="405" font-family="Courier New, monospace" font-size="11" fill="#2C3E50">notes-C5-cms-structure-outline-2026-01-15.md</text>
+  <text x="585" y="420" font-family="Courier New, monospace" font-size="9" fill="#7F8C8D">notes-GEN-missing-content-questions-2026-01-16.md</text>
+
+  <!-- ── visual ── -->
+  <rect x="20" y="444" width="960" height="60" rx="4" fill="#FFFFFF" filter="url(#sh)"/>
+  <rect x="20" y="444" width="7" height="60" rx="2" fill="#C0392B"/>
+  <text x="37" y="469" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#C0392B">visual</text>
+  <text x="37" y="484" font-family="Arial, sans-serif" font-size="9" fill="#7F8C8D">.svg/.pdf</text>
+  <rect x="150" y="452" width="420" height="36" rx="3" fill="#FDEDEC"/>
+  <text x="162" y="469" font-family="Courier New, monospace" font-size="11" fill="#7B241C">visual-C{N}-{DESCRIPTION}-{TYPE}-{STATUS}-{DATE}.{ext}</text>
+  <text x="162" y="484" font-family="Courier New, monospace" font-size="9" fill="#5D6D7E">types: diagram · flowchart · schematic · reference · illustration</text>
+  <text x="585" y="469" font-family="Courier New, monospace" font-size="11" fill="#2C3E50">visual-C7-tms-hat-layout-diagram-dev-2026-01-28.svg</text>
+  <text x="585" y="484" font-family="Courier New, monospace" font-size="9" fill="#7F8C8D">visual-C3-radar-mode-flowchart-final-2026-01-20.tex</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION B: GLOBAL NAMING RULES -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="20" y="518" width="960" height="28" rx="4" fill="#1E2D3D"/>
+  <rect x="20" y="518" width="5" height="28" rx="2" fill="#1ABC9C"/>
+  <text x="38" y="537" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" letter-spacing="1">GLOBAL NAMING RULES</text>
+
+  <!-- Rule box 1: Characters -->
+  <rect x="20" y="552" width="300" height="75" rx="5" fill="#FFFFFF" filter="url(#sh)"/>
+  <rect x="20" y="552" width="5" height="75" rx="2" fill="#1ABC9C"/>
+  <text x="37" y="572" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1E2D3D">Allowed characters</text>
+  <text x="37" y="590" font-family="Courier New, monospace" font-size="11" fill="#27AE60">✓  a-z  ·  0-9  ·  hyphens  ( - )</text>
+  <text x="37" y="607" font-family="Courier New, monospace" font-size="11" fill="#E74C3C">✗  spaces  ·  _ @ # $  ·  UPPERCASE</text>
+  <text x="37" y="622" font-family="Arial, sans-serif" font-size="9.5" fill="#7F8C8D">Dots reserved for extension only · UTF-8</text>
+
+  <!-- Rule box 2: Date format -->
+  <rect x="335" y="552" width="300" height="75" rx="5" fill="#FFFFFF" filter="url(#sh)"/>
+  <rect x="335" y="552" width="5" height="75" rx="2" fill="#2980B9"/>
+  <text x="352" y="572" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1E2D3D">Date format  (ISO 8601 extended)</text>
+  <text x="352" y="593" font-family="Courier New, monospace" font-size="14" fill="#27AE60">✓  YYYY-MM-DD</text>
+  <text x="352" y="610" font-family="Courier New, monospace" font-size="11" fill="#E74C3C">✗  YYYYMMDD  ·  01/18/2026  ·  18 Jan</text>
+  <text x="352" y="622" font-family="Arial, sans-serif" font-size="9.5" fill="#7F8C8D">Example: 2026-02-17</text>
+
+  <!-- Rule box 3: Length + slugs -->
+  <rect x="650" y="552" width="330" height="75" rx="5" fill="#FFFFFF" filter="url(#sh)"/>
+  <rect x="650" y="552" width="5" height="75" rx="2" fill="#8E44AD"/>
+  <text x="667" y="572" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1E2D3D">Filename length  &amp;  title slugs</text>
+  <text x="667" y="590" font-family="Arial, sans-serif" font-size="11" fill="#2C3E50">Max <tspan font-weight="bold">100 characters</tspan> total (recommended)</text>
+  <text x="667" y="606" font-family="Arial, sans-serif" font-size="10" fill="#2C3E50">Title slug: <tspan font-weight="bold">2–4 key concepts</tspan>, max ~30 chars</text>
+  <text x="667" y="622" font-family="Arial, sans-serif" font-size="9.5" fill="#7F8C8D">Use acronyms: fcr · crm · tms · dms · cms · soi</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION C: STATUS LIFECYCLE -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="20" y="642" width="960" height="28" rx="4" fill="#1E2D3D"/>
+  <rect x="20" y="642" width="5" height="28" rx="2" fill="#3498DB"/>
+  <text x="38" y="661" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" letter-spacing="1">STATUS CODES  &amp;  LIFECYCLE</text>
+
+  <!-- Left: Status definition cards -->
+  <!-- dev -->
+  <rect x="20" y="678" width="228" height="56" rx="5" fill="#F39C12" filter="url(#sh)"/>
+  <text x="124" y="700" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#FFFFFF" text-anchor="middle">dev</text>
+  <text x="124" y="717" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">wip/  ·  Never reviewed by human</text>
+  <text x="124" y="730" font-family="Arial, sans-serif" font-size="9" fill="#FDEBD0" text-anchor="middle">Always the initial status</text>
+
+  <!-- review -->
+  <rect x="20" y="740" width="228" height="56" rx="5" fill="#E67E22" filter="url(#sh)"/>
+  <text x="124" y="762" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#FFFFFF" text-anchor="middle">review</text>
+  <text x="124" y="779" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">wip/  ·  Under human iteration</text>
+  <text x="124" y="792" font-family="Arial, sans-serif" font-size="9" fill="#FDEBD0" text-anchor="middle">Date updates on each iteration</text>
+
+  <!-- final -->
+  <rect x="20" y="802" width="228" height="56" rx="5" fill="#2980B9" filter="url(#sh)"/>
+  <text x="124" y="824" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#FFFFFF" text-anchor="middle">final</text>
+  <text x="124" y="841" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">wip/  ·  Ready to integrate</text>
+  <text x="124" y="854" font-family="Arial, sans-serif" font-size="9" fill="#D6EAF8" text-anchor="middle">Human decides — AI cannot</text>
+
+  <!-- approved -->
+  <rect x="20" y="864" width="228" height="56" rx="5" fill="#1E8449" filter="url(#sh)"/>
+  <text x="124" y="886" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#FFFFFF" text-anchor="middle">approved</text>
+  <text x="124" y="903" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">archive/WIP/  ·  Integrated</text>
+  <text x="124" y="916" font-family="Arial, sans-serif" font-size="9" fill="#A9DFBF" text-anchor="middle">Terminal — immutable</text>
+
+  <!-- deprecated -->
+  <rect x="20" y="926" width="228" height="56" rx="5" fill="#C0392B" filter="url(#sh)"/>
+  <text x="124" y="948" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#FFFFFF" text-anchor="middle">deprecated</text>
+  <text x="124" y="965" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">archive/WIP/  ·  Abandoned</text>
+  <text x="124" y="978" font-family="Arial, sans-serif" font-size="9" fill="#FADBD8" text-anchor="middle">Terminal — immutable</text>
+
+  <!-- Right: Lifecycle flowchart -->
+  <!-- Main chain nodes (pill shape using rx=22) -->
+  <!-- dev node -->
+  <rect x="390" y="678" width="150" height="44" rx="22" fill="#F39C12" filter="url(#sh)"/>
+  <text x="465" y="705" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#FFF" text-anchor="middle">dev</text>
+
+  <!-- Arrow dev → review -->
+  <path d="M 465 722 L 465 748" stroke="#6C757D" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="474" y="738" font-family="Arial, sans-serif" font-size="9" fill="#566573">human begins</text>
+
+  <!-- review node -->
+  <rect x="390" y="750" width="150" height="44" rx="22" fill="#E67E22" filter="url(#sh)"/>
+  <text x="465" y="777" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#FFF" text-anchor="middle">review</text>
+
+  <!-- Self-loop: review stays review (date update) -->
+  <path d="M 390 772 C 340 772, 340 768, 340 768 C 340 760, 350 755, 390 762" stroke="#E67E22" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#arrO)"/>
+  <text x="315" y="760" font-family="Arial, sans-serif" font-size="8.5" fill="#E67E22" text-anchor="middle">iterate</text>
+  <text x="315" y="770" font-family="Arial, sans-serif" font-size="8.5" fill="#E67E22" text-anchor="middle">(update date)</text>
+
+  <!-- Arrow review → final -->
+  <path d="M 465 794 L 465 820" stroke="#6C757D" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="474" y="810" font-family="Arial, sans-serif" font-size="9" fill="#566573">human approves</text>
+
+  <!-- final node -->
+  <rect x="390" y="822" width="150" height="44" rx="22" fill="#2980B9" filter="url(#sh)"/>
+  <text x="465" y="849" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#FFF" text-anchor="middle">final</text>
+
+  <!-- Arrow final → approved -->
+  <path d="M 465 866 L 465 892" stroke="#27AE60" stroke-width="2.5" marker-end="url(#arrG)"/>
+  <text x="474" y="882" font-family="Arial, sans-serif" font-size="9" fill="#1E8449">integrate</text>
+
+  <!-- approved node -->
+  <rect x="390" y="894" width="150" height="44" rx="22" fill="#1E8449" filter="url(#sh)"/>
+  <text x="465" y="921" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFF" text-anchor="middle">approved</text>
+
+  <!-- archive label under approved -->
+  <rect x="375" y="946" width="180" height="22" rx="4" fill="#D5F5E3" stroke="#1E8449" stroke-width="1"/>
+  <text x="465" y="961" font-family="Arial, sans-serif" font-size="9.5" fill="#1E8449" text-anchor="middle">archive/WIP/  (terminal)</text>
+
+  <!-- Deprecated node (to the right) -->
+  <rect x="720" y="822" width="150" height="44" rx="22" fill="#C0392B" filter="url(#sh)"/>
+  <text x="795" y="844" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFF" text-anchor="middle">deprecated</text>
+  <text x="795" y="859" font-family="Arial, sans-serif" font-size="9" fill="#FADBD8" text-anchor="middle">archive/WIP/</text>
+
+  <!-- Arrows → deprecated from dev, review, final -->
+  <!-- dev → deprecated -->
+  <path d="M 540 700 Q 640 700 718 840" stroke="#C0392B" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arrR)"/>
+  <!-- review → deprecated -->
+  <path d="M 540 772 Q 640 772 718 840" stroke="#C0392B" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arrR)"/>
+  <!-- final → deprecated -->
+  <path d="M 540 844 L 718 844" stroke="#C0392B" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arrR)"/>
+
+  <!-- "abandon" label -->
+  <text x="650" y="794" font-family="Arial, sans-serif" font-size="10" fill="#C0392B" text-anchor="middle" font-style="italic">abandon</text>
+  <text x="650" y="806" font-family="Arial, sans-serif" font-size="10" fill="#C0392B" text-anchor="middle" font-style="italic">(any stage)</text>
+
+  <!-- FORBIDDEN transitions box -->
+  <rect x="600" y="678" width="380" height="128" rx="5" fill="#FDEDEC" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="790" y="700" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#922B21" text-anchor="middle">⛔  FORBIDDEN transitions</text>
+  <line x1="614" y1="706" x2="966" y2="706" stroke="#C0392B" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <text x="614" y="722" font-family="Arial, sans-serif" font-size="10" fill="#7B241C">✗  review → dev   (cannot un-review)</text>
+  <text x="614" y="738" font-family="Arial, sans-serif" font-size="10" fill="#7B241C">✗  final → review  (cannot un-approve)</text>
+  <text x="614" y="754" font-family="Arial, sans-serif" font-size="10" fill="#7B241C">✗  approved → any  (immutable, terminal)</text>
+  <text x="614" y="770" font-family="Arial, sans-serif" font-size="10" fill="#7B241C">✗  deprecated → any  (immutable, terminal)</text>
+  <text x="614" y="786" font-family="Arial, sans-serif" font-size="10" fill="#7B241C">✗  AI decides review→final  (Human only)</text>
+  <text x="614" y="800" font-family="Arial, sans-serif" font-size="10" fill="#7B241C">✗  AI integrates WIP into guide  (Human only)</text>
+
+  <!-- Success path example callout -->
+  <rect x="600" y="888" width="380" height="80" rx="5" fill="#EBF5FB" stroke="#2980B9" stroke-width="1.5"/>
+  <text x="790" y="906" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1A5276" text-anchor="middle">SUCCESS PATH EXAMPLE</text>
+  <line x1="614" y1="910" x2="966" y2="910" stroke="#2980B9" stroke-width="0.8"/>
+  <text x="614" y="924" font-family="Courier New, monospace" font-size="9" fill="#1A5276">section-C3-S2-fcr-crm-modes-dev-2026-01-15.tex</text>
+  <text x="614" y="937" font-family="Courier New, monospace" font-size="9" fill="#1A5276">section-C3-S2-fcr-crm-modes-review-2026-01-18.tex</text>
+  <text x="614" y="950" font-family="Courier New, monospace" font-size="9" fill="#1A5276">section-C3-S2-fcr-crm-modes-final-2026-01-20.tex</text>
+  <text x="614" y="963" font-family="Courier New, monospace" font-size="9" fill="#1E8449">archive/WIP/section-…-approved-2026-01-25.tex</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION D: RESPONSIBILITY MATRIX -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="20" y="1000" width="960" height="28" rx="4" fill="#1E2D3D"/>
+  <rect x="20" y="1000" width="5" height="28" rx="2" fill="#27AE60"/>
+  <text x="38" y="1019" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" letter-spacing="1">RESPONSIBILITY MATRIX</text>
+
+  <!-- Table header -->
+  <rect x="20" y="1032" width="630" height="26" fill="#D5D8DC"/>
+  <rect x="653" y="1032" width="150" height="26" fill="#D5F5E3"/>
+  <rect x="806" y="1032" width="174" height="26" fill="#D6EAF8"/>
+  <text x="35" y="1049" font-family="Arial, sans-serif" font-size="10.5" font-weight="bold" fill="#2C3E50">Task</text>
+  <text x="728" y="1049" font-family="Arial, sans-serif" font-size="10.5" font-weight="bold" fill="#1E8449" text-anchor="middle">AI</text>
+  <text x="893" y="1049" font-family="Arial, sans-serif" font-size="10.5" font-weight="bold" fill="#1A5276" text-anchor="middle">Human</text>
+
+  <!-- Rows: alternating bg, each 26px -->
+  <!-- row 1 -->
+  <rect x="20" y="1058" width="960" height="26" fill="#FFFFFF"/>
+  <text x="35" y="1075" font-family="Arial, sans-serif" font-size="10" fill="#2C3E50">Generate new WIP file from template</text>
+  <text x="728" y="1075" font-family="Arial, sans-serif" font-size="11" fill="#27AE60" text-anchor="middle">✓  Can do</text>
+  <text x="893" y="1075" font-family="Arial, sans-serif" font-size="10" fill="#7F8C8D" text-anchor="middle">—</text>
+
+  <!-- row 2 -->
+  <rect x="20" y="1084" width="960" height="26" fill="#F2F3F4"/>
+  <text x="35" y="1101" font-family="Arial, sans-serif" font-size="10" fill="#2C3E50">Content creation and revision</text>
+  <text x="728" y="1101" font-family="Arial, sans-serif" font-size="11" fill="#27AE60" text-anchor="middle">✓  Can do</text>
+  <text x="893" y="1101" font-family="Arial, sans-serif" font-size="11" fill="#27AE60" text-anchor="middle">✓  Can do</text>
+
+  <!-- row 3 -->
+  <rect x="20" y="1110" width="960" height="26" fill="#FFFFFF"/>
+  <text x="35" y="1127" font-family="Arial, sans-serif" font-size="10" fill="#2C3E50">Rename  dev → review</text>
+  <text x="728" y="1127" font-family="Arial, sans-serif" font-size="10" fill="#E67E22" text-anchor="middle">⚠  Only if instructed</text>
+  <text x="893" y="1127" font-family="Arial, sans-serif" font-size="11" fill="#27AE60" text-anchor="middle">✓  When editing</text>
+
+  <!-- row 4 -->
+  <rect x="20" y="1136" width="960" height="26" fill="#F2F3F4"/>
+  <text x="35" y="1153" font-family="Arial, sans-serif" font-size="10" fill="#2C3E50">Decide  review → final</text>
+  <text x="728" y="1153" font-family="Arial, sans-serif" font-size="11" fill="#E74C3C" text-anchor="middle">✗  Cannot</text>
+  <text x="893" y="1153" font-family="Arial, sans-serif" font-size="11" fill="#27AE60" text-anchor="middle">✓  Must decide</text>
+
+  <!-- row 5 -->
+  <rect x="20" y="1162" width="960" height="26" fill="#FFFFFF"/>
+  <text x="35" y="1179" font-family="Arial, sans-serif" font-size="10" fill="#2C3E50">Decide  → deprecated</text>
+  <text x="728" y="1179" font-family="Arial, sans-serif" font-size="11" fill="#E74C3C" text-anchor="middle">✗  Cannot</text>
+  <text x="893" y="1179" font-family="Arial, sans-serif" font-size="11" fill="#27AE60" text-anchor="middle">✓  Must decide</text>
+
+  <!-- row 6 -->
+  <rect x="20" y="1188" width="960" height="26" fill="#F2F3F4"/>
+  <text x="35" y="1205" font-family="Arial, sans-serif" font-size="10" fill="#2C3E50">Integrate WIP into guide snapshot</text>
+  <text x="728" y="1205" font-family="Arial, sans-serif" font-size="11" fill="#E74C3C" text-anchor="middle">✗  Cannot</text>
+  <text x="893" y="1205" font-family="Arial, sans-serif" font-size="11" fill="#27AE60" text-anchor="middle">✓  Must do</text>
+
+  <!-- row 7 -->
+  <rect x="20" y="1214" width="960" height="26" fill="#FFFFFF"/>
+  <text x="35" y="1231" font-family="Arial, sans-serif" font-size="10" fill="#2C3E50">Update guide version macros (\docversion, \docbuild)</text>
+  <text x="728" y="1231" font-family="Arial, sans-serif" font-size="11" fill="#E74C3C" text-anchor="middle">✗  Cannot</text>
+  <text x="893" y="1231" font-family="Arial, sans-serif" font-size="11" fill="#27AE60" text-anchor="middle">✓  Must do</text>
+
+  <!-- row 8 -->
+  <rect x="20" y="1240" width="960" height="26" fill="#F2F3F4"/>
+  <text x="35" y="1257" font-family="Arial, sans-serif" font-size="10" fill="#2C3E50">Move files to archive/  ·  rename final → approved</text>
+  <text x="728" y="1257" font-family="Arial, sans-serif" font-size="11" fill="#E74C3C" text-anchor="middle">✗  Cannot</text>
+  <text x="893" y="1257" font-family="Arial, sans-serif" font-size="11" fill="#27AE60" text-anchor="middle">✓  Must do</text>
+
+  <!-- row 9 -->
+  <rect x="20" y="1266" width="960" height="26" fill="#FFFFFF"/>
+  <text x="35" y="1283" font-family="Arial, sans-serif" font-size="10" fill="#2C3E50">Create GitHub tag and release</text>
+  <text x="728" y="1283" font-family="Arial, sans-serif" font-size="11" fill="#E74C3C" text-anchor="middle">✗  Cannot</text>
+  <text x="893" y="1283" font-family="Arial, sans-serif" font-size="11" fill="#27AE60" text-anchor="middle">✓  Must do</text>
+
+  <!-- row 10 -->
+  <rect x="20" y="1292" width="960" height="26" fill="#F2F3F4"/>
+  <text x="35" y="1309" font-family="Arial, sans-serif" font-size="10" fill="#2C3E50">Update PROJECT-TRACKING</text>
+  <text x="728" y="1309" font-family="Arial, sans-serif" font-size="10" fill="#E67E22" text-anchor="middle">⚠  Can propose</text>
+  <text x="893" y="1309" font-family="Arial, sans-serif" font-size="11" fill="#27AE60" text-anchor="middle">✓  Must verify</text>
+
+  <!-- Table border and dividers -->
+  <rect x="20" y="1032" width="960" height="286" fill="none" stroke="#CCD1D9" stroke-width="1" rx="0"/>
+  <line x1="650" y1="1032" x2="650" y2="1318" stroke="#CCD1D9" stroke-width="1"/>
+  <line x1="803" y1="1032" x2="803" y2="1318" stroke="#CCD1D9" stroke-width="1"/>
+  <!-- Row separators -->
+  <line x1="20" y1="1058" x2="980" y2="1058" stroke="#E9ECEF" stroke-width="0.8"/>
+  <line x1="20" y1="1084" x2="980" y2="1084" stroke="#E9ECEF" stroke-width="0.8"/>
+  <line x1="20" y1="1110" x2="980" y2="1110" stroke="#E9ECEF" stroke-width="0.8"/>
+  <line x1="20" y1="1136" x2="980" y2="1136" stroke="#E9ECEF" stroke-width="0.8"/>
+  <line x1="20" y1="1162" x2="980" y2="1162" stroke="#E9ECEF" stroke-width="0.8"/>
+  <line x1="20" y1="1188" x2="980" y2="1188" stroke="#E9ECEF" stroke-width="0.8"/>
+  <line x1="20" y1="1214" x2="980" y2="1214" stroke="#E9ECEF" stroke-width="0.8"/>
+  <line x1="20" y1="1240" x2="980" y2="1240" stroke="#E9ECEF" stroke-width="0.8"/>
+  <line x1="20" y1="1266" x2="980" y2="1266" stroke="#E9ECEF" stroke-width="0.8"/>
+  <line x1="20" y1="1292" x2="980" y2="1292" stroke="#E9ECEF" stroke-width="0.8"/>
+
+  <!-- ═══ FOOTER ═══ -->
+  <rect x="0" y="1340" width="1000" height="30" fill="#1A252F"/>
+  <text x="500" y="1358" font-family="Arial, sans-serif" font-size="10.5" fill="#7F8C8D" text-anchor="middle">WIP-FILE-NAMING  ·  Effective 03 Feb 2026  ·  Last Updated 25 Feb 2026  ·  Applies to all WIP files under wip/</text>
+</svg>
