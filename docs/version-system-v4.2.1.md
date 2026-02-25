@@ -9,7 +9,7 @@ sitemap:
 
 # Falcon BMS TMS/DMS/CMS Guide Version System v4.2.1
 
-**Latest Update:** 02 February 2026, 23:00 -03  
+**Latest Update:** 25 February 2026
 **Effective Date:** 10 January 2026  
 
 ---
@@ -289,10 +289,12 @@ The following reflects the actual progression of the guide:
 | `v0.3.2.0` | 2026-01-19 | C4 DMS Section 4.3 integrated |
 | `v0.3.2.1` | 2026-01-29 | Hotastable environment upgrade, C4/C5 corrections |
 | `v0.3.3.0` | 2026-02-02 | C4 DMS complete (§4.4), C1 Introduction revised |
+| `v0.4.0.0` | 2026-02-10 | C2 HOTAS Fundamentals + C3 DMS integrated; chapter renumbering (DMS: C4→C3, TMS: C3→C4) |
+| `v0.4.1.0` | 2026-02-11 | Infrastructure upgrades: hotastable v2.1, cross-reference macros, List of HOTAS Tables |
+| `v0.4.1.1` | 2026-02-18 | Minor wording corrections; missing `\label` tags added to C5 hotastable environments |
 
 **Projected future:**
-- `v0.4.0.0` — C2 HOTAS Fundamentals integrated (4th chapter with content)
-- `v0.5.0.0` — C3 TMS integrated (5th chapter with content)
+- `v0.5.0.0` — C4 TMS integrated (5th chapter with content)
 - `v0.6.0.0` — C6 Training References integrated
 - `v0.7.0.0` — C7 Visual Reference integrated (all 7 chapters complete)
 
@@ -663,5 +665,5 @@ Issues (in Milestone) → WIP files → Integration → Snapshot → guide.tex �
 
 **Document Status:** Production-Ready (v4.2.1)  
 **Effective Date:** 10 January 2026  
-**Last Updated:** 02 February 2026, 23:00 -03
+**Last Updated:** 25 February 2026
 {% endraw %}

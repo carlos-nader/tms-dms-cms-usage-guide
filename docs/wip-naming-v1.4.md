@@ -40,7 +40,7 @@ Only content integrated into the main file triggers a version bump. WIP filename
 **All WIP files MUST be created from the canonical template:**
 
 ```text
-templates/template-wip-V1.0.tex
+template/template-wip-V1.0.tex
 ```
 
 This ensures preamble consistency, metadata structure, and integration hygiene. The template is versioned independently (currently V1.0) and governed by BRIEFING-v0.2.0.1 Section 11. Never modify the template directly; always copy, rename following Section 2 patterns, and then edit the copy.
@@ -64,7 +64,7 @@ This convention does **NOT** apply to:
 - Compiled PDFs or other binary outputs
 - Git commit messages or version control metadata
 - External reference materials or archived publications
-- **The canonical template file** (`templates/template-wip-V1.0.tex`) — this is the **structural foundation** that WIP files derive from, not a WIP file itself
+- **The canonical template file** (`template/template-wip-V1.0.tex`) — this is the **structural foundation** that WIP files derive from, not a WIP file itself
 
 ### 0.4 File Organization Structure
 
@@ -78,10 +78,9 @@ project-root/
 │   ├── project-tracking-v*.md
 │   ├── version-system-v*.md
 │   ├── wip-naming-v*.md             (This document)
-│   ├── briefing-v*.md
-│   └── training-mission-abbrev-table-v*.md
+│   └── briefing-v*.md
 │
-├── templates/                       (Canonical templates)
+├── template/                       (Canonical templates)
 │   └── template-wip-V1.0.tex        (Mandatory starting point for all WIP files)
 │
 ├── wip/                             (Active work-in-progress)
@@ -104,7 +103,7 @@ project-root/
 ```
 
 **Key points:**
-- Lowercase for first-level folders (`wip/`, `archive/`, `docs/`, `templates/`)
+- Lowercase for first-level folders (`wip/`, `archive/`, `docs/`, `template/`)
 - Uppercase for archive subfolders (`GUIDE/`, `WIP/`)
 - Only one active snapshot in `wip/guide/` at a time
 - All previous snapshots archived in `archive/GUIDE/`
@@ -118,7 +117,7 @@ All WIP files MUST start from the canonical template. Follow this workflow:
 Copy the template file from the templates folder to the wip folder:
 
 ```text
-Copy: templates/template-wip-V1.0.tex
+Copy: template/template-wip-V1.0.tex
 To:   wip/[temporary-name].tex
 ```
 
@@ -535,7 +534,7 @@ Integration → Tag + Release → Close Issue → Close Milestone (if complete)
 | `wip/guide/` | Current guide snapshot |
 | `archive/WIP/` | Integrated/deprecated WIP files |
 | `archive/GUIDE/` | Previous guide snapshots |
-| `templates/` | Canonical WIP template |
+| `template/` | Canonical WIP template |
 
 ### 7.4 Checklist for AI
 
@@ -546,7 +545,7 @@ When generating filenames, verify:
 - ✅ Status is valid (`dev`, `review`, `final`, `approved`, `deprecated`)
 - ✅ Title is 2-4 key concepts (slugified)
 - ✅ Total filename ≤ 100 characters
-- ✅ File created from `templates/template-wip-V1.0.tex`
+- ✅ File created from `template/template-wip-V1.0.tex`
 
 ---
 
@@ -569,7 +568,7 @@ When generating filenames, verify:
 
 **Document Status:** Production-Ready  
 **Effective Date:** 03 February 2026  
-**Last Updated:** 03 February 2026  
+**Last Updated:** 25 February 2026  
 **Version:** v1.4
 
 {% endraw %}

@@ -9,7 +9,7 @@ sitemap:
 
 # Falcon BMS 4.38.1 — TMS, DMS and CMS Usage Guide: Project Brief
 
-**Brief Version:** v0.2.0.1-2026-02-22
+**Brief Version:** v0.2.0.1-2026-02-25
 
 ---
 
@@ -200,7 +200,7 @@ Focus is always TMS, DMS and CMS. Mention other controls only when strictly need
 
 ### 5.3 Style guide - mandatory adherence
 
-Consult and always adhere to to `misc/STYLE-GUIDE.md` for all **prose style, voice, formatting, and prohibited pattern rules**.
+Consult and always adhere to `misc/STYLE-GUIDE-v0.2.0.md` for all **prose style, voice, formatting, and prohibited pattern rules**.
 
 ---
 
@@ -327,26 +327,31 @@ Reference relevant Dash-34 sections as plain text (no macros inside tables):
 
 ```
 /
-├── guide.tex                   # Canonical guide (byte-identical to latest snapshot)
+├── guide.tex                        # Canonical guide (byte-identical to latest snapshot)
+├── CHANGELOG.md                     # Release history
+├── INTEGRATED-FILES.md              # Auto-generated tracking report
+├── INTEGRATED-FILES.json            # Auto-generated tracking data
 ├── wip/
 │   ├── guide/
 │   │   └── guide-vX.X.X.X-YYYYMMDD.tex  # Active snapshot
-│   ├── chapter-C#-...tex       # Chapter WIP files
-│   └── section-C#-S#-...tex    # Section WIP files
+│   ├── chapter-C#-...tex            # Chapter WIP files
+│   └── section-C#-S#-...tex         # Section WIP files
 ├── archive/
 │   ├── GUIDE/
 │   │   └── guide-vX.X.X.X-YYYYMMDD.tex  # Historical snapshots
 │   └── WIP/
 │       └── [approved/deprecated WIP files]
-├── TEMPLATES/
-│   ├── template-wip-V1.0.tex  # WIP file template (preamble reference)
-│   └── guide-structure-only-v0.4.0.0.tex  # Skeleton template
+├── template/
+│   └── template-wip-V1.0.tex        # WIP file template (preamble reference)
 ├── docs/
-│   ├── BRIEFING-v0.2.0.1.md   # This document
-│   ├── VERSION-SYSTEM-v4.2.1.md
-│   ├── PROJECT-TRACKING-v5.0.0.md
-│   └── WIP-FILE-NAMING-v1.4.md
-└── fig/                        # Graphics and diagrams
+│   ├── briefing-v0.2.0.1.md         # This document
+│   ├── version-system-v4.2.1.md
+│   ├── project-tracking-v5.0.0.md
+│   └── wip-naming-v1.4.md
+├── misc/
+│   └── STYLE-GUIDE-v0.2.0.md        # Style rules for prose and formatting
+├── scripts/                         # Automation scripts
+└── fig/                             # Graphics and diagrams
 ```
 
 ### 11.2 Archive Policy
@@ -364,7 +369,7 @@ Reference relevant Dash-34 sections as plain text (no macros inside tables):
 All work-in-progress files **MUST** be created by copying and adapting:
 
 ```text
-TEMPLATES/template-wip-V1.0.tex
+template/template-wip-V1.0.tex
 ```
 
 This ensures:
@@ -384,7 +389,7 @@ This ensures:
 
 ### 12.3 Preamble Architecture (Updated V2.1)
 
-The preamble in `TEMPLATES/template-wip-V1.0.tex` and `guide.tex` is now organized into the following sections:
+The preamble in `template/template-wip-V1.0.tex` and `guide.tex` is now organized into the following sections:
 
 #### 12.3.1 Document Class
 
@@ -862,7 +867,7 @@ As shown in \tabref{tab:dms-soi}.
 ### Step 1: Create from Template
 
 ```bash
-cp TEMPLATES/template-wip-V1.0.tex wip/section-C5-S2-cms-new-dev-2026-02-11.tex
+cp template/template-wip-V1.0.tex wip/section-C5-S2-cms-new-dev-2026-02-11.tex
 ```
 
 ### Step 2: Update Metadata Block
@@ -916,7 +921,7 @@ pdflatex section-C5-S2-cms-new-dev-2026-02-11.tex
 
 ## 15. Checklist for Contributors
 
-- [ ] Copy template from TEMPLATES/template-wip-V1.0.tex
+- [ ] Copy template from template/template-wip-V1.0.tex
 - [ ] Follow naming convention
 - [ ] Complete metadata block
 - [ ] Update Status as work progresses
@@ -931,35 +936,8 @@ pdflatex section-C5-S2-cms-new-dev-2026-02-11.tex
 
 ---
 
-## 16. Changelog — BRIEFING Updates
-
-### v0.2.0.1 (2026-02-11)
-
-**Major updates:**
-- Updated hotastable environment specification to v2.1
-- Documented List of HOTAS Tables feature and `\phantomsection` requirement
-- Documented cross-reference macros (`\secref`, `\chapref`, `\tabref`, `\figref`)
-- Documented PDF metadata (`\hypersetup`) configuration
-- Documented enumitem package for list customization
-- Updated Train. column specification (simplified to numbers only, 1.60 cm width)
-- Updated table formatting parameters (`\footnotesize`, `\tabcolsep{3pt}`, `\arraystretch{1.35}`)
-- Updated chapter structure (DMS now Chapter 3, TMS now Chapter 4)
-- Deprecated `\trnref{XX (NAME)}` format in table cells
-
-**Related guide version:** v0.4.1.0 (2026-02-11)
-
-### v0.2.0.1 (2026-01-29)
-
-**Updates:**
-- Enhanced preamble architecture with titlesec full hierarchy
-- Optical fixes for paragraph formatting
-- Professional two-sided layout improvements
-
-**Related guide version:** v0.3.2.1
-
----
-
-**Last Updated:** 2026-02-22  
+**Note:** This document is a work in progress and may be updated without notice.  
+**Version:** v0.2.0.1 (2026-02-25)  
 **Status:** Ready for use and contribution  
 **License:** CC BY-NC 4.0  
 **Next Update:** After significant preamble or structure changes
