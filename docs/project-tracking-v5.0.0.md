@@ -24,12 +24,12 @@ This document tracks governance rules, project state, and development history. F
 
 | Document | Version | Purpose |
 |----------|---------|---------|
-| VERSION-SYSTEM | v4.2.1 | Versioning rules (0.x.x.x vs x.y.z regimes, MAJOR/MINOR/PATCH/SUBPATCH) |
-| BRIEFING | v0.2.0.1 | Content brief, layout standard (Geometry D, hotastable 15.6 cm), preamble architecture |
-| WIP-FILE-NAMING | v1.4 | File naming conventions, status codes (dev/review/final/approved/deprecated) |
-| TEMPLATES/template-wip-V1.0.tex | V1.0 | Canonical WIP template (preamble, metadata, hotastable) |
-| TRAINING-MISSION-ABBREV-TABLE | v1.0 | Standardized abbreviations for 33 BMS training missions |
-| STYLE-GUIDE | v0.2.0 | Style rules for prose, voice, formatting, and prohibited patterns (`misc/STYLE-GUIDE-v0.2.0.md`) |
+| VERSION-SYSTEM | v4.2.1 | Versioning rules (`docs/version-system-v4.2.1.md`) |
+| BRIEFING | v0.2.0.1 | Content scope, layout standard, preamble architecture (`docs/briefing-v0.2.0.1.md`) |
+| WIP-FILE-NAMING | v1.4 | File naming conventions and status lifecycle (`docs/wip-naming-v1.4.md`) |
+| TEMPLATES | V1.0 | Canonical WIP template (`template/template-wip-V1.0.tex`) |
+| CHANGELOG | — | Release history and integration milestones (`CHANGELOG.md`) |
+| STYLE-GUIDE | v0.2.0 | Prose style, voice, formatting, and prohibited patterns (`misc/STYLE-GUIDE-v0.2.0.md`) |
 
 **Rule:** All WIP files must be created from `TEMPLATES/template-wip-V1.0.tex`.
 
