@@ -129,7 +129,7 @@ tms-dms-cms-usage-guide/
 │
 ├── fig/                              # Images used in the guide
 ├── misc/                             # Miscellaneous resources
-│   ├── STYLE-GUIDE-v0.2.0.md
+│   ├── STYLE-GUIDE.md
 │   └── fontes/                       # Source PDFs (Dash-34, etc.)
 ├── scripts/                          # Automation scripts
 ├── .github/                          # Issues, Actions, PR templates, community files
@@ -148,7 +148,7 @@ The project uses **five governance documents** and an **auto-generated tracking 
 | Document | Location | Purpose |
 |----------|----------|---------|
 | [**BRIEFING**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/briefing.md) | `/docs/` | Project scope, content outline, layout standards |
-| [**STYLE-GUIDE**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/misc/STYLE-GUIDE-v0.2.0.md) | `/misc/` | Prose style, voice, formatting policies, and prohibited patterns |
+| [**STYLE-GUIDE**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/misc/STYLE-GUIDE.md) | `/misc/` | Prose style, voice, formatting policies, and prohibited patterns |
 | [**WIP-FILE-NAMING**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/wip-file-naming.md) | `/docs/` | Rules for WIP file naming, status lifecycle (dev → review → final → approved) |
 | [**VERSION-SYSTEM**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/version-system.md) | `/docs/` | Guide version numbering (0.x.x.x pre-publication, x.y.z post-publication) |
 | [**PROJECT-TRACKING**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/project-tracking.md) | `/docs/` | Session log, WIP status snapshot, milestones, current priorities |

@@ -2,7 +2,6 @@
 ## Falcon BMS TMS/DMS/CMS HOTAS Usage Guide
 
 **Document:** STYLE-GUIDE  
-**Version:** v0.2.0  
 **Date:** 2026-02-21  
 **Status:** Official style guide for all prose content in the TMS/DMS/CMS HOTAS Usage Guide.  
 **Language:** English (this document); author instructions in Portuguese  
@@ -368,4 +367,4 @@ Permitted deviation: brief one-sentence explanations of mechanism rationale, pla
 
 ---
 
-*End of STYLE-GUIDE v0.2.0*
+*End of STYLE-GUIDE*

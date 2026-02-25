@@ -200,7 +200,7 @@ Focus is always TMS, DMS and CMS. Mention other controls only when strictly need
 
 ### 5.3 Style guide - mandatory adherence
 
-Consult and always adhere to `misc/STYLE-GUIDE-v0.2.0.md` for all **prose style, voice, formatting, and prohibited pattern rules**.
+Consult and always adhere to `misc/STYLE-GUIDE.md` for all **prose style, voice, formatting, and prohibited pattern rules**.
 
 ---
 
@@ -344,12 +344,12 @@ Reference relevant Dash-34 sections as plain text (no macros inside tables):
 ├── template/
 │   └── template-wip-V1.0.tex        # WIP file template (preamble reference)
 ├── docs/
-│   ├── briefing.md         # This document
+│   ├── briefing.md                  # This document
 │   ├── version-system.md
 │   ├── project-tracking.md
 │   └── wip-naming.md
 ├── misc/
-│   └── STYLE-GUIDE-v0.2.0.md        # Style rules for prose and formatting
+│   └── STYLE-GUIDE.md               # Style rules for prose and formatting
 ├── scripts/                         # Automation scripts
 └── fig/                             # Graphics and diagrams
 ```
