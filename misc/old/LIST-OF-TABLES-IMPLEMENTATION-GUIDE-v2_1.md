@@ -623,9 +623,9 @@ with the List of HOTAS Tables. No additional macros are needed when creating new
 
 ---
 
-### 5.3 VERSION-SYSTEM-v4.2.1
+### 5.3 VERSION-SYSTEM
 
-**File:** `docs/VERSION-SYSTEM-v4.2.1.md`
+**File:** `docs/VERSION-SYSTEM.md`
 
 **Action:** No changes required.
 
@@ -789,7 +789,7 @@ latexmk -pdf guide.tex   # Automatically handles multiple passes
 - **Preamble:** `guide.tex` (repository root) — Authoritative source for all code
 - **BRIEFING:** `docs/briefing.md` — Project governance and specifications
 - **WIP-NAMING:** `docs/WIP-FILE-NAMING-v1.4.md` — File naming conventions
-- **VERSION-SYSTEM:** `docs/VERSION-SYSTEM-v4.2.1.md` — Versioning rules
+- **VERSION-SYSTEM:** `docs/VERSION-SYSTEM.md` — Versioning rules
 - **PROJECT-TRACKING:** `docs/project-tracking.md` — Session history
 
 ---

@@ -81,7 +81,7 @@
 |-----------|--------|---------------|------|
 | docs/briefing.md | tracked | 2026-02-25 13:47:11 | 32037 bytes |
 | docs/project-tracking.md | tracked | 2026-02-25 13:47:11 | 17883 bytes |
-| docs/version-system-v4.2.1.md | tracked | 2026-02-25 13:47:11 | 29774 bytes |
+| docs/version-system.md | tracked | 2026-02-25 13:47:11 | 29774 bytes |
 | docs/wip-naming-v1.4.md | tracked | 2026-02-25 13:47:11 | 19868 bytes |
 | docs/tex-preamble-consolidated.md | tracked | 2026-02-25 13:47:11 | 16086 bytes |
 

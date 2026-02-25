@@ -105,7 +105,7 @@ body:
         
         - 📖 [WIP-FILE-NAMING-v1.4](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/wip-naming-v1.4.md) — WIP file status codes and lifecycle
         - 📖 [BRIEFING](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/briefing.md) — Project governance and template rules
-        - 📖 [VERSION-SYSTEM-v4.2.1](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/version-system-v4.2.1.md) — Versioning logic
+        - 📖 [VERSION-SYSTEM](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/version-system.md) — Versioning logic
         - 📖 [TRAINING-MISSION-ABBREV-TABLE-v1.0](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/training-mission-abbrev-table-v1.0.md) — Mission code references
         
         ## Acceptance Criteria

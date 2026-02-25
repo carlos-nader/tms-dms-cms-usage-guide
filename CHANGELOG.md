@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project follows a custom versioning system (see docs/version-system-v4.2.1.md).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project follows a custom versioning system (see docs/version-system.md).
 
 ---
 

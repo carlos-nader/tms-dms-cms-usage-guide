@@ -14,7 +14,7 @@ sitemap:
 **Status:** Official Rule Set (v1.4)  
 **Effective Date:** 03 February 2026  
 **Applies to:** All isolated chapter, section, table, note, and visual files under development  
-**Relationship to VERSION-SYSTEM-v4.2.1:** Complementary; does NOT affect main document versioning  
+**Relationship to VERSION-SYSTEM:** Complementary; does NOT affect main document versioning  
 **Relationship to BRIEFING:** Operational rules for files described structurally in BRIEFING Section 11
 
 ---
@@ -59,8 +59,8 @@ This convention applies to:
 
 This convention does **NOT** apply to:
 
-- The main guide file (`guide.tex`) — covered by VERSION-SYSTEM-v4.2.1
-- Guide snapshots (`wip/guide/guide-v*.tex`) — covered by VERSION-SYSTEM-v4.2.1
+- The main guide file (`guide.tex`) — covered by VERSION-SYSTEM
+- Guide snapshots (`wip/guide/guide-v*.tex`) — covered by VERSION-SYSTEM
 - Compiled PDFs or other binary outputs
 - Git commit messages or version control metadata
 - External reference materials or archived publications
@@ -72,7 +72,7 @@ All WIP files are organized in a dedicated project structure:
 
 ```text
 project-root/
-├── guide.tex                        (CANONICAL — subject to VERSION-SYSTEM-v4.2.1)
+├── guide.tex                        (CANONICAL — subject to VERSION-SYSTEM)
 │
 ├── docs/                            (Project governance documents)
 │   ├── project-tracking-v*.md
@@ -90,7 +90,7 @@ project-root/
 │   ├── notes-*.md                   (Research notes)
 │   ├── visual-*.*                   (Visual assets)
 │   │
-│   └── guide/                       (Guide snapshots — VERSION-SYSTEM-v4.2.1)
+│   └── guide/                       (Guide snapshots — VERSION-SYSTEM)
 │       └── guide-v*.tex             (Current active snapshot)
 │
 └── archive/                         (Completed, deprecated, or historical)
@@ -433,7 +433,7 @@ A WIP file transitions to `final` when:
 2. **Human copies content** from `final` WIP file into the guide snapshot (`wip/guide/guide-v*.tex`)
 3. **Human handles LaTeX:** cross-references, labels, formatting
 4. **Human compiles** and verifies no errors
-5. **Human updates version** per VERSION-SYSTEM-v4.2.1:
+5. **Human updates version** per VERSION-SYSTEM:
    - Update `\docversion` and `\docbuild` macros
    - Save new snapshot in `wip/guide/`
    - Copy snapshot to `guide.tex` (repository root)
@@ -553,7 +553,7 @@ When generating filenames, verify:
 
 | Document | Responsibility |
 |----------|----------------|
-| **VERSION-SYSTEM-v4.2.1** | Version numbering for `guide.tex` and snapshots |
+| **VERSION-SYSTEM** | Version numbering for `guide.tex` and snapshots |
 | **BRIEFING** | Template structure, preamble architecture, layout standards |
 | **WIP-FILE-NAMING-v1.4** | WIP file naming, status tracking, integration workflow |
 | **PROJECT-TRACKING** | Session log, project state, development history |

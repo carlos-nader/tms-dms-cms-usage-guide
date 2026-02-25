@@ -7,7 +7,7 @@ sitemap:
 ---
 {% raw %}
 
-# Falcon BMS TMS/DMS/CMS Guide Version System v4.2.1
+# Falcon BMS TMS/DMS/CMS Guide Version System
 
 **Latest Update:** 25 February 2026
 **Effective Date:** 10 January 2026  
@@ -80,7 +80,7 @@ Before any version change, answer:
 
 ### 1.1 Metadata
 
-- **Title:** Falcon BMS TMS/DMS/CMS Guide Version System v4.2.1.  
+- **Title:** Falcon BMS TMS/DMS/CMS Guide Version System.  
 - **Role:** defines how to name, number, update, and archive versions of the TMS/DMS/CMS guide.
 
 - **Current project regime:**
@@ -569,7 +569,7 @@ Single workflow for 0.x.x.x and x.x.x:
 
 ### 6.4 Relationship with WIP File Naming and BRIEFING
 
-- This document (Version System v4.2.1) governs the versioning and naming of the **guide snapshots** (`wip/guide/guide-v*.tex`) and their relationship with the canonical `guide.tex` in the repository root.  
+- This document (Version System) governs the versioning and naming of the **guide snapshots** (`wip/guide/guide-v*.tex`) and their relationship with the canonical `guide.tex` in the repository root.  
 - Individual preparation files (`chapter-`, `section-`, `table-`, `visual-`, `notes-`) follow their own rules defined in the separate `WIP-FILE-NAMING-v1.4` document.  
 - The structural specification and template governance for WIP files is defined in `BRIEFING` (Section 11).
 - These WIP files only impact the guide version when their content is integrated into the current snapshot and propagated to `guide.tex`.
@@ -661,9 +661,9 @@ Issues (in Milestone) → WIP files → Integration → Snapshot → guide.tex �
 
 ---
 
-**End of document — Version System v4.2.1**
+**End of document — Version System**
 
-**Document Status:** Production-Ready (v4.2.1)  
+**Document Status:** Production-Ready  
 **Effective Date:** 10 January 2026  
 **Last Updated:** 25 February 2026
 {% endraw %}

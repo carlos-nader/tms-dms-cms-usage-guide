@@ -77,7 +77,7 @@ docs/
 ├── briefing.md          (Markdown - Jekyll converts to .html)
 ├── project-tracking.md    (Markdown - Jekyll converts to .html)
 ├── wip-naming-v1.4.md            (Markdown - Jekyll converts to .html)
-├── version-system-v4.2.1.md      (Markdown - Jekyll converts to .html)
+├── version-system.md      (Markdown - Jekyll converts to .html)
 ├── tex-preamble-consolidated.md  (Markdown - Jekyll converts to .html)
 ├── WIP-Snapshot-Generator-v3.1.html (HTML - tool)
 ├── _config.yml                   (Jekyll config - add plugins here)
@@ -199,7 +199,7 @@ Define **content structure** for each page:
 
 **4. ⚙️ DEVELOPMENT STANDARDS**
 - **WIP File Naming Convention v1.4** - Standardized naming rules, status lifecycle
-- **Versioning System v4.2.1** - Complete version numbering scheme (pre/post-publication)
+- **Versioning System** - Complete version numbering scheme (pre/post-publication)
 - **LaTeX Preamble Documentation** - Technical specifications for document structure
 
 **5. 🛠️ TOOLS & UTILITIES**
@@ -423,7 +423,7 @@ Jekyll is **already active** and converting Markdown files to HTML automatically
 - `briefing.md` → URL: `/briefing.html`
 - `project-tracking.md` → URL: `/project-tracking.html`
 - `wip-naming-v1.4.md` → URL: `/wip-naming-v1.4.html`
-- `version-system-v4.2.1.md` → URL: `/version-system-v4.2.1.html`
+- `version-system.md` → URL: `/version-system.html`
 - `tex-preamble-consolidated.md` → URL: `/tex-preamble-consolidated.html`
 
 ### **Next Steps for Jekyll Integration**

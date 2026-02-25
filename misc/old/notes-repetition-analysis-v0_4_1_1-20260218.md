@@ -2,7 +2,7 @@
 
 **Document type:** Editorial Notes — Repetition Audit  
 **Target guide version:** v0.4.1.1 (SUBPATCH from v0.4.1.0)  
-**Version bump rationale:** Wording and cross-reference corrections within existing chapters — no new sections, no structural additions. Per VERSION-SYSTEM-v4.2.1 § 3.2.2: "Fix typos, punctuation, small wording adjustments → SUBPATCH."  
+**Version bump rationale:** Wording and cross-reference corrections within existing chapters — no new sections, no structural additions. Per VERSION-SYSTEM § 3.2.2: "Fix typos, punctuation, small wording adjustments → SUBPATCH."  
 **Scope:** Chapters 1–5 (Chapters 4, 6, 7 are placeholders — skipped)  
 **Date:** 2026-02-18  
 **Triggered by:** Community feedback — forum user Daddyk identified "certain number of repetitions, for example, page 6" in guide v0.4.1.0  
@@ -390,7 +390,7 @@ The distinction between CMS Down (external ECM pod) and CMS Left (IDIAS) is a ha
 
 ### Version bump
 
-All corrections in R-01 through R-09 are wording adjustments, cross-reference insertions, and paragraph removals within existing chapters. No new sections, no structural additions, no new tables. Per VERSION-SYSTEM-v4.2.1 § 3.2.2:
+All corrections in R-01 through R-09 are wording adjustments, cross-reference insertions, and paragraph removals within existing chapters. No new sections, no structural additions, no new tables. Per VERSION-SYSTEM § 3.2.2:
 
 > *"Fix typos, punctuation, small wording adjustments → SUBPATCH"*
 

@@ -24,7 +24,7 @@ This document tracks governance rules, project state, and development history. F
 
 | Document | Version | Purpose |
 |----------|---------|---------|
-| VERSION-SYSTEM | v4.2.1 | Versioning rules (`docs/version-system-v4.2.1.md`) |
+| VERSION-SYSTEM | 2026-02-25 | Versioning rules (`docs/version-system.md`) |
 | BRIEFING | 2026-02-25 | Content scope, layout standard, preamble architecture (`docs/briefing.md`) |
 | WIP-FILE-NAMING | v1.4 | File naming conventions and status lifecycle (`docs/wip-naming-v1.4.md`) |
 | TEMPLATES | V1.0 | Canonical WIP template (`template/template-wip-V1.0.tex`) |

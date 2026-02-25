@@ -31,7 +31,7 @@ This brief describes how the TMS/DMS/CMS Usage Guide is being built, including:
 - Source material and style rules.
 - Layout parameters and table standards.
 - License and contributor rights.
-- High-level overview of the Version System v4.2.1 and how it interacts with GitHub.
+- High-level overview of the Version System and how it interacts with GitHub.
 
 All instructions to the assistant are given in **Portuguese**. All content that goes into the **LaTeX document** (text, tables, captions, macros) is in **English**.
 
@@ -345,7 +345,7 @@ Reference relevant Dash-34 sections as plain text (no macros inside tables):
 │   └── template-wip-V1.0.tex        # WIP file template (preamble reference)
 ├── docs/
 │   ├── briefing.md         # This document
-│   ├── version-system-v4.2.1.md
+│   ├── version-system.md
 │   ├── project-tracking.md
 │   └── wip-naming-v1.4.md
 ├── misc/

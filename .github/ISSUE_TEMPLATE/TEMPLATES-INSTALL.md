@@ -198,7 +198,7 @@ Milestone Complete ✅
 - [YAML Syntax Guide](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
 - Your project docs:
   - WIP-FILE-NAMING-v1.4
-  - VERSION-SYSTEM-v4.2.1
+  - VERSION-SYSTEM
   - PROJECT-TRACKING
 
 ---
