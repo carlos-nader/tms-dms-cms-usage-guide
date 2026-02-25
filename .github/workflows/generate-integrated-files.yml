@@ -61,6 +61,7 @@ jobs:
             echo "✓ Changes detected, committing..."
             git commit -m "chore: update integrated files report [skip ci]"
             echo "✓ Pushing to main branch..."
+            git pull --rebase origin main
             git push origin main
             echo "✅ Push successful!"
           else
