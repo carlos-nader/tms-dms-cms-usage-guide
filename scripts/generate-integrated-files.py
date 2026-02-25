@@ -34,7 +34,8 @@ TRACKED_PATHS = {
     "wip/": {"ext": ".tex", "subfolders": ["wip/"]},
     "archive/": {"ext": ".tex", "subfolders": ["archive/GUIDE/", "archive/WIP/"]},
     "docs/": {"ext": ".md", "subfolders": ["docs/"]},
-    "guide.tex": {"ext": ".tex", "subfolders": None},
+    "guide.tex": {"ext": ".tex", "subfolders": None, "label": "Repository Root"},
+    "misc/STYLE-GUIDE.md": {"ext": ".md", "subfolders": None, "label": "misc/"},
 }
 
 # Helper functions
@@ -162,7 +163,8 @@ def get_tracked_files():
                 status = get_file_status(base_path)
                 debug_log(f"  Found: {size} bytes, {status}")
                 
-                section_key = f"{section_num}. {base_path} (Repository Root)"
+                label = config.get("label", "Repository Root")
+                section_key = f"{section_num}. {base_path} ({label})"
                 tracked_files[section_key] = [{
                     "path": base_path,
                     "status": status,
