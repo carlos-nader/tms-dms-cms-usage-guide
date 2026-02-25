@@ -5,7 +5,7 @@
 
 This is a **LaTeX-based technical documentation project** developing a comprehensive usage guide for F-16 HOTAS switches (TMS/DMS/CMS) in Falcon BMS 4.38.1 flight simulator. The project uses a strict governance framework with version control, WIP file lifecycles, and AI-assisted content development.
 
-**Current Status:** Pre-publication phase (v0.3.3.0), 3/7 chapters completed, targeting v1.0 publication
+**Current Status:** Pre-publication phase (v0.4.1.1), 4/7 chapters completed, targeting v1.0 publication
 
 **Primary Languages:** LaTeX (content), Python (automation), PowerShell (validation)
 
@@ -93,8 +93,8 @@ All WIP files **MUST** be created from `template/template-wip.tex` (canonical te
 ### LaTeX & Estrutura (docs/briefing.md)
 - Use sempre o preâmbulo consolidado (docs/tex-preamble-consolidated.md).
 - Siga padrões de ambiente, macros e layout definidos no briefing.md.
-- HOTAS tables: sempre usar \begin{hotastable} (15.6cm), colunas e alinhamento padronizados.
-- Referências cruzadas: \dashlnk, \trglnk, \imglink, conforme briefing.md.
+- HOTAS tables: sempre usar \begin{hotastable} (15.50cm), colunas e alinhamento padronizados.
+- Referências cruzadas em tabelas: \dashref{X.Y.Z}, \trnref{NN}, \dashone{X.Y.Z}, \dashrefs{...}. Referências de documento: \secref{}, \chapref{}, \tabref{}, \figref{}, \imglink{}.
 - Nunca use placeholders como "TBD" ou "TODO".
 - Todo conteúdo em inglês; instruções para AI em português.
 
@@ -157,9 +157,8 @@ python scripts/generate-integrated-files.py
 
 1. Check naming compliance with `wip-naming.md`
 2. Verify content follows BRIEFING style rules
-3. Check cross-references (`\dashlnk`, `\trglnk`) are valid
+3. Check cross-references (`\dashref`, `\trnref`) are valid
 4. Ensure `hotastable` environments are properly formatted
-5. Validate training mission abbreviations against `training-mission-abbrev-table-v1.0.md`
 
 ### Updating Documentation
 
@@ -172,12 +171,12 @@ python scripts/generate-integrated-files.py
 
 ### HOTAS Table Structure (Key Pattern)
 
-The `hotastable` environment uses a 7-column longtable structure (15.6cm total width):
+The `hotastable` environment uses a 7-column longtable structure (15.50cm total width):
 
 ```latex
 \begin{hotastable}{Caption Text Here}
 \label{tab:switch-action}
-% Columns: Mode (1.00cm) | Dir. (0.90cm) | Act. (0.90cm) | Function (3.30cm) | Effect/Nuance (6.40cm) | Dash34 (1.40cm) | Train. (2.10cm)
+% Columns: Mode (1.00cm) | Dir. (0.90cm) | Act. (0.90cm) | Function (3.30cm) | Effect/Nuance (6.40cm) | Dash34 (1.40cm) | Train. (1.60cm)
 \midrule
 A-A CRM & Up & Short & Bug target & Moves cursor to designate target in FCR. & \dashref{2.1.5} & \trnref{18 (BARCAP)} \\
 A-G PRE & Down & Long & Break lock & Releases current designation and returns to search. & \dashref{2.7.1} & \trnref{28 (SEAD-EW)} \\
@@ -190,11 +189,11 @@ For complete column specifications, see BRIEFING Section 4.2 and Section 12.3.9.
 ### Version Metadata Macros
 
 ```latex
-\newcommand{\docversion}{0.3.3.0}
-\newcommand{\docbuild}{20260202}
+\newcommand{\docversion}{0.4.1.1}
+\newcommand{\docbuild}{20260218}
 \newcommand{\docstartdate}{05 January 2026}
-\newcommand{\docenddate}{02 February 2026}
-\newcommand{\chapterscompletedof}{3/7}
+\newcommand{\docenddate}{18 February 2026}
+\newcommand{\chapterscompletedof}{4/7}
 ```
 
 
@@ -233,13 +232,6 @@ For complete column specifications, see BRIEFING Section 4.2 and Section 12.3.9.
 6. Estou considerando diagramas, scripts e imagens já existentes no projeto?
 7. Estou respeitando o licenciamento CC BY-NC 4.0?
 8. Estou atento ao status de revisão textual do projeto?
-
-1. Which governance document defines the rules for this change?
-2. Is this a WIP file or the canonical `guide.tex`?
-3. Does this require a version bump? Which level (MINOR/PATCH/SUBPATCH)?
-4. Have I verified the naming convention against `wip-naming.md`?
-5. Is the content in English and instructions in Portuguese?
-6. Am I following the BRIEFING style guidelines?
 
 ---
 
