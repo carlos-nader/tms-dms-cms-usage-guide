@@ -75,10 +75,10 @@ project-root/
 ├── guide.tex                        (CANONICAL — subject to VERSION-SYSTEM)
 │
 ├── docs/                            (Project governance documents)
-│   ├── project-tracking-v*.md
-│   ├── version-system-v*.md
-│   ├── wip-naming-v*.md             (This document)
-│   └── briefing-v*.md
+│   ├── project-tracking.md
+│   ├── version-system.md
+│   ├── wip-naming.md                (This document)
+│   └── briefing.md
 │
 ├── template/                       (Canonical templates)
 │   └── template-wip.tex        (Mandatory starting point for all WIP files)
