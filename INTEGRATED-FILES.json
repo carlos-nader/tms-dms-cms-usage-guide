@@ -1,11 +1,11 @@
 {
-  "generated": "2026-02-25T14:43:50.321037",
+  "generated": "2026-02-25T14:59:50.829990",
   "repository": {
     "name": "tms-dms-cms-usage-guide",
     "url": "git@github.com:carlos-nader/tms-dms-cms-usage-guide",
     "created": "2026-01-09",
-    "last_push": "2026-02-25 14:43:48 UTC-3",
-    "total_commits": "703",
+    "last_push": "2026-02-25 14:59:48 UTC-3",
+    "total_commits": "706",
     "releases": [
       "v0.4.1.1",
       "v0.4.1.0",
@@ -20,25 +20,25 @@
       {
         "path": "wip/section-C4-S3-tms-aa-review-2026-02-17.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:44",
+        "last_modified": "2026-02-25 14:59:44",
         "size": "51729 bytes"
       },
       {
         "path": "wip/chapter-C5-style-rev-review-2026-02-24.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:44",
+        "last_modified": "2026-02-25 14:59:44",
         "size": "36318 bytes"
       },
       {
         "path": "wip/section-C2-S1-S3-soi-context-dependency-final-2026-02-15.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:44",
+        "last_modified": "2026-02-25 14:59:44",
         "size": "20687 bytes"
       },
       {
         "path": "wip/chapter-C4-tms-structure-dev-2026-02-13.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:44",
+        "last_modified": "2026-02-25 14:59:44",
         "size": "52041 bytes"
       }
     ],
@@ -46,97 +46,97 @@
       {
         "path": "archive/GUIDE/guide-v0.1.1.0-20260105.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "21966 bytes"
       },
       {
         "path": "archive/GUIDE/guide-v0.3.2.1-20260129.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "79386 bytes"
       },
       {
         "path": "archive/GUIDE/guide-v0.2.2.0-20260108.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "25606 bytes"
       },
       {
         "path": "archive/GUIDE/guide-v0.3.0.1-20260116.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "58407 bytes"
       },
       {
         "path": "archive/GUIDE/guide-v0.1.0.0-20260105.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "22094 bytes"
       },
       {
         "path": "archive/GUIDE/guide-v0.1.3.0-20260105.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "22112 bytes"
       },
       {
         "path": "archive/GUIDE/guide-v0.2.2.0-20260110.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "24905 bytes"
       },
       {
         "path": "archive/GUIDE/guide-v0.2.4.0-20260112.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "39623 bytes"
       },
       {
         "path": "archive/GUIDE/guide-v0.2.3.1-20260110.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "35735 bytes"
       },
       {
         "path": "archive/GUIDE/guide-v0.3.0.0-20260115.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "56351 bytes"
       },
       {
         "path": "archive/GUIDE/guide-v0.4.1.0-20260211.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "113861 bytes"
       },
       {
         "path": "archive/GUIDE/guide-v0.4.0.0-20260209.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "113525 bytes"
       },
       {
         "path": "archive/GUIDE/guide-v0.3.1.0-20260117.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "63450 bytes"
       },
       {
         "path": "archive/GUIDE/guide-v0.1.2.0-20260105.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "21826 bytes"
       },
       {
         "path": "archive/GUIDE/guide-v0.3.3.0-20260202.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "98014 bytes"
       },
       {
         "path": "archive/GUIDE/guide-v0.3.2.0-20260119.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "79024 bytes"
       }
     ],
@@ -144,85 +144,85 @@
       {
         "path": "archive/WIP/section-C4-S2-dms-up-down-deprecated-2026-01-14.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "25485 bytes"
       },
       {
         "path": "archive/WIP/section-C5-S1-concept-and-interactions-cmds-ecm-rwr-approved-2026-01-07.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "5771 bytes"
       },
       {
         "path": "archive/WIP/section-C4-S3-dms-format-cycling-deprecated-2026-01-13.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "18777 bytes"
       },
       {
         "path": "archive/WIP/chapter-C2-hotas-fundamentals-deprecated-2026-01-25.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "21249 bytes"
       },
       {
         "path": "archive/WIP/section-C4-S2-dms-up-down-deprecated-2026-01-13.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "27386 bytes"
       },
       {
         "path": "archive/WIP/chapter-C2-hotas-fundamentals-approved-2026-02-09.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "32512 bytes"
       },
       {
         "path": "archive/WIP/chapter-C1-introduction-approved-2026-02-02.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "24514 bytes"
       },
       {
         "path": "archive/WIP/section-C4-S3-dms-down-approved-2026-01-18.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "15065 bytes"
       },
       {
         "path": "archive/WIP/chapter-C4-dms-approved-2026-02-02.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "63243 bytes"
       },
       {
         "path": "archive/WIP/chapter-C2-hotas-fundamentals-deprecated-2026-02-06.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "5707 bytes"
       },
       {
         "path": "archive/WIP/section-C5-S3-blocks-and-variants-approved-2026-01-11.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "8031 bytes"
       },
       {
         "path": "archive/WIP/section-C4-S2-dms-up-approved-2026-01-14.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "15993 bytes"
       },
       {
         "path": "archive/WIP/section-C5-S2-cms-actuation-hotas-table-approved-2026-01-10.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "20918 bytes"
       },
       {
         "path": "archive/WIP/section-C4-S1-concept-soi-approved-2026-01-15.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "15533 bytes"
       }
     ],
@@ -230,31 +230,31 @@
       {
         "path": "docs/briefing.md",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "31990 bytes"
       },
       {
         "path": "docs/project-tracking.md",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "17864 bytes"
       },
       {
         "path": "docs/version-system.md",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "29722 bytes"
       },
       {
         "path": "docs/wip-naming.md",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "19733 bytes"
       },
       {
         "path": "docs/tex-preamble-consolidated.md",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "16086 bytes"
       }
     ],
@@ -262,12 +262,50 @@
       {
         "path": "guide.tex",
         "status": "tracked",
-        "last_modified": "2026-02-25 14:43:43",
+        "last_modified": "2026-02-25 14:59:43",
         "size": "112834 bytes"
+      }
+    ],
+    "6. misc/STYLE-GUIDE.md (misc/)": [
+      {
+        "path": "misc/STYLE-GUIDE.md",
+        "status": "tracked",
+        "last_modified": "2026-02-25 14:59:43",
+        "size": "20664 bytes"
       }
     ]
   },
   "commits": [
+    {
+      "hash": "7a61271",
+      "date": "2026-02-25",
+      "time": "11:54:30",
+      "author": "carlos-nader",
+      "modified_files": [
+        ".github/workflows/generate-integrated-files.yml",
+        "scripts/generate-integrated-files.py"
+      ]
+    },
+    {
+      "hash": "40ec52b",
+      "date": "2026-02-25",
+      "time": "11:46:24",
+      "author": "carlos-nader",
+      "modified_files": [
+        "README.md"
+      ]
+    },
+    {
+      "hash": "96a6759",
+      "date": "2026-02-25",
+      "time": "14:43:57",
+      "author": "github-actions[bot]",
+      "modified_files": [
+        "INTEGRATED-FILES.json",
+        "INTEGRATED-FILES.md",
+        "docs/integrated-files.html"
+      ]
+    },
     {
       "hash": "4c8fa6b",
       "date": "2026-02-25",
@@ -343,38 +381,6 @@
         "docs/project-tracking.md",
         "misc/STYLE-GUIDE-v0.2.0.md",
         "misc/STYLE-GUIDE.md"
-      ]
-    },
-    {
-      "hash": "cac1994",
-      "date": "2026-02-25",
-      "time": "14:05:15",
-      "author": "github-actions[bot]",
-      "modified_files": [
-        "INTEGRATED-FILES.json",
-        "INTEGRATED-FILES.md",
-        "docs/integrated-files.html"
-      ]
-    },
-    {
-      "hash": "a800f3b",
-      "date": "2026-02-25",
-      "time": "11:03:34",
-      "author": "carlos-nader",
-      "modified_files": [
-        "docs/wip-naming-v1.4.md",
-        "docs/wip-naming.md"
-      ]
-    },
-    {
-      "hash": "2f089fb",
-      "date": "2026-02-25",
-      "time": "14:04:07",
-      "author": "github-actions[bot]",
-      "modified_files": [
-        "INTEGRATED-FILES.json",
-        "INTEGRATED-FILES.md",
-        "docs/integrated-files.html"
       ]
     }
   ],
