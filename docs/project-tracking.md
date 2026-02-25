@@ -10,7 +10,7 @@ sitemap:
 # PROJECT TRACKING
 ## Falcon BMS TMS/DMS/CMS HOTAS Guide
 
-**Document Version:** PROJECT-TRACKING-v5.0.0  
+**Document Version:** PROJECT-TRACKING (2026-02-24)
 **Regime:** Pre-publication (0.x.x.x)  
 **Project Start:** 2026-01-05  
 **Last Updated:** 2026-02-24  
@@ -188,6 +188,6 @@ Chronological record of significant changes. For detailed commit history, see IN
 
 ---
 
-**END OF PROJECT TRACKING v5.0.0**
+**END OF PROJECT TRACKING**
 
 {% endraw %}

@@ -199,7 +199,7 @@ Milestone Complete ✅
 - Your project docs:
   - WIP-FILE-NAMING-v1.4
   - VERSION-SYSTEM-v4.2.1
-  - PROJECT-TRACKING-v5.0.0
+  - PROJECT-TRACKING
 
 ---
 

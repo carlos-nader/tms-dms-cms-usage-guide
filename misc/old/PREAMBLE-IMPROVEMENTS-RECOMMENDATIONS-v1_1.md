@@ -312,7 +312,7 @@ Antes de implementar, revisar os seguintes arquivos para garantir consistência:
 | Documento | Localização |
 |-----------|-------------|
 | BRIEFING | `docs/briefing.md` |
-| PROJECT-TRACKING | `docs/project-tracking-v5.0.0.md` |
+| PROJECT-TRACKING | `docs/project-tracking.md` |
 | TEX-PREAMBLE-CONSOLIDATED | `docs/tex-preamble-consolidated.md` |
 
 ---
@@ -342,7 +342,7 @@ Antes de implementar, revisar os seguintes arquivos para garantir consistência:
 ### Documentação
 - [ ] Atualizar `docs/briefing.md` (seção 12)
 - [ ] Atualizar `docs/tex-preamble-consolidated.md`
-- [ ] Adicionar entrada em `docs/project-tracking-v5.0.0.md`
+- [ ] Adicionar entrada em `docs/project-tracking.md`
 
 
 ### Teste

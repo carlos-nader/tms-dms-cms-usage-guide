@@ -15,7 +15,7 @@ All governance documents are in `/docs/` and are **mandatory reading** before ma
 1. **[briefing.md](../docs/briefing.md)** — Project scope, content outline, LaTeX style guidelines, layout standards
 2. **[version-system-v4.2.1.md](../docs/version-system-v4.2.1.md)** — Guide versioning (0.x.x.x pre-publication vs x.y.z post-publication)
 3. **[wip-naming-v1.4.md](../docs/wip-naming-v1.4.md)** — WIP file naming conventions and status lifecycle (dev → review → final → approved)
-4. **[project-tracking-v5.0.0.md](../docs/project-tracking-v5.0.0.md)** — Current status, chapter progress, development log
+4. **[project-tracking.md](../docs/project-tracking.md)** — Current status, chapter progress, development log
 
 **Rule:** Never modify governance documents without explicit approval. These define the project's operational framework.
 
@@ -58,7 +58,7 @@ All WIP files **MUST** be created from `template/template-wip-V1.0.tex` (canonic
 1. Update macros in `guide.tex` preamble: `\docversion`, `\docbuild`, `\docenddate`
 2. Save snapshot to `wip/guide/guide-v{VERSION}-{YYYYMMDD}.tex`
 3. Copy snapshot to `guide.tex` (must be identical)
-4. Update `docs/project-tracking-v5.0.0.md`
+4. Update `docs/project-tracking.md`
 5. Move previous snapshot to `archive/GUIDE/`
 6. Create GitHub tag and release
 

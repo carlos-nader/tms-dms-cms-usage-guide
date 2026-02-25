@@ -228,6 +228,15 @@
     ],
     "4. docs/": [
       {
+<<<<<<< Updated upstream
+=======
+        "path": "docs/project-tracking.md",
+        "status": "tracked",
+        "last_modified": "2026-02-25 03:56:45",
+        "size": "17893 bytes"
+      },
+      {
+>>>>>>> Stashed changes
         "path": "docs/briefing.md",
         "status": "tracked",
         "last_modified": "2026-02-25 13:32:42",
@@ -340,7 +349,7 @@
       "time": "00:40:32",
       "author": "carlos-nader",
       "modified_files": [
-        "docs/project-tracking-v5.0.0.md"
+        "docs/project-tracking.md"
       ]
     },
     {
@@ -360,7 +369,7 @@
       "time": "00:29:15",
       "author": "carlos-nader",
       "modified_files": [
-        "docs/project-tracking-v5.0.0.md"
+        "docs/project-tracking.md"
       ]
     },
     {
@@ -373,6 +382,47 @@
         "INTEGRATED-FILES.md",
         "docs/integrated-files.html"
       ]
+<<<<<<< Updated upstream
+=======
+    },
+    {
+      "hash": "e666749",
+      "date": "2026-02-25",
+      "time": "00:00:09",
+      "author": "carlos-nader",
+      "modified_files": [
+        "docs/project-tracking.md"
+      ]
+    },
+    {
+      "hash": "5b5ceb7",
+      "date": "2026-02-25",
+      "time": "02:54:30",
+      "author": "github-actions[bot]",
+      "modified_files": [
+        "INTEGRATED-FILES.json",
+        "INTEGRATED-FILES.md",
+        "docs/integrated-files.html"
+      ]
+    },
+    {
+      "hash": "406f73a",
+      "date": "2026-02-24",
+      "time": "23:52:12",
+      "author": "carlos-nader",
+      "modified_files": [
+        ".github/workflows/generate-integrated-files.yml"
+      ]
+    },
+    {
+      "hash": "accfd2d",
+      "date": "2026-02-25",
+      "time": "02:48:24",
+      "author": "github-actions[bot]",
+      "modified_files": [
+        "README.md"
+      ]
+>>>>>>> Stashed changes
     }
   ],
   "tags": [

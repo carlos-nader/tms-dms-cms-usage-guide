@@ -633,9 +633,9 @@ with the List of HOTAS Tables. No additional macros are needed when creating new
 
 ---
 
-### 5.4 PROJECT-TRACKING-v5.0.0
+### 5.4 PROJECT-TRACKING
 
-**File:** `docs/PROJECT-TRACKING-v5.0.0.md`
+**File:** `docs/project-tracking.md`
 
 **Action:** No changes documented in this guide (as requested).
 
@@ -790,7 +790,7 @@ latexmk -pdf guide.tex   # Automatically handles multiple passes
 - **BRIEFING:** `docs/briefing.md` — Project governance and specifications
 - **WIP-NAMING:** `docs/WIP-FILE-NAMING-v1.4.md` — File naming conventions
 - **VERSION-SYSTEM:** `docs/VERSION-SYSTEM-v4.2.1.md` — Versioning rules
-- **PROJECT-TRACKING:** `docs/PROJECT-TRACKING-v5.0.0.md` — Session history
+- **PROJECT-TRACKING:** `docs/project-tracking.md` — Session history
 
 ---
 

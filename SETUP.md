@@ -941,7 +941,7 @@ git push origin main
 - [BRIEFING](docs/briefing.md) — Scope, style, layout standards
 - [WIP File Naming (v1.4)](docs/wip-naming-v1.4.md) — WIP naming conventions
 - [Version System (v4.2.1)](docs/version-system-v4.2.1.md) — Versioning rules
-- [Project Tracking (v5.0.0)](docs/project-tracking-v5.0.0.md) — Session logs, milestones
+- [Project Tracking](docs/project-tracking.md) — Session logs, milestones
 - [CONTRIBUTING.md](.github/CONTRIBUTING.md) — Contribution guidelines
 
 ### External Resources

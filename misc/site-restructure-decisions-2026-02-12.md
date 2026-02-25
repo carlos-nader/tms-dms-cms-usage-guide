@@ -75,7 +75,7 @@ docs/
 ├── guide-web.pdf                  (keep)
 ├── integrated-files.html          (HTML - keep)
 ├── briefing.md          (Markdown - Jekyll converts to .html)
-├── project-tracking-v5.0.0.md    (Markdown - Jekyll converts to .html)
+├── project-tracking.md    (Markdown - Jekyll converts to .html)
 ├── wip-naming-v1.4.md            (Markdown - Jekyll converts to .html)
 ├── version-system-v4.2.1.md      (Markdown - Jekyll converts to .html)
 ├── tex-preamble-consolidated.md  (Markdown - Jekyll converts to .html)
@@ -192,7 +192,7 @@ Define **content structure** for each page:
 
 **3. 📋 PROJECT MANAGEMENT**
 - **Project Briefing** - Complete project scope, structure, sources, style rules
-- **Project Tracking v5.0.0** - Current development status, WIP files, roadmap
+- **Project Tracking** - Current development status, WIP files, roadmap
 - **Integrated Files** (GitHub Workflow Tracking) - Repository status with commits, tags, issues
 - **Changelog** - Complete history of releases and notable changes
 - **Environment Setup Guide** - Step-by-step instructions for local LaTeX environment
@@ -421,7 +421,7 @@ Jekyll is **already active** and converting Markdown files to HTML automatically
 
 ### **Existing Markdown Files (Being Converted)**
 - `briefing.md` → URL: `/briefing.html`
-- `project-tracking-v5.0.0.md` → URL: `/project-tracking-v5.0.0.html`
+- `project-tracking.md` → URL: `/project-tracking.html`
 - `wip-naming-v1.4.md` → URL: `/wip-naming-v1.4.html`
 - `version-system-v4.2.1.md` → URL: `/version-system-v4.2.1.html`
 - `tex-preamble-consolidated.md` → URL: `/tex-preamble-consolidated.html`
