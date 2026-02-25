@@ -1,3 +1,4 @@
+
 # AI Agent Instructions — Falcon BMS TMS/DMS/CMS Guide Project
 
 ## Project Overview
@@ -8,26 +9,42 @@ This is a **LaTeX-based technical documentation project** developing a comprehen
 
 **Primary Languages:** LaTeX (content), Python (automation), PowerShell (validation)
 
-## Critical Governance Documents (Read These First)
 
-All governance documents are in `/docs/` and are **mandatory reading** before making changes:
+## Critical Governance & Style Documents (Read These First)
 
-1. **[briefing.md](../docs/briefing.md)** — Project scope, content outline, LaTeX style guidelines, layout standards
-2. **[version-system.md](../docs/version-system.md)** — Guide versioning (0.x.x.x pre-publication vs x.y.z post-publication)
-3. **[wip-naming.md](../docs/wip-naming.md)** — WIP file naming conventions and status lifecycle (dev → review → final → approved)
-4. **[project-tracking.md](../docs/project-tracking.md)** — Current status, chapter progress, development log
+All governance and style documents são leitura obrigatória antes de qualquer alteração. Eles estão distribuídos principalmente em `/docs/` e `/misc/`:
 
-**Rule:** Never modify governance documents without explicit approval. These define the project's operational framework.
+1. **[briefing.md](../docs/briefing.md)** — Estrutura do projeto, guidelines de LaTeX, macros, layout, padrões de tabelas e ambientes.
+2. **[version-system.md](../docs/version-system.md)** — Versionamento (pré e pós-publicação), regras de bump, snapshots.
+3. **[wip-naming.md](../docs/wip-naming.md)** — Convenção de nomes para arquivos WIP, ciclo de vida (dev → review → final → approved → deprecated).
+4. **[project-tracking.md](../docs/project-tracking.md)** — Rastreamento de progresso, status de capítulos, log de desenvolvimento.
+5. **[STYLE-GUIDE.md](../misc/STYLE-GUIDE.md)** — Guia oficial de estilo para toda prosa do projeto (introduções, descrições, células de tabela com texto corrido, etc.).
 
-## File Structure & Workflows
+**Importante:**
+- O STYLE-GUIDE.md cobre apenas prosa e narrativa. O BRIEFING cobre apenas estrutura LaTeX, macros e layout.
+- Sempre consulte ambos antes de gerar conteúdo textual ou estrutural.
+- Nunca modifique documentos de governança sem aprovação explícita.
 
-### The Canonical Guide File
 
-- **`guide.tex`** (root) — Production-ready guide file
-- **`wip/guide/guide-v*.tex`** — Active snapshot (must be byte-identical to `guide.tex`)
-- **`archive/GUIDE/`** — Historical snapshots
+## Project Structure & Workflows
 
-**Integrity Check:** Run `.\check-guide-integrity.ps1` to verify `guide.tex` matches the active snapshot.
+
+### Main Folders & Their Roles
+
+- **archive/**: Snapshots históricos, WIP aprovados, versões antigas do guia.
+- **docs/**: Documentos de governança, diagramas de fluxo, documentação auxiliar, arquivos SVG/PNG de referência.
+- **fig/**: Imagens, figuras, fontes visuais, arquivos de licenciamento de imagens.
+- **misc/**: Decisões de projeto, style-guide, fontes externas, análises.
+- **scripts/**: Scripts de automação (geração de relatórios, validação, rastreamento). Nunca editar sem consulta explícita.
+- **template/**: Templates oficiais. Apenas template-wip.tex deve ser usado para novos WIP.
+- **wip/**: Arquivos em desenvolvimento, PDFs gerados, estrutura ativa.
+
+**Outros arquivos importantes:**
+- **README.md**: Status do projeto, links principais, aviso de revisão de estilo em andamento.
+- **SETUP.md**: Guia de preparação do ambiente e ferramentas.
+- **LICENSE**: CC BY-NC 4.0. Todo conteúdo deve ser compatível.
+- **INTEGRATED-FILES.md**: Relatório gerado automaticamente. Nunca editar manualmente.
+
 
 ### WIP File Lifecycle
 
@@ -47,6 +64,7 @@ All WIP files **MUST** be created from `template/template-wip.tex` (canonical te
 6. **Human integrates** into `guide.tex` (AI assists but does NOT perform integration)
 7. Move to `archive/WIP/` with status `approved`
 
+
 ### Version Bumping Rules (0.x.x.x Pre-publication)
 
 **When to bump versions:**
@@ -64,32 +82,24 @@ All WIP files **MUST** be created from `template/template-wip.tex` (canonical te
 
 **Never** manually increment versions — follow the decision tables in [version-system.md](../docs/version-system.md).
 
-## LaTeX Conventions & Styling
 
-### Preamble Architecture
+## Style, LaTeX & Content Standards
 
-The project uses a **consolidated preamble** (documented in `docs/tex-preamble-consolidated.md`):
-- Document class: `report` (11pt, a4paper, twoside)
-- Geometry: 2cm L/R margins, 2.5cm T/B margins
-- Custom environments: `hotastable` (for HOTAS switch tables with 15.6cm width)
-- Custom macros: `\docversion`, `\dashlnk{section}`, `\trglnk{mission}`, `\imglink{label}`
+### Prose Style (misc/STYLE-GUIDE.md)
+- Siga rigorosamente o STYLE-GUIDE.md para toda prosa: introduções, descrições, células de tabela com texto corrido, etc.
+- Prosa deve ser direta, sem justificativas, sem frases introdutórias, sem sinônimos criativos, sem conclusões redundantes.
+- Exemplos e princípios estão detalhados no STYLE-GUIDE.md.
 
-### Critical Styling Rules
+### LaTeX & Estrutura (docs/briefing.md)
+- Use sempre o preâmbulo consolidado (docs/tex-preamble-consolidated.md).
+- Siga padrões de ambiente, macros e layout definidos no briefing.md.
+- HOTAS tables: sempre usar \begin{hotastable} (15.6cm), colunas e alinhamento padronizados.
+- Referências cruzadas: \dashlnk, \trglnk, \imglink, conforme briefing.md.
+- Nunca use placeholders como "TBD" ou "TODO".
+- Todo conteúdo em inglês; instruções para AI em português.
 
-1. **Table Width:** All HOTAS tables use `\begin{hotastable}` environment (15.6cm fixed width, centered)
-2. **Cross-references:** Use `\dashlnk{4.2.1}` for Dash-34 sections, `\trglnk{TEMU-11-SAM}` for training missions
-3. **Missions:** Use standard abbreviations from `docs/training-mission-abbrev-table-v1.0.md`
-4. **Content Language:** ALL LaTeX content (text, tables, captions) in **English**
-5. **Instructions Language:** ALL instructions to AI in **Portuguese** (project convention)
 
-### LaTeX Quality Standards
-
-- Never use placeholder text like "TBD" or "TODO" in integrated content
-- All table cells must have substantive content or "N/A"
-- Cross-reference every table row to Dash-34 sections and training missions
-- Maintain consistent column widths and alignment across similar tables
-
-## Python Automation Scripts
+## Scripts & Automation
 
 ### `generate-integrated-files.py`
 
@@ -110,7 +120,8 @@ Updates README.md version badges when new tags are created.
 
 `check-guide-integrity.ps1` — Validates byte-identical match between `guide.tex` and active snapshot.
 
-## Development Commands
+
+## Development & Automation Commands
 
 ### Compile LaTeX
 
@@ -130,6 +141,7 @@ pdflatex guide.tex
 ```powershell
 python scripts/generate-integrated-files.py
 ```
+
 
 ## Common Tasks for AI Agents
 
@@ -154,6 +166,7 @@ python scripts/generate-integrated-files.py
 1. **Governance docs** (`docs/*.md`) — Consult human before modifying
 2. **README.md** — Update only for major changes (usually automated)
 3. **INTEGRATED-FILES.md** — Auto-generated, do NOT edit manually
+
 
 ## Project-Specific Patterns
 
@@ -184,6 +197,7 @@ For complete column specifications, see BRIEFING Section 4.2 and Section 12.3.9.
 \newcommand{\chapterscompletedof}{3/7}
 ```
 
+
 ## What NOT to Do
 
 1. ❌ **Never** integrate WIP content into `guide.tex` without human approval
@@ -195,7 +209,12 @@ For complete column specifications, see BRIEFING Section 4.2 and Section 12.3.9.
 7. ❌ **Never** use generic placeholders like "TODO" in LaTeX content
 8. ❌ **Never** edit `INTEGRATED-FILES.md` manually (it's auto-generated)
 
+
 ## Quick Reference Links
+
+- **Diagramas e fluxos:** Consulte docs/ para diagramas SVG/PNG já existentes antes de criar novos. Prefira Mermaid apenas para fluxos simples; exporte para SVG se necessário.
+- **Scripts:** scripts/ contém automações críticas. Nunca edite scripts sem consulta explícita.
+- **Imagens:** fig/ e docs/ armazenam imagens e diagramas. Sempre verifique licenciamento antes de usar.
 
 - **Source Materials:** `misc/fontes/` (Dash-34, Dash-1, training manual PDFs)
 - **Figures:** `fig/` (images for the guide)
@@ -203,7 +222,17 @@ For complete column specifications, see BRIEFING Section 4.2 and Section 12.3.9.
 - **Active Work:** `wip/` (chapter/section files in development)
 - **Archive:** `archive/WIP/` (integrated files), `archive/GUIDE/` (old guide versions)
 
+
 ## Questions to Ask Before Making Changes
+
+1. Consultei todos os arquivos de governança e style-guide relevantes?
+2. Estou seguindo o padrão correto de prosa (STYLE-GUIDE.md) e estrutura (briefing.md)?
+3. O fluxo de WIP, integração e versionamento está sendo respeitado?
+4. Estou usando o template correto para novos arquivos?
+5. O conteúdo está em inglês e as instruções em português?
+6. Estou considerando diagramas, scripts e imagens já existentes no projeto?
+7. Estou respeitando o licenciamento CC BY-NC 4.0?
+8. Estou atento ao status de revisão textual do projeto?
 
 1. Which governance document defines the rules for this change?
 2. Is this a WIP file or the canonical `guide.tex`?
