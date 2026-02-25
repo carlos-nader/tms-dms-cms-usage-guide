@@ -80,6 +80,7 @@
 | File Path | Status | Last Modified | Size |
 |-----------|--------|---------------|------|
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -89,6 +90,8 @@
 | docs/wip-naming-v1.4.md | tracked | 2026-02-25 13:32:42 | 19868 bytes |
 | docs/tex-preamble-consolidated.md | tracked | 2026-02-25 13:32:42 | 16086 bytes |
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -132,6 +135,7 @@ Commits that modified tracked files (last 10 commits):
 | 2026-02-25 00:40:32 | carlos-nader | docs/project-tracking.md |
 | 2026-02-25 03:31:02 | github-actions[bot] | INTEGRATED-FILES.json, INTEGRATED-FILES.md, docs/integrated-files.html |
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 | 2026-02-25 00:29:15 | carlos-nader | docs/project-tracking.md |
 | 2026-02-25 03:01:43 | github-actions[bot] | INTEGRATED-FILES.json, INTEGRATED-FILES.md, docs/integrated-files.html |
@@ -139,6 +143,10 @@ Commits that modified tracked files (last 10 commits):
 <<<<<<< Updated upstream
 =======
 =======
+>>>>>>> Stashed changes
+=======
+| 2026-02-25 00:29:15 | carlos-nader | docs/project-tracking.md |
+| 2026-02-25 03:01:43 | github-actions[bot] | INTEGRATED-FILES.json, INTEGRATED-FILES.md, docs/integrated-files.html |
 >>>>>>> Stashed changes
 =======
 | 2026-02-25 00:29:15 | carlos-nader | docs/project-tracking.md |
