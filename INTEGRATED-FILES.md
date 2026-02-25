@@ -80,7 +80,7 @@
 | File Path | Status | Last Modified | Size |
 |-----------|--------|---------------|------|
 | docs/project-tracking-v5.0.0.md | tracked | 2026-02-25 03:56:45 | 17893 bytes |
-| docs/briefing-v0.2.0.1.md | tracked | 2026-02-25 03:56:45 | 32075 bytes |
+| docs/briefing.md | tracked | 2026-02-25 03:56:45 | 32075 bytes |
 | docs/version-system-v4.2.1.md | tracked | 2026-02-25 03:56:45 | 29783 bytes |
 | docs/wip-naming-v1.4.md | tracked | 2026-02-25 03:56:45 | 19895 bytes |
 | docs/tex-preamble-consolidated.md | tracked | 2026-02-25 03:56:45 | 16086 bytes |
@@ -99,7 +99,7 @@ Commits that modified tracked files (last 10 commits):
 
 | Date/Time | Author | Modified Tracked Files |
 |-----------|--------|------------------------|
-| 2026-02-25 00:55:10 | carlos-nader | docs/briefing-v0.2.0.1.md, docs/version-system-v4.2.1.md, docs/wip-naming-v1.4.md |
+| 2026-02-25 00:55:10 | carlos-nader | docs/briefing.md, docs/version-system-v4.2.1.md, docs/wip-naming-v1.4.md |
 | 2026-02-25 03:42:20 | github-actions[bot] | INTEGRATED-FILES.json, INTEGRATED-FILES.md, docs/integrated-files.html |
 | 2026-02-25 00:40:32 | carlos-nader | docs/project-tracking-v5.0.0.md |
 | 2026-02-25 03:31:02 | github-actions[bot] | INTEGRATED-FILES.json, INTEGRATED-FILES.md, docs/integrated-files.html |

@@ -15,7 +15,7 @@ sitemap:
 **Effective Date:** 03 February 2026  
 **Applies to:** All isolated chapter, section, table, note, and visual files under development  
 **Relationship to VERSION-SYSTEM-v4.2.1:** Complementary; does NOT affect main document versioning  
-**Relationship to BRIEFING-v0.2.0.1:** Operational rules for files described structurally in BRIEFING Section 11
+**Relationship to BRIEFING:** Operational rules for files described structurally in BRIEFING Section 11
 
 ---
 
@@ -43,7 +43,7 @@ Only content integrated into the main file triggers a version bump. WIP filename
 template/template-wip-V1.0.tex
 ```
 
-This ensures preamble consistency, metadata structure, and integration hygiene. The template is versioned independently (currently V1.0) and governed by BRIEFING-v0.2.0.1 Section 11. Never modify the template directly; always copy, rename following Section 2 patterns, and then edit the copy.
+This ensures preamble consistency, metadata structure, and integration hygiene. The template is versioned independently (currently V1.0) and governed by BRIEFING Section 11. Never modify the template directly; always copy, rename following Section 2 patterns, and then edit the copy.
 
 **Human controls integration.** The human author is responsible for integrating WIP content into the guide snapshot. AI assists with content creation and review, but does not perform the actual integration.
 
@@ -554,7 +554,7 @@ When generating filenames, verify:
 | Document | Responsibility |
 |----------|----------------|
 | **VERSION-SYSTEM-v4.2.1** | Version numbering for `guide.tex` and snapshots |
-| **BRIEFING-v0.2.0.1** | Template structure, preamble architecture, layout standards |
+| **BRIEFING** | Template structure, preamble architecture, layout standards |
 | **WIP-FILE-NAMING-v1.4** | WIP file naming, status tracking, integration workflow |
 | **PROJECT-TRACKING** | Session log, project state, development history |
 

@@ -311,7 +311,7 @@ Antes de implementar, revisar os seguintes arquivos para garantir consistência:
 
 | Documento | Localização |
 |-----------|-------------|
-| BRIEFING | `docs/briefing-v0.2.0.1.md` |
+| BRIEFING | `docs/briefing.md` |
 | PROJECT-TRACKING | `docs/project-tracking-v5.0.0.md` |
 | TEX-PREAMBLE-CONSOLIDATED | `docs/tex-preamble-consolidated.md` |
 
@@ -340,7 +340,7 @@ Antes de implementar, revisar os seguintes arquivos para garantir consistência:
 - [ ] Atualizar `template/template-wip-V1.0.tex` com mesmas mudanças de preâmbulo
 
 ### Documentação
-- [ ] Atualizar `docs/briefing-v0.2.0.1.md` (seção 12)
+- [ ] Atualizar `docs/briefing.md` (seção 12)
 - [ ] Atualizar `docs/tex-preamble-consolidated.md`
 - [ ] Adicionar entrada em `docs/project-tracking-v5.0.0.md`
 

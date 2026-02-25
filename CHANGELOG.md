@@ -25,7 +25,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Training column format: Simplified from full mission descriptions to numbers.
 - LaTeX templates: Updated `TEMPLATES/template-wip-V1.0.tex` and `guide-structure-only-v0.4.0.0.tex` with new preamble.
 - WIP files: Updated `chapter-C4-tms-structure-dev-2026-02-11.tex` with new preamble.
-- Documentation: Updated `BRIEFING-v0.2.0.1.md` with complete new preamble specifications.
+- Documentation: Updated `briefing.md` with complete new preamble specifications.
 
 ### Fixed
 - PDF bookmark navigation: List of HOTAS Tables bookmark now points to correct page.

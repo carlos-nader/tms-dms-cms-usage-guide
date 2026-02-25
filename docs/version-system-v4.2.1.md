@@ -571,7 +571,7 @@ Single workflow for 0.x.x.x and x.x.x:
 
 - This document (Version System v4.2.1) governs the versioning and naming of the **guide snapshots** (`wip/guide/guide-v*.tex`) and their relationship with the canonical `guide.tex` in the repository root.  
 - Individual preparation files (`chapter-`, `section-`, `table-`, `visual-`, `notes-`) follow their own rules defined in the separate `WIP-FILE-NAMING-v1.4` document.  
-- The structural specification and template governance for WIP files is defined in `BRIEFING-v0.2.0.1` (Section 11).
+- The structural specification and template governance for WIP files is defined in `BRIEFING` (Section 11).
 - These WIP files only impact the guide version when their content is integrated into the current snapshot and propagated to `guide.tex`.
 
 ### 6.5 GitHub Integration: Tags, Releases, and Milestones

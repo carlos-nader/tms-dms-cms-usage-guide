@@ -422,9 +422,9 @@ Consult the manual for detailed learning objectives and mission flows.}
 
 ## 5. Impacts on Governance Documents
 
-### 5.1 BRIEFING-v0.2.0.1
+### 5.1 BRIEFING
 
-**File:** `docs/BRIEFING-v0.2.0.1.md`
+**File:** `docs/briefing.md`
 
 **Action:** Update multiple sections to reflect new specifications
 
@@ -787,7 +787,7 @@ latexmk -pdf guide.tex   # Automatically handles multiple passes
 ## 10. References
 
 - **Preamble:** `guide.tex` (repository root) — Authoritative source for all code
-- **BRIEFING:** `docs/BRIEFING-v0.2.0.1.md` — Project governance and specifications
+- **BRIEFING:** `docs/briefing.md` — Project governance and specifications
 - **WIP-NAMING:** `docs/WIP-FILE-NAMING-v1.4.md` — File naming conventions
 - **VERSION-SYSTEM:** `docs/VERSION-SYSTEM-v4.2.1.md` — Versioning rules
 - **PROJECT-TRACKING:** `docs/PROJECT-TRACKING-v5.0.0.md` — Session history

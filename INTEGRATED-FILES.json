@@ -234,7 +234,7 @@
         "size": "17893 bytes"
       },
       {
-        "path": "docs/briefing-v0.2.0.1.md",
+        "path": "docs/briefing.md",
         "status": "tracked",
         "last_modified": "2026-02-25 03:56:45",
         "size": "32075 bytes"
@@ -274,7 +274,7 @@
       "time": "00:55:10",
       "author": "carlos-nader",
       "modified_files": [
-        "docs/briefing-v0.2.0.1.md",
+        "docs/briefing.md",
         "docs/version-system-v4.2.1.md",
         "docs/wip-naming-v1.4.md"
       ]

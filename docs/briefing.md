@@ -9,7 +9,7 @@ sitemap:
 
 # Falcon BMS 4.38.1 — TMS, DMS and CMS Usage Guide: Project Brief
 
-**Brief Version:** v0.2.0.1-2026-02-25
+**Brief Version:** 2026-02-25
 
 ---
 
@@ -344,7 +344,7 @@ Reference relevant Dash-34 sections as plain text (no macros inside tables):
 ├── template/
 │   └── template-wip-V1.0.tex        # WIP file template (preamble reference)
 ├── docs/
-│   ├── briefing-v0.2.0.1.md         # This document
+│   ├── briefing.md         # This document
 │   ├── version-system-v4.2.1.md
 │   ├── project-tracking-v5.0.0.md
 │   └── wip-naming-v1.4.md
@@ -937,7 +937,7 @@ pdflatex section-C5-S2-cms-new-dev-2026-02-11.tex
 ---
 
 **Note:** This document is a work in progress and may be updated without notice.  
-**Version:** v0.2.0.1 (2026-02-25)  
+**Version:** 2026-02-25
 **Status:** Ready for use and contribution  
 **License:** CC BY-NC 4.0  
 **Next Update:** After significant preamble or structure changes

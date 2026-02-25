@@ -1,5 +1,5 @@
 # Site Restructure 2026-02-12 - Optimized Jekyll Config
-permalink: pretty  # URLs limpas: /briefing-v0.2.0.1 (sem .html!)
+permalink: pretty  # URLs limpas: /briefing (sem .html!)
 
 theme: jekyll-theme-slate
 

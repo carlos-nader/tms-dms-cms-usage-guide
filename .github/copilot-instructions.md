@@ -12,7 +12,7 @@ This is a **LaTeX-based technical documentation project** developing a comprehen
 
 All governance documents are in `/docs/` and are **mandatory reading** before making changes:
 
-1. **[briefing-v0.2.0.1.md](../docs/briefing-v0.2.0.1.md)** — Project scope, content outline, LaTeX style guidelines, layout standards
+1. **[briefing.md](../docs/briefing.md)** — Project scope, content outline, LaTeX style guidelines, layout standards
 2. **[version-system-v4.2.1.md](../docs/version-system-v4.2.1.md)** — Guide versioning (0.x.x.x pre-publication vs x.y.z post-publication)
 3. **[wip-naming-v1.4.md](../docs/wip-naming-v1.4.md)** — WIP file naming conventions and status lifecycle (dev → review → final → approved)
 4. **[project-tracking-v5.0.0.md](../docs/project-tracking-v5.0.0.md)** — Current status, chapter progress, development log

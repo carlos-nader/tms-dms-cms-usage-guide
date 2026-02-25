@@ -74,7 +74,7 @@ docs/
 ├── contributing.html              (HTML - contributors - TO BE CREATED)
 ├── guide-web.pdf                  (keep)
 ├── integrated-files.html          (HTML - keep)
-├── briefing-v0.2.0.1.md          (Markdown - Jekyll converts to .html)
+├── briefing.md          (Markdown - Jekyll converts to .html)
 ├── project-tracking-v5.0.0.md    (Markdown - Jekyll converts to .html)
 ├── wip-naming-v1.4.md            (Markdown - Jekyll converts to .html)
 ├── version-system-v4.2.1.md      (Markdown - Jekyll converts to .html)
@@ -86,7 +86,7 @@ docs/
 ```
 
 **Note:** Jekyll automatically converts `.md` files to accessible `.html` URLs.
-Example: `briefing-v0.2.0.1.md` → accessible as `briefing-v0.2.0.1.html`
+Example: `briefing.md` → accessible as `briefing.html`
 
 ---
 
@@ -191,7 +191,7 @@ Define **content structure** for each page:
   - Environment Setup Guide
 
 **3. 📋 PROJECT MANAGEMENT**
-- **Project Briefing v0.2.0.1** - Complete project scope, structure, sources, style rules
+- **Project Briefing** - Complete project scope, structure, sources, style rules
 - **Project Tracking v5.0.0** - Current development status, WIP files, roadmap
 - **Integrated Files** (GitHub Workflow Tracking) - Repository status with commits, tags, issues
 - **Changelog** - Complete history of releases and notable changes
@@ -420,7 +420,7 @@ theme: jekyll-theme-slate
 Jekyll is **already active** and converting Markdown files to HTML automatically.
 
 ### **Existing Markdown Files (Being Converted)**
-- `briefing-v0.2.0.1.md` → URL: `/briefing-v0.2.0.1.html`
+- `briefing.md` → URL: `/briefing.html`
 - `project-tracking-v5.0.0.md` → URL: `/project-tracking-v5.0.0.html`
 - `wip-naming-v1.4.md` → URL: `/wip-naming-v1.4.html`
 - `version-system-v4.2.1.md` → URL: `/version-system-v4.2.1.html`
