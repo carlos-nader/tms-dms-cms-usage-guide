@@ -231,7 +231,7 @@ All technical claims are cross-referenced to these sources.
 
 ## 🤝 Contributing & Community
 
-[![Forum Views](https://img.shields.io/badge/Forum%20Views-1281%20views-brightgreen)](https://forum.falcon-bms.com/topic/32541)
+[![Forum Views](https://img.shields.io/badge/Forum%20Views-1283%20views-brightgreen)](https://forum.falcon-bms.com/topic/32541)
 
 Contributions are welcome! See [CONTRIBUTING.md](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/CONTRIBUTING.md) for guidelines.
 
