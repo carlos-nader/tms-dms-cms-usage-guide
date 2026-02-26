@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 820" width="920" height="820" font-family="'Segoe UI', Arial, sans-serif">
+
+  <!-- ─── BACKGROUND ─── -->
+  <rect width="920" height="820" fill="#F5F7FA"/>
+
+  <!-- ─── DEFS ─── -->
+  <defs>
+    <marker id="arrRed" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#C62828"/>
+    </marker>
+    <marker id="arrBlue" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#1565C0"/>
+    </marker>
+  </defs>
+
+  <!-- ─── TITLE ─── -->
+  <text x="460" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#1A237E">Issue Dependency Map — v0.4.1.1 → v0.5.0.0</text>
+  <text x="460" y="50" text-anchor="middle" font-size="11" fill="#78909C">2026-02-25 · 8 open issues · 2 active milestones</text>
+
+  <!-- ═══════════════════════════════════════════════════
+       MILESTONE v0.4.2.0
+       ═══════════════════════════════════════════════════ -->
+
+  <!-- Container -->
+  <rect x="20" y="62" width="880" height="355" rx="12" fill="#FFFDE7" stroke="#F57F17" stroke-width="2.5"/>
+  <!-- Header band -->
+  <rect x="20" y="62" width="880" height="36" rx="12" fill="#F57F17"/>
+  <rect x="20" y="86" width="880" height="12" fill="#F57F17"/>
+  <text x="460" y="86" text-anchor="middle" font-size="13" font-weight="700" fill="white">MILESTONE v0.4.2.0 — Style Revision  ·  due 2026-03-20  ·  🔄 In Progress</text>
+
+  <!-- ── #44 Parent Issue ── -->
+  <rect x="50" y="108" width="820" height="82" rx="7" fill="#FFEBEE" stroke="#C62828" stroke-width="2"/>
+  <rect x="50" y="108" width="820" height="26" rx="7" fill="#C62828"/>
+  <rect x="50" y="126" width="820" height="8" fill="#C62828"/>
+  <text x="58" y="126" font-size="12" font-weight="700" fill="white">#44 — Style Revision: Remove AI-speak across all integrated chapters</text>
+  <!-- Tags -->
+  <rect x="718" y="112" width="62" height="16" rx="3" fill="#7F0000"/>
+  <text x="749" y="123" text-anchor="middle" font-size="9" font-weight="700" fill="white">URGENT</text>
+  <rect x="786" y="112" width="80" height="16" rx="3" fill="#7F0000"/>
+  <text x="826" y="123" text-anchor="middle" font-size="9" font-weight="700" fill="white">FUNDAMENTAL</text>
+  <!-- Body -->
+  <text x="58" y="148" font-size="10.5" fill="#7F0000">Scope: C1, C2, C3 (DMS), C5 (CMS)  ·  Adhere to misc/STYLE-GUIDE.md  ·  Parent of sub-issues #46, #47, #48</text>
+  <text x="58" y="165" font-size="10.5" fill="#7F0000">Progress: C5 §5.1–§5.2.4 ✅ approved  ·  C5 §5.3 🔄 pending  ·  C1, C2, C3 🟡 not started  ·  Blocks entire v0.5.0.0 track</text>
+  <text x="58" y="182" font-size="10" fill="#B71C1C" font-style="italic">labels: documentation · enhancement · urgent · fundamental</text>
+
+  <!-- Tree connector from #44 to sub-issues -->
+  <line x1="460" y1="190" x2="460" y2="198" stroke="#E65100" stroke-width="1.5"/>
+  <line x1="180" y1="198" x2="740" y2="198" stroke="#E65100" stroke-width="1.5"/>
+  <line x1="180" y1="198" x2="180" y2="206" stroke="#E65100" stroke-width="1.5"/>
+  <line x1="460" y1="198" x2="460" y2="206" stroke="#E65100" stroke-width="1.5"/>
+  <line x1="740" y1="198" x2="740" y2="206" stroke="#E65100" stroke-width="1.5"/>
+
+  <!-- ── Sub-issue #46 — C1 ── -->
+  <rect x="50" y="206" width="260" height="185" rx="7" fill="#FFF8E1" stroke="#E65100" stroke-width="1.5"/>
+  <rect x="50" y="206" width="260" height="24" rx="7" fill="#E65100"/>
+  <rect x="50" y="222" width="260" height="8" fill="#E65100"/>
+  <text x="180" y="222" text-anchor="middle" font-size="11" font-weight="700" fill="white">#46 — C1 Style Revision</text>
+  <text x="60" y="246" font-size="10" fill="#4E342E" font-weight="600">Tasks:</text>
+  <text x="60" y="261" font-size="10" fill="#4E342E">• §1.3.4 — Typographic conventions</text>
+  <text x="60" y="276" font-size="10" fill="#4E342E">• §1.4.2 — AI assistance update</text>
+  <line x1="60" y1="288" x2="302" y2="288" stroke="#E65100" stroke-width="0.5" stroke-dasharray="3,2"/>
+  <text x="60" y="302" font-size="9.5" fill="#6D4C41">sub-issue of #44</text>
+  <text x="60" y="317" font-size="9.5" fill="#6D4C41">Status: 🟡 Not started</text>
+  <text x="60" y="332" font-size="9.5" fill="#6D4C41">WIP: chapter-C1-style-rev-</text>
+  <text x="60" y="347" font-size="9.5" fill="#6D4C41">       review-YYYY-MM-DD.tex</text>
+  <text x="60" y="368" font-size="9" fill="#BCAAA4">docs · enhancement</text>
+  <text x="60" y="383" font-size="9" fill="#BCAAA4">Milestone: v0.4.2.0</text>
+
+  <!-- ── Sub-issue #47 — C2 ── -->
+  <rect x="330" y="206" width="260" height="185" rx="7" fill="#FFF8E1" stroke="#E65100" stroke-width="1.5"/>
+  <rect x="330" y="206" width="260" height="24" rx="7" fill="#E65100"/>
+  <rect x="330" y="222" width="260" height="8" fill="#E65100"/>
+  <text x="460" y="222" text-anchor="middle" font-size="11" font-weight="700" fill="white">#47 — C2 Style Revision</text>
+  <text x="340" y="246" font-size="10" fill="#4E342E" font-weight="600">Tasks:</text>
+  <text x="340" y="261" font-size="10" fill="#4E342E">• CMS defensive system overview</text>
+  <text x="340" y="276" font-size="10" fill="#4E342E">  (CMDS modes + ECM configs)</text>
+  <text x="340" y="291" font-size="10" fill="#4E342E">• RWR conceptual introduction</text>
+  <line x1="340" y1="303" x2="582" y2="303" stroke="#E65100" stroke-width="0.5" stroke-dasharray="3,2"/>
+  <text x="340" y="317" font-size="9.5" fill="#6D4C41">sub-issue of #44</text>
+  <text x="340" y="332" font-size="9.5" fill="#6D4C41">Status: 🟡 Not started</text>
+  <text x="340" y="347" font-size="9.5" fill="#6D4C41">WIP: chapter-C2-style-rev-</text>
+  <text x="340" y="362" font-size="9.5" fill="#6D4C41">       review-YYYY-MM-DD.tex</text>
+  <text x="340" y="383" font-size="9" fill="#BCAAA4">docs · enhancement</text>
+
+  <!-- ── Sub-issue #48 — C5 BYP/STBY — FUNDAMENTAL ── -->
+  <rect x="610" y="206" width="260" height="185" rx="7" fill="#FBE9E7" stroke="#BF360C" stroke-width="2"/>
+  <rect x="610" y="206" width="260" height="24" rx="7" fill="#BF360C"/>
+  <rect x="610" y="222" width="260" height="8" fill="#BF360C"/>
+  <text x="740" y="222" text-anchor="middle" font-size="11" font-weight="700" fill="white">#48 — C5: Add BYP + STBY Modes</text>
+  <text x="620" y="246" font-size="10" fill="#4E342E" font-weight="600">Tasks:</text>
+  <text x="620" y="261" font-size="10" fill="#4E342E">• §5.2.1.4 — BYP mode (Dash-34 §2.7.2.1)</text>
+  <text x="620" y="276" font-size="10" fill="#4E342E">• §5.2.1.5 — STBY mode</text>
+  <text x="620" y="291" font-size="10" fill="#4E342E">• Cascade: 5 locations in C5</text>
+  <line x1="620" y1="303" x2="862" y2="303" stroke="#BF360C" stroke-width="0.5" stroke-dasharray="3,2"/>
+  <text x="620" y="317" font-size="9.5" fill="#6D4C41">sub-issue of #44</text>
+  <rect x="620" y="324" width="80" height="15" rx="3" fill="#BF360C"/>
+  <text x="660" y="335" text-anchor="middle" font-size="9" font-weight="700" fill="white">FUNDAMENTAL</text>
+  <text x="620" y="352" font-size="9.5" fill="#BF360C" font-weight="700">⛔ Blocks C5 → final</text>
+  <text x="620" y="368" font-size="9.5" fill="#6D4C41">Status: 🔄 In progress</text>
+  <text x="620" y="383" font-size="9" fill="#BCAAA4">docs · enhancement · fundamental</text>
+
+  <!-- ═══════════════════════════════════════════════════
+       BLOCKING ARROW
+       ═══════════════════════════════════════════════════ -->
+
+  <line x1="460" y1="417" x2="460" y2="430" stroke="#C62828" stroke-width="2" stroke-dasharray="5,3"/>
+  <rect x="305" y="430" width="310" height="26" rx="6" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5"/>
+  <text x="460" y="447" text-anchor="middle" font-size="11" font-weight="700" fill="#B71C1C">⛔  #44 must close before #38 can proceed</text>
+  <line x1="460" y1="456" x2="460" y2="488" stroke="#C62828" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrRed)"/>
+
+  <!-- ═══════════════════════════════════════════════════
+       MILESTONE v0.5.0.0
+       ═══════════════════════════════════════════════════ -->
+
+  <!-- Container -->
+  <rect x="20" y="490" width="880" height="265" rx="12" fill="#E3F2FD" stroke="#1565C0" stroke-width="2.5"/>
+  <!-- Header band -->
+  <rect x="20" y="490" width="880" height="36" rx="12" fill="#1565C0"/>
+  <rect x="20" y="514" width="880" height="12" fill="#1565C0"/>
+  <text x="460" y="514" text-anchor="middle" font-size="13" font-weight="700" fill="white">MILESTONE v0.5.0.0 — TMS Chapter Integration  ·  due 2026-04-20  ·  ⏸️ Paused</text>
+
+  <!-- ── #38 REVIEW ── -->
+  <rect x="50" y="536" width="260" height="205" rx="7" fill="#BBDEFB" stroke="#1976D2" stroke-width="1.5"/>
+  <rect x="50" y="536" width="260" height="24" rx="7" fill="#1976D2"/>
+  <rect x="50" y="552" width="260" height="8" fill="#1976D2"/>
+  <text x="180" y="552" text-anchor="middle" font-size="11" font-weight="700" fill="white">#38 — [C4:S3] REVIEW</text>
+  <text x="60" y="574" font-size="10" fill="#0D47A1" font-weight="600">Status: ⏸️ Paused — Blocked by #44</text>
+  <text x="60" y="589" font-size="10" fill="#1A237E">Progress: ~28.57% narrative complete</text>
+  <text x="60" y="604" font-size="10" fill="#1A237E">Done: §4.3 intro, §4.3.5 intro,</text>
+  <text x="60" y="619" font-size="10" fill="#1A237E">       §4.3.5.1 SCAN, §4.3.5.2 LOS</text>
+  <text x="60" y="634" font-size="10" fill="#1A237E">Pending: §4.3.1–4, §4.3.5.3–5,</text>
+  <text x="60" y="649" font-size="10" fill="#1A237E">          §4.3.6, 6 hotastables (0/6)</text>
+  <line x1="60" y1="660" x2="302" y2="660" stroke="#1976D2" stroke-width="0.5" stroke-dasharray="3,2"/>
+  <text x="60" y="674" font-size="9.5" fill="#283593">WIP: section-C4-S3-tms-aa-</text>
+  <text x="60" y="689" font-size="9.5" fill="#283593">      review-2026-02-17.tex</text>
+  <text x="60" y="704" font-size="9" fill="#5C6BC0">Style-guide compliance: 0%</text>
+  <text x="60" y="719" font-size="9" fill="#5C6BC0">Tables: 0/6 filled</text>
+  <text x="60" y="734" font-size="9" fill="#BCAAA4">docs · Milestone v0.5.0.0</text>
+
+  <!-- Arrow #38 → #39 -->
+  <line x1="310" y1="634" x2="330" y2="634" stroke="#1565C0" stroke-width="2.5" marker-end="url(#arrBlue)"/>
+
+  <!-- ── #39 FINAL ── -->
+  <rect x="330" y="536" width="260" height="205" rx="7" fill="#E3F2FD" stroke="#546E7A" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <rect x="330" y="536" width="260" height="24" rx="7" fill="#546E7A"/>
+  <rect x="330" y="552" width="260" height="8" fill="#546E7A"/>
+  <text x="460" y="552" text-anchor="middle" font-size="11" font-weight="700" fill="white">#39 — [C4:S3] FINAL</text>
+  <text x="340" y="574" font-size="10" fill="#37474F" font-weight="600">Status: 🟡 Not started</text>
+  <text x="340" y="590" font-size="10" fill="#37474F">Requires: #38 complete</text>
+  <text x="340" y="608" font-size="10" fill="#37474F" font-weight="600">Checklist:</text>
+  <text x="340" y="623" font-size="10" fill="#37474F">• Technical accuracy vs Dash-34</text>
+  <text x="340" y="638" font-size="10" fill="#37474F">• STYLE-GUIDE compliance 100%</text>
+  <text x="340" y="653" font-size="10" fill="#37474F">• All 6 hotastables complete</text>
+  <text x="340" y="668" font-size="10" fill="#37474F">• Zero LaTeX errors + PDF review</text>
+  <text x="340" y="685" font-size="10" fill="#37474F" font-style="italic">Human final approval required</text>
+  <text x="340" y="700" font-size="10" fill="#37474F">→ Rename -review- to -final-</text>
+  <text x="340" y="734" font-size="9" fill="#BCAAA4">docs · Milestone v0.5.0.0</text>
+
+  <!-- Arrow #39 → #40 -->
+  <line x1="590" y1="634" x2="610" y2="634" stroke="#1565C0" stroke-width="2.5" marker-end="url(#arrBlue)"/>
+
+  <!-- ── #40 APPROVED ── -->
+  <rect x="610" y="536" width="260" height="205" rx="7" fill="#E3F2FD" stroke="#546E7A" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <rect x="610" y="536" width="260" height="24" rx="7" fill="#546E7A"/>
+  <rect x="610" y="552" width="260" height="8" fill="#546E7A"/>
+  <text x="740" y="552" text-anchor="middle" font-size="11" font-weight="700" fill="white">#40 — [C4:S3] APPROVED</text>
+  <text x="620" y="574" font-size="10" fill="#37474F" font-weight="600">Status: 🟡 Not started</text>
+  <text x="620" y="590" font-size="10" fill="#37474F">Requires: #39 complete</text>
+  <text x="620" y="608" font-size="10" fill="#37474F" font-weight="600">Actions:</text>
+  <text x="620" y="623" font-size="10" fill="#37474F">• Integrate → guide.tex (+ C2 dep)</text>
+  <text x="620" y="638" font-size="10" fill="#37474F">• Bump macros → v0.5.0.0</text>
+  <text x="620" y="653" font-size="10" fill="#37474F">• Full compile + PDF validate</text>
+  <text x="620" y="668" font-size="10" fill="#37474F">• Git tag + GitHub Release</text>
+  <text x="620" y="683" font-size="10" fill="#37474F">• Archive WIP · Close milestone</text>
+  <line x1="620" y1="695" x2="862" y2="695" stroke="#546E7A" stroke-width="0.5" stroke-dasharray="3,2"/>
+  <text x="620" y="710" font-size="10" fill="#1565C0" font-weight="700">→ Triggers v0.5.0.0 release</text>
+  <text x="620" y="725" font-size="9" fill="#5C6BC0">+ C2 dep: section-C2-S1-S3-</text>
+  <text x="620" y="739" font-size="9" fill="#5C6BC0">  soi-context-dependency-final</text>
+
+  <!-- ═══════════════════════════════════════════════════
+       BOTTOM — #4 Standalone + Legend
+       ═══════════════════════════════════════════════════ -->
+
+  <!-- #4 Standalone -->
+  <rect x="20" y="768" width="340" height="42" rx="7" fill="#ECEFF1" stroke="#78909C" stroke-width="1.5"/>
+  <text x="190" y="785" text-anchor="middle" font-size="11" font-weight="700" fill="#37474F">#4 — ECM Panel Images (IDIAS vs. External)</text>
+  <text x="190" y="801" text-anchor="middle" font-size="9.5" fill="#78909C">No milestone · documentation · enhancement · low priority</text>
+
+  <!-- Legend -->
+  <rect x="390" y="768" width="510" height="42" rx="7" fill="#ECEFF1" stroke="#9E9E9E" stroke-width="1"/>
+  <text x="402" y="783" font-size="10" font-weight="700" fill="#37474F">Legend:</text>
+  <rect x="458" y="773" width="12" height="10" rx="2" fill="#C62828"/>
+  <text x="474" y="783" font-size="9.5" fill="#37474F">parent / urgent</text>
+  <rect x="565" y="773" width="12" height="10" rx="2" fill="#E65100"/>
+  <text x="581" y="783" font-size="9.5" fill="#37474F">sub-issue</text>
+  <rect x="644" y="773" width="12" height="10" rx="2" fill="#1565C0"/>
+  <text x="660" y="783" font-size="9.5" fill="#37474F">active / paused</text>
+  <rect x="748" y="773" width="12" height="10" rx="2" fill="#546E7A"/>
+  <text x="764" y="783" font-size="9.5" fill="#37474F">not yet available</text>
+  <line x1="402" y1="800" x2="424" y2="800" stroke="#C62828" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="428" y="804" font-size="9.5" fill="#37474F">blocks</text>
+  <line x1="480" y1="800" x2="502" y2="800" stroke="#1565C0" stroke-width="2"/>
+  <polygon points="502,796.5 510,800 502,803.5" fill="#1565C0"/>
+  <text x="514" y="804" font-size="9.5" fill="#37474F">sequential workflow</text>
+  <line x1="640" y1="800" x2="662" y2="800" stroke="#E65100" stroke-width="1.5"/>
+  <text x="666" y="804" font-size="9.5" fill="#37474F">parent → sub-issue</text>
+
+</svg>
