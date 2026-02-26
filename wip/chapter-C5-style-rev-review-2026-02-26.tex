@@ -382,14 +382,14 @@
 %============================================================================
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 %============================================================================
-% File Name: chapter-C5-style-rev-review-2026-02-25.tex
+% File Name: chapter-C5-style-rev-review-2026-02-26.tex
 % WIP Naming Convention
 % Target Chapter: C5 (CMS — Countermeasures Management Switch)
 % Target Section: ALL (author review pass — full chapter)
 %
 % WIP Status: review
 % Created: 2026-02-19
-% Last Modified: 2026-02-25
+% Last Modified: 2026-02-26
 %
 % Narrative Completion: 100% (§5.1–§5.3 completos)
 % Table Fill Status: hotastable cells revised (style pass — violations corrected)
@@ -398,7 +398,7 @@
 % - Contains approved revised prose for C5 only.
 % - Each passage enters this file after explicit author approval.
 % - Status remains 'review' until author review pass is complete; then → final.
-% - Session 2026-02-23 (author review): §5.1 approved. See issue #44 for
+% - Session 2026-02-23 (author review): §5.1 approved. See issue #44 for 
 %   full change log.
 % - Session 2026-02-24 (author review): §5.2 opening, §5.2.1 opening, §5.2.1.1
 %   opening and table, §5.2.1.2 table, §5.2.1.3 table approved. Program 6
@@ -416,6 +416,13 @@
 %   paragraphs revised (Bingo Quantity Behavior, RF Switch Override, IDIAS vs.
 %   External ECM Pod, Ground Safety). See issue #44 for full change log.
 %   §5.3 pending.
+% - Session 2026-02-26 (author manual rewrite): §5.1 road-map sentence retained as
+%   permitted navigation (STYLE-GUIDE §7); §5.2 opening rewritten ("tables
+%   below cover..."); §5.2.1.2 prose rewritten (consent construction
+%   uniformized with §5.2.1.3); §5.2.1.3 prose reordered to match operational
+%   sequence per Dash-34 §2.7.2.1 (threat detection → COUNTER → consent →
+%   dispense). §5.2.2–§5.2.4 and §5.3 pending manual humanization.
+%   See issue #44 for full change log.
 % - PENDING: RWR introduced for the first time at §5.2.1.2. Consider conceptual
 %   introduction in C2 (HOTAS Fundamentals).
 % - PENDING: BYP and STBY modes not covered in §5.2.1. See sub-issue #48 (linked
@@ -446,11 +453,16 @@
 \section{Concept}
 \label{sec:C5-S1}
 
-The Countermeasures Management Switch (CMS) is a four-direction hat switch mounted on the side-stick controller. It controls the aircraft's defensive avionics: the ALE-47 CMDS (Countermeasures Dispenser Set — the chaff and flare dispensing system) and ECM (Electronic Countermeasures), either external pods or internal avionics, depending on block and variant.
+The Countermeasures Management Switch (CMS) is a four-direction hat switch mounted on the side-stick controller. It controls the aircraft's defensive avionics:
 
-CMS actuation procedures are detailed in \secref{sec:C5-S2}. Block and variant differences are covered in \secref{sec:C5-S3}.
+\begin{itemize}
+  \item ALE-47 CMDS (Countermeasures Dispenser Set) --- the chaff and flare dispensing system; and
+  \item ECM (Electronic Countermeasures) --- either external pods (ALQ-131/ALQ-184) or internal avionics (IDIAS) configurations, depending on block and variant.
+\end{itemize}
 
-For CMDS and ECM operation, see \dashrefs{2.7.1 and 2.7.2}, respectively. Diagrams of the side-stick controller and throttle are provided in \dashref{2.1.5}. \figref{fig:f16_hotas_cms_location} shows the CMS location on the F-16 side-stick controller.
+CMS actuation procedures are presented in \secref{sec:C5-S2} and block and variant differences in \secref{sec:C5-S3}.
+
+For complete CMDS and ECM operation, see \dashrefs{2.7.1 and 2.7.2}, respectively. Diagrams of the side-stick controller and throttle functions are provided in \dashref{2.1.5}. \figref{fig:f16_hotas_cms_location} below shows the CMS location on the F-16 side-stick controller.
 
 \begin{figure}[H]
 \centering
@@ -465,20 +477,20 @@ For CMDS and ECM operation, see \dashrefs{2.7.1 and 2.7.2}, respectively. Diagra
 \section{CMS Actuation}
 \label{sec:C5-S2}
 
-CMS actuation is presented here in tables organized by system: CMDS (Manual, Automatic, and Semi-Automatic modes) and ECM (external pods ALQ-131/ALQ-184 and internal IDIAS).
+The tables below cover CMS actuation organized by system: CMDS (Manual, Automatic, and Semi-Automatic modes) and ECM (external pods ALQ-131/ALQ-184 and internal IDIAS).
 
-CMS actuation is \textit{independent} of the Master Mode currently selected.
+All CMS actuation described in this chapter is \textit{independent} of the Master Mode (NAV, A-A or A-G) selected.
 
-Each table entry specifies:
+Table columns are defined as follows:
 
 \begin{itemize}
-  \item Mode: The operational context (Master Mode).
-  \item Direction: CMS hat direction (Up, Down, Left, Right).
-  \item Action: Press type (Short, Long, Long Hold).
-  \item Function: What the CMS command activates or controls.
-  \item Effect / Nuance: Resulting system behavior, including tactics and constraints.
-  \item Dash34: Reference section in the Dash-34 manual.
-  \item Training: Recommended BMS training mission(s) (see \trnman{} for descriptions).
+  \item \textbf{Mode}: The operational context (Master Mode).
+  \item \textbf{Direction}: CMS hat direction (Up, Down, Left, Right).
+  \item \textbf{Action}: Press type (Short, Long, Long Hold).
+  \item \textbf{Function}: What the CMS command activates or controls.
+  \item \textbf{Effect / Nuance}: Resulting system behavior, including tactics and constraints.
+  \item \textbf{Dash34}: Reference section in the Dash-34 manual.
+  \item \textbf{Training}: Recommended BMS training mission(s) (see \trnman{} for descriptions).
 \end{itemize}
 
 %============================================================================
@@ -487,9 +499,14 @@ Each table entry specifies:
 \subsection{CMDS}
 \label{sec:C5-S2-S1}
 
-The ALE-47 CMDS operates in three modes selected via the CMDS CCU MODE knob: Manual (MAN), Automatic (AUTO), and Semi-Automatic (SEMI). The program executed in each mode --- Programs 1--4 --- is selected via the PRGM knob on the CMDS panel.
+The ALE-47 CMDS operates in three modes selected via the CMDS CCU MODE knob: Manual (MAN), Automatic (AUTO), and Semi-Automatic (SEMI). The single program to be executed in the chosen mode --- Programs 1--4 --- is selected via the PRGM knob on the CMDS panel.
 
-Programs 5 and 6 are independent of the PRGM knob position. Program 5 is activated via the cockpit slap switch — outside the scope of CMS — and is not covered in this guide; see \dashref{2.7.2} for details
+Only Programs 1--4 are selectable. Programs 5 and 6 are independent of the PRGM knob position:
+
+\begin{itemize}
+  \item Program 5 is activated via the cockpit slap switch — outside the scope of CMS — and is not covered in this guide; see \dashref{2.7.2} for details.
+  \item Program 6 is a special-purpose program always available for manual dispensing, independent of the PRGM knob position.
+\end{itemize}
 
 %============================================================================
 % SECTION 5.2.1.1: Manual Mode
@@ -497,7 +514,7 @@ Programs 5 and 6 are independent of the PRGM knob position. Program 5 is activat
 \subsubsection{Manual Mode}
 \label{sec:C5-S2-S1-S1}
 
-In Manual (MAN) mode, the pilot runs countermeasure programs via \textbf{CMS Up} and \textbf{CMS Left}.
+In Manual (MAN) mode, the pilot runs countermeasure programs (1--4 and 6) via \textbf{CMS Up} and \textbf{CMS Left}.
 
 \begin{hotastable}{CMS Actuation with CMDS Manual Mode}\label{tab:C5-S2-S1-S1-CMDS-Manual}
 CMDS MAN & Up & Short & Execute Program 1--4 &
@@ -516,7 +533,9 @@ Program 6 can be dispensed independently of the PRGM knob position.
 
 In Automatic (AUTO) mode, the ALE-47 CMDS dispenses the selected program (1–4) \textit{continuously} in response to threats detected by the Radar Warning Receiver (RWR).
 
-The pilot presses \textbf{CMS Down} \textit{once} to grant consent for AUTO dispensing; dispensing continues until the pilot presses \textbf{CMS Right} or expendables are exhausted.
+A \textbf{CMS Down} press grants consent for AUTO dispensing to start. It will continue until the pilot presses \textbf{CMS Right} or expendables are exhausted.
+
+Even in AUTO mode, manual dispensing is still available.
 
 \begin{hotastable}{CMS Actuation with CMDS Automatic Mode}\label{tab:C5-S2-S1-S2-CMDS-Auto}
 CMDS AUTO & Up & Short & Execute Program 1--4 &
@@ -526,7 +545,7 @@ CMDS AUTO & Left & Short & Execute Program 6 &
 Program 6 is dispensed independently of the PRGM knob position. Overrides AUTO; after execution, AUTO resumes.
 & 2.7.2.2 & 19 \\
 CMDS AUTO & Down & Short & Give Consent; Enable AUTO Dispensing &
-Grants consent for AUTO dispensing. RWR-detected threats trigger automatic execution of the program selected via the CMDS panel PRGM knob. Dispensing continues until the threat clears, the pilot presses CMS Right, or expendables are exhausted. Consent state persists if the pilot switches to MAN mode; if the pilot re-engages AUTO, dispensing resumes immediately on the next detected threat.
+Grants consent for AUTO dispensing. RWR-detected threats trigger automatic execution of the program (1--4) selected via the CMDS panel PRGM knob. Dispensing continues until the threat clears, the pilot presses CMS Right, or expendables are exhausted. Consent state persists if the pilot switches to MAN mode. If the pilot re-engages AUTO, dispensing resumes immediately on the next detected threat.
 & 2.7.2.1 & 18, 28 \\
 CMDS AUTO & Right & Short & Cancel Consent; Disable AUTO &
 Removes CMDS consent and places the ALE-47 in Standby. Automatic dispensing halts immediately. The pilot must re-issue CMS Down to resume AUTO operation.
@@ -539,9 +558,11 @@ Removes CMDS consent and places the ALE-47 in Standby. Automatic dispensing halt
 \subsubsection{Semi-Automatic Mode}
 \label{sec:C5-S2-S1-S3}
 
-In Semi-Automatic (SEMI) mode, the ALE-47 CMDS dispenses \textit{one program} per detected threat; the pilot must grant consent before dispensing occurs.
+In Semi-Automatic (SEMI) mode, the CMDS control unit displays \texttt{DISPENSE RDY} and sounds a \texttt{COUNTER} voice message when a threat is detected. A \textbf{CMS Down} press grants consent and the ALE-47 CMDS then dispenses \textit{one program}.
 
-When a threat is detected, the CMDS control unit displays \texttt{DISPENSE RDY} and sounds a \texttt{COUNTER} voice message. If the threat persists or a new threat appears, the CMDS issues \texttt{COUNTER} again.
+If the threat persists or a new threat appears, the CMDS issues \texttt{COUNTER} again.
+
+Even in SEMI mode, manual dispensing is still available.
 
 \begin{hotastable}{CMS Actuation with CMDS Semi-Automatic Mode}\label{tab:C5-S2-S1-S3-CMDS-Semi}
 CMDS SEMI & Up & Short & Execute Program 1--4 &
@@ -551,7 +572,7 @@ CMDS SEMI & Left & Short & Execute Program 6 &
 Program 6 is dispensed independently of the PRGM knob position. After execution, the CMDS returns to standby and resumes threat detection.
 & 2.7.2.2 & 19 \\
 CMDS SEMI & Down & Short & Give Consent; Dispense One Program &
-Dispenses one program in response to a \texttt{COUNTER} prompt. If the threat persists or a new threat appears, the CMDS issues \texttt{COUNTER} again. Consent state is retained; if the pilot switches to AUTO, the CMDS begins dispensing immediately on the next detected threat.
+Dispenses one program (1--4) in response to a \texttt{COUNTER} prompt. If the threat persists or a new threat appears, the CMDS issues \texttt{COUNTER} again. Consent state is retained: if the pilot switches to AUTO, the CMDS begins dispensing immediately on the next detected threat.
 & 2.7.2.1 & 18, 28 \\
 CMDS SEMI & Right & Short & Cancel Consent; Return to Standby &
 Removes SEMI consent and places the CMDS in Standby. \texttt{COUNTER} messages cease.
