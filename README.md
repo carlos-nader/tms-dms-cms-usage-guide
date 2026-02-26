@@ -221,6 +221,8 @@ All technical claims are cross-referenced to these sources.
 | [**Issues**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/issues) | Current tasks |
 | [**Tags**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/tags) | Version history |
 
+[**Issues Dependency Map**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/issue-dependency-map.svg)
+
 **Next milestones:**
 * **v0.4.2.0** — Style Full Revision
 * **v0.5.0.0** — Chapter 4 (TMS) integration
