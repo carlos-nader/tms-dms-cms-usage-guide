@@ -28,7 +28,8 @@ The [guide](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/gu
 Want to submit or review complete sections, chapters or help with LaTeX/structure or maybe a WIP?
 
 📂 **Check these resources:**
-- `/docs/` — Briefing Document, Naming Conventions, Style Rules
+- `/docs/` — Briefing Document, Naming Conventions, Versioning System, Project Tracking
+- `misc/` - Style Rules
 - `template/` — Base LaTeX template for new content
 - `wip/` — Current WIP files for your reading, consultation or fixes
 - **GitHub Issues** — Track active work and open tasks
