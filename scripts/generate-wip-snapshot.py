@@ -1,5 +1,6 @@
 import os
 import re
+import subprocess
 from datetime import datetime
 
 WIP_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'wip')
@@ -32,8 +33,16 @@ def parse_status(fname):
 
 
 def get_last_modified(fname):
-    fpath = os.path.join(WIP_DIR, fname)
-    mod_time = os.path.getmtime(fpath)
+    fpath = os.path.join('wip', fname)
+    result = subprocess.run(
+        ['git', 'log', '-1', '--format=%as', '--', fpath],
+        capture_output=True, text=True
+    )
+    date = result.stdout.strip()
+    if date:
+        return date
+    # fallback: filesystem time (local runs without git)
+    mod_time = os.path.getmtime(os.path.join(WIP_DIR, fname))
     return datetime.fromtimestamp(mod_time).strftime('%Y-%m-%d')
 
 
