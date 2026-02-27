@@ -27,6 +27,8 @@ The author is not affiliated with or endorsed by Falcon BMS or any other flight 
 ## 📄 Main Guide Files
 
 [![Version](https://img.shields.io/badge/LATEST%20version-v0.4.1.1-yellow?style=for-the-badge&logo=tag&logoColor=black)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases)
+<!-- ALPHA-BADGE-START -->
+<!-- ALPHA-BADGE-END -->
 
 | Format | Link | Description |
 |:------:|:----:|:------------|
@@ -44,7 +46,7 @@ The author is not affiliated with or endorsed by Falcon BMS or any other flight 
 
 ---
 
-## 📊 Current Status
+## 📊 Current Version — Official Guide
 
 | Metric | Value |
 |--------|-------|
@@ -287,3 +289,5 @@ For questions, suggestions, or feedback:
 ---
 
 **License:** CC BY-NC 4.0 | **Guide Status:** Pre-publication v0.4.1.1
+<!-- ALPHA-FOOTER-START -->
+<!-- ALPHA-FOOTER-END -->

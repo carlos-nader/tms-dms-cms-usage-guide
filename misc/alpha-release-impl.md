@@ -429,8 +429,8 @@ The `update_readme()` function generates the legend line:
 
 **Triggers:**
 
-- `push: branches: main` — automático em todo push
-- `workflow_dispatch` — manual
+- `push: branches: main, paths: wip/guide*alpha*.tex` — automático só quando snapshot alpha é adicionado/removido
+- `workflow_dispatch` — manual (fallback)
 
 **Steps:**
 
@@ -448,12 +448,13 @@ The `update_readme()` function generates the legend line:
 
 **Lógica:**
 
-1. Escaneia `wip/guide/` por arquivos com padrão `guide-v*-alpha*.tex`
+1. Escaneia `wip/` (raiz) por arquivos com padrão `guide*alpha*.tex`
 2. **Se encontrado:** extrai versão alpha do nome do arquivo
    - Padrão: `guide-v{VERSION}-{DATE}.tex` → extrai `{VERSION}` (ex: `v0.4.2.0-alpha.1`)
+   - Escaneia também `wip/` por `guide*.pdf` → obtém nome do PDF para o link
    - Gera links dinamicamente:
-     - README (Opção B): `https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases/tag/{VERSION}`
-     - index.html (Opção C): `https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases/download/{VERSION}/guide-{VERSION}.pdf`
+     - README: `https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases` (página genérica — evita link quebrado por erro de nomenclatura da tag)
+     - index.html: `https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/wip/{pdf_filename}` (blob direto do PDF em `wip/`)
    - Insere/atualiza conteúdo entre os blocos delimitadores em README.md e docs/index.html
 3. **Se não encontrado:** esvazia os blocos delimitadores (badge desaparece)
 
@@ -461,7 +462,8 @@ The `update_readme()` function generates the legend line:
 
 ```python
 # Exemplo: guide-v0.4.2.0-alpha.1-20260301.tex → extrai: v0.4.2.0-alpha.1
-pattern = r'^guide-(v[\d.]+-alpha\.[\d]+)-\d{8}\.tex$'
+# Exemplo: guide-v0.4.2.0-alpha.1.1-20260301.tex → extrai: v0.4.2.0-alpha.1.1
+pattern = r'^guide-(v[\d.]+-alpha\.[\d.]+)-\d{8}\.tex$'
 ```
 
 > ⚠️ **Convenção obrigatória:** A tag de release no GitHub deve ser criada com o nome **exato** extraído do filename (ex: tag `v0.4.2.0-alpha.1` para arquivo `guide-v0.4.2.0-alpha.1-*.tex`). Link 404 caso contrário.
@@ -484,7 +486,7 @@ Quando alpha ativo, script preenche:
 
 ```markdown
 <!-- ALPHA-BADGE-START -->
-[![Alpha](https://img.shields.io/badge/alpha-v0.4.2.0--alpha.1-orange?style=for-the-badge&logo=flask&logoColor=white)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases/tag/v0.4.2.0-alpha.1)
+[![Alpha](https://img.shields.io/badge/alpha-v0.4.2.0--alpha.1-orange?style=for-the-badge&logo=flask&logoColor=white)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases)
 <!-- ALPHA-BADGE-END -->
 ```
 
@@ -546,7 +548,7 @@ Quando alpha ativo, script preenche:
 
 ```html
 <!-- ALPHA-BADGE-START -->
-<a href="https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases/download/v0.4.2.0-alpha.1/guide-v0.4.2.0-alpha.1.pdf"
+<a href="https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/wip/{pdf_filename}"
    target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
   <span style="background: linear-gradient(135deg, #ff8c00, #e65c00);
                color: white; padding: 0.4em 0.8em; border-radius: 20px;
