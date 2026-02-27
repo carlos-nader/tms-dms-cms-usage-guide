@@ -202,21 +202,21 @@ is merged to `main`. No change to issue #44 required before that.
         │         ├──► [Step 7] copilot-instructions.md
         │         ├──► [Step 8] WIP-Snapshot-Generator HTML
         │         ├──► [Step 9] template-wip.tex
-        │         └──► [Steps 10-13] SVG diagrams
+        │         └──► [Steps 10-14] SVG diagrams
         │
-        ├──► [Step 14] generate-integrated-files.py (§16.A + §16.D — Option B, see §16)
+        ├──► [Step 15] generate-integrated-files.py (§16.A + §16.D — Option B, see §16)
         │
-        ├──► [Steps 15-16] Issue templates
+        ├──► [Steps 16-17] Issue templates
         │         (after governance docs)
         │
-        └──► [Steps 17-19] PNG recreation, milestones, validate test strategy
+        └──► [Manual/Deferred] PNG recreation (post-alpha), milestones
                   (MANUAL — cannot be done via text editing)
 ```
 
 **Recommended implementation order:**
-Steps 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11 → 12 → 13 → 14 → 15 → 16
+Steps 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11 → 12 → 13 → 14 → 15 → 16 → 17
 
-Steps 17–19 are manual or require decisions — handle separately.
+Steps 18–19 are meta-steps (Validation Checklist + PR Strategy). PNG diagrams and milestones are manual/deferred — handle separately.
 
 ---
 
@@ -1014,7 +1014,7 @@ Update the `pathHint` for `alpha` status to show `wip/` (same as `final`):
 
 ---
 
-## 12. Steps 10–13 — SVG Diagrams
+## 12. Steps 10–14 — SVG Diagrams
 
 **Priority:** 🔵 Deferred — post-alpha
 
@@ -1139,11 +1139,11 @@ Step 1-F: WIP stays in wip/ (NOT moved to archive yet)
 
 ---
 
-## 13. Steps 15–16 — Issue Templates
+## 13. Steps 16–17 — Issue Templates
 
 **Priority:** 🔵
 
-### 13.1 Step 15 — Create `.github/ISSUE_TEMPLATE/wip-alpha-template.yml`
+### 13.1 Step 16 — Create `.github/ISSUE_TEMPLATE/wip-alpha-template.yml`
 
 ```yaml
 name: WIP — ALPHA (Pre-release Integration)
@@ -1230,7 +1230,7 @@ body:
         The WIP file stays in `wip/` until that point.
 ```
 
-### 13.2 Step 16 — Update `.github/ISSUE_TEMPLATE/wip-final-template.yml`
+### 13.2 Step 17 — Update `.github/ISSUE_TEMPLATE/wip-final-template.yml`
 
 Locate the "Next Steps" section in the existing template. Add a note:
 
@@ -1245,7 +1245,7 @@ Locate the "Next Steps" section in the existing template. Add a note:
 
 ---
 
-## 14. Step 14 — `scripts/generate-integrated-files.py`
+## 14. Step 15 — `scripts/generate-integrated-files.py`
 
 **Priority:** 🟢 Low (no breakage — minor cosmetic improvement)
 
@@ -1304,10 +1304,10 @@ This requires modifying `get_tracked_files()` to support `include_pattern` and `
 
 **Decision: Option B** — Separate "Alpha Snapshots" section in INTEGRATED-FILES report.
 Alpha snapshots (`guide-v*-alpha.*.tex`) are routed to a dedicated section, not mixed
-with WIP content files. Requires code change in Step 14 (use Option B implementation).
+with WIP content files. Requires code change in Step 15 (use Option B implementation).
 
 Code changes: both `exclude_pattern` in the `wip/` entry and a new `wip/ (alpha snapshots)`
-entry — see Step 14.
+entry — see Step 15.
 
 Note: these script changes are implemented in `feat/alpha-release` but only execute
 (produce output) after the branch is merged to `main`.
@@ -1359,12 +1359,12 @@ After implementing each step, verify:
 - [ ] `WIP-Snapshot-Generator HTML`: `alpha` option in dropdown; path hint shows `wip/`
 - [ ] `template-wip.tex`: Both status comment lines include `alpha`
 
-### SVGs (Steps 10–13)
+### SVGs (Steps 10–14)
 - [ ] Each SVG: `alpha` node added between `final` and `approved`
 - [ ] `wip-naming-diagram.svg`: FORBIDDEN box includes `alpha → final` and `alpha → review`
 - [ ] `wip-integration-flow.svg`: parallel alpha path added
 
-### Issue Templates (Steps 15–16)
+### Issue Templates (Steps 16–17)
 - [ ] `wip-alpha-template.yml`: visible in GitHub issue creation UI
 - [ ] `wip-final-template.yml`: "Next Steps" mentions alpha option
 
@@ -1395,7 +1395,7 @@ ALPHA RELEASE INFRASTRUCTURE — COMPLETE IMPACT MAP
 ====================================================
 
 [DECISIONS] ──────────────────────────────────────────────────────────────────────
-  §16.A: generate-integrated-files.py option?   (blocks Step 14)
+  §16.A: generate-integrated-files.py option?   (blocks Step 15)
   §16.B: milestones strategy?                   (informational)
   §16.C: validate-wip-naming.yml test strategy? (blocks validation)
 
@@ -1433,7 +1433,7 @@ ALPHA RELEASE INFRASTRUCTURE — COMPLETE IMPACT MAP
     ├── §7.2 +alpha quick reference row
     ├── §7.3 +folder structure note
     └── §7.4 Checklist for AI +alpha to valid status list
-         └── [SECONDARY] SVG diagrams (Steps 10-13) must reflect §3.1-§3.4
+         └── [SECONDARY] SVG diagrams (Steps 10-14) must reflect §3.1-§3.4
 
   Step 4: version-system.md
     ├── §1.5 +alpha snapshot note in repo structure
@@ -1495,21 +1495,26 @@ ALPHA RELEASE INFRASTRUCTURE — COMPLETE IMPACT MAP
     ├── +decision fork after Step 1
     └── +parallel Alpha Integration Path
 
+  Step 14: version-system-diagram.svg
+    ├── +alpha snapshot filename pattern
+    ├── +v0.4.2.0-alpha.1 in version history timeline
+    └── +pre-release note in Step 8 "GitHub Tag + Release"
+
 [ISSUE TEMPLATES] ─────────────────────────────────────────────────────────────────
 
-  Step 15: wip-alpha-template.yml (NEW FILE)
+  Step 16: wip-alpha-template.yml (NEW FILE)
     └── Complete template for ALPHA step in issue workflow
 
-  Step 16: wip-final-template.yml
+  Step 17: wip-final-template.yml
     └── +note in Next Steps about optional alpha
 
 [LOW PRIORITY] ────────────────────────────────────────────────────────────────────
 
-  Step 14: generate-integrated-files.py (Decision §16.A)
+  Step 15: generate-integrated-files.py (Decision §16.A)
     └── Option A: no change
         Option B: +alpha snapshots section
 
-  Steps 17-19: PNG recreation (manual), milestones, test strategy (decisions)
+  Manual/deferred: PNG recreation (post-alpha), milestones, test strategy (decisions)
 
 [CONSISTENCY CLUSTERS — spot-check before PR] ─────────────────────────────────────
 
