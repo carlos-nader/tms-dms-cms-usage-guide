@@ -12,7 +12,8 @@ DELIM_END = '<!-- WIP-SNAPSHOT-END -->'
 STATUS_EMOJI = {
     'dev': '🟠',
     'review': '🟡',
-    'final': '⚪'
+    'final': '⚪',
+    'alpha': '🟢'
 }
 
 
@@ -20,13 +21,13 @@ def get_wip_files():
     files = []
     for fname in os.listdir(WIP_DIR):
         fpath = os.path.join(WIP_DIR, fname)
-        if os.path.isfile(fpath) and fname.endswith('.tex'):
+        if os.path.isfile(fpath) and fname.endswith('.tex') and not fname.startswith('guide'):
             files.append(fname)
     return files
 
 
 def parse_status(fname):
-    match = re.search(r'-(dev|review|final)-', fname)
+    match = re.search(r'-(dev|review|final|alpha)-', fname)
     if match:
         return match.group(1)
     return ''
@@ -77,7 +78,7 @@ def update_readme():
     table = (
         '\n## 🗄️ WIP Snapshot — Active Work-in-Progress Files\n\n'
         + generate_table()
-        + '\n\n**Legend:**  🟠 dev\t🟡 review\t⚪ final\n\n'
+        + '\n\n**Legend:**  🟠 dev\t🟡 review\t⚪ final\t🟢 alpha\n\n'
         + '> For integrated files, see the `archive/WIP/` folder.'
     )
     new_content = before + '\n' + table + '\n' + after

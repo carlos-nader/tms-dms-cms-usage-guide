@@ -351,7 +351,7 @@ STATUS_EMOJI = {
     'dev': '🟠',
     'review': '🟡',
     'final': '⚪',
-    'alpha': '🔵'
+    'alpha': '🟢'
 }
 ```
 
@@ -382,11 +382,8 @@ def get_wip_files():
     files = []
     for fname in os.listdir(WIP_DIR):
         fpath = os.path.join(WIP_DIR, fname)
-        if os.path.isfile(fpath) and fname.endswith('.tex'):
-            # Exclude alpha snapshots (guide-v*-alpha.N[.M]-YYYYMMDD.tex) — they are
-            # snapshots, not WIP content files
-            if not re.match(r'^guide-v\d+\.\d+\.\d+\.\d+-alpha\.\d+(\.\d+)?-\d{8}\.tex$', fname):
-                files.append(fname)
+        if os.path.isfile(fpath) and fname.endswith('.tex') and not fname.startswith('guide'):
+            files.append(fname)
     return files
 ```
 
@@ -1369,7 +1366,7 @@ After implementing each step, verify:
 ### Critical (Steps 1–2)
 - [ ] `validate-wip-naming.yml`: Push a test file `chapter-C5-test-alpha-2026-02-26.tex` to branch — workflow passes
 - [ ] `validate-wip-naming.yml`: Push a test file `guide-v0.4.2.0-alpha.1-20260226.tex` to `wip/` — workflow passes
-- [ ] `generate-wip-snapshot.py`: Run locally with a test `alpha` WIP file in `wip/` — emoji 🔵 appears in README table
+- [ ] `generate-wip-snapshot.py`: Run locally with a test `alpha` WIP file in `wip/` — emoji 🟢 appears in README table
 - [ ] `generate-wip-snapshot.py`: Run locally with alpha snapshot in `wip/` — snapshot does NOT appear in WIP table
 
 ### Governance (Steps 3–6)
@@ -1464,10 +1461,10 @@ ALPHA RELEASE INFRASTRUCTURE — COMPLETE IMPACT MAP
     └── +alpha to PR comment body (line 168)
 
   Step 2: generate-wip-snapshot.py
-    ├── +STATUS_EMOJI['alpha'] = '🔵'
+    ├── +STATUS_EMOJI['alpha'] = '🟢'
     ├── +alpha in parse_status() regex
-    ├── +exclude guide-v*-alpha.*.tex from get_wip_files()
-    └── +🔵 alpha in legend string
+    ├── +exclude any guide-*.tex from get_wip_files() (fname.startswith('guide'))
+    └── +🟢 alpha in legend string
          └── [SECONDARY] README.md WIP legend auto-updates on next run
 
 [GOVERNANCE — source of truth] ───────────────────────────────────────────────────
