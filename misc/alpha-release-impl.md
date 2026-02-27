@@ -1372,6 +1372,34 @@ After implementing each step, verify:
 
 ## 18. PR Strategy
 
+### Commit Convention
+
+Every commit made on `feat/alpha-release` during this implementation **must** reference issue #49 in the message:
+
+```
+<type>(<scope>): <description>
+
+Refs #49
+```
+
+Examples:
+
+```
+feat(workflow): add alpha status to validate-wip-naming regex
+
+Refs #49
+```
+
+```
+docs(wip-naming): add alpha status definitions and two-flow block
+
+Refs #49
+```
+
+This applies to all commits — including documentation, scripts, and minor fixes.
+
+---
+
 Before creating the PR:
 
 1. **Sync with main:** `git merge origin/main` — resolve any `README.md` divergence (daily badge commits)
