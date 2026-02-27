@@ -2,8 +2,9 @@
 
 **Created:** 2026-02-26
 **Author:** Research session — Claude Sonnet 4.6
-**Source spec:** [`misc/alpha-release-handoff.md`](alpha-release-handoff.md)
-**Status:** Awaiting author review before implementation
+**Source spec:** `misc/alpha-release-handoff.md` *(deleted — superseded by impl.md)*
+**Research base:** [`misc/alpha-release-impact.md`](alpha-release-impact.md)
+**Status:** Production ready
 
 > **Princípio orientador:** o fluxo alpha é uma estrutura paralela e opcional ao fluxo padrão.
 > O fluxo padrão (`dev → review → final → approved`) permanece **intacto e inalterado**.
@@ -32,8 +33,10 @@ Varredura completa do repositório realizada em 2026-02-26:
 2. O snapshot alpha `guide-v0.4.2.0-alpha.1-YYYYMMDD.tex` localizado em `wip/` (raiz) não bate com nenhum padrão WIP existente e também não está em `wip/guide/` — falha em todos os padrões.
 
 **Mudanças necessárias:**
-- Adicionar `alpha` à regex de status válidos nos padrões `chapter`, `section`, `table`, `visual`, `notes`
-- Adicionar padrão específico para snapshots alpha em `wip/` (arquivos com formato `guide-v*-alpha.*-*.tex`)
+
+- Adicionar `alpha` à regex de status válidos nos padrões `chapter`, `section`, `table`, `visual` (linhas 89, 95, 101, 113) — NOTES não tem status, não precisa de mudança
+- Adicionar padrão específico para snapshots alpha em `wip/` (arquivos com formato `guide-v*-alpha.*-*.tex`) — novo `elif` antes do bloco `else` "Unknown WIP file" (linha ~118)
+- Atualizar body do PR comment (linha 168): lista hardcoded `Status: dev, review, final, approved, deprecated` → adicionar `alpha`
 
 **Nota sobre trigger:** o workflow não tem filtro de paths — dispara em **qualquer** push para `main` ou `develop` (confirmado por observação em produção). O branch `feat/alpha-release` **não está** na lista de branches do trigger, portanto as mudanças no workflow **não serão testadas automaticamente** no feature branch. Estratégia de teste: adicionar `feat/alpha-release` temporariamente ao trigger durante desenvolvimento, ou testar manualmente via `workflow_dispatch`.
 
@@ -74,6 +77,14 @@ Seções que precisam de mudança:
 | §7.3 Folder Structure | Documentar que `wip/` pode conter snapshots alpha, distinguindo-os dos WIP files |
 | §7.4 Checklist for AI | Adicionar `alpha` à lista de status válidos com nota de que a decisão é exclusivamente humana |
 
+**Seções adicionais identificadas na leitura completa do arquivo:**
+
+| Seção | Mudança necessária |
+|-------|--------------------|
+| §0.3 Scope | Adicionar nota explícita: snapshots alpha (`wip/guide-v*-alpha.*.tex`) **não** são WIP content files; coexistem em `wip/` mas são regidos pelo VERSION-SYSTEM |
+| §4.3 Archival | Adicionar nota: WIP files com status `alpha` **não** vão para `archive/WIP/` enquanto aguardam integração oficial — arquival só ocorre após `approved` (integração em `guide.tex`) |
+| §6 Responsibility Matrix | Adicionar 3 novas linhas: "Decide final → alpha" (✗ AI / ✓ Human), "Create alpha snapshot" (✗ AI / ✓ Human), "Create pre-release tag and GitHub pre-release" (✗ AI / ✓ Human) |
+
 ---
 
 ### 2.2 `docs/version-system.md`
@@ -83,11 +94,11 @@ Seções que precisam de mudança:
 | Seção | Mudança necessária |
 |-------|--------------------|
 | §1.5 Repository Structure | Adicionar snapshots alpha em `wip/` (distinguir de `wip/guide/`) |
-| §2.1 Snapshot File Name Rule | Adicionar padrão alpha: `guide-vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N-YYYYMMDD.tex` |
+| §2.1 Snapshot File Name Rule | Adicionar padrão alpha: `guide-vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]-YYYYMMDD.tex` (N=capítulo; M=patch opcional, some quando N sobe) |
 | §2.3 Examples | Adicionar exemplo alpha |
 | §6.2 File Naming and Snapshot Workflow | Adicionar fluxo alpha como caminho paralelo |
 | §6.3 Archival Strategy | Clarificar que snapshots alpha NÃO vão para `archive/GUIDE/`; ficam em `wip/` até a release oficial |
-| §6.5.1 Tags | Adicionar formato de tag alpha: `v0.4.2.0-alpha.N` |
+| §6.5.1 Tags | Adicionar formato de tag alpha: `v0.4.2.0-alpha.N[.M]` (N=capítulo; M=patch opcional) + regras de incremento |
 | §6.5.2 Releases | Adicionar regras para pre-releases: marcados como pre-release no GitHub, não substituem a release oficial |
 | §6.5.4 Workflow Integration | Adicionar fluxo alpha ao diagrama de integração |
 | §7.3 Key Notes | Adicionar nota sobre pre-releases e sua distinção das releases oficiais |
@@ -101,6 +112,8 @@ Seções que precisam de mudança:
 | Seção | Mudança necessária |
 |-------|--------------------|
 | §11.1 Directory Structure | Mostrar `wip/` com snapshots alpha possíveis |
+| §12.4 Metadata Block Format | Campo obrigatório `**Status:** dev → review → final → approved → deprecated` — adicionar nota sobre fluxo alpha paralelo (duas linhas: padrão + alpha) |
+| §13 Step 5 Workflow | Lista dev/review/final/approved — adicionar `alpha` com descrição "Integrated into pre-release snapshot (parallel flow only)" |
 | §14 Quick Reference | Ciclo `final → approved` sem menção ao alpha; adicionar nota sobre fluxo paralelo |
 | §15 Checklist | Item "Status: final" como pré-requisito para integração; adicionar que para alpha o pré-requisito é `alpha` |
 
@@ -204,7 +217,7 @@ Os 4 templates existentes descrevem "4 sequential issues: DEV → REVIEW → FIN
 |-----------------|----------------------------------|
 | `scripts/update-readme-version.py` | `validate_version()` rejeita `0.4.2.0-alpha.1` com exit 1 — comportamento **correto**, impede que alpha atualize a versão oficial no README/index.html |
 | `scripts/validate-tex-preamble.py` | Usa `rglob('*.tex')` — valida qualquer `.tex` incluindo snapshots alpha; preamble correto passa normalmente |
-| `scripts/generate-integrated-files.py` | Alpha tags aparecem no campo "Releases" (glob funciona); ausência na seção "VERSION TAGS" (regex exclui) é omissão menor, não falha. Snapshot alpha em `wip/` aparece automaticamente na seção `wip/` do relatório — ver Questão em aberto §8 |
+| `scripts/generate-integrated-files.py` | **Requer modificação** (decisões §16.A + §16.D — Option B): (1) Alpha snapshots filtrados para seção dedicada "Alpha Snapshots" (não misturados com WIP de conteúdo); (2) Seção "Pre-release Tags" adicionada ao relatório para capturar alpha tags — ver impl.md Step 14 |
 | `.github/workflows/sync-pdf-to-docs.yml` | Só copia `guide.pdf`; alpha PDF vai como release asset, não como `guide.pdf` |
 | `.github/workflows/update-readme-on-tag.yml` | Trigger `workflow_dispatch` apenas (manual); alpha tags não o disparam |
 | `.github/workflows/validate-tex-preamble.yml` | Trigger `wip/**/*.tex` cobre `wip/file.tex`; snapshot alpha é validado normalmente |
@@ -228,14 +241,15 @@ Os 4 templates existentes descrevem "4 sequential issues: DEV → REVIEW → FIN
 
 ---
 
-## 8. Questões em aberto para decisão do autor
+## 8. Decisões do autor (resolvidas — ver impl.md §16)
 
-| Questão | Contexto | Opções |
-|---------|----------|--------|
-| **Milestones** | Alpha releases de C5 cabem no milestone v0.4.2.0 existente, ou precisam de milestone separado? | (A) Usar milestone v0.4.2.0 existente · (B) Criar milestone `v0.4.2.0-alpha` separado |
-| **`generate-integrated-files.py` — seção do relatório** | O script já escaneia `wip/*.tex`, então o snapshot alpha aparecerá automaticamente na seção `wip/` do INTEGRATED-FILES junto com WIP de conteúdo (chapters, sections). É uma decisão estrutural: separar ou não? | (A) Aceitar como está — snapshot alpha aparece misturado com WIP de conteúdo · (B) Filtrar `guide-v*-alpha.*.tex` para seção dedicada "Alpha Snapshots" no relatório |
-| **`generate-integrated-files.py` — VERSION TAGS** | Alpha tags aparecem em "Releases" (glob captura) mas não na seção "VERSION TAGS" (regex `^v\d+\.\d+\.\d+\.\d+$` exclui). Problema visual? | (A) Aceitar como está · (B) Adicionar seção "Pre-release Tags" no relatório |
-| **Ordem de implementação** | O que vai para o branch primeiro — scripts críticos ou documentação? | Sugestão: scripts críticos primeiro (1.1, 1.2) para validar o CI antes de qualquer push com arquivo alpha |
+| Questão | Decisão |
+|---------|---------|
+| **Milestones** | Option A — usar milestone `v0.4.2.0` existente |
+| **`generate-integrated-files.py` — seção do relatório** | Option B — seção dedicada "Alpha Snapshots" (script será modificado — Step 14) |
+| **`generate-integrated-files.py` — VERSION TAGS** | Option B — adicionar seção "Pre-release Tags" ao relatório (script será modificado — Step 14) |
+| **`validate-wip-naming.yml` — estratégia de teste** | Option B — testar após merge para `main` |
+| **Ordem de implementação** | Scripts críticos primeiro (Steps 1–2), depois documentação (Steps 3+) |
 
 ---
 
@@ -268,23 +282,20 @@ O único ponto de atenção é divergência em `README.md`:
 
 `validate-wip-naming.yml` não dispara em `feat/alpha-release`. As mudanças no workflow só serão testadas automaticamente após o merge para `main`.
 
-**Estratégia de contorno (a decidir):**
-
-- (A) Adicionar `feat/alpha-release` temporariamente ao trigger do workflow durante desenvolvimento → remover antes do PR
-- (B) Testar manualmente via `workflow_dispatch` na branch após push
+**Estratégia de contorno: Option B** (decidido — ver impl.md §16.C) — testar após merge para `main` via `workflow_dispatch`.
 
 ---
 
 ## 10. Resumo executivo
 
-**Total: 15 arquivos a modificar + 1 a criar**
+**Total: 17 arquivos a modificar + 1 a criar**
 
 | Prioridade | Qtd | Arquivos |
 |-----------|-----|---------|
 | 🔴 Crítico | 2 | `validate-wip-naming.yml`, `generate-wip-snapshot.py` |
 | 🟠 Alta | 4 | `wip-naming.md`, `version-system.md`, `briefing.md`, `README.md` |
-| 🟡 Importante | 3 | `copilot-instructions.md`, `WIP-Snapshot-Generator-v3.1.html`, `template-wip.tex` |
-| 🟢 SVG (texto) | 4 | `wip-naming-diagram.svg`, `wip-life-cycle.svg`, `wip-creation-workflow.svg`, `wip-integration-flow.svg` |
+| 🟡 Importante | 4 | `copilot-instructions.md`, `WIP-Snapshot-Generator-v3.1.html`, `template-wip.tex`, `generate-integrated-files.py` |
+| 🟢 SVG (texto) | 5 | `wip-naming-diagram.svg`, `wip-life-cycle.svg`, `wip-creation-workflow.svg`, `wip-integration-flow.svg`, `version-system-diagram.svg` |
 | 🔵 Issue templates | 2 | `wip-alpha-template.yml` (CRIAR), `wip-final-template.yml` (nota) |
 | 🖼️ PNG (binário) | 3 | `WIP-status-chart.png`, `WIP Life Cycle.png`, `WIP-integration-steps.png` |
 
