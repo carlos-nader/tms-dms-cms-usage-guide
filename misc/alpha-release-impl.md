@@ -581,6 +581,14 @@ script continua funcionando sem modificação.
 - `docs/contributing.html` — sem referências de versão, não tocado
 - `docs/WIP-Snapshot-Generator-v3.1.html` — coberto pelo Step 8
 
+> **⚠️ Design correction (2026-02-27):** The initial spec described alpha WIP status as
+> "awaiting official integration into guide.tex", implying individual re-integration of
+> each WIP chapter. This was incorrect. The alpha snapshot (`wip/guide-v*-alpha.*-*.tex`)
+> accumulates chapters progressively and becomes `guide.tex` directly when promoted.
+> Individual WIP files are **not** re-integrated; they are archived in batch (renamed to
+> `approved`) at the moment the alpha snapshot is promoted to an official release.
+> This correction is reflected in `docs/wip-naming.md` (updated 2026-02-27).
+
 ---
 
 ## 5. Step 3 — `docs/wip-naming.md`
