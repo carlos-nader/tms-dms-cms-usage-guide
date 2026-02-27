@@ -420,9 +420,8 @@ The `update_readme()` function generates the legend line:
 
 **Arquivos modificados:**
 
-- `README.md` (placeholders + rename de label)
+- `README.md` (placeholders + rename do heading da seção)
 - `docs/index.html` (placeholder)
-- `scripts/update-readme-version.py` (regex update — consequência do Campo 3)
 
 ---
 
@@ -509,19 +508,22 @@ Alpha pre-release available: v0.4.2.0-alpha.1
 
 > Sem link, sem emoji — manter padrão visual da linha existente.
 
-**Campo 3 — Rename do label na tabela (linha ~51)**
+**Campo 3 — Rename do heading da seção (linha ~47)**
 
-Mudança pontual feita no mesmo commit dos placeholders:
+Mudança pontual feita no mesmo commit dos placeholders. O script `update-readme-version.py`
+procura o padrão `| **Guide Version** | v... |` **na célula da tabela**, não no heading da
+seção — portanto o heading pode ser renomeado livremente sem quebrar o script.
 
 ```markdown
 # Atual:
-| **Guide Version** | v0.4.1.1 |
+## 📊 Current Status
 
 # Substituir por:
-| **Official Version** | v0.4.1.1 |
+## 📊 Current Version — Official Guide
 ```
 
-> Alpha não aparece nessa linha. O rename torna explícito que o campo é sempre a versão oficial.
+> Alpha não aparece nessa seção. O rename torna explícito que o conteúdo é sempre da versão oficial.
+> A célula `| **Guide Version** | v0.4.1.1 |` permanece intacta — o script continua funcionando.
 
 ---
 
@@ -561,19 +563,11 @@ Quando alpha ativo, script preenche:
 
 ---
 
-### 4B.5 scripts/update-readme-version.py — Regex Update
+### 4B.5 scripts/update-readme-version.py — Nenhuma alteração necessária
 
-Consequência do Campo 3 (rename `Guide Version` → `Official Version`). Atualizar padrão da tabela:
-
-```python
-# Atual (linha ~159):
-table_pattern = r'(\|\s*\*\*Guide Version\*\*\s*\|\s*v)[\d.]+'
-
-# Substituir por:
-table_pattern = r'(\|\s*\*\*Official Version\*\*\s*\|\s*v)[\d.]+'
-```
-
-Atualizar também o comentário/docstring que menciona "Guide Version".
+O script procura `| **Guide Version** | v... |` na **célula** da tabela, não no heading da
+seção. Como Campo 3 apenas renomeia o heading (§4B.3), a célula permanece intacta e o
+script continua funcionando sem modificação.
 
 ---
 
@@ -1555,8 +1549,8 @@ After implementing each step, verify:
 
 - [ ] `update-alpha-badge.py`: Run with alpha snapshot in `wip/guide/` — alpha badge appears in README.md and docs/index.html
 - [ ] `update-alpha-badge.py`: Run without alpha snapshot — delimiter blocks are empty (badge absent)
-- [ ] `README.md`: `| **Official Version** |` label present in Current Status table
-- [ ] `scripts/update-readme-version.py`: Verify regex updated to `Official Version` pattern
+- [ ] `README.md`: section heading renamed to `## 📊 Current Version — Official Guide`
+- [ ] `README.md`: cell `| **Guide Version** | v... |` unchanged (script still matches)
 
 ### Governance (Steps 3–6)
 - [ ] `wip-naming.md`: Standard flow (§0.5 Step 3) matches Consistency Glossary §0.3 verbatim
@@ -1664,9 +1658,8 @@ ALPHA RELEASE INFRASTRUCTURE — COMPLETE IMPACT MAP
     │         └── if not found: clears delimiter blocks
     ├── README.md: +<!-- ALPHA-BADGE-START/END --> below official badge (line ~29)
     ├── README.md: +<!-- ALPHA-FOOTER-START/END --> below footer line (line ~289)
-    ├── README.md: rename **Guide Version** → **Official Version** in table (line ~51)
-    ├── docs/index.html: +<!-- ALPHA-BADGE-START/END --> below version badge (line ~305)
-    └── scripts/update-readme-version.py: regex Guide Version → Official Version
+    ├── README.md: rename section heading → `## 📊 Current Version — Official Guide` (line ~47)
+    └── docs/index.html: +<!-- ALPHA-BADGE-START/END --> below version badge (line ~305)
 
 [GOVERNANCE — source of truth] ───────────────────────────────────────────────────
 
