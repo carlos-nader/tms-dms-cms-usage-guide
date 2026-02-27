@@ -165,7 +165,7 @@ Seções que precisam de mudança:
 
 ## 4. Diagramas SVG — editáveis como texto
 
-Todos os quatro SVGs abaixo descrevem o lifecycle e precisam de atualização.
+Todos os cinco SVGs abaixo precisam de atualização.
 São arquivos de texto (XML) — editáveis diretamente.
 
 | Arquivo | Conteúdo atual | Mudança necessária |
@@ -174,9 +174,10 @@ São arquivos de texto (XML) — editáveis diretamente.
 | `docs/wip-life-cycle.svg` | Nodes: dev → review → final → approved → deprecated | Adicionar node `alpha` como ramificação paralela após `final` |
 | `docs/wip-creation-workflow.svg` | Fluxo: dev → review → final → approved | Adicionar bifurcação alpha após `final` |
 | `docs/wip-integration-flow.svg` | Fluxo de integração a partir de `final` → `approved` | Adicionar caminho alpha: `alpha` → snapshot → tag → pre-release |
+| `docs/version-system-diagram.svg` | Snapshot naming, timeline de versões, workflow de version bump | (1) Padrão de snapshot: adicionar variante alpha `guide-v0.M.P.S-alpha.N-YYYYMMDD.tex`; (2) Timeline: adicionar `v0.4.2.0-alpha.1` como pre-release projetada entre v0.4.1.1 e v0.5.0.0; (3) Step 8 "GitHub Tag + Release": adicionar nota que alpha tags são pre-release |
 
-**Estes dois NÃO precisam de mudança:**
-- `docs/version-system-diagram.svg` — sobre versionamento de releases, não lifecycle de WIP
+**Este NÃO precisa de mudança:**
+
 - `docs/issue-dependency-map.svg` — auto-gerado via `gh issue list`, não descreve lifecycle
 
 ---
