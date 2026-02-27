@@ -289,6 +289,31 @@ Status: dev, review, final, alpha, approved, deprecated
 
 Note: `alpha` goes between `final` and `approved` to reflect the parallel flow position.
 
+**D. Add ALPHA SNAPSHOT pattern to GUIDE block** (lines 67–82 — `WIP/GUIDE` and `ARCHIVE/GUIDE`):
+
+Alpha snapshots archived to `archive/GUIDE/` keep their original name (e.g.,
+`guide-v0.4.2.0-alpha.1-20260227.tex`). The existing GUIDE regex
+`^guide-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+-[0-9]{8}\.(tex|pdf)$` does NOT match
+the `-alpha.N[.M]-` segment. Add an elif before the else:
+
+```bash
+# Alpha snapshot pattern: guide-vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]-YYYYMMDD.tex or .pdf
+elif [[ "$FILENAME" =~ ^guide-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+-alpha\.[0-9]+(\.[0-9]+)?-[0-9]{8}\.(tex|pdf)$ ]]; then
+  echo "  ✅ Valid GUIDE alpha snapshot"
+  VALID=1
+```
+
+Also update the error message in the else branch to mention both valid formats:
+```
+Expected: guide-vMAJOR.MINOR.PATCH.SUBPATCH-YYYYMMDD.(tex|pdf)
+           or guide-vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]-YYYYMMDD.(tex|pdf)
+Example: guide-v0.2.3.1-20260125.tex or guide-v0.4.2.0-alpha.1-20260227.tex
+```
+
+Note: Change D was not in the original spec — identified during implementation as a
+gap (alpha snapshots would fail validation when archived to `archive/GUIDE/`).
+Same `(\.[0-9]+)?` optional group as Change B handles both `alpha.1` and `alpha.1.1`.
+
 ### 3.2 Test Strategy
 
 The workflow does NOT trigger on `feat/alpha-release` (no path filter, but branch not listed).
@@ -1434,7 +1459,8 @@ ALPHA RELEASE INFRASTRUCTURE — COMPLETE IMPACT MAP
 
   Step 1: validate-wip-naming.yml
     ├── +alpha to 4 regex patterns (lines 89, 95, 101, 113)
-    ├── +ALPHA_SNAPSHOT elif pattern (before line 118)
+    ├── +ALPHA_SNAPSHOT elif pattern in WIP/ARCHIVE/WIP block (before "Unknown WIP file" else)
+    ├── +alpha snapshot elif pattern in GUIDE/ARCHIVE/GUIDE block (gap found during impl)
     └── +alpha to PR comment body (line 168)
 
   Step 2: generate-wip-snapshot.py
