@@ -45,7 +45,7 @@ template/template-wip.tex
 
 This ensures preamble consistency, metadata structure, and integration hygiene. The template is versioned independently and governed by BRIEFING Section 11. Never modify the template directly; always copy, rename following Section 2 patterns, and then edit the copy.
 
-**Human controls integration.** The human author is responsible for integrating WIP content into the guide snapshot. AI assists with content creation and review, but does not perform the actual integration.
+**Author controls integration.** The author is responsible for integrating WIP content into the guide snapshot. AI assists with research for content creation and review, but does not perform the actual integration.
 
 ### 0.3 Scope
 
@@ -486,10 +486,13 @@ in the standard flow — it is only valid in the parallel pre-release flow.
 
 ```text
 2026-02-24: chapter-C5-style-rev-review-2026-02-24.tex
-            (Author: "Style review approved — ready for alpha")
+            (Author iterating on style revision)
+
+2026-02-25: chapter-C5-style-rev-final-2026-02-25.tex
+            (Author: "Review complete — ready for alpha integration")
 
 2026-02-27: chapter-C5-style-rev-alpha-2026-02-27.tex
-            (Author renames to alpha status)
+            (Author integrates into alpha snapshot; renames to alpha)
 
 2026-02-27: Author creates: wip/guide-v0.4.2.0-alpha.1-20260227.tex
             (Alpha snapshot with C5 integrated)
