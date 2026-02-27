@@ -216,7 +216,8 @@ Os 4 templates existentes descrevem "4 sequential issues: DEV → REVIEW → FIN
 
 | Script/Workflow | Motivo de não precisar de mudança |
 |-----------------|----------------------------------|
-| `scripts/update-readme-version.py` | `validate_version()` rejeita `0.4.2.0-alpha.1` com exit 1 — comportamento **correto**, impede que alpha atualize a versão oficial no README/index.html |
+| `scripts/update-readme-version.py` | ~~Sem impacto~~ → **Requer modificação (Step 2B):** regex `table_pattern` usa `\*\*Guide Version\*\*` — deve ser atualizado para `\*\*Official Version\*\*` após rename do label na tabela do README. Docstring também precisa ser atualizada. |
+| `docs/index.html` | **Requer modificação (Step 2B):** inserir placeholder `<!-- ALPHA-BADGE-START/END -->` abaixo do badge oficial (linha ~305) para o script `update-alpha-badge.py` gerenciar o badge alpha de pre-release. |
 | `scripts/validate-tex-preamble.py` | Usa `rglob('*.tex')` — valida qualquer `.tex` incluindo snapshots alpha; preamble correto passa normalmente |
 | `scripts/generate-integrated-files.py` | **Requer modificação** (decisões §16.A + §16.D — Option B): (1) Alpha snapshots filtrados para seção dedicada "Alpha Snapshots" (não misturados com WIP de conteúdo); (2) Seção "Pre-release Tags" adicionada ao relatório para capturar alpha tags — ver impl.md Step 14 |
 | `.github/workflows/sync-pdf-to-docs.yml` | Só copia `guide.pdf`; alpha PDF vai como release asset, não como `guide.pdf` |
@@ -289,11 +290,12 @@ O único ponto de atenção é divergência em `README.md`:
 
 ## 10. Resumo executivo
 
-**Total: 17 arquivos a modificar + 1 a criar**
+**Total: 19 arquivos a modificar + 3 a criar**
 
 | Prioridade | Qtd | Arquivos |
 |-----------|-----|---------|
 | 🔴 Crítico | 2 | `validate-wip-naming.yml`, `generate-wip-snapshot.py` |
+| 🔴 Crítico (Step 2B) | 5 | `README.md` (badge+footer+label), `docs/index.html` (badge), `update-readme-version.py` (regex) — modificar; `update-alpha-badge.yml`, `update-alpha-badge.py` — **CRIAR** |
 | 🟠 Alta | 4 | `wip-naming.md`, `version-system.md`, `briefing.md`, `README.md` |
 | 🟡 Importante | 4 | `copilot-instructions.md`, `WIP-Snapshot-Generator-v3.1.html`, `template-wip.tex`, `generate-integrated-files.py` |
 | 🟢 SVG (texto) | 5 | `wip-naming-diagram.svg`, `wip-life-cycle.svg`, `wip-creation-workflow.svg`, `wip-integration-flow.svg`, `version-system-diagram.svg` |
