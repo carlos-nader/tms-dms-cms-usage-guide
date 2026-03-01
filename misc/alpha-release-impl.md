@@ -772,6 +772,11 @@ integration into `guide.tex` is complete. At that point they transition to `appr
 and are moved to `archive/WIP/`, following the standard archival rule.
 ```
 
+**Post-implementation amendment (2026-03-01):** The `archive/GUIDE/ contains:` bullet
+was also extended to list alpha snapshots explicitly, following the same pattern used
+for regular guide snapshots. This mirrors how VERSION-SYSTEM §6.3 treats them and
+keeps §4.4 self-contained. Applied directly to the file; no structural change to §4.4.
+
 ### 5.10 Section §5.3 — Workflow
 
 After the current workflow diagram, add:

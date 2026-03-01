@@ -569,6 +569,7 @@ infrastructure is active. The standard workflow in §4.2 remains unchanged.
 
 **`archive/GUIDE/` contains:**
 - Previous guide snapshots (`guide-v*.tex`)
+- Alpha pre-release snapshots (`guide-v*-alpha.*.tex`) — after the corresponding official release is created
 
 **Alpha WIP files:** Files with status `alpha` remain in `wip/` until the alpha
 snapshot is promoted to the official guide release. At that point they transition
