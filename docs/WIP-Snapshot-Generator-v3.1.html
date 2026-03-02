@@ -177,6 +177,7 @@
       transform: translateY(-0.5px);
     }
     input[type="number"] {
+      appearance: textfield;
       -moz-appearance: textfield;
     }
     input[type="number"]::-webkit-outer-spin-button,
@@ -374,6 +375,16 @@
       font-size: 0.72rem;
       color: var(--text-muted);
     }
+    .selftest-box {
+      border-radius: 9px;
+      border: 1px dashed rgba(148,163,184,0.6);
+      padding: 8px 9px;
+      background: rgba(15,23,42,0.7);
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      white-space: pre-wrap;
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -399,11 +410,27 @@
           <span>Entrada</span>
           <span class="dot" aria-hidden="true"></span>
         </div>
-        <p class="panel-subtitle">Escolha o tipo de arquivo, preencha os campos e veja o filename em tempo real.</p>
+        <p class="panel-subtitle" id="formSubtitle">Escolha o modo, preencha os campos e veja o filename em tempo real.</p>
 
         <form id="wipForm" autocomplete="off">
-          <!-- Tipo -->
           <div class="field">
+            <label>Modo do gerador</label>
+            <div class="type-switcher" role="radiogroup" aria-label="Modo do gerador">
+              <label class="type-pill mode-pill" data-mode="wip">
+                <input type="radio" name="mode" value="wip" checked />
+                <span class="dot-sm" aria-hidden="true"></span>
+                <span>WIP Files</span>
+              </label>
+              <label class="type-pill mode-pill" data-mode="snapshot">
+                <input type="radio" name="mode" value="snapshot" />
+                <span class="dot-sm" aria-hidden="true"></span>
+                <span>Guide Snapshot</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Tipo -->
+          <div class="field" id="typeBlock">
             <label>Tipo de arquivo WIP</label>
             <div class="type-switcher" role="radiogroup" aria-label="Tipo de arquivo">
               <label class="type-pill" data-type="chapter">
@@ -434,8 +461,76 @@
             </div>
           </div>
 
+          <div id="snapshotBlock" style="display:none;">
+            <div class="field-group">
+              <div class="field">
+                <label for="snapshotKind">Tipo de snapshot</label>
+                <select id="snapshotKind">
+                  <option value="official">official (wip/guide/)</option>
+                  <option value="alpha">alpha pre-release (wip/)</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="snapshotDate">Data do snapshot <span class="hint" id="snapshotDateHint">YYYYMMDD no filename</span></label>
+                <input type="date" id="snapshotDate" />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field">
+                <label for="major">MAJOR</label>
+                <input type="number" id="major" min="0" max="99" value="0" />
+              </div>
+              <div class="field">
+                <label for="minor">MINOR</label>
+                <input type="number" id="minor" min="0" max="99" value="4" />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field">
+                <label for="patch">PATCH</label>
+                <input type="number" id="patch" min="0" max="99" value="1" />
+              </div>
+              <div class="field">
+                <label for="subpatch">SUBPATCH</label>
+                <input type="number" id="subpatch" min="0" max="99" value="1" />
+              </div>
+            </div>
+
+            <div class="field-group" id="officialOptionsRow">
+              <div class="field">
+                <label for="includePatch">Official: incluir PATCH</label>
+                <select id="includePatch">
+                  <option value="no">não</option>
+                  <option value="yes">sim</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="includeSubpatch">Official: incluir SUBPATCH</label>
+                <select id="includeSubpatch">
+                  <option value="no">não</option>
+                  <option value="yes">sim</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-group" id="alphaOptionsRow" style="display:none;">
+              <div class="field">
+                <label for="alphaN">alpha.N (obrigatório)</label>
+                <input type="number" id="alphaN" min="1" max="99" value="1" />
+              </div>
+              <div class="field">
+                <label for="alphaM">alpha.M (opcional)</label>
+                <input type="number" id="alphaM" min="1" max="99" />
+              </div>
+            </div>
+
+            <div class="small-muted">Snapshots seguem VERSION-SYSTEM e não usam status de WIP.</div>
+          </div>
+
           <!-- Campos por tipo -->
-          <div class="field-group">
+          <div class="field-group" id="chapterSectionRow">
             <div class="field">
               <label for="chapter">Capítulo (C{N}) <span class="hint">ex: 3</span></label>
               <input type="number" id="chapter" min="1" max="99" value="1" />
@@ -535,6 +630,7 @@
 
           <div class="actions">
             <button class="btn" type="button" id="resetBtn">Reset</button>
+            <button class="btn" type="button" id="selfTestBtn">Run checks</button>
             <button class="btn btn-primary" type="button" id="copyBtn">Copiar filename</button>
           </div>
         </form>
@@ -562,33 +658,29 @@
             <span id="patternHint" class="small-muted">Padrão: chapter-C{N}-{title}-{status}-{date}.tex</span>
             <span id="lengthHint" class="small-muted"></span>
           </div>
+          <div id="tagPreviewRow" class="result-meta" style="display:none;">
+            <span class="small-muted">Tag preview:</span>
+            <span id="tagPreviewValue" class="badge-soft">—</span>
+            <button class="btn" type="button" id="copyTagBtn">Copy tag</button>
+          </div>
+          <div id="validationHint" class="small-muted"></div>
           <div id="lengthBadgeContainer"></div>
+          <div id="selfTestResult" class="selftest-box"></div>
         </div>
 
         <details class="rules">
           <summary>
             <span>Regras em ação</span>
           </summary>
-          <ul>
-            <li>Somente caracteres: a–z, 0–9 e hífens; tudo minúsculo.[file:1]</li>
-            <li>Datas sempre no formato ISO 8601: YYYY-MM-DD.[file:1]</li>
-            <li>Padrões de nome: chapter-/section-/table-/notes-/visual- conforme WIP-NAMING.[file:1]</li>
-            <li>Status dev/review/final/alpha em <code>wip/</code> (alpha = parallel pre-release flow); approved/deprecated em <code>archive/WIP/</code>.[file:1]</li>
-            <li>Comprimento recomendado ≤ ~100 caracteres por legibilidade.[file:1]</li>
-          </ul>
+          <ul id="rulesList"></ul>
         </details>
 
-        <p class="small-muted">
-          Esta ferramenta não altera versões do guia; ela apenas gera nomes de arquivos WIP
-          consistentes com a convenção do projeto. A mudança de versão é acionada só quando
-          o conteúdo é integrado ao snapshot e propagado para <code>guide.tex</code>.[file:5]
-        </p>
+        <p class="small-muted" id="governanceHint"></p>
       </section>
     </div>
   </div>
 
   <script>
-    // Utilidades
     function slugify(input) {
       if (!input) return "";
       let text = input.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -599,20 +691,34 @@
     }
 
     function formatDateISO(dateStr) {
-      // input type="date" always returns YYYY-MM-DD — return as-is to avoid UTC timezone shift
       if (!dateStr || !/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return "";
       return dateStr;
     }
 
+    function formatDateCompact(dateStr) {
+      const iso = formatDateISO(dateStr);
+      return iso ? iso.replace(/-/g, "") : "";
+    }
+
     function clampTitleSlug(slug) {
-      // Mantém slug como está, apenas garante no máximo ~30 caracteres (recomendação)
       if (slug.length <= 30) return slug;
       return slug.slice(0, 30).replace(/-+$/g, "");
     }
 
-    // Elementos
-    const typePills = Array.from(document.querySelectorAll(".type-pill"));
+    function toInt(value, fallback = 0) {
+      const parsed = parseInt(value, 10);
+      return Number.isFinite(parsed) ? parsed : fallback;
+    }
+
+    const modePills = Array.from(document.querySelectorAll(".mode-pill"));
+    const typePills = Array.from(document.querySelectorAll(".type-pill[data-type]"));
     const form = document.getElementById("wipForm");
+    const formSubtitleEl = document.getElementById("formSubtitle");
+
+    const typeBlock = document.getElementById("typeBlock");
+    const snapshotBlock = document.getElementById("snapshotBlock");
+    const chapterSectionRow = document.getElementById("chapterSectionRow");
+
     const chapterEl = document.getElementById("chapter");
     const sectionEl = document.getElementById("section");
     const subsectionEl = document.getElementById("subsection");
@@ -625,18 +731,51 @@
     const dateEl = document.getElementById("date");
     const visualExtEl = document.getElementById("visualExt");
 
+    const snapshotKindEl = document.getElementById("snapshotKind");
+    const snapshotDateEl = document.getElementById("snapshotDate");
+    const majorEl = document.getElementById("major");
+    const minorEl = document.getElementById("minor");
+    const patchEl = document.getElementById("patch");
+    const subpatchEl = document.getElementById("subpatch");
+    const includePatchEl = document.getElementById("includePatch");
+    const includeSubpatchEl = document.getElementById("includeSubpatch");
+    const alphaNEl = document.getElementById("alphaN");
+    const alphaMEl = document.getElementById("alphaM");
+    const officialOptionsRow = document.getElementById("officialOptionsRow");
+    const alphaOptionsRow = document.getElementById("alphaOptionsRow");
+
     const pathHint = document.getElementById("pathHint");
     const resultFilenameEl = document.getElementById("resultFilename");
     const patternHint = document.getElementById("patternHint");
     const lengthHint = document.getElementById("lengthHint");
+    const validationHint = document.getElementById("validationHint");
+    const tagPreviewRow = document.getElementById("tagPreviewRow");
+    const tagPreviewValue = document.getElementById("tagPreviewValue");
+    const copyTagBtn = document.getElementById("copyTagBtn");
     const lengthBadgeContainer = document.getElementById("lengthBadgeContainer");
+    const rulesList = document.getElementById("rulesList");
+    const governanceHint = document.getElementById("governanceHint");
     const copyBtn = document.getElementById("copyBtn");
     const resetBtn = document.getElementById("resetBtn");
+    const selfTestBtn = document.getElementById("selfTestBtn");
+    const selfTestResultEl = document.getElementById("selfTestResult");
 
-    // Tipo ativo
+    function getActiveMode() {
+      const active = modePills.find((pill) => pill.dataset.active === "true");
+      return active ? active.dataset.mode : "wip";
+    }
+
     function getActiveType() {
       const active = typePills.find((pill) => pill.dataset.active === "true");
       return active ? active.dataset.type : "chapter";
+    }
+
+    function setActiveMode(mode) {
+      modePills.forEach((pill) => {
+        pill.dataset.active = pill.dataset.mode === mode ? "true" : "false";
+      });
+      updateVisibility();
+      updateFilename();
     }
 
     function setActiveType(type) {
@@ -647,19 +786,28 @@
       updateFilename();
     }
 
-    typePills.forEach((pill) => {
+    modePills.forEach((pill) => {
       pill.addEventListener("click", () => {
         const input = pill.querySelector("input[type=radio]");
-        if (input) {
-          input.checked = true;
-          setActiveType(input.value);
-        }
+        if (!input) return;
+        input.checked = true;
+        setActiveMode(input.value);
       });
     });
 
-    // Ajusta visibilidade de campos dependendo do tipo
+    typePills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        const input = pill.querySelector("input[type=radio]");
+        if (!input) return;
+        input.checked = true;
+        setActiveType(input.value);
+      });
+    });
+
     function updateVisibility() {
+      const mode = getActiveMode();
       const type = getActiveType();
+
       const sectionWrapper = document.getElementById("sectionWrapper");
       const subSectionRow = document.getElementById("subSectionRow");
       const tableContextWrapper = document.getElementById("tableContextWrapper");
@@ -669,7 +817,33 @@
       const visualExtWrapper = document.getElementById("visualExtWrapper");
       const statusWrapper = document.getElementById("statusWrapper");
 
-      // Defaults
+      if (mode === "snapshot") {
+        typeBlock.style.display = "none";
+        snapshotBlock.style.display = "block";
+
+        chapterSectionRow.style.display = "none";
+        subSectionRow.style.display = "none";
+        tableContextWrapper.style.display = "none";
+        tableSwitchWrapper.style.display = "none";
+        visualTypeWrapper.style.display = "none";
+        notesTypeWrapper.style.display = "none";
+        visualExtWrapper.style.display = "none";
+        statusWrapper.style.display = "none";
+        titleEl.closest(".field-group").style.display = "none";
+
+        const snapshotKind = snapshotKindEl.value;
+        officialOptionsRow.style.display = snapshotKind === "official" ? "grid" : "none";
+        alphaOptionsRow.style.display = snapshotKind === "alpha" ? "grid" : "none";
+
+        formSubtitleEl.textContent = "Gere snapshots oficiais e alpha conforme VERSION-SYSTEM.";
+        return;
+      }
+
+      typeBlock.style.display = "block";
+      snapshotBlock.style.display = "none";
+      titleEl.closest(".field-group").style.display = "grid";
+      chapterSectionRow.style.display = "grid";
+
       sectionWrapper.style.display = "block";
       subSectionRow.style.display = "grid";
       tableContextWrapper.style.display = "block";
@@ -688,7 +862,6 @@
         notesTypeWrapper.style.display = "none";
         visualExtWrapper.style.display = "none";
       } else if (type === "section") {
-        subSectionRow.style.display = "grid";
         tableContextWrapper.style.display = "none";
         tableSwitchWrapper.style.display = "none";
         visualTypeWrapper.style.display = "none";
@@ -715,93 +888,32 @@
         tableSwitchWrapper.style.display = "none";
         notesTypeWrapper.style.display = "none";
       }
+
+      formSubtitleEl.textContent = "Escolha o tipo de arquivo WIP, preencha os campos e veja o filename em tempo real.";
     }
 
-    // Caminho (wip/ vs archive/WIP/)
-    function updatePathHint() {
-      const status = statusEl.value;
+    function setPathHint(pathText) {
       const span = pathHint.querySelector("span:nth-child(2)");
-      if (status === "approved" || status === "deprecated") {
-        span.textContent = "archive/WIP/";
-      } else {
-        span.textContent = "wip/";
-      }
-      document.getElementById("alphaHint").style.display = status === "alpha" ? "block" : "none";
+      span.textContent = pathText;
     }
 
-    // Padrão textual
-    function updatePatternHint() {
-      const type = getActiveType();
-      let pattern = "";
-      if (type === "chapter") {
-        pattern = "chapter-C{N}-{title}-{status}-{date}.tex";
-      } else if (type === "section") {
-        pattern = "section-C{N}-S{M}-[S{K}-]{title}-{status}-{date}.tex";
-      } else if (type === "table") {
-        pattern = "table-C{N}-{context}-{switch}-{status}-{date}.tex";
-      } else if (type === "notes") {
-        pattern = "notes-C{N}-{topic}-{type}-{date}.md";
-      } else if (type === "visual") {
-        pattern = "visual-C{N}-{desc}-{type}-{status}-{date}.{ext}";
-      }
-      patternHint.textContent = "Padrão: " + pattern;
+    function updateRules(items) {
+      rulesList.innerHTML = "";
+      items.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        rulesList.appendChild(li);
+      });
     }
 
-    // Geração de filename
-    function updateFilename() {
-      const type = getActiveType();
-      updatePathHint();
-      updatePatternHint();
-
-      const c = chapterEl.value ? `C${parseInt(chapterEl.value, 10)}` : "C1";
-      const s = sectionEl.value ? `S${parseInt(sectionEl.value, 10)}` : "";
-      const sk = subsectionEl.value ? `S${parseInt(subsectionEl.value, 10)}` : "";
-      const rawTitle = titleEl.value.trim();
-      let slug = slugify(rawTitle);
-      slug = clampTitleSlug(slug);
-      if (!slug && (type === "chapter" || type === "section" || type === "notes" || type === "visual")) {
-        slug = "todo";
-      }
-      const status = statusEl.value || "dev";
-      const isoDate = formatDateISO(dateEl.value) || "2026-01-01";
-
-      let filename = "";
-
-      if (type === "chapter") {
-        filename = `chapter-${c}-${slug || "untitled"}-${status}-${isoDate}.tex`;
-      } else if (type === "section") {
-        if (s && sk) {
-          filename = `section-${c}-${s}-${sk}-${slug || "untitled"}-${status}-${isoDate}.tex`;
-        } else if (s) {
-          filename = `section-${c}-${s}-${slug || "untitled"}-${status}-${isoDate}.tex`;
-        } else {
-          filename = `section-${c}-S1-${slug || "untitled"}-${status}-${isoDate}.tex`;
-        }
-      } else if (type === "table") {
-        const context = tableContextEl.value || "AA";
-        const sw = tableSwitchEl.value || "TMS";
-        filename = `table-${c}-${context}-${sw}-${status}-${isoDate}.tex`;
-      } else if (type === "notes") {
-        const topicSlug = slug || "notes";
-        const notesType = notesTypeEl.value || "research";
-        filename = `notes-${c}-${topicSlug}-${notesType}-${isoDate}.md`;
-      } else if (type === "visual") {
-        const visualSlug = slug || "visual";
-        const vType = visualTypeEl.value || "diagram";
-        const ext = visualExtEl.value || "svg";
-        filename = `visual-${c}-${visualSlug}-${vType}-${status}-${isoDate}.${ext}`;
-      }
-
-      resultFilenameEl.textContent = filename;
-
-      // Comprimento
+    function updateLengthBadge(filename) {
       const len = filename.length;
       lengthHint.textContent = `Comprimento: ${len} caracteres`;
       lengthBadgeContainer.innerHTML = "";
       if (len > 100) {
         const badge = document.createElement("span");
         badge.className = "badge-danger";
-        badge.textContent = "Aviso: recomende-se ≤ 100 caracteres para legibilidade.";
+        badge.textContent = "Aviso: recomendado ≤ 100 caracteres para legibilidade.";
         lengthBadgeContainer.appendChild(badge);
       } else if (len > 80) {
         const badge = document.createElement("span");
@@ -811,22 +923,169 @@
       }
     }
 
-    // Eventos
+    function renderValidation(errors) {
+      if (!errors.length) {
+        validationHint.textContent = "Validação: OK";
+        validationHint.style.color = "#93c5fd";
+      } else {
+        validationHint.textContent = "Validação: " + errors.join(" | ");
+        validationHint.style.color = "#f97373";
+      }
+    }
+
+    function generateWipFilename() {
+      const errors = [];
+      const type = getActiveType();
+      const chapter = toInt(chapterEl.value, 0);
+      const section = toInt(sectionEl.value, 0);
+      const subsection = toInt(subsectionEl.value, 0);
+      const status = statusEl.value || "dev";
+      const isoDate = formatDateISO(dateEl.value);
+      const rawTitle = titleEl.value.trim();
+      let slug = clampTitleSlug(slugify(rawTitle));
+
+      let filename = "";
+      let pattern = "";
+      let path = "wip/";
+      let tagPreview = "";
+
+      if (!isoDate) errors.push("Data inválida (use YYYY-MM-DD)");
+      if (chapter < 1 && type !== "snapshot") errors.push("Capítulo deve ser >= 1");
+
+      if (type === "chapter") {
+        pattern = "chapter-C{N}-{title}-{status}-{date}.tex";
+        if (!slug) errors.push("Título é obrigatório para chapter");
+        filename = `chapter-C${chapter}-${slug}-${status}-${isoDate}.tex`;
+      } else if (type === "section") {
+        pattern = "section-C{N}-S{M}-[S{K}-]{title}-{status}-{date}.tex";
+        if (section < 1) errors.push("Seção S{M} é obrigatória para section");
+        if (!slug) errors.push("Título é obrigatório para section");
+        filename = subsection > 0
+          ? `section-C${chapter}-S${section}-S${subsection}-${slug}-${status}-${isoDate}.tex`
+          : `section-C${chapter}-S${section}-${slug}-${status}-${isoDate}.tex`;
+      } else if (type === "table") {
+        pattern = "table-C{N}-{context}-{switch}-{status}-{date}.tex";
+        filename = `table-C${chapter}-${tableContextEl.value}-${tableSwitchEl.value}-${status}-${isoDate}.tex`;
+      } else if (type === "notes") {
+        pattern = "notes-C{N}-{topic}-{type}-{date}.md";
+        if (!slug) errors.push("Título/tópico é obrigatório para notes");
+        filename = `notes-C${chapter}-${slug}-${notesTypeEl.value}-${isoDate}.md`;
+      } else if (type === "visual") {
+        pattern = "visual-C{N}-{desc}-{type}-{status}-{date}.{ext}";
+        if (!slug) errors.push("Descrição é obrigatória para visual");
+        filename = `visual-C${chapter}-${slug}-${visualTypeEl.value}-${status}-${isoDate}.${visualExtEl.value}`;
+      }
+
+      if (status === "approved" || status === "deprecated") {
+        path = "archive/WIP/";
+      }
+
+      updateRules([
+        "WIP-NAMING: chapter/section/table/notes/visual com lowercase e hífens.",
+        "Data WIP: YYYY-MM-DD.",
+        "Status dev/review/final/alpha em wip/; approved/deprecated em archive/WIP/.",
+        "Title slug recomendado até ~30 caracteres.",
+        "Este modo não gera snapshot do guide."
+      ]);
+
+      governanceHint.textContent = "Modo WIP: gera somente arquivos de trabalho. O version bump oficial só ocorre após integração no snapshot e propagação para guide.tex.";
+      document.getElementById("alphaHint").style.display = status === "alpha" ? "block" : "none";
+
+      return { filename, errors, pattern, path, tagPreview };
+    }
+
+    function generateSnapshotFilename() {
+      const errors = [];
+      const kind = snapshotKindEl.value;
+      const dateCompact = formatDateCompact(snapshotDateEl.value);
+      const major = toInt(majorEl.value, 0);
+      const minor = toInt(minorEl.value, 0);
+      const patch = toInt(patchEl.value, 0);
+      const subpatch = toInt(subpatchEl.value, 0);
+
+      let filename = "";
+      let pattern = "";
+      let path = "";
+      let tagPreview = "";
+
+      if (!dateCompact) errors.push("Data inválida (snapshot usa YYYYMMDD no filename)");
+
+      if (kind === "official") {
+        const includePatch = includePatchEl.value === "yes";
+        const includeSubpatch = includeSubpatchEl.value === "yes";
+        if (includeSubpatch && !includePatch) {
+          errors.push("Official: não é permitido SUBPATCH sem PATCH");
+        }
+
+        let version = `${major}.${minor}`;
+        if (includePatch) version += `.${patch}`;
+        if (includePatch && includeSubpatch) version += `.${subpatch}`;
+
+        filename = `guide-v${version}-${dateCompact}.tex`;
+        pattern = "guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex";
+        path = "wip/guide/";
+        tagPreview = `v${version}`;
+      } else {
+        const alphaN = toInt(alphaNEl.value, 0);
+        const alphaM = alphaMEl.value ? toInt(alphaMEl.value, 0) : null;
+        if (alphaN < 1) errors.push("alpha.N deve ser >= 1");
+        if (alphaM !== null && alphaM < 1) errors.push("alpha.M deve ser >= 1 quando informado");
+
+        const alphaSuffix = alphaM ? `alpha.${alphaN}.${alphaM}` : `alpha.${alphaN}`;
+        filename = `guide-v${major}.${minor}.${patch}.${subpatch}-${alphaSuffix}-${dateCompact}.tex`;
+        pattern = "guide-vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]-YYYYMMDD.tex";
+        path = "wip/";
+        tagPreview = `v${major}.${minor}.${patch}.${subpatch}-${alphaSuffix}`;
+      }
+
+      updateRules([
+        "VERSION-SYSTEM: snapshots oficiais ficam em wip/guide/.",
+        "Alpha snapshots ficam em wip/ (root), não em wip/guide/.",
+        "Snapshot usa data compacta YYYYMMDD no filename.",
+        "Official não usa status de WIP.",
+        "Alpha usa contador N obrigatório e M opcional."
+      ]);
+
+      governanceHint.textContent = "Modo Snapshot: gera nomes de snapshot do guide. Este gerador não altera macros, tags, releases ou versão do projeto.";
+      document.getElementById("alphaHint").style.display = "none";
+
+      return { filename, errors, pattern, path, tagPreview };
+    }
+
+    function updateFilename() {
+      const mode = getActiveMode();
+      const generated = mode === "wip" ? generateWipFilename() : generateSnapshotFilename();
+
+      patternHint.textContent = "Padrão: " + generated.pattern;
+      setPathHint(generated.path || "wip/");
+      resultFilenameEl.textContent = generated.filename || "—";
+      updateLengthBadge(generated.filename || "");
+      renderValidation(generated.errors);
+
+      if (mode === "snapshot") {
+        tagPreviewRow.style.display = "flex";
+        tagPreviewValue.textContent = generated.tagPreview || "—";
+        copyTagBtn.style.display = generated.tagPreview ? "inline-flex" : "none";
+      } else {
+        tagPreviewRow.style.display = "none";
+        tagPreviewValue.textContent = "—";
+        copyTagBtn.style.display = "none";
+      }
+    }
+
     [
-      chapterEl, sectionEl, subsectionEl, tableContextEl, tableSwitchEl,
-      visualTypeEl, titleEl, notesTypeEl, statusEl, dateEl, visualExtEl
+      chapterEl, sectionEl, subsectionEl, tableContextEl, tableSwitchEl, visualTypeEl,
+      titleEl, notesTypeEl, statusEl, dateEl, visualExtEl,
+      snapshotKindEl, snapshotDateEl, majorEl, minorEl, patchEl, subpatchEl,
+      includePatchEl, includeSubpatchEl, alphaNEl, alphaMEl
     ].forEach((el) => {
       el.addEventListener("input", updateFilename);
-      el.addEventListener("change", updateFilename);
+      el.addEventListener("change", () => {
+        updateVisibility();
+        updateFilename();
+      });
     });
 
-    // Path hint reage ao status
-    statusEl.addEventListener("change", () => {
-      updatePathHint();
-      updateFilename();
-    });
-
-    // Botão de copiar
     copyBtn.addEventListener("click", async () => {
       const filename = resultFilenameEl.textContent.trim();
       if (!filename || filename === "—") return;
@@ -837,35 +1096,107 @@
           copyBtn.textContent = "Copiar filename";
         }, 1200);
       } catch {
-        // fallback simples
         alert("Copie manualmente: " + filename);
       }
     });
 
-    // Reset
+    copyTagBtn.addEventListener("click", async () => {
+      const tag = tagPreviewValue.textContent.trim();
+      if (!tag || tag === "—") return;
+      try {
+        await navigator.clipboard.writeText(tag);
+        copyTagBtn.textContent = "Copied!";
+        setTimeout(() => {
+          copyTagBtn.textContent = "Copy tag";
+        }, 1200);
+      } catch {
+        alert("Copie manualmente a tag: " + tag);
+      }
+    });
+
+    function runSelfTests() {
+      const re = {
+        chapter: /^chapter-C\d+-[a-z0-9-]+-(dev|review|final|alpha|approved|deprecated)-\d{4}-\d{2}-\d{2}\.tex$/,
+        section: /^section-C\d+-S\d+(?:-S\d+)?-[a-z0-9-]+-(dev|review|final|alpha|approved|deprecated)-\d{4}-\d{2}-\d{2}\.tex$/,
+        table: /^table-C\d+-(AA|AG|DGFT|NAV|MFDS|ALLM)-(TMS|DMS|CMS)-(dev|review|final|alpha|approved|deprecated)-\d{4}-\d{2}-\d{2}\.tex$/,
+        notes: /^notes-C\d+-[a-z0-9-]+-(research|snippet|outline|questions|reference|example)-\d{4}-\d{2}-\d{2}\.md$/,
+        visual: /^visual-C\d+-[a-z0-9-]+-(diagram|flowchart|schematic|reference|illustration)-(dev|review|final|alpha|approved|deprecated)-\d{4}-\d{2}-\d{2}\.(svg|pdf|png|tex)$/,
+        snapshotOfficial: /^guide-v\d+\.\d+(?:\.\d+(?:\.\d+)?)?-\d{8}\.tex$/,
+        snapshotAlpha: /^guide-v\d+\.\d+\.\d+\.\d+-alpha\.\d+(?:\.\d+)?-\d{8}\.tex$/,
+        tagOfficial: /^v\d+\.\d+(?:\.\d+(?:\.\d+)?)?$/,
+        tagAlpha: /^v\d+\.\d+\.\d+\.\d+-alpha\.\d+(?:\.\d+)?$/
+      };
+
+      const cases = [
+        { name: "chapter valid", ok: re.chapter.test("chapter-C4-dms-review-2026-02-17.tex") },
+        { name: "section valid", ok: re.section.test("section-C4-S2-S1-mfds-format-final-2026-01-19.tex") },
+        { name: "table valid", ok: re.table.test("table-C3-AA-TMS-dev-2026-01-15.tex") },
+        { name: "notes valid", ok: re.notes.test("notes-C5-cms-structure-outline-2026-01-15.md") },
+        { name: "visual valid", ok: re.visual.test("visual-C7-tms-hat-layout-diagram-dev-2026-01-28.svg") },
+        { name: "snapshot official valid", ok: re.snapshotOfficial.test("guide-v0.4.2-20260302.tex") },
+        { name: "snapshot official minimal valid", ok: re.snapshotOfficial.test("guide-v0.4-20260302.tex") },
+        { name: "snapshot alpha valid", ok: re.snapshotAlpha.test("guide-v0.4.2.0-alpha.1.2-20260302.tex") },
+        { name: "snapshot alpha without M valid", ok: re.snapshotAlpha.test("guide-v0.4.2.0-alpha.1-20260302.tex") },
+        { name: "tag official valid", ok: re.tagOfficial.test("v0.4.2") },
+        { name: "tag alpha valid", ok: re.tagAlpha.test("v0.4.2.0-alpha.1") },
+        { name: "invalid date rejected", ok: !re.snapshotOfficial.test("guide-v0.4.2-2026-03-02.tex") },
+        { name: "invalid alpha shape rejected", ok: !re.snapshotAlpha.test("guide-v0.4.2-alpha.1-20260302.tex") },
+        { name: "invalid table switch rejected", ok: !re.table.test("table-C3-AA-XYZ-dev-2026-01-15.tex") }
+      ];
+
+      const passed = cases.filter((test) => test.ok).length;
+      const total = cases.length;
+      const failed = total - passed;
+      const summary = failed === 0 ? "PASS" : "FAIL";
+      const lines = cases.map((test) => `${test.ok ? "✅" : "❌"} ${test.name}`).join("\n");
+
+      selfTestResultEl.style.display = "block";
+      selfTestResultEl.textContent = `[SELF-TEST ${summary}] ${passed}/${total} checks passed\n${lines}`;
+      selfTestResultEl.style.borderColor = failed === 0 ? "rgba(56,189,248,0.6)" : "rgba(248,113,113,0.7)";
+    }
+
+    selfTestBtn.addEventListener("click", runSelfTests);
+
     resetBtn.addEventListener("click", () => {
       form.reset();
-      // Restaurar tipo chapter
+      setActiveMode("wip");
       setActiveType("chapter");
-      // Forçar data de hoje
+
       const today = new Date();
       const y = today.getFullYear();
       const m = String(today.getMonth() + 1).padStart(2, "0");
       const d = String(today.getDate()).padStart(2, "0");
-      dateEl.value = `${y}-${m}-${d}`;
+      const isoToday = `${y}-${m}-${d}`;
+
+      dateEl.value = isoToday;
+      snapshotDateEl.value = isoToday;
+      majorEl.value = "0";
+      minorEl.value = "4";
+      patchEl.value = "1";
+      subpatchEl.value = "1";
+      includePatchEl.value = "no";
+      includeSubpatchEl.value = "no";
+      alphaNEl.value = "1";
+      alphaMEl.value = "";
+
+      updateVisibility();
       updateFilename();
     });
 
-    // Inicialização
     (function init() {
-      // marcar pill inicial
+      setActiveMode("wip");
       setActiveType("chapter");
-      // data default = hoje
+
       const today = new Date();
       const y = today.getFullYear();
       const m = String(today.getMonth() + 1).padStart(2, "0");
       const d = String(today.getDate()).padStart(2, "0");
-      dateEl.value = `${y}-${m}-${d}`;
+      const isoToday = `${y}-${m}-${d}`;
+
+      dateEl.value = isoToday;
+      snapshotDateEl.value = isoToday;
+
+      updateVisibility();
       updateFilename();
     })();
   </script>
