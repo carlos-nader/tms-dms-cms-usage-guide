@@ -313,6 +313,17 @@ Reference relevant Dash-34 sections as plain text (no macros inside tables):
 6. Commit and tag (`vMAJOR.MINOR.PATCH.SUBPATCH`)
 7. Create GitHub Release with compiled PDF
 
+**Alpha Snapshot Workflow (parallel, optional — when pre-release infrastructure active):**
+
+1. Create alpha snapshot: `wip/guide-vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]-YYYYMMDD.tex`
+2. Test compilation (multiple passes for indices)
+3. Validate PDF output
+4. Create Git tag (`vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]`)
+5. Create GitHub Pre-Release with compiled PDF (mark explicitly as pre-release)
+
+Note: `guide.tex` is NOT updated. Alpha snapshot stays in `wip/` root until
+promoted to official (see VERSION-SYSTEM §6.2 Phase 2).
+
 ### 10.3 Version Tags
 
 - **Pre-publication:** `v0.x.x.x` (semantic versioning in 0.x regime)
@@ -332,6 +343,7 @@ Reference relevant Dash-34 sections as plain text (no macros inside tables):
 ├── INTEGRATED-FILES.md              # Auto-generated tracking report
 ├── INTEGRATED-FILES.json            # Auto-generated tracking data
 ├── wip/
+│   ├── guide-v*-alpha.*-*.tex       # Alpha snapshots (only when pre-release active)
 │   ├── guide/
 │   │   └── guide-vX.X.X.X-YYYYMMDD.tex  # Active snapshot
 │   ├── chapter-C#-...tex            # Chapter WIP files
@@ -359,6 +371,9 @@ Reference relevant Dash-34 sections as plain text (no macros inside tables):
 - Approved WIP files → `archive/WIP/`
 - Old guide snapshots → `archive/GUIDE/`
 - Only latest snapshot remains in `wip/guide/`
+- Alpha pre-release snapshots (`wip/guide-v*-alpha.*.tex`) remain in `wip/` root until
+  the corresponding official release is created — they are NOT moved to `archive/GUIDE/`
+  until then
 
 ---
 
@@ -857,6 +872,8 @@ As shown in \tabref{tab:dms-soi}.
 **Mandatory fields:**
 - **Target:** Where in guide structure this WIP belongs
 - **Status:** dev → review → final → approved → deprecated
+  (Parallel alpha flow: final → alpha → approved — active only when pre-release
+  infrastructure is in progress)
 - **Date:** Creation or last-edit date (YYYY-MM-DD)
 - **Author:** AI (Session #) or Human Name
 
@@ -894,8 +911,10 @@ pdflatex section-C5-S2-cms-new-dev-2026-02-11.tex
 ### Step 5: Workflow
 
 - **dev**: Author working
-- **review**: Human review
+- **review**: Author review
 - **final**: Ready for integration
+- **alpha**: Integrated into pre-release alpha snapshot (parallel flow only);
+  WIP file remains in `wip/` until official integration
 - **approved**: Integrated into guide, moved to ARCHIVE
 
 ---
@@ -914,6 +933,7 @@ pdflatex section-C5-S2-cms-new-dev-2026-02-11.tex
 - `dev` — Draft
 - `review` — Under review
 - `final` — Ready for integration
+- `alpha` — Integrated into pre-release snapshot (parallel flow only)
 - `approved` — Integrated and archived
 - `deprecated` — Intentionally retired
 
@@ -932,6 +952,8 @@ pdflatex section-C5-S2-cms-new-dev-2026-02-11.tex
 - [ ] Request review when ready (Status: review)
 - [ ] Incorporate feedback
 - [ ] Mark final when complete (Status: final)
+- [ ] *(Alpha flow only, if pre-release infrastructure active)* Mark alpha when integrated
+  into pre-release snapshot (Status: alpha) — WIP stays in `wip/` pending official integration
 - [ ] Author integrates and archives
 
 ---

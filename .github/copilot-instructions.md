@@ -12,18 +12,29 @@ This is a **LaTeX-based technical documentation project** developing a comprehen
 
 ## Critical Governance & Style Documents (Read These First)
 
-All governance and style documents são leitura obrigatória antes de qualquer alteração. Eles estão distribuídos principalmente em `/docs/` e `/misc/`:
+All governance and style documents are mandatory reading before making any changes. They are distributed mainly in `/docs/` and `/misc/`:
 
-1. **[briefing.md](../docs/briefing.md)** — Estrutura do projeto, guidelines de LaTeX, macros, layout, padrões de tabelas e ambientes.
-2. **[version-system.md](../docs/version-system.md)** — Versionamento (pré e pós-publicação), regras de bump, snapshots.
-3. **[wip-naming.md](../docs/wip-naming.md)** — Convenção de nomes para arquivos WIP, ciclo de vida (dev → review → final → approved → deprecated).
-4. **[project-tracking.md](../docs/project-tracking.md)** — Rastreamento de progresso, status de capítulos, log de desenvolvimento.
-5. **[STYLE-GUIDE.md](../misc/STYLE-GUIDE.md)** — Guia oficial de estilo para toda prosa do projeto (introduções, descrições, células de tabela com texto corrido, etc.).
+1. **[briefing.md](../docs/briefing.md)** — Project structure, LaTeX guidelines, macros, layout, table standards, and environments.
+2. **[version-system.md](../docs/version-system.md)** — Versioning (pre- and post-publication), bump rules, snapshots.
+3. **[wip-naming.md](../docs/wip-naming.md)** — Naming conventions for WIP files, lifecycle (dev → review → final → approved → deprecated).
+4. **[project-tracking.md](../docs/project-tracking.md)** — Progress tracking, chapter status, development log.
+5. **[STYLE-GUIDE.md](../misc/STYLE-GUIDE.md)** — Official style guide for all project prose (introductions, descriptions, continuous text table cells, etc.).
 
-**Importante:**
-- O STYLE-GUIDE.md cobre apenas prosa e narrativa. O BRIEFING cobre apenas estrutura LaTeX, macros e layout.
-- Sempre consulte ambos antes de gerar conteúdo textual ou estrutural.
-- Nunca modifique documentos de governança sem aprovação explícita.
+**Important:**
+- STYLE-GUIDE.md covers only prose and narrative. BRIEFING covers only LaTeX structure, macros, and layout.
+- Always consult both before generating textual or structural content.
+- Never modify governance documents without explicit approval.
+
+## Claude “Memory” Pointers (Workspace)
+
+- Always consult `misc/Pessoal/claude-memorias.md` at the start of a session when the user mentions Claude, prompts, or prior decisions.
+- Treat `%USERPROFILE%\.claude\` / `C:\Users\carlo\.claude` as local configuration that may include credentials; do not request, read, copy, or commit secrets.
+- Exception (user-approved, non-sensitive): it is OK to read Markdown files under `C:\Users\carlo\.claude\projects\c--Users-carlo-OneDrive-Documentos-projeto-bms\memory` for operational context.
+- If information from Claude web “Projects” is needed, ask the user to paste the relevant excerpt into a tracked note inside the workspace.
+
+## Critical Safety Rule (Repository Operations)
+
+- Never perform `git commit`, `git push`, tagging, or releases without explicit user approval.
 
 
 ## Project Structure & Workflows
@@ -53,7 +64,8 @@ All WIP files **MUST** be created from `template/template-wip.tex` (canonical te
 **Naming Pattern:** `{type}-C{N}[-S{M}]-{title}-{status}-{date}.tex`
 
 - **Example:** `section-C4-S2-dms-up-final-2026-01-14.tex`
-- **Status codes:** `dev` (draft) → `review` (under review) → `final` (approved) → `approved` (integrated & archived) → `deprecated` (retired)
+- **Status codes (standard flow):** `dev` (draft) → `review` (under review) → `final` (ready to integrate) → `approved` (integrated & archived) → `deprecated` (retired)
+- **Alpha status (parallel, optional):** `alpha` — approved by the author; integrated into the alpha pre-release snapshot; WIP file remains in `wip/` until official integration into `guide.tex`. Active only when pre-release infrastructure is in progress.
 
 **Workflow:**
 1. Copy `template/template-wip.tex` to `wip/`
@@ -61,6 +73,7 @@ All WIP files **MUST** be created from `template/template-wip.tex` (canonical te
 3. Edit content (development status: `dev`)
 4. Human review (status: `review`)
 5. Finalize (status: `final`)
+5A. **Alpha** *(parallel, optional)* — Human renames to `alpha` status after creating the alpha pre-release snapshot. Only used when pre-release infrastructure is active.
 6. **Human integrates** into `guide.tex` (AI assists but does NOT perform integration)
 7. Move to `archive/WIP/` with status `approved`
 
@@ -86,17 +99,17 @@ All WIP files **MUST** be created from `template/template-wip.tex` (canonical te
 ## Style, LaTeX & Content Standards
 
 ### Prose Style (misc/STYLE-GUIDE.md)
-- Siga rigorosamente o STYLE-GUIDE.md para toda prosa: introduções, descrições, células de tabela com texto corrido, etc.
-- Prosa deve ser direta, sem justificativas, sem frases introdutórias, sem sinônimos criativos, sem conclusões redundantes.
-- Exemplos e princípios estão detalhados no STYLE-GUIDE.md.
+- Strictly follow STYLE-GUIDE.md for all prose: introductions, descriptions, continuous text table cells, etc.
+- Prose must be direct, without justifications, without introductory phrases, without creative synonyms, without redundant conclusions.
+- Examples and principles are detailed in STYLE-GUIDE.md.
 
-### LaTeX & Estrutura (docs/briefing.md)
-- Use sempre o preâmbulo consolidado (docs/tex-preamble-consolidated.md).
-- Siga padrões de ambiente, macros e layout definidos no briefing.md.
-- HOTAS tables: sempre usar \begin{hotastable} (15.50cm), colunas e alinhamento padronizados.
-- Referências cruzadas em tabelas: \dashref{X.Y.Z}, \trnref{NN}, \dashone{X.Y.Z}, \dashrefs{...}. Referências de documento: \secref{}, \chapref{}, \tabref{}, \figref{}, \imglink{}.
-- Nunca use placeholders como "TBD" ou "TODO".
-- Todo conteúdo em inglês; instruções para AI em português.
+### LaTeX & Structure (docs/briefing.md)
+- Always use the consolidated preamble (docs/tex-preamble-consolidated.md).
+- Follow the environment standards, macros, and layout defined in briefing.md.
+- HOTAS tables: always use \begin{hotastable} (15.50cm width) with standardized columns and alignment.
+- Cross-references in tables: \dashref{X.Y.Z}, \trnref{NN}, \dashone{X.Y.Z}, \dashrefs{...}. Document references: \secref{}, \chapref{}, \tabref{}, \figref{}, \imglink{}.
+- Never use placeholders like "TBD" or "TODO".
+- **Language Policy:** All LaTeX document content must be written in English. All chat responses, explanations, and planning discussed with the user must be in Portuguese.
 
 
 ## Scripts & Automation
@@ -204,34 +217,32 @@ For complete column specifications, see BRIEFING Section 4.2 and Section 12.3.9.
 3. ❌ **Never** create WIP files without using the template
 4. ❌ **Never** bump versions without following the decision tables
 5. ❌ **Never** modify governance documents (`docs/*.md`) without explicit approval
-6. ❌ **Never** write content in Portuguese (content must be English)
+6. ❌ **Never** write LaTeX document content in Portuguese (all guide content must be English)
 7. ❌ **Never** use generic placeholders like "TODO" in LaTeX content
 8. ❌ **Never** edit `INTEGRATED-FILES.md` manually (it's auto-generated)
 
 
 ## Quick Reference Links
 
-- **Diagramas e fluxos:** Consulte docs/ para diagramas SVG/PNG já existentes antes de criar novos. Prefira Mermaid apenas para fluxos simples; exporte para SVG se necessário.
-- **Scripts:** scripts/ contém automações críticas. Nunca edite scripts sem consulta explícita.
-- **Imagens:** fig/ e docs/ armazenam imagens e diagramas. Sempre verifique licenciamento antes de usar.
-
 - **Source Materials:** `misc/fontes/` (Dash-34, Dash-1, training manual PDFs)
-- **Figures:** `fig/` (images for the guide)
+- **Figures & Assets:** `fig/` (images for the guide). Always verify licensing before use.
+- **Diagrams & Flows:** Check `docs/` for existing SVG/PNG diagrams before creating new ones. Prefer Mermaid only for simple flows; export to SVG if necessary.
 - **Templates:** `template/` (canonical WIP template, guide structure template)
 - **Active Work:** `wip/` (chapter/section files in development)
 - **Archive:** `archive/WIP/` (integrated files), `archive/GUIDE/` (old guide versions)
+- **Scripts:** `scripts/` contains critical automations. Never edit scripts without explicit consultation.
 
 
 ## Questions to Ask Before Making Changes
 
-1. Consultei todos os arquivos de governança e style-guide relevantes?
-2. Estou seguindo o padrão correto de prosa (STYLE-GUIDE.md) e estrutura (briefing.md)?
-3. O fluxo de WIP, integração e versionamento está sendo respeitado?
-4. Estou usando o template correto para novos arquivos?
-5. O conteúdo está em inglês e as instruções em português?
-6. Estou considerando diagramas, scripts e imagens já existentes no projeto?
-7. Estou respeitando o licenciamento CC BY-NC 4.0?
-8. Estou atento ao status de revisão textual do projeto?
+1. Have I consulted all relevant governance files and style guides?
+2. Am I following the correct prose standards (STYLE-GUIDE.md) and LaTeX structure (briefing.md)?
+3. Is the WIP lifecycle, integration, and versioning flow being respected?
+4. Am I using the canonical template for new files?
+5. Is the generated LaTeX content in English, while my chat communication with the user is in Portuguese?
+6. Am I considering existing diagrams, scripts, and images in the project?
+7. Am I respecting the CC BY-NC 4.0 licensing for all assets?
+8. Am I aware of the project's current text revision status?
 
 ---
 

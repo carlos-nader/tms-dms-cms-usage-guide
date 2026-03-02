@@ -21,7 +21,7 @@ REPO_ROOT = Path.cwd()
 TIMEZONE = "UTC-3"
 OUTPUT_MD = "INTEGRATED-FILES.md"
 OUTPUT_JSON = "INTEGRATED-FILES.json"
-DEBUG = True  # Enable debug logging
+DEBUG = os.environ.get("INTEGRATED_FILES_DEBUG", "0") == "1"
 
 def debug_log(msg):
     """Print debug message to stdout"""
@@ -31,9 +31,11 @@ def debug_log(msg):
 
 # Tracked paths (LOWERCASE)
 TRACKED_PATHS = {
-    "wip/": {"ext": ".tex", "subfolders": ["wip/"]},
+    "wip/": {"ext": ".tex", "subfolders": ["wip/"], "exclude_pattern": r"^guide-v\d+\.\d+\.\d+\.\d+-alpha\.\d+(\.\d+)?-\d{8}\.tex$"},
+    "wip/ (alpha snapshots)": {"ext": ".tex", "subfolders": ["wip/"], "include_pattern": r"^guide-v\d+\.\d+\.\d+\.\d+-alpha\.\d+(\.\d+)?-\d{8}\.tex$", "label": "Alpha Snapshots"},
     "archive/": {"ext": ".tex", "subfolders": ["archive/GUIDE/", "archive/WIP/"]},
     "docs/": {"ext": ".md", "subfolders": ["docs/"]},
+    "wip/guide/": {"ext": ".tex", "subfolders": ["wip/guide/"]},
     "guide.tex": {"ext": ".tex", "subfolders": None, "label": "Repository Root"},
     "misc/STYLE-GUIDE.md": {"ext": ".md", "subfolders": None, "label": "misc/"},
 }
@@ -48,6 +50,10 @@ def run_git_command(cmd):
         debug_log(f"Error running git command: {e}")
         return ""
 
+def normalize_repo_path(path):
+    """Normalize paths to Git-friendly repo-relative POSIX format."""
+    return str(path).replace("\\", "/").lstrip("./")
+
 def get_repo_info():
     """Get repository metadata"""
     debug_log("=== REPO INFO ===")
@@ -56,8 +62,16 @@ def get_repo_info():
     
     repo_url = run_git_command("git config --get remote.origin.url").replace(".git", "")
     debug_log(f"Repo URL: {repo_url}")
-    
-    created_date = run_git_command("git log --follow --format=%ai -- . | tail -1").split()[0] if run_git_command("git log --follow --format=%ai -- . | tail -1") else "Unknown"
+
+    # Repository creation date (root commit). This avoids expensive `git log` output capture
+    # and is cross-platform (no reliance on `tail`).
+    root_commits = run_git_command("git rev-list --max-parents=0 HEAD")
+    if root_commits:
+        root_commit = root_commits.splitlines()[-1].strip()
+        created_line = run_git_command(f"git show -s --format=%ai {root_commit}")
+        created_date = created_line.split()[0] if created_line else "Unknown"
+    else:
+        created_date = "Unknown"
     last_push = datetime.now().strftime("%Y-%m-%d %H:%M:%S") + f" {TIMEZONE}"
     total_commits = run_git_command("git rev-list --count HEAD")
     debug_log(f"Total commits: {total_commits}")
@@ -87,18 +101,25 @@ def get_repo_info():
 def get_file_status(file_path):
     """Determine file status via git"""
     try:
-        in_index = run_git_command(f"git ls-files '{file_path}'")
-        if not in_index:
+        repo_path = normalize_repo_path(file_path)
+
+        in_index = subprocess.run(
+            ["git", "ls-files", "--error-unmatch", "--", repo_path],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+        )
+        if in_index.returncode != 0:
             return "untracked"
-        
-        diff = run_git_command(f"git diff --name-only '{file_path}'")
+
+        diff = run_git_command(f'git diff --name-only -- "{repo_path}"')
         if diff:
             return "modified"
-        
-        staged = run_git_command(f"git diff --cached --name-only '{file_path}'")
+
+        staged = run_git_command(f'git diff --cached --name-only -- "{repo_path}"')
         if staged:
             return "staged"
-        
+
         return "tracked"
     except:
         return "unknown"
@@ -121,22 +142,30 @@ def get_tracked_files():
                 
                 if folder_path.exists() and folder_path.is_dir():
                     files_list = []
+                    exclude_pat = config.get("exclude_pattern")
+                    include_pat = config.get("include_pattern")
                     try:
                         pattern = f"*{config['ext']}"
                         matching_files = list(folder_path.glob(pattern))
                         debug_log(f"  Found {len(matching_files)} files matching {pattern}")
-                        
+
                         for file in matching_files:
                             if file.is_file():
-                                file_rel = file.relative_to(REPO_ROOT)
+                                fname = file.name
+                                if exclude_pat and re.match(exclude_pat, fname):
+                                    debug_log(f"  SKIP (excluded): {fname}")
+                                    continue
+                                if include_pat and not re.match(include_pat, fname):
+                                    continue
+                                file_rel = file.relative_to(REPO_ROOT).as_posix()
                                 stat = file.stat()
                                 mod_time = datetime.fromtimestamp(stat.st_mtime).strftime("%Y-%m-%d %H:%M:%S")
                                 size = stat.st_size
-                                status = get_file_status(str(file_rel))
+                                status = get_file_status(file_rel)
                                 debug_log(f"  - {file_rel} ({size} bytes, {status})")
                                 
                                 files_list.append({
-                                    "path": str(file_rel),
+                                    "path": file_rel,
                                     "status": status,
                                     "last_modified": mod_time,
                                     "size": f"{size} bytes"
@@ -146,7 +175,8 @@ def get_tracked_files():
                         debug_log(f"  ERROR scanning {subfolder}: {e}")
                     
                     if files_list:
-                        section_key = f"{section_num}. {subfolder}"
+                        section_label = config.get("label", subfolder)
+                        section_key = f"{section_num}. {section_label}"
                         tracked_files[section_key] = files_list
                         section_num += 1
                 else:
@@ -230,6 +260,31 @@ def get_version_tags():
     debug_log(f"Found {len(tags)} version tags")
     return tags[:10]
 
+def get_prerelease_tags():
+    """Get pre-release tags matching vX.X.X.X-alpha.N[.M] pattern"""
+    debug_log("=== PRE-RELEASE TAGS ===")
+    pattern = r"^v\d+\.\d+\.\d+\.\d+-alpha\.\d+(\.\d+)?$"
+    cmd = "git tag -l 'v*-alpha.*' --sort=-version:refname"
+    output = run_git_command(cmd)
+    tags = []
+
+    for tag in output.split("\n"):
+        if tag and re.match(pattern, tag):
+            commit_hash = run_git_command(f"git rev-list -n 1 {tag}")
+            tag_date = run_git_command(f"git log -1 --format=%ai {tag}").split()[0] if run_git_command(f"git log -1 --format=%ai {tag}") else "Unknown"
+            tag_msg = run_git_command(f"git tag -l {tag} -n1").split(" ", 1)[-1] if run_git_command(f"git tag -l {tag} -n1") else ""
+
+            tags.append({
+                "tag": tag,
+                "commit": commit_hash[:7] if commit_hash else "Unknown",
+                "date": tag_date,
+                "message": tag_msg[:60] if tag_msg else "-"
+            })
+
+    debug_log(f"Found {len(tags)} pre-release tags")
+    return tags[:10]
+
+
 def get_github_issues():
     """Get GitHub issues using REST API with proper token"""
     debug_log("=== GITHUB ISSUES ===")
@@ -252,6 +307,7 @@ def get_github_issues():
         req = urllib.request.Request(open_url, headers=headers)
         with urllib.request.urlopen(req, timeout=10) as response:
             open_issues = json.loads(response.read().decode())
+        open_issues = [issue for issue in open_issues if "pull_request" not in issue]
         debug_log(f"Found {len(open_issues)} open issues")
         
         # Recently closed issues (last 30 days)
@@ -260,6 +316,7 @@ def get_github_issues():
         req = urllib.request.Request(closed_url, headers=headers)
         with urllib.request.urlopen(req, timeout=10) as response:
             closed_issues = json.loads(response.read().decode())
+        closed_issues = [issue for issue in closed_issues if "pull_request" not in issue]
         debug_log(f"Found {len(closed_issues)} recently closed issues")
         
         return {"open": open_issues, "closed": closed_issues}
@@ -310,9 +367,10 @@ def generate_markdown():
     tracked_files = get_tracked_files()
     commits = get_recent_commits(10)
     tags = get_version_tags()
+    prerelease_tags = get_prerelease_tags()
     issues = get_github_issues()
     milestones = get_github_milestones()
-    
+
     md = f"""# INTEGRATED FILES REPORT
 
 **Repository:** {repo_info['name']}
@@ -378,9 +436,20 @@ def generate_markdown():
     else:
         md += "**No version tags found.**\n"
     
-    md += "\n---\n\n## 5. GITHUB ISSUES\n\n"
-    md += "### 5.1 Open Issues\n\n"
-    
+    md += "\n---\n\n## 5. PRE-RELEASE TAGS\n\n"
+    md += "Tags matching pattern: `^v[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+-alpha\\.[0-9]+(\\.[0-9]+)?$`\n\n"
+
+    if prerelease_tags:
+        md += "| Tag | Commit | Date | Message |\n"
+        md += "|-----|--------|------|----------|\n"
+        for tag in prerelease_tags:
+            md += f"| {tag['tag']} | {tag['commit']} | {tag['date']} | {tag['message']} |\n"
+    else:
+        md += "**No pre-release tags found.**\n"
+
+    md += "\n---\n\n## 6. GITHUB ISSUES\n\n"
+    md += "### 6.1 Open Issues\n\n"
+
     if issues.get("open"):
         md += "| # | Title | Created | Labels |\n"
         md += "|---|-------|---------|--------|\n"
@@ -389,9 +458,9 @@ def generate_markdown():
             md += f"| #{issue['number']} | {issue['title'][:50]} | {issue['created_at'][:10]} | {labels} |\n"
     else:
         md += "**No open issues.**\n"
-    
-    md += "\n### 5.2 Recently Closed Issues (Last 30 days)\n\n"
-    
+
+    md += "\n### 6.2 Recently Closed Issues (Last 30 days)\n\n"
+
     if issues.get("closed"):
         md += "| # | Title | Created | Closed | Labels |\n"
         md += "|---|-------|---------|--------|--------|\n"
@@ -401,10 +470,10 @@ def generate_markdown():
             md += f"| #{issue['number']} | {issue['title'][:50]} | {issue['created_at'][:10]} | {closed_date} | {labels} |\n"
     else:
         md += "**No recently closed issues.**\n"
-    
-    md += "\n---\n\n## 6. GITHUB MILESTONES\n\n"
-    md += "### 6.1 Open Milestones\n\n"
-    
+
+    md += "\n---\n\n## 7. GITHUB MILESTONES\n\n"
+    md += "### 7.1 Open Milestones\n\n"
+
     if milestones.get("open"):
         md += "| Title | Progress | Due Date | Description |\n"
         md += "|-------|----------|----------|-------------|\n"
@@ -418,9 +487,9 @@ def generate_markdown():
             md += f"| {ms['title']} | {progress} | {due_date} | {description} |\n"
     else:
         md += "**No open milestones.**\n"
-    
-    md += "\n### 6.2 Closed Milestones\n\n"
-    
+
+    md += "\n### 7.2 Closed Milestones\n\n"
+
     if milestones.get("closed"):
         md += "| Title | Progress | Closed Date |\n"
         md += "|-------|----------|-------------|\n"
@@ -443,15 +512,17 @@ def generate_json_data():
     tracked_files = get_tracked_files()
     commits = get_recent_commits(10)
     tags = get_version_tags()
+    prerelease_tags = get_prerelease_tags()
     issues = get_github_issues()
     milestones = get_github_milestones()
-    
+
     return {
         "generated": datetime.now().isoformat(),
         "repository": repo_info,
         "tracked_files": tracked_files,
         "commits": commits,
         "tags": tags,
+        "prerelease_tags": prerelease_tags,
         "issues": {
             "open": len(issues.get("open", [])),
             "closed": len(issues.get("closed", []))

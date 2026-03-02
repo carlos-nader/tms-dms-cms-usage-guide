@@ -1,0 +1,150 @@
+name: "[WIP ALPHA] Integrate into pre-release alpha snapshot"
+description: "Optional step: integrate approved WIP content into a pre-release alpha snapshot (parallel flow only)"
+title: "[C{N}:S{M}] ALPHA — Integrate into pre-release alpha snapshot"
+labels: ["documentation", "wip"]
+assignees:
+  - carlos-nader
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # [WIP ALPHA] Integrate into pre-release alpha snapshot
+
+        ## Overview
+
+        This is the **optional 5th step** in the WIP lifecycle, between FINAL and APPROVED:
+        1. ✅ Issue #X: DEV — Create WIP file with structure **[CLOSED]**
+        2. ✅ Issue #(X+1): REVIEW — Content review and refinement **[CLOSED]**
+        3. ✅ Issue #(X+2): FINAL — Approve, finalize, lock **[CLOSED]**
+        4. ✅ **Issue #(X+3) (THIS):** ALPHA — Integrate into pre-release snapshot *(parallel, optional)*
+        5. ⏳ Issue #(X+4): APPROVED — Integrate into guide.tex, create official release
+
+        **Active only when pre-release infrastructure is in progress.**
+
+        **Blocked by:** Issue #(X+2) (FINAL — must be closed before this issue is opened)
+        **Blocks:** Nothing — APPROVED runs independently and is triggered by official integration
+
+        ## What Happens Here
+
+        - 📄 WIP file is renamed from `-final-` to `-alpha-` status
+        - 📦 Alpha snapshot created: `wip/guide-v*-alpha.N[.M]-YYYYMMDD.tex`
+        - 🏷️ Pre-release Git tag created: `v*.*.*.*-alpha.N[.M]`
+        - 🚀 GitHub pre-release published (marked as pre-release, not full release)
+        - 📂 WIP file remains in `wip/` until official integration (APPROVED)
+
+        **This issue stays open until official integration.**
+
+  - type: input
+    id: chapter_section
+    attributes:
+      label: "Chapter and Section Identifier"
+      placeholder: "C5:S2"
+      description: "Use format: C{CHAPTER}:S{SECTION}"
+    validations:
+      required: true
+
+  - type: input
+    id: section_title
+    attributes:
+      label: "Section Topic Title"
+      placeholder: "CMS Actuation — HOTAS Tables"
+      description: "Full descriptive title"
+    validations:
+      required: true
+
+  - type: input
+    id: final_issue
+    attributes:
+      label: "FINAL Issue (prerequisite)"
+      placeholder: "#XX — must be closed"
+      description: "The corresponding FINAL issue — must be closed before this issue is opened"
+    validations:
+      required: true
+
+  - type: textarea
+    id: wip_target
+    attributes:
+      label: "WIP Filename (after rename)"
+      value: |
+        ```
+        wip/section-C{N}-S{M}-{TITLE}-alpha-YYYY-MM-DD.tex
+        ```
+      description: "File will be RENAMED from -final- to -alpha- as part of this issue"
+      render: text
+
+  - type: input
+    id: alpha_snapshot
+    attributes:
+      label: "Target alpha snapshot filename"
+      placeholder: "guide-v0.4.2.0-alpha.1-20260227.tex"
+      description: "Full filename of the alpha snapshot to be created in wip/ (format: guide-vX.X.X.X-alpha.N[.M]-YYYYMMDD.tex)"
+    validations:
+      required: true
+
+  - type: input
+    id: alpha_tag
+    attributes:
+      label: "Target pre-release tag"
+      placeholder: "v0.4.2.0-alpha.1"
+      description: "Git tag format: vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]"
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Deliverables
+
+        Complete all items before closing this issue (or when official integration occurs).
+
+  - type: checkboxes
+    id: deliverables
+    attributes:
+      label: "Alpha Integration Steps"
+      description: "Follow these steps sequentially"
+      options:
+        - label: "WIP file renamed: -final- → -alpha- in filename"
+        - label: "Alpha snapshot created: `wip/guide-v*-alpha.N[.M]-YYYYMMDD.tex`"
+        - label: "Alpha snapshot compiled without errors"
+        - label: "Alpha PDF generated and verified (visual check)"
+        - label: "Git tag created: `v*.*.*.*-alpha.N[.M]`"
+        - label: "GitHub pre-release published (marked as pre-release, not full release)"
+        - label: "Pre-release description lists included chapters and pending chapters"
+
+  - type: textarea
+    id: alpha_notes
+    attributes:
+      label: "Alpha Release Notes (Optional)"
+      placeholder: |
+        Chapters included in this alpha snapshot:
+        - C5: CMS (alpha-approved)
+
+        Pending chapters (not yet alpha-approved):
+        - C4: TMS
+      description: "Content summary for the GitHub pre-release description"
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Acceptance Criteria for Transition to APPROVED
+
+        ⚠️ **This issue stays open until official integration.** APPROVED status (and archival to `archive/WIP/`) occurs only after:
+        - Official integration into `guide.tex` (standard workflow)
+        - Official version bump (e.g., `v0.4.2.0`)
+        - Official GitHub release published
+
+        At that point, close this issue alongside (or just after) the APPROVED issue.
+
+        ## Related Documentation
+
+        - 📖 [WIP-FILE-NAMING](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/wip-naming.md) — Alpha status lifecycle and parallel flow
+        - 📖 [VERSION-SYSTEM](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/version-system.md) — Pre-release tag format and increment rules
+        - 📖 [BRIEFING](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/briefing.md) — Alpha snapshot workflow (§6.2)
+
+        ## Acceptance Criteria
+
+        ✅ **Complete when:**
+        - All deliverables above are checked
+        - Alpha snapshot created and compiles without errors
+        - GitHub pre-release published
+        - **This issue is closed when official integration (APPROVED) occurs**

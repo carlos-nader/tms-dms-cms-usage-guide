@@ -70,10 +70,15 @@ jobs:
               if [[ "$FILENAME" =~ ^guide-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+-[0-9]{8}\.(tex|pdf)$ ]]; then
                 echo "  ✅ Valid GUIDE snapshot"
                 VALID=1
+              # Alpha snapshot pattern: guide-vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]-YYYYMMDD.tex or .pdf
+              elif [[ "$FILENAME" =~ ^guide-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+-alpha\.[0-9]+(\.[0-9]+)?-[0-9]{8}\.(tex|pdf)$ ]]; then
+                echo "  ✅ Valid GUIDE alpha snapshot"
+                VALID=1
               else
                 echo "  ❌ Invalid GUIDE snapshot"
                 echo "     Expected: guide-vMAJOR.MINOR.PATCH.SUBPATCH-YYYYMMDD.(tex|pdf)"
-                echo "     Example: guide-v0.2.3.1-20260125.tex"
+                echo "                or guide-vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]-YYYYMMDD.(tex|pdf)"
+                echo "     Example: guide-v0.2.3.1-20260125.tex or guide-v0.4.2.0-alpha.1-20260227.tex"
               fi
             
             # IGNORED: ARCHIVE/GUIDE-STRUCTURE (case-insensitive)
@@ -86,19 +91,19 @@ jobs:
             elif [[ "$DIRPATH_UPPER" == "WIP" ]] || [[ "$DIRPATH_UPPER" == "ARCHIVE/WIP" ]]; then
               
               # CHAPTER Pattern
-              if [[ "$FILENAME" =~ ^chapter-C[1-7]-[a-z0-9]+(-[a-z0-9]+)*-(dev|review|final|approved|deprecated)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.(tex|pdf)$ ]]; then
+              if [[ "$FILENAME" =~ ^chapter-C[1-7]-[a-z0-9]+(-[a-z0-9]+)*-(dev|review|final|alpha|approved|deprecated)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.(tex|pdf)$ ]]; then
                 echo "  ✅ Valid CHAPTER"
                 TYPE="CHAPTER"
                 VALID=1
               
               # SECTION Pattern
-              elif [[ "$FILENAME" =~ ^section-C[1-7](-S[0-9]+)*-[a-z0-9]+(-[a-z0-9]+)*-(dev|review|final|approved|deprecated)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.(tex|pdf)$ ]]; then
+              elif [[ "$FILENAME" =~ ^section-C[1-7](-S[0-9]+)*-[a-z0-9]+(-[a-z0-9]+)*-(dev|review|final|alpha|approved|deprecated)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.(tex|pdf)$ ]]; then
                 echo "  ✅ Valid SECTION"
                 TYPE="SECTION"
                 VALID=1
               
               # TABLE Pattern
-              elif [[ "$FILENAME" =~ ^table-C[1-7]-[A-Z0-9]+-[A-Z]{3,}-(dev|review|final|approved|deprecated)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.(tex|pdf)$ ]]; then
+              elif [[ "$FILENAME" =~ ^table-C[1-7]-[A-Z0-9]+-[A-Z]{3,}-(dev|review|final|alpha|approved|deprecated)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.(tex|pdf)$ ]]; then
                 echo "  ✅ Valid TABLE"
                 TYPE="TABLE"
                 VALID=1
@@ -110,11 +115,17 @@ jobs:
                 VALID=1
               
               # VISUAL Pattern
-              elif [[ "$FILENAME" =~ ^visual-C[1-7]-[a-z0-9]+(-[a-z0-9]+)*-(diagram|flowchart|schematic|reference|illustration)-(dev|review|final|approved|deprecated)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.(svg|pdf|png|tex)$ ]]; then
+              elif [[ "$FILENAME" =~ ^visual-C[1-7]-[a-z0-9]+(-[a-z0-9]+)*-(diagram|flowchart|schematic|reference|illustration)-(dev|review|final|alpha|approved|deprecated)-[0-9]{4}-[0-9]{2}-[0-9]{2}\.(svg|pdf|png|tex)$ ]]; then
                 echo "  ✅ Valid VISUAL"
                 TYPE="VISUAL"
                 VALID=1
               
+              # ALPHA SNAPSHOT Pattern (guide-v*-alpha.N[.M]-YYYYMMDD.tex in wip/ root)
+              elif [[ "$FILENAME" =~ ^guide-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+-alpha\.[0-9]+(\.[0-9]+)?-[0-9]{8}\.(tex|pdf)$ ]]; then
+                echo "  ✅ Valid ALPHA SNAPSHOT"
+                TYPE="ALPHA_SNAPSHOT"
+                VALID=1
+
               # Unknown WIP file
               else
                 echo "  ❌ Invalid WIP file"
@@ -165,5 +176,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '❌ **Filename Validation Failed**\n\nOne or more files in WIP/ or ARCHIVE/ do not follow naming conventions.\n\n**See workflow logs for details.**\n\nRules:\n- **WIP files**: See WIP-NAMING.md\n  - Patterns: chapter-, section-, table-, notes-, visual-\n  - Date format: YYYY-MM-DD\n  - Status: dev, review, final, approved, deprecated\n  - Location: WIP/ (dev/review/final) or ARCHIVE/WIP/ (approved/deprecated)\n  - Formats: .tex or .pdf (for chapter/section/table/guide; .md for notes; .svg|.pdf|.png|.tex for visuals)\n\n- **Guide snapshots**: See VERSION-SYSTEM.md\n  - Pattern: guide-vMAJOR.MINOR.PATCH.SUBPATCH-YYYYMMDD.(tex|pdf)\n  - Date format: YYYYMMDD (8 digits)\n  - Location: WIP/GUIDE/ or ARCHIVE/GUIDE/'
+              body: '❌ **Filename Validation Failed**\n\nOne or more files in WIP/ or ARCHIVE/ do not follow naming conventions.\n\n**See workflow logs for details.**\n\nRules:\n- **WIP files**: See WIP-NAMING.md\n  - Patterns: chapter-, section-, table-, notes-, visual-\n  - Date format: YYYY-MM-DD\n  - Status: dev, review, final, alpha, approved, deprecated\n  - Location: WIP/ (dev/review/final) or ARCHIVE/WIP/ (approved/deprecated)\n  - Formats: .tex or .pdf (for chapter/section/table/guide; .md for notes; .svg|.pdf|.png|.tex for visuals)\n\n- **Guide snapshots**: See VERSION-SYSTEM.md\n  - Pattern: guide-vMAJOR.MINOR.PATCH.SUBPATCH-YYYYMMDD.(tex|pdf)\n  - Date format: YYYYMMDD (8 digits)\n  - Location: WIP/GUIDE/ or ARCHIVE/GUIDE/'
             })

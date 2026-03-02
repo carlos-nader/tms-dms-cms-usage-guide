@@ -1,10 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 950">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 980">
   <defs>
     <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
       <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
     </filter>
     <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#6C757D"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1565C0"/>
     </marker>
     <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#27AE60"/>
@@ -13,113 +16,169 @@
       <polygon points="0 0, 10 3.5, 0 7" fill="#E74C3C"/>
     </marker>
   </defs>
-  
+
   <!-- Background -->
-  <rect width="850" height="950" fill="#F8F9FA"/>
-  
+  <rect width="1200" height="980" fill="#F8F9FA"/>
+
   <!-- Title -->
-  <text x="425" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2C3E50" text-anchor="middle">WIP Integration Flow</text>
-  <text x="425" y="65" font-family="Arial, sans-serif" font-size="14" fill="#7F8C8D" text-anchor="middle">Human-driven integration into guide.tex</text>
-  
-  <!-- Start -->
-  <ellipse cx="425" cy="110" rx="60" ry="25" fill="#FFF" stroke="#2C3E50" stroke-width="2"/>
-  <text x="425" y="115" font-family="Arial, sans-serif" font-size="14" fill="#2C3E50" text-anchor="middle">Start</text>
-  
-  <!-- Arrow -->
-  <path d="M 425 135 L 425 160" stroke="#6C757D" stroke-width="2" marker-end="url(#arrowhead)"/>
-  
-  <!-- Step 1: WIP file ready -->
-  <g transform="translate(275, 170)">
-    <rect x="0" y="0" width="300" height="60" rx="8" fill="#3498DB" filter="url(#shadow)"/>
-    <text x="150" y="25" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Step 1: WIP File Ready</text>
-    <text x="150" y="45" font-family="Arial, sans-serif" font-size="11" fill="#FFF" text-anchor="middle">WIP file has status "final"</text>
+  <text x="600" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2C3E50" text-anchor="middle">WIP Integration Flow</text>
+  <text x="600" y="65" font-family="Arial, sans-serif" font-size="14" fill="#7F8C8D" text-anchor="middle">Standard official release vs. alpha pre-release path</text>
+
+  <!-- Shared entry: WIP files marked final -->
+  <g transform="translate(440, 90)">
+    <rect x="0" y="0" width="320" height="55" rx="8" fill="#3498DB" filter="url(#shadow)"/>
+    <text x="160" y="24" font-family="Arial, sans-serif" font-size="13" fill="#FFF" text-anchor="middle" font-weight="bold">WIP File(s) Marked Final</text>
+    <text x="160" y="44" font-family="Arial, sans-serif" font-size="11" fill="#FFF" text-anchor="middle">status "final" — ready to proceed</text>
   </g>
-  
-  <!-- Arrow -->
-  <path d="M 425 235 L 425 260" stroke="#6C757D" stroke-width="2" marker-end="url(#arrowhead)"/>
-  
-  <!-- Step 2: Human copies content -->
-  <g transform="translate(275, 270)">
-    <rect x="0" y="0" width="300" height="70" rx="8" fill="#9B59B6" filter="url(#shadow)"/>
-    <text x="150" y="22" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Step 2: Human Copies Content</text>
-    <text x="150" y="42" font-family="Arial, sans-serif" font-size="11" fill="#FFF" text-anchor="middle">From: wip/[file]-final-*.tex</text>
-    <text x="150" y="58" font-family="Arial, sans-serif" font-size="11" fill="#FFF" text-anchor="middle">To: wip/guide/guide-v*.tex</text>
+
+  <!-- Arrow down to decision diamond -->
+  <path d="M 600 148 L 600 172" stroke="#6C757D" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Decision diamond: center (600, 215), half-w=155, half-h=43 -->
+  <polygon points="600,172 755,215 600,258 445,215" fill="#F39C12" filter="url(#shadow)"/>
+  <text x="600" y="210" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Integration type?</text>
+  <text x="600" y="228" font-family="Arial, sans-serif" font-size="11" fill="#FFF" text-anchor="middle">Release target?</text>
+
+  <!-- Left branch: Official Release -->
+  <path d="M 445 215 L 280 215 L 280 290" stroke="#6C757D" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="355" y="203" font-family="Arial, sans-serif" font-size="11" fill="#495057" text-anchor="middle" font-weight="bold">Official</text>
+
+  <!-- Right branch: Alpha Pre-release -->
+  <path d="M 755 215 L 920 215 L 920 290" stroke="#1565C0" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="840" y="203" font-family="Arial, sans-serif" font-size="11" fill="#1565C0" text-anchor="middle" font-weight="bold">Alpha pre-release</text>
+
+  <!-- ========================= -->
+  <!-- STANDARD COLUMN (left)    -->
+  <!-- ========================= -->
+
+  <!-- Column header -->
+  <rect x="140" y="293" width="280" height="30" rx="6" fill="#34495E"/>
+  <text x="280" y="313" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Standard Integration</text>
+
+  <!-- S1: Human Copies Content -->
+  <g transform="translate(140, 338)">
+    <rect x="0" y="0" width="280" height="68" rx="8" fill="#9B59B6" filter="url(#shadow)"/>
+    <text x="140" y="22" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Step 1: Human Copies Content</text>
+    <text x="140" y="42" font-family="Arial, sans-serif" font-size="11" fill="#FFF" text-anchor="middle">From: wip/[file]-final-*.tex</text>
+    <text x="140" y="58" font-family="Arial, sans-serif" font-size="11" fill="#FFF" text-anchor="middle">To: wip/guide/guide-v*.tex</text>
   </g>
-  
-  <!-- Arrow -->
-  <path d="M 425 345 L 425 370" stroke="#6C757D" stroke-width="2" marker-end="url(#arrowhead)"/>
-  
-  <!-- Step 3: Human handles LaTeX -->
-  <g transform="translate(275, 380)">
-    <rect x="0" y="0" width="300" height="70" rx="8" fill="#9B59B6" filter="url(#shadow)"/>
-    <text x="150" y="22" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Step 3: Human Handles LaTeX</text>
-    <text x="150" y="42" font-family="Arial, sans-serif" font-size="11" fill="#FFF" text-anchor="middle">Cross-references, labels, formatting</text>
-    <text x="150" y="58" font-family="Arial, sans-serif" font-size="11" fill="#FFF" text-anchor="middle">Ensure consistency with guide style</text>
+  <path d="M 280 410 L 280 428" stroke="#6C757D" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- S2: Handle LaTeX -->
+  <g transform="translate(140, 432)">
+    <rect x="0" y="0" width="280" height="68" rx="8" fill="#9B59B6" filter="url(#shadow)"/>
+    <text x="140" y="22" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Step 2: Handle LaTeX</text>
+    <text x="140" y="42" font-family="Arial, sans-serif" font-size="11" fill="#FFF" text-anchor="middle">Cross-references, labels, formatting</text>
+    <text x="140" y="58" font-family="Arial, sans-serif" font-size="11" fill="#FFF" text-anchor="middle">Ensure consistency with guide style</text>
   </g>
-  
-  <!-- Arrow -->
-  <path d="M 425 455 L 425 480" stroke="#6C757D" stroke-width="2" marker-end="url(#arrowhead)"/>
-  
-  <!-- Step 4: Compile -->
-  <g transform="translate(275, 490)">
-    <polygon points="150,0 300,40 150,80 0,40" fill="#F39C12" filter="url(#shadow)"/>
-    <text x="150" y="35" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Step 4: Compile</text>
-    <text x="150" y="52" font-family="Arial, sans-serif" font-size="11" fill="#FFF" text-anchor="middle">Check for errors?</text>
+  <path d="M 280 504 L 280 522" stroke="#6C757D" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- S3: Compile diamond (center 280, 555) -->
+  <polygon points="280,522 390,555 280,588 170,555" fill="#F39C12" filter="url(#shadow)"/>
+  <text x="280" y="550" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Step 3: Compile</text>
+  <text x="280" y="567" font-family="Arial, sans-serif" font-size="11" fill="#FFF" text-anchor="middle">Errors?</text>
+
+  <!-- Error loop -->
+  <path d="M 170 555 L 100 555 L 100 466 L 138 466" stroke="#E74C3C" stroke-width="2" fill="none" marker-end="url(#arrowRed)"/>
+  <text x="72" y="510" font-family="Arial, sans-serif" font-size="10" fill="#E74C3C" font-weight="bold">Error</text>
+  <text x="72" y="524" font-family="Arial, sans-serif" font-size="9" fill="#E74C3C">Fix issues</text>
+
+  <!-- OK arrow -->
+  <path d="M 280 590 L 280 612" stroke="#27AE60" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <text x="298" y="605" font-family="Arial, sans-serif" font-size="10" fill="#27AE60" font-weight="bold">OK</text>
+
+  <!-- S4: Update Version -->
+  <g transform="translate(140, 616)">
+    <rect x="0" y="0" width="280" height="82" rx="8" fill="#27AE60" filter="url(#shadow)"/>
+    <text x="140" y="20" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Step 4: Update Version</text>
+    <text x="140" y="38" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">Update \docversion, \docbuild macros</text>
+    <text x="140" y="54" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">Save new snapshot in wip/guide/</text>
+    <text x="140" y="70" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">Copy snapshot to guide.tex (root)</text>
   </g>
-  
-  <!-- Error path (loop back) -->
-  <path d="M 275 530 L 200 530 L 200 425 L 270 425" stroke="#E74C3C" stroke-width="2" fill="none" marker-end="url(#arrowRed)"/>
-  <text x="160" y="480" font-family="Arial, sans-serif" font-size="11" fill="#E74C3C" font-weight="bold">Error</text>
-  <text x="160" y="495" font-family="Arial, sans-serif" font-size="10" fill="#E74C3C">Fix issues</text>
-  
-  <!-- Success path -->
-  <path d="M 425 575 L 425 600" stroke="#27AE60" stroke-width="2" marker-end="url(#arrowGreen)"/>
-  <text x="445" y="590" font-family="Arial, sans-serif" font-size="11" fill="#27AE60" font-weight="bold">OK</text>
-  
-  <!-- Step 5: Update version -->
-  <g transform="translate(275, 610)">
-    <rect x="0" y="0" width="300" height="80" rx="8" fill="#27AE60" filter="url(#shadow)"/>
-    <text x="150" y="20" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Step 5: Update Version</text>
-    <text x="150" y="38" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">Update \docversion, \docbuild macros</text>
-    <text x="150" y="54" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">Save new snapshot in wip/guide/</text>
-    <text x="150" y="70" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">Copy snapshot to guide.tex (root)</text>
+  <path d="M 280 702 L 280 720" stroke="#6C757D" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- S5: Archive and Track -->
+  <g transform="translate(140, 724)">
+    <rect x="0" y="0" width="280" height="92" rx="8" fill="#34495E" filter="url(#shadow)"/>
+    <text x="140" y="20" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Step 5: Archive and Track</text>
+    <text x="140" y="40" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">Move old snapshot → archive/GUIDE/</text>
+    <text x="140" y="56" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">Move WIP → archive/WIP/ (approved)</text>
+    <text x="140" y="72" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">Update project-tracking</text>
+    <text x="140" y="88" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">Create GitHub tag + official release</text>
   </g>
-  
-  <!-- Arrow -->
-  <path d="M 425 695 L 425 720" stroke="#6C757D" stroke-width="2" marker-end="url(#arrowhead)"/>
-  
-  <!-- Step 6: Archive and Track -->
-  <g transform="translate(275, 730)">
-    <rect x="0" y="0" width="300" height="90" rx="8" fill="#34495E" filter="url(#shadow)"/>
-    <text x="150" y="20" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Step 6: Archive and Track</text>
-    <text x="150" y="40" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">Move previous snapshot → archive/GUIDE/</text>
-    <text x="150" y="56" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">Move WIP file → archive/WIP/ (rename to approved)</text>
-    <text x="150" y="72" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">Update PROJECT-TRACKING</text>
-    <text x="150" y="88" font-family="Arial, sans-serif" font-size="10" fill="#FFF" text-anchor="middle">Create GitHub tag + release</text>
+  <path d="M 280 820 L 280 855" stroke="#6C757D" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Standard End -->
+  <ellipse cx="280" cy="878" rx="55" ry="22" fill="#FFF" stroke="#2C3E50" stroke-width="2"/>
+  <text x="280" y="883" font-family="Arial, sans-serif" font-size="13" fill="#2C3E50" text-anchor="middle">End</text>
+
+  <!-- ========================= -->
+  <!-- ALPHA COLUMN (right)      -->
+  <!-- ========================= -->
+
+  <!-- Column header -->
+  <rect x="780" y="293" width="280" height="30" rx="6" fill="#0D47A1"/>
+  <text x="920" y="313" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Alpha Pre-release</text>
+
+  <!-- A1: Mark WIPs as alpha -->
+  <g transform="translate(780, 338)">
+    <rect x="0" y="0" width="280" height="62" rx="8" fill="#1565C0" filter="url(#shadow)"/>
+    <text x="140" y="22" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Step α1: Mark WIPs as Alpha</text>
+    <text x="140" y="42" font-family="Arial, sans-serif" font-size="11" fill="#FFF" text-anchor="middle">Rename: ...-final-*.tex → ...-alpha-*.tex</text>
+    <text x="140" y="56" font-family="Arial, sans-serif" font-size="10" fill="#90CAF9" text-anchor="middle">Update metadata block in each file</text>
   </g>
-  
-  <!-- Arrow -->
-  <path d="M 425 825 L 425 850" stroke="#6C757D" stroke-width="2" marker-end="url(#arrowhead)"/>
-  
-  <!-- End -->
-  <ellipse cx="425" cy="880" rx="60" ry="25" fill="#FFF" stroke="#2C3E50" stroke-width="2"/>
-  <text x="425" y="885" font-family="Arial, sans-serif" font-size="14" fill="#2C3E50" text-anchor="middle">End</text>
-  
-  <!-- Side note: Human responsibility -->
-  <g transform="translate(620, 270)">
-    <rect x="0" y="0" width="180" height="200" rx="8" fill="#FFF" stroke="#9B59B6" stroke-width="2" stroke-dasharray="5,3"/>
-    <text x="90" y="25" font-family="Arial, sans-serif" font-size="12" fill="#9B59B6" text-anchor="middle" font-weight="bold">Human Responsibility</text>
-    <text x="15" y="50" font-family="Arial, sans-serif" font-size="10" fill="#6C757D">✓ Copy content</text>
-    <text x="15" y="70" font-family="Arial, sans-serif" font-size="10" fill="#6C757D">✓ Handle LaTeX</text>
-    <text x="15" y="90" font-family="Arial, sans-serif" font-size="10" fill="#6C757D">✓ Compile and verify</text>
-    <text x="15" y="110" font-family="Arial, sans-serif" font-size="10" fill="#6C757D">✓ Update version</text>
-    <text x="15" y="130" font-family="Arial, sans-serif" font-size="10" fill="#6C757D">✓ Move files</text>
-    <text x="15" y="150" font-family="Arial, sans-serif" font-size="10" fill="#6C757D">✓ Create tag/release</text>
-    <line x1="15" y1="165" x2="165" y2="165" stroke="#DEE2E6" stroke-width="1"/>
-    <text x="90" y="185" font-family="Arial, sans-serif" font-size="10" fill="#9B59B6" text-anchor="middle" font-style="italic">AI assists with content,</text>
-    <text x="90" y="198" font-family="Arial, sans-serif" font-size="10" fill="#9B59B6" text-anchor="middle" font-style="italic">human executes integration</text>
+  <path d="M 920 404 L 920 420" stroke="#1565C0" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- A2: Create alpha snapshot -->
+  <g transform="translate(780, 424)">
+    <rect x="0" y="0" width="280" height="76" rx="8" fill="#1565C0" filter="url(#shadow)"/>
+    <text x="140" y="22" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Step α2: Create Alpha Snapshot</text>
+    <text x="140" y="42" font-family="Arial, sans-serif" font-size="11" fill="#FFF" text-anchor="middle">In wip/ root (NOT wip/guide/)</text>
+    <text x="140" y="58" font-family="Arial, sans-serif" font-size="10" fill="#90CAF9" text-anchor="middle">guide-v0.4.2.0-alpha.1-20260301.tex</text>
+    <text x="140" y="72" font-family="Arial, sans-serif" font-size="10" fill="#90CAF9" text-anchor="middle">Integrate content, adjust LaTeX</text>
   </g>
-  
+  <path d="M 920 504 L 920 520" stroke="#1565C0" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- A3: Compile diamond (center 920, 553) -->
+  <polygon points="920,520 1030,553 920,586 810,553" fill="#F39C12" filter="url(#shadow)"/>
+  <text x="920" y="548" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Step α3: Compile</text>
+  <text x="920" y="565" font-family="Arial, sans-serif" font-size="11" fill="#FFF" text-anchor="middle">Errors?</text>
+
+  <!-- Alpha error loop -->
+  <path d="M 810 553 L 748 553 L 748 462 L 778 462" stroke="#E74C3C" stroke-width="2" fill="none" marker-end="url(#arrowRed)"/>
+  <text x="718" y="507" font-family="Arial, sans-serif" font-size="10" fill="#E74C3C" font-weight="bold">Error</text>
+  <text x="718" y="521" font-family="Arial, sans-serif" font-size="9" fill="#E74C3C">Fix issues</text>
+
+  <!-- Alpha OK arrow -->
+  <path d="M 920 588 L 920 608" stroke="#27AE60" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <text x="938" y="603" font-family="Arial, sans-serif" font-size="10" fill="#27AE60" font-weight="bold">OK</text>
+
+  <!-- A4: Push alpha tag -->
+  <g transform="translate(780, 612)">
+    <rect x="0" y="0" width="280" height="68" rx="8" fill="#1976D2" filter="url(#shadow)"/>
+    <text x="140" y="22" font-family="Arial, sans-serif" font-size="12" fill="#FFF" text-anchor="middle" font-weight="bold">Step α4: Push Alpha Tag</text>
+    <text x="140" y="42" font-family="Arial, sans-serif" font-size="11" fill="#FFF" text-anchor="middle">git tag v0.4.2.0-alpha.1</text>
+    <text x="140" y="58" font-family="Arial, sans-serif" font-size="10" fill="#90CAF9" text-anchor="middle">GitHub release — mark as pre-release</text>
+  </g>
+  <path d="M 920 684 L 920 700" stroke="#1565C0" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- Alpha note box: WIP files remain -->
+  <g transform="translate(780, 704)">
+    <rect x="0" y="0" width="280" height="72" rx="8" fill="#E3F2FD" stroke="#1565C0" stroke-width="2" stroke-dasharray="5,3"/>
+    <text x="140" y="20" font-family="Arial, sans-serif" font-size="11" fill="#1565C0" text-anchor="middle" font-weight="bold">WIP files remain in wip/</text>
+    <text x="140" y="38" font-family="Arial, sans-serif" font-size="10" fill="#1565C0" text-anchor="middle">NOT moved to archive/ yet.</text>
+    <text x="140" y="54" font-family="Arial, sans-serif" font-size="10" fill="#1565C0" text-anchor="middle">Archived as batch (approved) when</text>
+    <text x="140" y="68" font-family="Arial, sans-serif" font-size="10" fill="#1565C0" text-anchor="middle">official release is cut.</text>
+  </g>
+  <path d="M 920 780 L 920 820" stroke="#1565C0" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- Alpha End -->
+  <ellipse cx="920" cy="843" rx="55" ry="22" fill="#FFF" stroke="#0D47A1" stroke-width="2"/>
+  <text x="920" y="848" font-family="Arial, sans-serif" font-size="13" fill="#0D47A1" text-anchor="middle">End α</text>
+
+  <!-- Center divider line -->
+  <line x1="600" y1="280" x2="600" y2="900" stroke="#DEE2E6" stroke-width="1.5" stroke-dasharray="8,4"/>
+
   <!-- Footer -->
-  <text x="425" y="930" font-family="Arial, sans-serif" font-size="11" fill="#7F8C8D" text-anchor="middle">WIP-FILE-NAMING + VERSION-SYSTEM</text>
+  <text x="600" y="955" font-family="Arial, sans-serif" font-size="11" fill="#7F8C8D" text-anchor="middle">WIP-FILE-NAMING + VERSION-SYSTEM | Standard integration vs. alpha pre-release path</text>
 </svg>

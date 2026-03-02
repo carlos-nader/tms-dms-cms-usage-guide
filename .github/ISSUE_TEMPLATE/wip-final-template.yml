@@ -129,14 +129,17 @@ body:
     attributes:
       value: |
         ## Next Steps
-        
+
         Once you close this issue:
-        
+
         1. Issue #(X+3) (APPROVED) will be unblocked
         2. You (or AI) will integrate this WIP content into guide.tex
         3. Version numbers will be updated
         4. A new GitHub release tag will be created
         5. WIP file will be moved to archive/ with -approved- status
+
+        **Optional alpha flow:** When pre-release infrastructure is active, an ALPHA issue
+        may be opened between FINAL and APPROVED. See `wip-alpha-template` for details.
         
         ## Related Documentation
         

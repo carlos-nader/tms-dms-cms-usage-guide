@@ -4,7 +4,6 @@
 
 User-agent: *
 Allow: /
-Allow: /docs/
 Crawl-delay: 10
 
 # Prioritize key pages (SEO alignment)
@@ -15,7 +14,7 @@ Sitemap: https://carlos-nader.github.io/tms-dms-cms-usage-guide/sitemap.xml
 
 # Block private/raw GitHub noise
 User-agent: *
-Disallow: /tms-dms-cms-usage-guide/?*  # Query params
+Disallow: /?*  # Query params
 Disallow: *.git
 Disallow: /wip/     # Dev files
 Disallow: /archive/ # Históricos

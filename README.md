@@ -27,6 +27,8 @@ The author is not affiliated with or endorsed by Falcon BMS or any other flight 
 ## 📄 Main Guide Files
 
 [![Version](https://img.shields.io/badge/LATEST%20version-v0.4.1.1-yellow?style=for-the-badge&logo=tag&logoColor=black)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases)
+<!-- ALPHA-BADGE-START -->
+<!-- ALPHA-BADGE-END -->
 
 | Format | Link | Description |
 |:------:|:----:|:------------|
@@ -44,7 +46,7 @@ The author is not affiliated with or endorsed by Falcon BMS or any other flight 
 
 ---
 
-## 📊 Current Status
+## 📊 Current Version — Official Guide
 
 | Metric | Value |
 |--------|-------|
@@ -149,7 +151,7 @@ The project uses **five governance documents** and an **auto-generated tracking 
 |----------|----------|---------|
 | [**BRIEFING**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/briefing.md) | `/docs/` | Project scope, content outline, layout standards |
 | [**STYLE-GUIDE**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/misc/STYLE-GUIDE.md) | `/misc/` | Prose style, voice, formatting policies, and prohibited patterns |
-| [**WIP-FILE-NAMING**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/wip-naming.md) | `/docs/` | Rules for WIP file naming, status lifecycle (dev → review → final → approved) |
+| [**WIP-FILE-NAMING**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/wip-naming.md) | `/docs/` | Rules for WIP file naming (alpha parallel flow also supported), status lifecycle |
 | [**VERSION-SYSTEM**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/version-system.md) | `/docs/` | Guide version numbering (0.x.x.x pre-publication, x.y.z post-publication) |
 | [**PROJECT-TRACKING**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/project-tracking.md) | `/docs/` | Session log, WIP status snapshot, milestones, current priorities |
 | [**INTEGRATED-FILES**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/INTEGRATED-FILES.md) | `/` (root) | Auto-generated report: tracked files, commits, issues, milestones *(updated by GitHub Action)* |
@@ -164,6 +166,7 @@ The project uses **five governance documents** and an **auto-generated tracking 
 2. **Develop** — First draft, status `dev`
 3. **Review** — Review work, status `review`
 4. **Finalize** — Approved content, status `final`
+4A. **Alpha** *(optional, parallel)* — Integrated into pre-release snapshot, status `alpha`; WIP stays in `wip/` pending official integration
 5. **Integrate** — Merge into guide, move to `archive/`, status `approved`
 
 ### Status Codes
@@ -173,6 +176,7 @@ The project uses **five governance documents** and an **auto-generated tracking 
 | `dev` | Draft stage, not ready for review |
 | `review` | Under review |
 | `final` | Approved, ready for integration |
+| `alpha` | Integrated into pre-release snapshot (parallel flow only) |
 | `approved` | Integrated and archived |
 | `deprecated` | Retired or superseded |
 
@@ -287,3 +291,5 @@ For questions, suggestions, or feedback:
 ---
 
 **License:** CC BY-NC 4.0 | **Guide Status:** Pre-publication v0.4.1.1
+<!-- ALPHA-FOOTER-START -->
+<!-- ALPHA-FOOTER-END -->

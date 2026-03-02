@@ -9,7 +9,7 @@ sitemap:
 
 # Falcon BMS TMS/DMS/CMS Guide Version System
 
-**Latest Update:** 25 February 2026
+**Latest Update:** 01 March 2026
 **Effective Date:** 10 January 2026  
 
 ---
@@ -53,6 +53,9 @@ Before any version change, answer:
    - Update **PROJECT-TRACKING** with the new entry.
    - Move the previous snapshot to `archive/GUIDE/`.
    - Create a **GitHub tag and release** for the new version.
+   - **If pre-release infrastructure is active:** also consult the Alpha Snapshot
+     Workflow in §6.2 before creating a new official snapshot. Alpha snapshots follow
+     a separate naming pattern (§2.1) and workflow (§6.2).
 
 ### 0.3 Scenario-Based Examples
 
@@ -72,7 +75,14 @@ Before any version change, answer:
   - Regime: 0.x.x.x.  
   - Trend: **PATCH/SUBPATCH** depending on scope:  
     - If the change significantly modifies how that chapter is used (for example, first major HOTAS table for that chapter), increment **PATCH** (for example, `0.2.2.0 → 0.2.3.0`).  
-    - If the change is a local refinement on top of an already planned structure, or if you want to keep the change clearly marked as internal polish, increment **SUBPATCH** (for example, `0.2.2.0 → 0.2.2.1`).  
+    - If the change is a local refinement on top of an already planned structure, or if you want to keep the change clearly marked as internal polish, increment **SUBPATCH** (for example, `0.2.2.0 → 0.2.2.1`).
+
+- **"A chapter reached `final` WIP status and I want to publish it as a pre-release
+  before the next official version bump."**
+  - Regime: 0.x.x.x (pre-release infrastructure must be active).
+  - Action: follow the **Alpha Snapshot Workflow** (§6.2 Phase 1). No official version
+    bump occurs. The chapter's WIP file is renamed to `alpha` status. An alpha snapshot
+    is created in `wip/` root and published as a GitHub pre-release.
 
 ---
 
@@ -140,7 +150,13 @@ To align the version system with GitHub branch protection and readable diffs, th
 - The repository root contains a **single canonical main file**: `guide.tex`.
 - The directory `wip/guide/` contains the **current snapshot** named with the full version pattern, for example:
   - `wip/guide/guide-v0.3.3.0-20260202.tex`.
-- The directory `archive/GUIDE/` contains **previous snapshots** for historical reference.
+- When pre-release infrastructure is active, `wip/` (root, **not** `wip/guide/`) also
+  contains alpha pre-release snapshots:
+  - `wip/guide-vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N-YYYYMMDD.tex`
+  These coexist with WIP content files and are governed by this document (§2.1, §6.5).
+  They are NOT subject to the single-file rule of `wip/guide/`.
+- The directory `archive/GUIDE/` contains **previous snapshots** for historical reference,
+  including alpha pre-release snapshots after the corresponding official release is created.
 - Editing rule:
   - All substantive editing of the guide is done via **WIP files** (`chapter-*.tex`, `section-*.tex`) that follow the workflow defined in `WIP-FILE-NAMING`.
   - When WIP content is integrated into the guide, an updated **snapshot** is created in `wip/guide/`.
@@ -165,6 +181,19 @@ guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex
 
 The root file `guide.tex` keeps a **stable name** and is always a byte-identical copy of the latest snapshot that represents the active version.
 
+**Alpha pre-release snapshots** follow a separate pattern and reside in `wip/` root:
+```text
+wip/guide-vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]-YYYYMMDD.tex
+```
+- `N` is the chapter-level counter: increments when a new chapter enters the snapshot
+- `M` (optional) is the patch-level counter: increments for any correction below
+  chapter level within the same chapter set; when `N` increments, `M` disappears
+  (e.g., `alpha.1.2` → `alpha.2`, not `alpha.2.0`)
+- `YYYYMMDD` is the **build date** (same rule as official snapshots per §6.1; do NOT
+  recreate with a new date if content is unchanged)
+- The file lives in `wip/` root — NOT in `wip/guide/`
+- Multiple alpha snapshots may coexist in `wip/` (one per pre-release increment)
+
 ### 2.2 Date Format
 
 - The date always uses the format `YYYYMMDD` (for example, `20260202` for 02 February 2026).
@@ -183,6 +212,11 @@ The root file `guide.tex` keeps a **stable name** and is always a byte-identical
 
 - Major revision in a new edition:
   - `wip/guide/guide-v2.0.0-2026XXXX.tex`
+
+- Pre-release alpha snapshots (in `wip/` root):
+  - `wip/guide-v0.4.2.0-alpha.1-20260227.tex`   ← C5 enters snapshot (N=1)
+  - `wip/guide-v0.4.2.0-alpha.1.1-20260303.tex` ← correction in C5 (M=1)
+  - `wip/guide-v0.4.2.0-alpha.2-20260310.tex`   ← C1 enters snapshot (N=2, M gone)
 
 ---
 
@@ -243,6 +277,7 @@ Only MAJOR is fixed (0); the other digits vary according to change type.
 | Adjust few table cells without changing logic/structure | **SUBPATCH** | Local refinement. |
 | Only compile/save, with no content change | **Date** | Update `YYYYMMDD`, not version number. |
 | Work in non-integrated WIP (`chapter-...tex`, `section-...tex`, etc.) | **None** | Version only goes up when content enters the snapshot and `guide.tex`. |
+| Create alpha snapshot (pre-release infrastructure active) | **None** | Alpha versioning is separate from the official version line (see §6.5.1). |
 
 #### 3.2.3 Internal Phases as Metadata
 
@@ -382,6 +417,10 @@ Before performing the transition, validate:
 - There are no obvious internal markers (like "TODO", "FIXME", temporary comments) in the main sections.
 - Partial tables are clearly identified as such and do not look like errors.
 - PROJECT-TRACKING is consistent with the state to be frozen as 1.0.0 (dates, versions, change descriptions).
+- If pre-release infrastructure was active during 0.x.x.x development: confirm that
+  all alpha snapshots (`wip/guide-v*-alpha.*.tex`) are either promoted or deprecated
+  before freezing the 0.x.x.x line. No alpha snapshots should remain in `wip/` after
+  the 1.0.0 transition.
 
 ---
 
@@ -525,7 +564,11 @@ MAJOR.MINOR.PATCH
   - A relevant snapshot is compiled and saved.  
 
 - Difference between internal snapshot and official version:
-  - Only versions whose number was updated in `\docversion` and in the snapshot file name enter PROJECT-TRACKING as milestones.  
+  - Only versions whose number was updated in `\docversion` and in the snapshot file name enter PROJECT-TRACKING as milestones.
+
+- For alpha snapshots, the same rule applies: update `YYYYMMDD` when the alpha
+  snapshot is first compiled. Do NOT recreate with a new date if content is unchanged
+  (applies to both `alpha.N` and `alpha.N.M` increments).
 
 ### 6.2 File Naming and Snapshot Workflow
 
@@ -557,8 +600,43 @@ Single workflow for 0.x.x.x and x.x.x:
 7. **Update PROJECT-TRACKING.**  
    - Add a line with version, date, affected chapter(s), and a concise description of the change.
 
-8. **Create GitHub tag and release.**  
+8. **Create GitHub tag and release.**
    - See Section 6.5 for details.
+
+**Alpha Snapshot Workflow (parallel, optional):**
+
+For pre-release alpha snapshots (activated only when pre-release infrastructure
+is in progress):
+
+**Phase 1 — Creating the alpha pre-release:**
+
+1. **Determine content.** Identify which chapters have reached `alpha` WIP status.
+   A WIP file transitions to `alpha` when the author decides to include it in a
+   pre-release snapshot (see WIP-FILE-NAMING §3.3.1 for the `final → alpha`
+   transition rules).
+2. **Create alpha snapshot.** Starting from either the current
+   `wip/guide/guide-v*.tex` snapshot or the template
+   (`template/template-wip.tex`), integrate **all** alpha-approved chapters
+   (**cumulative** — alpha.N includes all previously alpha-approved content). Save as:
+   `wip/guide-vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]-YYYYMMDD.tex`
+3. **Compile and check.** Generate PDF from the alpha snapshot. Verify no errors.
+4. **Create Git tag.** Tag format: `vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]`
+5. **Create GitHub pre-release.** Mark explicitly as **pre-release**. Attach compiled PDF.
+
+Note: The official snapshot in `wip/guide/` is NOT updated during Phase 1.
+Alpha snapshots remain in `wip/` root until promoted to official.
+
+**Phase 2 — Promoting alpha to official:**
+
+6. **Rename to official snapshot.** Drop `-alpha.N[.M]` from the final alpha
+   snapshot name and save to `wip/guide/guide-vMAJOR.MINOR.PATCH.SUBPATCH-YYYYMMDD.tex`.
+7. **Resume standard workflow.** Follow steps 3–8 above (compile, propagate to
+   `guide.tex`, archive previous snapshot, update PROJECT-TRACKING, create
+   official tag and release).
+8. **Archive alpha snapshots and WIP files.** Move all `guide-v*-alpha.*.tex`
+   from `wip/` root to `archive/GUIDE/`. Rename all associated WIP files from
+   `alpha` → `approved` status and move them to `archive/WIP/` in batch
+   (see WIP-FILE-NAMING §4.3).
 
 ### 6.3 Archival Strategy
 
@@ -566,6 +644,12 @@ Single workflow for 0.x.x.x and x.x.x:
 - **Archived snapshots:** `archive/GUIDE/guide-v{previous}.tex`
 - Only one snapshot should be in `wip/guide/` at a time (the current version).
 - All previous versions are preserved in `archive/GUIDE/` for historical reference.
+
+**Alpha snapshots exception:** Alpha pre-release snapshots (`wip/guide-v*-alpha.*.tex`
+in `wip/` root) are NOT archived until the corresponding official release is created.
+At that point, they may be moved to `archive/GUIDE/` alongside the regular snapshots.
+The single-active-snapshot rule applies only to `wip/guide/` — it does not restrict
+the number of alpha snapshots in `wip/` root.
 
 ### 6.4 Relationship with WIP File Naming and BRIEFING
 
@@ -585,6 +669,24 @@ The version system integrates with GitHub's release management features:
 - Tags are created after the snapshot is propagated to `guide.tex` and committed.
 - Tags provide permanent markers in Git history for each version.
 
+**Alpha (pre-release) tags:**
+- Format: `vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]`
+- Examples: `v0.4.2.0-alpha.1` · `v0.4.2.0-alpha.1.1` · `v0.4.2.0-alpha.2`
+- Alpha tags are created **before** the official `vMAJOR.MINOR.PATCH.SUBPATCH` tag
+- Multiple alpha tags may exist for the same target version (one per pre-release)
+
+**Alpha version increment rules** (parallel to the canonical version-system):
+
+| Change in snapshot | Canonical equivalent | Alpha counter |
+|--------------------|---------------------|--------------|
+| New chapter added to snapshot | MINOR | N++ — M disappears (`alpha.2`) |
+| Any correction below chapter level (structural or minor) | PATCH or SUBPATCH | M++ (`alpha.1.1`, `alpha.1.2`) |
+
+Notes:
+- When N increments, M disappears: the clean state is `alpha.N`, not `alpha.N.0`
+- PATCH and SUBPATCH are collapsed into M — no third level needed
+- Decision authority: author only (same as all version decisions)
+
 #### 6.5.2 Releases
 
 - **Every tag** should have a corresponding GitHub Release.
@@ -594,6 +696,15 @@ The version system integrates with GitHub's release management features:
   - **Assets:** Compiled PDF (`guide.pdf`)
   - **Link to previous release** for comparison
 - Releases provide user-friendly access to each version with changelog.
+
+**Pre-releases (alpha):**
+- Must be marked explicitly as **pre-release** in GitHub (not as a full release)
+- Title: `v0.4.2.0-alpha.1` (version only — no descriptive suffix)
+- Description: list which chapters are included and which are pending
+- Assets: compiled PDF generated from the alpha snapshot (not from `guide.tex`)
+- Pre-releases do NOT replace the current official release
+- If the corresponding WIP is later deprecated, the pre-release tag stays as a
+  historical record — no GitHub cleanup needed
 
 #### 6.5.3 Milestones
 
@@ -609,9 +720,19 @@ The version system integrates with GitHub's release management features:
 #### 6.5.4 Workflow Integration
 ```
 Issues (in Milestone) → WIP files → Integration → Snapshot → guide.tex → Tag → Release
-                                                                    ↓
-                                                          Close Milestone
+                                                                                    ↓
+                                                                          Close Milestone
+
+ALPHA PATH (parallel, optional):
+WIP files (final) → [author decides alpha] → alpha status → Alpha Snapshot (wip/) → Alpha Tag → Pre-Release
+                                                                                                    ↓
+                                                                              (awaits official integration)
+                                                                                         ↓
+                                                                          Official flow resumes from Integration
 ```
+
+Note: Promotion from alpha to official (Phase 2) requires an explicit author decision —
+it does not happen automatically.
 
 - Issues track individual work items (sections, fixes, improvements)
 - Milestones aggregate issues toward a release target
@@ -654,16 +775,23 @@ Issues (in Milestone) → WIP files → Integration → Snapshot → guide.tex �
 
 ### 7.3 Key Notes
 
-- Tables are always part of chapters; they never define MAJOR alone.  
-- 0.x.x.x is never a published edition; it is always an internal development regime.  
+- Tables are always part of chapters; they never define MAJOR alone.
+- 0.x.x.x is never a published edition; it is always an internal development regime.
 - `1.0` marks the first published edition; `2.0`, `3.0`, etc., are successive editions, consistent with good technical documentation practice.
 - Every version must have a corresponding GitHub tag and release.
+- Alpha pre-releases (`vX.X.X.X-alpha.N`) are intermediate publications for approved
+  chapters that are awaiting the next official version bump. They are marked as
+  pre-releases on GitHub and are distinct from official releases.
+- If a planned official version is abandoned, any corresponding alpha pre-releases
+  (`vX.X.X.X-alpha.N`) remain as historical records — tags and GitHub pre-releases
+  are not deleted. The associated WIP files transition to `deprecated` status and
+  are moved to `archive/WIP/` (see WIP-FILE-NAMING §3.3.2).
 
 ---
 
 **End of document — Version System**
 
-**Document Status:** Production-Ready  
-**Effective Date:** 10 January 2026  
-**Last Updated:** 25 February 2026
+**Document Status:** Production-Ready
+**Effective Date:** 10 January 2026
+**Last Updated:** 01 March 2026
 {% endraw %}

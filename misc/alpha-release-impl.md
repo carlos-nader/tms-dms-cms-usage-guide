@@ -193,6 +193,9 @@ is merged to `main`. No change to issue #44 required before that.
         ├──► [Step 2] generate-wip-snapshot.py     ◄── CRITICAL (CI blocker)
         │         (no dependencies)
         │
+        ├──► [Step 2B] update-alpha-badge workflow  ◄── CRITICAL (badge visibility)
+        │         (no dependencies — independent of Step 2)
+        │
         ├──► [Step 3] wip-naming.md                ◄── HIGH (source of truth)
         │         (no dependencies — sets canonical wording)
         │         │
@@ -289,6 +292,31 @@ Status: dev, review, final, alpha, approved, deprecated
 
 Note: `alpha` goes between `final` and `approved` to reflect the parallel flow position.
 
+**D. Add ALPHA SNAPSHOT pattern to GUIDE block** (lines 67–82 — `WIP/GUIDE` and `ARCHIVE/GUIDE`):
+
+Alpha snapshots archived to `archive/GUIDE/` keep their original name (e.g.,
+`guide-v0.4.2.0-alpha.1-20260227.tex`). The existing GUIDE regex
+`^guide-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+-[0-9]{8}\.(tex|pdf)$` does NOT match
+the `-alpha.N[.M]-` segment. Add an elif before the else:
+
+```bash
+# Alpha snapshot pattern: guide-vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]-YYYYMMDD.tex or .pdf
+elif [[ "$FILENAME" =~ ^guide-v[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+-alpha\.[0-9]+(\.[0-9]+)?-[0-9]{8}\.(tex|pdf)$ ]]; then
+  echo "  ✅ Valid GUIDE alpha snapshot"
+  VALID=1
+```
+
+Also update the error message in the else branch to mention both valid formats:
+```
+Expected: guide-vMAJOR.MINOR.PATCH.SUBPATCH-YYYYMMDD.(tex|pdf)
+           or guide-vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]-YYYYMMDD.(tex|pdf)
+Example: guide-v0.2.3.1-20260125.tex or guide-v0.4.2.0-alpha.1-20260227.tex
+```
+
+Note: Change D was not in the original spec — identified during implementation as a
+gap (alpha snapshots would fail validation when archived to `archive/GUIDE/`).
+Same `(\.[0-9]+)?` optional group as Change B handles both `alpha.1` and `alpha.1.1`.
+
 ### 3.2 Test Strategy
 
 The workflow does NOT trigger on `feat/alpha-release` (no path filter, but branch not listed).
@@ -326,7 +354,7 @@ STATUS_EMOJI = {
     'dev': '🟠',
     'review': '🟡',
     'final': '⚪',
-    'alpha': '🔵'
+    'alpha': '🟢'
 }
 ```
 
@@ -357,11 +385,8 @@ def get_wip_files():
     files = []
     for fname in os.listdir(WIP_DIR):
         fpath = os.path.join(WIP_DIR, fname)
-        if os.path.isfile(fpath) and fname.endswith('.tex'):
-            # Exclude alpha snapshots (guide-v*-alpha.N[.M]-YYYYMMDD.tex) — they are
-            # snapshots, not WIP content files
-            if not re.match(r'^guide-v\d+\.\d+\.\d+\.\d+-alpha\.\d+(\.\d+)?-\d{8}\.tex$', fname):
-                files.append(fname)
+        if os.path.isfile(fpath) and fname.endswith('.tex') and not fname.startswith('guide'):
+            files.append(fname)
     return files
 ```
 
@@ -380,6 +405,189 @@ The `update_readme()` function generates the legend line:
 
 - README.md WIP Snapshot section: legend auto-updates when script runs.
 - No other scripts depend on `get_wip_files()` output.
+
+---
+
+## 4B. Step 2B — Alpha Badge Workflow (new)
+
+**Priority:** 🔴 Critical
+**Why:** Quando um alpha snapshot existe em `wip/guide/`, isso deve ser refletido automaticamente em README.md e docs/index.html. Não pode ser manual — o badge deve aparecer/desaparecer com base na presença do arquivo.
+
+**Novos arquivos:**
+
+- `.github/workflows/update-alpha-badge.yml`
+- `scripts/update-alpha-badge.py`
+
+**Arquivos modificados:**
+
+- `README.md` (placeholders + rename do heading da seção)
+- `docs/index.html` (placeholder)
+
+---
+
+### 4B.1 Workflow — `.github/workflows/update-alpha-badge.yml`
+
+**Triggers:**
+
+- `push: branches: main, paths: wip/guide*alpha*.tex` — automático só quando snapshot alpha é adicionado/removido
+- `workflow_dispatch` — manual (fallback)
+
+**Steps:**
+
+1. Checkout (SSH key)
+2. Set up Python 3.11
+3. Run `scripts/update-alpha-badge.py`
+4. Configure Git
+5. Commit + push README.md + docs/index.html (se houve mudança)
+
+> Não toca em `generate-wip-snapshot.yml` nem em `update-readme-on-tag.yml`.
+
+---
+
+### 4B.2 Script — `scripts/update-alpha-badge.py`
+
+**Lógica:**
+
+1. Escaneia `wip/` (raiz) por arquivos com padrão `guide*alpha*.tex`
+2. **Se encontrado:** extrai versão alpha do nome do arquivo
+   - Padrão: `guide-v{VERSION}-{DATE}.tex` → extrai `{VERSION}` (ex: `v0.4.2.0-alpha.1`)
+   - Escaneia também `wip/` por `guide*.pdf` → obtém nome do PDF para o link
+   - Gera links dinamicamente:
+     - README: `https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases` (página genérica — evita link quebrado por erro de nomenclatura da tag)
+     - index.html: `https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/wip/{pdf_filename}` (blob direto do PDF em `wip/`)
+   - Insere/atualiza conteúdo entre os blocos delimitadores em README.md e docs/index.html
+3. **Se não encontrado:** esvazia os blocos delimitadores (badge desaparece)
+
+**Extração do nome do arquivo:**
+
+```python
+# Exemplo: guide-v0.4.2.0-alpha.1-20260301.tex → extrai: v0.4.2.0-alpha.1
+# Exemplo: guide-v0.4.2.0-alpha.1.1-20260301.tex → extrai: v0.4.2.0-alpha.1.1
+pattern = r'^guide-(v[\d.]+-alpha\.[\d.]+)-\d{8}\.tex$'
+```
+
+> ⚠️ **Convenção obrigatória:** A tag de release no GitHub deve ser criada com o nome **exato** extraído do filename (ex: tag `v0.4.2.0-alpha.1` para arquivo `guide-v0.4.2.0-alpha.1-*.tex`). Link 404 caso contrário.
+
+---
+
+### 4B.3 README.md — Mudanças
+
+**Campo 1 — Badge alpha (linha ~29)**
+
+Adicionar placeholder `<!-- ALPHA-BADGE-START/END -->` imediatamente abaixo do badge oficial:
+
+```markdown
+[![Version](https://img.shields.io/badge/LATEST%20version-v0.4.1.1-yellow?style=for-the-badge&logo=tag&logoColor=black)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases)
+<!-- ALPHA-BADGE-START -->
+<!-- ALPHA-BADGE-END -->
+```
+
+Quando alpha ativo, script preenche:
+
+```markdown
+<!-- ALPHA-BADGE-START -->
+[![Alpha](https://img.shields.io/badge/alpha-v0.4.2.0--alpha.1-orange?style=for-the-badge&logo=flask&logoColor=white)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases)
+<!-- ALPHA-BADGE-END -->
+```
+
+**Campo 2 — Footer (linha ~289)**
+
+Adicionar placeholder `<!-- ALPHA-FOOTER-START/END -->` abaixo da linha do footer:
+
+```markdown
+**License:** CC BY-NC 4.0 | **Guide Status:** Pre-publication v0.4.1.1
+<!-- ALPHA-FOOTER-START -->
+<!-- ALPHA-FOOTER-END -->
+```
+
+Quando alpha ativo, script preenche:
+
+```markdown
+<!-- ALPHA-FOOTER-START -->
+Alpha pre-release available: v0.4.2.0-alpha.1
+<!-- ALPHA-FOOTER-END -->
+```
+
+> Sem link, sem emoji — manter padrão visual da linha existente.
+
+**Campo 3 — Rename do heading da seção (linha ~47)**
+
+Mudança pontual feita no mesmo commit dos placeholders. O script `update-readme-version.py`
+procura o padrão `| **Guide Version** | v... |` **na célula da tabela**, não no heading da
+seção — portanto o heading pode ser renomeado livremente sem quebrar o script.
+
+```markdown
+# Atual:
+## 📊 Current Status
+
+# Substituir por:
+## 📊 Current Version — Official Guide
+```
+
+> Alpha não aparece nessa seção. O rename torna explícito que o conteúdo é sempre da versão oficial.
+> A célula `| **Guide Version** | v0.4.1.1 |` permanece intacta — o script continua funcionando.
+
+---
+
+### 4B.4 docs/index.html — Mudanças
+
+**Campo 4 — Badge alpha (linha ~305)**
+
+Adicionar placeholder `<!-- ALPHA-BADGE-START/END -->` imediatamente após o `</span>` do badge oficial (dentro do mesmo `<div>`):
+
+```html
+<!-- badge oficial (não tocado) -->
+<span style="background: linear-gradient(135deg, #007bff, #0056b3); ...">
+  v0.4.1.1 • 660KB • 50+ pages
+</span>
+<!-- ALPHA-BADGE-START -->
+<!-- ALPHA-BADGE-END -->
+```
+
+Quando alpha ativo, script preenche:
+
+```html
+<!-- ALPHA-BADGE-START -->
+<a href="https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/wip/{pdf_filename}"
+   target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+  <span style="background: linear-gradient(135deg, #ff8c00, #e65c00);
+               color: white; padding: 0.4em 0.8em; border-radius: 20px;
+               font-weight: bold; font-size: 0.85rem;
+               box-shadow: 0 2px 4px rgba(255,140,0,0.3);
+               display: inline-block; margin-top: 0.4em;">
+    Alpha v0.4.2.0-alpha.1 — Pre-release PDF
+  </span>
+</a>
+<!-- ALPHA-BADGE-END -->
+```
+
+> Campo 5 (atributo `title` do badge oficial) — **não tocado**. Tooltip exclusivo da versão oficial.
+
+---
+
+### 4B.5 scripts/update-readme-version.py — Nenhuma alteração necessária
+
+O script procura `| **Guide Version** | v... |` na **célula** da tabela, não no heading da
+seção. Como Campo 3 apenas renomeia o heading (§4B.3), a célula permanece intacta e o
+script continua funcionando sem modificação.
+
+---
+
+### 4B.6 Secondary Impacts
+
+- `generate-wip-snapshot.yml` — não tocado
+- `update-readme-on-tag.yml` — não tocado
+- Campos de versão oficial em README/index.html — não tocados pelo script alpha
+- `docs/contributing.html` — sem referências de versão, não tocado
+- `docs/WIP-Snapshot-Generator-v3.1.html` — coberto pelo Step 8
+
+> **⚠️ Design correction (2026-02-27):** The initial spec described alpha WIP status as
+> "awaiting official integration into guide.tex", implying individual re-integration of
+> each WIP chapter. This was incorrect. The alpha snapshot (`wip/guide-v*-alpha.*-*.tex`)
+> accumulates chapters progressively and becomes `guide.tex` directly when promoted.
+> Individual WIP files are **not** re-integrated; they are archived in batch (renamed to
+> `approved`) at the moment the alpha snapshot is promoted to an official release.
+> This correction is reflected in `docs/wip-naming.md` (updated 2026-02-27).
 
 ---
 
@@ -563,6 +771,11 @@ Add a note at the end of the archival section:
 integration into `guide.tex` is complete. At that point they transition to `approved`
 and are moved to `archive/WIP/`, following the standard archival rule.
 ```
+
+**Post-implementation amendment (2026-03-01):** The `archive/GUIDE/ contains:` bullet
+was also extended to list alpha snapshots explicitly, following the same pattern used
+for regular guide snapshots. This mirrors how VERSION-SYSTEM §6.3 treats them and
+keeps §4.4 self-contained. Applied directly to the file; no structural change to §4.4.
 
 ### 5.10 Section §5.3 — Workflow
 
@@ -1344,8 +1557,15 @@ After implementing each step, verify:
 ### Critical (Steps 1–2)
 - [ ] `validate-wip-naming.yml`: Push a test file `chapter-C5-test-alpha-2026-02-26.tex` to branch — workflow passes
 - [ ] `validate-wip-naming.yml`: Push a test file `guide-v0.4.2.0-alpha.1-20260226.tex` to `wip/` — workflow passes
-- [ ] `generate-wip-snapshot.py`: Run locally with a test `alpha` WIP file in `wip/` — emoji 🔵 appears in README table
+- [ ] `generate-wip-snapshot.py`: Run locally with a test `alpha` WIP file in `wip/` — emoji 🟢 appears in README table
 - [ ] `generate-wip-snapshot.py`: Run locally with alpha snapshot in `wip/` — snapshot does NOT appear in WIP table
+
+### Alpha Badge (Step 2B)
+
+- [ ] `update-alpha-badge.py`: Run with alpha snapshot in `wip/guide/` — alpha badge appears in README.md and docs/index.html
+- [ ] `update-alpha-badge.py`: Run without alpha snapshot — delimiter blocks are empty (badge absent)
+- [ ] `README.md`: section heading renamed to `## 📊 Current Version — Official Guide`
+- [ ] `README.md`: cell `| **Guide Version** | v... |` unchanged (script still matches)
 
 ### Governance (Steps 3–6)
 - [ ] `wip-naming.md`: Standard flow (§0.5 Step 3) matches Consistency Glossary §0.3 verbatim
@@ -1410,7 +1630,7 @@ Before creating the PR:
 PR title: `feat: alpha release infrastructure (parallel pre-release flow)`
 
 PR description must mention:
-- 17 files modified, 1 created
+- 19 files modified, 3 created
 - Branch was isolated from all automated workflows during development
 - No changes to `wip/guide/` workflow, `guide.tex`, or any existing official release behavior
 
@@ -1434,15 +1654,27 @@ ALPHA RELEASE INFRASTRUCTURE — COMPLETE IMPACT MAP
 
   Step 1: validate-wip-naming.yml
     ├── +alpha to 4 regex patterns (lines 89, 95, 101, 113)
-    ├── +ALPHA_SNAPSHOT elif pattern (before line 118)
+    ├── +ALPHA_SNAPSHOT elif pattern in WIP/ARCHIVE/WIP block (before "Unknown WIP file" else)
+    ├── +alpha snapshot elif pattern in GUIDE/ARCHIVE/GUIDE block (gap found during impl)
     └── +alpha to PR comment body (line 168)
 
   Step 2: generate-wip-snapshot.py
-    ├── +STATUS_EMOJI['alpha'] = '🔵'
+    ├── +STATUS_EMOJI['alpha'] = '🟢'
     ├── +alpha in parse_status() regex
-    ├── +exclude guide-v*-alpha.*.tex from get_wip_files()
-    └── +🔵 alpha in legend string
+    ├── +exclude any guide-*.tex from get_wip_files() (fname.startswith('guide'))
+    └── +🟢 alpha in legend string
          └── [SECONDARY] README.md WIP legend auto-updates on next run
+
+  Step 2B: update-alpha-badge workflow (NEW)
+    ├── NEW: .github/workflows/update-alpha-badge.yml (push main + workflow_dispatch)
+    ├── NEW: scripts/update-alpha-badge.py
+    │         ├── scans wip/guide/ for guide-v*-alpha*.tex
+    │         ├── if found: fills ALPHA-BADGE + ALPHA-FOOTER delimiter blocks
+    │         └── if not found: clears delimiter blocks
+    ├── README.md: +<!-- ALPHA-BADGE-START/END --> below official badge (line ~29)
+    ├── README.md: +<!-- ALPHA-FOOTER-START/END --> below footer line (line ~289)
+    ├── README.md: rename section heading → `## 📊 Current Version — Official Guide` (line ~47)
+    └── docs/index.html: +<!-- ALPHA-BADGE-START/END --> below version badge (line ~305)
 
 [GOVERNANCE — source of truth] ───────────────────────────────────────────────────
 
@@ -1563,7 +1795,7 @@ ALPHA RELEASE INFRASTRUCTURE — COMPLETE IMPACT MAP
     version-system.md §6.5.1 = §6.5.2 = §6.5.4
 
 ====================================================
-TOTAL: 15 files to modify + 1 to create
+TOTAL: 17 files to modify + 3 to create
 ====================================================
 ```
 
