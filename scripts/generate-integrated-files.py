@@ -62,10 +62,14 @@ def get_repo_info():
     
     repo_url = run_git_command("git config --get remote.origin.url").replace(".git", "")
     debug_log(f"Repo URL: {repo_url}")
-    
-    created_log = run_git_command("git log --follow --format=%ai -- .")
-    if created_log:
-        created_date = created_log.splitlines()[-1].split()[0]
+
+    # Repository creation date (root commit). This avoids expensive `git log` output capture
+    # and is cross-platform (no reliance on `tail`).
+    root_commits = run_git_command("git rev-list --max-parents=0 HEAD")
+    if root_commits:
+        root_commit = root_commits.splitlines()[-1].strip()
+        created_line = run_git_command(f"git show -s --format=%ai {root_commit}")
+        created_date = created_line.split()[0] if created_line else "Unknown"
     else:
         created_date = "Unknown"
     last_push = datetime.now().strftime("%Y-%m-%d %H:%M:%S") + f" {TIMEZONE}"
