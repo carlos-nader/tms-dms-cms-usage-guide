@@ -442,7 +442,7 @@
             </div>
 
             <div class="field" id="sectionWrapper">
-              <label for="section">Seção (S{M}) <span class="hint">ex: 2 (opcional para chapter/notes)</span></label>
+              <label for="section">Seção (S{M}) <span class="hint">ex: 2 — obrigatório para section</span></label>
               <input type="number" id="section" min="1" max="99" />
             </div>
           </div>
@@ -511,9 +511,11 @@
                 <option value="dev">dev (wip/)</option>
                 <option value="review">review (wip/)</option>
                 <option value="final">final (wip/)</option>
+                <option value="alpha">alpha (wip/)</option>
                 <option value="approved">approved (archive/WIP/)</option>
                 <option value="deprecated">deprecated (archive/WIP/)</option>
               </select>
+              <div id="alphaHint" class="small-muted" style="display:none; margin-top:3px;">Parallel pre-release flow. Use only when pre-release infrastructure is active.</div>
             </div>
             <div class="field" id="dateWrapper">
               <label for="date">Data (ISO 8601) <span class="hint">YYYY-MM-DD</span></label>
@@ -571,7 +573,7 @@
             <li>Somente caracteres: a–z, 0–9 e hífens; tudo minúsculo.[file:1]</li>
             <li>Datas sempre no formato ISO 8601: YYYY-MM-DD.[file:1]</li>
             <li>Padrões de nome: chapter-/section-/table-/notes-/visual- conforme WIP-NAMING.[file:1]</li>
-            <li>Status dev/review/final em <code>wip/</code>; approved/deprecated em <code>archive/WIP/</code>.[file:1]</li>
+            <li>Status dev/review/final/alpha em <code>wip/</code> (alpha = parallel pre-release flow); approved/deprecated em <code>archive/WIP/</code>.[file:1]</li>
             <li>Comprimento recomendado ≤ ~100 caracteres por legibilidade.[file:1]</li>
           </ul>
         </details>
@@ -597,13 +599,9 @@
     }
 
     function formatDateISO(dateStr) {
-      if (!dateStr) return "";
-      const d = new Date(dateStr);
-      if (Number.isNaN(d.getTime())) return "";
-      const year = d.getFullYear();
-      const month = String(d.getMonth() + 1).padStart(2, "0");
-      const day = String(d.getDate()).padStart(2, "0");
-      return `${year}-${month}-${day}`;
+      // input type="date" always returns YYYY-MM-DD — return as-is to avoid UTC timezone shift
+      if (!dateStr || !/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return "";
+      return dateStr;
     }
 
     function clampTitleSlug(slug) {
@@ -669,6 +667,7 @@
       const visualTypeWrapper = document.getElementById("visualTypeWrapper");
       const notesTypeWrapper = document.getElementById("notesTypeWrapper");
       const visualExtWrapper = document.getElementById("visualExtWrapper");
+      const statusWrapper = document.getElementById("statusWrapper");
 
       // Defaults
       sectionWrapper.style.display = "block";
@@ -678,6 +677,7 @@
       visualTypeWrapper.style.display = "block";
       notesTypeWrapper.style.display = "block";
       visualExtWrapper.style.display = "block";
+      statusWrapper.style.display = "block";
 
       if (type === "chapter") {
         sectionWrapper.style.display = "none";
@@ -707,6 +707,7 @@
         tableSwitchWrapper.style.display = "none";
         visualTypeWrapper.style.display = "none";
         visualExtWrapper.style.display = "none";
+        statusWrapper.style.display = "none";
       } else if (type === "visual") {
         sectionWrapper.style.display = "none";
         subSectionRow.style.display = "none";
@@ -725,6 +726,7 @@
       } else {
         span.textContent = "wip/";
       }
+      document.getElementById("alphaHint").style.display = status === "alpha" ? "block" : "none";
     }
 
     // Padrão textual
