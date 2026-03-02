@@ -4,12 +4,12 @@
   "description": "Comprehensive guide for F-16 HOTAS switches (TMS, DMS, CMS) in flight simulators",
   "icons": [
     {
-      "src": "/docs/android-chrome-192x192.png",
+      "src": "/tms-dms-cms-usage-guide/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/docs/android-chrome-512x512.png",
+      "src": "/tms-dms-cms-usage-guide/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
@@ -17,6 +17,6 @@
   "theme_color": "#007bff",
   "background_color": "#0d1117",
   "display": "standalone",
-  "start_url": "/docs/",
-  "scope": "/docs/"
+  "start_url": "/tms-dms-cms-usage-guide/",
+  "scope": "/tms-dms-cms-usage-guide/"
 }
