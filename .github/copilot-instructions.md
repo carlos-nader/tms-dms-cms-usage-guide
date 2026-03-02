@@ -53,7 +53,8 @@ All WIP files **MUST** be created from `template/template-wip.tex` (canonical te
 **Naming Pattern:** `{type}-C{N}[-S{M}]-{title}-{status}-{date}.tex`
 
 - **Example:** `section-C4-S2-dms-up-final-2026-01-14.tex`
-- **Status codes:** `dev` (draft) → `review` (under review) → `final` (approved) → `approved` (integrated & archived) → `deprecated` (retired)
+- **Status codes (standard flow):** `dev` (draft) → `review` (under review) → `final` (ready to integrate) → `approved` (integrated & archived) → `deprecated` (retired)
+- **Alpha status (parallel, optional):** `alpha` — approved by the author; integrated into the alpha pre-release snapshot; WIP file remains in `wip/` until official integration into `guide.tex`. Active only when pre-release infrastructure is in progress.
 
 **Workflow:**
 1. Copy `template/template-wip.tex` to `wip/`
@@ -61,6 +62,7 @@ All WIP files **MUST** be created from `template/template-wip.tex` (canonical te
 3. Edit content (development status: `dev`)
 4. Human review (status: `review`)
 5. Finalize (status: `final`)
+5A. **Alpha** *(parallel, optional)* — Human renames to `alpha` status after creating the alpha pre-release snapshot. Only used when pre-release infrastructure is active.
 6. **Human integrates** into `guide.tex` (AI assists but does NOT perform integration)
 7. Move to `archive/WIP/` with status `approved`
 
