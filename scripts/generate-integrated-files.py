@@ -21,7 +21,7 @@ REPO_ROOT = Path.cwd()
 TIMEZONE = "UTC-3"
 OUTPUT_MD = "INTEGRATED-FILES.md"
 OUTPUT_JSON = "INTEGRATED-FILES.json"
-DEBUG = True  # Enable debug logging
+DEBUG = os.environ.get("INTEGRATED_FILES_DEBUG", "0") == "1"
 
 def debug_log(msg):
     """Print debug message to stdout"""
@@ -59,7 +59,11 @@ def get_repo_info():
     repo_url = run_git_command("git config --get remote.origin.url").replace(".git", "")
     debug_log(f"Repo URL: {repo_url}")
     
-    created_date = run_git_command("git log --follow --format=%ai -- . | tail -1").split()[0] if run_git_command("git log --follow --format=%ai -- . | tail -1") else "Unknown"
+    created_log = run_git_command("git log --follow --format=%ai -- .")
+    if created_log:
+        created_date = created_log.splitlines()[-1].split()[0]
+    else:
+        created_date = "Unknown"
     last_push = datetime.now().strftime("%Y-%m-%d %H:%M:%S") + f" {TIMEZONE}"
     total_commits = run_git_command("git rev-list --count HEAD")
     debug_log(f"Total commits: {total_commits}")
@@ -288,6 +292,7 @@ def get_github_issues():
         req = urllib.request.Request(open_url, headers=headers)
         with urllib.request.urlopen(req, timeout=10) as response:
             open_issues = json.loads(response.read().decode())
+        open_issues = [issue for issue in open_issues if "pull_request" not in issue]
         debug_log(f"Found {len(open_issues)} open issues")
         
         # Recently closed issues (last 30 days)
@@ -296,6 +301,7 @@ def get_github_issues():
         req = urllib.request.Request(closed_url, headers=headers)
         with urllib.request.urlopen(req, timeout=10) as response:
             closed_issues = json.loads(response.read().decode())
+        closed_issues = [issue for issue in closed_issues if "pull_request" not in issue]
         debug_log(f"Found {len(closed_issues)} recently closed issues")
         
         return {"open": open_issues, "closed": closed_issues}

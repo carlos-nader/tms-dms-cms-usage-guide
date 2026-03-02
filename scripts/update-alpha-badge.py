@@ -27,24 +27,59 @@ GITHUB_REPO = "https://github.com/carlos-nader/tms-dms-cms-usage-guide"
 
 # Matches: guide-v0.4.2.0-alpha.1-20260301.tex
 #          guide-v0.4.2.0-alpha.1.1-20260301.tex
-TEX_PATTERN = re.compile(r'^guide-(v[\d.]+-alpha\.[\d.]+)-\d{8}\.tex$')
+TEX_PATTERN = re.compile(r'^guide-(v[\d.]+-alpha\.[\d.]+)-(\d{8})\.tex$')
+PDF_PATTERN = re.compile(r'^guide-(v[\d.]+-alpha\.[\d.]+)-(\d{8})\.pdf$')
+
+
+def alpha_sort_key(version, yyyymmdd):
+    """Sort key for alpha versions (core version, alpha counters, date)."""
+    core_part, alpha_part = version[1:].split("-alpha.")
+    core_nums = tuple(int(n) for n in core_part.split("."))
+    alpha_nums = tuple(int(n) for n in alpha_part.split("."))
+    date_num = int(yyyymmdd)
+    return core_nums, alpha_nums, date_num
 
 
 def find_alpha_snapshot():
-    """Scan wip/ root for alpha snapshot .tex. Returns (version, filename) or (None, None)."""
+    """Return latest alpha snapshot in wip/ root as (version, filename) or (None, None)."""
+    candidates = []
     for f in WIP_DIR.iterdir():
-        if f.is_file():
-            m = TEX_PATTERN.match(f.name)
-            if m:
-                return m.group(1), f.name
+        if not f.is_file():
+            continue
+        m = TEX_PATTERN.match(f.name)
+        if m:
+            version = m.group(1)
+            yyyymmdd = m.group(2)
+            candidates.append((alpha_sort_key(version, yyyymmdd), version, f.name))
+
+    if candidates:
+        candidates.sort()
+        _, version, fname = candidates[-1]
+        return version, fname
     return None, None
 
 
-def find_alpha_pdf():
-    """Scan wip/ root for alpha snapshot .pdf. Returns filename or None."""
+def find_alpha_pdf(target_tex_filename=None):
+    """Return matching latest alpha PDF in wip/ root, preferring exact stem match to target tex."""
+    if target_tex_filename:
+        expected_pdf = Path(target_tex_filename).with_suffix('.pdf').name
+        expected_path = WIP_DIR / expected_pdf
+        if expected_path.exists() and expected_path.is_file():
+            return expected_pdf
+
+    candidates = []
     for f in WIP_DIR.iterdir():
-        if f.is_file() and f.suffix == '.pdf' and 'alpha' in f.name and f.name.startswith('guide'):
-            return f.name
+        if not f.is_file():
+            continue
+        m = PDF_PATTERN.match(f.name)
+        if m:
+            version = m.group(1)
+            yyyymmdd = m.group(2)
+            candidates.append((alpha_sort_key(version, yyyymmdd), f.name))
+
+    if candidates:
+        candidates.sort()
+        return candidates[-1][1]
     return None
 
 
@@ -135,7 +170,7 @@ def main():
     version, tex_filename = find_alpha_snapshot()
 
     if version:
-        pdf_filename = find_alpha_pdf()
+        pdf_filename = find_alpha_pdf(tex_filename)
         print(f"✓ Alpha snapshot: {tex_filename}")
         print(f"  Version: {version}")
         if pdf_filename:
