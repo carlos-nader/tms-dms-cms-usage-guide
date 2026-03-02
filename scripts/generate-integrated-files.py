@@ -50,6 +50,10 @@ def run_git_command(cmd):
         debug_log(f"Error running git command: {e}")
         return ""
 
+def normalize_repo_path(path):
+    """Normalize paths to Git-friendly repo-relative POSIX format."""
+    return str(path).replace("\\", "/").lstrip("./")
+
 def get_repo_info():
     """Get repository metadata"""
     debug_log("=== REPO INFO ===")
@@ -93,18 +97,25 @@ def get_repo_info():
 def get_file_status(file_path):
     """Determine file status via git"""
     try:
-        in_index = run_git_command(f"git ls-files '{file_path}'")
-        if not in_index:
+        repo_path = normalize_repo_path(file_path)
+
+        in_index = subprocess.run(
+            ["git", "ls-files", "--error-unmatch", "--", repo_path],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+        )
+        if in_index.returncode != 0:
             return "untracked"
-        
-        diff = run_git_command(f"git diff --name-only '{file_path}'")
+
+        diff = run_git_command(f'git diff --name-only -- "{repo_path}"')
         if diff:
             return "modified"
-        
-        staged = run_git_command(f"git diff --cached --name-only '{file_path}'")
+
+        staged = run_git_command(f'git diff --cached --name-only -- "{repo_path}"')
         if staged:
             return "staged"
-        
+
         return "tracked"
     except:
         return "unknown"
@@ -142,15 +153,15 @@ def get_tracked_files():
                                     continue
                                 if include_pat and not re.match(include_pat, fname):
                                     continue
-                                file_rel = file.relative_to(REPO_ROOT)
+                                file_rel = file.relative_to(REPO_ROOT).as_posix()
                                 stat = file.stat()
                                 mod_time = datetime.fromtimestamp(stat.st_mtime).strftime("%Y-%m-%d %H:%M:%S")
                                 size = stat.st_size
-                                status = get_file_status(str(file_rel))
+                                status = get_file_status(file_rel)
                                 debug_log(f"  - {file_rel} ({size} bytes, {status})")
                                 
                                 files_list.append({
-                                    "path": str(file_rel),
+                                    "path": file_rel,
                                     "status": status,
                                     "last_modified": mod_time,
                                     "size": f"{size} bytes"
