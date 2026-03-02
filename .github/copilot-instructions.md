@@ -25,6 +25,17 @@ All governance and style documents are mandatory reading before making any chang
 - Always consult both before generating textual or structural content.
 - Never modify governance documents without explicit approval.
 
+## Claude “Memory” Pointers (Workspace)
+
+- Always consult `misc/Pessoal/claude-memorias.md` at the start of a session when the user mentions Claude, prompts, or prior decisions.
+- Treat `%USERPROFILE%\.claude\` / `C:\Users\carlo\.claude` as local configuration that may include credentials; do not request, read, copy, or commit secrets.
+- Exception (user-approved, non-sensitive): it is OK to read Markdown files under `C:\Users\carlo\.claude\projects\c--Users-carlo-OneDrive-Documentos-projeto-bms\memory` for operational context.
+- If information from Claude web “Projects” is needed, ask the user to paste the relevant excerpt into a tracked note inside the workspace.
+
+## Critical Safety Rule (Repository Operations)
+
+- Never perform `git commit`, `git push`, tagging, or releases without explicit user approval.
+
 
 ## Project Structure & Workflows
 
