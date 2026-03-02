@@ -7,6 +7,12 @@ This is a **LaTeX-based technical documentation project** developing a comprehen
 
 **Current Status:** Pre-publication phase (v0.4.1.1), 4/7 chapters completed, targeting v1.0 publication
 
+## Recent Operational State (2026-03-02)
+
+- Alpha pre-release infrastructure (Issue #49) was integrated into `main` via PR #50.
+- The working branch `feat/alpha-release` was merged and then deleted.
+- Issue #49 was closed by the author.
+
 **Primary Languages:** LaTeX (content), Python (automation), PowerShell (validation)
 
 
