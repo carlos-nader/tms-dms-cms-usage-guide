@@ -328,7 +328,7 @@
 \newcommand{\docversion}{0.4.2.0}
 \newcommand{\docbuild}{19 February 2026}
 \newcommand{\docstartdate}{05 January 2026}
-\newcommand{\docenddate}{19 February 2026}
+\newcommand{\docenddate}{03 March 2026}
 \newcommand{\chapterscompletedof}{0/7}
 \newcommand{\tablesfilledpct}{0}
 \newcommand{\fulldocversion}{\docversion+\docbuild}
@@ -382,14 +382,14 @@
 %============================================================================
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 %============================================================================
-% File Name: chapter-C5-style-rev-review-2026-02-26.tex
+% File Name: chapter-C5-style-rev-review-2026-03-03.tex
 % WIP Naming Convention
 % Target Chapter: C5 (CMS — Countermeasures Management Switch)
 % Target Section: ALL (author review pass — full chapter)
 %
 % WIP Status: review
 % Created: 2026-02-19
-% Last Modified: 2026-02-26
+% Last Modified: 2026-03-03
 %
 % Narrative Completion: 100% (§5.1–§5.3 completos)
 % Table Fill Status: hotastable cells revised (style pass — violations corrected)
@@ -595,7 +595,7 @@ The ECM system operates in two configurations: \textit{external} pods (ALQ-131, 
 
 With the ECM pod power switch in OPR, \textbf{CMS Down} grants consent for ECM pod transmission and the ECM Enable light on the left miscellaneous panel illuminates.
 
-The XMIT switch on the ECM control panel sets the ECM operation mode: XMIT 1 (Avionics Priority, AFT antenna only), XMIT 2 (ECM Priority, both FWD and AFT antennas), or XMIT 3 (Active Jam, continuous transmission)
+The XMIT switch on the ECM control panel sets the ECM operation mode: XMIT 1 (Avionics Priority, AFT antenna only), XMIT 2 (ECM Priority, both FWD and AFT antennas), or XMIT 3 (Active Jam, continuous transmission).
 
 When the RF switch is moved out of NORM, all ECM systems are placed in Standby.
 
@@ -655,17 +655,17 @@ In AUTO and SEMI modes, the CMDS retains consent state when the pilot switches t
 
 \paragraph{Bingo Quantity Behavior:}
 
-If expendables fall to or below the bingo quantity, the CMDS continues dispensing. A \texttt{LOW} audio message is issued when an expendable reaches the bingo quantity; an \texttt{OUT} audio message is issued when an expendable is depleted. Dispensing does not stop automatically. The pilot must press \textbf{CMS Right} to inhibit AUTO dispensing, or switch to MAN mode to take direct control.
+If expendables fall to or below the bingo quantity, the CMDS continues dispensing. A \texttt{LOW} audio message is issued when an expendable reaches the bingo quantity and an \texttt{OUT} audio message is issued when an expendable is depleted. Dispensing does not stop automatically. The pilot must press \textbf{CMS Right} to inhibit AUTO dispensing, or switch to MAN mode to take direct control.
 
 \paragraph{RF Switch Override:}
 
-When ECM consent is active, the ECM system is placed in Standby when the RF switch is moved from NORM to QUIET or SILENT. Returning the RF switch to NORM does \textit{not} restore consent. The pilot must press \textbf{CMS Down} again to resume ECM transmission.
+When ECM consent is active, the ECM system is placed in Standby if the RF switch is moved from NORM to QUIET or SILENT. Returning the RF switch to NORM does \textit{not} restore consent. The pilot must press \textbf{CMS Down} again to resume ECM transmission.
 
 \paragraph{IDIAS vs. External ECM Pod:}
 
 The joint consent described in \secref{sec:C5-S2-S3} and in \tabref{tab:C5-S2-S3-CMDS-ECM} applies to external ECM pod configurations \textit{only}. On IDIAS-equipped aircraft, \textbf{CMS Left} cycles ECM modes and \textbf{CMS Down} has no ECM function.
 
-\\paragraph{Ground Safety:}
+\paragraph{Ground Safety:}
 
 On the ground, ECM consent state is Standby. If the pilot holds \textbf{CMS Down} on the ground, radiation is emitted until \textbf{CMS Down} is released. If ECM must be enabled on the ground, ground personnel must be clear of the radiation area beforehand.
 
@@ -688,7 +688,7 @@ CMS interaction with CMDS is \textit{uniform} across all F-16 blocks and variant
 \rowcolor{headerblue}
 \textcolor{white}{\textbf{ECM Configuration}} & \textcolor{white}{\textbf{CMS Direction}} & \textcolor{white}{\textbf{Panel Control}} \\
 \hline
-External Pod (ALQ-131/ALQ-184) & CMS Down (consent) & XMIT knob (positions: 1, 2, 3) \\
+External Pod (ALQ-131/ALQ-184) & CMS Down (consent) & XMIT switch (positions: 1, 2, 3) \\
 \hline
 Internal IDIAS & CMS Left (mode cycling) & XMTR switch (positions: STBY, OPER) \\
 \hline
@@ -701,7 +701,7 @@ Internal IDIAS & CMS Left (mode cycling) & XMTR switch (positions: STBY, OPER) \
 \subsection{ECM Configurations in BMS}
 \label{sec:C5-S3-S1}
 
-Falcon BMS 4.38.1 implements two distinct ECM system architectures, each with different CMS actuation methods. Detailed actuation procedures are provided in \secref{sec:C5-S2}.
+Falcon BMS 4.38.1 implements two ECM configurations. Each configuration uses different CMS actuation procedures, described in \secref{sec:C5-S2}.
 
 The variants listed in the following tables reflect Dash-34 documentation; not all may be available as selectable aircraft in Falcon BMS 4.38.1.
 
