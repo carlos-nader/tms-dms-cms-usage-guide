@@ -112,7 +112,7 @@ tms-dms-cms-usage-guide/
 ├── docs/                             # Governance & tracking
 │   ├── guide-web.pdf                 # guide.pdf copy for online visualization
 │   ├── briefing.md
-│   ├── wip-file-naming.md
+│   ├── wip-naming.md
 │   ├── version-system.md
 │   ├── project-tracking.md
 │   ├── WIP-Snapshot-Generator-v3.1.html       
@@ -129,7 +129,7 @@ tms-dms-cms-usage-guide/
 │   └── GUIDE-STRUCTURE/              # Older structure-only files
 │
 ├── template/                         # Templates & blueprints
-│   └── template-wip.tex         # Canonical WIP template
+│   └── template-wip.tex              # Canonical WIP template
 │
 ├── fig/                              # Images used in the guide
 ├── misc/                             # Miscellaneous resources
