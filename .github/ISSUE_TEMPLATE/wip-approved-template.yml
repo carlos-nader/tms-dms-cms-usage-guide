@@ -127,7 +127,9 @@ body:
         ### Step 6: Create GitHub Release Tag
         
         - [ ] Stage files: `git add guide.tex WIP/GUIDE/guide-v0.4.0.0-*.tex`
-        - [ ] Commit: `git commit -m "Integrate Section C{N}:S{M} — v0.4.0.0"`
+        - [ ] Commit: `git commit -m "Integrate Section C{N}:S{M} — v0.4.0.0
+
+          Refs #NN"`
         - [ ] Tag: `git tag -a v0.4.0.0 -m "Release v0.4.0.0: Section C{N}:S{M} ({TITLE}) integrated"`
         - [ ] Push: `git push origin main --tags`
         - [ ] Verify on GitHub: Release page shows v0.4.0.0
@@ -136,7 +138,9 @@ body:
         
         - [ ] Move WIP file: `wip/section-C{N}-S{M}-{TITLE}-final-*.tex` → `archive/WIP/section-C{N}-S{M}-{TITLE}-approved-*.tex`
         - [ ] Verify in archive/ with -approved- status
-        - [ ] Commit archive move: `git add archive/WIP/ && git commit -m "Archive: approved WIP for C{N}:S{M}"`
+        - [ ] Commit archive move: `git add archive/WIP/ && git commit -m "Archive approved WIP for C{N}:S{M}
+
+          Refs #NN"`
   
   - type: markdown
     attributes:
@@ -210,6 +214,7 @@ body:
         
         ## Related Documentation
         
+        - 📖 [BRIEFING](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/briefing.md) — Traceability rules (see §10.4)
         - 📖 [VERSION-SYSTEM](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/version-system.md) — Versioning rules and when to increment
         - 📖 [WIP-FILE-NAMING](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/wip-naming.md) — Status code definitions
         - 📖 [PROJECT-TRACKING](https://github.com/carlos-nader/falcon-bms-hotas-tms-dms-cms-guide/blob/main/docs/project-tracking.md) — Integration history and guidelines

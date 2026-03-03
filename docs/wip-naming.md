@@ -584,10 +584,13 @@ WIP files integrate with GitHub's project management features:
 
 ### 5.1 Issues
 
-- Each significant WIP file can have a corresponding GitHub Issue
-- Issue tracks development progress, review feedback, blockers
-- Issue title matches WIP purpose: "C4:S4 — DMS Left/Right"
-- Issue is closed when WIP content is integrated
+**Canonical policy:** BRIEFING §10.4 (Traceability: WIP, Issues, Commits).
+
+This document describes the operational mapping used in this repository:
+
+- WIP development is tracked through GitHub Issues.
+- Issue titles typically use the chapter/section identifier when applicable (e.g., "C4:S4 — DMS Left/Right").
+- Issues are typically closed when the corresponding content is integrated and released.
 
 ### 5.2 Milestones
 

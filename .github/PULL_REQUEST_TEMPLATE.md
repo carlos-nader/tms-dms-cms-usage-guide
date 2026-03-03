@@ -4,7 +4,8 @@
 
 ## Related Issue
 
-<!-- Link to the issue this PR addresses, e.g., Closes #123 -->
+<!-- Link to the issue this PR addresses, e.g., Refs #123 -->
+<!-- Use Closes #123 only when the PR is intended to close the issue automatically -->
 <!-- If no issue exists, explain why this change is needed -->
 
 ## Type of Change

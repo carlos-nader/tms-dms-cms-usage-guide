@@ -619,49 +619,24 @@ git checkout -b feature/chapter-6-training
 # 3. Stage changes
 git add wip/chapter-C6-training-dev-2026-02-12.tex
 
-# 4. Commit with descriptive message
-git commit -m "feat(C6): add training flows for TMS employment
+# 4. Commit with a descriptive subject line
+# If the change relates to an issue, include the footer (see BRIEFING §10.4).
+git commit -m "Add Chapter 6 training flows
 
-- Add A-A training progression
-- Add A-G target sequencing exercises
-- Include practice scenarios"
+Refs #NN"
 
 # 5. Push to remote
 git push origin feature/chapter-6-training
 
 # 6. Create Pull Request on GitHub
-gh pr create --title "Add Chapter 6: Training References" --body "..."
+gh pr create --title "Add Chapter 6: Training References" --body "Refs #NN"
 ```
 
-### Commit Message Format
+### Issue References in Commits (Required)
 
-Follow **conventional commits** format:
+Commit message rules are defined in BRIEFING §10.4.
 
-```
-<type>(<scope>): <subject>
-
-<body>
-
-<footer>
-```
-
-**Types:**
-- `feat` — New content (new chapter, section)
-- `fix` — Corrections (typos, errors)
-- `docs` — Documentation changes
-- `style` — Formatting, spacing (no content change)
-- `refactor` — Restructuring content
-- `chore` — Maintenance (scripts, workflows)
-
-**Example:**
-```bash
-git commit -m "fix(C4): correct TMS-Up behavior in NAV mode
-
-Previously described as cycling radar cursors, but actually
-commands A-A radar scan azimuth reset in NAV mode.
-
-Ref: TO 1F-16CMAM-34-1-1 BMS, p. 237"
-```
+In short: commits related to GitHub issues end with one or more `Refs #NN` lines.
 
 ### Branching Strategy
 
@@ -679,7 +654,7 @@ main                  ← Stable, always buildable
 - [ ] WIP file follows naming convention
 - [ ] No `TODO` or `TBD` placeholders in final content
 - [ ] Cross-references work (`\secref`, `\chapref`, `\tabref`)
-- [ ] Commit message follows conventional format
+- [ ] If the change relates to an issue, the commit footer includes `Refs #NN` (see BRIEFING §10.4)
 - [ ] Changes tested locally
 
 ---
@@ -862,7 +837,9 @@ git push origin main
 3. Commit and push:
    ```bash
    git add wip/
-   git commit -m "fix: rename WIP file to match naming convention"
+   git commit -m "Rename WIP file to match naming convention
+
+Refs #NN"
    git push
    ```
 
@@ -950,7 +927,6 @@ git push origin main
 - [TeXstudio Manual](https://www.texstudio.org/)
 - [LaTeX Workshop (VS Code)](https://github.com/James-Yu/LaTeX-Workshop/wiki)
 - [Git Documentation](https://git-scm.com/doc)
-- [Conventional Commits](https://www.conventionalcommits.org/)
 
 ### Community
 

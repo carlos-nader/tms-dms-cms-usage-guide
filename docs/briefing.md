@@ -331,6 +331,42 @@ promoted to official (see VERSION-SYSTEM §6.2 Phase 2).
 - **First public release:** `v1.0.0.0`
 - **Subsequent releases:** Standard semantic versioning
 
+### 10.4 Traceability: WIP, Issues, Commits
+
+This project uses GitHub Issues as the primary unit for tracking WIP progress and integration.
+
+#### 10.4.1 WIP ↔ Issue linkage (practical rule)
+
+- Any WIP file expected to progress beyond `dev` (i.e., renamed to `review`, `final`, `alpha`, or `approved`) MUST have a corresponding GitHub Issue.
+- The Issue SHOULD be created before the first `dev → review` rename.
+- Exceptions are limited to short-lived scratch files that will be discarded and never enter review.
+
+#### 10.4.2 Commit ↔ Issue references (non-negotiable)
+
+- Any human-made commit that addresses work tracked by one or more GitHub Issues MUST include one `Refs #NN` line per related issue in the commit message footer.
+- The `Refs #NN` lines MUST be the last non-empty lines of the commit message.
+
+Examples:
+
+```text
+Integrate Section C4:S3 into snapshot
+
+Refs #123
+```
+
+```text
+Rename WIP file to match naming convention
+
+Refs #123
+Refs #128
+```
+
+Notes:
+
+- A “push” is transport only. The requirement is that commits being pushed include the footer when they relate to issues.
+- Automated workflow/bot commits are exempt unless explicitly made issue-aware.
+- Pull requests SHOULD reference issues using `Refs #NN`. Use `Closes #NN` only when the PR is intended to close the issue automatically.
+
 ---
 
 ## 11. File Organization
