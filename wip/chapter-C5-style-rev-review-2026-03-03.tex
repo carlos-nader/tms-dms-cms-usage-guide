@@ -398,7 +398,7 @@
 % - Contains approved revised prose for C5 only.
 % - Each passage enters this file after explicit author approval.
 % - Status remains 'review' until author review pass is complete; then → final.
-% - Session 2026-02-23 (author review): §5.1 approved. See issue #44 for 
+% - Session 2026-02-23 (author review): §5.1 approved. See issue #44 for
 %   full change log.
 % - Session 2026-02-24 (author review): §5.2 opening, §5.2.1 opening, §5.2.1.1
 %   opening and table, §5.2.1.2 table, §5.2.1.3 table approved. Program 6
@@ -423,6 +423,20 @@
 %   sequence per Dash-34 §2.7.2.1 (threat detection → COUNTER → consent →
 %   dispense). §5.2.2–§5.2.4 and §5.3 pending manual humanization.
 %   See issue #44 for full change log.
+% - Session 2026-03-03 (author review): §5.3 AI-speak removal pass completed.
+%   §5.3 opening S2 rewritten (P3); table caption corrected (P3 + redundant
+%   subtitle removed); table L1 col3 "XMIT knob" → "XMIT switch" (P3/Dash-34
+%   §2.7.4.1.3); table L2 col3 corrected to "XMTR switch" (technical error,
+%   Dash-34 §2.7.4.1.3); §5.3.1 title updated; §5.3.1 prose rewritten (filler
+%   removed, P3, P4, MODAL); §5.3.1.1 title typography corrected; §5.3.1.1
+%   prose rewritten (P3, technical correction "band" → "program", Dash-34
+%   §2.7.4.1.1); §5.3.1.1 table caption corrected (P3); §5.3.1.2 prose
+%   rewritten (P3); §5.3.1.2 table caption corrected (P3). See issue #44 for
+%   full change log. §5.3 humanization pending.
+% - PENDING: §5.2.1.2 table L4 col5: `re-issue` → `presses...again` (confirmed
+%   P3 violation, correction pending).
+% - PENDING: §5.2.2–§5.2.4 humanization rewrite not yet started.
+% - PENDING: §5.3 humanization rewrite not yet started.
 % - PENDING: RWR introduced for the first time at §5.2.1.2. Consider conceptual
 %   introduction in C2 (HOTAS Fundamentals).
 % - PENDING: BYP and STBY modes not covered in §5.2.1. See sub-issue #48 (linked
@@ -548,7 +562,7 @@ CMDS AUTO & Down & Short & Give Consent; Enable AUTO Dispensing &
 Grants consent for AUTO dispensing. RWR-detected threats trigger automatic execution of the program (1--4) selected via the CMDS panel PRGM knob. Dispensing continues until the threat clears, the pilot presses CMS Right, or expendables are exhausted. Consent state persists if the pilot switches to MAN mode. If the pilot re-engages AUTO, dispensing resumes immediately on the next detected threat.
 & 2.7.2.1 & 18, 28 \\
 CMDS AUTO & Right & Short & Cancel Consent; Disable AUTO &
-Removes CMDS consent and places the ALE-47 in Standby. Automatic dispensing halts immediately. The pilot must re-issue CMS Down to resume AUTO operation.
+Removes CMDS consent and places the ALE-47 in Standby. Automatic dispensing halts immediately. The pilot must press CMS Down again to resume AUTO operation.
 & 2.7.2.1 & 18, 28 \\
 \end{hotastable}
 
@@ -675,11 +689,11 @@ On the ground, ECM consent state is Standby. If the pilot holds \textbf{CMS Down
 \section{ECM Configuration by Block and Variant}
 \label{sec:C5-S3}
 
-CMS interaction with CMDS is \textit{uniform} across all F-16 blocks and variants (see \secref{sec:C5-S2-S1}). External Pod and IDIAS F-16 variants, however, use \textit{different} CMS procedures and ECM control panels (see \secref{sec:C5-S2-S2}):
+CMS interaction with CMDS is \textit{uniform} across all F-16 blocks and variants (see \secref{sec:C5-S2-S1}). F-16 blocks and variants with external pod ECM, however, use \textit{different} CMS procedures and ECM control panels (see \secref{sec:C5-S2-S2}):
 
 \begin{table}[H]
 \centering
-\caption{ECM Configuration by Variant --- CMS Interface Summary}
+\caption{ECM Configuration by Block and Variant}
 \label{tab:C5-S3-ecm-config-summary}
 \small
 \renewcommand{\arraystretch}{1.25}
@@ -698,24 +712,22 @@ Internal IDIAS & CMS Left (mode cycling) & XMTR switch (positions: STBY, OPER) \
 %============================================================================
 % SECTION 5.3.1: ECM Configurations in BMS
 %============================================================================
-\subsection{ECM Configurations in BMS}
+\subsection{ECM Configurations by Block and Variant}
 \label{sec:C5-S3-S1}
 
-Falcon BMS 4.38.1 implements two ECM configurations. Each configuration uses different CMS actuation procedures, described in \secref{sec:C5-S2}.
-
-The variants listed in the following tables reflect Dash-34 documentation; not all may be available as selectable aircraft in Falcon BMS 4.38.1.
+The variants listed in the following tables are sourced from Dash-34 documentation. Not all may be available as selectable aircraft in Falcon BMS 4.38.1.
 
 %============================================================================
 % SECTION 5.3.1.1: ECM Pods (ALQ-131 / ALQ-184)
 %============================================================================
-\subsubsection{ECM Pods (ALQ-131 / ALQ-184)}
+\subsubsection{ECM Pods (ALQ-131/ALQ-184)}
 \label{sec:C5-S3-S1-S1}
 
-These variants use the ECM Pod Control Panel with manual jamming band selection. \textbf{CMS Down} grants consent for ECM transmission. For detailed procedures, see \secref{sec:C5-S2-S2-S1}.
+These block and variant configurations use the ECM Pod Control Panel with manual jamming program selection. \textbf{CMS Down} grants consent for ECM transmission. For detailed procedures, see \secref{sec:C5-S2-S2-S1}.
 
 \begin{table}[H]
 \centering
-\caption{External ECM Pod Variants}
+\caption{External ECM Pod Blocks and Variants}
 \label{tab:C5-S3-external-ecm-pods}
 \small
 \renewcommand{\arraystretch}{1.25}
@@ -739,11 +751,11 @@ International & Egypt, Korea KF-16C Block 32 \\
 \subsubsection{Internal ECM (IDIAS)}
 \label{sec:C5-S3-S1-S2}
 
-These variants use the IDIAS ECM control panel. \textbf{CMS Left} cycles the operational mode. For detailed procedures, see \secref{sec:C5-S2-S2-S2}.
+These block and variant configurations use the IDIAS ECM control panel. \textbf{CMS Left} cycles the operational mode. For detailed procedures, see \secref{sec:C5-S2-S2-S2}.
 
 \begin{table}[H]
 \centering
-\caption{Internal ECM (IDIAS) Variants}
+\caption{Internal ECM (IDIAS) Blocks and Variants}
 \label{tab:C5-S3-internal-ecm}
 \small
 \renewcommand{\arraystretch}{1.25}
