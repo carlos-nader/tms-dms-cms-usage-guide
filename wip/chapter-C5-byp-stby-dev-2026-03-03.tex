@@ -1,0 +1,600 @@
+%============================================================================
+% LICENSING NOTICE
+%============================================================================
+% This WIP file, upon integration into guide-v.tex, becomes part of the
+% TMS/DMS/CMS Usage Guide and is released under CC BY-NC 4.0.
+% For details, see LICENSE in the repository root.
+%============================================================================
+
+%============================================================================
+% FALCON BMS TMS/DMS/CMS HOTAS GUIDE
+% WIP FILE TEMPLATE — FINAL (Briefing)
+%============================================================================
+
+% IMPORTANTE: Este é um TEMPLATE padronizado para arquivos WIP (Work-In-Progress)
+% que serão integrados ao guide.tex.
+
+% Nomenclatura: Siga wip-naming
+% Padrão: section-C{N}-S{M}[-S{K}]-{titulo}-{status}-{data}.tex
+% Exemplo: section-C5-S2-cms-actuation-hotas-tables-final-2026-01-10.tex
+
+% Status: dev | review | final | approved | deprecated
+% Locação: WIP/ (ativo) | ARCHIVE/ (aprovado/descartado)
+
+%============================================================================
+% PREAMBLE COMPLETO — TMS/DMS/CMS Usage Guide for Falcon BMS 4.38.1
+% Gerado: 01 March 2026
+% Status: Improvements as per GitHub Issues #34 and #33
+%============================================================================
+
+\documentclass[11pt, a4paper, twoside]{report}
+
+% --------------------------------------------------------------------------
+% BASIC ENCODING AND LANGUAGE
+% --------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% --------------------------------------------------------------------------
+% FONTS AND MICROTYPOGRAPHY
+% --------------------------------------------------------------------------
+
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --------------------------------------------------------------------------
+% PAGE GEOMETRY AND LAYOUT
+% --------------------------------------------------------------------------
+
+\usepackage{geometry}
+\geometry{a4paper, left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
+\usepackage{setspace}
+\onehalfspacing
+
+% --------------------------------------------------------------------------
+% COLORS AND LINKS AND PDF SETTINGS
+% --------------------------------------------------------------------------
+
+\usepackage[table]{xcolor}
+\definecolor{linkblue}{HTML}{004488}
+\definecolor{linkred}{HTML}{882222}
+\definecolor{headerblue}{HTML}{003366}
+\definecolor{rowgray}{HTML}{F5F5F5}
+\definecolor{subheadgray}{HTML}{E0E0E0}
+\usepackage{soul}
+\usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\hypersetup{
+	pdftitle={TMS, DMS and CMS Usage Guide for Falcon BMS},
+	pdfauthor={Carlos "Metal" Nader},
+	pdfsubject={Flight Simulation - Falcon BMS HOTAS Reference},
+	pdfkeywords={Falcon BMS, F-16, HOTAS, TMS, DMS, CMS, Flight Simulation},
+	pdfcreator={pdfLaTeX (MiKTeX)},
+	pdfproducer={MiKTeX},
+	pdflang={en-US},
+}
+\usepackage{bookmark}
+
+% --------------------------------------------------------------------------
+% CAPTION SETUP BY TYPE
+% --------------------------------------------------------------------------
+
+\usepackage{caption}
+
+% GLOBAL PATTERN
+\captionsetup{font=small, labelfont=bf, justification=centering, singlelinecheck=true}
+% FIGURES
+\captionsetup[figure]{font=footnotesize, labelfont=bf, justification=centering, singlelinecheck=true}
+% % TABLE/LONGTABLE/hotastable:
+\captionsetup[table]{font=small, labelfont=bf, justification=centering, singlelinecheck=true}
+
+% --------------------------------------------------------------------------
+% HEADERS AND FOOTERS (IMPROVED for report + twoside)
+% --------------------------------------------------------------------------
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{25pt}                    
+\pagestyle{fancy}
+\fancyhf{}                                        
+\fancyhead[LO,RE]{\small\textit{\leftmark}}     
+\fancyhead[RO,LE]{\small\thepage}               
+\fancyfoot{}                                      
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --------------------------------------------------------------------------
+% CHAPTER FORMATTING AND SPACING (via titlesec)
+% --------------------------------------------------------------------------
+
+\usepackage{titlesec}
+
+% --------------------------------------------------------------------------
+% CHAPTER - Nível 0 (Destaque Máximo)
+% --------------------------------------------------------------------------
+% Shape: display → standalone em nova linha
+% Font: \Large\bfseries --- label e título ambos em bold para destaque máximo
+% Numeração: SIM
+% Espaçamento: 15pt antes, 28pt depois
+% --------------------------------------------------------------------------
+
+\titleformat{\chapter}[display]
+{\normalfont\Large\bfseries}           % Formato: LARGE + bold (label)
+{\chaptertitlename~\thechapter}        % Rótulo: "Chapter 1" (bold também)
+{20pt}                                 % Espaço vertical antes do corpo
+{\Large\bfseries}                      % Corpo do título: LARGE + bold
+
+\titlespacing{\chapter}
+{0pt}       % Margem esquerda (sem indent)
+{15pt}      % Espaço ANTES do título do capítulo
+{28pt}      % Espaço DEPOIS do título do capítulo (AUMENTADO)
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SECTION - Nível 1
+% --------------------------------------------------------------------------
+% Shape: hang → label à esquerda, corpo indentado (compacto)
+% Font: \large\bfseries (mesmo destaque que chapter para coerência)
+% Numeração: SIM
+% Espaçamento: 15pt antes, 8pt depois (REDUZIDO de 15pt/10pt anteriores)
+% --------------------------------------------------------------------------
+
+\titleformat{\section}[hang]
+{\normalfont\large\bfseries}           % Formato: large + bold
+{\thesection}                          % Rótulo: "1", "2", etc
+{1em}                                  % Espaço entre rótulo e corpo
+{}                                     % Corpo do título (herda do format)
+
+\titlespacing{\section}
+{0pt}       % Margem esquerda (sem indent)
+{15pt}      % Espaço ANTES do título da seção (REDUZIDO)
+{8pt}       % Espaço DEPOIS do título da seção (REDUZIDO)
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SUBSECTION - Nível 2
+% --------------------------------------------------------------------------
+% Shape: hang → label esquerda, corpo indentado
+% Font: \normalsize\bfseries (redução visual, ainda robusto)
+% Numeração: SIM
+% Espaçamento: 12pt antes, 6pt depois (compacto)
+% --------------------------------------------------------------------------
+
+\titleformat{\subsection}[hang]
+{\normalfont\normalsize\bfseries}      % Formato: tamanho normal + bold
+{\thesubsection}                       % Rótulo: "1.1", "1.2", etc
+{1em}                                  % Espaço entre rótulo e corpo
+{}                                     % Corpo do título
+
+\titlespacing{\subsection}
+{0pt}       % Margem esquerda (sem indent)
+{12pt}      % Espaço ANTES do título da subseção
+{6pt}       % Espaço DEPOIS do título da subseção
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SUBSUBSECTION - Nível 3
+% --------------------------------------------------------------------------
+% Shape: hang → label esquerda, máximo recuo (bem compacto)
+% Font: \normalsize\bfseries (mesmo tamanho que subsection, padrão)
+% Numeração: SIM (configurable com secnumdepth)
+% Espaçamento: 10pt antes, 4pt depois (bem comprimido)
+% --------------------------------------------------------------------------
+
+\titleformat{\subsubsection}[hang]
+{\normalfont\normalsize\bfseries}      % Formato: tamanho normal + bold
+{\thesubsubsection}                    % Rótulo: "1.1.1", "1.1.2", etc
+{1em}                                  % Espaço entre rótulo e corpo
+{}                                     % Corpo do título
+
+\titlespacing{\subsubsection}
+{0pt}       % Margem esquerda (sem indent)
+{10pt}       % Espaço ANTES do título
+{4pt}       % Espaço DEPOIS do título (bem comprimido)
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% PARAGRAPH - Nível 4 (CRÍTICO: Ilusão Óptica Resolvida)
+% --------------------------------------------------------------------------
+% Shape: runin → inline, integrado ao texto (seu requisito)
+% Font: \small\bfseries (SOLUÇÃO PARA ILUSÃO ÓPTICA DO NEGRITO)%       
+% Numeração: NÃO (padrão para \paragraph)
+% Espaçamento: runin (sem espaço vertical antes, integrado ao texto)
+% --------------------------------------------------------------------------
+
+\titleformat{\paragraph}[runin]
+{\normalfont\small\bfseries}           % Formato: SMALL + bold (compensa ilusão)
+{}                                     % Rótulo: vazio (sem numeração)
+{0em}                                  % Espaço entre rótulo e corpo (zero, runin)
+{}                                     % Corpo do título
+
+\titlespacing{\paragraph}
+{0pt}       % Margem esquerda (sem indent)
+{8pt}       % Espaço ANTES do título do parágrafo (ADICIONADO - cria separação)
+{1em}       % Espaço DEPOIS do título (ADICIONADO - espaço após ":")
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SUBPARAGRAPH - Nível 5 (Preparação Futura)
+% --------------------------------------------------------------------------
+% Shape: runin → inline, integrado ao texto
+% Font: \small (MENOS destaque que \paragraph, sem bold)
+% Numeração: NÃO (padrão para \subparagraph)
+% Espaçamento: runin (integrado)
+% Uso: Se usado, aparecerá com destaque menor que \paragraph
+% --------------------------------------------------------------------------
+
+\titleformat{\subparagraph}[runin]
+{\normalfont\small}                    % Formato: small, SEM bold (menos destaque)
+{}                                     % Rótulo: vazio (sem numeração)
+{0em}                                  % Espaço entre rótulo e corpo (zero, runin)
+{}                                     % Corpo do título
+
+\titlespacing{\subparagraph}
+{0pt}       % Margem esquerda (sem indent)
+{8pt}       % Espaço ANTES do título (ADICIONADO)
+{1em}       % Espaço DEPOIS do título (ADICIONADO)
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% TABLES AND MACROS
+% --------------------------------------------------------------------------
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+% Custom Columns
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% Macro for Visual Reference Links
+\newcommand{\imglink}[1]{\hspace{2pt}\hyperref[#1]{\scriptsize\textbf{[Fig]}}}
+
+% --------------------------------------------------------------------------
+% HOTAS LOT FILE HANDLE 
+% --------------------------------------------------------------------------
+\makeatletter
+\newcommand{\listofhotastables}{%
+	\section*{List of HOTAS Tables}%
+	\addcontentsline{toc}{section}{List of HOTAS Tables}%
+	\@starttoc{hotas}%
+}
+\makeatother
+
+% --------------------------------------------------------------------------
+% HOTAS table environment
+% Version: 2.1 (2026-02-10)
+% --------------------------------------------------------------------------
+
+\newenvironment{hotastable}[1]{%
+	\footnotesize
+	\setlength{\tabcolsep}{3pt}
+	\renewcommand{\arraystretch}{1.35}
+	\begin{longtable}{L{1.00cm} L{0.90cm} L{0.90cm} L{3.30cm} L{6.40cm} L{1.40cm} L{1.60cm}}
+		\caption{#1}\label{table.\thetable}\\
+		\noalign{\addtocontents{hotas}{\protect\contentsline{table}{\protect\numberline{\thetable}#1}{\thepage}{table.\thetable}}}%
+		\rowcolor{headerblue}
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
+		\endfirsthead
+		\rowcolor{headerblue}
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
+		\endhead
+		\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+		\endfoot
+		\endlastfoot
+	}{%
+	\end{longtable}
+}
+
+% --------------------------------------------------------------------------
+% SIMPLE REFERENCE MACROS FOR BMS DOCS
+% --------------------------------------------------------------------------
+
+\newcommand{\dashref}[1]{Dash-34~\S~#1}
+\newcommand{\dashone}[1]{Dash-1~\S~#1}
+\newcommand{\trnref}[1]{TRN~#1}
+\newcommand{\trnman}{BMS Training Manual 4.38.1}
+\newcommand{\bmsver}{Falcon BMS~4.38.1}
+\newcommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+
+% --------------------------------------------------------------------------
+% CROSS-REFERENCE MACROS (INTERNAL GUIDE)
+% --------------------------------------------------------------------------
+
+\newcommand{\secref}[1]{\hyperref[#1]{Section~\ref*{#1}}}
+\newcommand{\chapref}[1]{\hyperref[#1]{Chapter~\ref*{#1}}}
+\newcommand{\tabref}[1]{\hyperref[#1]{Table~\ref*{#1}}}
+\newcommand{\figref}[1]{\hyperref[#1]{Figure~\ref*{#1}}}
+
+% --------------------------------------------------------------------------
+% VERSION CONTROL MACROS
+% --------------------------------------------------------------------------
+
+\newcommand{\docversion}{VERSION}
+\newcommand{\docbuild}{DATE}
+\newcommand{\docstartdate}{05 January 2026}
+\newcommand{\docenddate}{DATE}
+\newcommand{\chapterscompletedof}{X/7}
+\newcommand{\tablesfilledpct}{Chapter X}
+\newcommand{\fulldocversion}{\docversion+\docbuild}
+
+% --------------------------------------------------------------------------
+% GRAPHICS
+% --------------------------------------------------------------------------
+
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+\usepackage{float}
+\usepackage{enumitem}
+
+% --------------------------------------------------------------------------
+% TITLE
+% --------------------------------------------------------------------------
+
+\title{TMS, DMS and CMS Usage Guide for \bmsver}
+\author{Carlos ``Metal'' Nader}
+\date{Version \fulldocversion{} | Progress: Chapters \chapterscompletedof{} | Tables \tablesfilledpct{} | January 2026}
+
+% ============================================================================
+% DOCUMENT BEGIN
+% ============================================================================
+
+\begin{document}
+	
+	\maketitle
+	
+	\pagenumbering{roman}
+	
+	% --------------------------------------------------------------------------
+	% TOC DEPTH CONFIGURATION
+	% --------------------------------------------------------------------------
+	\setcounter{tocdepth}{3}       % Show up to \subsubsection in TOC
+	\setcounter{secnumdepth}{3}    % Number up to \subsubsection
+	
+	\newpage
+	\tableofcontents
+	\newpage
+	
+	% --------------------------------------------------------------------------
+	% LIST OF HOTAS TABLES
+	% --------------------------------------------------------------------------
+	\phantomsection
+	\listofhotastables
+	\newpage
+	
+	\pagenumbering{arabic}
+
+%============================================================================
+% WIP FILE METADATA (NOT RENDERED IN PDF)
+%============================================================================
+% File Name: chapter-C5-byp-stby-dev-2026-03-03.tex
+% WIP Naming Convention: 2026-02-27
+% Target Chapter: C5 (CMS — Countermeasures Management Switch)
+% Target Section: §5.2 intro, §5.2.1 (full, incl. new §5.2.1.4), §5.2.3, §5.2.4
+%
+% WIP Status: dev
+% Created: 2026-03-03
+% Last Modified: 2026-03-03
+% Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.4.2.0
+%
+% Narrative Completion: 100% (all modified sections)
+% Table Fill Status: 100% (new §5.2.1.4 hotastable complete)
+%
+% Notes:
+% - This file contains ONLY the sections modified by issue #48 (BYP/STBY).
+% - Sections NOT present here remain as-is in chapter-C5-style-rev-review-2026-03-03.tex.
+% - Modified sections: §5.2 intro (line 494 edit), §5.2.1 opening (line 516 edit),
+%   §5.2.1.1–§5.2.1.3 (copied verbatim), §5.2.1.4 (new), §5.2.3 (intro addition),
+%   §5.2.4 (State Tracking addition).
+% - Integration: replace corresponding sections in C5 WIP with content from this file.
+% - Cross-reference: Issue #48 (BYP/STBY addition to §5.2.1).
+
+%============================================================================
+% TEMPLATE STRUCTURE — Replace section/subsection headers with your content
+%============================================================================
+
+%============================================================================
+% CONTENT BEGINS HERE
+%============================================================================
+
+%============================================================================
+% SECTION 5.2: CMS Actuation
+% CHANGE: Line 494 — enumeration expanded to include BYP and STBY
+%============================================================================
+\section{CMS Actuation}
+\label{sec:C5-S2}
+
+The tables below cover CMS actuation organized by system: CMDS (Manual, Automatic, Semi-Automatic, Bypass, and Standby modes) and ECM (external pods ALQ-131/ALQ-184 and internal IDIAS).
+
+All CMS actuation described in this chapter is \textit{independent} of the Master Mode (NAV, A-A or A-G) selected.
+
+Table columns are defined as follows:
+
+\begin{itemize}
+  \item \textbf{Mode}: The operational context (Master Mode).
+  \item \textbf{Direction}: CMS hat direction (Up, Down, Left, Right).
+  \item \textbf{Action}: Press type (Short, Long, Long Hold).
+  \item \textbf{Function}: What the CMS command activates or controls.
+  \item \textbf{Effect / Nuance}: Resulting system behavior, including tactics and constraints.
+  \item \textbf{Dash34}: Reference section in the Dash-34 manual.
+  \item \textbf{Training}: Recommended BMS training mission(s) (see \trnman{} for descriptions).
+\end{itemize}
+
+%============================================================================
+% SECTION 5.2.1: CMDS
+% CHANGE: Opening paragraph — "three modes" → five; PRGM knob scope clarified
+%============================================================================
+\subsection{CMDS}
+\label{sec:C5-S2-S1}
+
+The ALE-47 CMDS operates in five modes selected via the CMDS CCU MODE knob: Manual (MAN), Automatic (AUTO), Semi-Automatic (SEMI), Bypass (BYP), and Standby (STBY). The program executed in MAN, AUTO, and SEMI modes --- Programs 1--4 --- is selected via the PRGM knob on the CMDS panel. The PRGM knob has no effect in BYP or STBY.
+
+Only Programs 1--4 are selectable via the PRGM knob. Programs 5 and 6 are independent of the PRGM knob position:
+
+\begin{itemize}
+  \item Program 5 is activated via the cockpit slap switch --- outside the scope of CMS --- and is not covered in this guide; see \dashref{2.7.2} for details.
+  \item Program 6 is a special-purpose program always available for manual dispensing, independent of the PRGM knob position.
+\end{itemize}
+
+%============================================================================
+% SECTION 5.2.1.1: Manual Mode
+% NO CHANGE — copied verbatim from chapter-C5-style-rev-review-2026-03-03.tex
+%============================================================================
+\subsubsection{Manual Mode}
+\label{sec:C5-S2-S1-S1}
+
+In Manual (MAN) mode, the pilot runs countermeasure programs (1--4 and 6) via \textbf{CMS Up} and \textbf{CMS Left}.
+
+\begin{hotastable}{CMS Actuation with CMDS Manual Mode}\label{tab:C5-S2-S1-S1-CMDS-Manual}
+CMDS MAN & Up & Short & Execute Program 1--4 &
+Runs the program selected via the CMDS panel PRGM knob once per press. No threat sensing; no automatic triggering. Overrides any AUTO dispensing, if running.
+& 2.7.2.2 & 18, 28 \\
+CMDS MAN & Left & Short & Execute Program 6 &
+Program 6 can be dispensed independently of the PRGM knob position.
+& 2.7.2.2 & 19 \\
+\end{hotastable}
+
+%============================================================================
+% SECTION 5.2.1.2: Automatic Mode
+% NO CHANGE — copied verbatim from chapter-C5-style-rev-review-2026-03-03.tex
+%============================================================================
+\subsubsection{Automatic Mode}
+\label{sec:C5-S2-S1-S2}
+
+In Automatic (AUTO) mode, the ALE-47 CMDS dispenses the selected program (1–4) \textit{continuously} in response to threats detected by the Radar Warning Receiver (RWR).
+
+A \textbf{CMS Down} press grants consent for AUTO dispensing to start. It will continue until the pilot presses \textbf{CMS Right} or expendables are exhausted.
+
+Even in AUTO mode, manual dispensing is still available.
+
+\begin{hotastable}{CMS Actuation with CMDS Automatic Mode}\label{tab:C5-S2-S1-S2-CMDS-Auto}
+CMDS AUTO & Up & Short & Execute Program 1--4 &
+Runs the program selected via the CMDS panel PRGM knob once, interrupting any ongoing AUTO dispensing. After execution, AUTO resumes if the threat persists.
+& 2.7.2.2 & 18, 28 \\
+CMDS AUTO & Left & Short & Execute Program 6 &
+Program 6 is dispensed independently of the PRGM knob position. Overrides AUTO; after execution, AUTO resumes.
+& 2.7.2.2 & 19 \\
+CMDS AUTO & Down & Short & Give Consent; Enable AUTO Dispensing &
+Grants consent for AUTO dispensing. RWR-detected threats trigger automatic execution of the program (1--4) selected via the CMDS panel PRGM knob. Dispensing continues until the threat clears, the pilot presses CMS Right, or expendables are exhausted. Consent state persists if the pilot switches to MAN mode. If the pilot re-engages AUTO, dispensing resumes immediately on the next detected threat.
+& 2.7.2.1 & 18, 28 \\
+CMDS AUTO & Right & Short & Cancel Consent; Disable AUTO &
+Removes CMDS consent and places the ALE-47 in Standby. Automatic dispensing halts immediately. The pilot must press CMS Down again to resume AUTO operation.
+& 2.7.2.1 & 18, 28 \\
+\end{hotastable}
+
+%============================================================================
+% SECTION 5.2.1.3: Semi-Automatic Mode
+% NO CHANGE — copied verbatim from chapter-C5-style-rev-review-2026-03-03.tex
+%============================================================================
+\subsubsection{Semi-Automatic Mode}
+\label{sec:C5-S2-S1-S3}
+
+In Semi-Automatic (SEMI) mode, the CMDS control unit displays \texttt{DISPENSE RDY} and sounds a \texttt{COUNTER} voice message when a threat is detected. A \textbf{CMS Down} press grants consent and the ALE-47 CMDS then dispenses \textit{one program}.
+
+If the threat persists or a new threat appears, the CMDS issues \texttt{COUNTER} again.
+
+Even in SEMI mode, manual dispensing is still available.
+
+\begin{hotastable}{CMS Actuation with CMDS Semi-Automatic Mode}\label{tab:C5-S2-S1-S3-CMDS-Semi}
+CMDS SEMI & Up & Short & Execute Program 1--4 &
+Runs the program selected via the CMDS panel PRGM knob once, independent of RWR threat state. After execution, the CMDS returns to standby and resumes threat detection.
+& 2.7.2.2 & 18, 28 \\
+CMDS SEMI & Left & Short & Execute Program 6 &
+Program 6 is dispensed independently of the PRGM knob position. After execution, the CMDS returns to standby and resumes threat detection.
+& 2.7.2.2 & 19 \\
+CMDS SEMI & Down & Short & Give Consent; Dispense One Program &
+Dispenses one program (1--4) in response to a \texttt{COUNTER} prompt. If the threat persists or a new threat appears, the CMDS issues \texttt{COUNTER} again. Consent state is retained: if the pilot switches to AUTO, the CMDS begins dispensing immediately on the next detected threat.
+& 2.7.2.1 & 18, 28 \\
+CMDS SEMI & Right & Short & Cancel Consent; Return to Standby &
+Removes SEMI consent and places the CMDS in Standby. \texttt{COUNTER} messages cease.
+& 2.7.2.1 & 18, 28 \\
+\end{hotastable}
+
+%============================================================================
+% SECTION 5.2.1.4: Bypass and Standby Modes
+% NEW SECTION — issue #48
+%============================================================================
+\subsubsection{Bypass and Standby Modes}
+\label{sec:C5-S2-S1-S4}
+
+BYP and STBY are non-combat modes. Neither supports AUTO or SEMI dispensing; consent state is not tracked in either mode.
+
+\paragraph{Bypass (BYP):}
+
+In BYP, \textbf{CMS Up} dispenses exactly one chaff and one flare per press. The PRGM knob selection has no effect; the dispense quantity is fixed. \textbf{CMS Left} dispenses Program 6 normally --- Program 6 is available independent of the MODE knob position (see \dashref{2.7.2.2}).
+
+\begin{hotastable}{CMS Actuation with CMDS Bypass Mode}\label{tab:C5-S2-S1-S4-CMDS-BYP}
+CMDS BYP & Up & Short & Dispense One Chaff + One Flare &
+Dispenses exactly one chaff and one flare per press. The PRGM knob selection is ignored. No AUTO or SEMI dispensing occurs in BYP.
+& 2.7.2.1 & --- \\
+CMDS BYP & Left & Short & Execute Program 6 &
+Program 6 is dispensed independently of the PRGM knob position. Behavior is identical to MAN, AUTO, and SEMI modes.
+& 2.7.2.2 & --- \\
+\end{hotastable}
+
+\paragraph{Standby (STBY):}
+
+In STBY, all chaff and flare release is inhibited. No CMS direction produces a dispensing effect. STBY is the only MODE knob position in which CMDS programs and bingo quantities can be edited via the UFC. For program editing procedures, see \dashref{2.7.2.1} and \dashref{2.7.2.3}.
+
+%============================================================================
+% SECTION 5.2.3: CMDS and ECM Joint Consent
+% CHANGE: Addition to intro — BYP explicitly excluded from joint consent
+%============================================================================
+\subsection{CMDS and ECM Joint Consent}
+\label{sec:C5-S2-S3}
+
+When equipped with an external ECM pod, \textbf{CMS Down} grants consent to \textit{both} CMDS (in AUTO or SEMI mode) and the external ECM pod \textit{simultaneously}. This joint consent applies to AUTO and SEMI only; BYP does not support AUTO or SEMI dispensing and is not subject to consent authority.
+
+\begin{hotastable}{CMS Interaction with CMDS and ECM (Consent and Constraints)}\label{tab:C5-S2-S3-CMDS-ECM}
+CMDS AUTO SEMI + ECM Pod & Down & Short & Joint Consent (CMDS + ECM) &
+Consent is granted to \textit{both} the ALE-47 CMDS (AUTO or SEMI mode) and the external ECM pod \textit{simultaneously}.
+& 2.7.2.1, 2.7.4.2.5 & 18, 28 \\
+\end{hotastable}
+
+%============================================================================
+% SECTION 5.2.4: Constraints and Edge Cases
+% CHANGE: State Tracking paragraph — BYP/STBY exclusion added
+%============================================================================
+\subsection{Constraints and Edge Cases}
+\label{sec:C5-S2-S4}
+
+\paragraph{State Tracking:}
+
+In AUTO and SEMI modes, the CMDS retains consent state when the pilot switches to MAN mode. If the pilot re-engages AUTO without pressing \textbf{CMS Down}, the CMDS begins dispensing immediately on the next detected threat. BYP and STBY do not have a consent state; switching to either mode does not retain or transfer any prior consent.
+
+\paragraph{Bingo Quantity Behavior:}
+
+If expendables fall to or below the bingo quantity, the CMDS continues dispensing. A \texttt{LOW} audio message is issued when an expendable reaches the bingo quantity and an \texttt{OUT} audio message is issued when an expendable is depleted. Dispensing does not stop automatically. The pilot must press \textbf{CMS Right} to inhibit AUTO dispensing, or switch to MAN mode to take direct control.
+
+\paragraph{RF Switch Override:}
+
+When ECM consent is active, the ECM system is placed in Standby if the RF switch is moved from NORM to QUIET or SILENT. Returning the RF switch to NORM does \textit{not} restore consent. The pilot must press \textbf{CMS Down} again to resume ECM transmission.
+
+\paragraph{IDIAS vs. External ECM Pod:}
+
+The joint consent described in \secref{sec:C5-S2-S3} and in \tabref{tab:C5-S2-S3-CMDS-ECM} applies to external ECM pod configurations \textit{only}. On IDIAS-equipped aircraft, \textbf{CMS Left} cycles ECM modes and \textbf{CMS Down} has no ECM function.
+
+\paragraph{Ground Safety:}
+
+On the ground, ECM consent state is Standby. If the pilot holds \textbf{CMS Down} on the ground, radiation is emitted until \textbf{CMS Down} is released. If ECM must be enabled on the ground, ground personnel must be clear of the radiation area beforehand.
+
+%============================================================================
+% END OF SECTION
+%============================================================================
+
+\end{document}
