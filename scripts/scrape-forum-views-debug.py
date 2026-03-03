@@ -129,23 +129,33 @@ def update_readme_badge(stats):
         # Safe badge URL encoding
         safe_badge_text = badge_text.replace(" ", "%20")
         new_badge = f'![Forum Views](https://img.shields.io/badge/Forum%20Views-{safe_badge_text}-{color})'
-        
-        # Pattern: Safe and simple
-        badge_pattern = r'!\[Forum[^\]]*\]\(https://img\.shields\.io/badge/Forum[^)]*\)'
-        
-        new_content = re.sub(badge_pattern, new_badge, content, flags=re.IGNORECASE)
-        
-        # If not found, add at top
-        if new_content == content:
-            print("⚠ Badge pattern not found, adding new...")
-            new_content = new_badge + '\n\n' + content
-            print("✓ New badge added")
+
+        # Update ONLY the linked Forum Views badge: [![Forum Views](...)](some URL)
+        # This avoids touching any other badges and prevents accidental duplication.
+        linked_badge_pattern = re.compile(
+            r'\[\s*!\[Forum\s*Views\]\(https://img\.shields\.io/badge/Forum%20Views-[^)]*\)\s*\]\((?P<link>[^)]+)\)',
+            flags=re.IGNORECASE,
+        )
+
+        def _replace_linked(match: re.Match) -> str:
+            forum_link = match.group('link')
+            return f'[{new_badge}]({forum_link})'
+
+        new_content, subs = linked_badge_pattern.subn(_replace_linked, content)
+
+        if subs == 0:
+            print("✗ Linked Forum Views badge not found in README; not modifying file.")
+            return None, False
+
+        if subs > 1:
+            print(f"⚠ Updated {subs} linked Forum Views badges (expected 1).")
         else:
             print(f"✓ Badge updated: {badge_text}")
-        
-        with open(readme_path, 'w', encoding='utf-8') as f:
-            f.write(new_content)
-        
+
+        if new_content != content:
+            with open(readme_path, 'w', encoding='utf-8') as f:
+                f.write(new_content)
+
         return new_content, True
         
     except Exception as e:
@@ -175,6 +185,8 @@ def main():
         sys.exit(1)
 
     new_content, was_updated = update_readme_badge(stats)
+    if not was_updated:
+        sys.exit(1)
 
     print("\n" + "=" * 60)
     print("✅ RESULT")

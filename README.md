@@ -1,6 +1,20 @@
 # TMS/DMS/CMS Usage Guide for Falcon BMS and other F-16 Flight Simulators
 
-[![Generate Integrated Files Report](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/generate-integrated-files.yml/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/generate-integrated-files.yml) [![pages-build-deployment](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/pages/pages-build-deployment) [![Sync PDF to docs](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/sync-pdf-to-docs.yml/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/sync-pdf-to-docs.yml)[![Validate LaTeX Preamble](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/validate-tex-preamble.yml/badge.svg)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/validate-tex-preamble.yml)
+<!--
+README maintenance contract (non-rendered):
+
+- Some sections are automatically overwritten by workflows/scripts. Avoid manual edits inside them.
+- Managed regions in this README:
+	- Alpha badge: between ALPHA-BADGE-START/END (scripts/update-alpha-badge.py)
+	- WIP snapshot: between WIP-SNAPSHOT-START/END (scripts/generate-wip-snapshot.py)
+	- Forum views badge: the linked Forum Views badge in "Contributing & Community" (scripts/scrape-forum-views-debug.py)
+	- Version text (badge/table): updated by scripts/update-readme-version.py
+-->
+
+[![Generate Integrated Files Report](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/generate-integrated-files.yml/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/generate-integrated-files.yml)
+[![pages-build-deployment](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/pages/pages-build-deployment)
+[![Sync PDF to docs](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/sync-pdf-to-docs.yml/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/sync-pdf-to-docs.yml)
+[![Validate LaTeX Preamble](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/validate-tex-preamble.yml/badge.svg)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/validate-tex-preamble.yml)
 
 [![GitHub stars](https://img.shields.io/github/stars/carlos-nader/tms-dms-cms-usage-guide?style=social)](https://github.com/carlos-nader/tms-dms-cms-usage-guide)
 [![GitHub forks](https://img.shields.io/github/forks/carlos-nader/tms-dms-cms-usage-guide?style=social)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/fork)
@@ -27,6 +41,7 @@ The author is not affiliated with or endorsed by Falcon BMS or any other flight 
 ## 📄 Main Guide Files
 
 [![Version](https://img.shields.io/badge/LATEST%20version-v0.4.1.1-yellow?style=for-the-badge&logo=tag&logoColor=black)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases)
+<!-- DO NOT EDIT: managed by workflow (update-alpha-badge) -->
 <!-- ALPHA-BADGE-START -->
 <!-- ALPHA-BADGE-END -->
 
@@ -59,6 +74,7 @@ The author is not affiliated with or endorsed by Falcon BMS or any other flight 
 
 ---
 
+<!-- DO NOT EDIT: managed by workflow (generate-wip-snapshot) -->
 <!-- WIP-SNAPSHOT-START -->
 
 ## 🗄️ WIP Snapshot — Active Work-in-Progress Files
@@ -151,7 +167,7 @@ The project uses **five governance documents** and an **auto-generated tracking 
 |----------|----------|---------|
 | [**BRIEFING**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/briefing.md) | `/docs/` | Project scope, content outline, layout standards |
 | [**STYLE-GUIDE**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/misc/STYLE-GUIDE.md) | `/misc/` | Prose style, voice, formatting policies, and prohibited patterns |
-| [**WIP-FILE-NAMING**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/wip-naming.md) | `/docs/` | Rules for WIP file naming (alpha parallel flow also supported), status lifecycle |
+| [**WIP-NAMING**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/wip-naming.md) | `/docs/` | Rules for WIP file naming (alpha parallel flow also supported), status lifecycle |
 | [**VERSION-SYSTEM**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/version-system.md) | `/docs/` | Guide version numbering (0.x.x.x pre-publication, x.y.z post-publication) |
 | [**PROJECT-TRACKING**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/project-tracking.md) | `/docs/` | Session log, WIP status snapshot, milestones, current priorities |
 | [**INTEGRATED-FILES**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/INTEGRATED-FILES.md) | `/` (root) | Auto-generated report: tracked files, commits, issues, milestones *(updated by GitHub Action)* |
@@ -234,9 +250,10 @@ All technical claims are cross-referenced to these sources.
 
 ## 🤝 Contributing & Community
 
+<!-- DO NOT EDIT: managed by workflow (update-forum-views) -->
 [![Forum Views](https://img.shields.io/badge/Forum%20Views-1286%20views-brightgreen)](https://forum.falcon-bms.com/topic/32541)
 
-Contributions are welcome! See [CONTRIBUTING.md](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/CONTRIBUTING.md) for guidelines.
+Contributions are welcome! See [CONTRIBUTING.md](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/.github/CONTRIBUTING.md) for guidelines.
 
 **Ways to contribute:**
 * Content corrections and accuracy improvements
@@ -245,9 +262,7 @@ Contributions are welcome! See [CONTRIBUTING.md](https://github.com/carlos-nader
 * LaTeX compilation or PDF rendering feedback
 
 **Community:**
-* 💬 [Join the discussion on Falcon BMS Forum](https://forum.falcon-bms.com/topic/32541)
-* ⭐ Star this repo if you find it useful
-* 👍 Drop a vote or comment on the forum thread
+💬 [Join the discussion on Falcon BMS Forum](https://forum.falcon-bms.com/topic/32541) • ⭐ Star this repo if you find it useful • 👍 Drop a vote or comment on the forum thread
 
 ---
 
