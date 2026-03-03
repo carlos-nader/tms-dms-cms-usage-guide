@@ -1,0 +1,922 @@
+%============================================================================
+% PREAMBLE COMPLETO — TMS/DMS/CMS Usage Guide for Falcon BMS 4.38.1
+% Gerado: 03 March 2026
+% Status: Structure-only snapshot — guide.tex v0.4.1.1+20260218
+%============================================================================
+
+\documentclass[11pt, a4paper, twoside]{report}
+
+% --------------------------------------------------------------------------
+% BASIC ENCODING AND LANGUAGE
+% --------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% --------------------------------------------------------------------------
+% FONTS AND MICROTYPOGRAPHY
+% --------------------------------------------------------------------------
+
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --------------------------------------------------------------------------
+% PAGE GEOMETRY AND LAYOUT
+% --------------------------------------------------------------------------
+
+\usepackage{geometry}
+\geometry{a4paper, left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
+\usepackage{setspace}
+\onehalfspacing
+
+% --------------------------------------------------------------------------
+% COLORS AND LINKS AND PDF SETTINGS
+% --------------------------------------------------------------------------
+
+\usepackage[table]{xcolor}
+\definecolor{linkblue}{HTML}{004488}
+\definecolor{linkred}{HTML}{882222}
+\definecolor{headerblue}{HTML}{003366}
+\definecolor{rowgray}{HTML}{F5F5F5}
+\definecolor{subheadgray}{HTML}{E0E0E0}
+\usepackage{soul}
+\usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\hypersetup{
+	pdftitle={TMS, DMS and CMS Usage Guide for Falcon BMS},
+	pdfauthor={Carlos "Metal" Nader},
+	pdfsubject={Flight Simulation - Falcon BMS HOTAS Reference},
+	pdfkeywords={Falcon BMS, F-16, HOTAS, TMS, DMS, CMS, Flight Simulation},
+	pdfcreator={pdfLaTeX (MiKTeX)},
+	pdfproducer={MiKTeX},
+	pdflang={en-US},
+}
+\usepackage{bookmark}
+
+% --------------------------------------------------------------------------
+% CAPTION SETUP BY TYPE
+% --------------------------------------------------------------------------
+
+\usepackage{caption}
+
+% GLOBAL PATTERN
+\captionsetup{font=small, labelfont=bf, justification=centering, singlelinecheck=true}
+% FIGURES
+\captionsetup[figure]{font=footnotesize, labelfont=bf, justification=centering, singlelinecheck=true}
+% % TABLE/LONGTABLE/hotastable:
+\captionsetup[table]{font=small, labelfont=bf, justification=centering, singlelinecheck=true}
+
+% --------------------------------------------------------------------------
+% HEADERS AND FOOTERS (IMPROVED for report + twoside)
+% --------------------------------------------------------------------------
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{25pt}                    
+\pagestyle{fancy}
+\fancyhf{}                                        
+\fancyhead[LO,RE]{\small\textit{\leftmark}}     
+\fancyhead[RO,LE]{\small\thepage}               
+\fancyfoot{}                                      
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --------------------------------------------------------------------------
+% CHAPTER FORMATTING AND SPACING (via titlesec)
+% --------------------------------------------------------------------------
+
+\usepackage{titlesec}
+
+% --------------------------------------------------------------------------
+% CHAPTER - Nível 0 (Destaque Máximo)
+% --------------------------------------------------------------------------
+% Shape: display → standalone em nova linha
+% Font: \Large\bfseries --- label e título ambos em bold para destaque máximo
+% Numeração: SIM
+% Espaçamento: 15pt antes, 28pt depois
+% --------------------------------------------------------------------------
+
+\titleformat{\chapter}[display]
+{\normalfont\Large\bfseries}           % Formato: LARGE + bold (label)
+{\chaptertitlename~\thechapter}        % Rótulo: "Chapter 1" (bold também)
+{20pt}                                 % Espaço vertical antes do corpo
+{\Large\bfseries}                      % Corpo do título: LARGE + bold
+
+\titlespacing{\chapter}
+{0pt}       % Margem esquerda (sem indent)
+{15pt}      % Espaço ANTES do título do capítulo
+{28pt}      % Espaço DEPOIS do título do capítulo (AUMENTADO)
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SECTION - Nível 1
+% --------------------------------------------------------------------------
+% Shape: hang → label à esquerda, corpo indentado (compacto)
+% Font: \large\bfseries (mesmo destaque que chapter para coerência)
+% Numeração: SIM
+% Espaçamento: 15pt antes, 8pt depois (REDUZIDO de 15pt/10pt anteriores)
+% --------------------------------------------------------------------------
+
+\titleformat{\section}[hang]
+{\normalfont\large\bfseries}           % Formato: large + bold
+{\thesection}                          % Rótulo: "1", "2", etc
+{1em}                                  % Espaço entre rótulo e corpo
+{}                                     % Corpo do título (herda do format)
+
+\titlespacing{\section}
+{0pt}       % Margem esquerda (sem indent)
+{15pt}      % Espaço ANTES do título da seção (REDUZIDO)
+{8pt}       % Espaço DEPOIS do título da seção (REDUZIDO)
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SUBSECTION - Nível 2
+% --------------------------------------------------------------------------
+% Shape: hang → label esquerda, corpo indentado
+% Font: \normalsize\bfseries (redução visual, ainda robusto)
+% Numeração: SIM
+% Espaçamento: 12pt antes, 6pt depois (compacto)
+% --------------------------------------------------------------------------
+
+\titleformat{\subsection}[hang]
+{\normalfont\normalsize\bfseries}      % Formato: tamanho normal + bold
+{\thesubsection}                       % Rótulo: "1.1", "1.2", etc
+{1em}                                  % Espaço entre rótulo e corpo
+{}                                     % Corpo do título
+
+\titlespacing{\subsection}
+{0pt}       % Margem esquerda (sem indent)
+{12pt}      % Espaço ANTES do título da subseção
+{6pt}       % Espaço DEPOIS do título da subseção
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SUBSUBSECTION - Nível 3
+% --------------------------------------------------------------------------
+% Shape: hang → label esquerda, máximo recuo (bem compacto)
+% Font: \normalsize\bfseries (mesmo tamanho que subsection, padrão)
+% Numeração: SIM (configurable com secnumdepth)
+% Espaçamento: 10pt antes, 4pt depois (bem comprimido)
+% --------------------------------------------------------------------------
+
+\titleformat{\subsubsection}[hang]
+{\normalfont\normalsize\bfseries}      % Formato: tamanho normal + bold
+{\thesubsubsection}                    % Rótulo: "1.1.1", "1.1.2", etc
+{1em}                                  % Espaço entre rótulo e corpo
+{}                                     % Corpo do título
+
+\titlespacing{\subsubsection}
+{0pt}       % Margem esquerda (sem indent)
+{10pt}       % Espaço ANTES do título
+{4pt}       % Espaço DEPOIS do título (bem comprimido)
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% PARAGRAPH - Nível 4 (CRÍTICO: Ilusão Óptica Resolvida)
+% --------------------------------------------------------------------------
+% Shape: runin → inline, integrado ao texto (seu requisito)
+% Font: \small\bfseries (SOLUÇÃO PARA ILUSÃO ÓPTICA DO NEGRITO)%       
+% Numeração: NÃO (padrão para \paragraph)
+% Espaçamento: runin (sem espaço vertical antes, integrado ao texto)
+% --------------------------------------------------------------------------
+
+\titleformat{\paragraph}[runin]
+{\normalfont\small\bfseries}           % Formato: SMALL + bold (compensa ilusão)
+{}                                     % Rótulo: vazio (sem numeração)
+{0em}                                  % Espaço entre rótulo e corpo (zero, runin)
+{}                                     % Corpo do título
+
+\titlespacing{\paragraph}
+{0pt}       % Margem esquerda (sem indent)
+{8pt}       % Espaço ANTES do título do parágrafo (ADICIONADO - cria separação)
+{1em}       % Espaço DEPOIS do título (ADICIONADO - espaço após ":")
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SUBPARAGRAPH - Nível 5 (Preparação Futura)
+% --------------------------------------------------------------------------
+% Shape: runin → inline, integrado ao texto
+% Font: \small (MENOS destaque que \paragraph, sem bold)
+% Numeração: NÃO (padrão para \subparagraph)
+% Espaçamento: runin (integrado)
+% Uso: Se usado, aparecerá com destaque menor que \paragraph
+% --------------------------------------------------------------------------
+
+\titleformat{\subparagraph}[runin]
+{\normalfont\small}                    % Formato: small, SEM bold (menos destaque)
+{}                                     % Rótulo: vazio (sem numeração)
+{0em}                                  % Espaço entre rótulo e corpo (zero, runin)
+{}                                     % Corpo do título
+
+\titlespacing{\subparagraph}
+{0pt}       % Margem esquerda (sem indent)
+{8pt}       % Espaço ANTES do título (ADICIONADO)
+{1em}       % Espaço DEPOIS do título (ADICIONADO)
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% TABLES AND MACROS
+% --------------------------------------------------------------------------
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+% Custom Columns
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% Macro for Visual Reference Links
+\newcommand{\imglink}[1]{\hspace{2pt}\hyperref[#1]{\scriptsize\textbf{[Fig]}}}
+
+% --------------------------------------------------------------------------
+% HOTAS LOT FILE HANDLE 
+% --------------------------------------------------------------------------
+\makeatletter
+\newcommand{\listofhotastables}{%
+	\section*{List of HOTAS Tables}%
+	\addcontentsline{toc}{section}{List of HOTAS Tables}%
+	\@starttoc{hotas}%
+}
+\makeatother
+
+% --------------------------------------------------------------------------
+% HOTAS table environment
+% Version: 2.1 (2026-02-10)
+% --------------------------------------------------------------------------
+
+\newenvironment{hotastable}[1]{%
+	\footnotesize
+	\setlength{\tabcolsep}{3pt}
+	\renewcommand{\arraystretch}{1.35}
+	\begin{longtable}{L{1.00cm} L{0.90cm} L{0.90cm} L{3.30cm} L{6.40cm} L{1.40cm} L{1.60cm}}
+		\caption{#1}\label{table.\thetable}\\
+		\noalign{\addtocontents{hotas}{\protect\contentsline{table}{\protect\numberline{\thetable}#1}{\thepage}{table.\thetable}}}%
+		\rowcolor{headerblue}
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
+		\endfirsthead
+		\rowcolor{headerblue}
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
+		\endhead
+		\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+		\endfoot
+		\endlastfoot
+	}{%
+	\end{longtable}
+}
+
+% --------------------------------------------------------------------------
+% SIMPLE REFERENCE MACROS FOR BMS DOCS
+% --------------------------------------------------------------------------
+
+\newcommand{\dashref}[1]{Dash-34~\S~#1}
+\newcommand{\dashone}[1]{Dash-1~\S~#1}
+\newcommand{\trnref}[1]{TRN~#1}
+\newcommand{\trnman}{BMS Training Manual 4.38.1}
+\newcommand{\bmsver}{Falcon BMS~4.38.1}
+\newcommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+
+% --------------------------------------------------------------------------
+% CROSS-REFERENCE MACROS (INTERNAL GUIDE)
+% --------------------------------------------------------------------------
+
+\newcommand{\secref}[1]{\hyperref[#1]{Section~\ref*{#1}}}
+\newcommand{\chapref}[1]{\hyperref[#1]{Chapter~\ref*{#1}}}
+\newcommand{\tabref}[1]{\hyperref[#1]{Table~\ref*{#1}}}
+\newcommand{\figref}[1]{\hyperref[#1]{Figure~\ref*{#1}}}
+
+% --------------------------------------------------------------------------
+% VERSION CONTROL MACROS
+% --------------------------------------------------------------------------
+
+\newcommand{\docversion}{0.4.1.1}
+\newcommand{\docbuild}{20260218}
+\newcommand{\docstartdate}{05 January 2026}
+\newcommand{\docenddate}{18 February 2026}
+\newcommand{\chapterscompletedof}{4/7}
+\newcommand{\tablesfilledpct}{Chapter 5 and Chapter 4}
+\newcommand{\fulldocversion}{\docversion+\docbuild}
+
+% --------------------------------------------------------------------------
+% GRAPHICS
+% --------------------------------------------------------------------------
+
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+\usepackage{float}
+\usepackage{enumitem}
+
+% --------------------------------------------------------------------------
+% TITLE
+% --------------------------------------------------------------------------
+
+\title{TMS, DMS and CMS Usage Guide for \bmsver}
+\author{Carlos ``Metal'' Nader}
+\date{Version \fulldocversion{} | Progress: Chapters \chapterscompletedof{} | Tables \tablesfilledpct{} | January 2026}
+
+% ============================================================================
+% DOCUMENT BEGIN
+% ============================================================================
+
+\begin{document}
+	
+	\maketitle
+	
+	\pagenumbering{roman}
+	
+	% --------------------------------------------------------------------------
+	% TOC DEPTH CONFIGURATION
+	% --------------------------------------------------------------------------
+	\setcounter{tocdepth}{3}       % Show up to \subsubsection in TOC
+	\setcounter{secnumdepth}{3}    % Number up to \subsubsection
+	
+	\newpage
+	\tableofcontents
+	\newpage
+	
+	% --------------------------------------------------------------------------
+	% LIST OF HOTAS TABLES
+	% --------------------------------------------------------------------------
+	\phantomsection
+	\listofhotastables
+	\newpage
+	
+	\pagenumbering{arabic}
+
+% ============================================================================
+% CONTENT BEGINS HERE (use \chapter{}, \section{}, \subsection{}, etc.)
+% ============================================================================
+
+%============================================================================
+% CHAPTER 1 — INTRODUCTION
+%============================================================================
+\chapter{Introduction}
+\label{chap:C1}
+
+%--------------------------------------------------------------------------
+% SECTION 1.1: SCOPE AND PURPOSE
+%--------------------------------------------------------------------------
+\section{Scope and purpose}
+\label{sec:C1-S1}
+
+%--------------------------------------------------------------------------
+% SECTION 1.2: SOURCES AND REFERENCES
+%--------------------------------------------------------------------------
+\section{Sources and references}
+\label{sec:C1-S2}
+
+%--------------------------------------------------------------------------
+% SECTION 1.3: DOCUMENT STRUCTURE AND HOW TO READ IT
+%--------------------------------------------------------------------------
+\section{Document structure and how to read it}
+\label{sec:C1-S3}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 1.3.1: CHAPTER OVERVIEW
+%--------------------------------------------------------------------------
+\subsection{Chapter overview}
+\label{sec:C1-S3-S1}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 1.3.2: TABLE FORMAT (HOTASTABLE)
+%--------------------------------------------------------------------------
+\subsection{Table format}
+\label{sec:C1-S3-S2}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 1.3.3: REFERENCE CONVENTIONS
+%--------------------------------------------------------------------------
+\subsection{Reference conventions}
+\label{sec:C1-S3-S3}
+
+%--------------------------------------------------------------------------
+% SECTION 1.4: VERSION, AUTHORSHIP AND AI ASSISTANCE
+%--------------------------------------------------------------------------
+\section{Version, authorship, and AI assistance}
+\label{sec:C1-S4}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 1.4.1: DOCUMENT VERSION AND STATUS
+%--------------------------------------------------------------------------
+\subsection{Document version and status}
+\label{sec:C1-S4-S1}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 1.4.2: AUTHORSHIP AND AI ASSISTANCE
+%--------------------------------------------------------------------------
+\subsection{Authorship and AI assistance}
+\label{sec:C1-S4-S2}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 1.4.3: CANONICAL SOURCE
+%--------------------------------------------------------------------------
+\subsection{Canonical source}
+\label{sec:C1-S4-S3}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 1.4.4: LICENSE
+%--------------------------------------------------------------------------
+\subsection{License}
+\label{sec:C1-S4-S4}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 1.4.5: DISCLAIMER
+%--------------------------------------------------------------------------
+\subsection{Disclaimer}
+\label{sec:C1-S4-S5}
+
+\newpage
+
+%============================================================================
+% CHAPTER 2 — HOTAS FUNDAMENTALS
+%============================================================================
+\chapter{HOTAS Fundamentals}
+\label{chap:C2}
+
+%============================================================================
+% SECTION 2.1 — SOI CONCEPT AND ARCHITECTURE
+%============================================================================
+\section{Sensor of Interest (SOI) — Concept and Architecture}
+\label{sec:C2-S1}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 2.1.1 — THE SOI CONCEPT
+%--------------------------------------------------------------------------
+\subsection{The SOI Concept}
+\label{sec:C2-S1-S1}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 2.1.2 — SOI INDICATORS AND VISUAL FEEDBACK
+%--------------------------------------------------------------------------
+\subsection{SOI Indicators and Visual Feedback}
+\label{sec:C2-S1-S2}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 2.1.3 — SOI-CAPABLE DISPLAYS AND CONTEXT DEPENDENCY
+%--------------------------------------------------------------------------
+\subsection{SOI-Capable Displays and Context Dependency}
+\label{sec:C2-S1-S3}
+
+%============================================================================
+% SECTION 2.2 — MASTER MODES AND CONTEXT-SENSITIVE BEHAVIOR
+%============================================================================
+\section{Master Modes and Context-Sensitive Behavior}
+\label{sec:C2-S2}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 2.2.1 — MASTER MODE OVERVIEW
+%--------------------------------------------------------------------------
+\subsection{Master Mode Overview}
+\label{sec:C2-S2-S1}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 2.2.2 — WHY HOTAS SWITCHES BEHAVE DIFFERENTLY BY MASTER MODE
+%--------------------------------------------------------------------------
+\subsection{Why HOTAS Switches Behave Differently by Master Mode}
+\label{sec:C2-S2-S2}
+
+%============================================================================
+% SECTION 2.3 — THE THREE SWITCHES: DMS, TMS, AND CMS
+%============================================================================
+\section{The Three Switches: DMS, TMS, and CMS}
+\label{sec:C2-S3}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 2.3.1 — DISPLAY MANAGEMENT SWITCH (DMS)
+%--------------------------------------------------------------------------
+\subsection{Display Management Switch (DMS) — Overview}
+\label{sec:C2-S3-S1}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 2.3.2 — TARGET MANAGEMENT SWITCH (TMS)
+%--------------------------------------------------------------------------
+\subsection{Target Management Switch (TMS) — Overview}
+\label{sec:C2-S3-S2}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 2.3.3 — COUNTERMEASURES MANAGEMENT SWITCH (CMS)
+%--------------------------------------------------------------------------
+\subsection{Countermeasures Management Switch (CMS) — Overview}
+\label{sec:C2-S3-S3}
+
+\newpage
+
+%============================================================================
+% CHAPTER 3 — DMS: DISPLAY MANAGEMENT SWITCH
+%============================================================================
+\chapter{DMS -- Display Management Switch}
+\label{chap:C3}
+
+%============================================================================
+% SECTION 3.1 — CONCEPT AND SENSOR OF INTEREST (SOI)
+%============================================================================
+\section{Concept and Sensor of Interest (SOI)}
+\label{sec:C3-S1}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 3.1.1 — SOI DEFINITION AND MASTER MODE AVAILABILITY
+%--------------------------------------------------------------------------
+\subsection{SOI Definition and Master Mode Availability}
+\label{sec:C3-S1-S1}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 3.1.1.1 — VALID SOI FORMATS
+%--------------------------------------------------------------------------
+\subsubsection{Valid SOI Formats}
+\label{sec:C3-S1-S1-S1}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 3.1.2 — ROLE OF DMS IN SOI SELECTION
+%--------------------------------------------------------------------------
+\subsection{Role of DMS in SOI Selection}
+\label{sec:C3-S1-S2}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 3.1.3 — HUD AS SOI IN A-A AND HMCS CAPABILITIES
+%--------------------------------------------------------------------------
+\subsection{HUD as SOI in A-A and HMCS Capabilities}
+\label{sec:C3-S1-S3}
+
+%============================================================================
+% SECTION 3.2 — DMS UP: HUD DESIGNATION AS SOI
+%============================================================================
+\section{DMS Up: HUD Designation as SOI}
+\label{sec:C3-S2}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 3.2.1 — DMS UP EFFECTIVENESS
+%--------------------------------------------------------------------------
+\subsection{DMS Up Effectiveness}
+\label{sec:C3-S2-S1}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 3.2.1.1 — MASTER MODES WHERE DMS UP IS EFFECTIVE
+%--------------------------------------------------------------------------
+\subsubsection{Master Modes Where DMS Up is Effective (HUD as SOI Permitted)}
+\label{sec:C3-S2-S1-S1}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 3.2.1.2 — MODES WHERE DMS UP IS INEFFECTIVE
+%--------------------------------------------------------------------------
+\subsubsection{Modes Where DMS Up is Ineffective (HUD as SOI Prohibited)}
+\label{sec:C3-S2-S1-S2}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 3.2.2 — DMS UP USAGE TABLE
+%--------------------------------------------------------------------------
+\subsection{DMS Up Usage Table}
+\label{sec:C3-S2-S2}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 3.2.3 — DMS UP EXCEPTION STATES
+%--------------------------------------------------------------------------
+\subsection{DMS Up Exception States}
+\label{sec:C3-S2-S3}
+
+%============================================================================
+% SECTION 3.3 — DMS DOWN: TOGGLE SOI BETWEEN DISPLAYS
+%============================================================================
+\section{DMS Down: Toggle SOI Between Displays}
+\label{sec:C3-S3}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 3.3.1 — DMS DOWN EFFECTIVENESS
+%--------------------------------------------------------------------------
+\subsection{DMS Down Effectiveness}
+\label{sec:C3-S3-S1}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 3.3.1.1 — MASTER MODES WHERE HUD IS A VALID SOI CANDIDATE
+%--------------------------------------------------------------------------
+\subsubsection{Master Modes Where HUD is a Valid SOI Candidate}
+\label{sec:C3-S3-S1-S1}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 3.3.1.2 — MODES WHERE HUD IS NOT A VALID SOI CANDIDATE
+%--------------------------------------------------------------------------
+\subsubsection{Modes Where HUD is NOT a Valid SOI Candidate}
+\label{sec:C3-S3-S1-S2}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 3.3.2 — DMS DOWN USAGE TABLE
+%--------------------------------------------------------------------------
+\subsection{DMS Down Usage Table}
+\label{sec:C3-S3-S2}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 3.3.3 — DMS DOWN EXCEPTION STATES
+%--------------------------------------------------------------------------
+\subsection{DMS Down Exception States}
+\label{sec:C3-S3-S3}
+
+%============================================================================
+% SECTION 3.4 — DMS LEFT/RIGHT: MULTIFUNCTION DISPLAY FORMAT CYCLING
+%============================================================================
+\section{DMS Left/Right: Multifunction Display Format Cycling}
+\label{sec:C3-S4}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 3.4.1 — CONCEPT
+%--------------------------------------------------------------------------
+\subsection{Concept}
+\label{sec:C3-S4-S1}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 3.4.1.1 — FORMAT CYCLING AND SOI SELECTION: DISTINCTIONS
+%--------------------------------------------------------------------------
+\subsubsection{Format Cycling and SOI Selection --- Distinctions}
+\label{sec:C3-S4-S1-S1}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 3.4.2 — MFD CONFIGURATION
+%--------------------------------------------------------------------------
+\subsection{MFD Configuration}
+\label{sec:C3-S4-S2}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 3.4.2.1 — DISPLAY FORMAT CONFIGURATION VIA DTC
+%--------------------------------------------------------------------------
+\subsubsection{Display Format Configuration via DTC}
+\label{sec:C3-S4-S2-S1}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 3.4.2.2 — DTC CUSTOMIZATION IN FALCON BMS
+%--------------------------------------------------------------------------
+\subsubsection{DTC Customization in Falcon BMS}
+\label{sec:C3-S4-S2-S2}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 3.4.2.3 — PRIMARY, SECONDARY, AND TERTIARY FORMAT PAGES
+%--------------------------------------------------------------------------
+\subsubsection{Primary, Secondary, and Tertiary format pages}
+\label{sec:C3-S4-S2-S3}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 3.4.2.4 — CYCLING CONSTRAINTS AND EDGE CASES
+%--------------------------------------------------------------------------
+\subsubsection{Cycling Constraints and Edge Cases}
+\label{sec:C3-S4-S2-S4}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 3.4.3 — DMS LEFT/RIGHT USAGE TABLE
+%--------------------------------------------------------------------------
+\subsection{DMS Left/Right Usage Table}
+\label{sec:C3-S4-S3}
+
+\newpage
+
+%============================================================================
+% CHAPTER 4 — TMS: TARGET MANAGEMENT SWITCH
+%============================================================================
+\chapter{TMS -- Target Management Switch}
+\label{chap:C4}
+
+%============================================================================
+% SECTION 4.1 — CONCEPT AND GENERAL BEHAVIOUR
+%============================================================================
+\section{Concept and general behaviour}
+\label{sec:C4-S1}
+
+%============================================================================
+% SECTION 4.2 — TMS AND SITUATIONAL AWARENESS DISPLAYS
+%============================================================================
+\section{TMS and Situational Awareness displays}
+\label{sec:C4-S2}
+
+%============================================================================
+% SECTION 4.3 — TMS IN AIR-TO-AIR
+%============================================================================
+\section{TMS in Air-to-Air}
+\label{sec:C4-S3}
+
+%============================================================================
+% SECTION 4.4 — TMS IN AIR-TO-GROUND
+%============================================================================
+\section{TMS in Air-to-Ground}
+\label{sec:C4-S4}
+
+%============================================================================
+% SECTION 4.5 — TMS IN WEAPON EMPLOYMENT
+%============================================================================
+\section{TMS in weapon employment}
+\label{sec:C4-S5}
+
+%============================================================================
+% SECTION 4.6 — TMS BLOCK / VARIANT NOTES
+%============================================================================
+\section{TMS -- Block / variant notes}
+\label{sec:C4-S6}
+
+\newpage
+
+%============================================================================
+% CHAPTER 5 — CMS: COUNTERMEASURES MANAGEMENT SWITCH
+%============================================================================
+\chapter{CMS -- Countermeasures Management Switch}
+\label{chap:C5}
+
+%============================================================================
+% SECTION 5.1 — CONCEPT AND INTERACTION WITH CMDS / ECM / RWR
+%============================================================================
+\section{Concept and Interaction with CMDS / ECM / RWR}
+\label{sec:C5-S1}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 5.1.1 — INTERACTION WITH CMDS / ECM
+%--------------------------------------------------------------------------
+\subsection{Interaction with CMDS / ECM}
+\label{sec:C5-S1-S1}
+
+%============================================================================
+% SECTION 5.2 — CMS SWITCH ACTUATION
+%============================================================================
+\section{CMS Switch Actuation}
+\label{sec:C5-S2}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 5.2.1 — CMS ACTUATION WITH CMDS
+%--------------------------------------------------------------------------
+\subsection{CMS Actuation with CMDS}
+\label{sec:C5-S2-S1}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 5.2.1.1 — MANUAL MODE
+%--------------------------------------------------------------------------
+\subsubsection{Manual Mode}
+\label{sec:C5-S2-S1-S1}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 5.2.1.2 — AUTOMATIC MODE
+%--------------------------------------------------------------------------
+\subsubsection{Automatic Mode}
+\label{sec:C5-S2-S1-S2}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 5.2.1.3 — SEMI-AUTOMATIC MODE
+%--------------------------------------------------------------------------
+\subsubsection{Semi-Automatic Mode}
+\label{sec:C5-S2-S1-S3}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 5.2.2 — CMS ACTUATION WITH ECM
+%--------------------------------------------------------------------------
+\subsection{CMS Actuation with ECM}
+\label{sec:C5-S2-S2}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 5.2.2.1 — EXTERNAL ECM POD (ALQ-131 / ALQ-184)
+%--------------------------------------------------------------------------
+\subsubsection{External ECM Pod (ALQ-131 / ALQ-184)}
+\label{sec:C5-S2-S2-S1}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 5.2.2.2 — INTERNAL ECM (IDIAS)
+%--------------------------------------------------------------------------
+\subsubsection{ECM (IDIAS)}
+\label{sec:C5-S2-S2-S2}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 5.2.3 — CMS CONSENT AND CONSTRAINTS
+%--------------------------------------------------------------------------
+\subsection{CMS Consent and Constraints}
+\label{sec:C5-S2-S3}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 5.2.4 — IMPORTANT OPERATIONAL NOTES
+%--------------------------------------------------------------------------
+\subsection{Important Operational Notes}
+\label{sec:C5-S2-S4}
+
+%============================================================================
+% SECTION 5.3 — CMS BLOCK AND VARIANT NOTES
+%============================================================================
+\section{CMS Block and Variant Notes}
+\label{sec:C5-S3}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 5.3.1 — ECM CONFIGURATIONS PRESENT IN BMS
+%--------------------------------------------------------------------------
+\subsection{ECM Configurations present in BMS}
+\label{sec:C5-S3-S1}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 5.3.1.1 — ECM PODS (ALQ-131 / ALQ-184)
+%--------------------------------------------------------------------------
+\subsubsection{ECM Pods (ALQ-131 / ALQ-184)}
+\label{sec:C5-S3-S1-S1}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 5.3.1.2 — ECM (IDIAS)
+%--------------------------------------------------------------------------
+\subsubsection{ECM (IDIAS)}
+\label{sec:C5-S3-S1-S2}
+
+%--------------------------------------------------------------------------
+% SUBSUBSECTION 5.3.1.3 — CLARIFICATION
+%--------------------------------------------------------------------------
+\subsubsection{Clarification}
+\label{sec:C5-S3-S1-S3}
+
+\newpage
+
+%============================================================================
+% CHAPTER 6 — TRAINING REFERENCES AND PRACTICAL FLOWS
+%============================================================================
+\chapter{Training references and practical flows}
+\label{chap:C6}
+
+%============================================================================
+% SECTION 6.1 — HOW TO USE THIS GUIDE WITH BMS TRAINING MISSIONS
+%============================================================================
+\section{How to use this guide with BMS training missions}
+\label{sec:C6-S1}
+
+%============================================================================
+% SECTION 6.2 — RECOMMENDED PROGRESSION
+%============================================================================
+\section{Recommended progression}
+\label{sec:C6-S2}
+
+%============================================================================
+% SECTION 6.3 — EXAMPLE FLOWS FOR TYPICAL MISSIONS
+%============================================================================
+\section{Example flows for typical missions}
+\label{sec:C6-S3}
+
+\newpage
+
+%============================================================================
+% CHAPTER 7 — HOTAS VISUAL REFERENCE
+%============================================================================
+\chapter{HOTAS visual reference}
+\label{chap:C7}
+
+%============================================================================
+% SECTION 7.1 — F-16 HOTAS OVERVIEW
+%============================================================================
+\section{F-16 HOTAS overview}
+\label{sec:C7-S1}
+
+%============================================================================
+% SECTION 7.2 — TMS DIAGRAMS
+%============================================================================
+\section{TMS diagrams}
+\label{sec:C7-S2}
+
+%============================================================================
+% SECTION 7.3 — DMS DIAGRAMS
+%============================================================================
+\section{DMS diagrams}
+\label{sec:C7-S3}
+
+%============================================================================
+% SECTION 7.4 — CMS DIAGRAMS
+%============================================================================
+\section{CMS diagrams}
+\label{sec:C7-S4}
+
+%============================================================================
+% APPENDICES
+%============================================================================
+\appendix
+
+%============================================================================
+% APPENDIX A — BLOCK / VARIANT OVERVIEW
+%============================================================================
+\section{Block / variant overview}
+
+\subsection{F-16CM Block 50/52}
+
+\subsection{F-16C/D Block 40/42}
+
+\subsection{F-16AM/BM MLU}
+
+\subsection{F-16I Sufa and Israeli variants}
+
+\subsection{Other export variants}
+
+%============================================================================
+% APPENDIX B — TABLES INDEX
+%============================================================================
+\section{Tables index}
+
+\subsection{TMS tables}
+
+\subsection{DMS tables}
+
+\subsection{CMS tables}
+
+\end{document}

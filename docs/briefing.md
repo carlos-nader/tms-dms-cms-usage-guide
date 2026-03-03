@@ -93,21 +93,20 @@ Assume there is already a LaTeX template with this structure. Do not change the 
 **1. Introduction**
 
 - 1.1 Scope and purpose.
-- 1.2 Version, authorship and AI assistance.
-- 1.3 Sources and references.
-- 1.4 Document structure and how to read it.
+- 1.2 Sources and references.
+- 1.3 Document structure and how to read it.
+- 1.4 Version, authorship and AI assistance.
 
 **2. HOTAS Fundamentals**
 
-- 2.1 Sensor of Interest (SOI) and display logic.
-- 2.2 Short vs long presses and timing.
-- 2.3 Master modes and context-sensitive behaviour.
-- 2.4 Overview of TMS, DMS and CMS.
+- 2.1 Sensor of Interest (SOI) — Concept and Architecture.
+- 2.2 Master Modes and Context-Sensitive Behavior.
+- 2.3 The Three Switches: DMS, TMS, and CMS.
 
 **3. DMS — Display Management Switch**
 
 - 3.1 Concept and Sensor of Interest (SOI).
-- 3.2 DMS Up: HDU Designation as SOI.
+- 3.2 DMS Up: HUD Designation as SOI.
 - 3.3 DMS Down: Toggle SOI Among Displays.
 - 3.4 DMS Left/Right: Format Cycling.
 
@@ -117,7 +116,7 @@ Assume there is already a LaTeX template with this structure. Do not change the 
 - 4.2 TMS and Situational Awareness displays.
 - 4.3 TMS in Air-to-Air.
 - 4.4 TMS in Air-to-Ground.
-- 4.5 TMS in A-G weapon employment.
+- 4.5 TMS in weapon employment.
 - 4.6 TMS — Block / variant notes.
 
 **5. CMS — Countermeasures Management Switch**
@@ -135,7 +134,9 @@ Assume there is already a LaTeX template with this structure. Do not change the 
 **7. HOTAS Visual Reference**
 
 - 7.1 F-16 HOTAS overview.
-- 7.2 TMS, DMS, CMS diagrams with arrows and labels.
+- 7.2 TMS diagrams.
+- 7.3 DMS diagrams.
+- 7.4 CMS diagrams.
 
 ### 3.2 Appendices
 
