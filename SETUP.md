@@ -525,7 +525,7 @@ All work-in-progress content follows a **standardized naming convention** define
 - `S{M}` → Section number (optional, e.g., `S2`)
 - `S{K}` → Subsection number (optional, e.g., `S3`)
 - `{title}` → Descriptive kebab-case title (e.g., `tms-structure`)
-- `{status}` → Lifecycle stage: `dev`, `review`, `final`, `approved`, `deprecated`
+- `{status}` → Lifecycle stage: `dev`, `review`, `final`, `alpha`, `approved`, `deprecated`
 - `{YYYY-MM-DD}` → Creation date (e.g., `2026-02-12`)
 - `{ext}` → File extension: `.tex`, `.md`, `.svg`, `.png`
 
@@ -555,6 +555,7 @@ visual-C2-soi-concept-diagram-dev-2026-02-09.svg
 | **dev** | Draft, not ready for review | Complete content → `review` |
 | **review** | Under human review | Address feedback → `final` |
 | **final** | Approved, ready for integration | Integrate into `guide.tex` → `approved` |
+| **alpha** | Parallel flow only (pre-release): author-approved; content integrated into alpha snapshot | Promote to official release → `approved` |
 | **approved** | Integrated into guide, archived | Move to `archive/WIP/` |
 | **deprecated** | Retired or superseded | Move to `archive/WIP/` |
 

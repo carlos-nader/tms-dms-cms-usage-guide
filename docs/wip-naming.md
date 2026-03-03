@@ -182,9 +182,11 @@ Always start with status `dev` (never reviewed by author).
 
 ### 1.1 Character Set
 
-- **Allowed:** `a-z`, `0-9`, hyphens (`-`)
+- **Allowed:** `a-z`, `A-Z`, `0-9`, hyphens (`-`)
 - **Prohibited:** spaces, dots (except extension), special characters (`@`, `#`, `$`, `_` in body)
-- **Case:** lowercase only
+- **Case:**
+      - Use lowercase for the free-text parts (`{title}`, `{desc}`, `{topic}`, etc.).
+      - Uppercase is allowed only for structured tokens and established codes (e.g., `C{N}`, `S{M}`, `AA`, `AG`, `NAV`, `GEN`, `TMS`, `DMS`, `CMS`, `CMDS`, `HOTAS`).
 - **Encoding:** UTF-8
 
 ### 1.2 Separators

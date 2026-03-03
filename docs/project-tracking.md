@@ -31,7 +31,7 @@ This document tracks governance rules, project state, and development history. F
 | CHANGELOG | 2026-02-18 | Release history and integration milestones (`CHANGELOG.md`) |
 | STYLE-GUIDE | 2026-02-21 | Prose style, voice, formatting, and prohibited patterns (`misc/STYLE-GUIDE.md`) |
 
-**Rule:** All WIP files must be created from `TEMPLATES/template-wip.tex`.
+**Rule:** All WIP files must be created from `template/template-wip.tex`.
 
 ---
 
