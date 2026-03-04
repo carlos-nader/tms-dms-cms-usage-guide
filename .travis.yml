@@ -1,32 +1,39 @@
 # Travis CI configuration for projeto-bms (LaTeX guide)
 # Builds the PDF and runs lightweight repo validations.
 
-os: linux
-dist: focal
-language: shell
+jobs:
+  include:
+    - name: GitGuardian Scan
+      language: python
+      python: "3.11"
+      install:
+        - pip install ggshield
+      script:
+        - ggshield secret scan ci
 
-git:
-  depth: false
-
-addons:
-  apt:
-    packages:
-      - python3
-      - latexmk
-      - lmodern
-      - texlive-latex-base
-      - texlive-latex-recommended
-      - texlive-latex-extra
-      - texlive-fonts-recommended
-      - texlive-fonts-extra
-      - texlive-lang-english
-      - texlive-pictures
-      - texlive-science
-      - texlive-extra-utils
-      - ghostscript
-
-cache:
-  apt: true
-
-script:
-  - bash ci/travis.sh
+    - name: Build and Validate
+      os: linux
+      dist: focal
+      language: shell
+      git:
+        depth: false
+      addons:
+        apt:
+          packages:
+            - python3
+            - latexmk
+            - lmodern
+            - texlive-latex-base
+            - texlive-latex-recommended
+            - texlive-latex-extra
+            - texlive-fonts-recommended
+            - texlive-fonts-extra
+            - texlive-lang-english
+            - texlive-pictures
+            - texlive-science
+            - texlive-extra-utils
+            - ghostscript
+      cache:
+        apt: true
+      script:
+        - bash ci/travis.sh
