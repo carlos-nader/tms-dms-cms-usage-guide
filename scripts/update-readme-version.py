@@ -235,58 +235,106 @@ def output_to_github_actions(version, source):
         return False
 
 
+def _resolve_version():
+    """
+    Determine version and its source.
+
+    Tries OVERRIDE_VERSION first (manual), then latest git tag.
+
+    Returns:
+        tuple: (version, source) where source is "manual" or "tag"
+    """
+    version = get_version_from_env()
+    if version:
+        return version, "manual"
+
+    version = get_version_from_git()
+    if version:
+        return version, "tag"
+
+    print("\n✗ FAILED: No version found (neither git tag nor OVERRIDE_VERSION)")
+    sys.exit(1)
+
+
+def update_index_html(version):
+    """
+    Update version in docs/index.html.
+
+    Replaces version in TWO locations:
+      1. Badge text: 📦 v0.4.1.0 • ...
+      2. Title attribute: title="v0.4.1.0 Changelog: ..."
+
+    Args:
+        version (str): New version to insert
+
+    Returns:
+        int: Number of replacements made (0 if file not found or no matches)
+    """
+    index_path = "docs/index.html"
+    if not Path(index_path).exists():
+        print(f"⚠ {index_path} not found, skipping index.html update.")
+        return 0
+
+    with open(index_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    # Atualiza o badge visual (ex: 📦 v0.4.1.0 • ...)
+    content, badge_changes = re.subn(
+        r'(📦 v)([0-9]+(?:\.[0-9]+){2,3})( • [^<]+)',
+        rf'\g<1>{version}\g<3>',
+        content
+    )
+    # Atualiza o atributo title (ex: title="v0.4.1.0 Changelog: ...")
+    content, title_changes = re.subn(
+        r'(title=")v[0-9]+(?:\.[0-9]+){2,3}( Changelog: )',
+        rf'\g<1>v{version}\g<2>',
+        content
+    )
+
+    total_changes = badge_changes + title_changes
+    if total_changes > 0:
+        with open(index_path, 'w', encoding='utf-8') as f:
+            f.write(content)
+        print(f"✓ Updated version badge and title in {index_path} ({total_changes} occurrence(s))")
+    else:
+        print(f"⚠ No version badge or title update needed in {index_path}")
+
+    return total_changes
+
+
 def main():
     """Main execution logic."""
-    
     print("=" * 60)
     print("📝 README Version Updater v3.0")
     print("=" * 60)
-    
+
     # Step 1: Determine version source
     print("\n[1/5] Determining version source...")
-    
-    version = get_version_from_env()  # Manual input (takes precedence)
-    source = "manual"
-    
-    if not version:
-        version = get_version_from_git()  # Automatic from tag
-        source = "tag"
-    
-    if not version:
-        print("\n✗ FAILED: No version found (neither git tag nor OVERRIDE_VERSION)")
-        sys.exit(1)
-    
+    version, source = _resolve_version()
     print(f"ℹ Version source: {source.upper()}")
-    
+
     # Step 2: Validate version
     print("\n[2/5] Validating version format...")
-    
     if not validate_version(version):
         print("✗ FAILED: Invalid version format")
         sys.exit(1)
-    
     print(f"✓ Version is valid: {version}")
-    
+
     # Step 3: Read README
     print("\n[3/5] Reading README file...")
-    
     readme_path = "README.md"
     if not Path(readme_path).exists():
         print(f"✗ FAILED: {readme_path} not found")
         sys.exit(1)
-    
     content = read_readme(readme_path)
     if content is None:
         print("✗ FAILED: Could not read README")
         sys.exit(1)
-    
     print(f"✓ README loaded ({len(content)} bytes)")
-    
+
     # Step 4: Update README content
     print("\n[4/5] Updating version in README...")
-    
     updated_content, num_changes = update_readme_content(content, version)
-    
     if num_changes == 0:
         print("⚠ WARNING: No version updates were made")
         print("  Check that README contains proper version markers:")
@@ -295,47 +343,21 @@ def main():
         print("  - Footer: Pre-publication v...")
     else:
         print(f"✓ Made {num_changes} update(s)")
-    
+
     # Step 5: Write updated README
     print("\n[5/5] Saving updated README...")
-    
     if not write_readme(readme_path, updated_content):
         print("✗ FAILED: Could not write README")
         sys.exit(1)
-    
+
     # Step 6: Update version in docs/index.html
     print("\n[6/6] Updating version in docs/index.html...")
-
-    index_path = "docs/index.html"
-    if Path(index_path).exists():
-        with open(index_path, 'r', encoding='utf-8') as f:
-            index_content = f.read()
-        # Atualiza o badge visual (ex: 📦 v0.4.1.0 • ...)
-        new_index_content, badge_changes = re.subn(
-            r'(📦 v)([0-9]+(?:\.[0-9]+){2,3})( • [^<]+)',
-            rf'\g<1>{version}\g<3>',
-            index_content
-        )
-        # Atualiza o atributo title (ex: title="v0.4.1.0 Changelog: ...")
-        new_index_content, title_changes = re.subn(
-            r'(title=")v[0-9]+(?:\.[0-9]+){2,3}( Changelog: )',
-            rf'\g<1>v{version}\g<2>',
-            new_index_content
-        )
-        total_changes = badge_changes + title_changes
-        if total_changes > 0:
-            with open(index_path, 'w', encoding='utf-8') as f:
-                f.write(new_index_content)
-            print(f"✓ Updated version badge and title in {index_path} ({total_changes} occurrence(s))")
-        else:
-            print(f"⚠ No version badge or title update needed in {index_path}")
-    else:
-        print(f"⚠ {index_path} not found, skipping index.html update.")
+    update_index_html(version)
 
     # Bonus: Output to GitHub Actions
     print("\n[BONUS] Setting GitHub Actions output variables...")
     output_to_github_actions(version, source)
-    
+
     # Success summary
     print("\n" + "=" * 60)
     print("✅ SUCCESS")
@@ -346,7 +368,7 @@ def main():
     print(f"🔄 Patterns updated: {num_changes}")
     print(f"📅 Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
-    
+
     sys.exit(0)
 
 
