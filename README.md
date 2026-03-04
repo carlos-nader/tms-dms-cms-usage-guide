@@ -11,11 +11,9 @@ README maintenance contract (non-rendered):
 	- Version text (badge/table): updated by scripts/update-readme-version.py
 -->
 
-[![Generate Integrated Files Report](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/generate-integrated-files.yml/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/generate-integrated-files.yml)
 [![pages-build-deployment](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/pages/pages-build-deployment)
-[![Sync PDF to docs](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/sync-pdf-to-docs.yml/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/sync-pdf-to-docs.yml)
-[![Validate LaTeX Preamble](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/validate-tex-preamble.yml/badge.svg)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/validate-tex-preamble.yml)
 [![Travis CI](https://api.travis-ci.com/carlos-nader/tms-dms-cms-usage-guide.svg?branch=main)](https://app.travis-ci.com/carlos-nader/tms-dms-cms-usage-guide)
+[![CodeScene Average Code Health](https://codescene.io/projects/77545/status-badges/average-code-health)](https://codescene.io/projects/77545)
 
 [![GitHub stars](https://img.shields.io/github/stars/carlos-nader/tms-dms-cms-usage-guide?style=social)](https://github.com/carlos-nader/tms-dms-cms-usage-guide)
 [![GitHub forks](https://img.shields.io/github/forks/carlos-nader/tms-dms-cms-usage-guide?style=social)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/fork)
