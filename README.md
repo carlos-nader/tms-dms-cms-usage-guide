@@ -108,13 +108,15 @@ Transparent time tracking via WakaTime specifically for this repository.
 [![Claude](https://img.shields.io/badge/Claude-cc785c?style=for-the-badge&logo=anthropic&logoColor=white)](https://claude.ai)
 [![GitHub Copilot](https://img.shields.io/badge/GitHub%20Copilot-0969da?style=for-the-badge&logo=github&logoColor=white)](https://github.com/features/copilot)
 [![Falcon BMS](https://img.shields.io/badge/Falcon%20BMS-4.38.1-blue?style=for-the-badge)](https://www.falcon-bms.com/)
-[![Open in ToDiagram](https://todiagram.com/images/open-in-todiagram.svg)](https://todiagram.com/editor?doc=5285129500806cc0693c5320)
 
 This project develops a structured guide explaining the F-16 HOTAS TMS, DMS and CMS switch functionality, grounded in Falcon BMS manuals (Dash-34, Dash-1) and training materials.
 
 ---
 
 ## 📁 Project Structure
+
+[![Open in ToDiagram](https://todiagram.com/images/open-in-todiagram.svg)](https://todiagram.com/editor?doc=5285129500806cc0693c5320)
+
 ```
 tms-dms-cms-usage-guide/
 │
