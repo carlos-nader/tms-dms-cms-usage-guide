@@ -14,6 +14,4 @@ RUN apt-get update && apt-get install -y \
     texlive-science \
     texlive-extra-utils \
     ghostscript \
-    nodejs \
-    npm \
     && rm -rf /var/lib/apt/lists/*

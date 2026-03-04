@@ -8,7 +8,8 @@
       "extensions": [
         "james-yu.latex-workshop",
         "github.copilot",
-        "github.copilot-chat"
+        "github.copilot-chat",
+        "anthropic.claude-code"
       ],
       "settings": {
         "latex-workshop.latex.autoBuild.run": "never",
@@ -33,6 +34,5 @@
         ]
       }
     }
-  },
-  "postCreateCommand": "npm install -g @anthropic-ai/claude-code"
+  }
 }
