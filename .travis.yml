@@ -13,6 +13,7 @@ addons:
     packages:
       - python3
       - latexmk
+      - lmodern
       - texlive-latex-base
       - texlive-latex-recommended
       - texlive-latex-extra
