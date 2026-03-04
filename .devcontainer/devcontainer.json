@@ -1,0 +1,37 @@
+{
+  "name": "TMS/DMS/CMS Guide — LaTeX",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "james-yu.latex-workshop",
+        "github.copilot",
+        "github.copilot-chat"
+      ],
+      "settings": {
+        "latex-workshop.latex.autoBuild.run": "never",
+        "latex-workshop.latex.tools": [
+          {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+              "-pdf",
+              "-file-line-error",
+              "-interaction=nonstopmode",
+              "-halt-on-error",
+              "%DOC%"
+            ]
+          }
+        ],
+        "latex-workshop.latex.recipes": [
+          {
+            "name": "latexmk",
+            "tools": ["latexmk"]
+          }
+        ]
+      }
+    }
+  }
+}
