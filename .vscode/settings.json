@@ -54,5 +54,12 @@
   "latex-workshop.message.warning.show": true,
   "latex-workshop.latex.clean.fileTypes": [
   "*.aux", "*.bbl", "*.blg", "*.fls", "*.log", "*.out", "*.toc", "*.lot", "*.lof", "*.hotas"
-]
+],
+"chat.mcp.serverSampling": {
+  "projeto-bms/.vscode/mcp.json: todiagram": {
+    "allowedModels": [
+      "copilot/auto"
+    ]
+  }
+}
 }
