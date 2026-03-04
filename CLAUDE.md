@@ -156,6 +156,7 @@ The AI assistant (Claude Code) may:
 - Generate and edit WIP files
 - Review prose style and structure
 - Run scripts and read files
+- Create and manage `MEMORY.md` and related files in the auto memory directory (`.claude/projects/*/memory/`) as needed, without prior approval
 
 The AI must NOT autonomously:
 - Decide final status, integration into `guide.tex`, or archival
