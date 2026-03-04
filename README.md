@@ -240,7 +240,7 @@ All technical claims are cross-referenced to these sources.
 | [**Milestones**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/milestones) | Planned releases |
 | [**Issues**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/issues) | Current tasks |
 | [**Tags**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/tags) | Version history |
-| [**Issues Dependency Map**](https://carlos-nader.github.io/tms-dms-cms-usage-guide/issue-dependency-map.svg) | SVG dependency diagram (web view). [Source (GitHub)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/issue-dependency-map.svg) |
+| [**Issues Dependency Map**](https://carlos-nader.github.io/tms-dms-cms-usage-guide/issue-dependency-map.svg) |
 
 **Next milestones:**
 * **v0.4.2.0** — Style Full Revision
