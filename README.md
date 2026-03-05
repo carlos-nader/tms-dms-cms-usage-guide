@@ -115,7 +115,11 @@ This project develops a structured guide explaining the F-16 HOTAS TMS, DMS and 
 
 ## 📁 Project Structure
 
+### Project Overview
+
 [![Open in ToDiagram](https://todiagram.com/images/open-in-todiagram.svg)](https://todiagram.com/editor?doc=5285129500806cc0693c5320)
+
+### Files Tree
 
 ```
 tms-dms-cms-usage-guide/
