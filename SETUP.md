@@ -20,6 +20,8 @@
 10. [Running Automation Scripts](#-running-automation-scripts)
 11. [Troubleshooting](#-troubleshooting)
 
+> ☁️ **Prefer a cloud environment?** Open this repository directly in [GitHub Codespaces](https://codespaces.new/carlos-nader/tms-dms-cms-usage-guide) — LaTeX, Python, and all required tools are pre-installed. No local setup needed.
+
 ---
 
 ## 🎯 Prerequisites

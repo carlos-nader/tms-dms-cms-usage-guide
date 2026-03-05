@@ -207,6 +207,7 @@ The project uses **five governance documents** and an **auto-generated tracking 
 * **TeXstudio + MiKTeX** — Primary LaTeX IDE for guide compilation and PDF generation
 * **Visual Studio Code** — Multi-purpose editor for LaTeX, Markdown, scripts, and Copilot/Claude AI integration
 * **Git / GitHub Desktop** — Version control and repository management
+* **GitHub Codespaces** — Cloud development environment with LaTeX and tooling pre-configured ([Open a Codespace](https://codespaces.new/carlos-nader/tms-dms-cms-usage-guide))
 
 ### AI Collaboration
 

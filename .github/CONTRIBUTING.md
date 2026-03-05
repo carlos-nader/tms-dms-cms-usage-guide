@@ -34,6 +34,7 @@ Want to submit or review complete sections, chapters or help with LaTeX/structur
 - `wip/` — Current WIP files for your reading, consultation or fixes
 - **GitHub Issues** — Track active work and open tasks
 - **Research Sources** — [Reference manuals and documents on MEGA](https://mega.nz/folder/JcFUBJYI#D8FBilFMGbprfSJOdddzeQ)
+- **GitHub Codespaces** — [Ready-to-use cloud dev environment](https://codespaces.new/carlos-nader/tms-dms-cms-usage-guide) (LaTeX + tools pre-installed)
 
 **Submit your work:**
 - Email `.tex` files to [carlos.snm@gmail.com](mailto:carlos.snm@gmail.com)
