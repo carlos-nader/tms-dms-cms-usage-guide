@@ -158,6 +158,7 @@ tms-dms-cms-usage-guide/
 ├── scripts/                          # Automation scripts
 ├── .github/                          # Issues, Actions, PR templates, community files
 ├── .vscode/                          # VSCode workspace settings
+├── .devcontainer/                    # GitHub Codespaces configuration
 │
 ├── LICENSE                           # CC BY-NC 4.0
 └── README.md                         # This file
