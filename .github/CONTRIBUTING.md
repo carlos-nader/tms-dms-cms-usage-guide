@@ -33,6 +33,7 @@ Want to submit or review complete sections, chapters or help with LaTeX/structur
 - `template/` — Base LaTeX template for new content
 - `wip/` — Current WIP files for your reading, consultation or fixes
 - **GitHub Issues** — Track active work and open tasks
+- **Research Sources** — [Reference manuals and documents on MEGA](https://mega.nz/folder/JcFUBJYI#D8FBilFMGbprfSJOdddzeQ)
 
 **Submit your work:**
 - Email `.tex` files to [carlos.snm@gmail.com](mailto:carlos.snm@gmail.com)

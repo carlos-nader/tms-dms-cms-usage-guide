@@ -82,6 +82,8 @@ Especially, but never limited to:
 
 **Critical rule:** Never reproduce copyrighted text; always paraphrase in original words.
 
+> 📂 These documents are available for download at the [**Research Sources folder on MEGA**](https://mega.nz/folder/JcFUBJYI#D8FBilFMGbprfSJOdddzeQ).
+
 ---
 
 ## 3. Document Structure (LaTeX Already Prepared)
@@ -374,33 +376,45 @@ Notes:
 ### 11.1 Directory Structure
 
 ```
-/
-├── guide.tex                        # Canonical guide (byte-identical to latest snapshot)
-├── CHANGELOG.md                     # Release history
-├── INTEGRATED-FILES.md              # Auto-generated tracking report
-├── INTEGRATED-FILES.json            # Auto-generated tracking data
-├── wip/
-│   ├── guide-v*-alpha.*-*.tex       # Alpha snapshots (only when pre-release active)
-│   ├── guide/
-│   │   └── guide-vX.X.X.X-YYYYMMDD.tex  # Active snapshot
-│   ├── chapter-C#-...tex            # Chapter WIP files
-│   └── section-C#-S#-...tex         # Section WIP files
-├── archive/
-│   ├── GUIDE/
-│   │   └── guide-vX.X.X.X-YYYYMMDD.tex  # Historical snapshots
-│   └── WIP/
-│       └── [approved/deprecated WIP files]
-├── template/
-│   └── template-wip.tex        # WIP file template (preamble reference)
-├── docs/
-│   ├── briefing.md                  # This document
+tms-dms-cms-usage-guide/
+│
+├── guide.tex                         # Current production version (.tex)
+├── guide.pdf                         # Compiled PDF
+├── INTEGRATED-FILES.md               # Auto-generated tracking report
+├── CHANGELOG.md                      # Releases changelog tracking
+├── SETUP.md                          # Infrastructure setup
+│
+├── docs/                             # Governance & tracking
+│   ├── guide-web.pdf                 # guide.pdf copy for online visualization
+│   ├── briefing.md
+│   ├── wip-naming.md
 │   ├── version-system.md
 │   ├── project-tracking.md
-│   └── wip-naming.md
-├── misc/
-│   └── STYLE-GUIDE.md               # Style rules for prose and formatting
-├── scripts/                         # Automation scripts
-└── fig/                             # Graphics and diagrams
+│   ├── WIP-Snapshot-Generator-v3.1.html
+│   └── tex-preamble-consolidated.md
+│
+├── wip/                              # Active work-in-progress files
+│   ├── chapter-*.tex                 # Chapter drafts
+│   ├── section-*.tex                 # Section drafts
+│   └── guide/                        # Active guide snapshots
+│
+├── archive/                          # Historical & approved files
+│   ├── WIP/                          # Integrated/deprecated WIP files
+│   ├── GUIDE/                        # Older guide versions
+│   └── GUIDE-STRUCTURE/              # Older structure-only files
+│
+├── template/                         # Templates & blueprints
+│   └── template-wip.tex              # Canonical WIP template
+│
+├── fig/                              # Images used in the guide
+├── misc/                             # Miscellaneous resources
+│   └── STYLE-GUIDE.md
+├── scripts/                          # Automation scripts
+├── .github/                          # Issues, Actions, PR templates, community files
+├── .vscode/                          # VSCode workspace settings
+│
+├── LICENSE                           # CC BY-NC 4.0
+└── README.md                         # This file
 ```
 
 ### 11.2 Archive Policy

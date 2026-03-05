@@ -150,8 +150,7 @@ tms-dms-cms-usage-guide/
 │
 ├── fig/                              # Images used in the guide
 ├── misc/                             # Miscellaneous resources
-│   ├── STYLE-GUIDE.md
-│   └── fontes/                       # Source PDFs (Dash-34, etc.)
+│   └── STYLE-GUIDE.md
 ├── scripts/                          # Automation scripts
 ├── .github/                          # Issues, Actions, PR templates, community files
 ├── .vscode/                          # VSCode workspace settings
@@ -225,12 +224,14 @@ The project uses **five governance documents** and an **auto-generated tracking 
 
 This guide is grounded in official [**Falcon BMS**](https://www.falcon-bms.com/) documentation:
 
-* [**TO 1F-16CMAM-34-1-1**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/misc/fontes/TO%201F-16CMAM-34-1-1%20BMS.pdf) — Falcon BMS Simulator F-16 Avionics & Weapons Manual (Dash-34)
+* **TO 1F-16CMAM-34-1-1** — Falcon BMS Simulator F-16 Avionics & Weapons Manual (Dash-34)
 * **TO 1F-16CMAM-1** — Falcon BMS Simulator F-16C/D Flight Manual (Dash-1)
 * **Falcon BMS 4.38.1 Training Manual** — Training missions guide
 * **F-16 Combat Aircraft Fundamentals Handbook (MCH 11-F16 Vol 5)** — USAF Multi-Command guidelines
 
 All technical claims are cross-referenced to these sources.
+
+> 📂 The research documents used in this guide (manuals and other reference materials) are available for download at the [**Research Sources — MEGA**](https://mega.nz/folder/JcFUBJYI#D8FBilFMGbprfSJOdddzeQ).
 
 ✈️ **New to Falcon BMS?** Visit the [official website](https://www.falcon-bms.com/downloads/) to download the simulator (free with Falcon 4.0 ownership).
 
