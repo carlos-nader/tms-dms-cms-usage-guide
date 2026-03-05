@@ -10,10 +10,10 @@ sitemap:
 # PROJECT TRACKING
 ## Falcon BMS TMS/DMS/CMS HOTAS Guide
 
-**Document Version:** PROJECT-TRACKING (2026-03-03)
-**Regime:** Pre-publication (0.x.x.x)  
-**Project Start:** 2026-01-05  
-**Last Updated:** 2026-03-03  
+**Document Version:** PROJECT-TRACKING (2026-03-05)
+**Regime:** Pre-publication (0.x.x.x)
+**Project Start:** 2026-01-05
+**Last Updated:** 2026-03-05
 **Repository:** carlos-nader/tms-dms-cms-usage-guide
 
 This document tracks governance rules, project state, and development history. For detailed file tracking, issue status, and commit history, see [INTEGRATED-FILES.md](../INTEGRATED-FILES.md) (auto-generated).
@@ -37,7 +37,7 @@ This document tracks governance rules, project state, and development history. F
 
 ## 2. PROJECT SNAPSHOT
 
-**Last updated:** 2026-03-03
+**Last updated:** 2026-03-05
 
 | Metric | Value |
 |--------|-------|
@@ -47,7 +47,7 @@ This document tracks governance rules, project state, and development history. F
 | **Chapters Integrated** | 4/7 (C1, C2, C3, C5) |
 | **Chapters In Development** | 1/7 (C4) |
 | **Chapters Pending** | 2/7 (C6, C7) |
-| **Total Commits** | 798 |
+| **Total Commits** | 839 |
 | **Latest Release** | v0.4.1.1 (2026-02-18) |
 
 ### Chapter Status
@@ -58,7 +58,7 @@ This document tracks governance rules, project state, and development history. F
 | 2 | HOTAS Fundamentals | ✅ Integrated | Complete (v0.4.0.0) |
 | 3 | DMS | ✅ Integrated | Complete (v0.4.0.0, renumbered from Ch 4) |
 | 4 | TMS | 🔄 **review** | WIP: Main chapter file `chapter-C4-tms-structure-dev-2026-02-13.tex`. Section file: `section-C4-S3-tms-aa-review-2026-02-17.tex` (51,729 bytes, §4.3 A-A intro + §4.3.5 IFF intro + §4.3.5.1 SCAN Mode + §4.3.5.2 LOS Mode: **~28.57% complete**) + dependency `section-C2-S1-S3-soi-context-dependency-final-2026-02-15.tex` (20,687 bytes, TGP intro for C2, status **final**). Subsections §4.3.1–§4.3.4, §4.3.5.3–§4.3.5.5, §4.3.6 remain in draft. **C4 WIP resumed** after v0.4.1.1 completion. |
-| 5 | CMS | 🔄 In progress | WIP: `chapter-C5-style-rev-review-2026-03-03.tex` (39,400 bytes). Author review (AI-speak removal) complete (§5.1–§5.3). Human review: §5.2.2–§5.2.3 approved. §5.2.4 and §5.3 humanization pending. WIP status: **review**. Pending #48 resolution and humanization completion → final. |
+| 5 | CMS | 🔄 In progress | WIP: `chapter-C5-style-rev-review-2026-03-05.tex` (40,988 bytes). §5.2.1.4 (BYP/STBY) added via #48 integration. Author review (AI-speak removal) complete (§5.1–§5.3). §5.2.4 and §5.3 humanization pending. WIP status: **review**. |
 | 6 | Training References | Scaffolded | Pending development |
 | 7 | Visual Reference | Scaffolded | Structure TBD |
 
@@ -74,7 +74,7 @@ Style revision pass currently underway to remove AI-generated prose patterns acr
 | **Chapters Revised** | 1/5 (C5 — author review complete, humanization pending) |
 | **Chapters In Progress** | 1/5 (C5) |
 | **Chapters Pending** | 4/5 (C1, C2, C3, C4) |
-| **Open Issues** | #44 (style revision), #46 (C1), #47 (C2), #48 (C5 — BYP/STBY modes) |
+| **Open Issues** | #44 (style revision), #46 (C1), #47 (C2) |
 
 ### Chapter Style Revision Status
 
@@ -84,7 +84,7 @@ Style revision pass currently underway to remove AI-generated prose patterns acr
 | 2 | HOTAS Fundamentals | 🟡 Pending | — |
 | 3 | DMS | 🟡 Pending | — |
 | 4 | TMS | 🟡 Pending | WIP: `section-C4-S3-tms-aa-review-2026-02-17.tex` — style review required before development resumes |
-| 5 | CMS | 🔄 In progress | Author review (AI-speak removal) complete (§5.1–§5.3). Human review: §5.2.2–§5.2.3 approved. §5.2.4 and §5.3 humanization pending. Issue #48 open. |
+| 5 | CMS | 🔄 In progress | §5.2.1.4 (BYP/STBY) added (#48 closed). Author review (AI-speak removal) complete (§5.1–§5.3). §5.2.4 and §5.3 humanization pending. |
 
 ---
 
@@ -115,14 +115,14 @@ Chronological record of significant changes. For detailed commit history, see IN
 
 | Item | Value |
 |------|-------|
-| **Status** | **In Progress** — C5 human review in progress: §5.2.2–§5.2.3 approved; §5.2.4 and §5.3 humanization pending. Next: complete C5 humanization (§5.2.4, §5.3), then open C1, C2, C3. |
+| **Status** | **In Progress** — #48 resolved and integrated. §5.2.4 and §5.3 humanization pending. Next: complete C5 humanization (§5.2.4, §5.3), then open C1, C2, C3. |
 | **Milestone** | "v0.4.2.0 — Style Revision" (due 2026-03-20, progress 1/5) |
-| **Open Issues** | #44 (Style revision: remove AI-speak across all integrated chapters), #46 (C1), #47 (C2), #48 (C5 — Add BYP and STBY modes to §5.2.1) |
+| **Open Issues** | #44 (Style revision: remove AI-speak across all integrated chapters), #46 (C1), #47 (C2) |
 | **Version Bump** | PATCH: style revision affects multiple chapters simultaneously; not a simple correction |
 | **Scope** | All integrated chapters: C1, C2, C3 (DMS), C5 (CMS) |
 | **Criteria** | Remove abstract/eloquent phrasing that no human technical writer would produce; prioritize clarity and directness over elegance. Adhere to `misc/STYLE-GUIDE.md`. |
-| **Next step** | Complete C5 humanization rewrite (§5.2.4, §5.3). Resolve #48 within C5 WIP before → final. Then open WIP files for C1, C2, C3 style revision passes. |
-| **WIP Files** | `wip/chapter-C5-style-rev-review-2026-03-03.tex` (C5: **review** — human review in progress; §5.2.2–§5.2.3 approved; §5.2.4 and §5.3 humanization pending) |
+| **Next step** | Complete C5 humanization rewrite (§5.2.4, §5.3). Then open WIP files for C1, C2, C3 style revision passes. |
+| **WIP Files** | `wip/chapter-C5-style-rev-review-2026-03-05.tex` (C5: **review** — §5.2.4 and §5.3 humanization pending) |
 | **Forum** | Next forum post planned for v0.4.2.0 release; forum thread left to cool down after Feb 19 exchange |
 
 ---
@@ -150,7 +150,7 @@ Chronological record of significant changes. For detailed commit history, see IN
 - 🟡 Pending: Populate 6 hotastable tables (0/6 complete)
 
 **Style Revision Progress - v0.4.2.0:**
-- 🔄 C5 (CMS) — human review in progress (`wip/chapter-C5-style-rev-review-2026-03-03.tex`); §5.2.2–§5.2.3 approved; §5.2.4 and §5.3 humanization pending
+- 🔄 C5 (CMS) — §5.2.1.4 (BYP/STBY) added (#48 closed); humanization pending (`wip/chapter-C5-style-rev-review-2026-03-05.tex`); §5.2.4 and §5.3 humanization pending
 - 🟡 C1 (Introduction) — pending
 - 🟡 C2 (HOTAS Fundamentals) — pending
 - 🟡 C3 (DMS) — pending
@@ -189,6 +189,8 @@ Chronological record of significant changes. For detailed commit history, see IN
 **2026-03-03:** Author review pass (C5) completed. Session covered §5.3 (AI-speak removal): §5.3 opening S2 rewritten (P3); table caption corrected (P3 + redundant subtitle removed); table L1 col3 "XMIT knob" → "XMIT switch" (Dash-34 §2.7.4.1.3); table L2 col3 corrected to "XMTR switch" (technical error, Dash-34 §2.7.4.1.3); §5.3.1 title updated; §5.3.1 prose rewritten (filler removed, P3, P4, MODAL); §5.3.1.1 title typography corrected; §5.3.1.1 prose rewritten (P3, "band selection" → "program selection", Dash-34 §2.7.4.1.1); §5.3.1.1 table caption corrected (P3); §5.3.1.2 prose rewritten (P3); §5.3.1.2 table caption corrected (P3). Author review (AI-speak removal) now complete across full C5 (§5.1–§5.3). Humanization rewrite pending (§5.2.2–§5.2.4, §5.3). WIP file updated to `wip/chapter-C5-style-rev-review-2026-03-03.tex` (38,615 bytes). Total commits: 780.
 
 **2026-03-03 (session 2):** Author final review (C5) — in progress. §5.2.2 opening, §5.2.2.1 prose and table, §5.2.2.2 prose and table, §5.2.3 prose and table approved. §5.2.4 and §5.3 humanization not yet reviewed. WIP file: `wip/chapter-C5-style-rev-review-2026-03-03.tex` (39,400 bytes). See issue #44 for full change log. Total commits: 798.
+
+**2026-03-05:** Issue #48 resolved. BYP/STBY content integrated into C5 style-rev WIP. §5.2.1.4 "Bypass and Standby Modes" added: intro prose (P1, P2), `hotastable` for BYP, `\paragraph{Standby (STBY):}` prose. Cascade updates: §5.2.1 opening (five modes), §5.2.3 Joint Consent (BYP exclusion), §5.2.4 State Tracking (BYP/STBY exclusion). All new content reviewed and rewritten by author prior to insertion. WIP file updated to `wip/chapter-C5-style-rev-review-2026-03-05.tex` (40,988 bytes). `chapter-C5-byp-stby-dev-2026-03-03.tex` deprecated and moved to `archive/WIP`. Issue #48 closed. Total commits: 839.
 
 ---
 
