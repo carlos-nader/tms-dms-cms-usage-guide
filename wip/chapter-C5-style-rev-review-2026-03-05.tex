@@ -504,7 +504,7 @@ For complete CMDS and ECM operation, see \dashrefs{2.7.1 and 2.7.2}, respectivel
 \section{CMS Actuation}
 \label{sec:C5-S2}
 
-The tables below cover CMS actuation organized by system: CMDS (Manual, Automatic, and Semi-Automatic modes) and ECM (external pods ALQ-131/ALQ-184 and internal IDIAS).
+The tables below cover CMS actuation organized by system: CMDS (Manual, Automatic, Semi-Automatic, Bypass, and Standby modes) and ECM (external pods ALQ-131/ALQ-184 and internal IDIAS).
 
 All CMS actuation described in this chapter is \textit{independent} of the Master Mode (NAV, A-A or A-G) selected.
 
@@ -526,12 +526,12 @@ Table columns are defined as follows:
 \subsection{CMDS}
 \label{sec:C5-S2-S1}
 
-The ALE-47 CMDS operates in three modes selected via the CMDS CCU MODE knob: Manual (MAN), Automatic (AUTO), and Semi-Automatic (SEMI). The single program to be executed in the chosen mode --- Programs 1--4 --- is selected via the PRGM knob on the CMDS panel.
+The ALE-47 CMDS operates in five modes selected via the CMDS CCU MODE knob: Manual (MAN), Automatic (AUTO), Semi-Automatic (SEMI), Bypass (BYP), and Standby (STBY). The program executed in MAN, AUTO, and SEMI modes --- Programs 1--4 --- is selected via the PRGM knob on the CMDS panel. The PRGM knob has no effect in BYP or STBY.
 
 Only Programs 1--4 are selectable. Programs 5 and 6 are independent of the PRGM knob position:
 
 \begin{itemize}
-  \item Program 5 is activated via the cockpit slap switch — outside the scope of CMS — and is not covered in this guide; see \dashref{2.7.2} for details.
+  \item Program 5 is activated via the cockpit slap switch --- outside the scope of CMS --- and is not covered in this guide; see \dashref{2.7.2} for details.
   \item Program 6 is a special-purpose program always available for manual dispensing, independent of the PRGM knob position.
 \end{itemize}
 
@@ -607,6 +607,29 @@ Removes SEMI consent and places the CMDS in Standby. \texttt{COUNTER} messages c
 \end{hotastable}
 
 %============================================================================
+% SECTION 5.2.1.4: Bypass and Standby Modes
+%============================================================================
+\subsubsection{Bypass and Standby Modes}
+\label{sec:C5-S2-S1-S4}
+
+In BYP and STBY, both \textit{non-combat modes}, AUTO and SEMI dispensing are not available. Consent state is not tracked in either mode.
+
+\paragraph{Bypass (BYP):}
+In BYP, the CMDS program selection is bypassed: \textbf{CMS Up} dispenses exactly one chaff and one flare per press. Program 6 remains available via \textbf{CMS Left}.
+
+\begin{hotastable}{CMS Actuation with CMDS Bypass Mode}\label{tab:C5-S2-S1-S4-CMDS-BYP}
+CMDS BYP & Up & Short & Dispense One Chaff + One Flare &
+The PRGM knob setting has no effect. AUTO and SEMI dispensing are not available in BYP.
+& 2.7.2.1 & --- \\
+CMDS BYP & Left & Short & Execute Program 6 &
+Program 6 dispenses independently of the PRGM knob position.
+& 2.7.2.2 & --- \\
+\end{hotastable}
+
+\paragraph{Standby (STBY):}
+In STBY, CMDS programs and bingo quantities can be edited via the UFC. This mode inhibits all chaff and flare release: \textit{no} CMS direction produces a dispensing effect. For program editing procedures, see \dashref{2.7.2.1} and \dashref{2.7.2.3}.
+
+%============================================================================
 % SECTION 5.2.2: ECM
 %============================================================================
 \subsection{ECM}
@@ -615,7 +638,7 @@ Removes SEMI consent and places the CMDS in Standby. \texttt{COUNTER} messages c
 The ECM system operates in two configurations: \textit{external} pods (ALQ-131, ALQ-184), controlled via \textbf{CMS Down}, and \textit{internal} IDIAS, controlled via \textbf{CMS Left}.
 
 %============================================================================
-% SECTION 5.2.2.1: ECM Pod
+% SECTION 5.2.2.1: External ECM Pod (ALQ-131/ALQ-184)
 %============================================================================
 \subsubsection{External ECM Pod (ALQ-131/ALQ-184)}
 \label{sec:C5-S2-S2-S1}
@@ -659,12 +682,12 @@ IDIAS is set to \texttt{STBY}. The pilot must press \textbf{CMS Left} again to r
 \end{hotastable}
 
 %============================================================================
-% SECTION 5.2.3: Consent and Constraints
+% SECTION 5.2.3: CMDS and ECM Joint Consent
 %============================================================================
 \subsection{CMDS and ECM Joint Consent}
 \label{sec:C5-S2-S3}
 
-On aircraft equipped with an external ECM pod, \textbf{CMS Down} grants consent to \textit{both} the ALE-47 CMDS (in AUTO or SEMI mode) and the external ECM pod.
+On aircraft equipped with an external ECM pod, \textbf{CMS Down} grants consent to \textit{both} the ALE-47 CMDS (in AUTO or SEMI mode) and the external ECM pod. This joint consent applies to AUTO and SEMI \textit{only}.
 
 \begin{hotastable}{CMS Interaction with CMDS and ECM (Consent and Constraints)}\label{tab:C5-S2-S3-CMDS-ECM}
 CMDS AUTO SEMI + ECM Pod & Down & Short & Joint Consent (CMDS + ECM) &
@@ -673,14 +696,14 @@ Simultaneous consent to CMDS and the external ECM pod.
 \end{hotastable}
 
 %============================================================================
-% SECTION 5.2.4: Operational Notes
+% SECTION 5.2.4: Constraints and Edge Cases
 %============================================================================
 \subsection{Constraints and Edge Cases}
 \label{sec:C5-S2-S4}
 
 \paragraph{State Tracking:}
 
-In AUTO and SEMI modes, the CMDS retains consent state when the pilot switches to MAN mode. If the pilot re-engages AUTO without pressing \textbf{CMS Down}, the CMDS begins dispensing immediately on the next detected threat.
+In AUTO and SEMI modes, the CMDS retains consent state when the pilot switches to MAN mode. If the pilot re-engages AUTO without pressing \textbf{CMS Down}, the CMDS begins dispensing immediately on the next detected threat. BYP and STBY do not have a consent state; switching to either mode does not retain or transfer any prior consent.
 
 \paragraph{Bingo Quantity Behavior:}
 
@@ -725,7 +748,7 @@ Internal IDIAS & CMS Left (mode cycling) & XMTR switch (positions: STBY, OPER) \
 \end{table}
 
 %============================================================================
-% SECTION 5.3.1: ECM Configurations in BMS
+% SECTION 5.3.1: ECM Configurations by Block and Variant
 %============================================================================
 \subsection{ECM Configurations by Block and Variant}
 \label{sec:C5-S3-S1}
@@ -733,7 +756,7 @@ Internal IDIAS & CMS Left (mode cycling) & XMTR switch (positions: STBY, OPER) \
 The variants listed in the following tables are sourced from Dash-34 documentation. Not all may be available as selectable aircraft in Falcon BMS 4.38.1.
 
 %============================================================================
-% SECTION 5.3.1.1: ECM Pods (ALQ-131 / ALQ-184)
+% SECTION 5.3.1.1: ECM Pods (ALQ-131/ALQ-184)
 %============================================================================
 \subsubsection{ECM Pods (ALQ-131/ALQ-184)}
 \label{sec:C5-S3-S1-S1}
