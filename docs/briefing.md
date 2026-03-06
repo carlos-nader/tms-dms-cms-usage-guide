@@ -525,7 +525,7 @@ The preamble in `template/template-wip.tex` and `guide.tex` is now organized int
 - **hyperref:** Clickable PDF links with custom colors, line-breaking support
 - **bookmark:** Enhanced PDF bookmarks
 
-#### 12.3.6 PDF Metadata (NEW in v2.1)
+#### 12.3.6 PDF Metadata
 
 ```latex
 \hypersetup{
@@ -912,6 +912,7 @@ As shown in \tabref{tab:dms-soi}.
 % METADATA BLOCK (non-rendered, for tracking)
 % ============================================================================
 % Target: Chapter C, Section S, Subsection S
+% Issue: #NN
 % Status: dev
 % Date: YYYY-MM-DD
 % Author: AI / Human Name
@@ -922,11 +923,14 @@ As shown in \tabref{tab:dms-soi}.
 
 **Mandatory fields:**
 - **Target:** Where in guide structure this WIP belongs
+- **Issue:** Corresponding GitHub Issue number (e.g., `#48`)
 - **Status:** dev → review → final → approved → deprecated
   (Parallel alpha flow: final → alpha → approved — active only when pre-release
   infrastructure is in progress)
 - **Date:** Creation or last-edit date (YYYY-MM-DD)
 - **Author:** AI (Session #) or Human Name
+
+**Note:** Guide snapshots (`wip/guide/guide-v*.tex`) and the canonical `guide.tex` do **not** carry a WIP metadata block. This is by design — they are versioned documents, not work-in-progress files. Their tracking information is embedded in the preamble macros (`\docversion`, `\docbuild`) and the filename itself.
 
 ---
 
@@ -1010,9 +1014,8 @@ pdflatex section-C5-S2-cms-new-dev-2026-02-11.tex
 ---
 
 **Note:** This document is a work in progress and may be updated without notice.  
-**Version:** 2026-02-25
+**Version:** 2026-03-06
 **Status:** Ready for use and contribution  
 **License:** CC BY-NC 4.0  
-**Next Update:** After significant preamble or structure changes
 
 {% endraw %}

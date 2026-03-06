@@ -66,6 +66,8 @@ This convention does **NOT** apply to:
 - External reference materials or archived publications
 - **The canonical template file** (`template/template-wip.tex`) — this is the **structural foundation** that WIP files derive from, not a WIP file itself
 
+**Note on metadata blocks:** Guide snapshots and `guide.tex` share the same preamble as WIP files but do **not** carry a WIP metadata block. This is by design — they are versioned documents, not work-in-progress files. Their tracking information is embedded in the preamble macros (`\docversion`, `\docbuild`) and the filename itself.
+
 **Note on alpha snapshots:** Files following the pattern
 `wip/guide-vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]-YYYYMMDD.tex` are alpha
 pre-release snapshots. They reside in `wip/` root (not `wip/guide/`) and their
@@ -592,6 +594,7 @@ This document describes the operational mapping used in this repository:
 
 - WIP development is tracked through GitHub Issues.
 - Issue titles typically use the chapter/section identifier when applicable (e.g., "C4:S4 — DMS Left/Right").
+- The corresponding issue number **must** appear in the WIP file's metadata block (`% Issue: #NN`).
 - Issues are typically closed when the corresponding content is integrated and released.
 
 ### 5.2 Milestones
@@ -725,6 +728,6 @@ When generating filenames, verify:
 
 **Document Status:** Production-Ready  
 **Effective Date:** 03 February 2026  
-**Last Updated:** 27 February 2026  
+**Last Updated:** 06 March 2026  
 
 {% endraw %}
