@@ -470,7 +470,9 @@ Table columns are defined as follows:
 \subsection{CMDS}
 \label{sec:C5-S2-S1}
 
-The ALE-47 CMDS operates in five modes selected via the CMDS CCU MODE knob: Manual (MAN), Automatic (AUTO), Semi-Automatic (SEMI), Bypass (BYP), and Standby (STBY). The chaff and flare dispensing program executed in MAN, AUTO, and SEMI modes --- Programs 1--4 --- is selected via the PRGM knob on the CMDS panel. The PRGM knob has no effect in BYP or STBY.
+The ALE-47 CMDS operates in five modes selected via the CMDS CCU MODE knob: Manual (MAN), Automatic (AUTO), Semi-Automatic (SEMI), Bypass (BYP), and Standby (STBY).
+
+The chaff and flare dispensing program executed in MAN, AUTO, and SEMI modes --- Programs 1--4 --- is selected via the PRGM knob on the CMDS panel. The PRGM knob has no effect in BYP or STBY.
 
 Only Programs 1--4 are selectable. Programs 5 and 6 are independent of the PRGM knob position:
 
@@ -485,11 +487,11 @@ Only Programs 1--4 are selectable. Programs 5 and 6 are independent of the PRGM 
 \subsubsection{Manual Mode}
 \label{sec:C5-S2-S1-S1}
 
-In Manual (MAN) mode, the pilot runs countermeasure programs (1--4 and 6) via \textbf{CMS Up} and \textbf{CMS Left}.
+In Manual (MAN) mode, the pilot executes countermeasure programs (1--4 and 6) via \textbf{CMS Up} and \textbf{CMS Left}.
 
 \begin{hotastable}{CMS Actuation with CMDS Manual Mode}\label{tab:C5-S2-S1-S1-CMDS-Manual}
 CMDS MAN & Up & Short & Execute Program 1--4 &
-Runs the program selected via the CMDS panel PRGM knob once per press. No threat sensing; no automatic triggering. Overrides any AUTO dispensing, if running.
+Executes the program selected via the CMDS panel PRGM knob once per press. No threat sensing; no automatic triggering. Overrides any AUTO dispensing, if running.
 & 2.7.2.2 & 18, 28 \\
 CMDS MAN & Left & Short & Execute Program 6 &
 Program 6 can be dispensed independently of the PRGM knob position.
@@ -510,7 +512,7 @@ Even in AUTO mode, manual dispensing is still available.
 
 \begin{hotastable}{CMS Actuation with CMDS Automatic Mode}\label{tab:C5-S2-S1-S2-CMDS-Auto}
 CMDS AUTO & Up & Short & Execute Program 1--4 &
-Runs the program selected via the CMDS panel PRGM knob once, interrupting any ongoing AUTO dispensing. After execution, AUTO resumes if the threat persists.
+Executes the program selected via the CMDS panel PRGM knob once, interrupting any ongoing AUTO dispensing. After execution, AUTO resumes if the threat persists.
 & 2.7.2.2 & 18, 28 \\
 CMDS AUTO & Left & Short & Execute Program 6 &
 Program 6 is dispensed independently of the PRGM knob position. Overrides AUTO; after execution, AUTO resumes.
@@ -529,15 +531,13 @@ Removes CMDS consent and places the ALE-47 in Standby. Automatic dispensing halt
 \subsubsection{Semi-Automatic Mode}
 \label{sec:C5-S2-S1-S3}
 
-In Semi-Automatic (SEMI) mode, the CMDS control unit displays \texttt{DISPENSE RDY} and sounds a \texttt{COUNTER} voice message when a threat is detected. A \textbf{CMS Down} press grants consent and the ALE-47 CMDS then dispenses \textit{one program}.
-
-If the threat persists or a new threat appears, the CMDS issues \texttt{COUNTER} again.
+In Semi-Automatic (SEMI) mode, the CMDS control unit displays \texttt{DISPENSE RDY} and sounds a \texttt{COUNTER} voice message every time a threat is detected. For each \texttt{COUNTER} message, a \textbf{CMS Down} press grants consent and the ALE-47 CMDS then dispenses \textit{one selected program}.
 
 Even in SEMI mode, manual dispensing is still available.
 
 \begin{hotastable}{CMS Actuation with CMDS Semi-Automatic Mode}\label{tab:C5-S2-S1-S3-CMDS-Semi}
 CMDS SEMI & Up & Short & Execute Program 1--4 &
-Runs the program selected via the CMDS panel PRGM knob once, independent of RWR threat state. After execution, the CMDS returns to standby and resumes threat detection.
+Executes the program selected via the CMDS panel PRGM knob once, independent of RWR threat state. After execution, the CMDS returns to standby and resumes threat detection.
 & 2.7.2.2 & 18, 28 \\
 CMDS SEMI & Left & Short & Execute Program 6 &
 Program 6 is dispensed independently of the PRGM knob position. After execution, the CMDS returns to standby and resumes threat detection.
