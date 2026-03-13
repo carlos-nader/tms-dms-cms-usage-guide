@@ -108,3 +108,10 @@ scripts/node/windows-path-esm-loader.mjs
 # Diagrams - Charts and diagrams (local exports, not tracked)
 # ==============================================================================
 docs/charts-and-diagrams/
+
+
+# ==============================================================================
+# Tests - Local only, not tracked
+# ==============================================================================
+tests/
+.pytest_cache/
