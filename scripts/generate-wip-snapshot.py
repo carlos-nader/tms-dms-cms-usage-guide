@@ -17,11 +17,15 @@ STATUS_EMOJI = {
 }
 
 
+def _is_wip_tex_file(fpath, fname):
+    return os.path.isfile(fpath) and fname.endswith('.tex') and not fname.startswith('guide')
+
+
 def get_wip_files():
     files = []
     for fname in os.listdir(WIP_DIR):
         fpath = os.path.join(WIP_DIR, fname)
-        if os.path.isfile(fpath) and fname.endswith('.tex') and not fname.startswith('guide'):
+        if _is_wip_tex_file(fpath, fname):
             files.append(fname)
     return files
 
