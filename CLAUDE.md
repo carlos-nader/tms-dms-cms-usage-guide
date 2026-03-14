@@ -39,11 +39,26 @@ bash ci/travis.sh
 ## Scripts
 
 | Script | What it does |
-|--------|-------------|
+| -------- | ------------- |
 | `scripts/generate-integrated-files.py` | Generates `INTEGRATED-FILES.md` and `.json` (CodeScene: 8.95) |
 | `scripts/update-readme-version.py` | Updates version in README and `docs/index.html` (CodeScene: 10) |
 | `scripts/validate-tex-preamble.py` | Validates LaTeX preamble consistency |
 | `check-guide-integrity.ps1` | Byte-identical check: `guide.tex` ↔ active snapshot |
+
+---
+
+## Reference Sources (local, not committed)
+
+Primary PDF references are stored locally at `misc/fontes/` (gitignored):
+
+| File | Content |
+| ------ | --------- |
+| `TO 1F-16CMAM-34-1-1 BMS.pdf` | **Dash-34** — primary technical reference |
+| `TO 1F-16CMAM-1 BMS.pdf` | BMS Flight Manual (Dash-1) |
+| `11-2F-16_Vol5.pdf` | ACC Multi-Command Handbook 11-F16 Vol. 5 |
+| `BMS-Training-Manual.pdf` | BMS Training Manual |
+| `BMS-User-Manual.pdf` | BMS User Manual |
+| `BMS-Threat-Guide.pdf` | BMS Threat Guide |
 
 ---
 
@@ -62,6 +77,7 @@ bash ci/travis.sh
 **Pattern:** `{type}-C{N}[-S{M}]-{title}-{status}-{YYYY-MM-DD}.{ext}`
 
 **Examples:**
+
 - `chapter-C4-tms-structure-dev-2026-02-13.tex`
 - `section-C5-S2-cms-actuation-review-2026-01-10.tex`
 
@@ -86,14 +102,15 @@ bash ci/travis.sh
 
 Any commit addressing a GitHub Issue **must** include a `Refs #NN` footer:
 
-```
+```text
 Short description of change
 
 Refs #48
 ```
 
 Multiple issues:
-```
+
+```text
 Short description
 
 Refs #44
@@ -106,7 +123,7 @@ Automated/bot commits are exempt.
 
 ## Directory Structure
 
-```
+```text
 guide.tex                    # Canonical guide (byte-identical to active snapshot)
 wip/
   guide/                     # Active snapshot (exactly 1 .tex file)
@@ -134,7 +151,7 @@ fig/                         # Images used in guide
 7-column HOTAS table layout (total width: 15.50 cm):
 
 | Col | Width | Content |
-|-----|-------|---------|
+| ----- | ------- | --------- |
 | Mode | 1.00 cm | Master mode (NAV, A-A, A-G) |
 | Dir. | 0.90 cm | Up / Down / Left / Right |
 | Act. | 0.90 cm | S / M / L / LH |
@@ -144,6 +161,7 @@ fig/                         # Images used in guide
 | Train. | 1.60 cm | Mission numbers only (e.g., "18, 28") |
 
 **Key rules:**
+
 - Use plain text in table cells — no macros like `\dashref{}` inside cells
 - Train. column: numbers only (deprecated: `\trnref{18 (BARCAP)}`)
 - In narrative text: use `\dashref{}`, `\secref{}`, `\tabref{}`, etc.
@@ -153,12 +171,14 @@ fig/                         # Images used in guide
 ## AI Limits
 
 The AI assistant (Claude Code) may:
+
 - Generate and edit WIP files
 - Review prose style and structure
 - Run scripts and read files
 - Create and manage `MEMORY.md` and related files in the auto memory directory (`.claude/projects/*/memory/`) as needed, without prior approval
 
 The AI must NOT autonomously:
+
 - Decide final status, integration into `guide.tex`, or archival
 - Create Git tags or releases
 - Make commits or pushes without explicit user approval
