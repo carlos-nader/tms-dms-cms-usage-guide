@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [0.4.2.0-alpha.1] - 2026-03-14 *(pre-release)*
+### Changed
+- Chapter 5 (CMS): Full style revision pass (§5.1–§5.3) — AI-generated prose patterns removed; Dash-34 validation pass applied.
+
+### Added
+- Section 5.2.1.4 (Bypass and Standby Modes): BYP and STBY coverage integrated into Chapter 5 (closes #48).
+
+---
+
 ## [0.4.1.1] - 2026-02-18
 ### Changed
 - Wording: Removed 9 redundant passages across the whole document, per BMS forum feedback.
