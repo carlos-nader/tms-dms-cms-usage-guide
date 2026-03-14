@@ -409,6 +409,9 @@
 %   link added); §5.2.2.2 opening rewritten (power switch ON precondition + XMTR/OPER
 %   sequence); §5.2.2.2 "active mode" → "active operation mode". Validated against
 %   Dash-34 §2.7.4.1.1, §2.7.4.1.2, §2.7.4.1.3, §2.7.4.2.5.
+%   §5.1 \itemize revised: ECM item rewritten (function added: "the radar-jamming system");
+%   ECM configuration detail moved to dedicated sentence after list. Validated against
+%   Dash-34 §2.7.1, §2.7.4.2.1.
 % - RWR introduced for the first time at §5.2.1.2 — conceptual introduction
 %   in C2 tracked in issue #47.
 % - Cross-reference: Issue #44 (v0.4.2.0 style revision / author review).
@@ -437,8 +440,10 @@ The Countermeasures Management Switch (CMS) is a four-direction hat switch mount
 
 \begin{itemize}
   \item ALE-47 CMDS (Countermeasures Dispenser Set) --- the chaff and flare dispensing system; and
-  \item ECM (Electronic Countermeasures) --- either external pods (ALQ-131/ALQ-184) or internal avionics (IDIAS) configurations, depending on block and variant.
+  \item ECM (Electronic Countermeasures) --- the radar-jamming system.
 \end{itemize}
+
+ECM configuration depends on block and variant: either external pods (ALQ-131/ALQ-184) or internal avionics (IDIAS).
 
 CMS actuation procedures are presented in \secref{sec:C5-S2} and block and variant differences in \secref{sec:C5-S3}.
 
