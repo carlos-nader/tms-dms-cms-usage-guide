@@ -42,7 +42,7 @@ The author is not affiliated with or endorsed by Falcon BMS or any other flight 
 [![Version](https://img.shields.io/badge/LATEST%20version-v0.4.1.1-yellow?style=for-the-badge&logo=tag&logoColor=black)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases)
 <!-- DO NOT EDIT: managed by workflow (update-alpha-badge) -->
 <!-- ALPHA-BADGE-START -->
-[![Alpha](https://img.shields.io/badge/alpha-v0.4.2.0--alpha.1-orange?style=for-the-badge&logo=flask&logoColor=white)]([https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases/tag/v0.4.2.0-alpha.1))
+[![Alpha](https://img.shields.io/badge/alpha-v0.4.2.0--alpha.1-orange?style=for-the-badge&logo=flask&logoColor=white)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases/tag/v0.4.2.0-alpha.1)
 <!-- ALPHA-BADGE-END -->
 
 | Format | Link | Description |
