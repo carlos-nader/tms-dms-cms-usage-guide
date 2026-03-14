@@ -73,15 +73,15 @@ Style revision pass currently underway to remove AI-generated prose patterns acr
 | **Milestone** | Style Revision |
 | **Chapters in Scope** | 5 (C1, C2, C3, C4, C5) |
 | **Chapters Revised** | 1/5 (C5 — style revision complete, 2026-03-06) |
-| **Chapters In Progress** | 0/5 |
-| **Chapters Pending** | 4/5 (C1, C2, C3, C4) |
+| **Chapters In Progress** | 1/5 (C1) |
+| **Chapters Pending** | 3/5 (C2, C3, C4) |
 | **Open Issues** | #44 (style revision), #46 (C1), #47 (C2) |
 
 ### Chapter Style Revision Status
 
 | Ch | Title | Style Rev. | Notes |
 |----|-------|-----------|-------|
-| 1 | Introduction | 🟡 Pending | — |
+| 1 | Introduction | 🔄 In Progress | WIP: `chapter-C1-style-rev-review-2026-03-14.tex` (2026-03-14) |
 | 2 | HOTAS Fundamentals | 🟡 Pending | — |
 | 3 | DMS | 🟡 Pending | — |
 | 4 | TMS | 🟡 Pending | WIP: `section-C4-S3-tms-aa-review-2026-02-17.tex` — style review required before development resumes |
@@ -123,8 +123,8 @@ Chronological record of significant changes. For detailed commit history, see IN
 | **Version Bump** | PATCH: style revision affects multiple chapters simultaneously; not a simple correction |
 | **Scope** | All integrated chapters: C1, C2, C3 (DMS), C5 (CMS) |
 | **Criteria** | Remove abstract/eloquent phrasing that no human technical writer would produce; prioritize clarity and directness over elegance. Adhere to `misc/STYLE-GUIDE.md`. |
-| **Next step** | Open WIP files for C1, C2, C3 style revision passes. |
-| **WIP Files** | `wip/chapter-C5-style-rev-alpha-2026-03-14.tex` (C5: **alpha status** — pre-release published 2026-03-14) |
+| **Next step** | Apply style revision pass to C1 WIP (`chapter-C1-style-rev-review-2026-03-14.tex`). |
+| **WIP Files** | `wip/chapter-C5-style-rev-alpha-2026-03-14.tex` (C5: **alpha status** — pre-release published 2026-03-14); `wip/chapter-C1-style-rev-review-2026-03-14.tex` (C1: **review** — style revision pass pending) |
 | **Forum** | Next forum post planned for v0.4.2.0 release; forum thread left to cool down after Feb 19 exchange |
 
 ---
@@ -154,7 +154,7 @@ Chronological record of significant changes. For detailed commit history, see IN
 **Style Revision Progress - v0.4.2.0:**
 
 - ✅ C5 (CMS) — style revision complete (2026-03-06); author read-through complete (2026-03-14); WIP: **alpha status** (pre-release v0.4.2.0-alpha.1 published 2026-03-14)
-- 🟡 C1 (Introduction) — pending
+- 🔄 C1 (Introduction) — in progress; WIP: `chapter-C1-style-rev-review-2026-03-14.tex` (2026-03-14)
 - 🟡 C2 (HOTAS Fundamentals) — pending
 - 🟡 C3 (DMS) — pending
 
@@ -188,6 +188,8 @@ Chronological record of significant changes. For detailed commit history, see IN
 **2026-03-05:** Issue #48 resolved. BYP/STBY content integrated into C5 style-rev WIP. §5.2.1.4 "Bypass and Standby Modes" added: intro prose (P1, P2), `hotastable` for BYP, `\paragraph{Standby (STBY):}` prose. Cascade updates: §5.2.1 opening (five modes), §5.2.3 Joint Consent (BYP exclusion), §5.2.4 State Tracking (BYP/STBY exclusion). All new content reviewed and rewritten by author prior to insertion. WIP file updated to `wip/chapter-C5-style-rev-review-2026-03-05.tex` (40,988 bytes). `chapter-C5-byp-stby-dev-2026-03-03.tex` deprecated and moved to `archive/WIP`. Issue #48 closed. Total commits: 839.
 
 **2026-03-14:** C5 style revision complete and alpha integration executed. WIP renamed to `wip/chapter-C5-style-rev-alpha-2026-03-14.tex` (status: **alpha**). Alpha snapshot created: `wip/guide-v0.4.2.0-alpha.1-20260314.tex`. Pre-release v0.4.2.0-alpha.1 published on GitHub (tag `v0.4.2.0-alpha.1`). CHANGELOG.md updated. Issue #44 updated. Total commits: 898.
+
+**2026-03-14 (C1 WIP):** C1 style revision WIP created: `wip/chapter-C1-style-rev-review-2026-03-14.tex` (commit a2f5457). Full Chapter 1 content from `guide.tex`. Style revision pass pending (issue #46 tasks: §1.3.4 new subsection, §1.4.2 authorship update, prose violations mapped in metadata). Integration target: v0.4.2.0-alpha.2.
 
 ---
 
