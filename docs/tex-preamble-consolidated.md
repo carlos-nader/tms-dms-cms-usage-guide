@@ -7,13 +7,12 @@ sitemap:
 ---
 {% raw %}
 
-Complete Preamble (Ready to copy and paste to any LaTex editor, with all improvements from GitHub Issues #34 and #33 implemented):
+Complete Preamble (Ready to copy and paste to any LaTex editor):
 
 ```latex
 %============================================================================
 % PREAMBLE COMPLETO — TMS/DMS/CMS Usage Guide for Falcon BMS 4.38.1
-% Gerado: 11 February 2026
-% Status: Improvements as per GitHub Issues #34 and #33
+% Gerado: 14 March 2026
 %============================================================================
 
 \documentclass[11pt, a4paper, twoside]{report}
@@ -83,12 +82,12 @@ Complete Preamble (Ready to copy and paste to any LaTex editor, with all improve
 % --------------------------------------------------------------------------
 
 \usepackage{fancyhdr}
-\setlength{\headheight}{25pt}                    
+\setlength{\headheight}{25pt}
 \pagestyle{fancy}
-\fancyhf{}                                        
-\fancyhead[LO,RE]{\small\textit{\leftmark}}     
-\fancyhead[RO,LE]{\small\thepage}               
-\fancyfoot{}                                      
+\fancyhf{}
+\fancyhead[LO,RE]{\small\textit{\leftmark}}
+\fancyhead[RO,LE]{\small\thepage}
+\fancyfoot{}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
 
@@ -125,7 +124,7 @@ Complete Preamble (Ready to copy and paste to any LaTex editor, with all improve
 % Shape: hang → label à esquerda, corpo indentado (compacto)
 % Font: \large\bfseries (mesmo destaque que chapter para coerência)
 % Numeração: SIM
-% Espaçamento: 15pt antes, 8pt depois (REDUZIDO de 15pt/10pt anteriores)
+% Espaçamento: 30pt antes, 8pt depois
 % --------------------------------------------------------------------------
 
 \titleformat{\section}[hang]
@@ -136,8 +135,8 @@ Complete Preamble (Ready to copy and paste to any LaTex editor, with all improve
 
 \titlespacing{\section}
 {0pt}       % Margem esquerda (sem indent)
-{15pt}      % Espaço ANTES do título da seção (REDUZIDO)
-{8pt}       % Espaço DEPOIS do título da seção (REDUZIDO)
+{30pt}      % Espaço ANTES do título da seção
+{8pt}       % Espaço DEPOIS do título da seção
 [0pt]       % Margem direita
 
 % --------------------------------------------------------------------------
@@ -146,7 +145,7 @@ Complete Preamble (Ready to copy and paste to any LaTex editor, with all improve
 % Shape: hang → label esquerda, corpo indentado
 % Font: \normalsize\bfseries (redução visual, ainda robusto)
 % Numeração: SIM
-% Espaçamento: 12pt antes, 6pt depois (compacto)
+% Espaçamento: 24pt antes, 6pt depois
 % --------------------------------------------------------------------------
 
 \titleformat{\subsection}[hang]
@@ -157,7 +156,7 @@ Complete Preamble (Ready to copy and paste to any LaTex editor, with all improve
 
 \titlespacing{\subsection}
 {0pt}       % Margem esquerda (sem indent)
-{12pt}      % Espaço ANTES do título da subseção
+{24pt}      % Espaço ANTES do título da subseção
 {6pt}       % Espaço DEPOIS do título da subseção
 [0pt]       % Margem direita
 
@@ -167,7 +166,7 @@ Complete Preamble (Ready to copy and paste to any LaTex editor, with all improve
 % Shape: hang → label esquerda, máximo recuo (bem compacto)
 % Font: \normalsize\bfseries (mesmo tamanho que subsection, padrão)
 % Numeração: SIM (configurable com secnumdepth)
-% Espaçamento: 10pt antes, 4pt depois (bem comprimido)
+% Espaçamento: 18pt antes, 4pt depois
 % --------------------------------------------------------------------------
 
 \titleformat{\subsubsection}[hang]
@@ -178,7 +177,7 @@ Complete Preamble (Ready to copy and paste to any LaTex editor, with all improve
 
 \titlespacing{\subsubsection}
 {0pt}       % Margem esquerda (sem indent)
-{10pt}       % Espaço ANTES do título
+{18pt}       % Espaço ANTES do título
 {4pt}       % Espaço DEPOIS do título (bem comprimido)
 [0pt]       % Margem direita
 
@@ -186,7 +185,7 @@ Complete Preamble (Ready to copy and paste to any LaTex editor, with all improve
 % PARAGRAPH - Nível 4 (CRÍTICO: Ilusão Óptica Resolvida)
 % --------------------------------------------------------------------------
 % Shape: runin → inline, integrado ao texto (seu requisito)
-% Font: \small\bfseries (SOLUÇÃO PARA ILUSÃO ÓPTICA DO NEGRITO)%       
+% Font: \small\bfseries (SOLUÇÃO PARA ILUSÃO ÓPTICA DO NEGRITO)%
 % Numeração: NÃO (padrão para \paragraph)
 % Espaçamento: runin (sem espaço vertical antes, integrado ao texto)
 % --------------------------------------------------------------------------
@@ -243,7 +242,7 @@ Complete Preamble (Ready to copy and paste to any LaTex editor, with all improve
 \newcommand{\imglink}[1]{\hspace{2pt}\hyperref[#1]{\scriptsize\textbf{[Fig]}}}
 
 % --------------------------------------------------------------------------
-% HOTAS LOT FILE HANDLE 
+% HOTAS LOT FILE HANDLE
 % --------------------------------------------------------------------------
 \makeatletter
 \newcommand{\listofhotastables}{%
@@ -252,11 +251,6 @@ Complete Preamble (Ready to copy and paste to any LaTex editor, with all improve
 	\@starttoc{hotas}%
 }
 \makeatother
-
-% --------------------------------------------------------------------------
-% HOTAS table environment
-% Version: 2.1 (2026-02-10)
-% --------------------------------------------------------------------------
 
 % --------------------------------------------------------------------------
 % HOTAS table environment
@@ -319,12 +313,12 @@ Complete Preamble (Ready to copy and paste to any LaTex editor, with all improve
 % VERSION CONTROL MACROS
 % --------------------------------------------------------------------------
 
-\newcommand{\docversion}{0.4.1.0}
-\newcommand{\docbuild}{20260211}
+\newcommand{\docversion}{VERSION}
+\newcommand{\docbuild}{DATE}
 \newcommand{\docstartdate}{05 January 2026}
-\newcommand{\docenddate}{11 February 2026}
-\newcommand{\chapterscompletedof}{4/7}
-\newcommand{\tablesfilledpct}{Chapter 5 and Chapter 4}
+\newcommand{\docenddate}{DATE}
+\newcommand{\chapterscompletedof}{X/7}
+\newcommand{\tablesfilledpct}{Chapter X}
 \newcommand{\fulldocversion}{\docversion+\docbuild}
 
 % --------------------------------------------------------------------------
@@ -349,33 +343,33 @@ Complete Preamble (Ready to copy and paste to any LaTex editor, with all improve
 % ============================================================================
 
 \begin{document}
-	
+
 	\maketitle
-	
+
 	\pagenumbering{roman}
-	
+
 	% --------------------------------------------------------------------------
 	% TOC DEPTH CONFIGURATION
 	% --------------------------------------------------------------------------
 	\setcounter{tocdepth}{3}       % Show up to \subsubsection in TOC
 	\setcounter{secnumdepth}{3}    % Number up to \subsubsection
-	
+
 	\newpage
 	\tableofcontents
 	\newpage
-	
+
 	% --------------------------------------------------------------------------
 	% LIST OF HOTAS TABLES
 	% --------------------------------------------------------------------------
 	\phantomsection
 	\listofhotastables
 	\newpage
-	
+
 	\pagenumbering{arabic}
 
-% ============================================================================
+%============================================================================
 % CONTENT BEGINS HERE (use \chapter{}, \section{}, \subsection{}, etc.)
-% ============================================================================
+%============================================================================
 ```
 
 ---
