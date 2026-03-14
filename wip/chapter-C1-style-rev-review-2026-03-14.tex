@@ -1,0 +1,624 @@
+%============================================================================
+% LICENSING NOTICE
+%============================================================================
+% This WIP file, upon integration into guide-v.tex, becomes part of the
+% TMS/DMS/CMS Usage Guide and is released under CC BY-NC 4.0.
+% For details, see LICENSE in the repository root.
+%============================================================================
+
+%============================================================================
+% FALCON BMS TMS/DMS/CMS HOTAS GUIDE
+% WIP FILE TEMPLATE — FINAL (Briefing)
+%============================================================================
+% IMPORTANTE: Este é um TEMPLATE padronizado para arquivos WIP (Work-In-Progress)
+% que serão integrados ao guide.tex.
+% Nomenclatura: Siga wip-naming
+% Padrão: section-C{N}-S{M}[-S{K}]-{titulo}-{status}-{data}.tex
+% Exemplo: section-C5-S2-cms-actuation-hotas-tables-final-2026-01-10.tex
+% Status: dev | review | final | alpha | approved | deprecated
+% Note: 'alpha' is the parallel pre-release flow (optional) — see wip-naming.md §0.5
+% Locação: WIP/ (ativo) | ARCHIVE/ (aprovado/descartado)
+
+%============================================================================
+% PREAMBLE COMPLETO — TMS/DMS/CMS Usage Guide for Falcon BMS 4.38.1
+% Gerado: 14 March 2026
+%============================================================================
+
+\documentclass[11pt, a4paper, twoside]{report}
+
+% --------------------------------------------------------------------------
+% BASIC ENCODING AND LANGUAGE
+% --------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% --------------------------------------------------------------------------
+% FONTS AND MICROTYPOGRAPHY
+% --------------------------------------------------------------------------
+
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --------------------------------------------------------------------------
+% PAGE GEOMETRY AND LAYOUT
+% --------------------------------------------------------------------------
+
+\usepackage{geometry}
+\geometry{a4paper, left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
+\usepackage{setspace}
+\onehalfspacing
+
+% --------------------------------------------------------------------------
+% COLORS AND LINKS AND PDF SETTINGS
+% --------------------------------------------------------------------------
+
+\usepackage[table]{xcolor}
+\definecolor{linkblue}{HTML}{004488}
+\definecolor{linkred}{HTML}{882222}
+\definecolor{headerblue}{HTML}{003366}
+\definecolor{rowgray}{HTML}{F5F5F5}
+\definecolor{subheadgray}{HTML}{E0E0E0}
+\usepackage{soul}
+\usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\hypersetup{
+	pdftitle={TMS, DMS and CMS Usage Guide for Falcon BMS},
+	pdfauthor={Carlos "Metal" Nader},
+	pdfsubject={Flight Simulation - Falcon BMS HOTAS Reference},
+	pdfkeywords={Falcon BMS, F-16, HOTAS, TMS, DMS, CMS, Flight Simulation},
+	pdfcreator={pdfLaTeX (MiKTeX)},
+	pdfproducer={MiKTeX},
+	pdflang={en-US},
+}
+\usepackage{bookmark}
+
+% --------------------------------------------------------------------------
+% CAPTION SETUP BY TYPE
+% --------------------------------------------------------------------------
+
+\usepackage{caption}
+
+% GLOBAL PATTERN
+\captionsetup{font=small, labelfont=bf, justification=centering, singlelinecheck=true}
+% FIGURES
+\captionsetup[figure]{font=footnotesize, labelfont=bf, justification=centering, singlelinecheck=true}
+% % TABLE/LONGTABLE/hotastable:
+\captionsetup[table]{font=small, labelfont=bf, justification=centering, singlelinecheck=true}
+
+% --------------------------------------------------------------------------
+% HEADERS AND FOOTERS (IMPROVED for report + twoside)
+% --------------------------------------------------------------------------
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{25pt}                    
+\pagestyle{fancy}
+\fancyhf{}                                        
+\fancyhead[LO,RE]{\small\textit{\leftmark}}     
+\fancyhead[RO,LE]{\small\thepage}               
+\fancyfoot{}                                      
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --------------------------------------------------------------------------
+% CHAPTER FORMATTING AND SPACING (via titlesec)
+% --------------------------------------------------------------------------
+
+\usepackage{titlesec}
+
+% --------------------------------------------------------------------------
+% CHAPTER - Nível 0 (Destaque Máximo)
+% --------------------------------------------------------------------------
+% Shape: display → standalone em nova linha
+% Font: \Large\bfseries --- label e título ambos em bold para destaque máximo
+% Numeração: SIM
+% Espaçamento: 15pt antes, 28pt depois
+% --------------------------------------------------------------------------
+
+\titleformat{\chapter}[display]
+{\normalfont\Large\bfseries}           % Formato: LARGE + bold (label)
+{\chaptertitlename~\thechapter}        % Rótulo: "Chapter 1" (bold também)
+{20pt}                                 % Espaço vertical antes do corpo
+{\Large\bfseries}                      % Corpo do título: LARGE + bold
+
+\titlespacing{\chapter}
+{0pt}       % Margem esquerda (sem indent)
+{15pt}      % Espaço ANTES do título do capítulo
+{28pt}      % Espaço DEPOIS do título do capítulo (AUMENTADO)
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SECTION - Nível 1
+% --------------------------------------------------------------------------
+% Shape: hang → label à esquerda, corpo indentado (compacto)
+% Font: \large\bfseries (mesmo destaque que chapter para coerência)
+% Numeração: SIM
+% Espaçamento: 15pt antes, 8pt depois (REDUZIDO de 15pt/10pt anteriores)
+% --------------------------------------------------------------------------
+
+\titleformat{\section}[hang]
+{\normalfont\large\bfseries}           % Formato: large + bold
+{\thesection}                          % Rótulo: "1", "2", etc
+{1em}                                  % Espaço entre rótulo e corpo
+{}                                     % Corpo do título (herda do format)
+
+\titlespacing{\section}
+{0pt}       % Margem esquerda (sem indent)
+{30pt}      % Espaço ANTES do título da seção
+{8pt}       % Espaço DEPOIS do título da seção
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SUBSECTION - Nível 2
+% --------------------------------------------------------------------------
+% Shape: hang → label esquerda, corpo indentado
+% Font: \normalsize\bfseries (redução visual, ainda robusto)
+% Numeração: SIM
+% Espaçamento: 12pt antes, 6pt depois (compacto)
+% --------------------------------------------------------------------------
+
+\titleformat{\subsection}[hang]
+{\normalfont\normalsize\bfseries}      % Formato: tamanho normal + bold
+{\thesubsection}                       % Rótulo: "1.1", "1.2", etc
+{1em}                                  % Espaço entre rótulo e corpo
+{}                                     % Corpo do título
+
+\titlespacing{\subsection}
+{0pt}       % Margem esquerda (sem indent)
+{24pt}      % Espaço ANTES do título da subseção
+{6pt}       % Espaço DEPOIS do título da subseção
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SUBSUBSECTION - Nível 3
+% --------------------------------------------------------------------------
+% Shape: hang → label esquerda, máximo recuo (bem compacto)
+% Font: \normalsize\bfseries (mesmo tamanho que subsection, padrão)
+% Numeração: SIM (configurable com secnumdepth)
+% Espaçamento: 10pt antes, 4pt depois (bem comprimido)
+% --------------------------------------------------------------------------
+
+\titleformat{\subsubsection}[hang]
+{\normalfont\normalsize\bfseries}      % Formato: tamanho normal + bold
+{\thesubsubsection}                    % Rótulo: "1.1.1", "1.1.2", etc
+{1em}                                  % Espaço entre rótulo e corpo
+{}                                     % Corpo do título
+
+\titlespacing{\subsubsection}
+{0pt}       % Margem esquerda (sem indent)
+{18pt}       % Espaço ANTES do título
+{4pt}       % Espaço DEPOIS do título (bem comprimido)
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% PARAGRAPH - Nível 4 (CRÍTICO: Ilusão Óptica Resolvida)
+% --------------------------------------------------------------------------
+% Shape: runin → inline, integrado ao texto (seu requisito)
+% Font: \small\bfseries (SOLUÇÃO PARA ILUSÃO ÓPTICA DO NEGRITO)%       
+% Numeração: NÃO (padrão para \paragraph)
+% Espaçamento: runin (sem espaço vertical antes, integrado ao texto)
+% --------------------------------------------------------------------------
+
+\titleformat{\paragraph}[runin]
+{\normalfont\small\bfseries}           % Formato: SMALL + bold (compensa ilusão)
+{}                                     % Rótulo: vazio (sem numeração)
+{0em}                                  % Espaço entre rótulo e corpo (zero, runin)
+{}                                     % Corpo do título
+
+\titlespacing{\paragraph}
+{0pt}       % Margem esquerda (sem indent)
+{8pt}       % Espaço ANTES do título do parágrafo (ADICIONADO - cria separação)
+{1em}       % Espaço DEPOIS do título (ADICIONADO - espaço após ":")
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% SUBPARAGRAPH - Nível 5 (Preparação Futura)
+% --------------------------------------------------------------------------
+% Shape: runin → inline, integrado ao texto
+% Font: \small (MENOS destaque que \paragraph, sem bold)
+% Numeração: NÃO (padrão para \subparagraph)
+% Espaçamento: runin (integrado)
+% Uso: Se usado, aparecerá com destaque menor que \paragraph
+% --------------------------------------------------------------------------
+
+\titleformat{\subparagraph}[runin]
+{\normalfont\small}                    % Formato: small, SEM bold (menos destaque)
+{}                                     % Rótulo: vazio (sem numeração)
+{0em}                                  % Espaço entre rótulo e corpo (zero, runin)
+{}                                     % Corpo do título
+
+\titlespacing{\subparagraph}
+{0pt}       % Margem esquerda (sem indent)
+{8pt}       % Espaço ANTES do título (ADICIONADO)
+{1em}       % Espaço DEPOIS do título (ADICIONADO)
+[0pt]       % Margem direita
+
+% --------------------------------------------------------------------------
+% TABLES AND MACROS
+% --------------------------------------------------------------------------
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+
+% Custom Columns
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% Macro for Visual Reference Links
+\newcommand{\imglink}[1]{\hspace{2pt}\hyperref[#1]{\scriptsize\textbf{[Fig]}}}
+
+% --------------------------------------------------------------------------
+% HOTAS LOT FILE HANDLE 
+% --------------------------------------------------------------------------
+\makeatletter
+\newcommand{\listofhotastables}{%
+	\section*{List of HOTAS Tables}%
+	\addcontentsline{toc}{section}{List of HOTAS Tables}%
+	\@starttoc{hotas}%
+}
+\makeatother
+
+% --------------------------------------------------------------------------
+% HOTAS table environment
+% Version: 2.1 (2026-02-10)
+% --------------------------------------------------------------------------
+
+\newenvironment{hotastable}[1]{%
+	\footnotesize
+	\setlength{\tabcolsep}{3pt}
+	\renewcommand{\arraystretch}{1.35}
+	\begin{longtable}{L{1.00cm} L{0.90cm} L{0.90cm} L{3.30cm} L{6.40cm} L{1.40cm} L{1.60cm}}
+		\caption{#1}\label{table.\thetable}\\
+		\noalign{\addtocontents{hotas}{\protect\contentsline{table}{\protect\numberline{\thetable}#1}{\thepage}{table.\thetable}}}%
+		\rowcolor{headerblue}
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
+		\endfirsthead
+		\rowcolor{headerblue}
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.00cm}}{\textbf{\color{white}Mode}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Dir.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{0.90cm}}{\textbf{\color{white}Act.}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{3.30cm}}{\textbf{\color{white}Function}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{6.40cm}}{\textbf{\color{white}Effect / Nuance}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.40cm}}{\textbf{\color{white}Dash34}} &
+		\multicolumn{1}{>{\centering\arraybackslash}p{1.60cm}}{\textbf{\color{white}Train.}} \\
+		\endhead
+		\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+		\endfoot
+		\endlastfoot
+	}{%
+	\end{longtable}
+}
+
+% --------------------------------------------------------------------------
+% SIMPLE REFERENCE MACROS FOR BMS DOCS
+% --------------------------------------------------------------------------
+
+\newcommand{\dashref}[1]{Dash-34~\S~#1}
+\newcommand{\dashone}[1]{Dash-1~\S~#1}
+\newcommand{\trnref}[1]{TRN~#1}
+\newcommand{\trnman}{BMS Training Manual 4.38.1}
+\newcommand{\bmsver}{Falcon BMS~4.38.1}
+\newcommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+
+% --------------------------------------------------------------------------
+% CROSS-REFERENCE MACROS (INTERNAL GUIDE)
+% --------------------------------------------------------------------------
+
+\newcommand{\secref}[1]{\hyperref[#1]{Section~\ref*{#1}}}
+\newcommand{\chapref}[1]{\hyperref[#1]{Chapter~\ref*{#1}}}
+\newcommand{\tabref}[1]{\hyperref[#1]{Table~\ref*{#1}}}
+\newcommand{\figref}[1]{\hyperref[#1]{Figure~\ref*{#1}}}
+
+% --------------------------------------------------------------------------
+% VERSION CONTROL MACROS
+% --------------------------------------------------------------------------
+
+\newcommand{\docversion}{0.4.2.0-alpha.2}
+\newcommand{\docbuild}{20260314}
+\newcommand{\docstartdate}{05 January 2026}
+\newcommand{\docenddate}{14 March 2026}
+\newcommand{\chapterscompletedof}{2/7}
+\newcommand{\tablesfilledpct}{Chapters 1, 5}
+\newcommand{\fulldocversion}{\docversion+\docbuild}
+
+% --------------------------------------------------------------------------
+% GRAPHICS
+% --------------------------------------------------------------------------
+
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+\usepackage{float}
+\usepackage{enumitem}
+
+% --------------------------------------------------------------------------
+% TITLE
+% --------------------------------------------------------------------------
+
+\title{TMS, DMS and CMS Usage Guide for \bmsver}
+\author{Carlos ``Metal'' Nader}
+\date{Version \fulldocversion{} | Progress: Chapters \chapterscompletedof{} | Tables \tablesfilledpct{} | January 2026}
+
+% ============================================================================
+% DOCUMENT BEGIN
+% ============================================================================
+
+\begin{document}
+	
+	\maketitle
+	
+	\pagenumbering{roman}
+	
+	% --------------------------------------------------------------------------
+	% TOC DEPTH CONFIGURATION
+	% --------------------------------------------------------------------------
+	\setcounter{tocdepth}{3}       % Show up to \subsubsection in TOC
+	\setcounter{secnumdepth}{3}    % Number up to \subsubsection
+	
+	\newpage
+	\tableofcontents
+	\newpage
+	
+	% --------------------------------------------------------------------------
+	% LIST OF HOTAS TABLES
+	% --------------------------------------------------------------------------
+	\phantomsection
+	\listofhotastables
+	\newpage
+	
+	\pagenumbering{arabic}
+
+%============================================================================
+% WIP FILE METADATA (NOT RENDERED IN PDF)
+%============================================================================
+
+% File Name: chapter-C1-style-rev-review-2026-03-14.tex
+% Issue: #46
+% WIP Naming Convention: 2026-03-06
+% Target Chapter: C1
+% WIP Status: review
+% Created: 2026-03-14
+% Last Modified: 2026-03-14
+% Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.4.2.0-alpha.2
+%
+% Narrative Completion: 100% (content present; style revision pending)
+% Table Fill Status: N/A (C1 has no hotastable environments)
+%
+% Notes:
+% - Content: Full Chapter 1 copied from guide.tex (canonical). Style revision pass not yet applied.
+% - Pending tasks (issue #46):
+%     (1) Style revision pass — all prose sections against STYLE-GUIDE
+%     (2) Add §1.3.4 Typographic conventions (new subsubsection after §1.3.3)
+%     (3) Revise §1.4.2 Authorship and AI assistance (add GitHub Copilot Pro; clarify AI roles)
+% - Known violations to address:
+%     §1.1 ¶2: "making it immediately accessible to pilots who need quick, authoritative answers" — benefit claim (P2)
+%     §1.3.1 ¶7: "This format is designed for rapid in-flight consultation, allowing pilots to quickly verify..." — "is designed to" (prohibited) + benefit claim
+% - §1.3.4 proposed text: see issue #46 Task 1
+% - §1.4.2 proposed text: see issue #46 Task 2
+
+%============================================================================
+% CONTENT BEGINS HERE (use \chapter{}, \section{}, \subsection{}, etc.)
+%============================================================================
+
+%--------------------------------------------------------------------------
+% CHAPTER 1: INTRODUCTION
+%--------------------------------------------------------------------------
+\chapter{Introduction}
+\label{chap:C1}
+
+This document is a community-made reference guide for \bmsver, focused on practical use of three specific HOTAS controls: the Target Management Switch (TMS), the Display Management Switch (DMS), and the Countermeasures Management Switch (CMS). Although developed under Falcon BMS 4.38.1, the fundamental behavior of these switches has remained consistent since at least Falcon BMS 4.36, making this guide applicable to virtually any Falcon BMS user.
+
+The goal of this guide is to reorganize information scattered across the Dash-34 Manual (TO 1F-16CMAM-34-1-1 BMS.pdf) \footnote{Usually located in \texttt{X:\textbackslash Falcon BMS 4.38\textbackslash Docs\textbackslash02 Aircraft Manuals \& Checklists\textbackslash 01 F-16}.} into mode-based tables and concise explanations. Virtual pilots can quickly find what each switch press does in a given context, answering questions such as: \emph{``In this radar mode, what does TMS Up do?''} or \emph{``How do I cycle through MFD formats with the DMS?''}
+
+This work is entirely unofficial. The author is not affiliated with Benchmark Sims, MicroProse, any real-world air force, or any aircraft or weapons manufacturer. All interpretations, simplifications, errors, and omissions are solely the responsibility of the author and must not be attributed to the Falcon BMS development team or any real-world organization.
+
+\textbf{Nothing in this document should ever be used for real-world operations, training, or procedures.}
+
+%--------------------------------------------------------------------------
+% SECTION 1.1: SCOPE AND PURPOSE
+%--------------------------------------------------------------------------
+\section{Scope and purpose}
+\label{sec:C1-S1}
+
+This guide focuses exclusively on three HOTAS switches: the Target Management Switch (TMS), the Display Management Switch (DMS), and the Countermeasures Management Switch (CMS). Although other controls exist on the F-16 throttle and stick---such as the Communication Switch, the Dogfight/MRM Override, and the RDR Cursor Enable control---they could be mentioned only when essential to understanding the behavior and context of TMS, DMS, and CMS.
+
+This is not a comprehensive HOTAS or avionics manual. Instead, it is a usage guide organized by operational context, with emphasis on practical tables that show what each switch input does in specific flight modes, sensor configurations, and weapon employment scenarios. The guide bridges information scattered across official documentation and training missions, making it immediately accessible to pilots who need quick, authoritative answers.
+
+The guide assumes knowledge of basic F-16 operation and familiarity with master modes (NAV, A-A and A-G). It does not replace the Dash-34 or Training Manual; rather, it complements them by organizing TMS, DMS, and CMS behavior into searchable tables and diagrams with cross-references back to official sources and practical training missions where each behavior can be practiced.
+
+%--------------------------------------------------------------------------
+% SECTION 1.2: SOURCES AND REFERENCES
+%--------------------------------------------------------------------------
+\section{Sources and references}
+\label{sec:C1-S2}
+
+This guide is grounded in the following primary Falcon BMS documents:
+
+\begin{enumerate}
+	\item \textbf{TO BMS 1F-16CMAM-34-1-1} (Dash-34, Change 4.38) --- Avionics and Nonnuclear Weapons Delivery Flight Manual. Primary source for HOTAS behavior, SOI logic, and weapons employment.
+	\item \textbf{BMS Training Manual 4.38.1} (October 2025) --- Training missions and learning objectives. Used for practical cross-references and recommended training progression.
+	\item \textbf{TO BMS 1F-16CMAM-1} (Dash-1) --- F-16 Aircraft Systems, Normal and Abnormal Procedures. Reference for general aircraft systems context.
+	\item \textbf{BMS User Manual 4.38} --- BMS user interface, DTC configuration, and simulation setup.
+	\item \textbf{MCH 11-F16 Vol 5} (May 1996) --- F-16 Combat Aircraft Fundamentals, Surface Attack and Weapons Delivery. Supplementary tactical reference.
+\end{enumerate}
+
+All technical claims in this guide are cross-referenced to these sources. Where specific sections are cited, the notation \dashref{X.Y.Z} refers to Dash-34 section X.Y.Z, and \trnref{NN} refers to BMS Training Mission NN.
+
+%--------------------------------------------------------------------------
+% SECTION 1.3: DOCUMENT STRUCTURE AND HOW TO READ IT
+%--------------------------------------------------------------------------
+\section{Document structure and how to read it}
+\label{sec:C1-S3}
+
+%--------------------------------------------------------------------------
+% SECTION 1.3.1: CHAPTER OVERVIEW
+%--------------------------------------------------------------------------
+\subsection{Chapter overview}
+\label{sec:C1-S3-S1}
+
+This guide is organized into seven chapters. Chapters 2 through 6 follow a consistent structure combining narrative explanation with detailed reference tables. The table below summarizes the focus of each chapter:
+
+\begin{table}[H]
+	\centering
+	\caption{Guide Chapter Overview}
+	\label{tab:C1-chapter-overview}
+	\small
+	\renewcommand{\arraystretch}{1.25}
+	\begin{tabular}{C{1.5cm} L{12.0cm}}
+		\toprule
+		\textbf{Chapter} & \textbf{Focus} \\
+		\midrule
+		C2 & HOTAS fundamentals: Sensor of Interest (SOI), short vs. long press timing, master modes, and switch overview \\
+		C3 & TMS --- Target Management Switch: targeting, designation, and track management \\
+		C4 & DMS --- Display Management Switch: SOI selection and MFD format cycling \\
+		C5 & CMS --- Countermeasures Management Switch: CMDS and ECM control \\
+		C6 & Training references: recommended progression and practical mission flows \\
+		C7 & Diagrams \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\paragraph{Chapter 7 --- Visual Quick Reference:}
+Unlike the preceding chapters, which combine narrative explanation with detailed tables, Chapter 7 serves as a standalone quick reference. It consolidates all TMS, DMS, and CMS switch functions documented in Chapters 3--5 into schematic diagrams organized by operational context, without descriptive text. This format is designed for rapid in-flight consultation, allowing pilots to quickly verify switch behavior without reading through explanatory sections.
+
+%--------------------------------------------------------------------------
+% SECTION 1.3.2: TABLE FORMAT (HOTASTABLE)
+%--------------------------------------------------------------------------
+\subsection{Table format}
+\label{sec:C1-S3-S2}
+
+Chapters 3, 4, and 5 use a standardized seven-column table format called \texttt{hotastable} to document switch behavior. Each row describes a single switch action in a specific operational context:
+
+\begin{table}[H]
+	\centering
+	\caption{HOTAS Table Column Definitions}
+	\label{tab:C1-hotastable-format}
+	\small
+	\renewcommand{\arraystretch}{1.25}
+	\begin{tabular}{L{2.2cm} L{11.5cm}}
+		\toprule
+		\textbf{Column} & \textbf{Description} \\
+		\midrule
+		Mode & Operational context: master mode, sensor state, or weapon configuration \\
+		Dir. & Switch direction: Up, Down, Left, or Right \\
+		Act. & Actuation type: Short press or Long press \\
+		Function & Brief name of the function performed \\
+		Effect / Nuance & Detailed explanation of system behavior, constraints, and tactical considerations \\
+		Dash34 & Cross-reference to Dash-34 section(s) \\
+		Train. & Identification of recommended BMS training mission(s) for hands-on practice (see BMS Training Manual for descriptions) \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+To find information in a HOTAS table: (1) identify the master mode and sensor context from the section title; (2) locate the relevant Mode within the table; (3) find the Direction and Action; (4) read the Effect and consult the Dash34 or Training reference for further detail.
+
+%--------------------------------------------------------------------------
+% SECTION 1.3.3: REFERENCE CONVENTIONS
+%--------------------------------------------------------------------------
+\subsection{Reference conventions}
+\label{sec:C1-S3-S3}
+
+This guide uses consistent notation for cross-references to official documentation:
+\begin{itemize}
+	\item \textbf{\dashref{X.Y.Z}} --- Reference to Dash-34 (TO BMS 1F-16CMAM-34-1-1) section X.Y.Z
+	\item \textbf{\trnref{NN}} --- Reference to BMS Training Mission number NN
+	\item \textbf{MCH 11-F16 Vol 5} --- Referenced by full title when cited
+	\item \textbf{User Manual § X.Y} --- Reference to BMS User Manual section X.Y
+\end{itemize}
+These conventions appear throughout the guide in narrative text and in the Dash34 and Train. columns of HOTAS tables.
+
+%--------------------------------------------------------------------------
+% SECTION 1.4: VERSION, AUTHORSHIP AND AI ASSISTANCE
+%--------------------------------------------------------------------------
+\section{Version, authorship, and AI assistance}
+\label{sec:C1-S4}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 1.4.1: DOCUMENT VERSION AND STATUS
+%--------------------------------------------------------------------------
+\subsection{Document version and status}
+\label{sec:C1-S4-S1}
+
+\begin{table}[H]
+	\centering
+	\caption{Document Status}
+	\label{tab:C1-doc-status}
+	\small
+	\renewcommand{\arraystretch}{1.25}
+	\begin{tabular}{L{4.5cm} L{9.0cm}}
+		\toprule
+		\textbf{Item} & \textbf{Value} \\
+		\midrule
+		Document Version & \fulldocversion \\
+		Falcon BMS Version & 4.38.1 (Update 1) \\
+		Development Phase & Pre-publication (0.x.x.x) \\
+		Chapters with Content & \chapterscompletedof \\
+		Development Start & \docstartdate \\
+		Last Update & \docenddate \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+%--------------------------------------------------------------------------
+% SUBSECTION 1.4.2: AUTHORSHIP AND AI ASSISTANCE
+%--------------------------------------------------------------------------
+\subsection{Authorship and AI assistance}
+\label{sec:C1-S4-S2}
+
+This guide was created by a member of the Falcon BMS community with structured assistance from AI language models:
+
+\begin{itemize}
+	\item \textbf{Perplexity AI} --- Research organization, initial structuring, and early content generation (January 2026)
+	\item \textbf{Claude (Anthropic)} --- Co-editor: critical review, governance framework, content development, and ongoing revision (January--February 2026)
+\end{itemize}
+
+The human author identified scope, validated all content against official Falcon BMS documentation, made all organizational and editorial decisions, and bears full responsibility for the guide's accuracy and presentation. AI tools were used for research organization, cross-referencing, structural analysis, and text generation---not for defining technical correctness.
+
+%--------------------------------------------------------------------------
+% SUBSECTION 1.4.3: CANONICAL SOURCE
+%--------------------------------------------------------------------------
+\subsection{Canonical source}
+\label{sec:C1-S4-S3}
+
+The canonical source for this guide, including all governance documents, version history, and contribution guidelines, is the project repository:
+
+\begin{center}
+	\url{https://github.com/carlos-nader/tms-dms-cms-usage-guide}
+\end{center}
+
+This repository contains the authoritative version of all project files. Translations, adaptations, and derivative works should reference this repository as the original source.
+
+%--------------------------------------------------------------------------
+% SUBSECTION 1.4.4: LICENSE
+%--------------------------------------------------------------------------
+\subsection{License}
+\label{sec:C1-S4-S4}
+
+This guide is released under the \textbf{Creative Commons Attribution-NonCommercial 4.0 International} (CC BY-NC 4.0) license. You are free to share, copy, translate, and adapt this guide with attribution. Commercial use is prohibited. Derivative works must maintain the same license and cannot claim official status.
+
+For full legal terms, visit: \url{https://creativecommons.org/licenses/by-nc/4.0/}
+
+\paragraph{Attribution:}
+When sharing, translating, or adapting, include: title, author (Carlos ``Metal'' Nader), source repository URL, and license.
+
+%--------------------------------------------------------------------------
+% SUBSECTION 1.4.5: DISCLAIMER
+%--------------------------------------------------------------------------
+\subsection{Disclaimer}
+\label{sec:C1-S4-S5}
+
+This is an \textbf{unofficial}, community-made document. It is not affiliated with, endorsed by, or associated with Benchmark Sims, MicroProse, any military organization, or any aircraft or weapons manufacturer. No copyrighted material is reproduced directly. The guide is provided ``as-is'' for \textbf{educational and simulation training} purposes only.
+
+%============================================================================
+% END OF SECTION
+%============================================================================
+
+\end{document}
