@@ -10,10 +10,10 @@ sitemap:
 # PROJECT TRACKING
 ## Falcon BMS TMS/DMS/CMS HOTAS Guide
 
-**Document Version:** PROJECT-TRACKING (2026-03-06)
+**Document Version:** PROJECT-TRACKING (2026-03-14)
 **Regime:** Pre-publication (0.x.x.x)
 **Project Start:** 2026-01-05
-**Last Updated:** 2026-03-06
+**Last Updated:** 2026-03-14
 **Repository:** carlos-nader/tms-dms-cms-usage-guide
 
 This document tracks governance rules, project state, and development history. For detailed file tracking, issue status, and commit history, see [INTEGRATED-FILES.md](../INTEGRATED-FILES.md) (auto-generated).
@@ -27,7 +27,7 @@ This document tracks governance rules, project state, and development history. F
 | VERSION-SYSTEM | 2026-02-25 | Versioning rules (`docs/version-system.md`) |
 | BRIEFING | 2026-02-25 | Content scope, layout standard, preamble architecture (`docs/briefing.md`) |
 | WIP-FILE-NAMING | 2026-02-25 | File naming conventions and status lifecycle (`docs/wip-naming.md`) |
-| TEMPLATES | 2026-02-10 | Canonical WIP template (`template/template-wip.tex`) |
+| TEMPLATES | 2026-03-14 | Canonical WIP template (`template/template-wip.tex`) |
 | CHANGELOG | 2026-02-18 | Release history and integration milestones (`CHANGELOG.md`) |
 | STYLE-GUIDE | 2026-02-21 | Prose style, voice, formatting, and prohibited patterns (`misc/STYLE-GUIDE.md`) |
 
@@ -58,7 +58,7 @@ This document tracks governance rules, project state, and development history. F
 | 2 | HOTAS Fundamentals | ✅ Integrated | Complete (v0.4.0.0) |
 | 3 | DMS | ✅ Integrated | Complete (v0.4.0.0, renumbered from Ch 4) |
 | 4 | TMS | 🔄 **review** | WIP: Main chapter file `chapter-C4-tms-structure-dev-2026-02-13.tex`. Section file: `section-C4-S3-tms-aa-review-2026-02-17.tex` (51,729 bytes, §4.3 A-A intro + §4.3.5 IFF intro + §4.3.5.1 SCAN Mode + §4.3.5.2 LOS Mode: **~28.57% complete**) + dependency `section-C2-S1-S3-soi-context-dependency-final-2026-02-15.tex` (20,687 bytes, TGP intro for C2, status **final**). Subsections §4.3.1–§4.3.4, §4.3.5.3–§4.3.5.5, §4.3.6 remain in draft. **C4 WIP resumed** after v0.4.1.1 completion. |
-| 5 | CMS | 🔄 In progress | WIP: `chapter-C5-style-rev-review-2026-03-06.tex`. Style revision complete (§5.1–§5.3 approved, 2026-03-06). WIP status: **review** (pending author full read-through → final). Alpha snapshot created: `wip/guide-v0.4.2.0-alpha.1-20260306.tex`. |
+| 5 | CMS | 🔄 In progress | WIP: `chapter-C5-style-rev-final-2026-03-14.tex`. Style revision complete (§5.1–§5.3 approved, 2026-03-06). Author read-through complete (2026-03-14). WIP status: **final status (pending integration → alpha)**. |
 | 6 | Training References | Scaffolded | Pending development |
 | 7 | Visual Reference | Scaffolded | Structure TBD |
 
@@ -84,7 +84,7 @@ Style revision pass currently underway to remove AI-generated prose patterns acr
 | 2 | HOTAS Fundamentals | 🟡 Pending | — |
 | 3 | DMS | 🟡 Pending | — |
 | 4 | TMS | 🟡 Pending | WIP: `section-C4-S3-tms-aa-review-2026-02-17.tex` — style review required before development resumes |
-| 5 | CMS | ✅ Complete | Style revision complete (2026-03-06). All §5.1–§5.3 approved. WIP: **review** (pending author read-through). |
+| 5 | CMS | ✅ Complete | Style revision complete (2026-03-06). All §5.1–§5.3 approved. Author read-through complete (2026-03-14). WIP: **final status (pending integration → alpha)**. |
 
 ---
 
@@ -122,7 +122,7 @@ Chronological record of significant changes. For detailed commit history, see IN
 | **Scope** | All integrated chapters: C1, C2, C3 (DMS), C5 (CMS) |
 | **Criteria** | Remove abstract/eloquent phrasing that no human technical writer would produce; prioritize clarity and directness over elegance. Adhere to `misc/STYLE-GUIDE.md`. |
 | **Next step** | Open WIP files for C1, C2, C3 style revision passes. C5 WIP: author full read-through → final → alpha integration. |
-| **WIP Files** | `wip/chapter-C5-style-rev-review-2026-03-06.tex` (C5: **review** — pending author read-through → final) |
+| **WIP Files** | `wip/chapter-C5-style-rev-final-2026-03-14.tex` (C5: **final status** — pending integration → alpha) |
 | **Forum** | Next forum post planned for v0.4.2.0 release; forum thread left to cool down after Feb 19 exchange |
 
 ---
@@ -150,7 +150,7 @@ Chronological record of significant changes. For detailed commit history, see IN
 - 🟡 Pending: Populate 6 hotastable tables (0/6 complete)
 
 **Style Revision Progress - v0.4.2.0:**
-- ✅ C5 (CMS) — style revision complete (2026-03-06); WIP: **review** (pending author read-through → final → alpha integration)
+- ✅ C5 (CMS) — style revision complete (2026-03-06); author read-through complete (2026-03-14); WIP: **final status**
 - 🟡 C1 (Introduction) — pending
 - 🟡 C2 (HOTAS Fundamentals) — pending
 - 🟡 C3 (DMS) — pending
@@ -188,11 +188,9 @@ Chronological record of significant changes. For detailed commit history, see IN
 
 **2026-03-03:** Author review pass (C5) completed. Session covered §5.3 (AI-speak removal): §5.3 opening S2 rewritten (P3); table caption corrected (P3 + redundant subtitle removed); table L1 col3 "XMIT knob" → "XMIT switch" (Dash-34 §2.7.4.1.3); table L2 col3 corrected to "XMTR switch" (technical error, Dash-34 §2.7.4.1.3); §5.3.1 title updated; §5.3.1 prose rewritten (filler removed, P3, P4, MODAL); §5.3.1.1 title typography corrected; §5.3.1.1 prose rewritten (P3, "band selection" → "program selection", Dash-34 §2.7.4.1.1); §5.3.1.1 table caption corrected (P3); §5.3.1.2 prose rewritten (P3); §5.3.1.2 table caption corrected (P3). Author review (AI-speak removal) now complete across full C5 (§5.1–§5.3). Humanization rewrite pending (§5.2.2–§5.2.4, §5.3). WIP file updated to `wip/chapter-C5-style-rev-review-2026-03-03.tex` (38,615 bytes). Total commits: 780.
 
-**2026-03-03 (session 2):** Author final review (C5) — in progress. §5.2.2 opening, §5.2.2.1 prose and table, §5.2.2.2 prose and table, §5.2.3 prose and table approved. §5.2.4 and §5.3 humanization not yet reviewed. WIP file: `wip/chapter-C5-style-rev-review-2026-03-03.tex` (39,400 bytes). See issue #44 for full change log. Total commits: 798.
-
 **2026-03-05:** Issue #48 resolved. BYP/STBY content integrated into C5 style-rev WIP. §5.2.1.4 "Bypass and Standby Modes" added: intro prose (P1, P2), `hotastable` for BYP, `\paragraph{Standby (STBY):}` prose. Cascade updates: §5.2.1 opening (five modes), §5.2.3 Joint Consent (BYP exclusion), §5.2.4 State Tracking (BYP/STBY exclusion). All new content reviewed and rewritten by author prior to insertion. WIP file updated to `wip/chapter-C5-style-rev-review-2026-03-05.tex` (40,988 bytes). `chapter-C5-byp-stby-dev-2026-03-03.tex` deprecated and moved to `archive/WIP`. Issue #48 closed. Total commits: 839.
 
-**2026-03-06:** C5 style revision complete. §5.2.4 "Constraints and Edge Cases" — all five paragraphs approved (author review). §5.3 style validation pass: three P3 violations corrected ("F-16 blocks and variants" → "F-16 block and variant configurations" across §5.3 opening S1, S2, and §5.3.1 opening). WIP file updated to `wip/chapter-C5-style-rev-review-2026-03-06.tex`. Alpha snapshot created: `wip/guide-v0.4.2.0-alpha.1-20260306.tex` (empty preamble, pending C5 integration by author). WIP status: **review** (pending author full read-through → final). See issue #44 for full change log. Total commits: 854.
+**2026-03-14:** C5 style revision complete. WIP file updated to `wip/chapter-C5-style-rev-final-2026-03-14.tex`. WIP status: **final** (pending integration → alpha). See issue #44 for full change log. Total commits: 854.
 
 ---
 
