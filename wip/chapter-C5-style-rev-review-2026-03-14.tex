@@ -382,14 +382,14 @@
 %============================================================================
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 %============================================================================
-% File Name: chapter-C5-style-rev-review-2026-03-12.tex
+% File Name: chapter-C5-style-rev-review-2026-03-14.tex
 % WIP Naming Convention
 % Target Chapter: C5 (CMS — Countermeasures Management Switch)
 % Target Section: ALL (author review pass — full chapter)
 %
-% WIP Status: review
+% WIP Status: review → final (pending rename)
 % Created: 2026-02-19
-% Last Modified: 2026-03-13
+% Last Modified: 2026-03-14
 %
 % Narrative Completion: 100% (§5.1–§5.3 complete)
 % Table Fill Status: hotastable cells revised (style pass — violations corrected)
@@ -397,13 +397,14 @@
 % Notes:
 % - Contains approved revised prose for C5 only.
 % - Each passage enters this file after explicit author approval.
-% - Status remains 'review' until author full read-through is complete; then → final.
+% - Author final read-through complete (sessions: 2026-03-09, 2026-03-12, 2026-03-13,
+%   2026-03-14). All changes author-approved. File ready for → final.
 % - C5 style revision complete (2026-03-06). All sections §5.1–§5.3 approved.
 %   Full session history in issue #44 comments.
-% - Author final read-through in progress (sessions: 2026-03-09, 2026-03-12, 2026-03-13).
-%   Changes: §5.1 Dash-34 ref updated; §5.2.1 terminology standardized (executes);
-%   §5.2.1.3 SEMI mode prose restructured; Program 6 cells standardized (is dispensed).
-%   Session 2026-03-13: §5.2.2 opening converted to \itemize (external/internal configs),
+% - Read-through change log:
+%   Sessions 2026-03-09/12/13: §5.1 Dash-34 ref updated; §5.2.1 terminology standardized
+%   (executes); §5.2.1.3 SEMI mode prose restructured; Program 6 cells standardized
+%   (is dispensed). §5.2.2 opening converted to \itemize (external/internal configs),
 %   \textit{} removed from list items; §5.2.2.1 opening rewritten (power switch OPR
 %   precondition + XMIT switch intro); §5.2.2.1 post-itemize sentence updated (sequential
 %   link added); §5.2.2.2 opening rewritten (power switch ON precondition + XMTR/OPER
@@ -412,6 +413,12 @@
 %   §5.1 \itemize revised: ECM item rewritten (function added: "the radar-jamming system");
 %   ECM configuration detail moved to dedicated sentence after list. Validated against
 %   Dash-34 §2.7.1, §2.7.4.2.1.
+%   Session 2026-03-14: §5.2.2.2 "the power switch" → "its power switch" (parallelism
+%   with §5.2.2.1); §5.2.3 opening revised (redundancy removed, \textit{external} added,
+%   "CMDS AUTO and SEMI modes" standardized); §5.2.3 new paragraph added (joint consent
+%   does not apply to IDIAS-equipped aircraft); §5.2.4 State Tracking revised ("CMDS AUTO
+%   and SEMI modes", \textit{not cleared} added, last sentence restructured); §5.2.4
+%   "IDIAS vs. External ECM Pod" paragraph removed (content absorbed into §5.2.3).
 % - RWR introduced for the first time at §5.2.1.2 — conceptual introduction
 %   in C2 tracked in issue #47.
 % - Cross-reference: Issue #44 (v0.4.2.0 style revision / author review).
@@ -632,7 +639,7 @@ ECM consent is removed. The pod is placed in Standby and the ECM Enable light ex
 \subsubsection{Internal ECM (IDIAS)}
 \label{sec:C5-S2-S2-S2}
 
-For IDIAS to operate, the power switch must be in ON. Then, with the XMTR switch in OPER, \textbf{CMS Left} cycles the ECM operation mode.
+For IDIAS to operate, its power switch must be in ON. Then, with the XMTR switch in OPER, \textbf{CMS Left} cycles the ECM operation mode.
 
 The active operation mode is displayed on the HUD, FCR, RWR, and TFR pages.
 
@@ -651,7 +658,9 @@ IDIAS is set to \texttt{STBY}. The pilot must press \textbf{CMS Left} again to r
 \subsection{CMDS and ECM Joint Consent}
 \label{sec:C5-S2-S3}
 
-On aircraft equipped with an external ECM pod, \textbf{CMS Down} grants consent to \textit{both} the ALE-47 CMDS (in AUTO or SEMI mode) and the external ECM pod. This joint consent applies to AUTO and SEMI \textit{only}.
+On aircraft equipped with an \textit{external} ECM pod, \textbf{CMS Down} grants consent to \textit{both} the ALE-47 CMDS and the external ECM pod. This joint consent applies to CMDS AUTO and SEMI modes \textit{only}.
+
+As \textbf{CMS Down} has no function on IDIAS-equipped aircraft, the joint consent does not apply.
 
 \begin{hotastable}{CMS Interaction with CMDS and ECM (Consent and Constraints)}\label{tab:C5-S2-S3-CMDS-ECM}
 CMDS AUTO SEMI + ECM Pod & Down & Short & Joint Consent (CMDS + ECM) &
@@ -667,7 +676,7 @@ Simultaneous consent to CMDS and the external ECM pod.
 
 \paragraph{State Tracking:}
 
-In AUTO and SEMI modes, consent state is not cleared when MAN mode is selected. If the pilot re-engages AUTO or SEMI without pressing \textbf{CMS Down}, the CMDS begins dispensing immediately on the next detected threat. BYP and STBY modes do not have a consent state, so switching to either mode does not retain any prior consent.
+In CMDS AUTO and SEMI modes, consent state is \textit{not cleared} when MAN mode is selected. If the pilot re-engages AUTO or SEMI without pressing \textbf{CMS Down}, the CMDS begins dispensing immediately on the next detected threat. As BYP and STBY modes do not have a consent state, switching to either mode does not retain any prior consent.
 
 \paragraph{Bingo Quantity Behavior:}
 
@@ -676,10 +685,6 @@ In AUTO mode, the CMDS continues dispensing when expendables fall to or below th
 \paragraph{RF Switch Override:}
 
 When ECM consent is active, the ECM system is placed in Standby if the RF switch is moved from NORM to QUIET or SILENT. Consent is \textit{not} restored when the RF switch is returned to NORM. The pilot must press \textbf{CMS Down} again to resume ECM transmission.
-
-\paragraph{IDIAS vs. External ECM Pod:}
-
-The joint consent described in \secref{sec:C5-S2-S3} applies to external ECM pod configurations \textit{only}. On IDIAS-equipped aircraft, ECM modes are cycled with \textbf{CMS Left} and \textbf{CMS Down} has no function.
 
 \paragraph{Ground Safety:}
 
