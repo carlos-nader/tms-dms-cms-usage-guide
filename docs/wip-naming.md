@@ -12,7 +12,7 @@ sitemap:
 ## Work-in-Progress File Organization and Nomenclature
 
 **Status:** Official Rule Set  
-**Effective Date:** 03 February 2026  
+**Effective Date:** 06 March 2026
 **Applies to:** All isolated chapter, section, table, note, and visual files under development  
 **Relationship to VERSION-SYSTEM:** Complementary; does NOT affect main document versioning  
 **Relationship to BRIEFING:** Operational rules for files described structurally in BRIEFING Section 11
@@ -727,7 +727,7 @@ When generating filenames, verify:
 ---
 
 **Document Status:** Production-Ready  
-**Effective Date:** 03 February 2026  
+**Effective Date:** 06 March 2026
 **Last Updated:** 06 March 2026  
 
 {% endraw %}

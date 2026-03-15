@@ -24,11 +24,11 @@ This document tracks governance rules, project state, and development history. F
 
 | Document | Last Updated | Purpose |
 |----------|-------------|---------|
-| VERSION-SYSTEM | 2026-02-25 | Versioning rules (`docs/version-system.md`) |
+| VERSION-SYSTEM | 2026-03-01 | Versioning rules (`docs/version-system.md`) |
 | BRIEFING | 2026-02-25 | Content scope, layout standard, preamble architecture (`docs/briefing.md`) |
-| WIP-FILE-NAMING | 2026-02-25 | File naming conventions and status lifecycle (`docs/wip-naming.md`) |
+| WIP-FILE-NAMING | 2026-03-06 | File naming conventions and status lifecycle (`docs/wip-naming.md`) |
 | TEMPLATES | 2026-03-14 | Canonical WIP template (`template/template-wip.tex`) |
-| CHANGELOG | 2026-02-18 | Release history and integration milestones (`CHANGELOG.md`) |
+| CHANGELOG | 2026-03-14 | Release history and integration milestones (`CHANGELOG.md`) |
 | STYLE-GUIDE | 2026-02-21 | Prose style, voice, formatting, and prohibited patterns (`misc/STYLE-GUIDE.md`) |
 
 **Rule:** All WIP files must be created from `template/template-wip.tex`.
