@@ -9,7 +9,7 @@ sitemap:
 
 # Falcon BMS 4.38.1 — TMS, DMS and CMS Usage Guide: Project Brief
 
-**Brief Version:** 2026-02-25
+**Brief Version:** 2026-03-16
 
 ---
 
@@ -133,12 +133,12 @@ Assume there is already a LaTeX template with this structure. Do not change the 
 - 6.2 Recommended progression.
 - 6.3 Example flows for typical missions.
 
-**7. HOTAS Visual Reference**
+**7. HOTAS Quick Reference**
 
 - 7.1 F-16 HOTAS overview.
-- 7.2 TMS diagrams.
-- 7.3 DMS diagrams.
-- 7.4 CMS diagrams.
+- 7.2 TMS — tables and diagrams.
+- 7.3 DMS — tables and diagrams.
+- 7.4 CMS — tables and diagrams.
 
 ### 3.2 Appendices
 
@@ -263,14 +263,15 @@ Reference relevant Dash-34 sections as plain text (no macros inside tables):
 
 ---
 
-## 7. Rules for the HOTAS Visual Reference Chapter
+## 7. Rules for the HOTAS Quick Reference Chapter
 
-- The visual chapter (Chapter 7) provides quick reference diagrams for TMS, DMS and CMS positions.
+- Chapter 7 is a quick reference chapter combining HOTAS tables and visual diagrams for TMS, DMS and CMS.
+- **Tables:** Each section (7.2, 7.3, 7.4) reprints the hotastable entries from the corresponding chapter (C3, C4, C5) without modification. These are not condensed or summarized versions.
+- **Diagrams:** Each section includes one or more SVG diagrams showing switch directions and their effects, organized by system where applicable (e.g., CMDS and ECM for CMS).
 - Diagrams should clearly show:
-  - Physical position on stick/throttle
   - Switch directions (arrows)
-  - Context labels (mode-specific)
-- The visual chapter is **not** the primary source of truth — tables are authoritative.
+  - Context labels (mode and system)
+- Chapter 7 is **not** the primary source of truth — the canonical tables and narrative remain in C3, C4 and C5.
 
 ---
 
@@ -1014,7 +1015,7 @@ pdflatex section-C5-S2-cms-new-dev-2026-02-11.tex
 ---
 
 **Note:** This document is a work in progress and may be updated without notice.  
-**Version:** 2026-03-06
+**Version:** 2026-03-16
 **Status:** Ready for use and contribution  
 **License:** CC BY-NC 4.0  
 

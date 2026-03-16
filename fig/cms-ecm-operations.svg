@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="430" viewBox="0 0 960 430"
+     font-family="Consolas,'Courier New',monospace">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 7" refX="9" refY="3.5" markerWidth="8" markerHeight="6" orient="auto">
+      <polygon points="0,0 10,3.5 0,7" fill="#666"/>
+    </marker>
+    <filter id="sh" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="1" dy="1.5" stdDeviation="2.5" flood-opacity="0.13"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="430" fill="#f0f0f0" rx="10"/>
+
+  <!-- Title -->
+  <text x="480" y="17" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="13" font-weight="bold" fill="#222">
+    CMS — ECM Operations
+  </text>
+
+  <!-- ═══ ARROWS ═══ -->
+  <!-- CMS → LEFT -->
+  <line x1="437" y1="205" x2="307" y2="205" stroke="#666" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- CMS → RIGHT -->
+  <line x1="523" y1="205" x2="665" y2="205" stroke="#666" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- CMS → DOWN -->
+  <line x1="480" y1="247" x2="480" y2="305" stroke="#666" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ═══ LEFT BOX ═══ -->
+  <rect x="12" y="160" width="295" height="113" rx="7" fill="#f8f8f8" stroke="#999" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="12" y="160" width="295" height="28" rx="7" fill="#cccccc"/>
+  <rect x="12" y="176"  width="295" height="12" fill="#cccccc"/>
+  <text x="159" y="178" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="12" font-weight="bold" fill="#222">←  CMS LEFT</text>
+  <line x1="25" y1="192" x2="294" y2="192" stroke="#bbb" stroke-width="0.8"/>
+
+  <text x="25" y="210" font-size="11" font-weight="bold" fill="#222">IDIAS</text>
+  <text x="35" y="227" font-size="11" fill="#444">Cycle mode</text>
+  <text x="35" y="244" font-size="10" fill="#555">STBY → AVNC → ECM → AVNC → ECM</text>
+  <text x="35" y="259" font-size="10" fill="#777" font-style="italic">(one press per step)</text>
+
+  <!-- ═══ CMS CENTER ═══ -->
+  <circle cx="480" cy="205" r="42" fill="#aaaaaa" stroke="#666" stroke-width="2" filter="url(#sh)"/>
+  <circle cx="480" cy="205" r="22" fill="#666" stroke="#444" stroke-width="1.5"/>
+  <circle cx="480" cy="205" r="9"  fill="#333"/>
+  <text x="480" y="262" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="11" font-weight="bold" fill="#555">CMS</text>
+
+  <!-- ═══ RIGHT BOX ═══ -->
+  <rect x="665" y="160" width="283" height="113" rx="7" fill="#f8f8f8" stroke="#999" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="665" y="160" width="283" height="28" rx="7" fill="#cccccc"/>
+  <rect x="665" y="176"  width="283" height="12" fill="#cccccc"/>
+  <text x="806" y="178" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="12" font-weight="bold" fill="#222">→  CMS RIGHT</text>
+  <line x1="678" y1="192" x2="935" y2="192" stroke="#bbb" stroke-width="0.8"/>
+
+  <text x="678" y="210" font-size="11" font-weight="bold" fill="#222">ECM Pod</text>
+  <text x="688" y="227" font-size="11" fill="#444">Remove consent — Pod to Standby</text>
+  <text x="678" y="248" font-size="11" font-weight="bold" fill="#222">IDIAS</text>
+  <text x="688" y="265" font-size="11" fill="#444">Set ECM to STBY</text>
+
+  <!-- ═══ DOWN BOX ═══ -->
+  <rect x="295" y="305" width="370" height="113" rx="7" fill="#f8f8f8" stroke="#999" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="295" y="305" width="370" height="28" rx="7" fill="#cccccc"/>
+  <rect x="295" y="321"  width="370" height="12" fill="#cccccc"/>
+  <text x="480" y="323" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="12" font-weight="bold" fill="#222">↓  CMS DOWN</text>
+  <line x1="308" y1="337" x2="652" y2="337" stroke="#bbb" stroke-width="0.8"/>
+
+  <text x="308" y="355" font-size="11" font-weight="bold" fill="#222">ECM Pod</text>
+  <text x="308" y="372" font-size="11" fill="#444">Grant consent — Pod transmits per XMIT mode</text>
+  <text x="308" y="393" font-size="11" font-weight="bold" fill="#222">Joint</text>
+  <text x="308" y="410" font-size="11" fill="#444">Also grants CMDS consent (AUTO / SEMI)</text>
+
+</svg>
