@@ -24,10 +24,10 @@ This document tracks governance rules, project state, and development history. F
 
 | Document | Last Updated | Purpose |
 |----------|-------------|---------|
-| VERSION-SYSTEM | 2026-03-01 | Versioning rules (`docs/version-system.md`) |
-| BRIEFING | 2026-02-25 | Content scope, layout standard, preamble architecture (`docs/briefing.md`) |
-| WIP-FILE-NAMING | 2026-03-06 | File naming conventions and status lifecycle (`docs/wip-naming.md`) |
-| TEMPLATES | 2026-03-14 | Canonical WIP template (`template/template-wip.tex`) |
+| VERSION-SYSTEM | 2026-03-17 | Versioning rules (`docs/version-system.md`) |
+| BRIEFING | 2026-03-17 | Content scope, layout standard, preamble architecture (`docs/briefing.md`) |
+| WIP-FILE-NAMING | 2026-03-17 | File naming conventions and status lifecycle (`docs/wip-naming.md`) |
+| TEMPLATES | 2026-03-17 | Canonical WIP template (`template/template-wip.tex`) |
 | CHANGELOG | 2026-03-14 | Release history and integration milestones (`CHANGELOG.md`) |
 | STYLE-GUIDE | 2026-02-21 | Prose style, voice, formatting, and prohibited patterns (`misc/STYLE-GUIDE.md`) |
 
@@ -37,16 +37,16 @@ This document tracks governance rules, project state, and development history. F
 
 ## 2. PROJECT SNAPSHOT
 
-**Last updated:** 2026-03-14
+**Last updated:** 2026-03-17
 
 | Metric | Value |
 |--------|-------|
 | **Guide Version** | v0.4.1.1 |
 | **Phase** | Phase 0 — Chapter Scaffolding |
-| **Chapters Planned** | 7 |
-| **Chapters Integrated** | 4/7 (C1, C2, C3, C5) |
-| **Chapters In Development** | 1/7 (C4) |
-| **Chapters Pending** | 2/7 (C6, C7) |
+| **Chapters Planned** | 6 |
+| **Chapters Integrated** | 4/6 (C1, C2, C3, C5) |
+| **Chapters In Development** | 1/6 (C4) |
+| **Chapters Pending** | 1/6 (C6) |
 | **Total Commits** | 898 |
 | **Latest Release** | v0.4.1.1 (2026-02-18) |
 | **Latest Pre-Release** | v0.4.2.0-alpha.1 (2026-03-14) |
@@ -60,8 +60,7 @@ This document tracks governance rules, project state, and development history. F
 | 3 | DMS | ✅ Integrated | Complete (v0.4.0.0, renumbered from Ch 4) |
 | 4 | TMS | 🔄 **review** | WIP: Main chapter file `chapter-C4-tms-structure-dev-2026-02-13.tex`. Section file: `section-C4-S3-tms-aa-review-2026-02-17.tex` (51,729 bytes, §4.3 A-A intro + §4.3.5 IFF intro + §4.3.5.1 SCAN Mode + §4.3.5.2 LOS Mode: **~28.57% complete**) + dependency `section-C2-S1-S3-soi-context-dependency-final-2026-02-15.tex` (20,687 bytes, TGP intro for C2, status **final**). Subsections §4.3.1–§4.3.4, §4.3.5.3–§4.3.5.5, §4.3.6 remain in draft. **C4 WIP resumed** after v0.4.1.1 completion. |
 | 5 | CMS | 🔄 **alpha** | WIP: `chapter-C5-style-rev-alpha-2026-03-14.tex`. Style revision complete (§5.1–§5.3 approved, 2026-03-06). Author read-through complete (2026-03-14). Alpha snapshot published: `wip/guide-v0.4.2.0-alpha.1-20260314.tex` (pre-release v0.4.2.0-alpha.1, 2026-03-14). |
-| 6 | Training References | Scaffolded | Pending development |
-| 7 | Visual Reference | Scaffolded | Structure TBD |
+| 6 | Quick Reference | Scaffolded | Structure TBD (formerly C7; C6 Training References eliminated 2026-03-17) |
 
 ### 2.1 Style Revision Snapshot — v0.4.2.0
 

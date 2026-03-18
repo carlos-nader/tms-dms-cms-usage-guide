@@ -330,8 +330,7 @@ The following reflects the actual progression of the guide:
 
 **Projected future:**
 - `v0.5.0.0` — C4 TMS integrated (5th chapter with content)
-- `v0.6.0.0` — C6 Training References integrated
-- `v0.7.0.0` — C7 Visual Reference integrated (all 7 chapters complete)
+- `v0.6.0.0` — C6 Quick Reference integrated (all 6 chapters complete)
 
 #### 3.4.2 Mini-Cases by Scenario
 
@@ -793,5 +792,5 @@ it does not happen automatically.
 
 **Document Status:** Production-Ready
 **Effective Date:** 10 January 2026
-**Last Updated:** 01 March 2026
+**Last Updated:** 17 March 2026
 {% endraw %}

@@ -149,7 +149,7 @@ After copying, immediately rename the file using the exact naming pattern for yo
 | Section | `section-C{N}-S{M}-{TITLE}-{STATUS}-{DATE}.tex` | `section-C5-S2-cms-actuation-dev-2026-01-09.tex` |
 | Table | `table-C{N}-{CONTEXT}-{SWITCH}-{STATUS}-{DATE}.tex` | `table-C3-AA-TMS-dev-2026-01-09.tex` |
 | Notes | `notes-C{N}-{TOPIC}-{TYPE}-{DATE}.md` | `notes-C5-cms-structure-outline-2026-01-09.md` |
-| Visual | `visual-C{N}-{DESC}-{TYPE}-{STATUS}-{DATE}.{ext}` | `visual-C7-tms-hat-diagram-dev-2026-01-09.svg` |
+| Visual | `visual-C{N}-{DESC}-{TYPE}-{STATUS}-{DATE}.{ext}` | `visual-C6-tms-hat-diagram-dev-2026-01-09.svg` |
 
 Always start with status `dev` (never reviewed by author).
 
@@ -331,7 +331,7 @@ visual-C{N}-{DESCRIPTION}-{TYPE}-{STATUS}-{DATE}.{ext}
 
 **Examples:**
 ```text
-visual-C7-tms-hat-layout-diagram-dev-2026-01-28.svg
+visual-C6-tms-hat-layout-diagram-dev-2026-01-28.svg
 visual-C3-radar-mode-flowchart-final-2026-01-20.tex
 visual-C6-quick-reference-card-review-2026-01-25.pdf
 ```
@@ -728,6 +728,6 @@ When generating filenames, verify:
 
 **Document Status:** Production-Ready  
 **Effective Date:** 06 March 2026
-**Last Updated:** 06 March 2026  
+**Last Updated:** 17 March 2026  
 
 {% endraw %}

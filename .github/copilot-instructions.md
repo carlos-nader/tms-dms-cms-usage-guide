@@ -5,7 +5,7 @@
 
 This is a **LaTeX-based technical documentation project** developing a comprehensive usage guide for F-16 HOTAS switches (TMS/DMS/CMS) in Falcon BMS 4.38.1 flight simulator. The project uses a strict governance framework with version control, WIP file lifecycles, and AI-assisted content development.
 
-**Current Status:** Pre-publication phase (v0.4.1.1), 4/7 chapters completed, targeting v1.0 publication
+**Current Status:** Pre-publication phase (v0.4.1.1), 4/6 chapters completed, targeting v1.0 publication
 
 ## Recent Operational State (2026-03-02)
 
@@ -212,7 +212,7 @@ For complete column specifications, see BRIEFING Section 4.2 and Section 12.3.9.
 \newcommand{\docbuild}{20260218}
 \newcommand{\docstartdate}{05 January 2026}
 \newcommand{\docenddate}{18 February 2026}
-\newcommand{\chapterscompletedof}{4/7}
+\newcommand{\chapterscompletedof}{4/6}
 ```
 
 
