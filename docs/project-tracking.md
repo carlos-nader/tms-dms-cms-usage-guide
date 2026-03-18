@@ -107,6 +107,7 @@ Chronological record of significant changes. For detailed commit history, see IN
 | 2026-02-18 | v0.4.1.1 | **RELEASE:** Repetition cleanup (9 corrections across C1–C5) + hotastable `\label` fixes. Forum contribution by user Daddyk (post #450980). |
 | 2026-03-02 | — | **MERGED:** Alpha release infrastructure integrated into `main` (PR #50, issue #49 closed). Integrated files report regenerated. |
 | 2026-03-14 | v0.4.2.0-alpha.1 | **PRE-RELEASE:** C5 style revision alpha snapshot published. WIP renamed to `alpha` status (`chapter-C5-style-rev-alpha-2026-03-14.tex`). Alpha snapshot: `wip/guide-v0.4.2.0-alpha.1-20260314.tex`. Issue #44 updated. |
+| 2026-03-17 | — | **STRUCTURAL:** Chapter 6 (Training References) eliminated from guide plan. Former Chapter 7 (HOTAS Quick Reference) renumbered as Chapter 6. Total planned chapters: 6. Governing docs, templates, and open issues updated accordingly. No impact on current published guide (C6/C7 were not yet integrated). |
 
 ---
 
