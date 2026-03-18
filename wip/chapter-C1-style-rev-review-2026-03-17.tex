@@ -380,29 +380,26 @@
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 %============================================================================
 
-% File Name: chapter-C1-style-rev-review-2026-03-14.tex
+% File Name: chapter-C1-style-rev-review-2026-03-17.tex
 % Issue: #46
 % WIP Naming Convention: 2026-03-06
 % Target Chapter: C1
 % WIP Status: review
 % Created: 2026-03-14
-% Last Modified: 2026-03-14
+% Last Modified: 2026-03-17
 % Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.4.2.0-alpha.2
 %
-% Narrative Completion: 100% (content present; style revision pending)
+% Narrative Completion: 100% (content present; style revision in progress)
 % Table Fill Status: N/A (C1 has no hotastable environments)
 %
 % Notes:
-% - Content: Full Chapter 1 copied from guide.tex (canonical). Style revision pass not yet applied.
+% - Style revision pass in progress (session 2026-03-17).
+% - Sections revised: Intro C1, §1.1, §1.2, §1.3.1.
+% - Sections pending: §1.3.2, §1.3.3, §1.3.4 (new), §1.4.x.
 % - Pending tasks (issue #46):
-%     (1) Style revision pass — all prose sections against STYLE-GUIDE
-%     (2) Add §1.3.4 Typographic conventions (new subsubsection after §1.3.3)
-%     (3) Revise §1.4.2 Authorship and AI assistance (add GitHub Copilot Pro; clarify AI roles)
-% - Known violations to address:
-%     §1.1 ¶2: "making it immediately accessible to pilots who need quick, authoritative answers" — benefit claim (P2)
-%     §1.3.1 ¶7: "This format is designed for rapid in-flight consultation, allowing pilots to quickly verify..." — "is designed to" (prohibited) + benefit claim
-% - §1.3.4 proposed text: see issue #46 Task 1
-% - §1.4.2 proposed text: see issue #46 Task 2
+%     (1) Add §1.3.4 Typographic conventions (new subsubsection after §1.3.3)
+%     (2) Revise §1.4.2 Authorship and AI assistance (add GitHub Copilot Pro; clarify AI roles)
+% - Structural change: C6 (Training references) eliminated; former C7 (Quick Reference) → C6.
 
 %============================================================================
 % CONTENT BEGINS HERE (use \chapter{}, \section{}, \subsection{}, etc.)
@@ -414,9 +411,7 @@
 \chapter{Introduction}
 \label{chap:C1}
 
-This document is a community-made reference guide for \bmsver, focused on practical use of three specific HOTAS controls: the Target Management Switch (TMS), the Display Management Switch (DMS), and the Countermeasures Management Switch (CMS). Although developed under Falcon BMS 4.38.1, the fundamental behavior of these switches has remained consistent since at least Falcon BMS 4.36, making this guide applicable to virtually any Falcon BMS user.
-
-The goal of this guide is to reorganize information scattered across the Dash-34 Manual (TO 1F-16CMAM-34-1-1 BMS.pdf) \footnote{Usually located in \texttt{X:\textbackslash Falcon BMS 4.38\textbackslash Docs\textbackslash02 Aircraft Manuals \& Checklists\textbackslash 01 F-16}.} into mode-based tables and concise explanations. Virtual pilots can quickly find what each switch press does in a given context, answering questions such as: \emph{``In this radar mode, what does TMS Up do?''} or \emph{``How do I cycle through MFD formats with the DMS?''}
+This document is a community-made reference guide for \bmsver, focused on practical use of three HOTAS controls: the Target Management Switch (TMS), the Display Management Switch (DMS), and the Countermeasures Management Switch (CMS). The fundamental behavior of these switches has remained consistent since at least Falcon BMS 4.36, making this guide applicable to virtually any Falcon BMS user.
 
 This work is entirely unofficial. The author is not affiliated with Benchmark Sims, MicroProse, any real-world air force, or any aircraft or weapons manufacturer. All interpretations, simplifications, errors, and omissions are solely the responsibility of the author and must not be attributed to the Falcon BMS development team or any real-world organization.
 
@@ -428,11 +423,9 @@ This work is entirely unofficial. The author is not affiliated with Benchmark Si
 \section{Scope and purpose}
 \label{sec:C1-S1}
 
-This guide focuses exclusively on three HOTAS switches: the Target Management Switch (TMS), the Display Management Switch (DMS), and the Countermeasures Management Switch (CMS). Although other controls exist on the F-16 throttle and stick---such as the Communication Switch, the Dogfight/MRM Override, and the RDR Cursor Enable control---they could be mentioned only when essential to understanding the behavior and context of TMS, DMS, and CMS.
+The guide organizes TMS, DMS, and CMS behavior by operational context: master mode, sensor configuration, and weapon employment scenario, presenting each switch input and its effect in mode-based tables. Other systems, avionics, and controls are described only when essential to understanding the behavior of these three switches.
 
-This is not a comprehensive HOTAS or avionics manual. Instead, it is a usage guide organized by operational context, with emphasis on practical tables that show what each switch input does in specific flight modes, sensor configurations, and weapon employment scenarios. The guide bridges information scattered across official documentation and training missions, making it immediately accessible to pilots who need quick, authoritative answers.
-
-The guide assumes knowledge of basic F-16 operation and familiarity with master modes (NAV, A-A and A-G). It does not replace the Dash-34 or Training Manual; rather, it complements them by organizing TMS, DMS, and CMS behavior into searchable tables and diagrams with cross-references back to official sources and practical training missions where each behavior can be practiced.
+The guide assumes knowledge of basic F-16 operation and familiarity with master modes (NAV, A-A, and A-G). It is not a comprehensive HOTAS or avionics manual and it does not replace the Dash-34 or Training Manual.
 
 %--------------------------------------------------------------------------
 % SECTION 1.2: SOURCES AND REFERENCES
@@ -445,12 +438,9 @@ This guide is grounded in the following primary Falcon BMS documents:
 \begin{enumerate}
 	\item \textbf{TO BMS 1F-16CMAM-34-1-1} (Dash-34, Change 4.38) --- Avionics and Nonnuclear Weapons Delivery Flight Manual. Primary source for HOTAS behavior, SOI logic, and weapons employment.
 	\item \textbf{BMS Training Manual 4.38.1} (October 2025) --- Training missions and learning objectives. Used for practical cross-references and recommended training progression.
-	\item \textbf{TO BMS 1F-16CMAM-1} (Dash-1) --- F-16 Aircraft Systems, Normal and Abnormal Procedures. Reference for general aircraft systems context.
-	\item \textbf{BMS User Manual 4.38} --- BMS user interface, DTC configuration, and simulation setup.
-	\item \textbf{MCH 11-F16 Vol 5} (May 1996) --- F-16 Combat Aircraft Fundamentals, Surface Attack and Weapons Delivery. Supplementary tactical reference.
 \end{enumerate}
 
-All technical claims in this guide are cross-referenced to these sources. Where specific sections are cited, the notation \dashref{X.Y.Z} refers to Dash-34 section X.Y.Z, and \trnref{NN} refers to BMS Training Mission NN.
+All technical claims in this guide are cross-referenced to these sources. Where specific sections are cited, the notation \dashref{X.Y.Z} refers to Dash-34 section X.Y.Z.
 
 %--------------------------------------------------------------------------
 % SECTION 1.3: DOCUMENT STRUCTURE AND HOW TO READ IT
@@ -464,30 +454,13 @@ All technical claims in this guide are cross-referenced to these sources. Where 
 \subsection{Chapter overview}
 \label{sec:C1-S3-S1}
 
-This guide is organized into seven chapters. Chapters 2 through 6 follow a consistent structure combining narrative explanation with detailed reference tables. The table below summarizes the focus of each chapter:
+This guide is organized into six chapters:
 
-\begin{table}[H]
-	\centering
-	\caption{Guide Chapter Overview}
-	\label{tab:C1-chapter-overview}
-	\small
-	\renewcommand{\arraystretch}{1.25}
-	\begin{tabular}{C{1.5cm} L{12.0cm}}
-		\toprule
-		\textbf{Chapter} & \textbf{Focus} \\
-		\midrule
-		C2 & HOTAS fundamentals: Sensor of Interest (SOI), short vs. long press timing, master modes, and switch overview \\
-		C3 & TMS --- Target Management Switch: targeting, designation, and track management \\
-		C4 & DMS --- Display Management Switch: SOI selection and MFD format cycling \\
-		C5 & CMS --- Countermeasures Management Switch: CMDS and ECM control \\
-		C6 & Training references: recommended progression and practical mission flows \\
-		C7 & Diagrams \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-\paragraph{Chapter 7 --- Visual Quick Reference:}
-Unlike the preceding chapters, which combine narrative explanation with detailed tables, Chapter 7 serves as a standalone quick reference. It consolidates all TMS, DMS, and CMS switch functions documented in Chapters 3--5 into schematic diagrams organized by operational context, without descriptive text. This format is designed for rapid in-flight consultation, allowing pilots to quickly verify switch behavior without reading through explanatory sections.
+\begin{itemize}
+	\item \textbf{Chapter 2} establishes the conceptual framework for all three switches: Sensor of Interest (SOI), master modes, and a high-level overview of DMS, TMS, and CMS.
+	\item \textbf{Chapters 3--5} cover one switch each --- DMS (Chapter 3), TMS (Chapter 4), and CMS (Chapter 5) --- combining narrative explanation with standardized hotastable tables organized by master mode and sensor configuration.
+	\item \textbf{Chapter 6} is a quick reference chapter, combining the hotastable tables from Chapters 3--5 with switch diagrams for immediate visual lookup.
+\end{itemize}
 
 %--------------------------------------------------------------------------
 % SECTION 1.3.2: TABLE FORMAT (HOTASTABLE)
