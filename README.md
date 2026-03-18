@@ -67,7 +67,7 @@ The author is not affiliated with or endorsed by Falcon BMS or any other flight 
 |--------|-------|
 | **Guide Version** | v0.4.1.1 |
 | **Phase** | Pre-publication (0.x.x.x) |
-| **Chapters Planned** | 7 |
+| **Chapters Planned** | 6 |
 | **Chapters with Content** | 4 (C1, C2, C3, C5) |
 | **Chapters with Style Revision Complete** | 0 (in progress: C5) |
 | **Next Target** | v0.4.2.0 — Style Full Revision |
