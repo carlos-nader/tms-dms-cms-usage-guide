@@ -10,10 +10,10 @@ sitemap:
 # PROJECT TRACKING
 ## Falcon BMS TMS/DMS/CMS HOTAS Guide
 
-**Document Version:** PROJECT-TRACKING (2026-03-14)
+**Document Version:** PROJECT-TRACKING (2026-03-17)
 **Regime:** Pre-publication (0.x.x.x)
 **Project Start:** 2026-01-05
-**Last Updated:** 2026-03-14 (alpha integration)
+**Last Updated:** 2026-03-17 (C1 style revision pass started; C6 eliminated)
 **Repository:** carlos-nader/tms-dms-cms-usage-guide
 
 This document tracks governance rules, project state, and development history. For detailed file tracking, issue status, and commit history, see [INTEGRATED-FILES.md](../INTEGRATED-FILES.md) (auto-generated).
@@ -81,7 +81,7 @@ Style revision pass currently underway to remove AI-generated prose patterns acr
 
 | Ch | Title | Style Rev. | Notes |
 |----|-------|-----------|-------|
-| 1 | Introduction | 🔄 In Progress | WIP: `chapter-C1-style-rev-review-2026-03-14.tex` (2026-03-14) |
+| 1 | Introduction | 🔄 In Progress | WIP: `chapter-C1-style-rev-review-2026-03-17.tex` (2026-03-14) |
 | 2 | HOTAS Fundamentals | 🟡 Pending | — |
 | 3 | DMS | 🟡 Pending | — |
 | 4 | TMS | 🟡 Pending | WIP: `section-C4-S3-tms-aa-review-2026-02-17.tex` — style review required before development resumes |
@@ -123,8 +123,8 @@ Chronological record of significant changes. For detailed commit history, see IN
 | **Version Bump** | PATCH: style revision affects multiple chapters simultaneously; not a simple correction |
 | **Scope** | All integrated chapters: C1, C2, C3 (DMS), C5 (CMS) |
 | **Criteria** | Remove abstract/eloquent phrasing that no human technical writer would produce; prioritize clarity and directness over elegance. Adhere to `misc/STYLE-GUIDE.md`. |
-| **Next step** | Apply style revision pass to C1 WIP (`chapter-C1-style-rev-review-2026-03-14.tex`). |
-| **WIP Files** | `wip/chapter-C5-style-rev-alpha-2026-03-14.tex` (C5: **alpha status** — pre-release published 2026-03-14); `wip/chapter-C1-style-rev-review-2026-03-14.tex` (C1: **review** — style revision pass pending) |
+| **Next step** | Apply style revision pass to C1 WIP (`chapter-C1-style-rev-review-2026-03-17.tex`). |
+| **WIP Files** | `wip/chapter-C5-style-rev-alpha-2026-03-14.tex` (C5: **alpha status** — pre-release published 2026-03-14); `wip/chapter-C1-style-rev-review-2026-03-17.tex` (C1: **review** — style revision pass pending) |
 | **Forum** | Next forum post planned for v0.4.2.0 release; forum thread left to cool down after Feb 19 exchange |
 
 ---
@@ -154,7 +154,7 @@ Chronological record of significant changes. For detailed commit history, see IN
 **Style Revision Progress - v0.4.2.0:**
 
 - ✅ C5 (CMS) — style revision complete (2026-03-06); author read-through complete (2026-03-14); WIP: **alpha status** (pre-release v0.4.2.0-alpha.1 published 2026-03-14)
-- 🔄 C1 (Introduction) — in progress; WIP: `chapter-C1-style-rev-review-2026-03-14.tex` (2026-03-14)
+- 🔄 C1 (Introduction) — in progress; WIP: `chapter-C1-style-rev-review-2026-03-17.tex` (2026-03-14)
 - 🟡 C2 (HOTAS Fundamentals) — pending
 - 🟡 C3 (DMS) — pending
 
@@ -189,7 +189,7 @@ Chronological record of significant changes. For detailed commit history, see IN
 
 **2026-03-14:** C5 style revision complete and alpha integration executed. WIP renamed to `wip/chapter-C5-style-rev-alpha-2026-03-14.tex` (status: **alpha**). Alpha snapshot created: `wip/guide-v0.4.2.0-alpha.1-20260314.tex`. Pre-release v0.4.2.0-alpha.1 published on GitHub (tag `v0.4.2.0-alpha.1`). CHANGELOG.md updated. Issue #44 updated. Total commits: 898.
 
-**2026-03-14 (C1 WIP):** C1 style revision WIP created: `wip/chapter-C1-style-rev-review-2026-03-14.tex` (commit a2f5457). Full Chapter 1 content from `guide.tex`. Style revision pass pending (issue #46 tasks: §1.3.4 new subsection, §1.4.2 authorship update, prose violations mapped in metadata). Integration target: v0.4.2.0-alpha.2.
+**2026-03-14 (C1 WIP):** C1 style revision WIP created: `wip/chapter-C1-style-rev-review-2026-03-17.tex` (commit a2f5457). Full Chapter 1 content from `guide.tex`. Style revision pass pending (issue #46 tasks: §1.3.4 new subsection, §1.4.2 authorship update, prose violations mapped in metadata). Integration target: v0.4.2.0-alpha.2.
 
 ---
 
