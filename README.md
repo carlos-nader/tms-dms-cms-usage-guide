@@ -15,7 +15,7 @@ README maintenance contract (non-rendered):
 [![Travis CI](https://api.travis-ci.com/carlos-nader/tms-dms-cms-usage-guide.svg?branch=main)](https://app.travis-ci.com/carlos-nader/tms-dms-cms-usage-guide)
 [![CodeScene Average Code Health](https://codescene.io/projects/77545/status-badges/average-code-health)](https://codescene.io/projects/77545)
 
-[![Changelog](https://img.shields.io/badge/Changelog-view-blue?style=flat-square&logo=github)](CHANGELOG.md) [![Setup Guide](https://img.shields.io/badge/Setup%20Guide-view-green?style=flat-square&logo=readthedocs)](SETUP.md)
+[![Changelog](https://img.shields.io/badge/Changelog-view-blue?style=flat-square&logo=github)](CHANGELOG.md) [![Setup Guide](https://img.shields.io/badge/Setup%20Guide-view-blue?style=flat-square&logo=readthedocs)](SETUP.md)
 
 [![GitHub stars](https://img.shields.io/github/stars/carlos-nader/tms-dms-cms-usage-guide?style=social)](https://github.com/carlos-nader/tms-dms-cms-usage-guide)
 [![GitHub forks](https://img.shields.io/github/forks/carlos-nader/tms-dms-cms-usage-guide?style=social)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/fork)
