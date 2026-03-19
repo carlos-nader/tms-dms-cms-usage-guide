@@ -380,24 +380,29 @@
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 %============================================================================
 
-% File Name: chapter-C1-style-rev-review-2026-03-17.tex
+% File Name: chapter-C1-style-rev-review-2026-03-19.tex
 % Issue: #46
 % WIP Naming Convention: 2026-03-06
 % Target Chapter: C1
 % WIP Status: review
 % Created: 2026-03-14
-% Last Modified: 2026-03-17
+% Last Modified: 2026-03-19
 % Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.4.2.0-alpha.2
 %
 % Narrative Completion: 100% (content present; style revision in progress)
 % Table Fill Status: N/A (C1 has no hotastable environments)
 %
 % Notes:
-% - Style revision pass in progress (session 2026-03-17).
-% - Sections revised: Intro C1, §1.1, §1.2, §1.3.1.
-% - Sections pending: §1.3.2, §1.3.3, §1.3.4 (new), §1.4.x.
+% - Style revision pass in progress.
+% - Session 2026-03-17: sections revised: Intro C1, §1.1, §1.2, §1.3.1.
+% - Session 2026-03-19: structural review applied (see issue #46 comment 2026-03-19):
+%     · §1.3.3 / §1.3.4 reordered: Typographic conventions → §1.3.3; Reference conventions → §1.3.4
+%     · §1.4 renamed: "Version, authorship, and AI assistance" → "About this document"
+%     · §1.4.3 + §1.4.4 merged: "License and canonical source" (§1.4.3); Disclaimer renumbered → §1.4.4
+%     · §1.4.4 Disclaimer condensed: affiliation denial removed (already in chapter opening)
+% - Sections pending style revision: §1.3.2, §1.3.3 (placeholder), §1.3.4, §1.4.2.
 % - Pending tasks (issue #46):
-%     (1) Add §1.3.4 Typographic conventions (new subsubsection after §1.3.3)
+%     (1) Add §1.3.3 Typographic conventions (relocated from §1.3.4 per structural review 2026-03-19)
 %     (2) Revise §1.4.2 Authorship and AI assistance (add GitHub Copilot Pro; clarify AI roles)
 % - Structural change: C6 (Training references) eliminated; former C7 (Quick Reference) → C6.
 
@@ -494,10 +499,18 @@ Chapters 3, 4, and 5 use a standardized seven-column table format called \texttt
 To find information in a HOTAS table: (1) identify the master mode and sensor context from the section title; (2) locate the relevant Mode within the table; (3) find the Direction and Action; (4) read the Effect and consult the Dash34 or Training reference for further detail.
 
 %--------------------------------------------------------------------------
-% SECTION 1.3.3: REFERENCE CONVENTIONS
+% SECTION 1.3.3: TYPOGRAPHIC CONVENTIONS
+%--------------------------------------------------------------------------
+\subsection{Typographic conventions}
+\label{sec:C1-S3-S3}
+
+% [PLACEHOLDER — content to be added per issue #46, Task 1]
+
+%--------------------------------------------------------------------------
+% SECTION 1.3.4: REFERENCE CONVENTIONS
 %--------------------------------------------------------------------------
 \subsection{Reference conventions}
-\label{sec:C1-S3-S3}
+\label{sec:C1-S3-S4}
 
 This guide uses consistent notation for cross-references to official documentation:
 \begin{itemize}
@@ -509,9 +522,9 @@ This guide uses consistent notation for cross-references to official documentati
 These conventions appear throughout the guide in narrative text and in the Dash34 and Train. columns of HOTAS tables.
 
 %--------------------------------------------------------------------------
-% SECTION 1.4: VERSION, AUTHORSHIP AND AI ASSISTANCE
+% SECTION 1.4: ABOUT THIS DOCUMENT
 %--------------------------------------------------------------------------
-\section{Version, authorship, and AI assistance}
+\section{About this document}
 \label{sec:C1-S4}
 
 %--------------------------------------------------------------------------
@@ -556,39 +569,33 @@ This guide was created by a member of the Falcon BMS community with structured a
 The human author identified scope, validated all content against official Falcon BMS documentation, made all organizational and editorial decisions, and bears full responsibility for the guide's accuracy and presentation. AI tools were used for research organization, cross-referencing, structural analysis, and text generation---not for defining technical correctness.
 
 %--------------------------------------------------------------------------
-% SUBSECTION 1.4.3: CANONICAL SOURCE
+% SUBSECTION 1.4.3: LICENSE AND CANONICAL SOURCE
 %--------------------------------------------------------------------------
-\subsection{Canonical source}
+\subsection{License and canonical source}
 \label{sec:C1-S4-S3}
 
-The canonical source for this guide, including all governance documents, version history, and contribution guidelines, is the project repository:
+The canonical source for this guide is the project repository:
 
 \begin{center}
 	\url{https://github.com/carlos-nader/tms-dms-cms-usage-guide}
 \end{center}
 
-This repository contains the authoritative version of all project files. Translations, adaptations, and derivative works should reference this repository as the original source.
+The repository contains the authoritative version of all project files, including governance documents and version history. Translations, adaptations, and derivative works should reference this repository as the original source.
 
-%--------------------------------------------------------------------------
-% SUBSECTION 1.4.4: LICENSE
-%--------------------------------------------------------------------------
-\subsection{License}
-\label{sec:C1-S4-S4}
-
-This guide is released under the \textbf{Creative Commons Attribution-NonCommercial 4.0 International} (CC BY-NC 4.0) license. You are free to share, copy, translate, and adapt this guide with attribution. Commercial use is prohibited. Derivative works must maintain the same license and cannot claim official status.
-
-For full legal terms, visit: \url{https://creativecommons.org/licenses/by-nc/4.0/}
+This guide is released under the \textbf{Creative Commons Attribution-NonCommercial 4.0 International} (CC BY-NC 4.0) license. Sharing, copying, translating, and adapting are permitted with attribution. \textbf{Commercial use is prohibited}. Derivative works must maintain the same license and cannot claim official status. Full legal terms: \url{https://creativecommons.org/licenses/by-nc/4.0/}
 
 \paragraph{Attribution:}
-When sharing, translating, or adapting, include: title, author (Carlos ``Metal'' Nader), source repository URL, and license.
+When sharing, translating, or adapting, please include: title, author (Carlos ``Metal'' Nader), source repository URL, and license.
 
 %--------------------------------------------------------------------------
-% SUBSECTION 1.4.5: DISCLAIMER
+% SUBSECTION 1.4.4: DISCLAIMER
 %--------------------------------------------------------------------------
 \subsection{Disclaimer}
-\label{sec:C1-S4-S5}
+\label{sec:C1-S4-S4}
 
-This is an \textbf{unofficial}, community-made document. It is not affiliated with, endorsed by, or associated with Benchmark Sims, MicroProse, any military organization, or any aircraft or weapons manufacturer. No copyrighted material is reproduced directly. The guide is provided ``as-is'' for \textbf{educational and simulation training} purposes only.
+This is an unofficial, community-made document, provided ``as-is'' for \textbf{educational and simulation training} purposes only.
+
+No copyrighted material is reproduced directly.
 
 %============================================================================
 % END OF SECTION
