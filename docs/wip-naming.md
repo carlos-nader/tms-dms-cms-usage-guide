@@ -575,10 +575,14 @@ infrastructure is active. The standard workflow in §4.2 remains unchanged.
 - Previous guide snapshots (`guide-v*.tex`)
 - Alpha pre-release snapshots (`guide-v*-alpha.*.tex`) — after the corresponding official release is created
 
-**Alpha WIP files:** Files with status `alpha` remain in `wip/` until the alpha
-snapshot is promoted to the official guide release. At that point they transition
-to `approved` and are moved to `archive/WIP/` in batch, following the standard
-archival rule.
+**Alpha WIP files** (`chapter-*-alpha-*.tex`): remain in `wip/` until the official
+guide release, regardless of how many alpha snapshots have been published. At that
+point they transition to `approved` and are moved to `archive/WIP/` in batch.
+
+**Alpha snapshots** (`guide-v*-alpha.*.tex`): only the current (most recent) alpha
+snapshot stays in `wip/`. Superseded snapshots (alpha.N where N < current) are moved
+to `archive/GUIDE/` when the next alpha is published. The current snapshot remains in
+`wip/` until the official release.
 
 ---
 
@@ -728,6 +732,6 @@ When generating filenames, verify:
 
 **Document Status:** Production-Ready  
 **Effective Date:** 06 March 2026
-**Last Updated:** 17 March 2026  
+**Last Updated:** 19 March 2026
 
 {% endraw %}

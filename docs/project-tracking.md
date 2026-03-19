@@ -24,9 +24,9 @@ This document tracks governance rules, project state, and development history. F
 
 | Document | Last Updated | Purpose |
 |----------|-------------|---------|
-| VERSION-SYSTEM | 2026-03-17 | Versioning rules (`docs/version-system.md`) |
+| VERSION-SYSTEM | 2026-03-19 | Versioning rules (`docs/version-system.md`) |
 | BRIEFING | 2026-03-17 | Content scope, layout standard, preamble architecture (`docs/briefing.md`) |
-| WIP-FILE-NAMING | 2026-03-17 | File naming conventions and status lifecycle (`docs/wip-naming.md`) |
+| WIP-FILE-NAMING | 2026-03-19 | File naming conventions and status lifecycle (`docs/wip-naming.md`) |
 | TEMPLATES | 2026-03-17 | Canonical WIP template (`template/template-wip.tex`) |
 | CHANGELOG | 2026-03-14 | Release history and integration milestones (`CHANGELOG.md`) |
 | STYLE-GUIDE | 2026-02-21 | Prose style, voice, formatting, and prohibited patterns (`misc/STYLE-GUIDE.md`) |

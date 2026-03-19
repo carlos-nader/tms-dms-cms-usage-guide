@@ -644,11 +644,12 @@ Alpha snapshots remain in `wip/` root until promoted to official.
 - Only one snapshot should be in `wip/guide/` at a time (the current version).
 - All previous versions are preserved in `archive/GUIDE/` for historical reference.
 
-**Alpha snapshots exception:** Alpha pre-release snapshots (`wip/guide-v*-alpha.*.tex`
-in `wip/` root) are NOT archived until the corresponding official release is created.
-At that point, they may be moved to `archive/GUIDE/` alongside the regular snapshots.
-The single-active-snapshot rule applies only to `wip/guide/` — it does not restrict
-the number of alpha snapshots in `wip/` root.
+**Alpha snapshots:** Only the current (most recent) alpha snapshot remains in `wip/`
+root. When a new alpha is published (N increments), the previous snapshot is superseded
+and may be moved to `archive/GUIDE/` immediately. The current alpha snapshot stays in
+`wip/` until the official release is created, at which point it is also moved to
+`archive/GUIDE/`. Alpha WIP files (`chapter-*-alpha-*.tex`) are unaffected by this
+rule — they remain in `wip/` until the official release.
 
 ### 6.4 Relationship with WIP File Naming and BRIEFING
 
@@ -792,5 +793,5 @@ it does not happen automatically.
 
 **Document Status:** Production-Ready
 **Effective Date:** 10 January 2026
-**Last Updated:** 17 March 2026
+**Last Updated:** 19 March 2026
 {% endraw %}
