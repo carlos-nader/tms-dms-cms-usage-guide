@@ -389,21 +389,21 @@
 % Last Modified: 2026-03-19
 % Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.4.2.0-alpha.2
 %
-% Narrative Completion: 100% (content present; style revision in progress)
+% Narrative Completion: 100%
+% Style Revision: COMPLETE (pending author final read-through before integration)
 % Table Fill Status: N/A (C1 has no hotastable environments)
 %
 % Notes:
-% - Style revision pass in progress.
 % - Session 2026-03-17: sections revised: Intro C1, §1.1, §1.2, §1.3.1.
-% - Session 2026-03-19: structural review applied (see issue #46 comment 2026-03-19):
+% - Session 2026-03-19: structural review + full style revision pass completed:
 %     · §1.3.3 / §1.3.4 reordered: Typographic conventions → §1.3.3; Reference conventions → §1.3.4
+%     · §1.3.4 eliminated (content covered by §1.2 and §1.3.2)
+%     · §1.3.3 Typographic conventions added (issue #46, Task 1)
 %     · §1.4 renamed: "Version, authorship, and AI assistance" → "About this document"
 %     · §1.4.3 + §1.4.4 merged: "License and canonical source" (§1.4.3); Disclaimer renumbered → §1.4.4
-%     · §1.4.4 Disclaimer condensed: affiliation denial removed (already in chapter opening)
-% - Sections pending style revision: §1.3.2, §1.3.3 (placeholder), §1.3.4, §1.4.2.
-% - Pending tasks (issue #46):
-%     (1) Add §1.3.3 Typographic conventions (relocated from §1.3.4 per structural review 2026-03-19)
-%     (2) Revise §1.4.2 Authorship and AI assistance (add GitHub Copilot Pro; clarify AI roles)
+%     · §1.4.4 Disclaimer condensed
+%     · §1.4.2 revised: GitHub Copilot Pro added; AI roles clarified (issue #46, Task 2)
+% - WIP Status: review — awaiting author final read-through before integration.
 % - Structural change: C6 (Training references) eliminated; former C7 (Quick Reference) → C6.
 
 %============================================================================
@@ -491,12 +491,10 @@ Chapters 3, 4, and 5 use a standardized seven-column table format called \texttt
 		Function & Brief name of the function performed \\
 		Effect / Nuance & Detailed explanation of system behavior, constraints, and tactical considerations \\
 		Dash34 & Cross-reference to Dash-34 section(s) \\
-		Train. & Identification of recommended BMS training mission(s) for hands-on practice (see BMS Training Manual for descriptions) \\
+		Train. & Recommended BMS training mission number(s) \\
 		\bottomrule
 	\end{tabular}
 \end{table}
-
-To find information in a HOTAS table: (1) identify the master mode and sensor context from the section title; (2) locate the relevant Mode within the table; (3) find the Direction and Action; (4) read the Effect and consult the Dash34 or Training reference for further detail.
 
 %--------------------------------------------------------------------------
 % SECTION 1.3.3: TYPOGRAPHIC CONVENTIONS
@@ -504,22 +502,13 @@ To find information in a HOTAS table: (1) identify the master mode and sensor co
 \subsection{Typographic conventions}
 \label{sec:C1-S3-S3}
 
-% [PLACEHOLDER — content to be added per issue #46, Task 1]
+Three inline formatting conventions are used consistently throughout the guide:
 
-%--------------------------------------------------------------------------
-% SECTION 1.3.4: REFERENCE CONVENTIONS
-%--------------------------------------------------------------------------
-\subsection{Reference conventions}
-\label{sec:C1-S3-S4}
-
-This guide uses consistent notation for cross-references to official documentation:
 \begin{itemize}
-	\item \textbf{\dashref{X.Y.Z}} --- Reference to Dash-34 (TO BMS 1F-16CMAM-34-1-1) section X.Y.Z
-	\item \textbf{\trnref{NN}} --- Reference to BMS Training Mission number NN
-	\item \textbf{MCH 11-F16 Vol 5} --- Referenced by full title when cited
-	\item \textbf{User Manual § X.Y} --- Reference to BMS User Manual section X.Y
+	\item \textbf{Bold} identifies the three HOTAS switches covered by this guide and their directions when referenced in prose: \textbf{TMS}, \textbf{DMS}, \textbf{CMS}, \textbf{TMS Up}, \textbf{CMS Down} and \textbf{DMS Left}.
+	\item \texttt{Monospace} reproduces strings exactly as they appear on a system display or are generated as system voice messages: \texttt{DISPENSE RDY}, \texttt{COUNTER}, \texttt{STBY}, \texttt{AVNC}.
+	\item \textit{Italic} marks a technical distinction where sentence structure alone does not sufficiently convey the critical information.
 \end{itemize}
-These conventions appear throughout the guide in narrative text and in the Dash34 and Train. columns of HOTAS tables.
 
 %--------------------------------------------------------------------------
 % SECTION 1.4: ABOUT THIS DOCUMENT
@@ -562,11 +551,12 @@ These conventions appear throughout the guide in narrative text and in the Dash3
 This guide was created by a member of the Falcon BMS community with structured assistance from AI language models:
 
 \begin{itemize}
-	\item \textbf{Perplexity AI} --- Research organization, initial structuring, and early content generation (January 2026)
-	\item \textbf{Claude (Anthropic)} --- Co-editor: critical review, governance framework, content development, and ongoing revision (January--February 2026)
+	\item \textbf{Perplexity Pro} (Perplexity AI) --- Research organization, project structuring, governance framework design, coding, initial draft content generation, and technical review; used via web interface.
+	\item \textbf{Claude Pro} (Anthropic) --- Research, coding, initial draft content generation, technical review, and governance framework; used via web interface and VSCode (Claude Code).
+	\item \textbf{GitHub Copilot Pro} (GitHub / Microsoft) --- Documentation, coding, repository management, issue and pull request coordination, and collaborative development; used via GitHub web interface and VSCode.
 \end{itemize}
 
-The human author identified scope, validated all content against official Falcon BMS documentation, made all organizational and editorial decisions, and bears full responsibility for the guide's accuracy and presentation. AI tools were used for research organization, cross-referencing, structural analysis, and text generation---not for defining technical correctness.
+The author identified scope, validated all content against official Falcon BMS documentation, conducted final text review, made all organizational, editorial, and publication decisions, and bears full responsibility for the guide's accuracy and presentation.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 1.4.3: LICENSE AND CANONICAL SOURCE
