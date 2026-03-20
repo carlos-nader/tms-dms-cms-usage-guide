@@ -13,7 +13,7 @@ sitemap:
 **Document Version:** PROJECT-TRACKING (2026-03-19)
 **Regime:** Pre-publication (0.x.x.x)
 **Project Start:** 2026-01-05
-**Last Updated:** 2026-03-19 (C1 style revision complete; alpha.2 published)
+**Last Updated:** 2026-03-20 (C2 style revision started)
 **Repository:** carlos-nader/tms-dms-cms-usage-guide
 
 This document tracks governance rules, project state, and development history. For detailed file tracking, issue status, and commit history, see [INTEGRATED-FILES.md](../INTEGRATED-FILES.md) (auto-generated).
@@ -72,8 +72,8 @@ Style revision pass currently underway to remove AI-generated prose patterns acr
 | **Milestone** | Style Revision |
 | **Chapters in Scope** | 5 (C1, C2, C3, C4, C5) |
 | **Chapters Revised** | 2/5 (C5 — 2026-03-06; C1 — 2026-03-19) |
-| **Chapters In Progress** | 0/5 |
-| **Chapters Pending** | 3/5 (C2, C3, C4) |
+| **Chapters In Progress** | 1/5 (C2) |
+| **Chapters Pending** | 2/5 (C3, C4) |
 | **Open Issues** | #44 (style revision), #47 (C2) |
 
 ### Chapter Style Revision Status
@@ -81,7 +81,7 @@ Style revision pass currently underway to remove AI-generated prose patterns acr
 | Ch | Title | Style Rev. | Notes |
 |----|-------|-----------|-------|
 | 1 | Introduction | ✅ Complete | Style revision complete (2026-03-19). WIP: **alpha status** (pre-release v0.4.2.0-alpha.2 published 2026-03-19). Issue #46 closed. |
-| 2 | HOTAS Fundamentals | 🟡 Pending | — |
+| 2 | HOTAS Fundamentals | 🔄 In Progress | WIP: `chapter-C2-style-rev-review-2026-03-20.tex`. Started 2026-03-20. Issue #47. |
 | 3 | DMS | 🟡 Pending | — |
 | 4 | TMS | 🟡 Pending | WIP: `section-C4-S3-tms-aa-review-2026-02-17.tex` — style review required before development resumes |
 | 5 | CMS | ✅ Complete | Style revision complete (2026-03-06). All §5.1–§5.3 approved. Author read-through complete (2026-03-14). WIP: **alpha status** (pre-release v0.4.2.0-alpha.1 published 2026-03-14). |
@@ -124,8 +124,8 @@ Chronological record of significant changes. For detailed commit history, see IN
 | **Version Bump** | PATCH: style revision affects multiple chapters simultaneously; not a simple correction |
 | **Scope** | All integrated chapters: C1, C2, C3 (DMS), C5 (CMS) |
 | **Criteria** | Remove abstract/eloquent phrasing that no human technical writer would produce; prioritize clarity and directness over elegance. Adhere to `misc/STYLE-GUIDE.md`. |
-| **Next step** | Open C2 WIP for style revision pass (issue #47). |
-| **WIP Files** | `wip/chapter-C5-style-rev-alpha-2026-03-14.tex` (C5: **alpha status** — pre-release v0.4.2.0-alpha.1 published 2026-03-14); `wip/chapter-C1-style-rev-alpha-2026-03-19.tex` (C1: **alpha status** — pre-release v0.4.2.0-alpha.2 published 2026-03-19) |
+| **Next step** | Continue C2 style revision pass (issue #47). |
+| **WIP Files** | `wip/chapter-C5-style-rev-alpha-2026-03-14.tex` (C5: **alpha status**); `wip/chapter-C1-style-rev-alpha-2026-03-19.tex` (C1: **alpha status**); `wip/chapter-C2-style-rev-review-2026-03-20.tex` (C2: **review** — started 2026-03-20) |
 | **Forum** | Next forum post planned for v0.4.2.0 release; forum thread left to cool down after Feb 19 exchange |
 
 ---
@@ -156,7 +156,7 @@ Chronological record of significant changes. For detailed commit history, see IN
 
 - ✅ C5 (CMS) — style revision complete (2026-03-06); WIP: **alpha status** (pre-release v0.4.2.0-alpha.1 published 2026-03-14)
 - ✅ C1 (Introduction) — style revision complete (2026-03-19); WIP: **alpha status** (pre-release v0.4.2.0-alpha.2 published 2026-03-19). Issue #46 closed.
-- 🟡 C2 (HOTAS Fundamentals) — pending (issue #47)
+- 🔄 C2 (HOTAS Fundamentals) — in progress (issue #47, started 2026-03-20). WIP: `chapter-C2-style-rev-review-2026-03-20.tex`
 - 🟡 C3 (DMS) — pending
 
 ---
