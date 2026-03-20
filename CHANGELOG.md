@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [0.4.2.0-alpha.2] - 2026-03-19 *(pre-release)*
+### Changed
+- Chapter 1 (Introduction): Full style revision pass — AI-generated prose patterns removed; §1.1 and §1.2 reordered; §1.4 restructured; §1.4.2 (Authorship and AI assistance) revised to reflect actual AI tool roles (closes #46).
+
+### Added
+- Section 1.3.3 (Typographic conventions): New subsection documenting bold, monospace, and italic conventions used throughout the guide (closes #46).
+
+---
+
 ## [0.4.2.0-alpha.1] - 2026-03-14 *(pre-release)*
 ### Changed
 - Chapter 5 (CMS): Full style revision pass (§5.1–§5.3) — AI-generated prose patterns removed; Dash-34 validation pass applied.
