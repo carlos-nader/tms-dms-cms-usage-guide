@@ -1,2 +1,26 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# LaTeX
+*.tex text eol=lf
+*.bib text eol=lf
+
+# Scripts
+*.sh  text eol=lf
+*.py  text eol=lf
+*.ps1 text eol=crlf
+
+# Config / data
+*.yml  text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+
+# Binaries — never diff or normalize
+*.pdf  binary
+*.png  binary
+*.jpg  binary
+*.tif  binary
+*.svg  binary
+*.ico  binary
+*.docx binary
