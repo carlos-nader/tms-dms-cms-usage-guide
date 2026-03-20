@@ -43,6 +43,8 @@ bash ci/travis.sh
 | `scripts/generate-integrated-files.py` | Generates `INTEGRATED-FILES.md` and `.json` (CodeScene: 8.95) |
 | `scripts/update-readme-version.py` | Updates version in README and `docs/index.html` (CodeScene: 10) |
 | `scripts/validate-tex-preamble.py` | Validates LaTeX preamble consistency |
+| `scripts/generate-wip-snapshot.py` | Updates WIP snapshot table in `README.md` |
+| `scripts/update-alpha-badge.py` | Updates alpha pre-release badge in `README.md` and `docs/index.html` |
 | `check-guide-integrity.ps1` | Byte-identical check: `guide.tex` ↔ active snapshot |
 
 ---
