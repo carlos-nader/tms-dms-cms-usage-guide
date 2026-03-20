@@ -10,7 +10,7 @@ sitemap:
 # PROJECT TRACKING
 ## Falcon BMS TMS/DMS/CMS HOTAS Guide
 
-**Document Version:** PROJECT-TRACKING (2026-03-19)
+**Document:** PROJECT-TRACKING
 **Regime:** Pre-publication (0.x.x.x)
 **Project Start:** 2026-01-05
 **Last Updated:** 2026-03-20 (C2 style revision started)
@@ -37,7 +37,7 @@ This document tracks governance rules, project state, and development history. F
 
 ## 2. PROJECT SNAPSHOT
 
-**Last updated:** 2026-03-17
+**Last updated:** 2026-03-19
 
 | Metric | Value |
 |--------|-------|
@@ -192,6 +192,8 @@ Chronological record of significant changes. For detailed commit history, see IN
 **2026-03-14:** C5 style revision complete and alpha integration executed. WIP renamed to `wip/chapter-C5-style-rev-alpha-2026-03-14.tex` (status: **alpha**). Alpha snapshot created: `wip/guide-v0.4.2.0-alpha.1-20260314.tex`. Pre-release v0.4.2.0-alpha.1 published on GitHub (tag `v0.4.2.0-alpha.1`). CHANGELOG.md updated. Issue #44 updated. Total commits: 898.
 
 **2026-03-19:** C1 style revision complete and alpha integration executed. All issue #46 tasks resolved: §1.3.3 Typographic conventions added; §1.1/§1.2 reordered; §1.4 restructured. WIP renamed to `wip/chapter-C1-style-rev-alpha-2026-03-19.tex` (status: **alpha**). Alpha snapshot created: `wip/guide-v0.4.2.0-alpha.2-20260319.tex` (C1 + C5). Pre-release v0.4.2.0-alpha.2 published on GitHub (tag `v0.4.2.0-alpha.2`). Alpha.1 moved to `archive/GUIDE/`. Issue #46 closed. Issue #44 updated (2/5 chapters). Total commits: 902.
+
+**2026-03-20:** C2 style revision started. WIP: `wip/chapter-C2-style-rev-review-2026-03-20.tex`. Pre-pass structural decisions recorded in issue #47. Issues #44 and #47 updated.
 
 ---
 
