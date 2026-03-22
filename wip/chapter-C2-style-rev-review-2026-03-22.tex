@@ -379,16 +379,16 @@
 %============================================================================
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 %============================================================================
-% File Name: chapter-C2-style-rev-review-2026-03-20.tex
+% File Name: chapter-C2-style-rev-review-2026-03-22.tex
 % Issue: #47 #44
 % WIP Naming Convention: 2026-03-17
 % Target Chapter: C2 (HOTAS Fundamentals)
 % WIP Status: review
 % Created: 2026-03-20
-% Last Modified: 2026-03-20
+% Last Modified: 2026-03-22
 % Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.4.2.0
 %
-% Narrative Completion: ~5% (chapter opening revised; §2.1–§2.3 pending)
+% Narrative Completion: ~8% (chapter opener P1 and §2.1 opener revised; P2 + §2.1.1–§2.3 pending)
 % Table Fill Status: N/A
 %
 % Notes:
@@ -401,10 +401,6 @@
 % - #47 Task 2 (TGP paragraph into §2.1.3): pending — to be addressed at §2.1.3
 
 %============================================================================
-% TEMPLATE STRUCTURE — Replace section/subsection headers with your content
-%============================================================================
-
-%============================================================================
 % CONTENT BEGINS HERE (use \chapter{}, \section{}, \subsection{}, etc.)
 %============================================================================
 
@@ -413,7 +409,9 @@
 %============================================================================
 \chapter{HOTAS Fundamentals}
 \label{chap:C2}
-The F-16’s HOTAS controls enable the pilot to execute critical flight, sensor, and weapon functions without removing hands from the throttle and side-stick controller. Within this architecture, three switches — the Display Management Switch (DMS), Target Management Switch (TMS), and Countermeasures Management Switch (CMS) — control display selection, sensor management, and defensive systems.
+The F-16’s HOTAS (Hands On Throttle And Stick) controls enable the pilot to execute critical flight, sensor, and weapon functions without removing hands from the throttle and side-stick controller. Within this architecture, three switches — the Display Management Switch (DMS), Target Management Switch (TMS), and Countermeasures Management Switch (CMS) — control display selection, sensor management, and defensive systems.
+
+For the complete HOTAS control reference, see \dashrefs{2.1.1.1.4 and 2.1.5}.
 
 Two foundational concepts govern HOTAS switch behavior:
 
@@ -422,6 +420,13 @@ Two foundational concepts govern HOTAS switch behavior:
     \item \textbf{Master Modes (NAV, A-A, A-G):} define the available weapon systems and sensor configurations.
 \end{itemize}
 
+%============================================================================
+% SECTION 2.1 — SOI CONCEPT AND ARCHITECTURE
+%============================================================================
+\section{Sensor of Interest (SOI) — Concept and Architecture}
+\label{sec:C2-S1}
+
+The Sensor of Interest (SOI) is a designation that identifies which of the three F-16 cockpit displays currently receives HOTAS inputs.
 
 %============================================================================
 % END OF SECTION
