@@ -10,14 +10,14 @@ jobs:
     - name: GitGuardian Scan
       language: python
       python: "3.11"
+      git:
+        depth: false
       install:
         - pip install ggshield
       script:
         - ggshield secret scan ci
 
     - name: Build and Validate
-      os: linux
-      dist: focal
       language: shell
       git:
         depth: false
@@ -41,3 +41,65 @@ jobs:
         apt: true
       script:
         - bash ci/travis.sh
+
+    - name: Integrity Check
+      language: shell
+      git:
+        depth: 1
+      script:
+        - |
+          echo "=== Check 1: guide.tex vs active snapshot ==="
+          snapshot=$(find wip/guide -maxdepth 1 -name "*.tex" | head -n 1)
+          if [ -z "$snapshot" ]; then
+            echo "ERROR: no active snapshot found in wip/guide/"
+            exit 1
+          fi
+          echo "Comparing guide.tex with $snapshot"
+          if cmp -s guide.tex "$snapshot"; then
+            echo "OK: guide.tex is byte-identical to $snapshot"
+          else
+            echo "FAIL: guide.tex differs from $snapshot"
+            diff guide.tex "$snapshot" || true
+            exit 1
+          fi
+
+          echo "=== Check 2: guide.pdf vs docs/guide-web.pdf ==="
+          if cmp -s guide.pdf docs/guide-web.pdf; then
+            echo "OK: guide.pdf is byte-identical to docs/guide-web.pdf"
+          else
+            echo "FAIL: guide.pdf differs from docs/guide-web.pdf (sync workflow may not have run)"
+            exit 1
+          fi
+
+    - name: Build Alpha
+      language: shell
+      git:
+        depth: 1
+      addons:
+        apt:
+          packages:
+            - latexmk
+            - lmodern
+            - texlive-latex-base
+            - texlive-latex-recommended
+            - texlive-latex-extra
+            - texlive-fonts-recommended
+            - texlive-fonts-extra
+            - texlive-lang-english
+            - texlive-pictures
+            - texlive-science
+            - texlive-extra-utils
+            - ghostscript
+      cache:
+        apt: true
+      script:
+        - |
+          alpha=$(find wip -maxdepth 1 -name "guide-v*-alpha.*.tex" | head -n 1)
+          if [ -z "$alpha" ]; then
+            echo "No alpha snapshot found — skipping."
+            exit 0
+          fi
+          echo "Building alpha: $alpha"
+          latexmk -pdf -interaction=nonstopmode -halt-on-error "$alpha"
+          latexmk -pdf -interaction=nonstopmode -halt-on-error "$alpha"
+          echo "Alpha build OK."
