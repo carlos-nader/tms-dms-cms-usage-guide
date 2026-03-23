@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Project Briefing"
+last_modified_at: 2026-03-23
 sitemap:
   priority: 0.3
   changefreq: monthly
