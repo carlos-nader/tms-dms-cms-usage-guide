@@ -1,6 +1,10 @@
 # Travis CI configuration for projeto-bms (LaTeX guide)
 # Builds the PDF and runs lightweight repo validations.
 
+os: linux
+dist: focal
+language: shell
+
 jobs:
   include:
     - name: GitGuardian Scan
