@@ -1,0 +1,13 @@
+site_name: TMS, DMS and CMS Usage Guide for Falcon BMS
+site_author: Carlos "Metal" Nader
+site_description: A community-made reference guide for Falcon BMS 4.38.1 — HOTAS controls TMS, DMS and CMS.
+repo_url: https://github.com/carlos-nader/tms-dms-cms-usage-guide
+repo_name: carlos-nader/tms-dms-cms-usage-guide
+
+docs_dir: docs-web
+
+nav:
+  - Home: index.md
+
+theme:
+  name: readthedocs
