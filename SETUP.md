@@ -1,7 +1,7 @@
 # 🛠️ Setup Guide — TMS/DMS/CMS Usage Guide for Falcon BMS
 
-**Version:** 1.0.0
-**Last Updated:** 2026-02-25
+**Version:** 1.1.0
+**Last Updated:** 2026-03-24
 **Target Audience:** Contributors, editors, and technical writers
 
 ---
@@ -19,6 +19,7 @@
 9. [Git Workflow for Editing](#-git-workflow-for-editing)
 10. [Running Automation Scripts](#-running-automation-scripts)
 11. [Troubleshooting](#-troubleshooting)
+12. [Web Publication Tools](#-web-publication-tools)
 
 > ☁️ **Prefer a cloud environment?** Open this repository directly in [GitHub Codespaces](https://codespaces.new/carlos-nader/tms-dms-cms-usage-guide) — LaTeX, Python, and all required tools are pre-installed. No local setup needed.
 
@@ -956,6 +957,91 @@ Copy this checklist to verify your setup:
 - [ ] Configure Git username/email
 - [ ] Test Git commit and push to feature branch
 ```
+
+---
+
+## 🌐 Web Publication Tools
+
+The guide is published in web format via [Read the Docs](https://tms-dms-cms-usage-guide.readthedocs.io) (MkDocs) and [GitBook](https://app.gitbook.com/o/BZ392CE8MGtscFJrEPaN/s/JOWx6sFzt9NKZYfXn5Cu/). Web content lives in `docs-web/` and is generated chapter by chapter from WIP files using pandoc.
+
+### Installing pandoc
+
+pandoc is required to convert LaTeX WIP files to Markdown for `docs-web/`.
+
+**Windows:**
+
+```powershell
+winget install pandoc
+# Or download the installer from https://pandoc.org/installing.html
+```
+
+**macOS:**
+
+```bash
+brew install pandoc
+```
+
+**Linux (Ubuntu/Debian):**
+
+```bash
+sudo apt-get install pandoc
+```
+
+**Verify:**
+
+```bash
+pandoc --version
+```
+
+### Installing MkDocs
+
+MkDocs builds the Read the Docs site from `docs-web/`.
+
+```bash
+pip install mkdocs
+```
+
+**Verify:**
+
+```bash
+mkdocs --version
+```
+
+### Running the Site Locally
+
+```bash
+# From the project root
+mkdocs serve
+
+# Site available at: http://127.0.0.1:8000
+```
+
+### Converting a Chapter (pandoc)
+
+```bash
+# Convert a WIP LaTeX file to Markdown
+pandoc wip/chapter-C5-style-rev-alpha-2026-03-14.tex -o docs-web/c5-cms.md
+
+# Review and manually adjust custom macros (hotastable, \dashref{}, etc.)
+# Then commit the revised Markdown to docs-web/
+```
+
+> **Note:** Custom LaTeX environments (`hotastable`, `\dashref{}`, `\secref{}`, etc.) require manual revision after pandoc conversion. The generated Markdown is a starting point, not a final output.
+
+### Web Publication Rules
+
+| Chapter | Source | Condition |
+| ------- | ------ | --------- |
+| C1, C5 | WIP (alpha status) | Available now |
+| C2, C3 | WIP (alpha status) | When WIP reaches `alpha` |
+| C4, C6 | WIP (approved status) | When WIP reaches `approved` |
+
+### Online Resources
+
+- **Read the Docs:** [tms-dms-cms-usage-guide.readthedocs.io](https://tms-dms-cms-usage-guide.readthedocs.io)
+- **GitBook:** [app.gitbook.com](https://app.gitbook.com/o/BZ392CE8MGtscFJrEPaN/s/JOWx6sFzt9NKZYfXn5Cu/)
+- **pandoc documentation:** [pandoc.org](https://pandoc.org)
+- **MkDocs documentation:** [mkdocs.org](https://www.mkdocs.org)
 
 ---
 

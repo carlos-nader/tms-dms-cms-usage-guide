@@ -10,7 +10,7 @@ sitemap:
 
 # Falcon BMS 4.38.1 — TMS, DMS and CMS Usage Guide: Project Brief
 
-**Brief Version:** 2026-03-17
+**Brief Version:** 2026-03-23
 
 ---
 
@@ -323,11 +323,58 @@ Reference relevant Dash-34 sections as plain text (no macros inside tables):
 Note: `guide.tex` is NOT updated. Alpha snapshot stays in `wip/` root until
 promoted to official (see VERSION-SYSTEM §6.2 Phase 2).
 
+*→ Visual references: [WIP Integration Flow](wip-integration-flow.svg) · [Alpha Supplement](wip-alpha-supplement.svg)*
+
 ### 10.3 Version Tags
 
 - **Pre-publication:** `v0.x.x.x` (semantic versioning in 0.x regime)
 - **First public release:** `v1.0.0.0`
 - **Subsequent releases:** Standard semantic versioning
+
+### 10.5 Web Publication Workflow
+
+The guide is published in web format via **Read the Docs** (MkDocs) and **GitBook**, running in parallel with the existing LaTeX/PDF pipeline. MkDocs build validation is handled by the Travis CI pipeline (see §10.6).
+
+`docs-web/` is the single source of truth for web content. Content is never published directly from LaTeX — each chapter is converted to Markdown via pandoc, manually reviewed, and committed to `docs-web/`. A push to GitHub triggers an automatic rebuild on Read the Docs and a sync on GitBook.
+
+**File naming convention:** `c{N}-{chapter-title}.md` (e.g., `c1-introduction.md`, `c5-cms.md`).
+
+**Eligibility rule:**
+
+| WIP Chapter Status    | Eligible for web conversion |
+|-----------------------|-----------------------------|
+| `alpha` or `approved` | Yes                         |
+| `final` or below      | No                          |
+
+**Conversion process (per chapter):**
+
+1. Run pandoc on the source WIP file (VSCode terminal)
+2. Review output — in VSCode or GitBook visual editor
+3. Manually fix custom macros (`hotastable`, `\dashref{}`, etc.)
+4. Commit reviewed Markdown to `docs-web/`
+5. Push triggers: Read the Docs rebuild and GitBook sync
+
+**Limitation:** Custom LaTeX macros (`hotastable`, `\dashref{}`, `\secref{}`, etc.) are not converted by pandoc and require manual adjustment.
+
+*→ Visual reference: [Web Publication Flow](web-publication-flow.svg)*
+
+---
+
+### 10.6 CI Pipeline (Travis CI)
+
+Travis CI runs on every push to `main`. Configuration: `.travis.yml`. Validation script: `ci/travis.sh`.
+
+| Job | Purpose | Fails when |
+| --- | ------- | ---------- |
+| **GitGuardian Scan** | Secret detection scan | Credentials or secrets detected in the commit |
+| **Build and Validate** | Compile `guide.pdf` (2 passes); run preamble validation script; alpha audit (version/advertising consistency) | LaTeX compilation error; preamble violation; alpha version mismatch |
+| **Integrity Check** | Verify `guide.tex` is byte-identical to the active snapshot in `wip/guide/`; verify `guide.pdf` matches `docs/guide-web.pdf` | Any byte mismatch between canonical files |
+| **Build Alpha** | Compile the active alpha snapshot (if present) | LaTeX compilation error in alpha snapshot |
+| **Validate docs-web** | Run `mkdocs build` to verify the web site config and content compile | Invalid `mkdocs.yml`; Markdown error that prevents site generation |
+
+**Note:** The `Validate docs-web` job does not use `--strict` mode. The `mkdocs.yml` nav declares chapter files that are populated incrementally — warnings for missing files are expected and non-fatal during the pre-publication phase.
+
+---
 
 ### 10.4 Traceability: WIP, Issues, Commits
 
@@ -365,6 +412,8 @@ Notes:
 - Automated workflow/bot commits are exempt unless explicitly made issue-aware.
 - Pull requests SHOULD reference issues using `Refs #NN`. Use `Closes #NN` only when the PR is intended to close the issue automatically.
 
+*→ Visual reference: [Issue Dependency Map](issue-dependency-map.svg)*
+
 ---
 
 ## 11. File Organization
@@ -379,15 +428,25 @@ tms-dms-cms-usage-guide/
 ├── INTEGRATED-FILES.md               # Auto-generated tracking report
 ├── CHANGELOG.md                      # Releases changelog tracking
 ├── SETUP.md                          # Infrastructure setup
+├── mkdocs.yml                        # MkDocs configuration (web publication)
+├── .readthedocs.yaml                 # Read the Docs build configuration
+├── .gitbook.yaml                     # GitBook configuration
+│
+├── docs-web/                         # Markdown source for web publication (Read the Docs / GitBook)
+│   ├── index.md                      # Landing page
+│   └── c*-[chapter-title].md         # One file per chapter
 │
 ├── docs/                             # Governance & tracking
-│   ├── guide-web.pdf                 # guide.pdf copy for online visualization
 │   ├── briefing.md
 │   ├── wip-naming.md
 │   ├── version-system.md
 │   ├── project-tracking.md
+│   ├── tex-preamble-consolidated.md
+│   ├── guide-web.pdf                 # guide.pdf copy for GitHub Pages
+│   ├── index.html                    # GitHub Pages landing page
+│   ├── contributing.html             # Contributing page (GitHub Pages)
 │   ├── WIP-Snapshot-Generator-v3.1.html
-│   └── tex-preamble-consolidated.md
+│   └── *.svg                         # Diagrams (repo overview, issue map, web publication flow)
 │
 ├── wip/                              # Active work-in-progress files
 │   ├── chapter-*.tex                 # Chapter drafts
@@ -408,10 +467,13 @@ tms-dms-cms-usage-guide/
 ├── scripts/                          # Automation scripts
 ├── .github/                          # Issues, Actions, PR templates, community files
 ├── .vscode/                          # VSCode workspace settings
+├── .devcontainer/                    # GitHub Codespaces configuration
 │
 ├── LICENSE                           # CC BY-NC 4.0
 └── README.md                         # This file
 ```
+
+*→ Visual reference: [Repository Overview](repo-overview.svg)*
 
 ### 11.2 Archive Policy
 
@@ -932,6 +994,8 @@ As shown in \tabref{tab:dms-soi}.
 
 ## 13. How to Create and Integrate WIP Files
 
+*→ Visual reference: [WIP File Creation Workflow](wip-creation-workflow.svg)*
+
 ### Step 1: Create from Template
 
 ```bash
@@ -968,6 +1032,8 @@ pdflatex section-C5-S2-cms-new-dev-2026-02-11.tex
   WIP file remains in `wip/` until official integration
 - **approved**: Integrated into guide, moved to ARCHIVE
 
+*→ Visual reference: [WIP File Life Cycle](wip-life-cycle.svg)*
+
 ---
 
 ## 14. Quick Reference: File Naming Convention
@@ -987,6 +1053,8 @@ pdflatex section-C5-S2-cms-new-dev-2026-02-11.tex
 - `alpha` — Integrated into pre-release snapshot (parallel flow only)
 - `approved` — Integrated and archived
 - `deprecated` — Intentionally retired
+
+*→ Visual reference: [WIP Naming Diagram](wip-naming-diagram.svg)*
 
 ---
 

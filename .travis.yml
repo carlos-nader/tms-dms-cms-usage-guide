@@ -71,6 +71,16 @@ jobs:
             exit 1
           fi
 
+    - name: Validate docs-web (MkDocs)
+      language: python
+      python: "3.11"
+      git:
+        depth: 1
+      install:
+        - pip install mkdocs
+      script:
+        - mkdocs build
+
     - name: Build Alpha
       language: shell
       git:

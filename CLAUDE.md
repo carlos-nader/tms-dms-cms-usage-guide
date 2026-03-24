@@ -9,6 +9,7 @@ Technical documentation project in LaTeX — a usage guide for the F-16 HOTAS sw
 - **Canonical file:** `guide.tex` (repository root)
 - **Active snapshot:** `wip/guide/guide-vX.X.X.X-YYYYMMDD.tex`
 - **License:** CC BY-NC 4.0
+- **Web publication:** [Read the Docs](https://tms-dms-cms-usage-guide.readthedocs.io) · GitBook (synced from `docs-web/`)
 
 ## Language Convention
 
@@ -127,6 +128,9 @@ Automated/bot commits are exempt.
 
 ```text
 guide.tex                    # Canonical guide (byte-identical to active snapshot)
+docs-web/                    # Markdown source for web publication (Read the Docs / GitBook)
+  index.md                   # Landing page
+  c*-[chapter-title].md      # One file per chapter (pandoc conversion — Alpha.2+)
 wip/
   guide/                     # Active snapshot (exactly 1 .tex file)
   chapter-C#-*.tex           # Chapter WIP files
