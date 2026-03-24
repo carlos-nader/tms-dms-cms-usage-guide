@@ -31,7 +31,7 @@ The author is not affiliated with or endorsed by Falcon BMS or any other flight 
 
 1. **📕 Read the Guide:** See **Main Guide Files** Section below
 2. **🌐 Explore the Website:** [Project documentation site](https://carlos-nader.github.io/tms-dms-cms-usage-guide/)
-3. **📖 Read Online:** [Read the Docs](https://tms-dms-cms-usage-guide.readthedocs.io) · [GitBook](https://app.gitbook.com/o/BZ392CE8MGtscFJrEPaN/s/JOWx6sFzt9NKZYfXn5Cu/)
+3. **📖 Read Online:** [Read the Docs](https://tms-dms-cms-usage-guide.readthedocs.io)
 4. **💬 Join Discussion:** [BMS Forum Thread](https://forum.falcon-bms.com/topic/32541)
 5. **⭐ Star this repo** if you find it useful!
 
