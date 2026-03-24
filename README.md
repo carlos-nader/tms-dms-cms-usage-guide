@@ -107,6 +107,7 @@ Transparent time tracking via WakaTime specifically for this repository.
 ## 📖 About This Project
 
 [![GitHub Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://carlos-nader.github.io/tms-dms-cms-usage-guide/)
+[![Read the Docs](https://img.shields.io/badge/Read%20the%20Docs-8CA1AF?style=for-the-badge&logo=readthedocs&logoColor=white)](https://tms-dms-cms-usage-guide.readthedocs.io)
 [![Perplexity](https://img.shields.io/badge/perplexity-000000?style=for-the-badge&logo=perplexity&logoColor=088F8F)](https://perplexity.ai)
 [![Claude](https://img.shields.io/badge/Claude-cc785c?style=for-the-badge&logo=anthropic&logoColor=white)](https://claude.ai)
 [![GitHub Copilot](https://img.shields.io/badge/GitHub%20Copilot-0969da?style=for-the-badge&logo=github&logoColor=white)](https://github.com/features/copilot)
@@ -190,6 +191,7 @@ The project uses **five governance documents** and an **auto-generated tracking 
 | [**WIP-NAMING**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/wip-naming.md) | `/docs/` | Rules for WIP file naming (alpha parallel flow also supported), status lifecycle |
 | [**VERSION-SYSTEM**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/version-system.md) | `/docs/` | Guide version numbering (0.x.x.x pre-publication, x.y.z post-publication) |
 | [**PROJECT-TRACKING**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/docs/project-tracking.md) | `/docs/` | Session log, WIP status snapshot, milestones, current priorities |
+| [**SETUP**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/chore/web-publication-setup/SETUP.md) | `/` (root) | Local infrastructure configuration |
 | [**INTEGRATED-FILES**](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/INTEGRATED-FILES.md) | `/` (root) | Auto-generated report: tracked files, commits, issues, milestones *(updated by GitHub Action)* |
 
 ---
