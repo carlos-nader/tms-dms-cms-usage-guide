@@ -8,6 +8,12 @@ docs_dir: docs-web
 
 nav:
   - Home: index.md
+  - Introduction: c1-introduction.md
+  - HOTAS Fundamentals: c2-hotas-fundamentals.md
+  - TMS: c3-tms.md
+  - DMS: c4-dms.md
+  - CMS: c5-cms.md
+  - Quick Reference: c6-quick-reference.md
 
 theme:
   name: readthedocs
