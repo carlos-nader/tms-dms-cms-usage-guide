@@ -10,13 +10,6 @@ This is a community-made reference guide for Falcon BMS 4.38.1, focused on pract
 of three specific HOTAS controls: the Target Management Switch (TMS), the Display Management
 Switch (DMS), and the Countermeasures Management Switch (CMS).
 
-> **Web version coming in Alpha.2.** The full content is currently available as a PDF.
+> Web content is being added incrementally. Chapter 1 (Introduction) is available now. Next: Chapter 5 — CMS.
 
-## Download
-
-The latest PDF version is available on the
-[GitHub Releases](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases) page.
-
-## Repository
-
-Source and documentation: [github.com/carlos-nader/tms-dms-cms-usage-guide](https://github.com/carlos-nader/tms-dms-cms-usage-guide)
+The latest PDF is available on the [GitHub Releases](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases) page. Source and documentation: [github.com/carlos-nader/tms-dms-cms-usage-guide](https://github.com/carlos-nader/tms-dms-cms-usage-guide).
