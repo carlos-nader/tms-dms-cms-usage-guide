@@ -331,7 +331,7 @@ promoted to official (see VERSION-SYSTEM §6.2 Phase 2).
 
 ### 10.5 Web Publication Workflow
 
-The guide is published in web format via **Read the Docs** (MkDocs) and **GitBook**, running in parallel with the existing LaTeX/PDF pipeline. A GitHub Actions workflow (`validate-docs-web.yml`) runs `mkdocs build --strict` on every push affecting `docs-web/` or `mkdocs.yml`, ensuring the site compiles before any merge.
+The guide is published in web format via **Read the Docs** (MkDocs) and **GitBook**, running in parallel with the existing LaTeX/PDF pipeline. MkDocs build validation is handled by the Travis CI pipeline (see §10.6).
 
 `docs-web/` is the single source of truth for web content. Content is never published directly from LaTeX — each chapter is converted to Markdown via pandoc, manually reviewed, and committed to `docs-web/`. A push to GitHub triggers an automatic rebuild on Read the Docs and a sync on GitBook.
 
@@ -353,6 +353,22 @@ The guide is published in web format via **Read the Docs** (MkDocs) and **GitBoo
 5. Push triggers: Read the Docs rebuild and GitBook sync
 
 **Limitation:** Custom LaTeX macros (`hotastable`, `\dashref{}`, `\secref{}`, etc.) are not converted by pandoc and require manual adjustment.
+
+---
+
+### 10.6 CI Pipeline (Travis CI)
+
+Travis CI runs on every push to `main`. Configuration: `.travis.yml`. Validation script: `ci/travis.sh`.
+
+| Job | Purpose | Fails when |
+| --- | ------- | ---------- |
+| **GitGuardian Scan** | Secret detection scan | Credentials or secrets detected in the commit |
+| **Build and Validate** | Compile `guide.pdf` (2 passes); run preamble validation script; alpha audit (version/advertising consistency) | LaTeX compilation error; preamble violation; alpha version mismatch |
+| **Integrity Check** | Verify `guide.tex` is byte-identical to the active snapshot in `wip/guide/`; verify `guide.pdf` matches `docs/guide-web.pdf` | Any byte mismatch between canonical files |
+| **Build Alpha** | Compile the active alpha snapshot (if present) | LaTeX compilation error in alpha snapshot |
+| **Validate docs-web** | Run `mkdocs build` to verify the web site config and content compile | Invalid `mkdocs.yml`; Markdown error that prevents site generation |
+
+**Note:** The `Validate docs-web` job does not use `--strict` mode. The `mkdocs.yml` nav declares chapter files that are populated incrementally — warnings for missing files are expected and non-fatal during the pre-publication phase.
 
 ---
 
