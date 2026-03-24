@@ -14,6 +14,7 @@ README maintenance contract (non-rendered):
 [![pages-build-deployment](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/actions/workflows/pages/pages-build-deployment)
 [![Travis CI](https://api.travis-ci.com/carlos-nader/tms-dms-cms-usage-guide.svg?branch=main)](https://app.travis-ci.com/carlos-nader/tms-dms-cms-usage-guide)
 [![CodeScene Average Code Health](https://codescene.io/projects/77545/status-badges/average-code-health)](https://codescene.io/projects/77545)
+[![Documentation Status](https://readthedocs.org/projects/tms-dms-cms-usage-guide/badge/?version=latest)](https://tms-dms-cms-usage-guide.readthedocs.io)
 
 [![Changelog](https://img.shields.io/badge/Changelog-view-blue?style=flat-square&logo=github)](CHANGELOG.md) [![Setup Guide](https://img.shields.io/badge/Setup%20Guide-view-blue?style=flat-square&logo=readthedocs)](SETUP.md)
 
@@ -30,8 +31,9 @@ The author is not affiliated with or endorsed by Falcon BMS or any other flight 
 
 1. **📕 Read the Guide:** See **Main Guide Files** Section below
 2. **🌐 Explore the Website:** [Project documentation site](https://carlos-nader.github.io/tms-dms-cms-usage-guide/)
-3. **💬 Join Discussion:** [BMS Forum Thread](https://forum.falcon-bms.com/topic/32541)
-4. **⭐ Star this repo** if you find it useful!
+3. **📖 Read Online:** [Read the Docs](https://tms-dms-cms-usage-guide.readthedocs.io) · [GitBook](https://app.gitbook.com/o/BZ392CE8MGtscFJrEPaN/s/JOWx6sFzt9NKZYfXn5Cu/)
+4. **💬 Join Discussion:** [BMS Forum Thread](https://forum.falcon-bms.com/topic/32541)
+5. **⭐ Star this repo** if you find it useful!
 
 ---
 
@@ -130,15 +132,25 @@ tms-dms-cms-usage-guide/
 ├── INTEGRATED-FILES.md               # Auto-generated tracking report
 ├── CHANGELOG.md                      # Releases changelog tracking
 ├── SETUP.md                          # Infrastructure setup
+├── mkdocs.yml                        # MkDocs configuration (web publication)
+├── .readthedocs.yaml                 # Read the Docs build configuration
+├── .gitbook.yaml                     # GitBook configuration
+│
+├── docs-web/                         # Markdown source for web publication (Read the Docs / GitBook)
+│   ├── index.md                      # Landing page
+│   └── c*-[chapter-title].md         # One file per chapter
 │
 ├── docs/                             # Governance & tracking
-│   ├── guide-web.pdf                 # guide.pdf copy for online visualization
 │   ├── briefing.md
 │   ├── wip-naming.md
 │   ├── version-system.md
 │   ├── project-tracking.md
-│   ├── WIP-Snapshot-Generator-v3.1.html       
-│   └── tex-preamble-consolidated.md
+│   ├── tex-preamble-consolidated.md
+│   ├── guide-web.pdf                 # guide.pdf copy for GitHub Pages
+│   ├── index.html                    # GitHub Pages landing page
+│   ├── contributing.html             # Contributing page (GitHub Pages)
+│   ├── WIP-Snapshot-Generator-v3.1.html
+│   └── *.svg                         # Diagrams (repo overview, issue map, web publication flow)
 │
 ├── wip/                              # Active work-in-progress files
 │   ├── chapter-*.tex                 # Chapter drafts
@@ -214,6 +226,11 @@ The project uses **five governance documents** and an **auto-generated tracking 
 * **Visual Studio Code** — Multi-purpose editor for LaTeX, Markdown, scripts, and Copilot/Claude AI integration
 * **Git / GitHub Desktop** — Version control and repository management
 * **GitHub Codespaces** — Cloud development environment with LaTeX and tooling pre-configured ([Open a Codespace](https://codespaces.new/carlos-nader/tms-dms-cms-usage-guide))
+
+### Web Publication
+
+* **Read the Docs** — Automated web builds from `docs-web/` on every push ([tms-dms-cms-usage-guide.readthedocs.io](https://tms-dms-cms-usage-guide.readthedocs.io))
+* **GitBook** — Web reading channel and visual Markdown editor, synced with `docs-web/`
 
 ### AI Collaboration
 

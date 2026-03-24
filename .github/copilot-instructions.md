@@ -49,6 +49,7 @@ All governance and style documents are mandatory reading before making any chang
 ### Main Folders & Their Roles
 
 - **archive/**: Snapshots históricos, WIP aprovados, versões antigas do guia.
+- **docs-web/**: Markdown source for web publication (Read the Docs / GitBook). Content added chapter by chapter via pandoc conversion, following WIP status eligibility rules (`alpha` or `approved`). File naming: `c{N}-{chapter-title}.md`.
 - **docs/**: Documentos de governança, diagramas de fluxo, documentação auxiliar, arquivos SVG/PNG de referência.
 - **fig/**: Imagens, figuras, fontes visuais, arquivos de licenciamento de imagens.
 - **misc/**: Decisões de projeto, style-guide, fontes externas, análises.
@@ -59,6 +60,9 @@ All governance and style documents are mandatory reading before making any chang
 **Outros arquivos importantes:**
 - **README.md**: Status do projeto, links principais, aviso de revisão de estilo em andamento.
 - **SETUP.md**: Guia de preparação do ambiente e ferramentas.
+- **mkdocs.yml**: MkDocs configuration for Read the Docs web publication.
+- **.readthedocs.yaml**: Read the Docs build configuration.
+- **.gitbook.yaml**: GitBook configuration (`root: ./docs-web`).
 - **LICENSE**: CC BY-NC 4.0. Todo conteúdo deve ser compatível.
 - **INTEGRATED-FILES.md**: Relatório gerado automaticamente. Nunca editar manualmente.
 

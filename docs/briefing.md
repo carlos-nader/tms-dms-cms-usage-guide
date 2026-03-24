@@ -10,7 +10,7 @@ sitemap:
 
 # Falcon BMS 4.38.1 — TMS, DMS and CMS Usage Guide: Project Brief
 
-**Brief Version:** 2026-03-17
+**Brief Version:** 2026-03-23
 
 ---
 
@@ -329,6 +329,33 @@ promoted to official (see VERSION-SYSTEM §6.2 Phase 2).
 - **First public release:** `v1.0.0.0`
 - **Subsequent releases:** Standard semantic versioning
 
+### 10.5 Web Publication Workflow
+
+The guide is published in web format via **Read the Docs** (MkDocs) and **GitBook**, running in parallel with the existing LaTeX/PDF pipeline. A GitHub Actions workflow (`validate-docs-web.yml`) runs `mkdocs build --strict` on every push affecting `docs-web/` or `mkdocs.yml`, ensuring the site compiles before any merge.
+
+`docs-web/` is the single source of truth for web content. Content is never published directly from LaTeX — each chapter is converted to Markdown via pandoc, manually reviewed, and committed to `docs-web/`. A push to GitHub triggers an automatic rebuild on Read the Docs and a sync on GitBook.
+
+**File naming convention:** `c{N}-{chapter-title}.md` (e.g., `c1-introduction.md`, `c5-cms.md`).
+
+**Eligibility rule:**
+
+| WIP Chapter Status    | Eligible for web conversion |
+|-----------------------|-----------------------------|
+| `alpha` or `approved` | Yes                         |
+| `final` or below      | No                          |
+
+**Conversion process (per chapter):**
+
+1. Run pandoc on the source WIP file (VSCode terminal)
+2. Review output — in VSCode or GitBook visual editor
+3. Manually fix custom macros (`hotastable`, `\dashref{}`, etc.)
+4. Commit reviewed Markdown to `docs-web/`
+5. Push triggers: Read the Docs rebuild and GitBook sync
+
+**Limitation:** Custom LaTeX macros (`hotastable`, `\dashref{}`, `\secref{}`, etc.) are not converted by pandoc and require manual adjustment.
+
+---
+
 ### 10.4 Traceability: WIP, Issues, Commits
 
 This project uses GitHub Issues as the primary unit for tracking WIP progress and integration.
@@ -379,15 +406,25 @@ tms-dms-cms-usage-guide/
 ├── INTEGRATED-FILES.md               # Auto-generated tracking report
 ├── CHANGELOG.md                      # Releases changelog tracking
 ├── SETUP.md                          # Infrastructure setup
+├── mkdocs.yml                        # MkDocs configuration (web publication)
+├── .readthedocs.yaml                 # Read the Docs build configuration
+├── .gitbook.yaml                     # GitBook configuration
+│
+├── docs-web/                         # Markdown source for web publication (Read the Docs / GitBook)
+│   ├── index.md                      # Landing page
+│   └── c*-[chapter-title].md         # One file per chapter
 │
 ├── docs/                             # Governance & tracking
-│   ├── guide-web.pdf                 # guide.pdf copy for online visualization
 │   ├── briefing.md
 │   ├── wip-naming.md
 │   ├── version-system.md
 │   ├── project-tracking.md
+│   ├── tex-preamble-consolidated.md
+│   ├── guide-web.pdf                 # guide.pdf copy for GitHub Pages
+│   ├── index.html                    # GitHub Pages landing page
+│   ├── contributing.html             # Contributing page (GitHub Pages)
 │   ├── WIP-Snapshot-Generator-v3.1.html
-│   └── tex-preamble-consolidated.md
+│   └── *.svg                         # Diagrams (repo overview, issue map, web publication flow)
 │
 ├── wip/                              # Active work-in-progress files
 │   ├── chapter-*.tex                 # Chapter drafts
@@ -408,6 +445,7 @@ tms-dms-cms-usage-guide/
 ├── scripts/                          # Automation scripts
 ├── .github/                          # Issues, Actions, PR templates, community files
 ├── .vscode/                          # VSCode workspace settings
+├── .devcontainer/                    # GitHub Codespaces configuration
 │
 ├── LICENSE                           # CC BY-NC 4.0
 └── README.md                         # This file
