@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Project Tracking"
-last_modified_at: 2026-03-23
+last_modified_at: 2026-03-24
 sitemap:
   priority: 0.3
   changefreq: monthly
@@ -14,7 +14,7 @@ sitemap:
 **Document:** PROJECT-TRACKING
 **Regime:** Pre-publication (0.x.x.x)
 **Project Start:** 2026-01-05
-**Last Updated:** 2026-03-23 (web publication infrastructure configured)
+**Last Updated:** 2026-03-24
 **Repository:** carlos-nader/tms-dms-cms-usage-guide
 
 This document tracks governance rules, project state, and development history. For detailed file tracking, issue status, and commit history, see [INTEGRATED-FILES.md](../INTEGRATED-FILES.md) (auto-generated).
@@ -26,7 +26,7 @@ This document tracks governance rules, project state, and development history. F
 | Document | Last Updated | Purpose |
 |----------|-------------|---------|
 | VERSION-SYSTEM | 2026-03-24 | Versioning rules (`docs/version-system.md`) |
-| BRIEFING | 2026-03-23 | Content scope, layout standard, preamble architecture (`docs/briefing.md`) |
+| BRIEFING | 2026-03-24 | Content scope, layout standard, preamble architecture (`docs/briefing.md`) |
 | WIP-FILE-NAMING | 2026-03-24 | File naming conventions and status lifecycle (`docs/wip-naming.md`) |
 | TEMPLATES | 2026-03-17 | Canonical WIP template (`template/template-wip.tex`) |
 | CHANGELOG | 2026-03-14 | Release history and integration milestones (`CHANGELOG.md`) |
@@ -111,6 +111,7 @@ Chronological record of significant changes. For detailed commit history, see IN
 | 2026-03-14 | v0.4.2.0-alpha.1 | **PRE-RELEASE:** C5 style revision alpha snapshot published. WIP renamed to `alpha` status (`chapter-C5-style-rev-alpha-2026-03-14.tex`). Alpha snapshot: `wip/guide-v0.4.2.0-alpha.1-20260314.tex`. Issue #44 updated. |
 | 2026-03-17 | — | **STRUCTURAL:** Chapter 6 (Training References) eliminated from guide plan. Former Chapter 7 (HOTAS Quick Reference) renumbered as Chapter 6. Total planned chapters: 6. Governing docs, templates, and open issues updated accordingly. No impact on current published guide (C6/C7 were not yet integrated). |
 | 2026-03-19 | v0.4.2.0-alpha.2 | **PRE-RELEASE:** C1 style revision complete. WIP renamed to `alpha` status (`chapter-C1-style-rev-alpha-2026-03-19.tex`). Alpha snapshot: `wip/guide-v0.4.2.0-alpha.2-20260319.tex` (C1 + C5). Alpha.1 moved to `archive/GUIDE/`. Issue #46 closed. Issue #44 updated (2/5 chapters). |
+| 2026-03-24 | — | **MERGED:** Web publication infrastructure setup merged into `main` (PR #57, issue #56 closed). Read the Docs (MkDocs) and GitBook configured as publication channels. `docs-web/` established. Travis CI extended with Validate docs-web job. Governance docs and diagrams updated. `main` unblocked. |
 
 ---
 
@@ -196,8 +197,6 @@ Chronological record of significant changes. For detailed commit history, see IN
 **2026-03-19:** C1 style revision complete and alpha integration executed. All issue #46 tasks resolved: §1.3.3 Typographic conventions added; §1.1/§1.2 reordered; §1.4 restructured. WIP renamed to `wip/chapter-C1-style-rev-alpha-2026-03-19.tex` (status: **alpha**). Alpha snapshot created: `wip/guide-v0.4.2.0-alpha.2-20260319.tex` (C1 + C5). Pre-release v0.4.2.0-alpha.2 published on GitHub (tag `v0.4.2.0-alpha.2`). Alpha.1 moved to `archive/GUIDE/`. Issue #46 closed. Issue #44 updated (2/5 chapters). Total commits: 902.
 
 **2026-03-20:** C2 style revision started. WIP: `wip/chapter-C2-style-rev-review-2026-03-20.tex`. Pre-pass structural decisions recorded in issue #47. Issues #44 and #47 updated.
-
-**2026-03-23:** Web publication infrastructure configured. Read the Docs (MkDocs) and GitBook connected to the repository. `docs-web/` created as the Markdown source folder for web publication. `mkdocs.yml` and `.readthedocs.yaml` added. Issue #55 opened to track incremental content population (chapter by chapter). Issue #56 opened to track the setup branch (`chore/web-publication-setup`). `main` branch locked until issue #56 is closed.
 
 ---
 
