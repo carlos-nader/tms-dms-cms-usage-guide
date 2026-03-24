@@ -30,6 +30,7 @@ This document tracks governance rules, project state, and development history. F
 | WIP-FILE-NAMING | 2026-03-19 | File naming conventions and status lifecycle (`docs/wip-naming.md`) |
 | TEMPLATES | 2026-03-17 | Canonical WIP template (`template/template-wip.tex`) |
 | CHANGELOG | 2026-03-14 | Release history and integration milestones (`CHANGELOG.md`) |
+| SETUP | 2026-03-24 | Setup instructions for the infrastructure environment (`setup.md`) |
 | STYLE-GUIDE | 2026-02-25 | Prose style, voice, formatting, and prohibited patterns (`misc/STYLE-GUIDE.md`) |
 
 **Rule:** All WIP files must be created from `template/template-wip.tex`.

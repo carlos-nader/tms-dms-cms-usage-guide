@@ -9,7 +9,7 @@ Spotted something wrong? Have a suggestion? **Just send an email or post on the 
 
 **You don't need to know LaTeX, Git, or anything technical.**
 
-The [guide](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/guide.pdf) is available as a **PDF** — just read or download it and let us know what needs fixing!
+The [guide](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/guide.pdf) is available as a **PDF** and [online](https://tms-dms-cms-usage-guide.readthedocs.io) — just read it and let us know what needs fixing!
 
 ### Found an issue or have a suggestion?
 
@@ -24,6 +24,8 @@ The [guide](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/gu
 ---
 
 ## 🔧 Advanced Contributions (Optional)
+
+[![GitHub Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://carlos-nader.github.io/tms-dms-cms-usage-guide/)
 
 Want to submit or review complete sections, chapters or help with LaTeX/structure or maybe a WIP?
 
@@ -48,8 +50,6 @@ Want to submit or review complete sections, chapters or help with LaTeX/structur
 - **Email:** [carlos.snm@gmail.com](mailto:carlos.snm@gmail.com)
 - **Forum:** [Falcon BMS Forum Thread](https://forum.falcon-bms.com/topic/32541/in-development-tms-dms-cms-usage-guide-public-project/15)
 - **GitHub Issues:** [Project Issue Tracker](https://github.com/carlos-nader/tms-dms-cms-usage-guide/issues)
-
-[![GitHub Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://carlos-nader.github.io/tms-dms-cms-usage-guide/)
 
 ---
 
