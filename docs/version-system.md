@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Versioning System"
-last_modified_at: 2026-03-23
+last_modified_at: 2026-03-24
 sitemap:
   priority: 0.2
   changefreq: monthly
@@ -603,6 +603,8 @@ Single workflow for 0.x.x.x and x.x.x:
 8. **Create GitHub tag and release.**
    - See Section 6.5 for details.
 
+*→ Visual reference: [WIP Integration Flow](wip-integration-flow.svg)*
+
 **Alpha Snapshot Workflow (parallel, optional):**
 
 For pre-release alpha snapshots (activated only when pre-release infrastructure
@@ -637,6 +639,8 @@ Alpha snapshots remain in `wip/` root until promoted to official.
    from `wip/` root to `archive/GUIDE/`. Rename all associated WIP files from
    `alpha` → `approved` status and move them to `archive/WIP/` in batch
    (see WIP-FILE-NAMING §4.3).
+
+*→ Visual reference: [Alpha Supplement](wip-alpha-supplement.svg)*
 
 ### 6.3 Archival Strategy
 
@@ -748,6 +752,8 @@ it does not happen automatically.
 
 ## 7. Consolidated Quick Reference
 
+*→ Visual reference: [Version System Diagram](version-system-diagram.svg)*
+
 ### 7.1 Quick Reference (0.x.x.x — Pre-Publication)
 
 - **MAJOR = 0** always.  
@@ -794,5 +800,5 @@ it does not happen automatically.
 
 **Document Status:** Production-Ready
 **Effective Date:** 10 January 2026
-**Last Updated:** 19 March 2026
+**Last Updated:** 24 March 2026
 {% endraw %}

@@ -323,6 +323,8 @@ Reference relevant Dash-34 sections as plain text (no macros inside tables):
 Note: `guide.tex` is NOT updated. Alpha snapshot stays in `wip/` root until
 promoted to official (see VERSION-SYSTEM §6.2 Phase 2).
 
+*→ Visual references: [WIP Integration Flow](wip-integration-flow.svg) · [Alpha Supplement](wip-alpha-supplement.svg)*
+
 ### 10.3 Version Tags
 
 - **Pre-publication:** `v0.x.x.x` (semantic versioning in 0.x regime)
@@ -353,6 +355,8 @@ The guide is published in web format via **Read the Docs** (MkDocs) and **GitBoo
 5. Push triggers: Read the Docs rebuild and GitBook sync
 
 **Limitation:** Custom LaTeX macros (`hotastable`, `\dashref{}`, `\secref{}`, etc.) are not converted by pandoc and require manual adjustment.
+
+*→ Visual reference: [Web Publication Flow](web-publication-flow.svg)*
 
 ---
 
@@ -407,6 +411,8 @@ Notes:
 - A “push” is transport only. The requirement is that commits being pushed include the footer when they relate to issues.
 - Automated workflow/bot commits are exempt unless explicitly made issue-aware.
 - Pull requests SHOULD reference issues using `Refs #NN`. Use `Closes #NN` only when the PR is intended to close the issue automatically.
+
+*→ Visual reference: [Issue Dependency Map](issue-dependency-map.svg)*
 
 ---
 
@@ -466,6 +472,8 @@ tms-dms-cms-usage-guide/
 ├── LICENSE                           # CC BY-NC 4.0
 └── README.md                         # This file
 ```
+
+*→ Visual reference: [Repository Overview](repo-overview.svg)*
 
 ### 11.2 Archive Policy
 
@@ -986,6 +994,8 @@ As shown in \tabref{tab:dms-soi}.
 
 ## 13. How to Create and Integrate WIP Files
 
+*→ Visual reference: [WIP File Creation Workflow](wip-creation-workflow.svg)*
+
 ### Step 1: Create from Template
 
 ```bash
@@ -1022,6 +1032,8 @@ pdflatex section-C5-S2-cms-new-dev-2026-02-11.tex
   WIP file remains in `wip/` until official integration
 - **approved**: Integrated into guide, moved to ARCHIVE
 
+*→ Visual reference: [WIP File Life Cycle](wip-life-cycle.svg)*
+
 ---
 
 ## 14. Quick Reference: File Naming Convention
@@ -1041,6 +1053,8 @@ pdflatex section-C5-S2-cms-new-dev-2026-02-11.tex
 - `alpha` — Integrated into pre-release snapshot (parallel flow only)
 - `approved` — Integrated and archived
 - `deprecated` — Intentionally retired
+
+*→ Visual reference: [WIP Naming Diagram](wip-naming-diagram.svg)*
 
 ---
 

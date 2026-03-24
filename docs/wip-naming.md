@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "WIP File Naming Convention"
-last_modified_at: 2026-03-23
+last_modified_at: 2026-03-24
 sitemap:
   priority: 0.2
   changefreq: monthly
@@ -125,6 +125,8 @@ project-root/
 ### 0.5 How to Create a New WIP File (Step-by-Step)
 
 All WIP files MUST start from the canonical template. Follow this workflow:
+
+*→ Visual reference: [WIP File Creation Workflow](wip-creation-workflow.svg)*
 
 #### Step 1: Copy the Template
 
@@ -432,6 +434,8 @@ ALPHA FLOW  (parallel, optional)
 └─────────┘
 ```
 
+*→ Visual reference: [WIP File Life Cycle](wip-life-cycle.svg)*
+
 ### 3.3 Transition Rules
 
 #### 3.3.1 Standard Flow
@@ -514,6 +518,8 @@ in the standard flow — it is only valid in the parallel pre-release flow.
 
 ## 4. Integration Workflow
 
+*→ Visual reference: [WIP Integration Flow](wip-integration-flow.svg)*
+
 ### 4.1 When to Mark FINAL
 
 A WIP file transitions to `final` when:
@@ -550,6 +556,8 @@ A WIP file transitions to `final` when:
 
 **This is a parallel, optional workflow.** Use only when pre-release
 infrastructure is active. The standard workflow in §4.2 remains unchanged.
+
+*→ Visual reference: [Alpha Supplement](wip-alpha-supplement.svg)*
 
 1. **Author decides:** "Ready to create alpha pre-release for [chapter]"
 2. **Author renames** WIP file from `final` to `alpha` status
@@ -680,6 +688,8 @@ Author archives all alpha WIP files (renamed to approved)
 | Notes | `notes-C{N}-{topic}-{type}-{date}.md` |
 | Visual | `visual-C{N}-{desc}-{type}-{status}-{date}.{ext}` |
 
+*→ Visual reference: [WIP Naming Diagram](wip-naming-diagram.svg)*
+
 ### 7.2 Status Codes
 
 | Status | Location | Meaning |
@@ -733,6 +743,6 @@ When generating filenames, verify:
 
 **Document Status:** Production-Ready  
 **Effective Date:** 06 March 2026
-**Last Updated:** 19 March 2026
+**Last Updated:** 24 March 2026
 
 {% endraw %}
