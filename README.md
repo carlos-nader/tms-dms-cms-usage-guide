@@ -86,7 +86,7 @@ The author is not affiliated with or endorsed by Falcon BMS or any other flight 
 | 🟢 alpha | chapter-C1-style-rev-alpha-2026-03-24.tex | 2026-03-24 |
 | 🟡 review | chapter-C2-style-rev-review-2026-03-22.tex | 2026-03-22 |
 | 🟠 dev | chapter-C4-tms-structure-dev-2026-02-13.tex | 2026-02-25 |
-| 🟢 alpha | chapter-C5-style-rev-alpha-2026-03-14.tex | 2026-03-14 |
+| 🟢 alpha | chapter-C5-style-rev-alpha-2026-03-24.tex | 2026-03-24 |
 | 🟡 review | section-C4-S3-tms-aa-review-2026-02-17.tex | 2026-02-25 |
 
 **Legend:**  🟠 dev	🟡 review	⚪ final	🟢 alpha
