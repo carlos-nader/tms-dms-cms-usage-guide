@@ -2,7 +2,7 @@
 description: DMS — Display Management Switch — not yet integrated into this web publication.
 ---
 
-# 4. DMS – Display Management Switch
+# 3. DMS – Display Management Switch
 
 This chapter has not yet been integrated into this web publication.
 

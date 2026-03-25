@@ -10,8 +10,8 @@ nav:
   - Home: README.md
   - Introduction: c1-introduction.md
   - HOTAS Fundamentals: c2-hotas-fundamentals.md
-  - TMS: c3-tms.md
-  - DMS: c4-dms.md
+  - DMS: c3-dms.md
+  - TMS: c4-tms.md
   - CMS: c5-cms.md
   - Quick Reference: c6-quick-reference.md
   - "Guide pdf (v0.4.1.1)": https://carlos-nader.github.io/tms-dms-cms-usage-guide/guide-web.pdf
