@@ -8,13 +8,14 @@ docs_dir: docs-web
 
 nav:
   - Home: README.md
-  - Introduction: c1-introduction.md
-  - HOTAS Fundamentals: c2-hotas-fundamentals.md
-  - DMS: c3-dms.md
-  - TMS: c4-tms.md
-  - CMS: c5-cms.md
-  - Quick Reference: c6-quick-reference.md
+  - C1 - Introduction: c1-introduction.md
+  - C2 - HOTAS Fundamentals: c2-hotas-fundamentals.md
+  - C3 - DMS: c3-dms.md
+  - C4 - TMS: c4-tms.md
+  - C5 - CMS: c5-cms.md
+  - C6 - Quick Reference: c6-quick-reference.md
   - "Guide pdf (v0.4.1.1)": https://carlos-nader.github.io/tms-dms-cms-usage-guide/guide-web.pdf
+  - "Guide alpha (v0.4.2.0.alpha.2.1)": https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/wip/guide-v0.4.2.0-alpha.2.1-20260324.pdf
   - "GitHub Repo": https://github.com/carlos-nader/tms-dms-cms-usage-guide
 
 site_url: https://tms-dms-cms-usage-guide.readthedocs.io
