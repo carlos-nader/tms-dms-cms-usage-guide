@@ -9,7 +9,7 @@ The Countermeasures Management Switch (CMS) is a four-direction hat switch mount
 
 ECM configuration depends on block and variant: either external pods (ALQ-131/ALQ-184) or internal avionics (IDIAS).
 
-CMS actuation procedures are presented in Section 5.2 and block and variant differences in Section 5.3.
+CMS actuation procedures are presented in [Section 5.2](#52-cms-actuation) and block and variant differences in [Section 5.3](#53-ecm-configuration-by-block-and-variant).
 
 For complete CMDS (including chaff and flare dispensing programs) and ECM operation, see Dash-34 §§ 2.7.1 and 2.7.2, respectively. Diagrams of the side-stick controller and throttle functions are provided in Dash-34 § 2.1.5. The figure below shows the CMS location on the F-16 side-stick controller.
 
@@ -149,9 +149,9 @@ As **CMS Down** has no function on IDIAS-equipped aircraft, the joint consent do
 
 ## 5.3 ECM Configuration by Block and Variant
 
-CMS interaction with CMDS is _uniform_ across all F-16 block and variant configurations (see Section 5.2.1).
+CMS interaction with CMDS is _uniform_ across all F-16 block and variant configurations (see [Section 5.2.1](#521-cmds)).
 
-F-16 block and variant configurations with external pod ECM, however, use _different_ CMS procedures and ECM control panels (see Section 5.2.2):
+F-16 block and variant configurations with external pod ECM, however, use _different_ CMS procedures and ECM control panels (see [Section 5.2.2](#522-ecm)):
 
 | ECM Configuration | CMS Direction | Panel Control |
 | --- | --- | --- |
@@ -164,7 +164,7 @@ The block and variant configurations listed in the following tables are sourced 
 
 #### 5.3.1.1 ECM Pods (ALQ-131/ALQ-184)
 
-These block and variant configurations use the ECM Pod Control Panel with manual jamming program selection. For detailed procedures, see Section 5.2.2.1.
+These block and variant configurations use the ECM Pod Control Panel with manual jamming program selection. For detailed procedures, see [Section 5.2.2.1](#5221-external-ecm-pod-alq-131alq-184).
 
 | Operator | Block/Variant |
 | --- | --- |
@@ -174,7 +174,7 @@ These block and variant configurations use the ECM Pod Control Panel with manual
 
 #### 5.3.1.2 Internal ECM (IDIAS)
 
-These block and variant configurations use the IDIAS ECM control panel. For detailed procedures, see Section 5.2.2.2.
+These block and variant configurations use the IDIAS ECM control panel. For detailed procedures, see [Section 5.2.2.2](#5222-internal-ecm-idias).
 
 | Operator | Block/Variant |
 | --- | --- |
