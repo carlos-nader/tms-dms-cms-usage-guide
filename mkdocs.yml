@@ -14,12 +14,14 @@ nav:
   - DMS: c4-dms.md
   - CMS: c5-cms.md
   - Quick Reference: c6-quick-reference.md
-  - "---": "#"
   - "PDF (v0.4.1.1)": https://carlos-nader.github.io/tms-dms-cms-usage-guide/guide-web.pdf
   - "GitHub": https://github.com/carlos-nader/tms-dms-cms-usage-guide
 
+site_url: https://tms-dms-cms-usage-guide.readthedocs.io
+
 theme:
   name: readthedocs
+  favicon: img/favicon.png
 
 extra_css:
   - stylesheets/extra.css
