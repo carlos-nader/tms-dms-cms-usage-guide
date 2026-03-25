@@ -45,7 +45,7 @@ jobs:
     - name: Integrity Check
       language: shell
       git:
-        depth: 1
+        depth: false
       script:
         - |
           echo "=== Check 1: guide.tex vs active snapshot ==="
@@ -75,7 +75,7 @@ jobs:
       language: python
       python: "3.11"
       git:
-        depth: 1
+        depth: false
       install:
         - pip install mkdocs
       script:
@@ -84,7 +84,7 @@ jobs:
     - name: Build Alpha
       language: shell
       git:
-        depth: 1
+        depth: false
       addons:
         apt:
           packages:
