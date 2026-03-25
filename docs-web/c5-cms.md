@@ -147,7 +147,7 @@ As **CMS Down** has no function on IDIAS-equipped aircraft, the joint consent do
 
 **Ground Safety:** On the ground, if the pilot holds **CMS Down**, the ECM pod may radiate. Ground personnel must be clear of the radiation area.
 
-## 5.3 ECM Configuration by Block and Variant
+## 5.3 Block and Variant Configurations
 
 CMS interaction with CMDS is _uniform_ across all F-16 block and variant configurations (see [Section 5.2.1](#521-cmds)).
 
