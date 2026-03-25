@@ -19,9 +19,16 @@ nav:
 
 site_url: https://tms-dms-cms-usage-guide.readthedocs.io
 
+copyright: "CC BY-NC 4.0 · Carlos \"Metal\" Nader"
+
 theme:
   name: readthedocs
   favicon: img/favicon.png
+
+markdown_extensions:
+  - admonition
+  - footnotes
+  - tables
 
 extra_css:
   - stylesheets/extra.css
