@@ -1,0 +1,10 @@
+/* Expand content area to use full screen width */
+.wy-nav-content {
+    max-width: none !important;
+}
+
+/* Ensure table cells wrap text */
+.wy-nav-content table td {
+    white-space: normal !important;
+    word-wrap: break-word;
+}

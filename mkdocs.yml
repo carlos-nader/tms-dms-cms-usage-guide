@@ -17,3 +17,6 @@ nav:
 
 theme:
   name: readthedocs
+
+extra_css:
+  - stylesheets/extra.css
