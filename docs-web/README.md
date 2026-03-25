@@ -1,3 +1,7 @@
+---
+description: A community-made reference guide for the TMS, DMS, and CMS HOTAS controls in Falcon BMS 4.38.1.
+---
+
 # TMS, DMS and CMS Usage Guide for Falcon BMS
 
 **Author:** Carlos "Metal" Nader

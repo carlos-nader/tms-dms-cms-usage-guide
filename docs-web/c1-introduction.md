@@ -1,3 +1,7 @@
+---
+description: Introduction to the TMS, DMS, and CMS Usage Guide — scope, sources, document structure, and typographic conventions.
+---
+
 # 1. Introduction
 
 This document is a community-made reference guide for Falcon BMS 4.38.1, focused on practical use of three HOTAS controls: the Target Management Switch (TMS), the Display Management Switch (DMS), and the Countermeasures Management Switch (CMS). The fundamental behavior of these switches has remained consistent since at least Falcon BMS 4.36, making this guide applicable to virtually any Falcon BMS user.

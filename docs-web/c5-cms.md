@@ -1,3 +1,7 @@
+---
+description: CMS actuation procedures for the ALE-47 CMDS and ECM systems in Falcon BMS 4.38.1, organized by CMDS mode and ECM configuration.
+---
+
 # 5. CMS – Countermeasures Management Switch
 
 ## 5.1 Concept

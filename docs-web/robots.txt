@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tms-dms-cms-usage-guide.readthedocs.io/sitemap.xml
