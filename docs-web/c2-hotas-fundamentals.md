@@ -50,6 +50,22 @@ Three primary Master Modes (NAV, A-A, and A-G) and two override modes (DGFT and 
 * **Navigation (NAV):** The default Master Mode, active when no other mode is selected. Both air-to-air and air-to-ground sensor modes are available in NAV. Navigation symbology is displayed on the HUD.
 * **Air-to-Air (A-A):** Selected via the A-A button on the ICP. Only air-to-air sensor modes are available in A-A. Air-to-air weapon selection and engagement symbology are displayed on the HUD.
 * **Air-to-Ground (A-G):** Selected via the A-G button on the ICP. Both air-to-air and air-to-ground sensor modes are available in A-G. Air-to-ground weapon delivery symbology is displayed on the HUD.
-* **Dogfight (DGFT) and Missile Override (MSL OVRD):** Selected via the Dogfight/Missile Override switch on the throttle grip — DGFT outboard, MSL OVRD inboard. Only air-to-air sensor modes are available in both modes. DGFT and MSL OVRD take precedence over all other Master Modes except Emergency Jettison.
+* **Dogfight (DGFT) and Missile Override (MSL OVRD):** Selected via the Dogfight/Missile Override switch on the throttle — DGFT outboard, MSL OVRD inboard. Only air-to-air sensor modes are available in both modes. DGFT and MSL OVRD take precedence over all other Master Modes except Emergency Jettison.
 
-Default sensor, display, and weapon options are configured by the active Master Mode. These defaults are programmable via the Data Transfer Cartridge (DTC) or adjustable manually in-flight. For complete Master Mode details, see Dash-34 § 2.1.1.2.1.
+Default sensor, display, and weapon options are configured by the active Master Mode. HOTAS switch inputs are interpreted within that configuration. These defaults are programmable via the Data Transfer Cartridge (DTC) or adjustable manually in-flight. For complete Master Mode details, see Dash-34 § 2.1.1.2.1.
+
+## 2.3 DMS, TMS, and CMS
+
+Full coverage of DMS, TMS, and CMS — including all HOTAS tables — is in [Chapter 3](c3-dms.md) (DMS), [Chapter 4](c4-tms.md) (TMS), and [Chapter 5](c5-cms.md) (CMS).
+
+### 2.3.1 Display Management Switch (DMS)
+
+The Display Management Switch (DMS) is a four-way, momentary hat switch on the side-stick controller. Its primary functions are SOI designation and MFD format cycling (see Dash-34 § 2.1.5). The DMS selects _which display or sensor_ receives HOTAS inputs. It does not designate targets or execute sensor-specific commands.
+
+### 2.3.2 Target Management Switch (TMS)
+
+The Target Management Switch (TMS) is a four-way, momentary hat switch on the side-stick controller. Its primary functions are target designation, sensor management, and markpoint creation (see Dash-34 § 2.1.5). The function of each TMS direction depends on the master mode, the active sensor mode, and the current SOI display.
+
+### 2.3.3 Countermeasures Management Switch (CMS)
+
+The Countermeasures Management Switch (CMS) is a four-way, momentary hat switch on the side-stick controller. Its primary functions are countermeasures dispensing and ECM control (see Dash-34 § 2.1.5). CMS actuation is independent of both SOI designation and master mode.

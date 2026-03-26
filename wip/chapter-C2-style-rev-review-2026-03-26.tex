@@ -389,16 +389,16 @@
 %============================================================================
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 %============================================================================
-% File Name: chapter-C2-style-rev-review-2026-03-25.tex
+% File Name: chapter-C2-style-rev-review-2026-03-26.tex
 % Issue: #47 #44
-% WIP Naming Convention: 2026-03-17
+% WIP Naming Convention: 2026-03-24
 % Target Chapter: C2 (HOTAS Fundamentals)
 % WIP Status: review
 % Created: 2026-03-20
-% Last Modified: 2026-03-25
+% Last Modified: 2026-03-26
 % Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: alpha.3
 %
-% Narrative Completion: ~65% (chapter opener + §2.1 + §2.2 complete; §2.2.2, §2.3 pending)
+% Narrative Completion: ~90% (all sections complete except §2.1.3 TGP paragraph)
 % Table Fill Status: N/A
 %
 % Notes:
@@ -407,11 +407,14 @@
 % - §2.2 complete: intro + §2.2.1 "Primary and Override Master Modes" — all items
 %   validated against Dash-34 §2.1.1.2.1, §2.1.7.5.1–5.3
 % - §2.2.1 items: NAV, A-A, A-G, DGFT/MSL OVRD — ACM/AIM defaults removed (DTC-dependent)
-% - §2.3.1–2.3.3 "— Overview" suffix to remove — pending
+% - §2.2.2 (Why HOTAS Switches Behave Differently): ELIMINATED — content redistributed
+%   into §2.2.1 closing paragraph and §2.3 opener
+% - §2.3 complete: opener + §2.3.1 (DMS), §2.3.2 (TMS), §2.3.3 (CMS) — "— Overview"
+%   suffix removed; all three subsections follow DMS model; validated against Dash-34 §2.1.5
+% - Chapter order confirmed: DMS=C3, TMS=C4, CMS=C5 (\chapref targets updated accordingly)
 % - #47 Task 1 (CMS orientation): WILL NOT IMPLEMENT — content covered by
 %   existing §2.3.3 and C5 alpha.2
 % - #47 Task 2 (TGP paragraph into §2.1.3): pending
-% - §2.2.2 (Why HOTAS Switches Behave Differently): pending
 
 %============================================================================
 % CONTENT BEGINS HERE (use \chapter{}, \section{}, \subsection{}, etc.)
@@ -498,11 +501,43 @@ Three primary Master Modes (NAV, A-A, and A-G) and two override modes (DGFT and 
 	\item \textbf{Navigation (NAV):} The default Master Mode, active when no other mode is selected. Both air-to-air and air-to-ground sensor modes are available in NAV. Navigation symbology is displayed on the HUD.
     \item \textbf{Air-to-Air (A-A):} Selected via the A-A button on the ICP. Only air-to-air sensor modes are available in A-A. Air-to-air weapon selection and engagement symbology are displayed on the HUD.
     \item \textbf{Air-to-Ground (A-G):} Selected via the A-G button on the ICP. Both air-to-air and air-to-ground sensor modes are available in A-G. Air-to-ground weapon delivery symbology is displayed on the HUD.
-    \item \textbf{Dogfight (DGFT) and Missile Override (MSL OVRD):} Selected via the Dogfight/Missile Override switch on the throttle grip — DGFT outboard, MSL OVRD inboard. Only air-to-air sensor modes are available in both modes. DGFT and MSL OVRD take precedence over all other Master Modes except Emergency Jettison.
+    \item \textbf{Dogfight (DGFT) and Missile Override (MSL OVRD):} Selected via the Dogfight/Missile Override switch on the throttle — DGFT outboard, MSL OVRD inboard. Only air-to-air sensor modes are available in both modes. DGFT and MSL OVRD take precedence over all other Master Modes except Emergency Jettison.
 
 \end{itemize}
 
-Default sensor, display, and weapon options are configured by the active Master Mode. These defaults are programmable via the Data Transfer Cartridge (DTC) or adjustable manually in-flight. For complete Master Mode details, see \dashref{2.1.1.2.1}.
+Default sensor, display, and weapon options are configured by the active Master Mode. HOTAS switch inputs are interpreted within that configuration. These defaults are programmable via the Data Transfer Cartridge (DTC) or adjustable manually in-flight. For complete Master Mode details, see \dashref{2.1.1.2.1}.
+
+%============================================================================
+% SECTION 2.3 — DMS, TMS, AND CMS
+%============================================================================
+\section{DMS, TMS, and CMS}
+\label{sec:C2-S3}
+
+Full coverage of DMS, TMS, and CMS — including all HOTAS tables — is in \chapref{chap:C3}, \chapref{chap:C4}, and \chapref{chap:C5}, respectively.
+
+%--------------------------------------------------------------------------
+% SUBSECTION 2.3.1 — DISPLAY MANAGEMENT SWITCH (DMS)
+%--------------------------------------------------------------------------
+\subsection{Display Management Switch (DMS)}
+\label{sec:C2-S3-S1}
+
+The Display Management Switch (DMS) is a four-way, momentary hat switch on the side-stick controller. Its primary functions are SOI designation and MFD format cycling (see \dashref{2.1.5}). The DMS selects \textit{which display or sensor} receives HOTAS inputs. It does not designate targets or execute sensor-specific commands.
+
+%--------------------------------------------------------------------------
+% SUBSECTION 2.3.2 — TARGET MANAGEMENT SWITCH (TMS)
+%--------------------------------------------------------------------------
+\subsection{Target Management Switch (TMS)}
+\label{sec:C2-S3-S2}
+
+The Target Management Switch (TMS) is a four-way, momentary hat switch on the side-stick controller. Its primary functions are target designation, sensor management, and markpoint creation (see \dashref{2.1.5}). The function of each TMS direction depends on the master mode, the active sensor mode, and the current SOI display.
+
+%--------------------------------------------------------------------------
+% SUBSECTION 2.3.3 — COUNTERMEASURES MANAGEMENT SWITCH (CMS)
+%--------------------------------------------------------------------------
+\subsection{Countermeasures Management Switch (CMS)}
+\label{sec:C2-S3-S3}
+
+The Countermeasures Management Switch (CMS) is a four-way, momentary hat switch on the side-stick controller. Its primary functions are countermeasures dispensing and ECM control (see \dashref{2.1.5}). CMS actuation is independent of both SOI designation and master mode.
 
 %============================================================================
 % END OF SECTION
