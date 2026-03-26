@@ -19,8 +19,6 @@ plugins:
   - jekyll-seo-tag
 
 # Include/Exclude
-include:
-  - _config.yml
 exclude:
   - README.md
   - SETUP.md
