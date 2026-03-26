@@ -310,15 +310,17 @@ Reference relevant Dash-34 sections as plain text (no macros inside tables):
 4. Copy snapshot → `guide.tex` (byte-identical)
 5. Archive previous snapshot → `archive/GUIDE/`
 6. Commit and tag (`vMAJOR.MINOR.PATCH.SUBPATCH`)
-7. Create GitHub Release with compiled PDF
+7. Sign PDFs digitally (see §10.4)
+8. Create GitHub Release with signed PDFs
 
 **Alpha Snapshot Workflow (parallel, optional — when pre-release infrastructure active):**
 
 1. Create alpha snapshot: `wip/guide-vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]-YYYYMMDD.tex`
 2. Test compilation (multiple passes for indices)
 3. Validate PDF output
-4. Create Git tag (`vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]`)
-5. Create GitHub Pre-Release with compiled PDF (mark explicitly as pre-release)
+4. Sign alpha PDF digitally (see §10.4)
+5. Create Git tag (`vMAJOR.MINOR.PATCH.SUBPATCH-alpha.N[.M]`)
+6. Create GitHub Pre-Release with signed PDF (mark explicitly as pre-release)
 
 Note: `guide.tex` is NOT updated. Alpha snapshot stays in `wip/` root until
 promoted to official (see VERSION-SYSTEM §6.2 Phase 2).
@@ -330,6 +332,30 @@ promoted to official (see VERSION-SYSTEM §6.2 Phase 2).
 - **Pre-publication:** `v0.x.x.x` (semantic versioning in 0.x regime)
 - **First public release:** `v1.0.0.0`
 - **Subsequent releases:** Standard semantic versioning
+
+### 10.4 Digital Signature Workflow
+
+All published PDFs are digitally signed via **gov.br** (ICP-Brasil, nível Prata/Ouro) before GitHub release. The signature is invisible (no visual stamp on the document).
+
+**PDFs to sign per release type:**
+
+| Release type | PDFs to sign |
+| --- | --- |
+| Official release | `guide.pdf` (root) |
+| Alpha pre-release | `wip/guide-vX.X.X.X-alpha.N[.M]-YYYYMMDD.pdf` |
+
+**Procedure:**
+
+1. Compile PDF locally
+2. Sign via gov.br portal (upload → sign → download)
+3. Save signed file as `..._assinado.pdf` or replace original (keep naming consistent)
+4. Commit signed PDF(s) before creating GitHub Release/Pre-Release
+
+**Notes:**
+
+- `docs/guide-web.pdf` is synced automatically from `guide.pdf` by the `sync-pdf-to-docs` workflow — sign `guide.pdf` first, then let the workflow sync
+- Signature format: `adbe.pkcs7.detached` (standard PDF signature)
+- Verification: gov.br portal (verificador.iti.gov.br) or any PDF reader with signature support
 
 ### 10.5 Web Publication Workflow
 
@@ -502,7 +528,7 @@ This ensures:
 - Content structures aligned with brief expectations
 - Automated or semi-automated integration into guide.tex
 
-**Status:** Template updated (11 February 2026) with enhanced preamble architecture (hotastable v2.1, List of HOTAS Tables, cross-reference macros, PDF metadata, enumitem).
+**Status:** Template updated (25 March 2026) with enhanced preamble architecture (hotastable v2.1, List of HOTAS Tables, cross-reference macros, extended PDF metadata + hyperxmp, VERSION CONTROL MACROS repositioned before COLORS AND LINKS, enumitem).
 
 ### 12.2 What the Template Provides
 
@@ -572,8 +598,9 @@ The preamble in `template/template-wip.tex` and `guide.tex` is now organized int
 \definecolor{subheadgray}{HTML}{E0E0E0}
 
 \usepackage{soul}
-\usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, 
+\usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue,
             citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\usepackage{hyperxmp}
 \usepackage{bookmark}
 ```
 
@@ -581,6 +608,7 @@ The preamble in `template/template-wip.tex` and `guide.tex` is now organized int
 - **Custom colors:** Professional palette (linkblue, linkred, headerblue, rowgray, subheadgray)
 - **soul:** Text highlighting and underlining
 - **hyperref:** Clickable PDF links with custom colors, line-breaking support
+- **hyperxmp:** XMP metadata extension for hyperref — enables `pdfcopyright`, `pdflicenseurl`, `pdfcontacturl` fields
 - **bookmark:** Enhanced PDF bookmarks
 
 #### 12.3.6 PDF Metadata
@@ -591,13 +619,22 @@ The preamble in `template/template-wip.tex` and `guide.tex` is now organized int
     pdfauthor={Carlos "Metal" Nader},
     pdfsubject={Flight Simulation - Falcon BMS HOTAS Reference},
     pdfkeywords={Falcon BMS, F-16, HOTAS, TMS, DMS, CMS, Flight Simulation},
-    pdfcreator={pdfLaTeX (MiKTeX)},
-    pdfproducer={MiKTeX},
+    pdfcreator={pdfLaTeX (TeXstudio)},
+    pdfproducer={TeXstudio},
     pdflang={en-US},
+    pdfcopyright={CC BY-NC 4.0 · Carlos "Metal" Nader},
+    pdflicenseurl={https://creativecommons.org/licenses/by-nc/4.0/},
+    pdfcontacturl={https://github.com/carlos-nader/tms-dms-cms-usage-guide},
+    pdfdisplaydoctitle=true,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksdepth=1,
+    pdfstartview=FitH,
 }
+\pdfinfo{/CreationDate (D:\docbuild) /ModDate (D:\docbuild)}
 ```
 
-**Purpose:** Embeds metadata in generated PDF for proper indexing, citation, and document properties.
+**Purpose:** Embeds metadata in generated PDF for proper indexing, citation, and document properties. Fields `pdfcopyright`, `pdflicenseurl`, and `pdfcontacturl` require `\usepackage{hyperxmp}` (loaded in §12.3.5).
 
 **Fields:**
 - **pdftitle:** Full document title
@@ -606,6 +643,15 @@ The preamble in `template/template-wip.tex` and `guide.tex` is now organized int
 - **pdfkeywords:** Searchable keywords (comma-separated)
 - **pdfcreator/pdfproducer:** LaTeX engine information
 - **pdflang:** Document language (ISO 639-1 + ISO 3166-1)
+- **pdfcopyright:** License statement embedded as XMP metadata (requires hyperxmp)
+- **pdflicenseurl:** URL of the applicable license (requires hyperxmp)
+- **pdfcontacturl:** Repository URL for contact/attribution (requires hyperxmp)
+- **pdfdisplaydoctitle:** Show `pdftitle` in PDF viewer title bar instead of filename
+- **bookmarksnumbered:** Include section numbers in PDF bookmark panel
+- **bookmarksopen:** Expand bookmark panel on document open
+- **bookmarksdepth:** Bookmark panel depth on open (1 = chapter level only)
+- **pdfstartview:** Initial zoom mode (`FitH` = fit page width)
+- **`\pdfinfo`:** Sets PDF `/CreationDate` and `/ModDate` from `\docbuild` macro (pdfTeX primitive — not a hyperref key)
 
 #### 12.3.7 Captions
 
@@ -865,19 +911,22 @@ As shown in \tabref{tab:dms-soi}.
 
 #### 12.3.15 Version Control Macros
 
+**Preamble position:** Defined before the COLORS AND LINKS section (§12.3.5) so that `\docbuild` is available to `\pdfinfo` at load time.
+
 ```latex
 \newcommand{\docversion}{0.4.1.0}
 \newcommand{\docbuild}{20260211}
 \newcommand{\docstartdate}{05 January 2026}
 \newcommand{\docenddate}{11 February 2026}
-\newcommand{\chapterscompletedof}{4/7}
+\newcommand{\chapterscompletedof}{4/6}
 \newcommand{\tablesfilledpct}{Chapter 3 (DMS) and Chapter 5 (CMS)}
 \newcommand{\fulldocversion}{\docversion+\docbuild}
 ```
 
 - **docversion:** Semantic version (MAJOR.MINOR.PATCH.SUBPATCH)
-- **docbuild:** Build date (YYYYMMDD)
+- **docbuild:** Build date (YYYYMMDD) — also used by `\pdfinfo` to set PDF CreationDate/ModDate
 - **fulldocversion:** Combined version string (displayed on title page)
+- **chapterscompletedof:** X/6 (total planned chapters: 6)
 - **Progress tracking:** Chapters completed, tables filled status
 
 **Update rule:** These macros MUST be updated in sync when creating new snapshots.
