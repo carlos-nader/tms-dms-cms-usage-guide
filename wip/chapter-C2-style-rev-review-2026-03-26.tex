@@ -426,9 +426,7 @@
 %============================================================================
 \chapter{HOTAS Fundamentals}
 \label{chap:C2}
-The F-16’s HOTAS (Hands On Throttle And Stick) controls enable the pilot to execute critical flight, sensor, and weapon functions without removing hands from the throttle and side-stick controller. Within this architecture, three switches — the Display Management Switch (DMS), Target Management Switch (TMS), and Countermeasures Management Switch (CMS) — control display selection, sensor management, and defensive systems.
-
-For the complete HOTAS control reference, see \dashrefs{2.1.1.1.4 and 2.1.5}.
+The F-16’s HOTAS (Hands On Throttle And Stick) controls enable the pilot to execute flight, sensor, and weapon functions without removing hands from the throttle and side-stick controller. Within this architecture, three switches — the Display Management Switch (DMS), Target Management Switch (TMS), and Countermeasures Management Switch (CMS) — control display selection, sensor management, and defensive systems.
 
 Two foundational concepts govern HOTAS switch behavior:
 
@@ -436,6 +434,8 @@ Two foundational concepts govern HOTAS switch behavior:
     \item \textbf{Sensor of Interest (SOI):} determines which display receives HOTAS inputs.
     \item \textbf{Master Modes (NAV, A-A, A-G):} define the available weapon systems and sensor configurations.
 \end{itemize}
+
+For the complete HOTAS control reference, see \dashrefs{2.1.1.1.4 and 2.1.5}.
 
 %============================================================================
 % SECTION 2.1 — SENSOR OF INTEREST (SOI)
@@ -473,9 +473,9 @@ SOI designation is indicated by a distinct visual marker on each display:
 \subsection{SOI-Capable Displays}
 \label{sec:C2-S1-S3}
 
-Not all displays can be designated as SOI, and the availability of SOI designation varies by Master Mode and MFD format.
+The availability of SOI designation varies by Master Mode and MFD format.
 
-Master Mode determines HUD eligibility for SOI designation. MFD formats can be designated as SOI in all Master Modes. The HUD, however, can be designated as SOI only in NAV and A-G Master Modes.
+Master Mode determines HUD eligibility for SOI designation. MFD formats can be designated as SOI in \textit{all Master Modes}. The HUD, however, can be designated as SOI \textit{only in NAV and A-G Master Modes}.
 
 MFD format determines SOI eligibility \textit{within} the MFD. Sensor formats that accept targeting and cursor control inputs --- such as FCR, TGP, and WPN --- can be designated as SOI. Informational and configuration formats, however --- such as DTE, TCN, and FLCS --- cannot be designated as SOI.
 
@@ -487,7 +487,7 @@ For SOI availability by Master Mode and MFD format, see \secref{sec:C3-S1}.
 \section{Master Modes}
 \label{sec:C2-S2}
 
-Master Mode is the highest-level configuration state of the F-16 avionics suite. Cockpit displays, sensor modes, and weapon options are configured by the active Master Mode. SOI availability and switch functions are also determined by Master Mode.
+Master Mode is the highest-level configuration state of the F-16 avionics suite. It configures cockpit displays, sensor modes, and weapon options, and determines SOI availability and switch functions.
 
 %--------------------------------------------------------------------------
 % SUBSECTION 2.2.1 — PRIMARY AND OVERRIDE MASTER MODES
@@ -506,7 +506,7 @@ Three primary Master Modes (NAV, A-A, and A-G) and two override modes (DGFT and 
 
 \end{itemize}
 
-Default sensor, display, and weapon options are configured by the active Master Mode. HOTAS switch inputs are interpreted within that configuration. These defaults are programmable via the Data Transfer Cartridge (DTC) or adjustable manually in-flight. For complete Master Mode details, see \dashref{2.1.1.2.1}.
+HOTAS switch inputs are interpreted within the active master mode configuration. That configuration can be programmed via the Data Transfer Cartridge (DTC) or adjusted manually in-flight (see \secref{sec:C3-S4-S2}). For complete Master Mode details, see \dashref{2.1.1.2.1}.
 
 %============================================================================
 % SECTION 2.3 — DMS, TMS, AND CMS
