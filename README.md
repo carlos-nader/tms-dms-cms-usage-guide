@@ -96,11 +96,11 @@ The author is not affiliated with or endorsed by Falcon BMS or any other flight 
 
 ---
 
-## 📈 Development Activity (last 7 days)
+## 📈 Development Activity (since Feb. 12th, 2026)
 
 [![wakatime](https://wakatime.com/badge/user/a7867e5c-aed5-4764-9e32-54ff6e08eaa8/project/22723c4f-b262-4526-a7ed-bff46e9902ff.svg)](https://wakatime.com/projects/projeto-bms)
 
-Transparent time tracking via WakaTime specifically for this repository.
+Transparent accumulated time tracking via WakaTime specifically for this repository.
 
 ---
 
