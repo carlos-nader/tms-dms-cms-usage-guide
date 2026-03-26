@@ -54,12 +54,12 @@
 % VERSION CONTROL MACROS
 % --------------------------------------------------------------------------
 
-\newcommand{\docversion}{0.4.2.0.alpha.3}
-\newcommand{\docbuild}{20260325}
+\newcommand{\docversion}{VERSION}
+\newcommand{\docbuild}{DATE}
 \newcommand{\docstartdate}{05 January 2026}
-\newcommand{\docenddate}{20260325}
-\newcommand{\chapterscompletedof}{1/6}
-\newcommand{\tablesfilledpct}{N/A}
+\newcommand{\docenddate}{DATE}
+\newcommand{\chapterscompletedof}{X/6}
+\newcommand{\tablesfilledpct}{Chapter X}
 \newcommand{\fulldocversion}{\docversion+\docbuild}
 
 % --------------------------------------------------------------------------
@@ -389,121 +389,65 @@
 %============================================================================
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 %============================================================================
-% File Name: chapter-C2-style-rev-review-2026-03-25.tex
-% Issue: #47 #44
-% WIP Naming Convention: 2026-03-17
-% Target Chapter: C2 (HOTAS Fundamentals)
-% WIP Status: review
-% Created: 2026-03-20
-% Last Modified: 2026-03-25
-% Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: alpha.3
+
+% File Name: section-C{N}-S{M}-{slug}-{status}-{date}.tex
+% Issue: #NN
+% WIP Naming Convention: 2026-03-24
+% Target Chapter: C{N} (Chapter Title)
+% Target Section: S{M} (Section Title)
+% [Target Subsection: S{K} (Subsection Title) — OPTIONAL]
+% WIP Status: dev | review | final | alpha | approved | deprecated
+% (alpha = parallel pre-release flow only — see wip-naming.md §3.1)
+% Created: YYYY-MM-DD
+% Last Modified: YYYY-MM-DD
+% Integration Status: NOT YET INTEGRATED | INTEGRATION TARGET: v0.{MINOR}.{PATCH}
 %
-% Narrative Completion: ~65% (chapter opener + §2.1 + §2.2 complete; §2.2.2, §2.3 pending)
-% Table Fill Status: N/A
+% Narrative Completion: 0-100%
+% Table Fill Status: 0-100%
 %
 % Notes:
-% - Style revision pass for C2 — milestone v0.4.2.0, parent #44
-% - §2.1 complete: titles revised (§2.1.2 → "SOI Symbology"; §2.1.3 → "SOI-Capable Displays")
-% - §2.2 complete: intro + §2.2.1 "Primary and Override Master Modes" — all items
-%   validated against Dash-34 §2.1.1.2.1, §2.1.7.5.1–5.3
-% - §2.2.1 items: NAV, A-A, A-G, DGFT/MSL OVRD — ACM/AIM defaults removed (DTC-dependent)
-% - §2.3.1–2.3.3 "— Overview" suffix to remove — pending
-% - #47 Task 1 (CMS orientation): WILL NOT IMPLEMENT — content covered by
-%   existing §2.3.3 and C5 alpha.2
-% - #47 Task 2 (TGP paragraph into §2.1.3): pending
-% - §2.2.2 (Why HOTAS Switches Behave Differently): pending
+% - [Describe what's done, what's pending, open questions]
+% - [Cross-references to other WIP files or guide.tex sections]
+% - [Any divergences from briefing or validation issues]
+
+%============================================================================
+% TEMPLATE STRUCTURE — Replace section/subsection headers with your content
+%============================================================================
 
 %============================================================================
 % CONTENT BEGINS HERE (use \chapter{}, \section{}, \subsection{}, etc.)
 %============================================================================
 
-%============================================================================
-% CHAPTER 2 — HOTAS FUNDAMENTALS
-%============================================================================
-\chapter{HOTAS Fundamentals}
-\label{chap:C2}
-The F-16’s HOTAS (Hands On Throttle And Stick) controls enable the pilot to execute critical flight, sensor, and weapon functions without removing hands from the throttle and side-stick controller. Within this architecture, three switches — the Display Management Switch (DMS), Target Management Switch (TMS), and Countermeasures Management Switch (CMS) — control display selection, sensor management, and defensive systems.
+\chapter{Section Title}
+\label{chap:C{N}-{slug}}
 
-For the complete HOTAS control reference, see \dashrefs{2.1.1.1.4 and 2.1.5}.
+% Status: {0-100%} complete
+% TODO: [List of pending items]
 
-Two foundational concepts govern HOTAS switch behavior:
+% [Write your introductory paragraph(s) here]
 
-\begin{itemize}
-    \item \textbf{Sensor of Interest (SOI):} determines which display receives HOTAS inputs.
-    \item \textbf{Master Modes (NAV, A-A, A-G):} define the available weapon systems and sensor configurations.
-\end{itemize}
+\section{Section Title}
+\label{sec:C{N}-{slug}-{subslug}}
 
-%============================================================================
-% SECTION 2.1 — SENSOR OF INTEREST (SOI)
-%============================================================================
-\section{Sensor of Interest (SOI)}
-\label{sec:C2-S1}
+% Status: [Narrative | Tables | Both] {0-100%}
+% [Write content here. Example hotastable structure below:]
 
-The F-16 cockpit contains three displays: the Head-Up Display (HUD) and two Multifunction Displays (MFD). The Sensor of Interest (SOI) determines which of these displays currently receives HOTAS inputs. At any moment, \textit{only one} display can hold SOI designation. The active format on the display determines how the input is interpreted.
+\begin{hotastable}{Table Caption Here}
 
-%--------------------------------------------------------------------------
-% SUBSECTION 2.1.1 — SOI FUNDAMENTALS
-%--------------------------------------------------------------------------
-\subsection{SOI Fundamentals}
-\label{sec:C2-S1-S1}
+% Example row (delete this and add your own):
+% State & Dir & Act & Function & Effect / Nuance & Dash34 & Train \\
 
-The SOI mechanism manages \textit{where} HOTAS inputs are directed, not \textit{what} those inputs do. The specific function of a HOTAS input --- for example, whether TMS Up designates a target, breaks a track, or cycles through a mode --- depends on delivery modes, current Master Mode, and active sensor format.
+\end{hotastable}
 
-%--------------------------------------------------------------------------
-% SUBSECTION 2.1.2 — SOI SYMBOLOGY
-%--------------------------------------------------------------------------
-\subsection{SOI Symbology}
-\label{sec:C2-S1-S2}
+\subsection{Subsection Title}
+\label{sec:C{N}-{slug}-{subslug}-{subslug}}
 
-SOI designation is indicated by a distinct visual marker on each display:
+% [Additional subsections as needed]
 
-\begin{itemize}
-	\item \textbf{HUD as SOI:} An asterisk symbol (\texttt{*}) appears in the upper left corner of the HUD, above the airspeed scale.
-	\item \textbf{MFD as SOI:} A border outline is drawn around the edges of the MFD display, forming a box that distinguishes the SOI display from the non-SOI display.
-	\item \textbf{NOT SOI indication:} The text \texttt{NOT SOI} appears in the center of any SOI-capable MFD format that is not currently designated as SOI. This indicator does not appear on MFD formats that cannot be designated as SOI.
-\end{itemize}
+\subsubsection{Subsubsection Title}
+\label{sec:C{N}-{slug}-{subslug}-{subslug}-{subslug}}
 
-%--------------------------------------------------------------------------
-% SUBSECTION 2.1.3 — SOI-CAPABLE DISPLAYS
-%--------------------------------------------------------------------------
-\subsection{SOI-Capable Displays}
-\label{sec:C2-S1-S3}
-
-Not all displays can be designated as SOI, and the availability of SOI designation varies by Master Mode and MFD format.
-
-Master Mode determines HUD eligibility for SOI designation. MFD formats can be designated as SOI in all Master Modes. The HUD, however, can be designated as SOI only in NAV and A-G Master Modes.
-
-MFD format determines SOI eligibility \textit{within} the MFD. Sensor formats that accept targeting and cursor control inputs --- such as FCR, TGP, and WPN --- can be designated as SOI. Informational and configuration formats, however --- such as DTE, TCN, and FLCS --- cannot be designated as SOI.
-
-For SOI availability by Master Mode and MFD format, see \secref{sec:C3-S1}.
-
-%============================================================================
-% SECTION 2.2 — MASTER MODES
-%============================================================================
-\section{Master Modes}
-\label{sec:C2-S2}
-
-Master Mode is the highest-level configuration state of the F-16 avionics suite. Cockpit displays, sensor modes, and weapon options are configured by the active Master Mode. SOI availability and switch functions are also determined by Master Mode.
-
-%--------------------------------------------------------------------------
-% SUBSECTION 2.2.1 — PRIMARY AND OVERRIDE MASTER MODES
-%--------------------------------------------------------------------------
-\subsection{Primary and Override Master Modes}
-\label{sec:C2-S2-S1}
-
-Three primary Master Modes (NAV, A-A, and A-G) and two override modes (DGFT and MSL OVRD) are available in the F-16:
-
-\begin{itemize}
-
-	\item \textbf{Navigation (NAV):} The default Master Mode, active when no other mode is selected. Both air-to-air and air-to-ground sensor modes are available in NAV. Navigation symbology is displayed on the HUD.
-    \item \textbf{Air-to-Air (A-A):} Selected via the A-A button on the ICP. Only air-to-air sensor modes are available in A-A. Air-to-air weapon selection and engagement symbology are displayed on the HUD.
-    \item \textbf{Air-to-Ground (A-G):} Selected via the A-G button on the ICP. Both air-to-air and air-to-ground sensor modes are available in A-G. Air-to-ground weapon delivery symbology is displayed on the HUD.
-    \item \textbf{Dogfight (DGFT) and Missile Override (MSL OVRD):} Selected via the Dogfight/Missile Override switch on the throttle grip — DGFT outboard, MSL OVRD inboard. Only air-to-air sensor modes are available in both modes. DGFT and MSL OVRD take precedence over all other Master Modes except Emergency Jettison.
-
-\end{itemize}
-
-Default sensor, display, and weapon options are configured by the active Master Mode. These defaults are programmable via the Data Transfer Cartridge (DTC) or adjustable manually in-flight. For complete Master Mode details, see \dashref{2.1.1.2.1}.
-
+% [Additional subsections as needed]
 %============================================================================
 % END OF SECTION
 %============================================================================
