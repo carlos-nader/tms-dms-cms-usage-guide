@@ -29,4 +29,5 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add docs/guide-web.pdf
           git diff --quiet && git diff --staged --quiet || git commit -m "🔄 Auto-sync: Update guide-web.pdf from root"
+          git pull --rebase origin main
           git push
