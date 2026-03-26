@@ -31,12 +31,7 @@ jobs:
             - texlive-latex-recommended
             - texlive-latex-extra
             - texlive-fonts-recommended
-            - texlive-fonts-extra
             - texlive-lang-english
-            - texlive-pictures
-            - texlive-science
-            - texlive-extra-utils
-            - ghostscript
       cache:
         apt: true
       script:
@@ -73,7 +68,7 @@ jobs:
 
     - name: Validate docs-web (MkDocs)
       language: python
-      python: "3.11"
+      python: "3.8"
       git:
         depth: false
       install:
@@ -94,12 +89,7 @@ jobs:
             - texlive-latex-recommended
             - texlive-latex-extra
             - texlive-fonts-recommended
-            - texlive-fonts-extra
             - texlive-lang-english
-            - texlive-pictures
-            - texlive-science
-            - texlive-extra-utils
-            - ghostscript
       cache:
         apt: true
       script:

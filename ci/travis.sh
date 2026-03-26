@@ -220,13 +220,7 @@ if [ -n "${ALPHA_TEX:-}" ]; then
     fi
   fi
 
-  if [ "${advertise_readme}" -eq 1 ] || [ "${advertise_site}" -eq 1 ] || [ "${alpha_tex_changed}" -eq 1 ]; then
-    echo "Compiling alpha snapshot (advertised or changed)."
-    run_folded_capture alpha_build "Alpha build" "latexmk alpha" \
-      latexmk -pdf -file-line-error -interaction=nonstopmode -halt-on-error -silent "${ALPHA_TEX}"
-  else
-    echo "Skipping alpha compilation (not advertised and alpha .tex unchanged)."
-  fi
+  echo "Alpha compilation handled by dedicated Build Alpha job."
   echo "PASS: alpha audit"
   fold_end alpha_check
 else

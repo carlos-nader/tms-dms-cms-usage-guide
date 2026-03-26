@@ -13,7 +13,7 @@ The Countermeasures Management Switch (CMS) is a four-direction hat switch mount
 
 ECM configuration depends on block and variant: either external pods (ALQ-131/ALQ-184) or internal avionics (IDIAS).
 
-CMS actuation procedures are presented in [Section 5.2](#52-cms-actuation) and block and variant differences in [Section 5.3](#53-ecm-configuration-by-block-and-variant).
+CMS actuation procedures are presented in [Section 5.2](#52-cms-actuation) and block and variant differences in [Section 5.3](#53-block-and-variant-configurations).
 
 For complete CMDS (including chaff and flare dispensing programs) and ECM operation, see Dash-34 §§ 2.7.1 and 2.7.2, respectively. Diagrams of the side-stick controller and throttle functions are provided in Dash-34 § 2.1.5. The figure below shows the CMS location on the F-16 side-stick controller.
 
