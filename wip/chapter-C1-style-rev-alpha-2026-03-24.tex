@@ -21,7 +21,7 @@
 
 %============================================================================
 % PREAMBLE COMPLETO — TMS/DMS/CMS Usage Guide for Falcon BMS 4.38.1
-% Gerado: 14 March 2026
+% Gerado: 25 March 2026
 %============================================================================
 
 \documentclass[11pt, a4paper, twoside]{report}
@@ -51,6 +51,18 @@
 \onehalfspacing
 
 % --------------------------------------------------------------------------
+% VERSION CONTROL MACROS
+% --------------------------------------------------------------------------
+
+\newcommand{\docversion}{0.4.2.0-alpha.2.1}
+\newcommand{\docbuild}{20260314}
+\newcommand{\docstartdate}{05 January 2026}
+\newcommand{\docenddate}{20260314}
+\newcommand{\chapterscompletedof}{2/6}
+\newcommand{\tablesfilledpct}{N/A}
+\newcommand{\fulldocversion}{\docversion+\docbuild}
+
+% --------------------------------------------------------------------------
 % COLORS AND LINKS AND PDF SETTINGS
 % --------------------------------------------------------------------------
 
@@ -62,15 +74,25 @@
 \definecolor{subheadgray}{HTML}{E0E0E0}
 \usepackage{soul}
 \usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\usepackage{hyperxmp}
 \hypersetup{
 	pdftitle={TMS, DMS and CMS Usage Guide for Falcon BMS},
 	pdfauthor={Carlos "Metal" Nader},
 	pdfsubject={Flight Simulation - Falcon BMS HOTAS Reference},
 	pdfkeywords={Falcon BMS, F-16, HOTAS, TMS, DMS, CMS, Flight Simulation},
-	pdfcreator={pdfLaTeX (MiKTeX)},
-	pdfproducer={MiKTeX},
+	pdfcreator={pdfLaTeX (TeXstudio)},
+	pdfproducer={TeXstudio},
 	pdflang={en-US},
+	pdfcopyright={CC BY-NC 4.0 · Carlos "Metal" Nader},
+	pdflicenseurl={https://creativecommons.org/licenses/by-nc/4.0/},
+	pdfcontacturl={https://github.com/carlos-nader/tms-dms-cms-usage-guide},
+	pdfdisplaydoctitle=true,
+	bookmarksnumbered=true,
+	bookmarksopen=true,
+	bookmarksdepth=1,
+	pdfstartview=FitH,
 }
+\pdfinfo{/CreationDate (D:\docbuild) /ModDate (D:\docbuild)}
 \usepackage{bookmark}
 
 % --------------------------------------------------------------------------
@@ -91,12 +113,12 @@
 % --------------------------------------------------------------------------
 
 \usepackage{fancyhdr}
-\setlength{\headheight}{25pt}                    
+\setlength{\headheight}{25pt}
 \pagestyle{fancy}
-\fancyhf{}                                        
-\fancyhead[LO,RE]{\small\textit{\leftmark}}     
-\fancyhead[RO,LE]{\small\thepage}               
-\fancyfoot{}                                      
+\fancyhf{}
+\fancyhead[LO,RE]{\small\textit{\leftmark}}
+\fancyhead[RO,LE]{\small\thepage}
+\fancyfoot{}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
 
@@ -194,7 +216,7 @@
 % PARAGRAPH - Nível 4 (CRÍTICO: Ilusão Óptica Resolvida)
 % --------------------------------------------------------------------------
 % Shape: runin → inline, integrado ao texto (seu requisito)
-% Font: \small\bfseries (SOLUÇÃO PARA ILUSÃO ÓPTICA DO NEGRITO)%       
+% Font: \small\bfseries (SOLUÇÃO PARA ILUSÃO ÓPTICA DO NEGRITO)%
 % Numeração: NÃO (padrão para \paragraph)
 % Espaçamento: runin (sem espaço vertical antes, integrado ao texto)
 % --------------------------------------------------------------------------
@@ -251,7 +273,7 @@
 \newcommand{\imglink}[1]{\hspace{2pt}\hyperref[#1]{\scriptsize\textbf{[Fig]}}}
 
 % --------------------------------------------------------------------------
-% HOTAS LOT FILE HANDLE 
+% HOTAS LOT FILE HANDLE
 % --------------------------------------------------------------------------
 \makeatletter
 \newcommand{\listofhotastables}{%
@@ -319,18 +341,6 @@
 \newcommand{\figref}[1]{\hyperref[#1]{Figure~\ref*{#1}}}
 
 % --------------------------------------------------------------------------
-% VERSION CONTROL MACROS
-% --------------------------------------------------------------------------
-
-\newcommand{\docversion}{0.4.2.0-alpha.2.1}
-\newcommand{\docbuild}{20260314}
-\newcommand{\docstartdate}{05 January 2026}
-\newcommand{\docenddate}{14 March 2026}
-\newcommand{\chapterscompletedof}{2/7}
-\newcommand{\tablesfilledpct}{Chapters 1, 5}
-\newcommand{\fulldocversion}{\docversion+\docbuild}
-
-% --------------------------------------------------------------------------
 % GRAPHICS
 % --------------------------------------------------------------------------
 
@@ -352,28 +362,28 @@
 % ============================================================================
 
 \begin{document}
-	
+
 	\maketitle
-	
+
 	\pagenumbering{roman}
-	
+
 	% --------------------------------------------------------------------------
 	% TOC DEPTH CONFIGURATION
 	% --------------------------------------------------------------------------
 	\setcounter{tocdepth}{3}       % Show up to \subsubsection in TOC
 	\setcounter{secnumdepth}{3}    % Number up to \subsubsection
-	
+
 	\newpage
 	\tableofcontents
 	\newpage
-	
+
 	% --------------------------------------------------------------------------
 	% LIST OF HOTAS TABLES
 	% --------------------------------------------------------------------------
 	\phantomsection
 	\listofhotastables
 	\newpage
-	
+
 	\pagenumbering{arabic}
 
 %============================================================================
@@ -382,7 +392,7 @@
 
 % File Name: chapter-C1-style-rev-final-2026-03-19.tex
 % Issue: #46
-% WIP Naming Convention: 2026-03-06
+% WIP Naming Convention: 2026-03-24
 % Target Chapter: C1
 % WIP Status: final
 % Created: 2026-03-14
@@ -394,7 +404,6 @@
 % Table Fill Status: N/A (C1 has no hotastable environments)
 %
 % Notes:
-% - awaiting integration.
 
 %============================================================================
 % CONTENT BEGINS HERE (use \chapter{}, \section{}, \subsection{}, etc.)

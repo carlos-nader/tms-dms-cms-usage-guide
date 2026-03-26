@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "LaTeX Preamble Documentation"
-last_modified_at: 2026-03-23
+last_modified_at: 2026-03-25
 sitemap:
   priority: 0.2
   changefreq: monthly
@@ -13,7 +13,7 @@ Complete Preamble (Ready to copy and paste to any LaTex editor):
 ```latex
 %============================================================================
 % PREAMBLE COMPLETO — TMS/DMS/CMS Usage Guide for Falcon BMS 4.38.1
-% Gerado: 14 March 2026
+% Gerado: 25 March 2026
 %============================================================================
 
 \documentclass[11pt, a4paper, twoside]{report}
@@ -43,6 +43,18 @@ Complete Preamble (Ready to copy and paste to any LaTex editor):
 \onehalfspacing
 
 % --------------------------------------------------------------------------
+% VERSION CONTROL MACROS
+% --------------------------------------------------------------------------
+
+\newcommand{\docversion}{VERSION}
+\newcommand{\docbuild}{DATE}
+\newcommand{\docstartdate}{05 January 2026}
+\newcommand{\docenddate}{DATE}
+\newcommand{\chapterscompletedof}{X/6}
+\newcommand{\tablesfilledpct}{Chapter X}
+\newcommand{\fulldocversion}{\docversion+\docbuild}
+
+% --------------------------------------------------------------------------
 % COLORS AND LINKS AND PDF SETTINGS
 % --------------------------------------------------------------------------
 
@@ -54,15 +66,25 @@ Complete Preamble (Ready to copy and paste to any LaTex editor):
 \definecolor{subheadgray}{HTML}{E0E0E0}
 \usepackage{soul}
 \usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
+\usepackage{hyperxmp}
 \hypersetup{
 	pdftitle={TMS, DMS and CMS Usage Guide for Falcon BMS},
 	pdfauthor={Carlos "Metal" Nader},
 	pdfsubject={Flight Simulation - Falcon BMS HOTAS Reference},
 	pdfkeywords={Falcon BMS, F-16, HOTAS, TMS, DMS, CMS, Flight Simulation},
-	pdfcreator={pdfLaTeX (MiKTeX)},
-	pdfproducer={MiKTeX},
+	pdfcreator={pdfLaTeX (TeXstudio)},
+	pdfproducer={TeXstudio},
 	pdflang={en-US},
+	pdfcopyright={CC BY-NC 4.0 · Carlos "Metal" Nader},
+	pdflicenseurl={https://creativecommons.org/licenses/by-nc/4.0/},
+	pdfcontacturl={https://github.com/carlos-nader/tms-dms-cms-usage-guide},
+	pdfdisplaydoctitle=true,
+	bookmarksnumbered=true,
+	bookmarksopen=true,
+	bookmarksdepth=1,
+	pdfstartview=FitH,
 }
+\pdfinfo{/CreationDate (D:\docbuild) /ModDate (D:\docbuild)}
 \usepackage{bookmark}
 
 % --------------------------------------------------------------------------
@@ -125,7 +147,7 @@ Complete Preamble (Ready to copy and paste to any LaTex editor):
 % Shape: hang → label à esquerda, corpo indentado (compacto)
 % Font: \large\bfseries (mesmo destaque que chapter para coerência)
 % Numeração: SIM
-% Espaçamento: 30pt antes, 8pt depois
+% Espaçamento: 15pt antes, 8pt depois (REDUZIDO de 15pt/10pt anteriores)
 % --------------------------------------------------------------------------
 
 \titleformat{\section}[hang]
@@ -146,7 +168,7 @@ Complete Preamble (Ready to copy and paste to any LaTex editor):
 % Shape: hang → label esquerda, corpo indentado
 % Font: \normalsize\bfseries (redução visual, ainda robusto)
 % Numeração: SIM
-% Espaçamento: 24pt antes, 6pt depois
+% Espaçamento: 12pt antes, 6pt depois (compacto)
 % --------------------------------------------------------------------------
 
 \titleformat{\subsection}[hang]
@@ -167,7 +189,7 @@ Complete Preamble (Ready to copy and paste to any LaTex editor):
 % Shape: hang → label esquerda, máximo recuo (bem compacto)
 % Font: \normalsize\bfseries (mesmo tamanho que subsection, padrão)
 % Numeração: SIM (configurable com secnumdepth)
-% Espaçamento: 18pt antes, 4pt depois
+% Espaçamento: 10pt antes, 4pt depois (bem comprimido)
 % --------------------------------------------------------------------------
 
 \titleformat{\subsubsection}[hang]
@@ -309,18 +331,6 @@ Complete Preamble (Ready to copy and paste to any LaTex editor):
 \newcommand{\chapref}[1]{\hyperref[#1]{Chapter~\ref*{#1}}}
 \newcommand{\tabref}[1]{\hyperref[#1]{Table~\ref*{#1}}}
 \newcommand{\figref}[1]{\hyperref[#1]{Figure~\ref*{#1}}}
-
-% --------------------------------------------------------------------------
-% VERSION CONTROL MACROS
-% --------------------------------------------------------------------------
-
-\newcommand{\docversion}{VERSION}
-\newcommand{\docbuild}{DATE}
-\newcommand{\docstartdate}{05 January 2026}
-\newcommand{\docenddate}{DATE}
-\newcommand{\chapterscompletedof}{X/7}
-\newcommand{\tablesfilledpct}{Chapter X}
-\newcommand{\fulldocversion}{\docversion+\docbuild}
 
 % --------------------------------------------------------------------------
 % GRAPHICS
