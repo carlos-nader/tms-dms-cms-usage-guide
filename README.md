@@ -41,7 +41,7 @@ The author is not affiliated with or endorsed by Falcon BMS or any other flight 
 
 ## 📄 Main Guide Files
 
-[![Version](https://img.shields.io/badge/LATEST%20version-v0.3.2.0-yellow?style=for-the-badge&logo=tag&logoColor=black)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases/tag/v0.4.1.1)
+[![Version](https://img.shields.io/badge/LATEST%20version-v0.4.1.0-yellow?style=for-the-badge&logo=tag&logoColor=black)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases/tag/v0.4.1.1)
 <!-- DO NOT EDIT: managed by workflow (update-alpha-badge) -->
 <!-- ALPHA-BADGE-START -->
 [![Alpha](https://img.shields.io/badge/alpha-v0.4.2.0--alpha.3-orange?style=for-the-badge&logo=flask&logoColor=white)](https://github.com/carlos-nader/tms-dms-cms-usage-guide/releases)
@@ -67,7 +67,7 @@ The author is not affiliated with or endorsed by Falcon BMS or any other flight 
 
 | Metric | Value |
 |--------|-------|
-| **Guide Version** | v0.3.2.0 |
+| **Guide Version** | v0.4.1.0 |
 | **Phase** | Pre-publication (0.x.x.x) |
 | **Chapters Planned** | 6 |
 | **Chapters with Content** | 4 (C1, C2, C3, C5) |
@@ -334,7 +334,7 @@ For questions, suggestions, or feedback:
 
 ---
 
-**License:** CC BY-NC 4.0 | **Guide Status:** Pre-publication v0.3.2.0
+**License:** CC BY-NC 4.0 | **Guide Status:** Pre-publication v0.4.1.0
 <!-- ALPHA-FOOTER-START -->
 Alpha pre-release available: v0.4.2.0-alpha.3
 <!-- ALPHA-FOOTER-END -->
