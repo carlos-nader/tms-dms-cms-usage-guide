@@ -6,9 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [0.4.2.0-alpha.3] - 2026-03-27 *(pre-release)*
+### Changed
+- Chapter 2 (HOTAS Fundamentals): Full style revision pass — AI-generated prose patterns removed. All items validated against Dash-34 (refs #44, #47).
+
+---
+
 ## [0.4.2.0-alpha.2] - 2026-03-19 *(pre-release)*
 ### Changed
-- Chapter 1 (Introduction): Full style revision pass — AI-generated prose patterns removed; §1.1 and §1.2 reordered; §1.4 restructured; §1.4.2 (Authorship and AI assistance) revised to reflect actual AI tool roles (closes #46).
+- Chapter 1 (Introduction): Full style revision pass — AI-generated prose patterns removed. All items validated against Dash-34 (closes #46).
 
 ### Added
 - Section 1.3.3 (Typographic conventions): New subsection documenting bold, monospace, and italic conventions used throughout the guide (closes #46).
