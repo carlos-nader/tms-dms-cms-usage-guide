@@ -122,6 +122,7 @@ Use the same term every time for the same concept. Do not substitute synonyms to
 - Always: **press** (not "actuate", "depress", "activate" when referring to switch input)
 - Always: **block and variant** — when qualifying that a procedure, configuration, or system behavior differs across F-16 versions, use "block and variant" as the compound modifier. Do not use "block" alone, "variant" alone, "blocks and variants", "variants", "block configuration", "variant configuration", "block/variant" (with slash), "F-16 blocks and variants", "model", "models", "type", "types", "version", or "versions". Omit "F-16" when the aircraft context is already established.
 - Always: **side-stick controller** (the F-16 stick); always **throttle** (the left-hand control). Do not use "flight stick", "control stick", "stick", "joystick", "throttle controls", or "throttle grip".
+- Always: **four-way hat switch** — when describing the physical type of the DMS, TMS, or CMS. Do not use "four-direction", "spring-loaded", "momentary", or "four-position" as physical descriptors for these switches. Source: Dash-34 §2.1.5 diagram label.
 
 ### P4 — Keep sentences short and singular
 
@@ -254,14 +255,16 @@ The guide is community documentation, not a system reference manual. The followi
 
 ### 8.1 `\textbf{}` — Bold
 
-**Scope:** The three HOTAS switches covered by this guide and their directions only.
+**Scope:** Switch directions (DMS Up, DMS Down, etc.) in prose only.
 
 **Applies to:**
-- Switch names: CMS, TMS, DMS (when referred to as physical controls)
-- Switch directions: CMS Up, CMS Down, CMS Left, CMS Right; TMS Up, TMS Down, etc.
+
+- Switch directions: DMS Up, DMS Down, DMS Left, DMS Right; TMS Up, TMS Down, TMS Left, TMS Right; CMS Up, CMS Down, CMS Left, CMS Right
 - Column labels in table preamble lists
 
 **Does not apply to:**
+
+- Switch names used alone in prose (DMS, TMS, CMS without a direction)
 - Mode names (MAN, AUTO, SEMI)
 - Physical panel components (knobs, lights, buttons)
 - System names (ALE-47, CMDS, ECM, RWR)
