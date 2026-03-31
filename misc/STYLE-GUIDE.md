@@ -329,6 +329,7 @@ Before submitting or approving any prose content, verify the following:
 - [ ] Formatting follows the semantic rules in Section 8
 - [ ] "block and variant" is used as the compound modifier wherever F-16 configuration differences are qualified — not "block" alone, "variant" alone, or any prohibited synonym
 - [ ] "side-stick controller" and "throttle" are used throughout — not "flight stick", "control stick", "stick", "joystick", "throttle controls", or "throttle grip"
+- [ ] "four-way hat switch" is used when describing the physical type of the DMS, TMS, or CMS — not "four-direction", "spring-loaded", "momentary", or "four-position"
 
 ---
 
@@ -364,6 +365,9 @@ Prohibited constructions (delete or rephrase):
 "understanding X is essential", "the design ensures", "maximizes situational awareness",
 "frees pilot workload", "decision engine", "regardless of" (as mid-sentence filler),
 "fundamentally change", "in order to", "in the event that", opening with "This section..."
+
+Physical switch descriptors: use "four-way hat switch" for the physical type of DMS, TMS, and CMS.
+Do not use "four-direction", "spring-loaded", "momentary", or "four-position".
 
 Permitted deviation: brief one-sentence explanations of mechanism rationale, placed after the factual statement.
 ```

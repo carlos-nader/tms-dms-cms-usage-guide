@@ -60,12 +60,12 @@ DMS, TMS, and CMS — including all HOTAS tables — are covered in [Chapter 3](
 
 ### 2.3.1 Display Management Switch (DMS)
 
-The Display Management Switch (DMS) is a four-way, momentary hat switch on the side-stick controller. Its primary functions are SOI designation and MFD format cycling (see Dash-34 § 2.1.5). The DMS selects _which display or sensor_ receives HOTAS inputs. It does not designate targets or control sensor modes.
+The Display Management Switch (DMS) is a four-way hat switch on the side-stick controller. Its primary functions are SOI designation and MFD format cycling (see Dash-34 § 2.1.5). The DMS selects _which display or sensor_ receives HOTAS inputs. It does not designate targets or control sensor modes.
 
 ### 2.3.2 Target Management Switch (TMS)
 
-The Target Management Switch (TMS) is a four-way, momentary hat switch on the side-stick controller. Its primary functions are target designation, sensor management, and markpoint creation (see Dash-34 § 2.1.5). The function of each TMS direction depends on the Master Mode, the active sensor mode, and the current SOI display.
+The Target Management Switch (TMS) is a four-way hat switch on the side-stick controller. Its primary functions are target designation, sensor management, and markpoint creation (see Dash-34 § 2.1.5). The function of each TMS direction depends on the Master Mode, the active sensor mode, and the current SOI display.
 
 ### 2.3.3 Countermeasures Management Switch (CMS)
 
-The Countermeasures Management Switch (CMS) is a four-way, momentary hat switch on the side-stick controller. Its primary functions are countermeasures dispensing and ECM control (see Dash-34 § 2.1.5). CMS actuation is independent of both SOI designation and Master Mode.
+The Countermeasures Management Switch (CMS) is a four-way hat switch on the side-stick controller. Its primary functions are countermeasures dispensing and ECM control (see Dash-34 § 2.1.5). CMS actuation is independent of both SOI designation and Master Mode.

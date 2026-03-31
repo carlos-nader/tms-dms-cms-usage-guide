@@ -6,7 +6,7 @@ description: CMS actuation procedures for the ALE-47 CMDS and ECM systems in Fal
 
 ## 5.1 Concept
 
-The Countermeasures Management Switch (CMS) is a four-direction hat switch mounted on the side-stick controller. It controls the aircraft's defensive avionics:
+The Countermeasures Management Switch (CMS) is a four-way hat switch mounted on the side-stick controller. It controls the aircraft's defensive avionics:
 
 * ALE-47 CMDS (Countermeasures Dispenser Set) — the chaff and flare dispensing system; and
 * ECM (Electronic Countermeasures) — the radar-jamming system.
