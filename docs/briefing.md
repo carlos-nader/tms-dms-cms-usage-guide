@@ -402,17 +402,17 @@ Travis CI runs on every push to `main`. Configuration: `.travis.yml`. Validation
 
 ---
 
-### 10.4 Traceability: WIP, Issues, Commits
+### 10.7 Traceability: WIP, Issues, Commits
 
 This project uses GitHub Issues as the primary unit for tracking WIP progress and integration.
 
-#### 10.4.1 WIP ↔ Issue linkage (practical rule)
+#### 10.7.1 WIP ↔ Issue linkage (practical rule)
 
 - Any WIP file expected to progress beyond `dev` (i.e., renamed to `review`, `final`, `alpha`, or `approved`) MUST have a corresponding GitHub Issue.
 - The Issue SHOULD be created before the first `dev → review` rename.
 - Exceptions are limited to short-lived scratch files that will be discarded and never enter review.
 
-#### 10.4.2 Commit ↔ Issue references (non-negotiable)
+#### 10.7.2 Commit ↔ Issue references (non-negotiable)
 
 - Any human-made commit that addresses work tracked by one or more GitHub Issues MUST include one `Refs #NN` line per related issue in the commit message footer.
 - The `Refs #NN` lines MUST be the last non-empty lines of the commit message.
@@ -439,6 +439,36 @@ Notes:
 - Pull requests SHOULD reference issues using `Refs #NN`. Use `Closes #NN` only when the PR is intended to close the issue automatically.
 
 *→ Visual reference: [Issue Dependency Map](issue-dependency-map.svg)*
+
+---
+
+### 10.8 CHANGELOG Workflow
+
+`CHANGELOG.md` is updated at every version bump — official releases and alpha
+pre-releases — as part of Step 5 of the integration workflow (see §10.2 and
+[WIP Integration Flow](wip-integration-flow.svg)).
+
+**Who drafts:** Claude Code, based on:
+
+- `docs/project-tracking.md` (notes and development log)
+- WIP file metadata blocks (status, scope, date)
+- GitHub issue comments (progress tracking)
+
+**Who approves:** Author. No entry is inserted without explicit approval.
+
+**Format:** Follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+Sections used: `Added`, `Changed`, `Fixed`, `Removed`.
+Pre-releases are marked `*(pre-release)*` on the version header line.
+
+**Insertion point:** Always above the previous top entry, below the file header.
+
+**Process:**
+
+1. Author signals version bump
+2. Claude Code reads tracking sources and drafts the entry
+3. Author reviews and approves the text
+4. Claude Code inserts the entry directly into `CHANGELOG.md`
+5. Entry is committed as part of the release commit
 
 ---
 
