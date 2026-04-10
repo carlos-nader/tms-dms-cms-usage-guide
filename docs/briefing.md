@@ -380,6 +380,13 @@ The guide is published in web format via **Read the Docs** (MkDocs) and **GitBoo
 4. Commit reviewed Markdown to `docs-web/`
 5. Push triggers: Read the Docs rebuild and GitBook sync
 
+**After each new alpha pre-release**, update `docs-web/README.md` to reflect the current state:
+
+- Update the section heading and snapshot version (e.g., `alpha.2` → `alpha.3`)
+- Update the snapshot link (filename includes date: `guide-vX.X.X.X-alphaY-YYYYMMDD.pdf`)
+- Add any newly converted chapters to the list
+- Update the closing paragraph to reflect which chapters are available and which are still pending
+
 **Limitation:** Custom LaTeX macros (`hotastable`, `\dashref{}`, `\secref{}`, etc.) are not converted by pandoc and require manual adjustment.
 
 *→ Visual reference: [Web Publication Flow](web-publication-flow.svg)*
