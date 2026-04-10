@@ -29,14 +29,15 @@ The latest stable release is **v0.4.1.1**, available at [this link](https://carl
 - Chapter 3 — DMS
 - Chapter 5 — CMS
 
-### Style revision — alpha.2.1
+### Style revision — alpha.3
 
-The guide is currently undergoing a full style revision. The pre-release snapshot **v0.4.2.0-alpha.2.1** ([view in repository](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/wip/guide-v0.4.2.0-alpha.2.1-20260324.pdf)) contains the revised versions of:
+The guide is currently undergoing a full style revision. The pre-release snapshot **v0.4.2.0-alpha.3** ([view in repository](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/wip/guide-v0.4.2.0-alpha.3-20260330.pdf)) contains the revised versions of:
 
 - [Chapter 1 — Introduction](c1-introduction.md)
+- [Chapter 2 — HOTAS Fundamentals](c2-hotas-fundamentals.md)
 - [Chapter 5 — CMS](c5-cms.md)
 
-These two chapters are the first to be integrated into this web publication. Chapters 2 and 3 will follow once their style revision is complete. Chapters 4 (TMS) and 6 (Quick Reference) will be integrated last, after they are written.
+These three chapters are the first to be integrated into this web publication. Chapter 3 (DMS) will follow once its style revision is complete. Chapters 4 (TMS) and 6 (Quick Reference) will be integrated last, after they are written.
 
 ---
 
