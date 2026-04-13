@@ -42,6 +42,7 @@ misc/pessoal/
 misc/pessoal/**
 misc/Pessoal/
 misc/Pessoal/**
+misc/AI images/
 
 
 # ==============================================================================
@@ -84,10 +85,11 @@ git
 *.old
 
 # ==============================================================================
-# WakaTime credentials
+# WakaTime credentials e tracking pessoal
 # ==============================================================================
 scripts/.env
 scripts/config.py
+scripts/wakatime_tracker.py
 
 
 # ==============================================================================
