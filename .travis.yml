@@ -5,11 +5,27 @@ os: linux
 dist: focal
 language: shell
 
+# Skip jobs when only non-build-relevant files changed.
+# Relevant paths: guide.tex, wip/, archive/, ci/, scripts/, fig/,
+#                 docs-web/, mkdocs.yml, .travis.yml, docs/guide-web.pdf
+# GitGuardian overrides this with its own before_install — always runs.
+before_install:
+  - |
+    if [ -n "${TRAVIS_COMMIT_RANGE:-}" ]; then
+      changed=$(git diff --name-only "${TRAVIS_COMMIT_RANGE}" 2>/dev/null || true)
+      if [ -n "$changed" ] && ! printf '%s\n' "$changed" | grep -qE \
+        '^(guide\.tex|wip/|archive/|ci/|scripts/|fig/|docs-web/|mkdocs\.yml|\.travis\.yml|docs/guide-web\.pdf)'; then
+        echo "No build-relevant files changed — skipping job."
+        travis_terminate 0
+      fi
+    fi
+
 jobs:
   include:
     - name: GitGuardian Scan
       language: python
       python: "3.11"
+      before_install: echo "GitGuardian always runs — scanning all commits for secrets."
       git:
         depth: false
       install:
