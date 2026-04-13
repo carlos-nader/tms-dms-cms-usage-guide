@@ -46,6 +46,7 @@ bash ci/travis.sh
 | `scripts/validate-tex-preamble.py` | Validates LaTeX preamble consistency |
 | `scripts/generate-wip-snapshot.py` | Updates WIP snapshot table in `README.md` |
 | `scripts/update-alpha-badge.py` | Updates alpha pre-release badge in `README.md` and `docs/index.html` |
+| `scripts/scrape-forum-views-debug.py` | Scrapes forum view count and updates badge in `README.md` |
 | `check-guide-integrity.ps1` | Byte-identical check: `guide.tex` ↔ active snapshot |
 
 ---
@@ -129,7 +130,7 @@ Automated/bot commits are exempt.
 ```text
 guide.tex                    # Canonical guide (byte-identical to active snapshot)
 docs-web/                    # Markdown source for web publication (Read the Docs / GitBook)
-  index.md                   # Landing page
+  README.md                  # Landing page
   c*-[chapter-title].md      # One file per chapter (pandoc conversion — Alpha.2+)
 wip/
   guide/                     # Active snapshot (exactly 1 .tex file)

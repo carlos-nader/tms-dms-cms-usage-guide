@@ -7,13 +7,9 @@ This is a **LaTeX-based technical documentation project** developing a comprehen
 
 **Current Status:** Pre-publication phase (v0.4.1.1), 4/6 chapters completed, targeting v1.0 publication
 
-## Recent Operational State (2026-03-02)
-
-- Alpha pre-release infrastructure (Issue #49) was integrated into `main` via PR #50.
-- The working branch `feat/alpha-release` was merged and then deleted.
-- Issue #49 was closed by the author.
-
 **Primary Languages:** LaTeX (content), Python (automation), PowerShell (validation)
+
+> For current project state (active WIP files, chapter status, open issues), always read `docs/project-tracking.md` before acting.
 
 
 ## Critical Governance & Style Documents (Read These First)
@@ -31,12 +27,11 @@ All governance and style documents are mandatory reading before making any chang
 - Always consult both before generating textual or structural content.
 - Never modify governance documents without explicit approval.
 
-## Claude “Memory” Pointers (Workspace)
+## Memory Pointers (Workspace)
 
-- Always consult `misc/Pessoal/claude-memorias.md` at the start of a session when the user mentions Claude, prompts, or prior decisions.
 - Treat `%USERPROFILE%\.claude\` / `C:\Users\carlo\.claude` as local configuration that may include credentials; do not request, read, copy, or commit secrets.
 - Exception (user-approved, non-sensitive): it is OK to read Markdown files under `C:\Users\carlo\.claude\projects\c--Users-carlo-OneDrive-Documentos-projeto-bms\memory` for operational context.
-- If information from Claude web “Projects” is needed, ask the user to paste the relevant excerpt into a tracked note inside the workspace.
+- If information from prior sessions is needed, ask the user to paste the relevant excerpt into a tracked note inside the workspace.
 
 ## Critical Safety Rule (Repository Operations)
 
@@ -48,18 +43,18 @@ All governance and style documents are mandatory reading before making any chang
 
 ### Main Folders & Their Roles
 
-- **archive/**: Snapshots históricos, WIP aprovados, versões antigas do guia.
+- **archive/**: Historical snapshots, approved WIP files, old guide versions.
 - **docs-web/**: Markdown source for web publication (Read the Docs / GitBook). Content added chapter by chapter via pandoc conversion, following WIP status eligibility rules (`alpha` or `approved`). File naming: `c{N}-{chapter-title}.md`.
-- **docs/**: Documentos de governança, diagramas de fluxo, documentação auxiliar, arquivos SVG/PNG de referência.
-- **fig/**: Imagens, figuras, fontes visuais, arquivos de licenciamento de imagens.
-- **misc/**: Decisões de projeto, style-guide, fontes externas, análises.
-- **scripts/**: Scripts de automação (geração de relatórios, validação, rastreamento). Nunca editar sem consulta explícita.
-- **template/**: Templates oficiais. Apenas template-wip.tex deve ser usado para novos WIP.
-- **wip/**: Arquivos em desenvolvimento, PDFs gerados, estrutura ativa.
+- **docs/**: Governance documents, flow diagrams, auxiliary documentation, SVG/PNG reference files.
+- **fig/**: Images, figures, visual sources, image licensing files.
+- **misc/**: Project decisions, style guide, external references, analyses.
+- **scripts/**: Automation scripts (report generation, validation, tracking). Never edit without explicit consultation.
+- **template/**: Official templates. Only `template-wip.tex` should be used for new WIP files.
+- **wip/**: Files in development, generated PDFs, active structure.
 
-**Outros arquivos importantes:**
-- **README.md**: Status do projeto, links principais, aviso de revisão de estilo em andamento.
-- **SETUP.md**: Guia de preparação do ambiente e ferramentas.
+**Other important files:**
+- **README.md**: Project status, main links, ongoing style revision notice.
+- **SETUP.md**: Environment and tooling setup guide.
 - **mkdocs.yml**: MkDocs configuration for Read the Docs web publication.
 - **.readthedocs.yaml**: Read the Docs build configuration.
 - **.gitbook.yaml**: GitBook configuration (`root: ./docs-web`).
@@ -148,10 +143,12 @@ Updates README.md version badges when new tags are created.
 
 ### Compile LaTeX
 
-```powershell
-# In TeXstudio (preferred) or command line
-pdflatex guide.tex
+```bash
+latexmk -pdf -interaction=nonstopmode -halt-on-error guide.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error guide.tex
 ```
+
+Two passes are required for TOC and List of HOTAS Tables. WIP files follow the same rule.
 
 ### Run Integrity Check
 
@@ -213,10 +210,10 @@ For complete column specifications, see BRIEFING Section 4.2 and Section 12.3.9.
 
 ```latex
 \newcommand{\docversion}{0.4.1.1}
-\newcommand{\docbuild}{20260218}
+\newcommand{\docbuild}{20260218}       % build date — update on each version bump
 \newcommand{\docstartdate}{05 January 2026}
 \newcommand{\docenddate}{18 February 2026}
-\newcommand{\chapterscompletedof}{4/6}
+\newcommand{\chapterscompletedof}{4/6} % update when new chapter is integrated
 ```
 
 
@@ -230,7 +227,7 @@ For complete column specifications, see BRIEFING Section 4.2 and Section 12.3.9.
 6. ❌ **Never** write LaTeX document content in Portuguese (all guide content must be English)
 7. ❌ **Never** use generic placeholders like "TODO" in LaTeX content
 8. ❌ **Never** edit `INTEGRATED-FILES.md` manually (it's auto-generated)
-9. ❌ **Never** choose silently between multiple interpretations — list them and ask.
+9. ❌ **Never** choose silently between multiple interpretations — list them and ask the user.
 10. ❌ **Never** edit content adjacent to the requested change (formatting, style, comments, structure) unless explicitly asked.
 
 
