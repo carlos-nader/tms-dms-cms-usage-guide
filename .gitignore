@@ -37,7 +37,6 @@
 # ==============================================================================
 *.megaignore
 *.ini
-check-guide-integrity.ps1
 guide-integrity-check.log
 misc/pessoal/
 misc/pessoal/**
