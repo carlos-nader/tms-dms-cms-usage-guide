@@ -68,7 +68,7 @@ jobs:
 
     - name: Validate docs-web (MkDocs)
       language: python
-      python: "3.8"
+      python: "3.11"
       git:
         depth: false
       install:
@@ -100,6 +100,6 @@ jobs:
             exit 0
           fi
           echo "Building alpha: $alpha"
-          latexmk -pdf -interaction=nonstopmode -halt-on-error "$alpha"
-          latexmk -pdf -interaction=nonstopmode -halt-on-error "$alpha"
+          latexmk -pdf -interaction=nonstopmode -halt-on-error -silent "$alpha"
+          latexmk -pdf -interaction=nonstopmode -halt-on-error -silent "$alpha"
           echo "Alpha build OK."
