@@ -191,6 +191,16 @@ The AI must NOT autonomously:
 
 ---
 
+## Handling Ambiguity and Scope
+
+- If a request has more than one valid interpretation, list them before acting — do not choose silently.
+- If assumptions are needed to proceed, state them explicitly.
+- If scope is unclear, ask rather than infer.
+- Edit only what was explicitly requested. Do not improve, reformat, or restructure adjacent content.
+- If an unrelated issue is noticed while working, mention it — do not fix it unless asked.
+
+---
+
 ## Critical Rules
 
 - **Never commit or push without explicit user approval**

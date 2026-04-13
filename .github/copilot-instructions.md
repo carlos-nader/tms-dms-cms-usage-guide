@@ -230,6 +230,8 @@ For complete column specifications, see BRIEFING Section 4.2 and Section 12.3.9.
 6. ❌ **Never** write LaTeX document content in Portuguese (all guide content must be English)
 7. ❌ **Never** use generic placeholders like "TODO" in LaTeX content
 8. ❌ **Never** edit `INTEGRATED-FILES.md` manually (it's auto-generated)
+9. ❌ **Never** choose silently between multiple interpretations — list them and ask.
+10. ❌ **Never** edit content adjacent to the requested change (formatting, style, comments, structure) unless explicitly asked.
 
 
 ## Quick Reference Links
@@ -253,6 +255,8 @@ For complete column specifications, see BRIEFING Section 4.2 and Section 12.3.9.
 6. Am I considering existing diagrams, scripts, and images in the project?
 7. Am I respecting the CC BY-NC 4.0 licensing for all assets?
 8. Am I aware of the project's current text revision status?
+9. Does this request have more than one valid interpretation? If yes, have I surfaced them to the user before proceeding?
+10. Am I editing only what was explicitly requested, without touching adjacent content, formatting, or structure?
 
 ---
 
