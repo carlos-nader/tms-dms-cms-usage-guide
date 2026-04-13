@@ -26,6 +26,9 @@ theme:
   name: readthedocs
   favicon: img/favicon.png
 
+exclude_docs: |
+  SUMMARY.md
+
 markdown_extensions:
   - admonition
   - footnotes
