@@ -33,7 +33,6 @@ REPO_ROOT = Path(__file__).parent.parent.resolve()
 
 TRACKED_PATTERNS = [
     "guide.pdf",
-    "wip/guide/*.pdf",
     "wip/chapter-C*.pdf",
     "wip/section-C*-S*.pdf",
     "wip/guide-v*-alpha*.pdf",

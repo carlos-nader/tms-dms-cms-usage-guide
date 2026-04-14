@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - 'guide.pdf'
-      - 'wip/guide/*.pdf'
       - 'wip/chapter-C*.pdf'
       - 'wip/section-C*-S*.pdf'
       - 'wip/guide-v*-alpha*.pdf'
