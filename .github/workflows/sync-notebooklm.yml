@@ -1,0 +1,39 @@
+name: Sync PDFs to NotebookLM
+
+on:
+  push:
+    paths:
+      - 'guide.pdf'
+      - 'wip/guide/*.pdf'
+      - 'wip/chapter-C*.pdf'
+      - 'wip/section-C*-S*.pdf'
+      - 'wip/guide-v*-alpha*.pdf'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r scripts/requirements-notebooklm.txt
+
+      - name: Run sync
+        env:
+          NOTEBOOKLM_AUTH_JSON: ${{ secrets.NOTEBOOKLM_AUTH_JSON }}
+          NOTEBOOKLM_NOTEBOOK_ID: ${{ secrets.NOTEBOOKLM_NOTEBOOK_ID }}
+          GIT_BEFORE: ${{ github.event.before }}
+          GIT_AFTER: ${{ github.sha }}
+        run: |
+          python scripts/sync-notebooklm.py
