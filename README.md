@@ -282,7 +282,7 @@ All technical claims are cross-referenced to these sources.
 ## 🤝 Contributing & Community
 
 <!-- DO NOT EDIT: managed by workflow (update-forum-views) -->
-[![Forum Views](https://img.shields.io/badge/Forum%20Views-1539%20views-brightgreen)](https://forum.falcon-bms.com/topic/32541)
+[![Forum Views](https://img.shields.io/badge/Forum%20Views-1540%20views-brightgreen)](https://forum.falcon-bms.com/topic/32541)
 
 Contributions are welcome! See [CONTRIBUTING.md](https://github.com/carlos-nader/tms-dms-cms-usage-guide/blob/main/.github/CONTRIBUTING.md) for guidelines.
 
